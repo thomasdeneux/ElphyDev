@@ -90,17 +90,11 @@ ipch/
 *.vcxproj.user
 *.suo
 
-# Compilation of Cuda
-Dexe5/Cuda/cudart*.dll
-Dexe5/Cuda/cuda65.dll
-Dexe5/Cuda/CudaMC65.dll
-Dexe5/Cuda/cuda80.dll
-Dexe5/Cuda/CudaMC80.dll
-DelpheXE/Win64/Bin/Cuda/cudart*.dll
-DelpheXE/Win64/Bin/Cuda/cuda65.dll
-DelpheXE/Win64/Bin/Cuda/CudaMC65.dll
-DelpheXE/Win64/Bin/Cuda/cuda80.dll
-DelpheXE/Win64/Bin/Cuda/CudaMC80.dll
+# Compilation of Cuda (both in Dexe5/Cuda and DelpheXE/Win64/Bin/Cuda)
+cudart*.dll
+cuda65.dll
+cuda80.dll
+CudaMC*.dll
 
 # Output of Inno Setup and zipping BAT scripts
 Setup/
