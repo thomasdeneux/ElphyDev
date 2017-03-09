@@ -1,0 +1,149 @@
+Const                          { Constants declaration}
+  st1='Hello';
+  K1=10;
+  K2=25;
+  i1=8;
+  i2=2;
+  max=10E5;
+  Flag=true;
+
+var                           { Global variables Declaration }
+  x,y:real;                   
+  w:array[1..100] of integer;
+  truc:array[1..10,1..20] of real;
+  i:integer;
+  FVisu:boolean;
+  st: string;                 { Dynamic character string  }      
+  stM:string[20];             { Char string with limited length  (Here 20 characters) 
+                                use this kind of declaration only when needed}
+
+Program 'Test' 
+MessageBox(st1);              { messageBox is a standard procedure. 
+                                If the cursor is on a keyword , CTRL-F1 open Help for this keyword
+                                You can also right click on the keyword and select Program Help 
+                              }
+
+Program 'Some Computation'
+i:= K1+K2;
+messageBox('K1+K2='+Istr(i));
+                              (* Istr  convert a integer into a string
+                                 see also Rstr and Bstr
+                               *)
+                                
+                                
+
+Program 'Other Computation'
+i:=25 div 2;                       // integer division 
+messageBox('25 div 2='+Istr(i));
+
+i:=25 mod 2;
+messageBox('25 mod 2='+Istr(i));   //  modulo 
+x:=25/2;
+messageBox('25 / 2='+Rstr(x,10,3));  // real division 
+
+i:=trunc(25/2);
+messageBox('trunc(25/2)='+Istr(i,0)); { Trunc returns  an integer value which is the rounded value
+                                        towards zero of the argument
+                                        See also round , floor , ceil
+                                      }
+
+i:=round(25/2);
+messageBox('round(25/2)='+Istr(i,0)); 
+
+Fvisu:=k1<>k2;
+messageBox('k1<>k2='+Bstr(Fvisu));
+
+Fvisu:=(k1<>k2) or (i1=i2);
+messageBox('(k1<>k2) or (i1=i2)='+Bstr(Fvisu));
+
+
+Program 'FOR loop'
+for i:=1 to 10 do MessageBox(Istr(i,0)); // A single statement in the loop
+
+program 'Another FOR'
+for i:=1 to 10 do              // More than one statement,
+  begin                        // With begin... end , we build a compound statement
+    MessageBox('YES');
+    MessageBox('NO');
+  end;
+
+Program 'WHILE'
+i:=1;
+while i<10 do
+begin
+  MessageBox(Istr(i,0));
+  i:=i+1;
+end;
+
+var
+  cnt:integer;
+  
+Program 'REPEAT'
+repeat
+  inc(cnt);
+  MessageBox('To stop this infinite loop'+crlf+
+             'you can press SHIFT+ESCAPE on keyboard and  click OK with the mouse'+crlf+
+             Istr(cnt));
+until false;
+
+Program 'IF'
+
+i:=random(20);
+if i<10
+  then messageBox('i<10   i='+Istr(i,0))
+  else messageBox('i>=10   i='+Istr(i,0));
+
+
+{A user fonction}
+function sqrsum(x,y:real):real;
+var
+  i,j: integer;
+begin
+  sqrsum:=sqr(x)+sqr(y);
+end;
+
+program 'test sqrsum'
+
+x:=sqrsum(3,4);
+messageBox(Rstr(x,10,3));
+
+{ A user procedure }
+{ p1 and p2 are value parameters }
+{ When calling Mydisplay, p1 and p2 must be replaced by any expression of the same type 
+}
+procedure MyDisplay(p1,p2:integer);
+begin
+  messageBox('Squares Sum of '+Istr(p1,0)+' et '+Istr(p2,0)+' ='+Rstr(sqrsum(p1,p2),10,3));
+end;
+
+program 'A Procedure Call'
+MyDisplay(5+67,7);
+MyDisplay(12,8);
+
+
+// In Proc1, n is passed by reference
+// when this procedure is called, n must be replaced by a variable of the same type
+// when truc1 returns, this variable will be modified
+
+procedure Proc1(x,y: integer; var n:integer);
+const
+  a=12;
+var
+  x1,x2:real;
+begin
+  n:= x+y;
+end;
+
+program 'Test Proc1'
+Proc1( 23,45, i);
+messageBox(Istr(i));
+
+
+procedure Calcul3(x1,x2:real; var x3:real);
+begin
+  x3:=x1+x2;
+end;
+
+program 'Calcul3'
+calcul3( 12, 67, y );
+

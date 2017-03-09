@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Package Version="3">
+    <PathDelim Value="\"/>
+    <Name Value="P4DLaz"/>
+    <CompilerOptions>
+      <Version Value="8"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="Sources\Core\;build\"/>
+        <UnitOutputDirectory Value="build;"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <SyntaxMode Value="Delphi"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Other>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Files Count="4">
+      <Item1>
+        <Filename Value="Sources\core\PythonEngine.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="PythonEngine"/>
+      </Item1>
+      <Item2>
+        <Filename Value="Sources\core\PythonGUIInputOutput.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="PythonGUIInputOutput"/>
+      </Item2>
+      <Item3>
+        <Filename Value="Sources\core\MethodCallBack.pas"/>
+        <UnitName Value="MethodCallBack"/>
+      </Item3>
+      <Item4>
+        <Filename Value="Sources\core\VarPyth.pas"/>
+        <UnitName Value="VarPyth"/>
+      </Item4>
+    </Files>
+    <Type Value="RunAndDesignTime"/>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="LCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="FCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)\"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

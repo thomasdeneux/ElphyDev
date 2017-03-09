@@ -1,0 +1,1225 @@
+
+Object
+
+  TSYSTEM
+{$H L'objet Tsystem permet de définir certaines propriétés générale du système.
+Il existe un objet unique appelé system qui est toujours vu par le programme du
+fait d'un " With implicite ".}
+
+  TstimChannel(Tobject)
+{$H L'objet TstimChannel regroupe les propriétés d'un canal de stimulation électrique.
+
+ C'est le type de la propriété Channels@(Tstimulator.channels) de Tstimulator@ .
+}
+
+  Tstimulator(Tobject)
+{$H Il existe une propriété système appelée stimulator@ de type Tstimulator.
+ Cet objet permet de modifier tous les paramètres de stimulation du dialogue
+Acquisition/Stimulation.
+ Il permet aussi de créer par programme des signaux de stimulation analogiques
+ou logiques.
+
+ L'objet TdataFile@ contient aussi une propriété StimInfo@ de type Tstimulator.
+Toutes les propriétés de cet objet sont en lecture seule. Elles permettent de lire
+tous les paramètres de stimulation qui ont été sauvés dans le fichier de données.
+
+ Voir (Créer une stimulation électrique)@
+}
+  TacqChannel(Tobject)
+{$H L'objet TacqChannel regroupe les propriétés d'une voie d'acquisition.
+
+ C'est le type de la propriété Channels@(Tacquisition.channels) de Tacquisition@ .
+}
+
+  Tacquisition(Tobject)
+{$H Il existe une propriété système appelée acquisition@(Tsystem.acquisition) de type Tacquisition. Cet
+objet permet de modifier tous les paramètres du dialogue Acquisition/Parameters .
+
+ Si l'on modifie les paramètres d'acquisition par programme, il est recommandé de
+le faire dans le bloc InitProcess0 ou bien dans un programme autonome.
+
+ L'objet TdataFile@ contient aussi une propriété AcqInfo@ de type Tacquisition.
+Toutes les propriétés de cet objet sont en lecture seule. Elles permettent de lire
+tous les paramètres d'acquisition qui ont été sauvés dans le fichier de données.
+
+}
+
+{  TRTchannel(Tobject) }
+
+
+end;
+
+                         { TSYSTEM }
+function system:Tsystem;
+
+property Tsystem.acquisition:Tacquisition readonly;
+{$H L'objet Acquisition de type Tacquisition@ permet de gérer le système d'acquisition.
+}
+property Tsystem.stimulator:Tstimulator readonly;
+{$H L'objet stimulator de type Tstimulator@ permet de gérer le système de stimulation
+électrique.
+}
+property Tsystem.PG0:Tmacro readonly;
+{$H L'objet PG0 de type Tmacro@ gère le programme principal.
+
+ Il est rarement nécessaire d'y faire référence directement.
+}
+
+
+
+                         { TstimChannel StimInf2}
+
+type
+  TbuildStm=procedure (seq:longint;var vec:Tvector);
+
+
+Const
+{$T Types de sortie électrique}
+
+{$H Un signal de stimulation peut être envoyé:
+    - sur une sortie analogique (type TO_analog)
+    - sur sortie digitale ( types TO_digiBit ,TO_digi8, TO_digi16 )
+    - dans une variable du stimulateur Neuron ( TO_Neuron ) ( version Elphy-Neuron uniquement )
+
+ Les sorties digitales peuvent être gérées individuellement au niveau du bit, ce
+qui est la méthode la plus pratique pour l'utilisateur, mais elles peuvent aussi
+être gérées par mots de 8 ou 16 bits.
+ La gestion par mots est moins commode mais peut être plus efficace. Dans ce cas,
+l'utilisateur doit gérer des vecteurs dont chaque valeur détermine l'état de
+16 sorties simultanément.
+
+}
+  TO_analog = 0;
+  TO_digiBit= 1;
+  TO_digi8  = 2;
+  TO_digi16 = 3;
+  TO_Neuron = 4;
+
+
+property TstimChannel.Device:integer;
+{$H Numéro du device.
+ En général, le système ne comprend qu'un seul device et ce paramètre est ignoré.
+
+ Le système ITC peut être formé de deux cartes PCI1600. Dans ce cas, les numéros
+attribués sont 0 et 1 .
+}
+property TstimChannel.PhysNum:integer;
+{$H Numéro physique du port analogique ou digital.
+
+ Pour les sorties analogiques, c'est en général le numéro figurant sur le boitier
+de l'appareil. Les numéros commencent à zéro.
+
+ Pour les sorties digitales, il s'agit du numéro du port et non du numéro du bit.
+ La plupart des systèmes ne contiennent qu'un seul port numéroté 0.
+ Le système ITC peut contenir plusieurs ports.
+
+ Pour les sorties digitales, c'est le paramètre BitNum@ qui correspond au numéro
+figurant sur le boitier.
+}
+
+property TstimChannel.ChannelType:integer;
+{$H Type de sortie.
+
+  Il y a cinq types de sortie numérotés de 0 à 4 . On peut utiliser les constantes
+définissant les (types de sortie)@(Types de sortie électrique):
+
+  TO_analog = 0;  sortie analogique
+  TO_digiBit= 1;  sortie digitale associée à un bit particulier
+  TO_digi8  = 2;  sortie digitale associée à des mots de 8 bits
+  TO_digi16 = 3;  sortie digitale associée à des mots de 16 bits
+  TO_Neuron = 4;  sortie associée à une variable du simulateur Neuron
+
+}
+property TstimChannel.BitNum:integer;
+{$H Numéro du bit pour les sorties digitales.
+
+ Ce numéro est utilisé si le (type de sortie)@ChannelType vaut TO_digiBit.
+}
+
+property TstimChannel.Dy:real readOnly;
+{$H Paramètre d'échelle du canal s'il est de type analogique.
+ Les paramètres d'échelle sont Dy et Y0@ . Ils relient les valeurs internes j aux
+valeurs réelles y par la relation:
+                 y:=Dy * j +Y0
+
+ j est la valeur entière rangée dans le registre DAC alors que y est la valeur
+réelle (en mV, pA, etc...) significative pour l'utilisateur.
+
+ On fixe Dy et y0 avec setScale@ .
+}
+property TstimChannel.y0:real readOnly;
+{$H Paramètre d'échelle du canal s'il est de type analogique.
+
+ Voir Dy@
+}
+
+property TstimChannel.unitY:string;
+{$H Unités du canal s'il est de type analogique.
+
+ Par défaut, la chaîne unitY est égale à 'mV'
+ On peut modifier les paramètres d'échelle Dy@ et y0@ pour exprimer les valeurs
+imposées sur les sorties d'une façon plus significative (pA, Volts, etc...)
+}
+
+procedure TstimChannel.setScale(j1,j2:integer;y1,y2:real);
+{$H Permet de fixer les paramètres d'échelle du canal s'il est de type analogique.
+
+ j1 et j2 sont des valeurs internes correspondant à des valeurs réelles y1 et y2.
+
+ Ceci est la façon d'introduire les échelles dans le menu stimulation:
+
+         j1 correspond à y1
+         j2 correspond à y2
+
+}
+
+
+property TstimChannel.buildEp:TbuildStm;
+{$H Gestionnaire d'événement permettant de programmer une sortie .
+
+ TbuildStm est un type déclaré de la façon suivante:
+
+      TbuildStm=procedure(seq:longint;var vec:Tvector);
+
+ Lorsque l'utilisateur souhaite programmer une sortie, il doit écrire
+une procédure ayant deux paramètres: le premier étant entier, le second étant un
+vecteur comme ci-dessus. Le rôle de cette procédure est de remplir le vecteur vec
+avec le signal de stimulation souhaité. Exemple:
+
+ @f6 procedure MyStim(seq:longint;var vec:Tvector);
+ @f6 var
+ @f6   i:longint;
+ @f6 begin
+ @f6   with vec do
+ @f6   for i:=Istart to Iend do
+ @f6     begin
+ @f6       x:=convx(i);
+ @f6       Yvalue[i]:=1000*seq*sin(2*pi/100*x);
+ @f6     end;
+ @f6 end;
+
+ Ensuite, dans la partie InitProcess0, il faut indiquer à l'objet stimulator que
+cette procédure doit être utilisée. Ce qui sera fait en écrivant:
+
+ @f6 stimulator.channel[1].buildEp:=myStim;
+
+ Pendant l'acquisition, cette procédure sera appelée à chaque fois que le système
+le jugera nécessaire. A chaque appel, seq contient le numéro de la séquence qui doit
+être construite, du moins si l'on est en mode séquence. En mode continu, seq vaut
+toujours zéro mais les bornes du vecteur vec, Xstart et Xend, sont ajustées pour
+préciser la portion demandée.
+}
+
+property TstimChannel.NrnSymbolName:string;
+{$H Nom de la variable Neuron associée au canal de stimulation.
+
+ Si le type@ChannelType est analogique ou digital, le signal de sortie est envoyé simultanément
+sur la sortie matérielle et dans la variable Neuron dont le nom est NrnSymbolName.
+ Si le type@ChannelType est TO_Neuron, le signal de sortie est envoyé uniquement
+dans la variable Neuron dont le nom est NrnSymbolName.
+}
+
+                         { Tstimulator StimInf2}
+
+property Tstimulator.ChannelCount:integer;
+{$H Nombre de canaux logiques utilisés.
+
+ Ce nombre doit être fixé par l'utilisateur avant toute programmation des canaux
+( propriété Channels@ ).
+
+ Les canaux logiques seront ensuite numérotés de 1 à ChannelCount.
+}
+property Tstimulator.Channels(n:integer):TstimChannel readOnly;
+{$H Permet de définir les propriétés d'un canal logique.
+
+ n est un nombre compris entre 1 et ChannelCount@
+
+ Voir TstimChannel@
+}
+
+
+property Tstimulator.BufferCount:integer;
+{$H Définit le nombre de buffers de stimulation .
+
+ Par défaut, ce nombre vaut zéro. Ce qui signifie que le système utilise le nombre
+de buffers qui lui convient.
+
+ Le programme peut changer ce nombre dans la partie InitProcess0.
+
+ En utilisant la valeur 1 , il sera facile de modifier la stimulation entre chaque
+séquence.
+ En utilisant une valeur N supérieure à 1, on pourra définir un cycle de N stimulations
+pouvant se dérouler indéfiniment sans intervention du programme.
+}
+
+property Tstimulator.CurrentBuffer:integer;
+{$H Définit le buffer courant.
+
+ Le buffer courant est celui qui est associé aux vecteurs (voir propriété vector@ ) .
+ Quand on veut accèder directement à ces vecteurs, il faut fixer d'abord la valeur
+de CurrentBuffer .
+
+ Les buffers sont numérotés de 0 à N-1 .
+
+ CurrentBuffer vaut zéro par défaut.
+}
+
+property Tstimulator.BufferSize:integer;
+{$H Définit la taille des buffers de stimulation.
+
+ Cette taille est prise en compte uniquement en acquisition continue. En effet, en mode séquence,
+la taille d'un buffer est toujours égale à la taille d'un épisode.
+
+ BufferSize est exprimé en nombre d'échantillons par canal.
+
+ Si BufferSize vaut zéro, la taille du buffer sera ajustée par le système.
+
+ Il est intéressant de modifier la valeur de BufferSize lorsque l'on veut générer un signal périodique. Dans ce cas,
+on donne à bufferSize une valeur égale au nombre d'échantillons contenus dans une période. On donne à BufferCount@
+une valeur égale à 1 puis on remplit les vecteurs du stimulateur avec une période de signal.
+ On n'affecte pas la propriété BuildEp@(TsimChannel.BuildEp) des canaux de stimulation (ou on leur donne la valeur NIL ) et le contenu du buffer sera
+utilisé de façon cyclique sans intervention du programme.
+
+
+}
+property Tstimulator.vector(num:integer):Tvector readOnly;
+{$H Permet d'accéder directement aux vecteurs de stimulation.
+
+ Num doit être compris entre 1 et ChannelCount@ .
+
+ Il est recommandé d'appeler InitVectors@ avant d'accéder au contenu des vecteurs
+afin que leur structure corresponde bien aux paramètres d'acquisition/stimulation.
+
+ Il faut aussi fixer la valeur de CurrentBuffer@ s'il y a plusieurs buffers.
+
+}
+
+function Tstimulator.setValue(Device,tpOut,physNum,value:integer):boolean;
+{$H Envoie une valeur sur une sortie du système d'acquisition/stimulation.
+
+ Actuellement, la fonction ne marche que sur les cartes ITC
+
+ Device est le numéro de device : 0 en général, ou 1 si le système est formé de
+deux cartes ITC1600
+
+ tpOut est le type de sortie:
+   0 : sortie analogique
+   1 : sortie logique
+   2 : sortie auxiliaire
+
+ PhysNum est le numéro physique de la sortie
+
+ Value est la valeur envoyée sur le port. C'est toujours un entier sur 16 bits.
+}
+
+function Tstimulator.getValue(Device,tpIn,physNum:integer;var value:smallint):boolean;
+{$H Lit une valeur sur une entrée du système d'acquisition/stimulation.
+
+ Device est le numéro de device : 0 en général, ou 1 si le système est formé de
+deux cartes ITC1600
+
+ tpIn est le type d'entrée:
+   0 : entrée analogique
+   1 : entrée logique
+   2 : entrée auxiliaire
+
+ PhysNum est le numéro physique de l'entrée
+
+ Value est la valeur lue sur le port. C'est toujours un entier sur 16 bits.
+}
+
+
+procedure Tstimulator.initVectors;
+{$H Initialise la structure des vecteurs de stimulation
+}
+
+property Tstimulator.SetByProg:boolean;
+{$H Indique la façon dont sont mises en place les stimulations.
+
+ Si SetByProg vaut FALSE, le stimulateur s'efforce de construire les stimulations à partir des
+informations contenues dans le dialogue Stimulator.
+
+ Si SetByProg vaut TRUE, le stimulateur considère que les stimulations seront construites par
+le programme.
+
+ Contrairement à ce qui se passait avec Elphy version I, il est nécessaire de bien positionner ce booléen.
+Sa valeur n'est jamais modifiée automatiquement.
+
+}
+                         { Tacquisition wacq1 }
+
+
+Const
+{$T Types d'entrées électriques}
+
+{$H Ces constantes doivent être utilisées pour affecter la valeur de la propriété ChannelType@(TacqChannel.ChannelType)
+de TacqChannel@ .
+
+  Les modes courants sont TI_analog et TI_EventAnalog
+  Dans ces deux modes, on utilise une entrée analogique mais, dans le deuxième cas, on
+convertit le signal d'entrée afin de compresser le signal: on ne conserve que la date
+de franchissement d'un seuil.
+
+  Les modes TI_Digi8 , TI_Digi16 et TI_DigiBit ne sont pas utilisés. Dans la pratique, on utilise
+les entrées digitales associées aux vecteurs Vtag .
+
+  Le mode TI_Neuron est utilisé dans le système temps-réel Elphy-Neuron uniquement: dans ce cas,
+les valeurs sont lues dans une variable NEURON dont le nom est donné par NrnSymbolName@(TacqChannel.NrnSymbolName)
+
+  Le mode TI_CyberSpk est utilisé avec le système multi-électrodes CyberKinetics (Blackrock Microsystems)
+
+}
+  TI_analog      = 0;
+  TI_EventAnalog = 1;
+  TI_Digi8       = 2;
+  TI_digi16      = 3;
+  TI_digiBit     = 4;
+  TI_EventDigital= 5;
+  TI_Neuron      = 6;
+
+Property TacqChannel.device:integer;
+{$H Définit le numéro du device.
+
+ En général, il n'y a qu'un seul device et ce numéro vaut zéro.
+ Pour le système ITC1600, on peut utiliser deux cartes PCI1600 et on attribue
+à ces deux cartes les numéros 0 et 1 .
+}
+Property TacqChannel.PhysNum:integer;
+{$H Définit le numéro de voie physique.
+
+ C'est en général le numéro indiqué sur le boitier du système d'acquisition.
+}
+Property TacqChannel.ChannelType:integer;
+{$H Définit le type d'entrée analogique.
+
+  Il y a huit types d'entrée numérotés de 0 à 7 . On peut utiliser les constantes
+définissant les (types d'entrées)@(Types d'entrées électriques):
+
+  TI_analog      = 0 :  entrée analogique
+  TI_EventAnalog = 1 :  entrée analogique convertie en événement
+  TI_Digi8       = 2 :  entrée logique associée à des mots de 8 bits
+  TI_digi16      = 3 :  entrée logique associée à des mots de 16 bits
+  TI_digiBit     = 4 :  entrée logique associée à un bit
+  TI_EventDigital= 5 :  entrée logique convertie en événement
+  TI_Neuron      = 6 :  entrée associée à une variable du simulateur Neuron
+  TI_CyberSpk    = 7 :
+
+ Actuellement, seuls les deux premiers types sont implémentés sur toutes les versions Elphy.
+ Le type TI_Neuron n'existe que sur le système temps réel Elphy-Neuron
+}
+Property TacqChannel.Dy:real readOnly;
+{$H Paramètre d'échelle de l'entrée analogique.
+
+ Les paramètres d'échelle sont Dy et Y0@ . Ils relient les valeurs internes j aux
+valeurs réelles y par la relation:
+                 y:=Dy * j +Y0
+
+ j est la valeur entière fournie par la carte d'acquisition alors que y est la valeur
+réelle correspondante (en mV, pA, etc...) significative pour l'utilisateur.
+}
+Property TacqChannel.y0:real readOnly;
+{$H Paramètre d'échelle de l'entrée analogique.
+
+ Voir Dy@
+}
+
+
+Property TacqChannel.unitY:string;
+{$H Unités de l'entrée analogique.
+
+ Par défaut, la chaîne unitY est égale à 'mV' .
+}
+procedure TacqChannel.setScale(j1,j2:integer;y1,y2:real);
+{$H Permet de fixer les paramètres d'échelle du canal s'il est de type analogique.
+
+ j1 et j2 sont des valeurs internes correspondant à des valeurs réelles y1 et y2.
+
+ Ceci est la façon d'introduire les échelles dans le menu Acquisition/Parameters:
+
+         j1 correspond à y1
+         j2 correspond à y2
+
+}
+property TacqChannel.Gain:integer;
+{$H Définit le gain du canal.
+
+ Il ne s'agit pas du gain réel mais d'un numéro d'ordre compris entre 1 et le
+nombre de gains possibles.
+  Toutes les cartes ne donnent pas la possibilité de changer le gain.
+
+ Sur digidata1200, les valeurs possibles sont:
+     1  correspondant au gain réel  1
+     2  correspondant au gain réel  2
+     3  correspondant au gain réel  4
+     4  correspondant au gain réel  8
+
+}
+property TacqChannel.DownSamplingFactor:integer;
+{$H Facteur de sous-échantillonnage du canal.
+
+}
+
+
+property TacqChannel.EvtThreshold:real;
+{$H Quand ChannelType est TI_EventAnalog, EvtThreshold est le seuil de détection des événements.
+
+ Voir aussi EvtHysteresis@ EvtRisingEdge@
+}
+
+property TacqChannel.EvtHysteresis:real;
+{$H Quand ChannelType est TI_EventAnalog, la propriété EvtHysteresis associée à EvtThreshold
+définit le seuil de détection des événements.
+
+ Si EvtRisingEdge@ = True, un événement est détecté quand le signal franchit le seuil Threshold de bas en haut mais pour qu'une autre détection
+ait lieu, il faut que le signal redescende en dessous de EvtThreshold -EvtHysteresis
+
+ Si EvtRisingEdge@ = False, un événement est détecté quand le signal franchit le seuil Threshold de haut en bas mais pour qu'une autre détection
+ait lieu, il faut que le signal repasse au dessus de EvtThreshold + EvtHysteresis
+}
+
+property TacqChannel.EvtRisingEdge:boolean;
+{$H Quand ChannelType est TI_EventAnalog, la propriété EvtRisingEdge définit le sens de franchissement du
+seuil pour qu'il y ait détection d'un événement.
+
+ Voir EvtThreshold@ , EvtHysteresis@
+}
+
+Property TacqChannel.NrnSymbolName:string;
+{$H Nom de la variable Neuron associée au canal.
+
+  Utilisé uniquement dans le système temps réel Elphy-Neuron
+
+  Dans ce système, le type du canal est toujours TI_Neuron .
+
+  La valeur de chaque échantillon est lue dans la variable de nom NrnSymbolName.
+
+  NrnSymbolName doit correspondre exactement au nom d'une variable du modèle installé dans Neuron en respectant
+les majuscules-minuscules.
+}
+
+
+
+
+property Tacquisition.Channels(n:integer):TacqChannel readOnly;
+{$H Permet de définir les propriétés d'une voie d'acquisition.
+
+ n est le numéro de voie (ou canal) logique. C'est un nombre compris entre 1 et ChannelCount@
+
+ Voir TacqChannel@
+}
+
+
+property Tacquisition.Fcontinuous:boolean;
+{$H Définit le mode d'acquisition:
+    True: acquisition continue
+    False:acquisition en séquences
+}
+property Tacquisition.MaxEpCount:longint;
+{$H Définit le nombre maximum de séquence.
+ Ce nombre peut être écourté si l'utilisateur arrête l'acquisition manuellement.
+ Zéro signifie qu'il n'y a pas de limite au nombre de séquences
+}
+property Tacquisition.ChannelCount:integer;
+{$H Définit le nombre de voies analogiques acquises.
+}
+
+property Tacquisition.SamplesPerChannel:integer readOnly;
+{$H Renvoie le nombre d'échantillons par voie;
+}
+
+property Tacquisition.EpDuration:real;
+{$H Définit la durée d'un épisode en millisecondes. Ce paramètre est ignoré en
+mode continu.
+
+ La lecture de cette propriété peut donner un résultat différent de la valeur
+donnée en écriture.
+ En effet, toutes les durées ne sont pas acceptables pour la carte d'acquisition.
+ Ceci est lié au fait que la période globale doit être un multiple d'une durée
+élémentaire (0.25 microsecondes sur Digidata 1200).
+
+ Elphy corrige donc légèrement les valeurs souhaitées par l'utilisateur pour
+tenir compte des contraintes du matériel.
+}
+
+property Tacquisition.PeriodPerChannel:real;
+{$H Définit la période par voie (en millisecondes).
+
+}
+property Tacquisition.MaxDuration:real;
+{$H Définit la durée maximale d'acquisition en mode continu (en secondes).
+ Une valeur nulle signifie pas de limite.
+ Cette durée peut être écourtée si l'utilisateur arrête l'acquisition manuellement.
+}
+property Tacquisition.PreTrigDuration:real;
+{$H Définit le nombre de points conservés avant le trigger en mode séquence.
+
+  Sur digidata 1200, ce nombre de points ne doit pas être supérieur à la moitié
+(environ) du nombre de points contenus dans le buffer DMA.
+}
+property Tacquisition.Fstimulate:boolean;
+{$H Si Fstimulate est vrai, les sorties analogiques et logiques seront raffraichies
+pendant l'acquisition. Sinon, elles ne seront pas modifiées.
+}
+property Tacquisition.TriggerMode:integer;
+{$H Définit le mode de synchronisation en mode séquence. Les valeurs possibles sont
+données par les (constantes de trigger)@(modes trigger)
+
+ @prog
+ TM_immediate=1; mode immediat
+ TM_keyboard=2;  mode clavier
+ TM_abs=3;       mode absolu analogique
+ TM_diff=4;      mode différentiel analogique
+ TM_digiUp=5;    mode numérique front montant
+ TM_digiDw=6;    mode numérique  front descendant
+ TM_internal=7;  modeTM_diff interne
+ TM_prog=8;
+ TM_NIanalog=9;
+@notprog
+
+Voir (Acquisition Parameters)@(ElphyDaq#Acquisition_Parameters) pour plus de détails.
+
+}
+
+property Tacquisition.TrigChannel:integer;
+{$H Définit la voie de synchronisation.
+
+ Quand le mode de synchronisation est absolu analogique ou différentiel analogique,
+TrigChannel représente le numéro du canal logique testé ( 1 à ChannelCount@ )
+
+ Quand le mode de synchronisation est numérique, TrigChannel représente le numéro
+de l'entrée digitale testée. Actuellement, seule la carte ITC1600 possède plusieurs
+entrées trigger (numérotées de 0 à 4), les autres n'ont qu'une entrée trigger et ignorent
+ce paramètre.
+}
+
+property Tacquisition.ThresholdUp:real;
+{$H Seuil de déclenchement en mode trigger analogique.
+
+  L'épisode commence quand le seuil est franchi de bas en haut.
+}
+
+property Tacquisition.ThresholdDw:real;
+{$H Seuil de déclenchement en mode trigger analogique.
+
+  L'épisode commence quand le seuil est franchi de haut en bas .
+}
+
+property Tacquisition.NIrisingSlope:boolean;
+{$H When triggerMode=TM_NIanalog , this parameter defines the direction of the
+signal that activates the trigger.
+
+  If NIrisingSlope = true, an episode starts when the signal crosses the threshold ThresholdUp
+from bottom to top.
+  If NIrisingSlope = false, an episode starts when the signal crosses the threshold ThresholdUp
+from top to bottom .
+
+}
+
+property Tacquisition.TestInterval:integer;
+{$H When TriggerMode=TM_diff, the system continuously calculates the amplitude difference between two samples separated by "Test Interval" samples.
+ An episode starts when this difference exceeds ThresholdUp@ (Rising signal) or when the absolute value of this difference exceeds ThresholdDw@ ( Decreasing signal )
+}
+
+property Tacquisition.comment:Tmemo readonly;
+{$H Permet de modifier le commentaire inséré dans l'entête de fichier.
+
+ Voir Tmemo@ .
+}
+
+property Tacquisition.isi:real;
+{$H Inter-stimulus interval
+
+ En mode trigger interne, ISI indique la durée en secondes entre les débuts de
+deux épisodes successifs.
+ ISI ne peut pas être inférieur à la durée d'un épisode.
+
+}
+
+procedure Tacquisition.GetEpInfo(var x;dep:longint);
+procedure Tacquisition.SetEpInfo(var x;dep:longint);
+procedure Tacquisition.ReadEpInfo(var x);
+procedure Tacquisition.WriteEpInfo(var x);
+procedure Tacquisition.ResetEpInfo;
+
+procedure Tacquisition.GetFileInfo(var x;dep:longint);
+procedure Tacquisition.SetFileInfo(var x;dep:longint);
+procedure Tacquisition.ReadFileInfo(var x);
+procedure Tacquisition.WriteFileInfo(var x);
+procedure Tacquisition.ReadFileInfoExt(var x);
+procedure Tacquisition.WriteFileInfoExt(var x);
+procedure Tacquisition.ResetFileInfo;
+
+property Tacquisition.EpInfoSize:longint;
+property Tacquisition.FileInfoSize:longint;
+
+
+procedure Tacquisition.Start;
+{$H Envoie un message au système demandant le démarrage de l'acquisition.
+
+ L'appel de cette méthode équivaut à la commande Start And Display du menu Acquisition.
+
+ Voir StartAndSave@ , Stop@ .
+}
+procedure Tacquisition.StartAndSave;
+procedure Tacquisition.StartAndSave(Append:boolean);
+{$H Envoie un message au système demandant le démarrage de l'acquisition avec sauvegarde des données.
+
+ L'appel de cette méthode équivaut à la commande @b Start And Save @notb du menu Acquisition.
+ Quand aucun paramètre n'est donné ou quand Append vaut False, la commande appelée est @b Start And Save (New File) @notb .
+
+ Quand Append vaut True, la commande appelée est @b Start And Save ( Same File) @notb
+
+  Voir Start@ , Stop@ .
+}
+
+procedure Tacquisition.stop;
+{$H Envoie un message au système demandant l'arrêt de l'acquisition.
+
+ L'appel de cette méthode équivaut à la commande Stop du menu Acquisition.
+
+ Voir Start@ , StartAndSave@ .
+}
+
+
+property Tacquisition.GenericFileName:string;
+{$H Désigne le nom générique de fichier tel qu'il apparait dans le dialogue
+Acquisition/Parameters .
+
+ Si l'on souhaite modifier cette propriété, il faut le faire dans un programme
+autonome ou dans la partie InitProcess0.
+
+
+}
+
+
+procedure Tacquisition.ActivateTrigger;
+{$H Lorsque l'acquisition est en mode trigger externe (Numerical + actuellement),
+cette méthode active la carte d'acquisition et la rend immédiatement sensible au
+signal trigger.
+
+  La méthode ne peut être appelée que dans la partie InitProcess. En général, ce
+sera la dernière instruction de InitProcess.
+
+  Son utilité est la suivante: habituellement, la carte d'acquisition est activée
+à la fin de InitProcess. Si InitProcess contient une instruction dont le but est
+d'activer un stimulateur externe (exemple: le stimulateur visuel), le signal du
+trigger risque d'arriver avant l'activation de la carte d'acquisition. On aura
+donc intérêt à appeler ActivateTrigger juste avant l'instruction en question.
+
+}
+
+function Tacquisition.Special1(mask,delay:longint):longint;
+{$H Cette méthode permet de saisir un mot de 16 bits sur les entrées analogiques
+d'une carte ComputerBoard.
+
+  On applique des signaux TTL sur certaines entrées analogiques, ces entrées
+sont déterminées par la valeur de Mask. On envoie un pulse TTL sur l'entrée
+External Trigger, et la fonction renvoie un mot reflétant l'état des signaux TTL.
+
+  Mask est mot de 16 bits déterminant les entrées testées. Un '1' dans le mot écrit en
+binaire signifie que l'entrée est testée, un '0' qu'elle est ignorée et donnera toujours
+zéro dans le résultat.
+
+  Delay est un délai en ms entre le trigger et la mesure. Ce délai est utile si le trigger
+est appliqué en même temps que les données.
+
+  En sortie, la fonction renvoie un mot de 16 bits dans lequel chaque bit correspond
+à l'état de l'entrée correspondante.
+
+  Exemple, pour tester les canaux 4,5,6 et 7, on pourra écrire:
+
+  @f6 code:=special1($00F0,20) shr 4;
+
+  Code contiendra alors un nombre compris entre 0 et 15 .
+
+
+  La fonction ne peut évidemment fonctionner que lorsqu'une acquisition n'est pas
+en cours. Donc, il faut appeler la fonction dans un bloc Program ou InitProcess0,
+ou bien encore dans une bloc InitProcess ou Process à condition d'utiliser le mode
+trigger externe avec WaitMode@ = true .
+
+  Il faut aussi éviter d'utiliser ActivateTrigger@ .
+
+}
+
+property Tacquisition.waitMode:boolean;
+{$H Le paramètre WaitMode permet d'interdire le démarrage de l'acquisition d'une
+nouvelle séquence avant la fin du traitement de la séquence courante.
+
+ Il ne doit être fixé que dans la partie InitProcess0.
+
+ Il n'est actuellement efficace que si le trigger est externe (Numerical), Immediate ou Internal.
+
+ Il vaut False par défaut. Si on le fixe à True, le trigger externe ne sera
+réarmé qu'à la fin du programme de traitement, tandis que les triggers internes (Immediate
+ou Internal) seront éventuellement repoussés à la fin du traitement.
+
+ Son intérêt est le suivant: dans les conditions "normales", Elphy autorise le
+démarrage de l'acquisition d'une nouvelle séquence dés la fin de l'acquisition
+de la séquence courante. Autrement dit, le programme de traitement (Bloc Process
+du programme) peut continuer son exécution pendant l'acquisition de la séquence
+suivante, ce qui peut rendre le système très efficace. Toutefois, il existe des
+circonstances dans lesquelles cette méthode est néfaste. C'est le cas, par exemple,
+lorsque l'on veut préparer une stimulation électrique pour la séquence suivante en
+tenant compte des résultats de l'analyse de la séquence courante.
+  Dans ce cas, les buffers de stimulation devront être remplis dans les blocs
+InitProcess et Process en utilisant les méthodes suivantes de Tstimulator@ :
+
+      ClearBuffers@(Tstimulator.ClearBuffers)
+      setDacVectorParams@(Tstimulator.setDacVectorParams)
+      setDigiVectorParams@(Tstimulator.setDigiVectorParams)
+      setDigiVector@(Tstimulator.setDigiVector)
+      setDacVector@(Tstimulator.setDacVector)
+
+}
+property Tacquisition.Saving:boolean readOnly;
+{$H Indique si la sauvegarde des données est activée pendant l'acquisition.
+
+ La valeur renvoyée est TRUE si l'utilisateur a lancé l'acquisition avec "Start and save" et
+FALSE si l'utilisateur a utilisé "Start and Display" .
+}
+
+property Tacquisition.Append:boolean readOnly;
+{$H Indique si la sauvegarde des données est activée en mode Append pendant l'acquisition.
+
+ La valeur renvoyée est TRUE si l'utilisateur a lancé l'acquisition avec "Start and save (same file)" et
+FALSE si l'utilisateur a utilisé "Start and Save (New File)" ou encore "Start And Display" .
+}
+
+property Tacquisition.Stopped:boolean readOnly;
+{$H Indique que l'utilisateur a activé la commande "Stop" pendant l'acquisition.
+}
+
+procedure Tacquisition.InstallProcess(initP0,initP,P,endP:Tprocedure);
+{$H Installe un processus pour une acquisition en séquences.
+
+ Historiquement, la première méthode utilisée pour faire exécuter un programme
+pendant l'acquisition a été l'utilisation des mots clés InitProcess0, InitProcess,
+Process et EndProcess .
+
+ Cette méthode a pour inconvénient qu'il est difficile de définir des processus
+différents dans un même programme.
+
+ Avec InstallProcess, on donne au système l'adresse de quatre procédures: initP0,
+initP ,P et endP qui vont jouer respectivement le rôle des blocs InitProcess0,
+InitProcess, Process et EndProcess.
+
+ Ces procédures ne doivent pas avoir de paramètres.
+ Si l'on souhaite ne pas définir une ou plusieurs procédures, il suffit d'utiliser le
+mot clé NIL .
+
+ Exemple:
+
+ @f6 Procedure Maxima;
+ @f6 begin
+ @f6   t1[EpNum]:=maxi(v1,v1.Xstart,v1.Xend);
+ @f6 end;
+
+ @f6 Procedure Minima;
+ @f6 begin
+ @f6   t1[EpNum]:=mini(v1,v1.Xstart,v1.Xend);
+ @f6 end;
+
+ @f6 Program 'Install Max'
+ @f6 Acquisition.installProcess(nil,nil,Maxima,nil);
+
+ @f6 Program 'Install Min'
+ @f6 Acquisition.installProcess(nil,nil,Minima,nil);
+
+ Après l'éxécution de "Install Max" , la procédure Maxima sera appelée après chaque
+séquence acquise.
+ Après l'éxécution de "Install Min" , la procédure Minima sera appelée après chaque
+séquence acquise.
+
+ Dans un même programme, on évitera d'utiliser simultanément les deux méthodes:
+ - ou bien, on utilisera les blocs InitProcess0, InitProcess, Process et EndProcess.
+ - ou bien, on utilisera  installProcess
+
+ InstallProcess coche automatiquement la case "Execute program loaded in editor" dans
+les paramètres d'acquisition sauf si tous les paramètres valent nil .
+
+}
+
+property Tacquisition.UseTagStart:boolean;
+{$H Propriété utilisée uniquement par la digidata 1322.
+
+ Quand UseTagStart vaut TRUE, les mots de 16 bits acquis par le système sont
+divisés en deux groupes:
+ - un groupe de 14 bits code les tensions analogiques sur les entrées
+ - les deux autres bits reflètent l'état des entrées appelées TAG et START sur
+l'interface
+
+ Dans ce cas, les tensions d'entrées sont transformées en nombres entiers compris entre
+-8192 et +8191
+
+ Quand UseTagStart vaut FALSE, les tensions d'entrées sont codées sur 16 bits. Elles
+sont transformées en nombres entiers compris entre -32768 et + 32767
+
+ Par défaut, la propriété a la valeur fixée dans le dialogue OPTIONS de la carte d'acquisition.
+
+}
+
+function Tacquisition.InsertObject(var uo:Tobject):boolean;
+{$H Insère un objet dans le fichier de données.
+
+ Au départ, la méthode était destinée à sauver un objet pendant une acquisition continue.
+ L'objet est inséré dans le flux de données, c'est à dire que le bloc Rdata courant est d'abord fermé.
+Ensuite, l'objet est sauvé dans le fichier. Puis, un nouveau bloc Rdata est ouvert.
+
+ En mode Episodes, la méthode fonctionne aussi mais il faut appeler la méthode AVANT un épisode.
+ Elle ne fonctionne pas, par exemple, dans le bloc EndProcess
+
+ En mode Stimulation Visuelle, c'est le prochain VisualStim.Animate qui provoque la sauvegarde
+dans le fichier.
+
+ Pour ajouter un objet à la fin du fichier de données courant, il est également possible d'utiliser (Tdatafile.AppendObject)@
+}
+
+procedure TAcquisition.InsertTag(code:integer; st:string);
+{$H Insère un tag manuel dans le fichier de données.
+ Fonctionne en mode continu uniquement.
+}
+
+procedure TAcquisition.InsertTagAndObject(code:integer; st:string;var uo:Tobject);
+{$H Insère un tag et un objet dans le fichier de données.
+
+ Fonctionne en mode continu uniquement.
+}
+
+
+property Tdatafile.AcqInfo:Tacquisition ReadOnly;
+
+property Tacquisition.isRunning:boolean ReadOnly;
+{$H  Renvoie True quand une acquisition est en cours, False dans le cas contraire .
+}
+
+procedure Tacquisition.ProgRestart;
+
+property Tacquisition.MinimalTimeInBuffer: real;
+{$H Permet de fixer une taille minimale de buffer en acquisition continue.
+
+ MinimalTimeInBuffer est un temps exprimé en secondes.
+
+ Par défaut, Elphy travaille en acquisition continue avec un buffer contenant environ dix secondes de signal.
+ Quand un traitement online est programmé avec ProcessCont, on ne peut atteindre que les données contenues dans
+ce buffer. Il est parfois nécessaire d'augmenter la taille du buffer.
+
+ MinimalTimeInBuffer doit être modifié dans la partie InitProcess0 . La modification
+n'est pas permanente. Elle ne concerne que l'acquisition courante.
+
+}
+
+property Tacquisition.ElectrodeCount:integer;
+{$H Système Blackrock
+
+ Nombre d'électrodes.
+}
+
+property Tacquisition.MaxNumberOfUnits:integer;
+{$H Système Blackrock
+
+  Nombre d'unités pour le tri de spikes
+}
+
+property Tacquisition.SpkWaveLength:integer;
+{$H Système Blackrock
+
+  Nombre de points par Waveform
+}
+
+
+property Tacquisition.SpkSampleBeforeTrigger:integer;
+{$H Système Blackrock
+
+  Nombre de points avant le trigger dans une Waveform.
+
+}
+
+
+procedure Tacquisition.setWaveFormScale(j1,j2:integer;y1,y2:real);
+{$H Système Blackrock
+
+  Fixe les paramètres d'échelle pour les waveforms.
+}
+
+function Tacquisition.TestPhotonTime(DT:real):real;
+{$H Teste la correspondance entre le temps photon et le temps système
+
+ DT est la durée d'un paquet de photons en millisecondes.
+ Le résultat est une estimation de l'incertitude sur le temps mesuré en millisecondes
+
+}
+
+function Tacquisition.ReadDigitalInput(device, port:integer): integer;
+{$H Lit un port digital de la carte d'acquisition.
+
+ device est le numéro du device pour la carte ITC (est ignoré pour les autres systèmes)
+ port est le numéro du port (dépend du matériel):
+
+ Les ports ont en général 8 ou 16 bits
+     pour ITC, port=1 correspond au connecteur AR du premier module
+
+ La fonction renvoie une valeur négative en cas d'erreur
+}
+
+function Tacquisition.WriteDigitalOutput(device, port, value: integer): integer;
+{$H Ecrit un mot sur un port digital de la carte d'acquisition.
+
+ device est le numéro du device pour la carte ITC (est ignoré pour les autres systèmes)
+ port est le numéro du port (dépend du matériel):
+ value est la valeur à écrire.
+
+ Les ports ont en général 8 ou 16 bits. Les bits de poids plus élévé sont ignorés.
+
+ pour ITC, port=1 correspond au connecteur AR du premier module
+
+ La fonction renvoie une valeur différente de zéro en cas d'erreur.
+
+ Voir aussi SetDigitalOutput@
+}
+
+function Tacquisition.SetDigitalOutput(num:integer; value: boolean): integer;
+{$H Ecrit sur un port digital de la carte d'acquisition.
+
+ Actuellement, ne fonctionne que sur le système BlackRock
+ Ce système comporte 4 sorties digitales numérotées de 1 à 4
+ Selon la valeur Value, la sortie est placée dans l'état haut (TRUE) ou l'état bas (FALSE)
+
+ La fonction renvoie une valeur différente de zéro en cas d'erreur.
+
+ Voir aussi WriteDigitalOutput@
+}
+
+property Tacquisition.Fdisplay:boolean;
+{$H Active ou désactive l'affichage pendant l'acquisition
+}
+
+property Tacquisition.FimmediateDisplay:boolean;
+{$H Active ou désactive l'affichage immédiat pendant l'acquisition
+}
+
+property Tacquisition.Fprocess:boolean;
+{$H Active ou désactive l'exécution des blocs process
+
+ Les blocs process sont des parties de programme commencçant par les mots-clés
+InitProcess0@, InitProcess@, Process@, ProcessCont@ et EndProcess@
+}
+
+property Tacquisition.FholdDisplay:boolean;
+{$H Active ou désactive l'affichage permanent pendant l'acquisition.
+
+ Quand FholdDisplay vaut True en mode épisode, les épisodes s'affichent les uns sur les autres.
+L'effacement ne se produit que si on appelle Acquisition.Refresh@
+
+}
+
+procedure Tacquisition.refresh;
+{$H Provoque l'effacement des traces acquises quand FholdDisplay et Fdisplay valent true.  
+}
+
+property Tacquisition.VspkBufferSize: integer;
+{$H Taille des buffers des canaux Vspk et Wspk
+
+ Par défaut, cette valeur est fixée à 10000 spikes (ou 10000 waveforms).
+ On la peut changer uniquement dans le bloc InitProcess0
+
+ A chaque fois qu'un buffer est à moitié rempli, son contenu est sauvé sur le disque.
+ Ce processus est transparent pour l'utilisateur et en général, il n'est pas nécessaire de modifier ce paramètre.
+
+ Toutefois, en mode épisode, pour une durée d'épisode très longue, il se peut qu'un traitement On-line
+ne donne pas les résultats escomptés parce que tous les spikes ne sont pas présent en mémoire.
+ Il peut alors être utile d'augmenter la valeur de VspkBufferSize (dans les limites de la mémoire disponible).
+
+ Notez que les spikes et waveforms sont toujours correctement sauvés, même si le nombre de spikes dans un épisode
+est plus grand que la taille du buffer.
+
+}
+
+property Tacquisition.TestCentralSim:boolean;
+{$H Permet d'utiliser Elphy avec le logiciel CentralSim de BlackRock.
+
+ L'acquisition en mode Episode trigger immédiat ou interne ne démarre pas quand on utilise CentraSim à la place de Central Software.
+ En positionnant ce flag, on permet le démarrage de l'épisode.
+
+ Vaut false par défaut.
+
+}
+
+Hpage {Créer une stimulation électrique };
+
+{$P
+
+ Elphy peut générer des signaux électriques synchronisés pendant une acquisition
+pourvu que le matériel d'acquisition/stimulation le permette.
+
+
+ L'acquisition peut être soit continue, soit en épisodes.
+
+ En mode Episodes, la stimulation a exactement la même durée que l'acquisition. Il n'est pas possible d'envoyer un signal
+sur les sorties en dehors de l'épisode mais les valeurs présentes sur les sorties en fin d'épisode persistent jusqu'à l'épisode suivant.
+ Le mode trigger peut être
+    - Internal ou Immediate
+    - Digital
+    - ou encore NI analog pour les cartes National Instrument
+
+ Les signaux de stimulation peuvent être créés soit en remplissant les paramètres du dialogue Acquisition/Stimulation,
+soit par programme. Le mode programme offre bien sûr beaucoup plus de possibilités
+
+ La plupart des paramètres que l'on trouve dans le dialogue Stimulation correspondent
+à des propriétés de même nom dans l'objet Stimulator.
+
+ Les propriétés clés sont:
+  ChannelCount@(Tstimulator.ChannelCount): c'est le nombre de canaux logiques. Un canal logique (numéroté de 1 à ChannelCount)
+peut correspondre à une sortie analogique ou digitale.
+  BufferCount@(Tstimulator.BufferCount) , BufferSize@(Tstimulator.BufferSize) et SetByProgram@(Tstimulator.SetByProgram)
+
+ Le rôle de ces trois dernières propriétés à changé plusieurs fois. Elphy utilise BufferCount buffers pour chaque canal logique.
+ Un buffer contient un épisode de stimulation en mode épisode ou bien une durée arbitraire de stimulation en mode continu.
+
+ Quand BufferCount=0 , le nombre de buffers est fixé par Elphy et la mise à jour de ces buffers est gérée par Elphy.
+ Quand BufferCount>0 , les buffers sont remplis au lancement de l'acquisition mais ne sont pas mis à jour ensuite.
+ BufferSize peut être modifié uniquement en mode continu.
+ SetByProg indique que le remplissage des buffers sera fait par le programme (setByProg=true) ou bien dépendra des paramètres du dialogue Stimulation
+
+
+
+
+
+
+}
+
+Hpage {Stimulation acquisition continue};
+
+{$P Génération d'un signal périodique.
+
+ L'utilisateur peut fixer arbitrairement le nombre de buffers de stimulation et leur donner une taille quelconque.
+ Ensuite, il peut remplir ces buffers avec les signaux de son choix et lancer l'acquisition.
+ Pendant l'acquisition, le contenu des buffers sera envoyé sur les sorties analogiques (et/ou numériques). Arrivé
+au dernier échantillon du dernier buffer, la stimulation continuera au premier échantillon du premier buffer.
+
+
+}
+
+{$P Génération d'un signal quelconque.
+
+ Pour générer un signal quelconque, il est nécessaire  d'écrire un programme qui mettra à jour le contenu des buffers
+pendant la stimulation.
+}
+
+
+Hpage {Stimulation acquisition en épisodes trigger interne}
+{$P
+}
+
+Hpage {Stimulation acquisition en épisodes trigger externe}
+{$P
+}
+
+ {
+ Voici un exemple de programmation.
+
+
+ @f6 procedure myBuildDac(seq:longint;var vec:Tvector);
+ @f6 var
+ @f6   x:real;
+ @f6   i:integer;
+ @f6 begin
+ @f6   with vec do
+ @f6   begin
+ @f6     for i:=Istart to Iend do
+ @f6     begin
+ @f6       x:=convx(i);
+ @f6       Yvalue[i]:=5000*sin(2*pi/0.1*x);
+ @f6     end;
+ @f6   end;
+ @f6 end;
+
+ @f6 initProcess0
+ @f6 stimulator.buildDac[0]:=myBuildDac;
+
+ Le point clé est la propriété BuildDac@(Tstimulator.buildDac) de l'objet Stimulator@ .
+ Dans le bloc InitProcess0@ , on donne à buildDac[0] l'adresse de la procédure myBuildDac
+écrite précédemment. Cela signifie que le système utilisera cette procédure pour construire
+à chaque instant la sortie analogique 0 . Cette affectation doit se faire obligatoirement
+dans le bloc InitProcess0.
+
+ La procédure myBuildDac (dont le nom est indifférent) doit obligatoirement posséder
+deux paramètres, le premier de type integer (ou longint), le second de type Tvector@. Les noms de
+ces paramètres sont également indifférents.
+
+ En acquisition continue, le premier paramètre n'est pas utilisé (c'est le numéro
+d'épisode pour une acquisition en épisodes). Le second paramètre est un vecteur
+qui sera fourni par le système.
+
+ MyBuildDac sera appelée par le système à chaque fois qu'il sera nécessaire d'alimenter
+le buffer de la sortie analogique 0 . Au moment de l'appel, le vecteur vec est
+convenablement initialisé (bornes et paramètres d'échelle) et le rôle de MyBuildDac
+est de remplir complètement ce vecteur. Dans notre exemple, nous remplissons le vecteur
+avec une sinusoïde.
+
+ Avec cette façon de procéder, le système remplit les buffers de stimulation
+en fonction de ses besoins et non pas suivant une cadence fixée à l'avance.
+
+ La vitesse d'exécution de MyBuildDac peut être critique est il ne faut pas
+essayer d'effectuer d'autres tâches dans cette procédure.
+
+ On peut fournir au système une procedure similaire pour chaque sortie analogique
+ou logique utilisée. Pour les sorties logiques, toute valeur de vec différente de
+zéro sera considérée comme l'unité.
+
+}
+
+(*
+****************
+
+Property TRTChannel.Dy:real readOnly;
+{$H Paramètre d'échelle de l'entrée analogique.
+
+ Les paramètres d'échelle sont Dy et Y0@ . Ils relient les valeurs internes j aux
+valeurs réelles y par la relation:
+                 y:=Dy * j +Y0
+
+ j est la valeur entière fournie par la carte d'acquisition alors que y est la valeur
+réelle correspondante (en mV, pA, etc...) significative pour l'utilisateur.
+}
+Property TRTChannel.y0:real readOnly;
+{$H Paramètre d'échelle de l'entrée analogique.
+
+ Voir Dy@
+}
+
+
+Property TRTChannel.unitY:string;
+{$H Unités de l'entrée analogique.
+
+ Par défaut, la chaîne unitY est égale à 'mV' .
+}
+procedure TRTChannel.setScale(j1,j2:integer;y1,y2:real);
+{$H Permet de fixer les paramètres d'échelle du canal s'il est de type analogique.
+
+ j1 et j2 sont des valeurs internes correspondant à des valeurs réelles y1 et y2.
+
+ Ceci est la façon d'introduire les échelles dans le menu Acquisition/Parameters:
+
+         j1 correspond à y1
+         j2 correspond à y2
+
+}
+
+Property TRTChannel.NrnSymbolName:string;
+{$H Nom de la variable Neuron associée au canal.
+
+  Utilisé uniquement dans le système temps réel Elphy-Neuron
+
+  Dans ce système, le type du canal est toujours TI_Neuron .
+
+  La valeur de chaque échantillon est lue dans la variable de nom NrnSymbolName.
+
+  NrnSymbolName doit correspondre exactement au nom d'une variable du modèle installé dans Neuron en respectant
+les majuscules-minuscules.
+}
+
+*)
+
+
+

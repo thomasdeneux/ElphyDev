@@ -1,0 +1,404 @@
+Hpage ElphyFormat;    { The Elphy format }
+{$P Object files and data files.
+
+ The Elphy format is a particular type of object file format.
+
+ An Elphy object file begins with a 18-byte header with the structure
+
+ @prog
+ THeader= record
+            st:string[15];   // a pascal string. Its value is always 'Dac2 Objects'
+            size: smallint;  // 2-byte integer. Its value is always 18
+          end;
+ @notprog
+
+ Remember that the first byte in a pascal string is the effective length , 12 in this case, so
+there are 3 bytes undefined.
+
+ After the header, we find one or more blocks with the structure
+ @prog
+ Tblock = record
+            size: longint;          //   a 4-byte integer. Total size of block on disk
+            ident: string[XXX];     //   A pascal string with variable length
+            Data:  array[1..YYY] of byte;  // the data.
+          end;
+
+ @notprog
+
+ A reader must
+   - read the size
+   - read the first byte of ident. This gives the length Len of the Pascal string.
+   - read Len bytes. This gives ident
+ Then, if the reader is interested in the Ident-named block, it can read the data. The size of the data is
+ @prog DataSize = size-(1+Len) @notprog
+ The organization of the data part depends on the value of Ident string.
+ If the reader is not interested in this particular block, it can skip DataSize bytes, read the next block, and so on.
+
+ For Elphy , Ident is generally a class name. When the class name is identified, an object of this type is created
+and this object activate a special method which is able to load parameters and data.
+
+ The object file format is used in Elphy
+ - to save and load objects in object files ( see TobjectFile@ )
+ - to save and load configuration files ( Only the header is different )
+ - to save and load data files (Elphy format).
+
+ There are more than 150 objects (and more than 150 kinds of block) in Elphy but an external reader
+does not need to know everything on this 150 objects. Only a small number is useful to read data files.
+
+
+}
+{$P Episode Blocks and Raw Data Blocks
+
+ For an external reader, the more important block identifiers are 'B_Ep' , 'RDATA' and 'REVT'.
+
+ Remember that these identifiers are case sensitive.
+
+ B_Ep is the Episode Block. It contains all the parameters which are needed to decode the values stored
+in the Raw Data blocks (RDATA) and the Event Blocks (Revt) . RDATA blocks contain data coming from analog and digital
+inputs. Revt blocks contains data coming from analog inputs which have been converted in events. An event is only a time,
+generally the time of occurence of an action potential. When recording, the times of crossing a threshold are detected on an
+an input and stored in the datafile.
+ For multi-electrodes devices (BlackRock/CyberKinetics), we have created new blocks called 'RSPK' and
+'RspkWave' . RSPK blocks contain times of events occuring on the electrodes. RspkWave blocks contain
+the corresponding waveforms.
+
+
+ The general structure of an episode file is
+ @prog
+ B01            blocks before the first episode
+ B02
+ ...
+ B_Ep1          First Episode informations
+ RDATA1         First Episode Data
+ Revt1          First Event Data
+ RSPK1          (Optionally)
+ RspkWave1      (Optionally)
+ B11
+ B12
+ ...
+ B_Ep2          Second Episode informations
+ RDATA2         Second Episode Data
+ Revt2          Second Event Data
+ RSPK2          (Optionally)
+ RspkWave2      (Optionally)
+ B21
+ B22
+ ...
+ @notprog
+ The general structure of a continuous file is
+ @prog
+ B01            blocks before the first episode
+ B02
+ ...
+ B_Ep           Information for this single pseudo episode
+ RDATA1         First part of data
+ Revt1          First part of Event Data
+ RSPK1          (Optionally)
+ RspkWave1      (Optionally)
+ B11
+ B12
+ ...
+ RDATA2         Second part of Data
+ Revt2          Second part of Event Data
+ RSPK2          (Optionally)
+ RspkWave2      (Optionally)
+ B21
+ B22
+ ...
+
+ @notprog
+
+ In an episode file, there is one B_Ep block for each episode , one RDATA block for each episode,
+one Revt block for each episode.
+
+ In a continuous file, there is only one B_Ep block but one or more RDATA blocks and one or more Revt blocks. This does
+not mean that there was a gap in recording between the blocks. The data has been splitted in several blocks because
+Elphy needed to save other informations during recording.
+
+}
+
+{$P Episode Block
+
+  Inside an episode block, there is a list of sub-blocks.
+  The structure of a sub-block is ( with an unconventionnal Pascal notation)
+  @prog
+  TsubBlock= record
+               id: string[XXX]; // a Pascal variable-length string
+               size1: word      // 2-byte unsigned integer
+               size2: longint   // 4-byte integer
+               data: array[1..YYY] of byte;
+             end;
+  @notprog
+  Here is a pseudo-program which reads a list of sub-blocks
+  @prog
+  posmax:= getCurrentPosition+DataSize;  // We are at the beginning of data
+  repeat
+    len:=read one byte;
+    id:= read len bytes;
+    size1:=read two bytes;
+    if size1=$FFFF              //(65535) this test takes into account a previous version
+      then size2:= read four bytes
+      else size2:= size1;
+
+    pos1:=getCurrentPosition;
+    if id = ident1 then read
+    else
+    if id = ident2 then...
+    else...
+
+    pos1:=pos1+size2;          // when the subblock is unknown, you must skip size2 bytes
+    SetCurrentPosition(pos1);
+  until pos1>=posmax ;
+
+  @notprog
+  During Elphy development, some structure sizes have increased (never decreased) because
+some fields have been added. In old datafiles, some fields are perhaps missing and the size on disk
+is perhaps smaller than the one you declare in your program. So it's important to fill the structure with zero
+before reading and to read only size2 bytes to your structure.
+
+  Here are the useful subblocks:
+
+  @ul 'Ep' @notul
+    The subblock contains this structure
+
+  @prog
+  TseqRecord=
+    record
+      nbchan:byte;       // number of acquired channels. Include the tag channel if any
+      nbpt:integer;      // nominal number of samples per channel
+      tpData:byte;       // Sample type  ( not used. See Ktype )
+
+
+      uX:string[10];     // Time units (generally 'ms' or 'sec' )
+      Dxu,x0u:double;    // Scaling parameters on time axis
+                            Dxu is the sampling rate (in ux units)
+                            X0u=0 generally
+
+      continuous:boolean;// when true, it's a continuous file
+                                       uX='sec'
+                                       there is only one B_Ep block
+                            when false, it's an episode file
+                                       uX='ms'
+                                       there are one or more B_Ep block
+
+
+      TagMode:byte;      // 0: not tag channel
+                            1: digidata mode : in ADC values, bit0 and bit1 are used to store digital inputs
+                            2: ITC mode :      one 16-bit channel dedicated to digital inputs
+                            3: CyberK mode:    only transitions on digital inputs are stored in a separate block
+      TagShift:byte;     // when Tagmode=1 , indicate of how many bits we must shift the data to get true adc values
+                            generally 4 for digidata 1200, 2 for digidata 1322
+
+      DxuSpk,X0uSpk: double; // CyberK:  X-scale parameters for waveforms
+      nbSpk:integer;         // CyberK:  number of samples in waveforms
+      DyuSpk,Y0uSpk: double; // CyberK:  Y-scale parameters for waveforms
+      unitXspk,unitYSpk:string[10];//  CyberK units
+
+      CyberTime: double;     // cyberK time en secondes
+      PCtime:longword;       // PC time  en millisecondes
+    end;
+
+  @notprog
+
+
+
+ @ul 'Adc' @notul
+   The subblock contains this structure nbchan times
+
+ @prog
+ TAdcChannel=record
+                uY:string[10];    // vertical units
+                Dyu,Y0u:double;   // scaling parameters when tpdata is an integer type
+                                     for an adc value j , the real value is y= Dyu*j + Y0u
+              end;
+ @notprog
+
+ The reader must read Ep subblock first to get the number of channels (nbchan). Then it must read
+this structure nbchan times.
+
+ @ul 'Ksamp' @notul
+   The subblock contains an array of nbchan unsigned 2-byte integers
+
+ @prog
+    Ksampling:  array[1..nbchan] of word;
+ @notprog
+
+  The reader must read the Ep subblock first to get the size of the array (nbchan). Then it must read
+the array.
+
+  Ksampling is a down-sampling factor. Its value is 1 by default. This means that every sample coming
+from the device has been stored in the file.
+  If Ksampling>1 for a channel, this channel has been down-sampled, and only one sample in Ksampling has been stored.
+  if Ksampling=0, no analog data has been stored because data from this channel has been converted in events.
+
+ @ul 'Ktype' @notul
+   The subblock contains an array of nbchan bytes
+
+ @prog
+    Ktype:  array[1..nbchan] of byte;
+    Possible values are
+      0: byte
+      1: short
+      2: smallint
+      3: word
+      4: longint
+      5: single
+      6: real48
+      7: double
+      8: extended
+ @notprog
+ If Ktype is not present, the default type for each channel is smallint (2-byte integer values). This was always the case
+for first Elphy versions. Now you can find single samples (4-byte floating point values)(Ex: Neuron/Elphy system)
+
+}
+
+{$P Raw Data Block
+
+ There are two parts in a RDATA block
+
+ The first part is this single structure
+ @prog
+ TRdataRecord=record
+                 MySize:word;       // size of this record. Currently=15
+                 SFirst:boolean;    // true when there was a recording pause before this block
+                 Stime:double;      // code the PC time
+                 Nindex:longword;   // not used
+              end;
+ @notprog
+
+ The second part contains the data coming from analog inputs and optionnaly from digital inputs.
+
+ In Elphy, the main idea for data recording was that everything coming from the acquisition device must be saved
+immediately without formatting and without intermediate processing.
+ Elphy saves the samples in the order of their appearance but skips the event channels and skips some samples on
+the down-sampled channels.
+ Suppose we are acquiring 4 analog channels. The logical numbers are 1, 2, 3, 4.
+ If there is no event channel and no downsampling, the samples written in file would be:
+ 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 etc...
+ The sequence 1 2 3 4 generates the series. We call this sequence the Channel Mask
+and the group of samples is called an aggregate.
+
+ Suppose now that Channel 2 is converted into events and channel 4 is down-sampled with Ksampling[4]=5
+ We shall have
+ 1 3 4 1 3 1 3 1 3 1 3 1 3 4 1 3 1 3 1 3 1 3 1 3 4 etc...
+ Number 2 never appears and number 4 appears only once in five
+ The Channel Mask is 1 3 4 1 3 1 3 1 3 1 3
+
+ The reader can easily build the channel mask using nbchan and Ksampling.
+ Note that even when the file is an episode file, the number of samples in the data block is not always a multiple
+of the channel mask length because the last aggregate can be incomplete.
+
+ When the device supports synchronized digital inputs, the inputs are stored in the RDATA block and the corresponding
+inputs are called tag channels in Elphy (Vtag1, Vtag2,...). Currently, we use devices
+which have 4, 8 or 16 synchronized digital inputs and these inputs are stored as one 2-byte analog channel. This
+channel has always the last logical number. In this case, we have tagMode=2 (ITC mode) in TseqRecord.
+ When decoding a tag channel, the reader must get samples corresponding to the extra analog channel, then extract one
+particular bit in the sample (bit0 corresponds to Vtag1, bit1 corresponds to Vtag2...).
+
+ Some years ago, we have used Axon devices which had a special method to store tag channels. This channels were mixed with
+analog channels. In any 2-byte sample coming from the device, there was n bits used to store the digital value and
+(16-n) bits used to store the analog value. In this case, we have tagMode=1 (digidata mode) in TseqRecord and the number n
+is stored in TagShift.
+ For the Digidata 1200, TagShift = 4 but only 2 tag channels are available.
+ For the Digidata 1322, TagShift = 2 (but Tagmode could also be zero if the user did not use tag channels)
+}
+
+{$P Event Block
+   When an analog input is converted in events, the result is not stored in a RDATA block but in a REVT block.
+
+   The block begins with a TRdataRecord structure (15 bytes as for TRDATA block).
+   Then we find
+   @prog
+     NbVeV: integer;// a 4-byte integer value  which is the number of event channels.
+   @notprog This number corresponds to the number of analog channels with Ksampling=0.
+   Then we find
+   @prog
+     NbEv: array[1..NbVeV] of integer; // Number of events for each event channel
+   @notprog
+   Then we find all the event times, each time being a 4-byte integer. There are NbEv[1] values for the first channel,
+then NbEv[2] values for the second channel,  and so on.
+   The integer values correspond to a general analog sample index at acquisition time, and the corresponding real time
+is given by @prog t = index * Dxu /nbChan @notprog
+
+}
+
+
+{$P Rspk Block
+
+   ident = 'Rspk'
+   This block has the same structure as the Event Block.
+
+   The only difference is that data come from a multi-electrode system (Blackrock/Cyberkinetics).
+   We can have 32, 64, 96 or 128 channels.
+
+   These data are seen as special event vectors in Elphy (Vspk vectors).
+
+   The Dxu parameter in the Episode Block is the X-scaling parameter for these vectors.
+
+   For any event in this block, it corresponds a waveform in the Rspkwave block.
+}
+
+{$P RspkWave Block
+   ident = 'RspkWave'
+
+   The block begins with a TRdataRecord structure (15 bytes as for TRDATA block).
+   Then we find
+   @prog
+   WaveLen: integer; // 4-byte integer value =  waveform length.
+   PreTrig: integer; // 4-byte integer value =  number of samples before the trigger.
+   NbVeV:  integer;  // 4-byte integer value =  number of Spk channels
+   NbEv: array[1..NbVeV] of integer; // Number of events for each Spk channel
+   @notprog
+   NbVeV and NbEv array are also found in the corresponding Rspk block.
+
+   Then we find the waveforms for all the Spk channels.
+   NbEv[1] waveforms for the first channel
+   NbEv[2] waveforms for the second channel
+   etc...
+
+   A waveform is made of Wavelen 2-byte integer values preceded by this fixed structure:
+   @prog
+   TElphySpkPacket = record
+                       ElphyTime: longword;        // time elapsed since the beginning of the episode
+                       time: longword;             // device time
+                       chid: word;                 // channel number
+                       unit1: byte;                // unit number
+                       dummy:array[1..13] of byte;
+                    end;
+   @notprog
+   In this structure, the times are integer values which must be multiplied by Dxu to get
+the real times in seconds or milliseconds.
+   ElphyTime corresponds to the Spk time found in the corresponding Spk block.
+   The unit number is given by the automatic spike sorting running on the device.
+
+   The scaling parameters of the waveform are given by DxuSpk, X0uSpk, UnitXSpk for the X-scale
+and DyuSpk, Y0uSpk, UnitYSpk for the Y-scale.
+
+
+}
+
+Hpage ConfigurationFile; { Fichiers de configuration }
+{$P
+   Un fichier de configuraton contient tous les paramètres introduits par l'utilisateur dans les différents menus et
+dialogues de Elphy. Il contient aussi les informations concernant les différentes pages graphiques (leur disposition, leur contenu, etc..).
+   Un fichier de configuration a toujours pour extension gfc .
+   Dans le menu principal de Elphy, on trouve la rubrique @b File/Configuraton @notb dans laquelle on peut sauver ou charger un tel fichier.
+   Ces fichiers peuvent être rangés dans n'importe quel répertoire.
+
+   Le fichier de configuration contient aussi le nom du fichier programme PG2 principal (primary file). C'est pourquoi quand on charge une configuration,
+on charge aussi le programme associé. Elphy essaie toujours de compiler ce programme si la compilation n'est pas à jour, c'est à dire si le fichier
+compilé PGC ne correspond pas au fichier PG2.
+
+   Il existe un fichier de configuration particulier que nous appellerons fichier de configuration principal. Son nom est DAC2.GFC et il est rangé
+dans le sous répertoire AppData du répertoire d'installation.
+   A chaque fois que l'on quitte Elphy, ce fichier est recréé. Il est rechargé à chaque lancement de Elphy. C'est pourquoi on retrouve toujours les
+paramètres correspondant à la dernière session.
+
+   Le fichier de configuration principal contient quelques paramètres qui ne sont pas dans les fichiers de configuration ordinaires.
+   Exemples
+     - le nom de la carte d'acquisition
+     - les paramètres généraux du stimulateur visuel.
+     - l'état de la fenêtre principale de Elphy
+     ...
+        
+}

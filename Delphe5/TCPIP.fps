@@ -1,0 +1,297 @@
+Hpage tcpip; { TCPIP }
+{$P
+ Elphy permet à deux machines de communiquer à travers une liaison TCPIP
+
+ Sur l'une des machines, il faut créer un objet TserverA@. Sur l'autre, il faut créer un objet TclientA@.
+
+ Un serveur est caractérisé par son adresse IP et son numéro de port. On peut créer éventuellement plusieurs
+objets serveurs avec des numéros de port différents sur la même machine.
+
+ Si sur une expérience, on veut faire travailler deux machines ensemble, il faut décider de celle qui sera le serveur
+et de celle qui sera le client. Le choix doit être guidé par les considérations suivantes:
+
+ - le serveur est la machine qui se met à la disposition de l'autre pour lui rendre un service. C'est donc la machine
+esclave. C'est aussi la machine qui est le plus souvent en attente de l'autre.
+
+ - le client est la machine maître. C'est la machine qui fait tourner le programme principal (acquisition, stimulation, etc...).
+Elle souhaite attendre le moins possible l'autre machine. Elle souhaite se décharger d'une partie du travail en faisant appel
+au serveur.
+
+ Les objets TclientA@ et TserverA@ peuvent communiquer en mode Buffer ou en mode texte. Ceci se décide
+au moment de la création de TserverA . Il est impératif de ne pas mélanger les deux modes.
+
+}
+{$P Le mode texte
+
+ En mode texte, on utilise uniquement les méthodes sendString@(TserverA.sendString) et receiveString@(TserverA.receiveString)
+que ce soit sur le serveur ou sur le client.
+
+ Si l'une des machines envoie une chaine de caractères avec SendString, il faut impérativement que l'autre machine
+exécute l'instruction receiveString. Sinon, il y a blocage.
+
+  Ce mode se prête bien à la communication entre logiciels différents car le mode texte est universellement utilisé.
+}
+
+{$P Le mode Buffer
+
+ Le mode buffer est surtout destiné à la communication entre deux logiciels Elphy. Toutefois, il est toujours possible
+d'adapter un logiciel tiers pour le faire communiquer dans ce mode.
+
+ Un buffer (objet Tbuffer@) est un bloc de données standardisé qui peut contenir n'importe quelle sorte
+de données, en particuliers des objets Elphy (vecteurs, matrices, etc...)
+
+ Une des machines construit un buffer et l'envoie sur l'autre machine qui est capable de le décoder.
+
+ Nous nous sommes efforcés de construire un système non bloquant. Sur le serveur, un thread particulier
+assure la réception des buffers et les range dans une file d'attente de sorte que le client n'attend jamais.
+ Ensuite, le programme principal traite ces buffers en fonction de ses possibilités.
+ Quand le serveur doit renvoyer des données au client, il range un buffer dans une autre file d'attente et c'est le
+client qui doit consulter cette liste pour savoir si des données sont disponibles.
+
+}
+{$P Protocole en mode Buffer
+
+ Le serveur met en place un thread qui sera toujours à l'écoute du port TCPIP.
+Quand un  paquet arrive, il est rangé dans une file d'attente et un message est envoyé au programme PG2.
+ Un gestionnaire d'événement écrit par l'utilisateur est appelé pour chaque paquet. Si le programme
+est occupé, il se peut que le paquet soit traité avec un certain retard mais le client n'attendra pas.
+
+ Le serveur n'envoie jamais une information au client de sa propre initiative.
+ Le serveur envoie une information au client quand le client le demande avec un paquet dans lequel le flag
+ IsQuery@(Tbuffer.IsQuery) est positionné.
+
+ Quand le paquet envoyé par le client est une question (IsQuery = true) , le serveur regarde dans sa file d'attente et si la réponse
+est disponible il l'envoie immédiatement. Dans le cas contraire, il renvoie un paquet avec ident='NONE' .
+
+ Si on veut demander un calcul au serveur, il faudra donc un ordre pour lancer le calcul et un ordre pour demander la réponse. La
+réponse pourra être demandée plusieurs fois jusqu'à ce que l'on reçoive un paquet différent de NONE .
+
+ En procédant ainsi, le programme PG2, côté serveur ou côté client, n'est jamais bloqué en position d'attente.
+
+
+}
+
+
+
+object
+  Tbuffer
+{$H L'objet Tbuffer permet de gérer un bloc de données destiné à être envoyé sur
+un port TCPIP@ .
+
+  Physiquement, ce bloc de données est constitué
+  - d'un mot de 8 octets contenant la taille totale du bloc diminuée de 8 octets
+  - d'un entête de taille fixe: cet entête comprend actuellement une chaîne de 20 caractères (soit 21 octets) (ident@)
+et un booléen (isQuery@)
+  - des données proprement dites
+
+ L'objet Tbuffer est fourni par un objet TserverA@ ou TclientA@. L'utilisateur ne peut pas
+le créer lui-même.
+
+ La propriété ident@ contient un identificateur
+ La propriété isQuery@ indique que le bloc ne contient pas de données mais est une question attendant une réponse.
+
+ La propriété size@ correspond à la taille des données.
+ La propriété position@ est le pointeur d'écriture ou de lecture. Sa valeur peut être comprise entre 0
+et size.
+
+ Pour écrire des données dans le buffer, l'utilisateur utilise write@, writeString@ ou writeObject@
+ Pour lire des données dans le buffer, l'utilisateur utilise read@, readString@ ou readObject@
+
+ Les données sont lues ou écrites séquentiellement comme dans un fichier. Les instructions de lecture ou écriture
+incrémentent automatiquement le pointeur d'écriture/lecture.
+  Pour placer le pointeur au début des données, il suffit d'écrire
+  Position:=0;
+
+ On peut supprimer toutes les données au moyen de la méthode Clear@
+
+}
+  TserverA(Tobject)
+{$H L'objet TserverA permet de mettre en place un serveur TCPIP@
+
+ Le serveur peut fonctionner en mode buffer ou en mode texte.
+ Le mode buffer permet de faire communiquer efficacement deux machines sur lesquelles tourne Elphy.
+ Si l'une des machines fait tourner un autre programme, le mode buffer est utilisable si ce programme
+utilise le format des paquets décrit dans Tbuffer@
+
+ Le mode texte est plus général et permet de communiquer avec toutes sortes de logiciels.
+
+ Dans le contructeur create@ , on indique l'adresse IP de la machine et le numéro du port.
+ Pour le mode buffer, on indique aussi un gestionnaire d'événement qui sera appelé à chaque fois
+qu'un buffer sera réceptionné.
+
+}
+  TclientA(Tobject)
+{$H L'objet TclientA permet de gérer la connection TCPIP@ avec une autre machine
+
+ Dans le contructeur create@ , on indique l'adresse IP de la machine et le numéro du port de la machine distante
+
+}
+end;
+
+type
+  TserverAEvent=procedure(var buffer:Tbuffer);
+
+{Tbuffer}
+
+property Tbuffer.ident:String;
+{$H Identificateur à la disposition de l'utilisateur
+}
+property Tbuffer.isQuery:boolean;
+{$H S'il vaut TRUE, le buffer est une question.
+
+ Quand le client envoie un tel paquet avec SendBuffer@, SendBuffer attend une réponse du serveur
+ Le serveur répond toujours immédiatement car, ou bien il a la réponse dans sa file d'attente, ou bien il renvoie un buffer
+dont l'identificateur est 'NONE'
+}
+
+procedure Tbuffer.clear;
+{$H Efface le contenu du buffer
+}
+property Tbuffer.size: integer readonly;
+{$H Taille des données
+
+ Cette taille n'inclut pas le header qui est toujours présent
+}
+property Tbuffer.position: integer;
+{$H Position dans le bloc de données
+
+  Compris entre 0 et size.
+  Si position=size, la prochaine écriture sefera à la fin du bloc de données.
+}
+procedure Tbuffer.ReadObject(var uo:Tobject);
+{$H Lit un objet
+
+  uo doit avoir le type de l'objet contenu dans le buffer
+  voir writeObject@
+}
+procedure Tbuffer.writeObject(var uo:Tobject);
+{$H Ecrit un objet dans le buffer
+
+ La méthode est la même que celle qui est utilisée dans les fichiers d'objets (TobjectFile@)
+}
+procedure Tbuffer.ReadString(var st:string);
+procedure Tbuffer.ReadString(var st:shortstring);
+{$H Lit un chaine qui a été rangée avec writeString@
+}
+procedure Tbuffer.writeString(st:string);
+{$H Range une chaine dans le buffer.
+ Dans le buffer, on trouvera un entier sur 4 octets contenant la longueur de la chaine
+puis les caractères de la chaine.
+}
+procedure Tbuffer.read(var x);
+{$H Lit une variable dans le buffer.
+
+ Le nombre d'octets lus correspond à la taille de la variable
+}
+procedure Tbuffer.write(var x);
+{$H Range une variable dans le buffer
+
+ Le programme range dans le buffer un nombre d'octets correspondant à la taille de la variable.
+}
+
+
+{TserverA}
+procedure TserverA.create(IPaddress:string; port:integer);
+procedure TserverA.create(IPaddress:string; port:integer; Mode:integer);
+{$H Constructeur de l'objet TserverA
+
+ IPadress est l'adresse IP de la machine serveur
+ Port est le numéro de port. Le numéro usuel est 50190
+
+ Si mode=1, le serveur travaille en mode texte
+ Si mode=2, le serveur travaille en mode RawBuffer (pas de bloc information dans le buffer)
+
+}
+property TserverA.Active:boolean;
+{$H Permet d'activer/désactiver le serveur
+}
+property TserverA.onReceive:TserverAEvent;
+{$H Gestionnaire d'événements associé à la réception d'un paquet.
+
+ L'utilisateur doit écrire une procédure déclarée comme suit:
+ @prog Procedure MyEvent(var buffer: Tbuffer);
+ @notprog Dans cette procédure, il faut lire le contenu du buffer et faire le traitement approprié.
+
+ En sortie de la procédure, le buffer est retiré de la file d'attente et détruit
+
+ Quand on travaille en mode buffer, il est indispensable d'affecter cette propriété
+ Quand on travaille en mode texte, il ne faut pas l'affecter.
+}
+function TserverA.OutBuffer:Tbuffer;
+{$H Permet d'accéder à un buffer que l'on enverra avec SendBuffer@
+}
+procedure TserverA.sendBuffer;
+{$H Place le buffer OutBuffer@ dans une file d'attente.
+
+ La méthode n'envoie pas directement le buffer sur le port TCPIP. Le buffer devient
+simplement disponible pour une requête du client
+}
+procedure TserverA.SendString(st:String);
+{$H Envoie directement une chaine au dernier client connecté
+}
+procedure TserverA.SendString512(st:String;bb:byte);
+{$H Envoie directement une chaine au dernier client connecté
+  La chaine contiendra toujours 512 caractères.
+  Les premiers caractères correspondront à st. Les suivants auront la valeur bb.
+}
+function TserverA.ReceiveString:String;
+{$H Reçoit directement une chaine de caractères
+}
+
+procedure TserverA.setTestMode(mode:boolean; nb:integer);
+
+{TclientA}
+
+function TclientA.create(IPaddress:string; port:integer; active:boolean): boolean;
+function TclientA.create(IPaddress:string; port:integer; connectTimeOut: integer): boolean;
+function TclientA.create(IPaddress:string; port:integer; connectTimeOut,ReadTimeOut: integer): boolean;
+
+{$H Constructeur de TclientA
+
+ On donne l'adresse IP du serveur et le numéro de port.
+ Dans la première variante, Active n'est pas utilisé. On le conserve pour compatibilité.
+
+ ConnectTimeOut est le temps d'attente en millisecondes au moment de la connexion. Par défaut, sa valeur
+est 10000.
+
+ ReadTimeOut est le temps d'attente en millisecondes quand on attend une réponse du serveur. Par défaut, sa valeur
+est 10000.
+
+ La fonction renvoie true quand la connexion est effectuée.
+}
+
+
+function TclientA.OutBuffer:Tbuffer;
+{$H Permet d'accéder à un buffer que l'on enverra avec SendBuffer@
+}
+procedure TclientA.sendBuffer;
+{$H Envoie le buffer OutBuffer.
+
+  Si le buffer contenait la propriété IsQuery@=true , Outbuffer contiendra
+la réponse du serveur.
+}
+procedure TclientA.sendElphyCommand(stCommand,stParam:string);
+{$H
+}
+procedure TclientA.SendString(st:String);
+{$H Envoie directement une chaine au serveur
+}
+procedure TclientA.SendString512(st:String;bb:byte);
+{$H  Envoie directement une chaine au serveur
+   La chaine envoyé contiendra toujours 512 caractères.
+   Les premiers caractères correspondront à st. Les suivants auront la valeur bb.
+}
+function TclientA.ReceiveString:String;
+{$H  Reçoit directement une chaine de caractères
+}
+function TclientA.ReceiveString512:String;
+{$H  Reçoit directement une chaine de 512 caractères
+}
+procedure TclientA.setRawBuffer(w: boolean);
+{$H Permet d'imposer un buffer sans header
+
+ Par défaut, les paquets contiennent le header décrit dans Tbuffer@
+
+ Si w=true, le header de CurrentBuffer@ sera supprimé au moment de l'envoi.
+}
+

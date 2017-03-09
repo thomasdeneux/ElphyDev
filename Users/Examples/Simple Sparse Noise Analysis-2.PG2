@@ -1,0 +1,660 @@
+
+
+
+const  
+  stPgPsth='Psths';
+  stPgPstw='Pstws';
+  stpgMap='Maps';
+
+var                                                        
+  EpSelect:array[1..100] of boolean;
+  UseEpSelect:boolean;
+
+var
+  titre:string[20];
+
+  nbX,nbY,nbZ:SmallInt;
+  RFx,RFy,RFdx,RFdy,RFtheta:real;
+  expans,scot,seed1:SmallInt;
+
+  dtON1,dtOff1:real;
+  dtCycle: real;
+
+  Tsample: real;
+  TopSync,detect:Tdetect;
+
+  psth:array[1..2] of TpsthArray;
+  pstw:array[1..2] of TaverageArray;
+
+  blank: Taverage;
+  
+var
+  stmRevCor:Trevcor;
+
+  Ttau,Tdtint: array[1..4] of integer;
+
+  detH:real;
+  boolDir:smallint;
+
+
+  { Maps for spikes }
+  MatRCA :Array[1..4,1..3] of Tmatrix;   { First index : 1 = 0 - 50 ms
+                                                         2 = 50 - 100 ms
+                                                         3 = 100 - 150 ms
+                                                         4 = 150 - 200 ms
+                                                         
+                                           Second index: 1 = Lum1  (ON)
+                                                         2 = Lum2, (OFF)
+                                                         3 =  (1)-()2                                                          
+                                         }
+
+
+  { Maps for Pstw } 
+  PstwDep, PstwHyp: array[1..4,1..3] of Tmatrix;   
+  { First index:  1 = 0 - 50 ms
+                  2 = 50 - 100 ms
+                  3 = 100 - 150 ms
+                  4 = 150 - 200 ms
+    Second index:                                               
+                  pstwDEP[it,1] et pstwHYP[it,1] from pstw[1].buildIntMaps
+                  pstwDEP[it,2] et pstwHYP[it,2] from pstw[2].buildIntMaps
+
+                  pstwDep[it,3] = pstwDep[it,1] - pstwDep[it,2])
+                  pstwHyp[it,3] = pstwHyp[it,2] - pstwHyp[it,1])                
+                  
+  }
+
+
+  Vrest,  pstwSD : real;
+
+
+procedure setMatColors;
+var
+  i:integer;
+begin
+  for i:=1 to 4 do
+  begin
+    MatRCA[i,1].palColor[1]:=1;
+    MatRCA[i,2].palColor[1]:=2;
+
+    MatRCA[i,3].TwoColors:=true;
+  end;
+
+  for i:=1 to 4 do
+  begin
+    pstwHyp[i,1].palColor[1]:=2;
+    pstwDep[i,2].palColor[1]:=2;
+
+    pstwDep[i,3].TwoColors:=true;
+    pstwHyp[i,3].TwoColors:=true;
+  end;
+end;
+
+
+procedure Defaults;        
+var
+  i:integer;
+begin
+  nbX:=10;
+  nbY:=10;
+  nbZ:=2;
+  dtON1:=1/150*8;
+  dtOff1:=0;
+  expans:=100;
+  scot:=0;
+
+  detH:=-30;
+  boolDir:=1;
+
+  for i:=1 to 4 do
+  begin
+    ttau[i]:=50*(i-1);
+    Tdtint[i]:=50;
+  end;
+end;
+
+procedure initObjects;     
+var
+  i,j,k,Npage:integer;
+
+begin
+  stmRevCor.create;
+
+  TopSync.create;
+  detect.create;
+
+  for i:=1 to 4 do
+  for j:=1 to 3 do
+     MatRCA[i,j].create(T_single,1,1,1,1);
+
+  for i:=1 to 4 do
+  for j:=1 to 3 do
+  begin
+    PstwDep[i,j].create(T_single,1,1,1,1);
+    pstwHyp[i,j].create(T_single,1,1,1,1);
+  end;
+  
+  for i:=1 to 2 do
+  begin
+    with psth[i] do
+    begin
+      create(1,1,1,1);
+      color:=cl_lime;
+      DxWF:=-10;
+      Mtop:=10;
+    end;
+    with pstw[i] do
+    begin
+      create(1,1,1,1);
+      color:=cl_lime;
+      DxWF:=-10;
+      Mtop:=10;
+      stdON:=true;
+    end;
+  end;
+
+  blank.create(t_single,round(-300/v1.dx),round(300/v1.dx));
+  blank.stdON:=true;
+  
+  setMatColors;
+end;
+
+
+
+procedure InitPages;
+var
+  i,j,k:integer;
+begin
+  if pageIndex(stPgPsth)=0 then AddPage(stPgPsth);
+  with MgPage[stPgPsth] do
+  begin
+    color:=cl_black;
+    PageFont:=true;
+    scaleColor:=cl_white;
+    InitGrid(1,2);
+    AddObject(1,psth[1]);
+    AddObject(2,psth[2]);
+  end;  
+    
+  if pageIndex(stPgPstw)=0 then AddPage(stPgPstw);
+  with MgPage[stPgPstw] do
+  begin
+    color:=cl_black;
+    PageFont:=true;
+    scaleColor:=cl_white;
+    InitGrid(1,2);
+    AddObject(1,pstw[1]);
+    AddObject(2,pstw[2]);
+  end;  
+  
+  if pageIndex(stPgMap)=0 then AddPage(stPgMap);
+  with MgPage[stPgMap] do
+  begin
+    color:=cl_black;
+    PageFont:=true;
+    scaleColor:=cl_white;
+    InitGrid(4,6);           
+    for i:=1 to 4 do
+    begin
+      for j:=1 to 3 do
+        addObjectOnGrid(i,j,MatRCA[i,j]);
+      for j:=1 to 3 do
+        addObjectOnGrid(i,3+j,pstwDEP[i,j]);
+    end;
+  end;
+end;
+
+
+procedure InitRevMatrix(var mat:Tmatrix;cp:integer);
+begin
+  with mat do  
+  begin
+    modify(t_single,1,stmRevCor.Xcount,1,stmRevCor.Ycount);
+    setPosition(RFx, RFy, RFdx, RFdy, RFtheta);
+    autoscaleX;
+    autoscaleY;
+    //cpz:=cp;
+    DisplayMode:= 1;
+  end;  
+end;
+
+
+procedure UpdateObjects;  
+var
+  i,j,k:integer;
+begin
+  stmRevCor.installStimSeq(seed1,nbX,nbY,expans,scot);
+
+  stmRevcor.Rfx:=RFx;
+  stmRevcor.Rfy:=RFy;
+  stmRevcor.Rfdx:=RFdx;
+  stmRevcor.Rfdy:=RFdy;
+  stmRevcor.Rftheta:=RFtheta;
+      
+  for i:=1 to 4 do
+  for j:=1 to 3 do
+    InitRevMatrix(MatRCA[i,j],j);
+
+  for i:=1 to 4 do
+  for j:=1 to 3 do
+  begin
+    InitRevMatrix(PstwDep[i,j],j+200 );
+    InitRevMatrix(PstwHyp[i,j],j+750 );
+  end;
+
+end;
+
+
+
+
+(* File Info were stored in this way
+procedure StoreFileInfo;
+begin
+  nbZ:=2;
+    
+  RFx:= RFsys[1].x;
+  RFy:= RFsys[1].y;
+  RFdx:= RFsys[1].dx;
+  RFdy:= RFsys[1].dy;
+  RFt:= RFsys[1].theta;
+
+  with acquisition do
+   begin
+     resetFileInfo;
+     titre:='REVCOR';
+     writeFileInfo(titre);
+
+     writeFileInfo(nbX);
+     writeFileInfo(nbY);
+     writeFileInfo(nbZ);
+
+     writeFileInfoExt(RFx);
+     writeFileInfoExt(RFy);
+     writeFileInfoExt(RFdx);
+     writeFileInfoExt(RFdy);
+     writeFileInfoExt(RFtheta);
+
+     writeFileInfo(expans);
+     writeFileInfo(scot);
+     writeFileInfo(seed1);
+
+     writeFileInfoExt(dton1);
+     writeFileInfoExt(dtoff1);
+  end;
+end;
+
+ Ep Info were stored in this way (but not used here)
+procedure StoreEpInfo(Vseed:SmallInt);
+begin
+  with acquisition do
+  begin
+    resetEpInfo;
+    writeEpInfo(Vseed);
+  end;
+end;
+
+*)
+
+procedure LoadFileInfo;
+  begin
+    resetFileInfo;
+
+    readFileInfo(titre);
+
+    readFileInfo(nbX);
+    readFileInfo(nbY);
+    readFileInfo(nbZ);
+
+    readFileInfoExt(RFx);
+    readFileInfoExt(RFy);
+    readFileInfoExt(RFdx);
+    readFileInfoExt(RFdy);
+    readFileInfoExt(RFtheta);
+
+    readFileInfo(expans);
+    readFileInfo(scot);
+    readFileInfo(seed1);
+
+    readFileInfoExt(dton1);
+    {readFileInfoExt(dtoff1);}
+
+  end;
+
+procedure DisplayFileInfo;
+ begin
+    initDialogBox;
+    DBsetText('Titre: '+ titre);
+    DBsetText('NbX: '+Istr(NbX,3));
+    DBsetText('NbY: '+Istr(NbY,3));
+    DBsetText('NbZ: '+Istr(NbZ,3));
+
+    DBsetText('RF: '+Rstr(RFx,5,2)+ ' '+Rstr(RFy,5,2)+' '
+                     +Rstr(RFdx,5,2)+ ' '+Rstr(RFdy,5,2)+' '
+                     +Rstr(RFtheta,5,2));
+
+    DBsetText('Expansion: '+Istr(expans,0));
+    DBsetText('Scotome:   '+Istr(scot,0));
+    DBsetText('seed1:     '+Istr(seed1,0));
+
+    DBsetText('dtON:      '+rstr(dton1,3,4));
+    DBsetText('dTOFF:     '+rstr(dtoff1,3,4));
+
+    ShowDialogBox;
+end;
+
+
+
+procedure BuildPstwMap(it:integer);
+var
+  k : integer;
+  coefs:real;
+begin
+  coefs := 0;  {1.96, 2.57 }
+
+  for k:= 1 to 2 do
+    pstw[k].buildZscoreIntMaps(pstwDEP[it,k],pstwHYP[it,k],ttau[it],ttau[it]+tdtInt[it],
+                          Vrest-coefs*pstwSD, Vrest+coefs*pstwSD);
+
+  Msup1(pstwDep[it,1],pstwDep[it,2],pstwDep[it,3]);
+  Msup1(pstwHyp[it,2],pstwHyp[it,1],pstwHyp[it,3]);
+end;
+
+
+procedure CalculateMaps;
+var
+  i,j:integer;
+begin
+  with stmRevCor do                               { Matrices PSTH }
+  for i:=1 to 4 do                                { rangées dans MatRCA[i,1] et MatRCA[i,2] }
+    begin                                         { et leur différence dans MatRCA[i,3] }
+      for j:=1 to 2 do
+        psth[j].buildMap(matRCA[i,j],ttau[i],ttau[i]+Tdtint[i],0);
+
+      Msup1(MatRCA[i,1],MatRCA[i,2],MatRCA[i,3]);
+
+      if i=1 then
+        pstw[1].meanStdDev(pstw[1].xstart ,0, Vrest, pstwSD); 
+
+      BuildPstwMap(i);             { Matrices PSTW }
+    end;
+
+    
+end;
+
+
+Procedure DetectAndInstallSeq(VSeed:integer);
+var
+  i,k:integer;
+begin
+  with TopSync do                    {Détecter les tops synchro sur Vtag1}
+  begin
+    installSource(Vtag1);
+      
+    Xstart:=50;
+    mode:=sm_crossup;
+    height:=0.5;
+
+    execute;
+  end;
+
+
+  stmRevcor.installStimSeq(Vseed,nbX,nbY,expans,scot);
+  stmRevcor.installTimes(TopSync.Vevent,Vtag1.dx);
+end;
+
+
+
+procedure SimpleAna(Vseed:integer;First: boolean);
+var
+  i,k:integer;
+begin
+  DetectAndInstallSeq(Vseed);
+
+  with detect do                     {Détecter les evt sur v1}
+  begin
+    installSource(V1);    
+    height:=detH; {=-30 par default}
+
+    case boolDir of
+      1: mode:=sm_crossup;
+      2: mode:=sm_crossDw;
+    end;
+
+    execute;
+  end;
+
+
+  if First then
+    begin
+      c1.modify(t_single,v1.Istart,v1.Iend);
+      transferUnits(v1,c1);
+      c2.modify(t_single,v1.Istart,v1.Iend);
+      transferUnits(v1,c1);
+ 
+      stmRevcor.initPsth(psth[1],psth[2],detect.Vevent,-300,300,1);
+      stmRevcor.initPstw(pstw[1],pstw[2],c1,-300,300);
+    end;
+
+  Vcopy(v1,c1); // we simply copy v1 into c1
+                // but generally, we add some processing (filters, removing spikes,...)
+
+  stmRevcor.calculatePsth(psth[1],psth[2],detect.Vevent);
+  stmRevcor.calculatePstw(pstw[1],pstw[2],c1);
+
+  blank.addEx(c1,300);
+  CalculateMaps;
+end;
+
+
+procedure MesureDtCycle;
+begin
+  epNum:=1;
+  with TopSync do                    {Détecter les tops synchro sur Vtag1}
+  begin
+    installSource(Vtag1);           
+
+    Xstart:=50;
+    mode:=sm_crossup;
+    height:=0.5;
+
+    execute;
+  end;
+
+  with TopSync,Vevent do
+    if count>1
+      then DtCycle:=(Yvalue[count]-Yvalue[1])/(count-1)
+      else DtCycle:=0;
+end;
+
+
+procedure UpdateDisplay;
+var
+  i,j:integer;
+begin   
+  for i:=1 to 4 do
+  for j:=1 to 3 do
+  begin
+    MatRCA[i,j].autoscaleZ;
+    pstwHyp[i,j].autoscaleZ;
+    pstwDep[i,j].autoscaleZ; 
+    
+    MatRCA[i,j].invalidate;
+    pstwHyp[i,j].invalidate;
+    pstwDep[i,j].invalidate;   
+  end;
+
+  for i:=1 to 2 do
+  begin
+    pstw[i].autoscaleI;
+    pstw[i].autoscaleJ;
+    pstw[i].autoscaleX;
+    pstw[i].autoscaleY;
+    pstw[i].invalidate;  
+    
+    psth[i].autoscaleI;
+    psth[i].autoscaleJ;
+    psth[i].autoscaleX;
+    psth[i].autoscaleY;
+    psth[i].invalidate;
+  end;  
+  
+  update;
+end;
+  
+
+
+
+
+{******************************************* INITALL *****************************}
+procedure InitAll;              { Assure l'initialisation }
+begin
+  if not assigned(stmRevcor) then
+  begin
+    defaults;
+    initObjects;
+
+    initPages;      
+  end;
+end;
+
+
+
+{***************************** ANALYSE OFFLINE ***********************************}
+
+procedure ShowStimInfo;
+begin
+   setEpNum(1);
+   if not searchTypeAndLoad(1,stmRevCor) then exit;
+
+   InitDialogBox;
+   DBsetText('Seed:          '+Istr(stmRevCor.seed,6));
+   DBsetText('nb divisions X:'+Istr(stmRevCor.divXCount,6));
+   DBsetText('nb divisions Y:'+Istr(stmRevCor.divYCount,6));
+   DBsetText('DtOn:          '+Rstr(stmRevCor.DtOn,10,3));
+   DBsetText('DtOff:         '+Rstr(stmRevCor.DtOff,10,3));
+   DBsetText('Expansion:     '+Istr(stmRevCor.expansion,6));
+   DBsetText('Scotome:       '+Istr(stmRevCor.scotome,6));
+   DBsetText('Rfx:           '+Rstr(stmRevCor.Rfx,10,3));
+   DBsetText('Rfy:           '+Rstr(stmRevCor.Rfy,10,3));
+   DBsetText('rfdx:          '+Rstr(stmRevCor.Rfdx,10,3));
+   DBsetText('rfdy:          '+Rstr(stmRevCor.Rfdy,10,3));
+   DBsetText('RfT:           '+Rstr(stmRevCor.Rftheta,10,3));
+   ShowDialogBox;
+end;
+
+procedure SHowFileInfo;
+begin
+  LoadFileInfo;
+  DisplayFileInfo;
+end;          
+
+Function ParamDetect1:boolean;
+begin
+  initDialogBox;
+  DBsetCaption('Analysis parameters');
+
+  DBgetReal('Detection height for spikes',detH,10,3);
+  DBgetStringList('Direction', 'Up    |Down ', boolDir);
+
+  ParamDetect1:= (showDialogBox=mr_ok);
+end;
+
+
+var
+  DialAna:Tdialog;
+
+
+function AnaDialog(StTitle:string):boolean;
+var
+  i:integer;
+  memo:Tmemo;
+  res:integer;
+begin
+  InitAll;
+  LoadFileInfo;
+  MesureDtCycle;
+
+  with memo do
+  begin
+    create('');
+    for i:=1 to EpCount do lines[i]:='Episode '+Istr(i,0);
+  end;
+
+  with dialAna do
+  begin
+    create('');
+    Caption:=stTitle;
+    dividePanel(0,3,false);
+    dividePanel(1,2,true);
+
+    selectPanel(4);
+    setPanelProp(true,2);
+    setText('DtOn+DtOff='+Rstr(dtCycle,10,3));
+    SetText('Titre: '+ titre);
+    setText('NbX: '+Istr(NbX,3));
+    setText('NbY: '+Istr(NbY,3));
+    setText('NbZ: '+Istr(NbZ,3));
+
+    setTextA('RF: '+Rstr(RFx,5,2)+ ' '+Rstr(RFy,5,2)+' '
+                     +Rstr(RFdx,5,2)+ ' '+Rstr(RFdy,5,2)+' '
+                     +Rstr(RFtheta,5,2),1001);
+
+    setText('Expansion: '+Istr(expans,0));
+    setText('Scotome:   '+Istr(scot,0));
+    setText('seed1:     '+Istr(seed1,0));
+
+    setText('dtON:      '+rstr(dton1,3,4));
+    setText('dTOFF:     '+rstr(dtoff1,3,4));
+       
+
+    selectPanel(2);
+    setListBox1('',memo,6,4,EpSelect,1000);
+
+    selectPanel(3);
+    getBoolean('Use selection',UseEpSelect);
+
+    res:= showModal;
+    if res=mr_ok then updatevar;
+
+    free;
+  end;
+  if res<>mr_ok then exit;
+
+  AnaDialog:=(res=mr_ok);
+end;
+
+
+procedure FileAnalysis;
+var
+  i:integer;
+  first: boolean;
+begin
+  if not AnaDialog('Analyze file') then exit;
+
+  if ParamDetect1 then
+  begin
+    UpdateObjects;
+
+    first:=true;
+    for i:=1 to EpCount do
+    if not UseEpSelect or EpSelect[i] then
+    begin
+      EpNum:=i;
+  
+      SimpleAna(seed1+i,first);  { seed = Episode Number }
+      first:=false;
+      UpdateDisplay;
+    end;
+
+  end;
+
+end;
+
+{***************************** PROGRAMMES ****************************************}
+
+
+program 'FILE INFO'
+showFileInfo;
+
+program 'File Analysis'
+FileAnalysis;

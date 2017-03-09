@@ -1,0 +1,337 @@
+Object
+
+TmatlabStruct(Tobject)
+{$H Permet de manipuler une structure Matlab.
+
+ Une structure peut être sauvée dans un fichier matlab (voir Tmatfile@ ) et ensuite rechargée dans Elphy.
+
+ Les propriétés clés sont Put@ pour le transfert de données Elphy vers un champ de la structure
+et Get@ pour le transfert du contenu d'un champ vers une donnée Elphy  .
+ Voici un exemple de création de structure:
+
+ @prog
+ var
+   mx: TmatlabStruct
+ ...
+ mx.create;
+ mx.put('param.NbPoint', 15);
+ mx.put('param.Name','Sparse Noise');
+ mx.put('param.X',12.6);
+ mx.put('data.v1',datafile0.v1);
+ ...
+ @notprog
+
+ Ensuite, on peut utiliser la méthode putVariable@(TmatFile.putvariable) de TmatFile@ pour ranger
+mx dans un fichier
+
+ Le premier paramètre de put est le nom du champ de la structure.
+ Ce nom peut contenir plusieurs niveaux.
+ Le second paramètre peut être n'importe quelle variable ou expression simple, ou encore peut être un objet.
+ Cet objet sera accepté si ses données peuvent être converties en un tableau Matlab (exemples: Tvector@, Tmatrix@, Tmatlist@, TOIseq@...)
+
+ Actuellement, il n'est pas possible de ranger directement une variable tableau (array of...) dans une structure ou un fichier.
+
+ Les tranferts en sens inverse peuvent être réalisés avec ce programme:
+ @prog
+ var
+   mx: TmatlabStruct
+   II:integer;
+   st:string;
+   XX:real;
+   vec: Tvector;
+ ...
+ mx.create;
+ mx.get('param.NbPoint', II);
+ mx.get('param.Name',st);
+ mx.get('param.X',XX);
+ mx.get('data.v1',vec);
+ ...
+ @notprog
+
+
+}
+
+TmatFile(Tobject)
+{$H Permet de gérer un fichier Matlab (.mat)
+
+ OpenFile@ permet l'ouverture du fichier
+
+ PutVariable@ permet de ranger une variable matlab dans le fichier
+ GetVariable@ permet de lire une variable du fichier et de la ranger dans une variable Elphy.
+
+ Les variables pouvant être rangées dans un fichier sont:
+ - les variables simples (entier, réel, booléen ou chaine de caractères)
+ - les objets dont les données peuvent être converties en tableau matlab ( Tvector@, Tmatrix@, Tmatlist@, TOIseq@ ... )
+ - les objets de type TmatlabStruct@
+}
+
+
+end;
+
+procedure TmatlabStruct.create;
+{$H Constructeur de l'objet }
+
+procedure TmatlabStruct.put(name: string; value: variant);
+{$H Permet de ranger une variable ou expression simple dans la structure.
+
+ name est le nom du champ Matlab. Il peut contenir plusieurs niveaux.
+ value peut être une expression simple ou bien une variable objet. Les objets acceptés sont tous les
+objets pouvant être convertis en tableau matlab, ainsi que les objets du type TmatlabStruct@
+
+ Exemples:
+ @prog
+ mx.put('param.NbPoint', 15);
+ mx.put('param.Name','Sparse Noise');
+ mx.put('param.X',12.6);
+ mx.put('data.v1',datafile0.v1);
+ @notprog
+
+ La structure est construite progressivement avec les informations fournies
+
+}
+
+function TmatlabStruct.get(name: string; var value:string):boolean;
+function TmatlabStruct.get(name: String; var obj: Tobject):boolean;
+function TmatlabStruct.get(name: String; var value):boolean;
+{$H Permet de tranférer des informations d'une structure Matlab vers une variable Elphy
+
+ name est le nom du champ Matlab. Il peut contenir plusieurs niveaux.
+ value peut être une variable simple ou bien une variable objet
+
+ Get s'efforce de convertir les données lorsque le type ne correspond pas exactement
+ Par exemple, si le champ est réel et si la variable est entière, la variable recevra
+ un arrondi du contenu du champ (fonction round)
+
+ La fonction renvoie True quand le transfert a été possible.
+
+}
+
+
+procedure TmatFile.OpenFile(stf,stmode: String);
+{$H Ouvre un fichier matlab (extension .mat)
+
+ OpenFile est le constructeur de l'objet
+
+ stf est le nom du fichier
+ stMode est le mode d'ouverture. Les valeurs possibles sont:
+  'r'  == read only.
+  'w'  == write only (deletes any existing file with name <filename>).
+  'w4' == as "w", but create a MATLAB 4.0 MAT-file.
+  'u'  == update.  Read and write allowed, existing file is not deleted.
+
+}
+procedure TmatFile.GetDir(var memo: TMemo);
+{$H Remplit memo avec la liste des variables contenues dans le fichier
+}
+procedure TmatFile.close;
+{$H Ferme le fichier.
+
+ Il revient au même d'appeler free@
+}
+
+procedure TmatFile.PutVariable(name: String; value: variant);
+procedure TmatFile.PutVariable(name: String; value: variant; tp: integer);
+
+{$H Permet de ranger une variable ou expression simple dans le fichier.
+
+ name est le nom de la variable Matlab.
+ value peut être une expression simple ou bien une variable objet. Les objets acceptés sont tous les
+objets pouvant être convertis en tableau matlab, ainsi que les objets du type TmatlabStruct@
+
+  Le paramètre tp ne concerne que les objets. C'est le (type de nombre)@(types de nombre) souhaité
+pour la sauvegarde. Par exemple, pour les vecteurs et les matrices, le type réel double est toujours
+utilisé par défaut. Si on donne à tp la valeur t_single, on réduit simplement la taille sur le disque,
+mais si on donne à tp un type entier (t_byte, t_short,t_smallint, t_word, t_longint ),on sauve les valeurs
+Jvalue ou Kvalue (les paramètres d'échelle sont oubliés).
+
+}
+function TmatFile.GetVariable(name: String; var value: String):boolean;
+function TmatFile.GetVariable(name: String; var obj: Tobject):boolean;
+function TmatFile.GetVariable(name: String; var value):boolean;
+{$H Permet de charger une variable Elphy a partir d'une variable Matlab rangée dans le fichier
+
+}
+
+
+
+
+HPage Matlab; {Travailler avec Matlab}
+{$P
+ Elphy contient plusieurs routines qui permettent de travailler avec Matlab.
+
+ D'une part, il est possible de faire communiquer Elphy avec Matlab en ouvrant une session Matlab
+à partir de Elphy, en envoyant des données Elphy dans l'espace de travail de Matlab, en faisant
+exécuter des commandes Matlab et en récupérant des données.
+
+ Pour cela, il faut que Matlab soit installé sur votre PC
+ Rappelons que la version 32 bits de Elphy ne peut travailler qu'avec la version 32 bits de Matlab et
+que Elphy 64 bits ne peut travailler qu'avec la version 64 bits de Matlab.
+
+ Pour que l'appel de l'API Matlab soit possible, il faut indiquer le Matlab Path dans le menu
+File/Configuration/Options.
+  Par exemple, cela peut être:  C:\Program Files (x86)\MATLAB\R2010b\bin\win32 sur une version 32bits
+
+ Il est également possible de sauver et charger des données au format Matlab (fichiers .mat) .
+ La présence de Matlab n'est pas nécessaire pour ces opérations.
+ En effet, la distribution Elphy les dlls Matlab nécessaires. Ces dlls sont dans le sous-dossier \Matlab\bin du dossier
+d'installation de Elphy.
+}
+{$P Utiliser Matlab Engine
+
+ OpenMatlab@ ouvre la communication avec Matlab
+ MatlabEvalString@ permet de faire exécuter une commande Matlab
+
+ SaveToMatLab@ envoie une variable Elphy dans Matlab
+ LoadFromMatLab@ récupère une variable Matlab
+
+ Les méthodes SaveToMatLab@(TdataObject.SaveToMatLab) et LoadFromMatLab@(TdataObject.LoadFromMatLab)
+de TdataObject@ permettent de transférer des objets de Matlab dans Elphy et réciproquement.
+ Les objets concernés sont les vecteurs, les matrices et les séquences d'images (TOIseq@)
+
+}
+{$P Sauver et charger des fichiers Matlab
+
+ Les méthodes SaveToMatFile@(TdataPlot.SaveToMatFile) et LoadFromMatFile@(TdataPlot.LoadFromMatFile)
+de TdataPlot@ permettent de sauver et charger des objets Elphy au format Matlab.
+
+}
+
+
+procedure OpenMatlab(visible:boolean);
+{$H Ouvre la communication avec MATLAB.
+
+ Visible détermine la visibilité de Matlab.
+ Si visible vaut TRUE, Matlab est ouvert sur le bureau de Windows et l'utilisateur
+peut utiliser les commandes Matlab pour intervenir sur les données échangées avec Elphy.
+
+ Si visible vaut FALSE, Matlab est inaccessible pour l'utilisateur.
+
+ Il n'est pas indispensable d'appeler cette procédure. Si on ne l'appelle pas,
+la première procédure utilisant Matlab appelle OpenMatlab avec visible=TRUE.
+
+ Voir (Travailler avec Matlab)@Matlab.
+
+}
+
+procedure MatlabEvalString(st:string);
+{$H Emet une commande Matlab.
+
+ La chaine st peut contenir n'importe quelle commande Matlab.
+
+ Exemples:
+      MatlabEvalString('PLOT(X);');
+      MatlabEvalString('A=12;');
+
+
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+procedure SaveToMatLab(var X;VarName:string);
+{$H Envoie la variable X dans l'espace Matlab sous le nom VarName .
+
+ Actuellement, X doit être une variable simple de type entier ou réel.
+
+ Dans Matlab, la variable Varname sera créée si elle n'existe pas ou sera
+modifiée dans le cas contraire. Elle sera de type double (le type standard de Matlab).
+
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+procedure LoadFromMatLab(var x;VarName:string);
+{$H Importe une variable Matlab.
+
+ Actuellement, X doit être une variable simple de type entier ou réel.
+
+ VarName est le nom de la variable Matlab.
+
+ 
+
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+procedure TdataObject.SaveToMatLab(VarName:string);
+{$H Range l'objet dans une variable Matlab de nom VarName.
+
+ La méthode fonctionne bien avec les vecteurs et matrices et leurs descendants.
+ Dans Matlab, la variable Varname sera créée si elle n'existe pas ou sera
+modifiée dans le cas contraire. Elle sera de type double (le type standard de Matlab).
+
+ Si l'objet est un vecteur, on obtient dans Matlab un vecteur colonne ayant Icount@ éléments.
+
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+procedure TdataObject.LoadFromMatLab(VarName:string);
+
+{$H Charge le contenu d'une variable Matlab de nom VarName.
+
+
+ La méthode fonctionne bien avec les vecteurs et matrices et leurs descendants.
+
+ Dans Matlab, les vecteurs sont en fait des matrices de dimensions (N,1) pour un vecteur colonne
+ et (1,N) pour un vecteur ligne.
+ Si l'objet est un vecteur, la méthode copie la première colonne de la matrice dans le vecteur.
+ On obtient donc le résultat escompté si la variable est un vecteur colonne mais si la variable
+est un vecteur ligne, on ne charge que le premier élément.
+
+ La structure du l'objet est modifiée de la façon suivante:
+   - son type sera (en général) le type double.
+   - les indices de départ Istart@ ou Jstart@ ne changent pas mais les indices de fin Iend@ ou Jend@ sont modifiés.
+   - les paramètres d'échelle ne sont pas modifiés.
+
+
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+
+
+procedure TdataPlot.SaveToMatFile(stFile,ObjName:string);
+procedure TdataPlot.SaveToMatFile(stFile,ObjName:string;tpDest:integer);
+procedure TdataPlot.SaveToMatFile(stFile,ObjName:string;tpDest:integer;Fappend:boolean);
+{$H Sauve le contenu de l'objet dans un fichier de format Matlab.
+
+ Les objets pouvant être sauvés de cette façon sont
+   - les vecteurs et leurs descendants (tableau à une dimension)
+   - les matrices et leurs descendants (tableau à deux dimensions)
+   - les objets Tmatlist et TOIseq (tableau à trois dimensions)
+
+ stFile est le nom du fichier. Son extension doit être .mat
+ objName est le nom de la variable Matlab
+
+ tpDest est le type des données. Par défaut, ce type sera le type de données du vecteur.
+ Il faut utiliser les (constantes de type)@(types de nombre) pour indiquer un type.
+ Matlab reconnait les types suivants:
+          T_byte
+          T_short
+          T_smallint
+          T_word
+          T_longint
+          T_single
+          T_double
+          T_SComplex
+          T_DComplex
+
+ Si Fappend vaut TRUE, les données seront ajoutées à la fin du fichier à condition que le nom de
+la variable ne figure pas déjà dans le fichier. Si une variable de même nom existe déjà, les données de
+cette variable seront remplacées par le contenu de l'objet.
+ Si Fappend vaut FALSE (valeur par défaut), le fichier est effacé s'il existe déjà. Il est
+créé s'il n'existe pas.
+
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+procedure TdataPlot.LoadFromMatFile(stFile,objName:string);
+procedure TdataPlot.LoadFromMatFile(stFile,objName:string; InvertIndices:boolean);
+{$H Charge des données contenues dans un fichier de format Matlab
+
+ stFile est le nom du fichier. Son extension doit être en principe .mat
+ objName est le nom de la variable Matlab au moment de la sauvegarde.
+
+  InvertIndices vaut false par défaut. Si InvertIndices vaut true, les indices matlab
+sont pris dans l'ordre inverse. Exemple: l'élément (1,12) est considéré comme (12,1).
+
+ Voir SaveToMatFile@
+ Voir (Travailler avec Matlab)@Matlab.
+}
+
+

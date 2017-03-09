@@ -1,0 +1,7 @@
+Hpage ElphyCommands; { Elphy Commands }
+{$P
+}
+
+{$TITLE Suite }
+{$P
+}

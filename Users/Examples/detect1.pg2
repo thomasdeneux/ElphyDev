@@ -1,0 +1,39 @@
+{ Tdetect is used to detect events on analog signals
+
+  If you loaded the data file 4103Er5.dat, this program detects the spikes
+or any event crossing the threshold -20 mV        
+  
+  The vector detect.Vevent contains all the detect times. 
+}
+var
+  Detect:TDetect;
+
+
+procedure detection;
+begin
+  with detect do
+  begin
+    create;
+    installSource(v1);
+    mode:=SM_crossUp;  
+    height:=-20;
+
+    execute;
+
+    Vevent.Xmin:=v1.Xmin;
+    Vevent.Xmax:=v1.Xmax;
+    Vevent.color:=cl_red;
+    v1.cpx:=1;
+    Vevent.Cpx:=1;
+
+    AddObject(1,1,V1);
+    AddObject(1,1,Vevent);
+    v1.invalidate;
+  end;
+end;
+
+program Detection
+detection;
+
+
+

@@ -1,0 +1,31 @@
+
+procedure recuit(var extpots:Tmatrix ; var extcentres : TxyPlot ; var extevolution,extxp,extyp : Tvector);
+{$H Recherche d'un stimulus maximal a l'aide du champ d'association : algorithme du recuit simulé
+
+recuit(matrice potentiels : Tmatrix ; coordonnes centre : Txyplot ; //taille,nbsimul,nbpolesmax : integer); }
+
+
+
+procedure maxtim(var extpots:Tmatrix ;var extcentres : TxyPlot);
+{$H Recherche d'un stimulus maximal a l'aide du champ d'association
+
+maxtim(matrice potentiels : Tmatrix ; coordonnes centre : Txyplot ; //taille,nbsimul,nbpolesmax : integer); }
+
+
+object
+TAFanneal
+{$H  recuit}
+
+end;
+
+procedure TAFanneal.create(stName:String);
+
+procedure TAFanneal.Init(var extpots:Tmatrix ; var extevolution,extxp,extyp : Tvector);
+
+procedure TAFanneal.CalculIter(var extpots:Tmatrix ; var extevolution,extxp,extyp : Tvector );
+
+function TAFanneal.T:integer;
+
+
+
+

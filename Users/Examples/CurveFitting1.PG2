@@ -1,0 +1,99 @@
+var
+  vec1:Tvector;
+  FF: TcurveFitting;
+  memo:Tmemo;
+
+Const
+  stPage='Test';
+
+procedure CreateData;
+var
+  i:integer;
+begin
+  vec1.create(t_single,0,4999);
+  vec1.dx:=0.1;
+  
+  vec1.cpx:=111;
+  vec1.cpy:=111;
+  
+  vec1.mode:= DM_square;
+  for i:=vec1.Istart to vec1.Iend do
+    vec1[i]:= 100*exp(-0.5*sqr( (i-1000)/100))+
+              40*exp(-0.5*sqr( (i-1600)/300))
+              +(random-0.5)*10;
+  
+  vec1.autoscaleX;
+  vec1.Ymin:=-20;
+  vec1.Ymax:=200;
+
+  with memo do
+  begin
+    create;
+    font.size:=12;
+    font.color:=cl_blue;
+    x:=10;
+    y:=10;
+  end;
+  
+  if PageIndex(stPage)=0 then AddPage(stPage);
+  with mgPage[stPage] do
+  begin
+    DestroyAllWindows;
+    NewWindow(1,1);
+    AddObject(1,memo);
+    AddObject(1,vec1);
+  end;
+  vec1.invalidate;
+  selectPage(stPage);
+ 
+
+end;
+
+program data
+CreateData;
+
+
+procedure Fit(model:integer);
+var
+  i: integer;
+begin
+  FF.create('FF');
+
+  FF.lineWidth:=2;
+  
+  FF.setYdata(vec1);
+  FF.XstartFit:=0;
+  FF.XendFit:=300;
+
+  FF.setGraphParam(0,300,0,1000);
+
+  FF.StandardModel:=model;
+
+  FF.cpx:=111;
+  FF.cpy:=111;
+  
+  with vec1 do FF.setWorld(Xmin,Ymin,Xmax,Ymax);   
+  FF.color:=cl_red;  
+  mgPage[stPage].addObject(1,FF);
+  
+  FF.initialize:=true;
+
+  memo.clear;
+  if FF.execute then
+    with FF do
+    begin
+      for i:=1 to paramCount-1 do
+        memo.lines[i]:= 'a'+Istr(i)+' = '+Rstr(FF.param['a'+Istr(i)],10,3);
+    end;
+
+  
+end;
+
+program 'Fit one gaussian'
+fit(fm_gauss1);
+
+program 'Fit two gaussians'
+fit(fm_gauss2);
+
+
+

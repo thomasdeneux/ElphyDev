@@ -1,0 +1,80 @@
+var
+  mg:Tmultigraph;
+  dlg:Tdialog;
+  memo: Tmemo;
+  
+  rr,gg,bb: integer;
+  rrT,ggT,bbT: integer;
+  
+  
+procedure DlgEvent(n:integer);
+var
+  col: integer;
+begin
+  if n=1000 then messagebox('ICI');
+  dlg.updatevar;
+  col:=rr + gg*256 +bb*65536; 
+  
+  mg.MgPage[1].color:=col;
+  dlg.modifyTextA(201,'BackGround = '+HexaStr(col,6));
+  
+  col:=rrT + ggT*256 +bbT*65536;
+  memo.font.color:= col;
+  dlg.modifyTextA(202,'Text = '+HexaStr(col,6)); 
+end;  
+  
+procedure Init;
+begin
+  rr:=255;
+  gg:=255;
+  bb:=255;
+  with memo do
+  begin
+    create;
+    font.name:='Arial';
+    font.color:=cl_blue;
+    font.size:=20;
+    lines[1]:='Using Tmultigraph, Tdialog and Tmemo ';
+  end;
+  
+  with dlg do
+  begin
+    create;
+    
+    getCommandA('Test',0,1000);
+    BKcolor:=cl_red;
+    setTextA('BackGround',201);
+    getIntegerA('R ',rr,6,101);
+    AddScrollbar(0,255,1,10);
+    getIntegerA('G ',gg,6,101);
+    AddScrollbar(0,255,1,10);
+    getIntegerA('B ',bb,6,101);
+    AddScrollbar(0,255,1,10);   
+    
+    setTextA('Text',202);
+    getIntegerA('R ',rrT,6,102);
+    AddScrollbar(0,255,1,10);
+    getIntegerA('G ',ggT,6,102);
+    AddScrollbar(0,255,1,10);
+    getIntegerA('B ',bbT,6,102);
+    AddScrollbar(0,255,1,10);   
+
+    onEvent:=DlgEvent;
+  end;  
+  
+
+  mg.create;
+  with mg.mgPage[1] do
+  begin
+    defineWindow(0,0,mg.pageWidth-1,mg.pageHeight-100);
+    defineWindow(0,mg.pageHeight-99,mg.pageWidth-1,mg.pageHeight-1);
+    
+    addDialog(1,dlg);
+    addObjectEx(2,memo);
+  end;  
+  mg.show;
+end;  
+
+
+program 'Init'
+Init;

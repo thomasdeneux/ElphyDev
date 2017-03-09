@@ -1,0 +1,29 @@
+
+Object
+  Tviewer3D (TwinObject)
+  Tobject3D (Tobject)
+  Tsphere(Tobject3D)
+  Tcube(Tobject3D)
+  Tmat3D(Tobject3D)
+end;
+
+                    { Tviewer3D stmD3DView1   }
+procedure Tviewer3D.create(stName:string);
+procedure Tviewer3D.add(var obj3D: Tobject3D;x,y,z:real);
+procedure Tviewer3D.clear;
+
+                    { Tobject3D stmD3Dobj }
+
+                    { Tsphere stmSPhere1 }
+procedure Tsphere.create(stName:string;Radius:real;Nslices,Nstacks:integer);
+property Tsphere.color:integer;
+
+                    { Tcube stmCube1 }
+procedure Tcube.create(stName:string;Lx,Ly,Lz:real;col:integer);
+
+                    { Tmat3D stmMat3D1 }
+
+procedure Tmat3D.create(stName:string);
+
+
+

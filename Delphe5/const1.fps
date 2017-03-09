@@ -1,0 +1,507 @@
+CONST
+          {$T types de nombre }
+
+{$H Ces constantes peuvent être utilisées pour indiquer le type de nombre dans
+les méthodes create ou modify d'objets tels que Tvector ou Tmatrix.
+
+ Remarques:
+   Dans les versions antérieures, T_smallint s'appelait T_integer .
+   Tous ces types ne sont pas forcément utilisables dans les objets cités ci-dessus.
+
+}
+  T_byte     =0;
+  T_short    =1;
+  T_smallint =2;
+  T_word     =3;
+  T_longint  =4;
+  T_single   =5;
+  T_real48   =6;
+  T_double   =7;
+  T_extended =8;
+  T_SComplex =9;
+  T_DComplex =10;
+  T_Complex  =11;
+
+  T_longword =13;
+  T_int64    =14; 
+
+
+Const
+          {$T Modes d'affichage }
+
+{$H Constantes utilisées par la propriété Mode de Tvector et de ses descendants.
+}
+
+ DM_DOT=1;
+ DM_LINE=2;
+ DM_SQUARE=3;
+ DM_TRIANGLE=4;
+ DM_DIAMOND=5;
+ DM_CIRCLE=6;
+ DM_PLUS=7;
+ DM_MULT=8;
+ DM_STAR=9;
+ DM_HISTO0=10;
+ DM_HISTO1=11;
+ DM_HISTO2=12;
+ DM_HISTO3=13;
+ DM_EVT1=14;
+
+ DM_EVT2=15;
+ DM_LINE_SQUARE=16;
+ DM_LINE_TRIANGLE=17;
+ DM_LINE_DIAMOND=18;
+ DM_LINE_CIRCLE=19;
+ DM_LINE_PLUS=20;
+ DM_LINE_MULT=21;
+ DM_LINE_STAR=22;
+ DM_Line_FillB=23;
+ DM_polygon=24;
+
+
+
+Const
+          {$T types de bouton }
+
+{$H Constantes utilisées par la méthode SetButtons@Tdialog_setButtons de Tdialog@ }
+
+ BT_Ok=     1;
+ BT_Cancel= 2;
+ BT_Abort=  4;
+ BT_Retry=  8;
+ BT_Ignore=16;
+ BT_Yes=   32;
+ BT_No=    64;
+
+Const
+          {$T Modal result }
+
+{$H Valeurs renvoyées par la méthode showModal@Tdialog_showModal de Tdialog@ }
+
+ MR_Ok=     1;
+ MR_Cancel= 2;
+ MR_Abort=  3;
+ MR_Retry=  4;
+ MR_Ignore= 5;
+ MR_Yes=    6;
+ MR_No=     7;
+
+
+Const
+          {$T modes de détection }
+
+{$H Constantes utilisées par Tdetect@ }
+
+ SM_max       =0;
+ SM_min       =1;
+ SM_minMax    =2;
+ SM_stepUp    =3;
+ SM_stepDw    =4;
+ SM_stepUpDw  =5;
+ SM_crossUp   =6;
+ SM_crossDw   =7;
+ SM_crossUpDw =8;
+ SM_slopeUp   =9;
+ SM_slopeDw   =10;
+ SM_slopeUpDw =11;
+
+
+Const
+          {$T couleurs  }
+
+{$H Couleurs de base }
+
+  CL_Black   = $000000;
+  CL_Maroon  = $000080;
+  CL_Green   = $008000;
+  CL_Olive   = $008080;
+  CL_Navy    = $800000;
+  CL_Purple  = $800080;
+  CL_Teal    = $808000;
+  CL_Gray    = $808080;
+  CL_Silver  = $C0C0C0;
+  CL_Red     = $0000FF;
+  CL_Lime    = $00FF00;
+  CL_Yellow  = $00FFFF;
+  CL_Blue    = $FF0000;
+  CL_Fuchsia = $FF00FF;
+  CL_Aqua    = $FFFF00;
+  CL_LtGray  = $C0C0C0;
+  CL_DkGray  = $808080;
+  CL_White   = $FFFFFF;
+
+
+Const
+          {$T Codes clavier et souris}
+
+{$H Constantes utilisées par installShortCut@ }
+
+ ss_Shift       =1;
+ ss_alt         =2;
+ ss_ctrl        =4;
+ ss_left        =8;
+ ss_right       =16;
+ ss_middle      =32;
+ ss_double      =64;
+
+Const
+          {$T Virtual key codes}
+
+{$H
+}
+  VK_LBUTTON = 1;
+  VK_RBUTTON = 2;
+  VK_CANCEL = 3;
+  VK_MBUTTON = 4;
+  VK_BACK = 8;
+  VK_TAB = 9;
+  VK_CLEAR = 12;
+  VK_RETURN = 13;
+  VK_SHIFT = 16;
+  VK_CONTROL = 17;
+  VK_MENU = 18;
+ {
+  VK_PAUSE = 19;
+  VK_CAPITAL = 20;
+  VK_KANA = 21;
+  VK_HANGUL = 21;
+  VK_JUNJA = 23;
+  VK_FINAL = 24;
+  VK_HANJA = 25;
+  VK_KANJI = 25;
+  VK_CONVERT = 28;
+  VK_NONCONVERT = 29;
+  VK_ACCEPT = 30;
+  VK_MODECHANGE = 31;
+  VK_ESCAPE = 27;
+  VK_SPACE = 32;
+  VK_PRIOR = 33;
+  VK_NEXT = 34;
+  VK_END = 35;
+  VK_HOME = 36;
+  VK_LEFT = 37;
+  VK_UP = 38;
+  VK_RIGHT = 39;
+  VK_DOWN = 40;
+  VK_SELECT = 41;
+  VK_PRINT = 42;
+  VK_EXECUTE = 43;
+  VK_SNAPSHOT = 44;
+  VK_INSERT = 45;
+  VK_DELETE = 46;
+  VK_HELP = 47;
+  VK_LWIN = 91;
+  VK_RWIN = 92;
+  VK_APPS = 93;
+  VK_NUMPAD0 = 96;
+  VK_NUMPAD1 = 97;
+  VK_NUMPAD2 = 98;
+  VK_NUMPAD3 = 99;
+  VK_NUMPAD4 = 100;
+  VK_NUMPAD5 = 101;
+  VK_NUMPAD6 = 102;
+  VK_NUMPAD7 = 103;
+  VK_NUMPAD8 = 104;
+  VK_NUMPAD9 = 105;
+  VK_MULTIPLY = 106;
+  VK_ADD = 107;
+  VK_SEPARATOR = 108;
+  VK_SUBTRACT = 109;
+  VK_DECIMAL = 110;
+  VK_DIVIDE = 111;
+  VK_F1 = 112;
+  VK_F2 = 113;
+  VK_F3 = 114;
+  VK_F4 = 115;
+  VK_F5 = 116;
+  VK_F6 = 117;
+  VK_F7 = 118;
+  VK_F8 = 119;
+  VK_F9 = 120;
+  VK_F10 = 121;
+  VK_F11 = 122;
+  VK_F12 = 123;
+  VK_F13 = 124;
+  VK_F14 = 125;
+  VK_F15 = 126;
+  VK_F16 = 127;
+  VK_F17 = 128;
+  VK_F18 = 129;
+  VK_F19 = 130;
+  VK_F20 = 131;
+  VK_F21 = 132;
+  VK_F22 = 133;
+  VK_F23 = 134;
+  VK_F24 = 135;
+  VK_NUMLOCK = 144;
+  VK_SCROLL = 145;
+  }
+
+Const
+          {$T Modèles de fonctions standard }
+
+{$H Constantes utilisées par Tfunction et TcurveFitting }
+
+ fm_exp1     =1;
+ fm_exp2     =2;
+ fm_exp3     =3;
+
+ fm_expC1    =4;
+ fm_expC2    =5;
+ fm_expC3    =6;
+
+ fm_model7   =7;
+ fm_model8   =8;
+
+ fm_poly1    =9;
+ fm_poly2    =10;
+ fm_poly3    =11;
+ fm_poly4    =12;
+ fm_poly5    =13;
+ fm_poly6    =14;
+ fm_poly7    =15;
+ fm_poly8    =16;
+ fm_poly9    =17;
+
+ fm_gauss1   =18;
+ fm_gauss2   =19;
+ fm_gauss3   =20;
+
+ fm_expInv1  =21;
+ fm_expInv2  =22;
+ fm_expInv3  =23;
+
+ fm_expInvC1 =24;
+ fm_expInvC2 =25;
+ fm_expInvC3 =26;
+
+
+ Const
+          {$T Modes d'ajustement }
+
+{$H Constantes utilisées par TcurveFitting }
+
+ wm_equal=    1;
+ wm_sigma=    2;
+ wm_invY2=    3;
+ wm_invY=     4;
+ wm_Y2=       5;
+ wm_Y=        6;
+ wm_X=        7;
+ wm_invX2=    8;
+ wm_invX=     9;
+
+ Const
+          {$T Modes de crayon}
+
+ {$H Constantes utilisées par PenMode@ }
+
+ pm_Black=0;
+ pm_White=1;
+ pm_Nop=2;
+ pm_Not=3;
+ pm_Copy=4;
+ pm_NotCopy=5;
+ pm_MergePenNot=6;
+ pm_MaskPenNot=7;
+ pm_MergeNotPen=8;
+ pm_MaskNotPen=9;
+ pm_Merge=10;
+ pm_NotMerge=11;
+ pm_Mask=12;
+ pm_NotMask=13;
+ pm_Xor=14;
+ pm_NotXor=15;
+
+ Const
+           {$T Styles de police}
+
+{$H Constantes utilisées par FontStyle@ }
+
+ fs_Bold=1;
+ fs_Italic=2;
+ fs_Underline=4;
+ fs_StrikeOut=8;
+
+ Const
+           {$T Styles de curseur}
+
+{$H Constantes utilisées par (Tcursor.style)@ }
+
+ cs_X=0;
+ cs_Y=1;
+ cs_index=2;
+
+ Const
+           {$T Affichage des curseurs}
+
+{$H Constantes utilisées par (Tcursor.winContent)@ }
+
+ wc_I=0;
+ wc_J=1;
+ wc_X=2;
+ wc_Y=3;
+ wc_IpJ=4;
+ wc_IpX=5;
+ wc_IpY=6;
+ wc_XpY=7;
+
+ Const
+           {$T Types de trait}
+
+ ps_Solid=1;
+ ps_Dash=2;
+ ps_Dot=3;
+ ps_DashDot=4;
+ ps_DashDotDot=5;
+ ps_Clear=6;
+
+ Const
+           {$T Modes trigger}
+
+ TM_immediate=1;
+ TM_keyboard=2;
+ TM_abs=3;
+ TM_diff=4;
+ TM_digiUp=5;
+ TM_digiDw=6;
+ TM_internal=7;
+ TM_Prog=8;
+ TM_NiAnalog=9;
+
+  Const
+          {$T Divers }
+
+CRLF = #13#10;
+
+  Const
+          {$T Modes d'affichage complexes}
+
+{$H Constantes utilisées par la propriété CpxMode de Tvector ou Tmatrix et de leurs descendants.
+}
+
+ CM_X=0;
+ CM_Y=1;
+ CM_MDL=2;
+ CM_ARG=3;
+ CM_XY=4;
+ CM_YX=5;
+ CM_MDLARG=6;
+ CM_ARGMDL=7;
+
+
+   Const
+        {$T types SQL }
+
+{$H Constantes utilisées par TdataBase@
+}
+  sql_Unknown=        0;
+  sql_Boolean=        1;
+  sql_Byte=           2;
+  sql_Short=          3;
+  sql_Integer=        4;
+  sql_Long=           5;
+  sql_Float=          6;
+  sql_Double=         7;
+  sql_BigDecimal=     8;
+  sql_String=         9;
+  sql_UnicodeString= 10;
+  sql_Bytes=         11;
+  sql_Date=          12;
+  sql_Time=          13;
+  sql_Timestamp=     14;
+  sql_AsciiStream=   15;
+  sql_UnicodeStream= 16;
+  sql_BinaryStream=  17;
+
+   Const
+        {$T Align }
+
+{$H Constantes utilisées par (Tmultigraph.AddMGDialog)@
+}
+  Al_None   =       0;
+  Al_Top    =       1;
+  Al_bottom =       2;
+  Al_left   =       3;
+  Al_right  =       4;
+
+   Const
+        {$T Paramètres d'affichage Multigraph}
+
+{$H Constantes utilisées par (TMGpage.Vparams)@
+}
+
+  VF_Xmin=  0;
+  VF_Xmax=  1;
+  VF_Ymin=  2;
+  VF_Ymax=  3;
+  VF_Zmin=  4;
+  VF_Zmax=  5;
+  VF_gamma=  6;
+
+  VF_unitx=  8;
+  VF_unity=  9;
+  VF_color= 10 ;
+  VF_twoColors= 11 ;
+  VF_mode=  12;
+  VF_SymbolSize= 13 ;
+  VF_lineWidth= 14 ;
+  VF_lineStyle=  15;
+  VF_LogX=  16;
+  VF_LogY=  17;
+  VF_grid=  18;
+  VF_cpX=  19;
+  VF_cpY=  20;
+  VF_cpZ=  21;
+
+  VF_Xscale=  22;
+  VF_Yscale=  23;
+  VF_Xticks=  24;
+  VF_Yticks=  25;
+  VF_RightTicks=  26;
+  VF_TopTicks=  27;
+  VF_ExtTicksX=  28;
+  VF_ExtTicksY=  29;
+  VF_ScaleColor= 30 ;
+
+  VF_font=  31;
+  VF_theta=  32;
+
+  VF_inverseX=  33;
+  VF_inverseY=  34;
+  VF_Epduration=  35;
+
+  VF_DisplayMode=  36;
+  VF_keepAspectRatio=  37;
+  VF_color2=  38;
+
+  VF_CpxMode=  39;
+  VF_AngularMode= 40 ;
+  VF_AngLineWidth=  41;
+  VF_Cmin=  42;
+  VF_Cmax=  43;
+  VF_gammaC=  44;
+  VF_ZeroAxisX=  45;
+  VF_ZeroAxisY=  46;
+  VF_LogZ=  47;
+
+  VF_Gdisp=  48;
+  VF_Xdisp=  49;
+  VF_Ydisp=  50;
+  VF_FullD2=  51;
+
+   Const
+        {$T DB Types }
+
+{$H Constantes utilisées par (TDBrecord)@ ou (TDBtable)@
+}
+
+  DB_Null    = 0;
+  DB_Boolean = 1;
+  DB_Integer = 2;
+  DB_Real    = 3;
+  DB_String  = 4;
+  DB_DateTime= 5;
+  DB_Object  = 6;
+  DB_Complex = 7;
+

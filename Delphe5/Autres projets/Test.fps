@@ -1,0 +1,13 @@
+Object
+
+Tobject1
+
+end;
+
+function Istr(i:longint;n:integer):string;
+function Rstr(x:real;n,m:integer):string;
+procedure MessageCentral(st:string);
+
+procedure Tobject1.create;
+procedure Tobject1.affiche;
+

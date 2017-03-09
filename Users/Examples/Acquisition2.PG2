@@ -1,0 +1,105 @@
+{ 
+This example shows  a simple acquisition in episode mode.
+All parameters can be set directly in the Acquisition dialog. 
+
+InitAcq and InitDisplay can be called with the command Init ( See Program 'Init' )
+or can be called when the user starts acquisition (see InitProcess0 and InitProcess )
+
+The keywords InitProcess0 and InitProcess are active if
+  - this PG2 file is the primary file 
+  - You checked "Execute Primary File" in Acquisition/Process 
+}
+
+Const
+  stPage='Acquisition';
+  
+procedure MyBuildEp(seq:integer;var vec:Tvector);
+begin
+  vec.fill(0);
+  vec.fill1((seq mod 5)*1000,200,300);
+end;
+
+procedure InitAcq;
+var
+  i:integer;
+begin
+  with acquisition do
+  begin
+    Fcontinuous:=false;
+    EpDuration:=20000;
+    PeriodPerChannel:=0.100;
+    MaxEpCount:=0;
+    TriggerMode:= TM_immediate;
+    ChannelCount:=10;   
+    
+    for i:=1 to channelCount do
+    with Channels[i] do
+    begin
+      ChannelType:= TI_analog;
+      DownSamplingFactor:=1;
+      PhysNum:=i-1;
+      setScale(0,32767,0,10000);
+    end;
+    
+    
+    Fstimulate:=true;          
+  end;
+  
+  with stimulator do
+  begin
+    ChannelCount:=1;
+    setByProg:=true; { mais on met le build ep plus loin }
+    Channels[1].ChannelType:=TO_analog;
+    Channels[1].PhysNum:=0;
+    Channels[1].BuildEp:=MyBuildEp;     
+  end;
+end;
+
+
+
+procedure InitDisplay;
+begin
+  v1.color:=cl_yellow;
+  v1.setWorld(0,-5000,1000,5000);
+  v1.cpx:=1;
+  
+  v2.color:=cl_lime;
+  v2.setWorld(0,-5000,1000,5000);
+  v2.cpx:=1;
+  
+  vtag1.color:=cl_aqua;
+  vtag1.setWorld(0,-2,1000,2);
+  vtag1.cpx:=1;
+  
+  vtag2.color:=cl_aqua;
+  vtag2.setWorld(0,-2,1000,2);
+  vtag2.cpx:=1;
+
+  if PageIndex(stPage)=0 then AddPage(stPage);
+  with mgPage[stPage] do
+  begin
+    PageFont:=true;
+    color:=cl_black;
+    ScaleColor:=cl_white;    
+    
+    DestroyAllWindows;
+    NewWindow(1,1);
+    DivideWindow(1,1,4);
+    AddObject(1,v1);
+    AddObject(2,v2);
+    AddObject(3,vtag1);
+    AddObject(4,vtag2);    
+  end;
+
+  selectPage(stPage);
+end;
+
+Program 'Init'
+initAcq;
+initDisplay;
+
+InitProcess0
+InitAcq;
+
+InitProcess
+InitDisplay;

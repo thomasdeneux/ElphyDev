@@ -1,0 +1,8 @@
+object
+  TrestClient(Tobject)
+
+end;
+
+procedure TrestClient.create(host: String; port: Integer; username, password: String);
+procedure TrestClient.Get(st: String;var db: TDBtable);
+

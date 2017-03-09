@@ -1,0 +1,187 @@
+{$ELPHYTOOL Vector Measurements }
+
+{****************************** Amplitude Histogram ***************************}
+
+var
+  mgHA:Tmultigraph;
+  dlgHA:Tdialog;
+  NHA:integer;
+  source:variant;
+
+  VHis:Tvector;
+  Dxu:real;
+  Fautoscale:boolean;
+  X1calc,X2calc:real;
+
+procedure DlgHAProcess(var vec:Tvector);
+var
+  x1,x2:real;
+begin
+  Vhis.dx:=dxu;
+  
+  if (X1calc<vec.Xstart) or (X1calc>vec.Xend) then X1calc:=vec.Xstart;
+  if (X2calc<vec.Xstart) or (X2calc>vec.Xend) then X2calc:=vec.Xend;
+  dlgHA.update;
+  
+  Distri(vec,Vhis,X1calc,X2calc);
+
+  if Fautoscale then
+  begin
+    Vhis.autoscaleY;
+    if Vhis[Vhis.Istart]=0
+      then x1:=FirstCrossing(Vhis,Vhis.Xstart,Vhis.Xend,Dxu/2,true)
+      else x1:=Vhis.Xstart;
+    if Vhis[Vhis.Iend]=0
+      then x2:=LastCrossing(Vhis,Vhis.Xstart,Vhis.Xend,Dxu/2,false)
+      else x2:=Vhis.Xend;
+      
+    if x2>x1 then
+    begin
+      Vhis.Xmin:=x1;
+      Vhis.Xmax:=x2;
+    end;
+  end;
+
+
+  Vhis.invalidate;
+end;
+
+procedure testDy(var vec:Tvector);
+begin
+  if (vec.NumType<=t_longint) then
+  begin
+    Dxu:=vec.Dy;
+    dlgHA.update;
+  end;
+end;
+
+
+procedure DlgHAEvent(n:integer);
+begin
+  dlgHA.updateVar;
+  case n of
+    101:  testDy(source);
+    102:  DlgHAProcess(source);
+    103:  begin
+            Vhis.fill(0);
+            Vhis.invalidate;
+          end;
+  end;
+end;
+
+procedure initHA;
+begin
+  Vhis.create(t_longint,-32000,32000);
+  Vhis.mode:=dm_histo0;
+  Vhis.color:=cl_green;
+
+  mgHA.create;
+  mgHA.caption:='Amplitude histogram';
+  mgHA.toolbarVisible:=false;
+
+  with dlgHA do
+  begin
+    create;
+    setButtons(0);
+    dividePanel(0,4,true);
+
+    selectPanel(1);
+    getObject('Source',source,20,'Tvector');
+    getBoolean('Autoscale',Fautoscale);
+
+    selectPanel(2);
+    getReal('DX',Dxu,10,6);
+    getCommandA('Get Src Dy',0,101);
+
+    selectPanel(3);
+    getCommandA('Reset',0,103);
+    getCommandA('Execute',0,102);
+    
+    selectPanel(4);
+    getReal('XStart',X1calc,10,3);
+    getReal('Xend',X2calc,10,3);
+    
+    OnEvent:=DlgHAEvent;
+  end;
+
+  mgHA.newWindow(1,10,10);
+  mgHA.addMGDialog(Al_top,dlgHA);
+
+  with mgHA.mgPage['Page 1'] do
+  begin
+    pageFont:=true;
+    color:=cl_black;
+    scaleColor:=cl_white;
+    addObject(1,Vhis);
+  end;
+
+  mgHA.winWidth:=dlgHA.winWidth+10;
+  mgHA.show;
+end;
+
+program 'Amplitude Histogram'
+if not assigned(mgHA)
+  then initHA
+  else mgHA.show;
+
+
+
+{******************************** Vector stat ************************** }
+
+var
+  dlgStat:Tdialog;
+
+procedure StatProcess(var vec:Tvector);
+var
+  mm,std,max,min,imax,imin:real;
+begin
+  mm:=vec.mean;
+  std:=vec.stdDev;
+  imax:=vec.maxiX0;
+  imin:=vec.miniX0;
+  max:=vec.Rvalue[imax];
+  min:=vec.Rvalue[imin];
+
+
+  dlgStat.modifyTextA(201,'Mean=     '+Rstr(mm,10,3));
+  dlgStat.modifyTextA(202,'Std.Dev.= '+Rstr(std,10,3));
+  dlgStat.modifyTextA(203,'Maximum=  '+Rstr(max,10,3)+' for x = '+Rstr(imax,5,3) );
+  dlgStat.modifyTextA(204,'Minimum=  '+Rstr(min,10,3)+' for x = '+Rstr(imin,5,3));
+
+end;
+
+procedure DlgStatEvent(n:integer);
+begin
+  dlgStat.updateVar;
+  if n=101 then StatProcess(source);
+end;
+
+procedure VecStat;
+begin
+  if not assigned(dlgStat) then
+  with dlgStat do
+  begin
+    create;
+    dividePanel(0,2,false);
+    selectPanel(1);
+    getObject('Source',source,20,'Tvector');
+    getCommandA('Execute',0,101);
+
+    selectPanel(2);
+    setPanelProp(true,2);
+    setTextA('',201);
+    setTextA('',202);
+    setTextA('',203);
+    setTextA('',204);
+
+    OnEvent:=DlgStatEvent;
+    caption:='Vector stat';
+    setButtons(0);
+  end;
+
+  dlgStat.show;
+end;
+
+program 'Statistical values'
+VecStat;
+

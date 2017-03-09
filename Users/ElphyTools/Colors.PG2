@@ -1,0 +1,107 @@
+{$ElphyTool Colors }
+var
+  ColorDlg:Tdialog;
+  
+  BKcol0:integer;
+  ScaleCol0:integer;
+  XminA,XmaxA,YminA,YmaxA:real;
+    
+    
+procedure setVecColors(var vec:TdataPlot;bkcol,scaleCol:integer);
+begin
+  vec.BKcolor:=BKcol;
+  vec.ScaleColor:=ScaleCol;
+  vec.invalidate;
+end;    
+
+procedure setVColors(bkcol,scaleCol:integer);
+var
+  i:integer;
+begin
+  for i:=1 to maxChannelCount do
+  begin 
+    setvecColors( V[i],bkcol,scaleCol);   
+  end;         
+end;    
+
+procedure setCColors(bkcol,scaleCol:integer);
+var
+  i:integer;
+begin
+  for i:=1 to 12 do
+  begin 
+    setvecColors( C[i],bkcol,scaleCol);   
+  end;         
+end;    
+
+
+procedure setGColors(bkcol,scaleCol:integer);
+var
+  i:integer;
+begin
+  for i:=1 to 12 do
+  begin 
+    setvecColors( G[i],bkcol,scaleCol);   
+  end;         
+end;    
+
+  
+procedure setVspkColors(bkcol,scaleCol:integer);
+var
+  i,j:integer;
+begin
+  for i:=1 to maxVSpkCount do
+  begin 
+    setvecColors( Vspk[i],bkcol,scaleCol);
+    for j:=0 to Vspk[i].VUcount-1 do setvecColors(Vspk[i].VU[j],bkcol,scaleCol);   
+  end;         
+end;    
+
+procedure setWspkColors(bkcol,scaleCol:integer);
+var
+  i,j:integer;
+begin
+  for i:=1 to maxVSpkCount do
+  begin 
+    setvecColors( Wspk[i],bkcol,scaleCol);
+    for j:=0 to Wspk[i].WUcount-1 do setvecColors(Wspk[i].WU[j],bkcol,scaleCol);
+  end;         
+end;    
+  
+procedure ColorDlgEvent(n:integer);
+var
+  i,j:integer;
+begin
+  ColorDlg.updatevar;
+  case n of
+    101: setVColors(bkcol0,scaleCol0);
+    102: setVspkColors(bkcol0,scaleCol0);
+    103: setWspkColors(bkcol0,scaleCol0);
+    104: setCColors(bkcol0,scaleCol0);
+    105: setGColors(bkcol0,scaleCol0);
+     
+  end;  
+end;  
+  
+procedure ChooseColorsDlg;
+begin
+  with ColorDlg do
+  begin
+    create;
+    setButtons(0);
+    caption:='Colors';
+    getColorA('Background Color',BKcol0,0);
+    getColorA('Scale Color',ScaleCol0,0);
+
+    GetCommandA('Apply to datafile0.V[i]',0,101);
+    GetCommandA('Apply to datafile0.Vspk[i]',0,102);
+    GetCommandA('Apply to datafile0.Wspk[i]',0,103);
+    GetCommandA('Apply to Acquis1.C[i]',0,104);
+    GetCommandA('Apply to Acquis1.G[i]',0,105);
+    OnEvent:=ColorDlgEvent;
+    show;
+  end;
+end; 
+
+program 'Scale and BackGround Colors'
+ ChooseColorsDlg;

@@ -1,0 +1,125 @@
+{               Using vectors            }
+
+var
+  vec: Tvector;
+
+
+{ After Init, the object is created. Its name appears in the object inspector.
+  You can drag and drop it in a window and modify some parameters.
+  But the vector is empty.
+}
+
+program Init
+vec.create(t_single,0,9999);
+
+messageBox('OK. Now, click on Object/Inspect. '+crlf+
+           'The name of the object is at the end of the list'+crlf+
+           'With a right click on this name, you can modify some properties.'+crlf+
+           'You can also drag and drop it in a multigraph window.' 
+              );
+
+
+{ This procedure fills the vector with a sine wave }
+procedure sinusoide;
+var
+  i: integer;
+begin
+  //First version
+  for i:=vec.Istart to vec.Iend do     
+    vec[i]:=100*sin(2*pi/100*i);
+  //Second version
+  for i:=vec.Istart to vec.Iend do     
+    vec.Yvalue[i]:=100*sin(2*pi/100*i);
+  // Third version
+  vec.sinewave(100,100,0);
+
+  vec.invalidate;                { Tell the vector to refresh its display}
+end;
+
+
+program Sinus
+sinusoide;
+
+{ This procedure fills the vector with a square wave }
+procedure Squares;
+var
+  i:longint;
+begin
+  for i:=vec.Istart to vec.Iend do
+    if i mod 100<50
+      then vec[i]:=100
+      else vec[i]:=-100;
+
+   vec.invalidate;
+end;
+
+
+program 'Square wave'
+Squares;
+
+program 'Show vector'
+vec.show;
+
+
+program 'Modify display'
+with vec do
+begin
+  Xmin:=100;
+  Xmax:=300;
+  autoscaleY;
+  color:=rgb(0,128,255);   
+  invalidate;
+end;
+
+{ we have the relation  x = Dx * i +X0
+  i is the index of a sample in the vector
+  x is corresponding real value (in seconds, milliseconds,...)
+  Dx and x0 are properties of the vector . Default: Dx=1 and x0=0
+  
+  For y, we have also y = Dy*j + y0
+  But the properties Dy and y0 are only used when the data type is an integer type 
+}
+program 'Modify scaling parameters'
+with vec do
+begin
+  Dx:=0.1;
+  autoscaleX;
+  invalidate;
+end;
+
+program 'Rvalue'
+vec.Rvalue[50]:=45;  
+
+
+{ Now, we suppose you have loaded a datafile from the main menu
+  and that channel v1 is displayed in a multigraph window.
+  The display of v1 (a vector) can be modified by the program
+    
+}
+program 'dataFile vectors'
+// change some properties
+ 
+v1.color:=cl_green;    
+v1.invalidate;
+// v1 is a property of datafile0 . The type of datafile0 is Tdatafile.
+// In general, we have to write datafile0.v1.color:=..
+// But datafile0 has a particular property (implicit with) and  we can forget its name
+
+
+// We can measure some parameter on each episode of the data file and put the result in our vector
+procedure mesure1;
+var
+  i:integer;
+begin
+  vec.modify(t_single,1,Epcount);  // to have a number of values equal to the number of episodes
+
+  for i:=1 to EpCount do
+    begin
+      EpNum:=i;  // select the episode i
+      vec[i]:=v1.maxi(v1.xstart,v1.xend);
+    end;
+end;
+
+
+program 'Maxima'
+mesure1;

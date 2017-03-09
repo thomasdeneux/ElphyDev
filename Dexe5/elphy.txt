@@ -1,0 +1,54 @@
+17-12-2012
+
+Elphy se présente aujourd'hui sous 3 versions
+
+Elphy2.exe et Elphy2_DX9.exe sont deux programmes 32 bits identiques sauf pour la
+partie stimulation visuelle.
+Pour utiliser Elphy2_DX9, il faut avoir installé la dernière mise à jour de Microsoft DirectX
+sinon le message "DLL missing..." apparait au démarrage.
+DirectX est téléchargeable sur le lien:
+   http://www.microsoft.com/en-us/download/details.aspx?id=35
+
+Les deux programmes partagent les mêmes ressources et sont toujours installés simultanément.
+
+Elphy64.exe est un programme 64 bits compatible avec Elphy2 , bien qu'il existe quelques
+problèmes expliqués ci-dessous.
+Elphy64 doit être installé séparément sur un système 64-bits.
+A ce jour, les parties communication TCPIP et Accès aux bases de données
+ne sont pas encore fonctionnelles.
+
+PROBLÈMES LIÉS AUX TYPES RÉELS
+
+Pour des raisons historiques, le type REAL utilisé dans le langage Elphy correspond
+au type Extended du Borland Pascal. Chaque nombre occupe 10 octets en mémoire.
+Ce type réel haute précision était très rarement utilisé dans les compilateurs autres
+que le Borland Pascal. Par exemple, en C , on n'utilise généralement que les types
+FLOAT (single en pascal, 4 octets) et DOUBLE (8 octets). 
+
+Mais aujourd'hui, tous les compilateurs 64 bits ont purement et simplement abandonné le type Extended.
+Elphy64 travaille donc avec des réels sur 8 octets.
+Ceci ne pose pas de problème en général sauf lorsque des réels ont été sauvés sous forme binaire
+dans des fichiers, ce qui a pu arriver dans les fichiers de configuration (.GFC), dans les
+fichiers d'objets et dans les fichiers de données (.DAT)
+Pour les valeurs sauvées par Elphy, la version Elphy64 convertit automatiquement les réels 80 bits
+en réels 64 bits et ce processus est transparent pour l'utilisateur.
+
+Toutefois, lorsque la sauvegarde des réels a été décidée par le programme utilisateur, il est nécessaire
+de faire quelques corrections dans le programme PG2.
+Les routines concernées sont ReadFileInfo, WriteFileInfo, ReadEpInfo et WriteEpInfo (ces routines sont
+des méthodes de Tdatafile ou Tacquisition). Ces routines écrivent ou lisent un nombre d'octets
+correspondant à la taille actuelle de la variable passée comme paramètre. Elles ignorent le type
+de la variable. Leur comportement est donc différent sur Elphy64.
+Pour corriger ce problème, nous avons introduit ReadFileInfoExt, WriteFileInfoExt, ReadEpInfoExt et WriteEpInfoExt
+Sur Elphy 32 bits, ces routines se comportent comme les routines originales.
+Sur Elphy64, elles effectuent la conversion double-->Extended pour l'écriture et
+la conversion Extended-->double pour la lecture.
+
+
+Pour rendre un programme PG2 compatible 64 bits, il faut donc ajouter Ext à la fin des 4 routines ci-dessus
+à chaque fois que le paramètre est de type REAL.
+
+
+
+
+

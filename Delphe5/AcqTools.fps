@@ -1,0 +1,274 @@
+Object
+  Tintegrator (Tobject)
+{$H Tintegrator permet le traitement en ligne d'un signal analogique
+
+ Ce traitement est le même que celui de la fonction Integrate1@
+
+ Create@ est le constructeur de l'objet.
+ Init@ permet de fixer les paramètres
+ Update@ permet traiter les nouveaux points acquis1 du vecteur source
+
+ Typiquement, on appelle Init dans la partie InitProcess et Update dans la partie ProcessCont
+d'un programme.
+
+ Exemple:
+
+ @f6 var
+ @f6   int:Tintegrator;
+ @f6
+ @f6 InitProcess
+ @f6   int.create;
+ @f6   int.init(v1,c1,100,10000,0,true);
+ @f6
+ @f6 ProcessCont
+ @f6   int.update(v1.Iend);
+}
+  Tdetector  (Tobject)
+{$H Tdetector permet la détection en ligne d'événements sur un signal analogique pendant une acquisition continue.
+
+  Il permet aussi de déclencher un gestionnaire d'événement à intervalles réguliers
+}
+
+  TSpkDetector (Tobject)
+
+{$H TSpkDetector permet la réalisation d'actions efficaces à chaque occurence de spike pendant une acquisition continue.
+
+ Les spikes sont les événements enregistrés sur les voies Vspk@ quand le matériel installé est le système Blackrock.
+ 
+
+}
+
+  TonlineStat  (Tobject)
+{$H TonlineStat permet le calcul de valeurs statistiques (moyenne, standard deviation, maximum et minimum)
+pendant une acquisition continue.
+
+ Le calcul est fait sur une fenêtre dont la durée est fixée à l'avance.
+
+ Les résultats ne sont pas stockés dans des vecteurs mais sont disponibles en permanence.
+}
+end;
+
+
+procedure Tintegrator.create;
+{$H Constructeur de l'objet Tintegrator@ .
+
+}
+procedure Tintegrator.Init(var src, dest: Tvector; IntLength, MeanLength: real;yinit:real;Fdisplay:boolean);
+{$H Initialise les paramètres nécessaires au traitement
+
+ src est le vecteur source. En acquisition, ce sera souvent v1 ,v2 ...mais ce n'est pas obligatoire.
+ dest est le vecteur destination. Init vide ce vecteur: il fixe Istart=0 et Iend=-1 mais ne change pas son type.
+
+ IntLength est la longueur d'intégration
+ MeanLength est la durée utilisée pour déterminer la ligne de base.
+ yinit est la valeur initiale supposée du signal. On suppose qu'avant Istart, il existe des échantillons
+d'amplitude yinit.
+ Si Fdisplay vaut true, la méthode Update s'efforcera d'afficher les nouveaux points traités.
+
+}
+
+procedure Tintegrator.Update(index: integer);
+{$H Traite les nouveaux échantillons.
+
+ Index est l'indice du dernier échantillon à traiter.
+
+ L'objet mémorise cette valeur et à l'appel suivant, Update traitera les points compris
+entre l'ancien indice et le nouvel indice.
+
+}
+
+property Tintegrator.IntLength:real;
+property Tintegrator.MeanLength:real;
+
+
+{********************************************** Tdetector ****************************************}
+
+procedure Tdetector.create;
+{$H Constructeur de l'objet.
+}
+procedure Tdetector.InitCrossings(var src, dest: Tvector;Fup,Fdw:boolean;hUp,hDown,linhib,yinit:real;Fdisp1:boolean);
+{$H Initialise une détection de franchissement de seuil.
+
+ src est le vecteur source. En acquisition, ce sera souvent v1 ,v2 ...mais ce n'est pas obligatoire.
+ dest est le vecteur destination. InitCrossings vide ce vecteur: il fixe Istart=1 et Iend=0 mais ne change pas son type.
+
+ hUp est le seuil supérieur
+ hDown est le seuil inférieur
+
+ Ces deux seuils sont toujours utilisés. Après le franchissement du seuil haut (vers le haut), on attend le franchissement
+du seuil bas (vers le bas). Après le passage du seuil bas, on attend le passage du seuil haut, etc...
+ Si l'on veut ne veut n'avoir qu'un seul seuil à manipuler, il faut donner la même valeur aux deux seuils.
+
+ Si Fup vaut TRUE, on range les dates du passage du seuil haut dans le vecteur destination.
+ Si Fdw vaut TRUE, on range les dates du passage du seuil bas dans le vecteur destination.
+
+ linhib est la longueur d'inhibition.
+ yinit est la valeur initiale supposée du signal. On suppose qu'avant Istart, il existe des échantillons d'amplitude yinit.
+
+ Si Fdisplay vaut true, la méthode Update s'efforcera d'afficher les nouveaux points traités.
+
+}
+
+procedure Tdetector.InitTimer(var src: Tvector; DT:real);
+procedure Tdetector.InitTimer(var src: Tvector; DT, T0:real);
+
+{$H Initialise un timer.
+
+  On n'essaie pas de détecter une condition particulière sur le vecteur source. On souhaite
+simplement appeler périodiquement un gestionnaire d'événement.
+
+  Src est le vecteur source.
+  DT est la période du timer (en unités réelles du vecteur source: millisecondes ou secondes suivant le type d'acquisition)
+  T0 est le temps du premier appel du gestionnaire d'événement. Sa valeur par défaut est zéro.
+
+  Il faut installer un ou plusieurs gestionnaires d'événement avec AddEvent.
+
+  Si on a appelé AddEvent(MyEvent, Adelay), le gestionnaire d'événement MyEvent sera appelé:
+ - aux instants DT+Adelay, 2*DT+Adelay,... quand T0=0
+ - aux instants T0+Adelay, T0+DT+Adelay, T0+2*DT+Adelay... si T0>0
+
+
+
+
+}
+
+procedure Tdetector.ReInit(x:real);
+{$H Reinitialise l'objet.
+
+  x est l'abscisse du vecteur source à partir de laquelle commenceront les détections suivantes.
+  Le vecteur destination est vidé, comme pendant Initcrossings@ .
+
+}
+
+procedure Tdetector.Update(index: integer);
+{$H Traite les nouveaux échantillons.
+
+ Index est l'indice du dernier échantillon à traiter.
+
+ L'objet mémorise cette valeur et à l'appel suivant, Update traitera les points compris
+entre l'ancien indice et le nouvel indice.
+
+}
+property Tdetector.ThresholdUp:real;
+{$H Permet de modifier le seuil haut pendant le traitement
+}
+
+property Tdetector.ThresholdDw:real;
+{$H Permet de modifier le seuil haut pendant le traitement
+}
+
+property Tdetector.OnDetect:Tprocedure1;
+{$H Gestionnaire d'événement associé à chaque détection.
+
+ Remarque importante: les propriétés OnDetect@ et Delay@ ont été remplacées par AddEvent@ afin de pouvoir installer
+plusieurs gestionnaires d'événements avec des délais différents. Elles ont été conservées pour des raisons de compatibilité.
+
+ L'utilisateur peut écrire une procédure ayant un unique paramètre entier (voir les (modèles de procédure)@ProcModels )
+et affecter cette procédure à la propriété OnDetect.
+ La procédure sera ensuite appelée à chaque détection. Le paramètre transmis étant le numéro de la détection.
+
+Exemple:
+ @f6 Procedure MyProc(n:integer);
+ @f6 begin
+ @f6   if n=10 then ...
+ @f6   ...
+ @f6 end;
+ @f6
+ @f6 var Detector:Tdetector
+ @f6 ...
+ @f6 Detector.OnDetect:=MyProc;
+
+}
+
+property Tdetector.Delay:real;
+{$H Délai associée à l'événement OnDetect.
+
+ Par défaut, Delay vaut zéro. Ce qui signifie que le gestionnaire d'événement OnDetect est appelé
+dés qu'une détection a lieu. On peut retarder l'appel de OnDetect en donnant à Delay une valeur positive.
+ Delay est un temps exprimé en unités du vecteur source. En général, ce sont des secondes.
+
+}
+
+procedure Tdetector.AddEvent( OnDet: Tprocedure1; delay:real);
+{$H Ajoute un gestionnaire d'événement OnDetect avec un délay.
+
+  Dans les premières versions de Tdetector, un seul gestionnaire d'événement pouvait être installé en modifiant les propriétés OnDetect@ et Delay@ .
+
+  Avec AddEvent, on peut installer un nombre quelconque de gestionnaires d'événement.
+
+  Le gestionnaire d'événement est une procédure écrite par l'utilisateur ayant un unique paramètre entier (voir les (modèles de procédure)@ProcModels ).
+  Exemple: procedure Ondet(n :integer);
+
+  Pendant l'acquisition, cette procédure est appelée à chaque détection avec un paramètre égal au numéro de la détection. On peut alors récupérer
+le temps de détection dans le vecteur destination à l'indice n (Ce vecteur est fixé dans InitCrossings) .
+}
+
+procedure TvisualStim.InstallDetector(var det: Tdetector);
+{$H Installe un objet Tdetector pendant la stimulation visuelle.
+
+ Plusieurs objets peuvent être installés. Ils peuvent être désinstallés avec RemoveDetectors@
+
+ Le gestionnaire d'événement installé dans l'objet det doit effectuer une tâche la plus courte possible.
+Sinon, la stimulation visuelle sera perturbée.
+
+}
+
+procedure TvisualStim.RemoveDetectors;
+{$H Désinstalle tous les objets Tdetector installés avec InstallDetector@
+}
+
+
+procedure TSpkDetector.create;
+{$H Constructeur de l'objet.
+}
+procedure TSpkDetector.InitSpks(var df:TdataFile);
+{$H Initialise les paramètres nécessaires au traitement
+}
+
+procedure TSpkDetector.Update(tt:real);
+{$H Traite les nouveaux spikes jusqu'au temps tt.
+}
+
+property TSpkDetector.OnDetectSpk: Tprocedure2I1F;
+{$H Gestionnaire d'événement associé à chaque détection de spike.
+
+ Le gestionnaire doit être déclaré de la façon suivante:
+   procedure DetectSpk(Ch,Unit: integer; tt:real);     // Le nom est arbitraire
+
+ Le gestionnaire reçoit comme paramètres:
+ - le numéro du canal Ch
+ - le numéro d'unité
+ - le temps d'occurence du spike
+
+
+}
+
+property TSpkDetector.Delay:real;
+{$H Délai associée à l'événement OnDetectSpk.
+
+ Par défaut, Delay vaut zéro. Ce qui signifie que le gestionnaire d'événement OnDetectSpk est appelé
+dés qu'une détection a lieu. On peut retarder l'appel de OnDetectSpk en donnant à Delay une valeur positive.
+ Delay est un temps exprimé en unités des vecteurs sources. En général, ce sont des secondes.
+}
+
+{************************************ TonlineStat ***********************************}
+
+procedure TOnlineStat.create;
+{$H Constructeur de l'objet.
+}
+procedure TOnlineStat.Init(var src: Tvector; len1: real);
+{$H Initialise l'objet.
+
+  src est le vecteur sur lequel seront faites les mesures.
+  len1 est la durée sur laquelle seront faits les calculs.
+}
+procedure TOnlineStat.Update(index: integer);
+{$H Mise à jour des résultats.
+}
+
+function TOnlineStat.Mean:real;
+function TOnlineStat.StdDev:real;
+function TOnlineStat.Max:real;
+function TOnlineStat.Min:real;
+
+

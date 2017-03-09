@@ -1,0 +1,281 @@
+HPage {With implicite};
+{$P
+ Les méthodes des objets les plus utilisés peuvent être appelées sans indiquer
+le nom de l'objet. Nous disons que ces objets bénéficient d'un WITH IMPLICITE .
+ C'est le cas de multigraph0@, datafile0@, Acquis1@ et RealArray0@.
+
+ Par exemple, on peut écrire:
+ @f6 Page:=2;
+ au lieu de
+ @f6 Multigraph0.Page:=2;
+
+ Par contre, si l'on veut sélectionner une page d'un autre objet multigraph
+ (exemple: multigraph1), il faut forcément écrire:
+ @f6 Multigraph1.Page:=2;
+
+}
+Hpage {multigraph0};
+{$P
+Multigraph0 est un objet particulier de type Tmultigraph@ qui occupe la
+quasi-totalité de la fenêtre principale de Elphy.
+
+Cet objet existe toujours et ne peut être détruit par l'utilisateur.
+Il bénéficie d'un (with implicite)@ .
+}
+Hpage {datafile0};
+{$P
+DataFile0 est un objet particulier de type TdataFile@ qui ne possède pas de
+fenêtre de commandes propre, ces commandes étant incorporées à la fenêtre
+principale de Elphy.
+
+Cet objet existe toujours et ne peut être détruit par l'utilisateur.
+Il bénéficie d'un (with implicite)@ .
+}
+Hpage {RealArray0};
+{$P
+RealArray0 est un objet particulier de type TrealArray@ dont la fenêtre propre
+peut être ouverte au moyen de la commande SpreadSheet du menu principal de Elphy.
+
+Cet objet existe toujours et ne peut être détruit par l'utilisateur.
+Il bénéficie d'un (with implicite)@ .
+}
+Hpage {Acquis1};
+{$P
+Acquis est un objet de type Tacquis1@ qui regroupe un certain nombres d'objets
+qui existaient en standard dans le logiciel Acquis1.
+
+Cet objet existe toujours et ne peut être détruit par l'utilisateur.
+Il bénéficie d'un (with implicite)@ .
+}
+
+Hpage {Informations fichier};
+{$P
+ Les fichiers Acquis1 ou Elphy peuvent posséder un bloc d'information en tête de
+fichier dans lequel l'utilisateur peut ranger librement toutes sortes d'informations.
+La taille de ce bloc est fixée par l'utilisateur au moment de l'acquisition ( dans
+le dialogue Acquisition/Parameters) ou au moment de la création du fichier (voir
+Tdac2file@).
+
+ Les objets TdataFile@, Tdac2File@ et TAcquisition@ possèdent plusieurs méthodes
+communes permettant la gestion de ce bloc.
+}
+
+Hpage {Informations d'épisode};
+{$P
+
+}
+Hpage {Fichiers SM2};
+{$P
+ Les fichiers d'extension SM2 étaient créés par Stim2 ou Stim3.
+ Leur structure est la même que celle des (fichiers d'événements)@ mais dans
+chaque épisode, le bloc d'information contient une description complète de la
+stimulation visuelle utilisée.
+}
+
+Hpage {Fichiers d'événements};
+{$P
+ Les fichiers d'événements (extension EVT) ont d'abord été introduits dans Acquis1
+afin de stocker des dates d'événements au lieu de d'informations analogiques.
+
+ Le principe est le suivant: le système d'acquisition lit des entrées logiques
+ (16 au maximum) à intervalle régulier. Cet intervalle peut être appelé période
+ d'échantillonnage par analogie avec l'acquisition analogique. Au lieu de stocker
+ tous les échantillons, on se contente de stocker les dates pour lesquelles une
+ entrée a subi une transition montante, ce qui entraîne un gain de place considérable.
+
+ La structure du fichier est la suivante:
+
+ File=Header + Episode1 + Episode2 + ...
+
+ Header est un enregistrement de taille fixe déclaré comme suit:
+
+ @f6 Header=record
+ @f6          id:string[20];   (* Pascal string='ACQUIS1/SPK/GS/1996'   21 octets *)
+ @f6          InfoSize:word;   (* Actuellement = 128                    2 octets  *)
+ @f6          DeltaX:single;   (* Intervalle d'échantillonnage          4 octets  *)
+ @f6          EpDuration:single; (* Durée d'une séquence d'acquisition  4 octets  *)
+ @f6          uX:string[3];    (* Pascal string='ms' ou 'sec'           4 octets  *)
+ @f6        end;
+
+ Header occupe une taille égale à infosize (soit 128 octets) dans le fichier. Les
+octets au delà de la structure ci-dessus sont remplis avec des zéros.
+
+ Chaque épisode est une succession d'événements ayant la structure suivante:
+
+ @f6   Evt=record
+ @f6         code:word;         (* code sur 16 bits *)
+ @f6         date:longint;      (* date sous forme d'entier 4 octets *)
+ @f6       end;
+
+
+  Le code est un mot de 16 bits qui décrit les transitions ayant eu lieu à cet
+ instant. Chaque bit correspond à une voie logique du système d'acquisition. On
+ voit que si des transitions ont eu lieu simultanément sur plusieurs voies, un
+ seul événement est nécessaire pour le codage.
+
+  La date est la date des transitions exprimée en intervalles d'échantillonnage,
+ c'est à dire DeltaX. La date zéro correspond au début de l' épisode.
+
+ Un épisode commence toujours par un faux événement Evt0: c'est à dire une événement
+dont le code est zéro. Cet événement sert à la fois à repérer le début des
+épisodes et aussi à stocker des informations spécifiques à chaque épisode.
+ Si ces informations n'existent pas, la date de cet événement particulier vaut zéro et
+rien d'autre ne distingue ce faux événement des autres événements.
+ Si ces informations existent, le champ date contient la taille d'un bloc d'information
+qui suit immédiatement l'événement.
+
+ On peut donc écrire:
+
+ Episode = Evt0 + EpInfo + Evt1 + Evt2 + ...
+
+ Les événements qui suivent ( Evt1, Evt2, etc... )  contiennent en principe des dates
+croissantes.
+
+ Le bloc d'informations a été introduit pour stocker des informations de stimulation
+visuelle dans les (fichiers SM2)@ .
+
+}
+
+Hpage {Types entiers};
+{$P
+ Voici les types entiers utilisés par ELPHY avec leur taille en mémoire et
+leur étendue.
+
+ @f6 Byte        1 octet     0 à 255
+ @f6 ShortInt    1 octet    -128 à +127
+ @f6 Smallint    2 octets   -32768 à +32767
+ @f6 Word        2 octets    0 à +65535
+ @f6 Longint     4 octets    –2147483648 à +2147483647
+ @f6 LongWord    4 octets    0 à 4294967295
+
+ En plus des types simples ci-dessus, on définit le type INTEGER qui est
+équivalent à LONGINT.
+}
+
+Hpage {Types réels};
+{$P
+ Voici les types réels utilisés par Elphy avec leur taille en mémoire, leur
+étendue et leur nombre de chiffres significatifs.
+
+ @f6 Single      4 octets  1.5 x 10^–45   à  3.4 x 10^38     7–8  chiffres
+ @f6 Real48      6 octets  2.9 x 10^–39   à  1.7 x 10^38    11–12 chiffres
+ @f6 Double      8 octets  5.0 x 10^–324  à  1.7 x 10^308   15–16 chiffres
+ @f6 Extended    10 octets 3.6 x 10^–4951 à  1.1 x 10^4932  19–20 chiffres
+
+ Le type générique REAL est équivalent, dans son implémentation actuelle,
+au type EXTENDED.
+}
+
+Hpage {Fichier binaire:exemple};
+
+{$P
+
+ Le code qui suit montre comment sauver un objet TmatrixArray dans un fichier binaire
+sous une forme très compacte.
+
+  @f6 var
+  @f6   fbin:TbinaryFile;
+  @f6   psdMat:TmatrixArray;
+
+  @f6 procedure SavePsdMats(stF:string);
+  @f6 var
+  @f6   i,j:integer;
+  @f6   i1M,i2M,j1M,j2M:integer;
+  @f6   i1,i2,j1,j2:integer;
+  @f6   X0M,DXM:real;
+  @f6   Y0M,DYM:real;
+
+  @f6 begin
+  @f6   i1:=psdMat.Imin;
+  @f6   i2:=psdMat.Imax;
+  @f6   j1:=psdMat.Jmin;
+  @f6   j2:=psdMat.Jmax;
+
+  @f6   i1M:=psdMat.Istart;
+  @f6   i2M:=psdMat.Iend;
+  @f6   j1M:=psdMat.Jstart;
+  @f6   j2M:=psdMat.Jend;
+
+  @f6   dxM:=psdMat.dx;
+  @f6   x0M:=psdMat.x0;
+  @f6   dyM:=psdMat.dy;
+  @f6   y0M:=psdMat.y0;
+
+  @f6   with fBin do
+  @f6   begin
+  @f6     rewrite(stF);
+
+  @f6     write(i1);      (* save grid params *)
+  @f6     write(i2);
+  @f6     write(j1);
+  @f6     write(j2);
+
+  @f6     write(i1M);     (* save matrix params *)
+  @f6     write(i2M);
+  @f6     write(j1M);
+  @f6     write(j2M);
+
+  @f6     write(X0M);     (* with scaling params *)
+  @f6     write(DXM);
+  @f6     write(Y0M);
+  @f6     write(DYM);
+
+  @f6     for i:=i1 to i2 do          (* save data *)
+  @f6     for j:=j1 to j2 do
+  @f6       psdMat.m[i,j].saveSingleData(fBin);
+
+  @f6     close;
+  @f6   end;
+  @f6 end;
+
+  @f6 procedure LoadPsdMats(stF:string);
+  @f6 var
+  @f6   i,j:integer;
+
+  @f6   i1M,i2M,j1M,j2M:integer;
+  @f6   i1,i2,j1,j2:integer;
+  @f6   X0M,DXM:real;
+  @f6   Y0M,DYM:real;
+
+  @f6 begin
+  @f6   if not assigned(psdMat[1]) then Defaults;
+
+  @f6   with fBin do
+  @f6   begin
+  @f6     reset(stF);
+
+  @f6     read(i1);               (* Load Params *)
+  @f6     read(i2);
+  @f6     read(j1);
+  @f6     read(j2);
+
+  @f6     read(i1M);
+  @f6     read(i2M);
+  @f6     read(j1M);
+  @f6     read(j2M);
+
+  @f6     read(X0M);
+  @f6     read(DXM);
+  @f6     read(Y0M);
+  @f6     read(DYM);
+  @f6   end;
+
+  @f6   psdmat.create('',i1,i2,j1,j2);         (* initialize objects *)
+
+  @f6   psdMat.initObjects(t_single,i1M,i2M,j1M,j2M);
+  @f6   psdMat.dx:=dxM;
+  @f6   psdMat.x0:=x0M;
+  @f6   psdMat.dy:=dyM;
+  @f6   psdMat.y0:=y0M;
+
+
+  @f6   for i:=i1 to i2 do                     (* load data *)
+  @f6   for j:=j1 to j2 do
+  @f6     psdMat.m[i,j].LoadSingleData(fBin);
+
+  @f6   fBin.close;
+
+  @f6 end;
+
+
+ }

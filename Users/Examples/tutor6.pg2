@@ -1,0 +1,61 @@
+                                { Tdialog demo }
+
+var
+  dialog:Tdialog;
+  x,y:single;
+  
+procedure ParamsEvent(n:integer);
+begin
+  if (n=103) {or (n=101) or (n=102)} then
+    begin
+      dialog.updateVar;
+      dialog.modifyTextA(110,'    x+y='+Rstr(x+y,10,3));
+    end;
+end;
+
+
+procedure Params;
+var
+  i:integer;
+begin
+  x:=123;
+  y:=234;
+  
+  with dialog do
+  begin
+    create;
+    caption:='DEMO';
+    getRealA('var x',x,10,3,101);    
+    addScrollBar(-100,100,1,10);
+
+    getRealA('var y',y,10,3,102);
+    addScrollBar(-100,100,1,10);
+
+    setTextA('                   ',110);
+    getCommandA('Execute',20,103);
+   
+  
+    onEvent:=ParamsEvent;
+
+    setButtons(0);
+
+    //addDialog(2,4,dialog);   // install the dialog in a multigraph window
+   //showModal;               // show the dialog as modal. User must close to continue
+   show;                      // show as not modal. The dialog can stay open
+  end;
+  
+  //if dialog.showModal=mr_ok then messageBox('    x+y='+Rstr(x+y,10,3));
+end;
+
+
+program test
+params;
+
+
+program test2
+x:=12;
+y:=56;
+messageBox('Hello');
+
+
+

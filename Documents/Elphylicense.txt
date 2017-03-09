@@ -1,0 +1,17 @@
+Elphy Setup License
+==================
+Copyright (C) 1995-2011 Gérard Sadoc UNIC-CNRS. All rights reserved.
+
+The software is not in the public domain. However, it is available
+without fee for education, research, and non-profit purposes.
+
+This software is provided "as-is," without any express or implied warranty.
+In no event shall the author be held liable for any damages arising from the
+use of this software.
+
+Gérard Sadoc
+Unité de Neurosciences Intégration et Complexité
+Centre National de la Recherche Scientifique
+
+http://www.unic.cnrs-gif.fr/
+gerard.sadoc@unic.cnrs-gif.fr

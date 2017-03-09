@@ -1,0 +1,130 @@
+var
+  FF:TcurveFitting;
+  GG:Tgraph;
+  vv1,vv2:Tvector;
+  
+Const
+  stPage='Test';
+
+procedure Disp; 
+begin 
+  if PageIndex(stPage)=0 then AddPage(stPage);
+  with mgPage[stPage] do
+  begin
+    DestroyAllWindows;
+    NewWindow(1,1);
+    if assigned(gg) then AddObject(1,gg);
+    if assigned(FF) then AddObject(1,FF);
+  end;
+ 
+  selectPage(stPage);
+end;
+
+procedure data1;
+var
+  i:integer;
+begin
+  vv1.initList(t_single);
+  vv2.initList(t_single);
+  
+  for i:=1 to 10 do
+    begin
+     vv1.addToList(i*10);
+     vv2.addToList(2*sqr(i)+i*20+randomI(3));
+    end;   
+  
+  with gg do
+  begin
+    create(vv1,vv2,0,0);
+    autolimit:=true;
+    mode:=dm_square;
+    cpx:=20;
+    cpy:=20;
+    autoscaleX;
+    autoscaleY;      
+    invalidate;
+  end;
+  
+end;
+
+program data1
+data1;
+disp;
+
+procedure data2;
+var
+  i:integer;
+begin
+  vv1.initList(t_single);
+  vv2.initList(t_single);
+ 
+  for i:=1 to 1000 do
+    begin
+      vv1.addToList(i);
+      vv2.addToList(100*exp(-0.5*sqr( (i-100)/10))+
+                    40*exp(-0.5*sqr( (i-160)/30))
+                    +random*20);
+    end;
+    
+  with gg do
+  begin
+    create(vv1,vv2,0,0);
+    autolimit:=true;
+    mode:=dm_square;       
+    cpx:=20;
+    cpy:=20;
+    autoscaleX;
+    autoscaleY;
+      
+    invalidate;
+  end;
+  
+  
+end;
+
+
+
+program data2
+data2;
+disp;
+
+procedure Fit(model:integer);
+begin
+  FF.create('FF');
+  FF.setXdata(vv1);
+  FF.setYdata(vv2);
+  FF.XstartFit:=vv1[vv1.Istart];
+  FF.XendFit:=vv1[vv1.Iend];
+
+  FF.setGraphParam(0,200,0,1000);
+
+  FF.StandardModel:=model;
+  {FF.text:='RES=a*x^2+b*x+c';}
+  FF.cpx:=20;
+  FF.cpy:=20;
+  with g1 do FF.setWorld(Xmin,Ymin,Xmax,Ymax);
+
+  FF.maxdata:=200;
+  FF.initialize:=true;
+
+  if FF.execute then
+    begin
+      messageCentral('FitReg='+Rstr(FF.fitreg,10,3)+Rstr(FF.fitreg2,12,3));
+      messageCentral(Rstr(FF.param['a1'],10,3)+chr(13)+
+                     Rstr(FF.param['a2'],10,3)+chr(13)+
+                    Rstr(FF.param['a3'],10,3)+chr(13) );
+    end
+  else messageCentral('Erreur de calcul');
+  
+  
+end;
+
+program 'Fit polynôme'
+fit(10);
+disp;
+
+program 'Fit gaussienne'
+fit(19);
+disp;
+
+

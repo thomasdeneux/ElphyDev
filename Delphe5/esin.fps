@@ -1,0 +1,5 @@
+
+function Sinh(x: real):real;
+function Cosh(x: real):real;
+function Tanh(x: real):real;
+procedure InvMat(var W,Winv: Tmat);

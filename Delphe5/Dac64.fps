@@ -1,0 +1,62 @@
+{   Elphy1.fps  Remplacé par les suivants}
+{$I ElphyOverview.fps}
+{$I ElphyDAQ.fps}
+{$I ElphyAnalyzis.fps}
+{$I VisualStim.fps}
+{$I ElphyCommands.fps}
+
+
+{$I const1.fps}
+
+{$I common.fps}
+
+{$I common1.fps}
+
+{$I ISPL1.fps}
+
+{$I dac2MainII.fps}
+
+{$I gene1.fps}
+
+{$I Visual1.fps}
+
+{$I Visual2.fps}
+
+{$I Rodolphe.fps}
+
+{$I AuxStim.fps}
+
+{$I Matlab.fps}
+
+{$I IPPI.fps}
+
+{$I pg_elphy.fps}
+
+{$I oi.fps }
+
+{$I CB.fps }
+
+{$I DBrecord.fps }
+{ DataBase.fps}
+
+{ tcpip.fps}
+
+{$I AcqTools.fps }
+
+{ Python.fps}
+
+{$I Neuron.fps }
+
+{$I ESIN.fps }
+
+
+
+
+
+
+
+
+
+
+
+

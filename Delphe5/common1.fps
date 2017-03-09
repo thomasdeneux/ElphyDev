@@ -1,0 +1,544 @@
+object
+  Ttable3(Tobject)
+{$H Tableau dynamique d'entiers à trois dimensions}
+
+  TpolyLine3D
+{$H L'objet Tpolyline3D permet de gérer une liste ordonnée de triplets (x,y,z).
+
+ Il n'est pas possible de créer un objet Tpolyline3D mais l'objet TXYZPlot@
+possède une propriété PolyLines@(TXYZplot.PolyLines) de type Tpolyline3D.
+
+ Les triplets (x,y,z) sont les coordonnées de points que l'on souhaite afficher dans une fenêtre.
+
+ Pour vider la liste, on appelle Clear@. Pour ajouter un point à la fin de la liste,
+on appelle addPoint@.  La propriété count@ indique le nombre de points contenus dans la liste.
+
+ Les propriétés X@ , Y@ et Z@ permettent d'accéder directement aux coordonnées des points (les
+points sont numérotés de 1 à count) .
+
+ Avec LoadFromVectors@ , on peut charger directement un objet polyline3D à partir de trois vecteurs
+ Avec LoadPolyLine@ , on peut copier une polyline dans une autre.
+
+ Mode@ est le mode d'affichage. Les valeurs possibles actuellement sont
+   0: Points
+   1: Lines
+   2: Solid Spheres
+ Color@ est la couleur d'affichage
+ SymbolSize@ est la taille des symboles
+}
+
+  TXYZplot(TPlot)
+{$H L'objet TXYZplot permet d'afficher des données en 3 dimensions.
+
+Les données sont contenues dans des objets de type Tpolyline3D@ , on accède à ces objets via la propriété Polylines@.
+Ce sont des ensembles de points définis par leurs coordonnées cartésiennes (x,y,z)
+
+ L'affichage est basé sur l'utilisation de OpenGL. On considère que les données sont placées dans un repère
+orthonormé Oxyz et qu'un observateur regarde ces données à partir d'un point P . Les coordonnées
+de ce point peuvent être ajustées avec les propriétés
+  D0@ :   distance entre P et le centre des données M
+  PhiD:   l'angle entre l'axe Oz et la direction PM
+  ThetaD: l'angle entre la projection de PM sur xOy et l'axe Ox
+
+ Ce que nous avons appelé le centre des données est un point qui peut être choisi arbitrairement.
+
+ En général, on supposera que les tous points (x,y,z) sont situés à l'intérieur d'un parallélépipède rectangle
+défini par les propriétés Xmin@, Xmax@, Ymin@, Ymax@, Zmin@, Zmax@
+ Ces propriétés peuvent être ajustées précisément avec les méthodes AutoscaleX@, AutoscaleY@, AutoscaleZ@
+ Le centre des données est le point de coordonnées:
+   xM = (Xmin+Xmax)/2
+   yM = (Ymin+Ymax)/2
+   zM = (Zmin+Zmax)/2
+
+ La propriété D0 peut être ajustée automatiquement avec initD0@
+
+ Pour introduire des données, on crée d'abord un nouvel objet Tpolyline3D@  avec AddPolyLine@.
+ On remplit ensuite cet objet en utilisant Addpoint@(Tpolyline3D.AddPoint) (méthode de Tpolyline3D) .
+ Le nombre d'objets Tpolyline3D est donné par la propriété count@.
+
+ La méthode Clear supprime toutes les polylines.
+}
+
+ TwaveListA(TwaveList)
+{$H Liste de waveforms définie par l'utilisateur
+
+ Alors que Twaveform gère une liste de waveforms contenues dans un fichier de données au format Elphy,
+TwaveformA permet à l'utilisateur de créer une liste en mémoire.
+
+ TwaveformA se comporte comme un vecteur muni d'un index@ . Quand on change l'index, le contenu du vecteur change.
+
+ Dans le constructeur create@ , on indique le nombre d'unités.
+
+ Avec AddVector@ , on ajoute un vecteur dans la liste. Tous les vecteurs ajoutés doivent avoir exactement la même
+structure. C'est le premier vecteur introduit qui détermine la structure de la liste
+
+ Avec AddWavelist@ , on copie toutes les waveforms d'une wavelist.
+
+}
+
+ TElphyEpisode(Tobject)
+ {$H Objet permettant l'écriture de données dans un fichier au format Elphy
+
+ Le format de données Elphy est décrit dans la page ElphyFormat@
+
+ Les fichiers de données Elphy sont de même nature que les fichiers d'objets (voir TobjectFile@).
+ Ils sont formés d'un entête de 18 octets qui identifie le type de fichier et d'une succession
+de blocs qui correspondent chacun, en général, à un objet géré par Elphy.
+
+ On peut visualiser les objets contenus dans un fichier d'objets en ouvrant le fichier avec la commande Objects/Open File
+ On peut visualiser les blocs qui constituent le fichier de données principal avec la commande File/Informations/Blocks
+
+ Chaque bloc a un nom qui identifie le type d'objet (voir ClassNames@ )
+
+ Un fichier de données Elphy a pour particularité qu'il contient des blocs de nom 'B_Ep' et des Blocs de nom 'RDATA'
+ Un bloc B_ep contient tous les paramètres qui définissent un épisode
+ Un bloc RDATA contient les données proprement dites.
+ A un bloc B_Ep correspondent un ou plusieurs blocs
+
+
+ En général, quand on crée un fichier avec TobjectFile, on peut y ranger des vecteurs (Tvector@) , des matrices(Tmatrix@)
+ou d'autres objets. Plus tard, on peut recharger ces objets avec les méthodes de TobjectFile mais on ne peut pas le faire
+en utilisant les méthodes de  Tdatafile.
+
+ Voici un exemple d'utilisation de TElphyEpisode:
+
+ @prog
+   var
+    f:TobjectFile;
+    ElphyEp: TElphyEpisode;
+
+    i:integer;
+
+   program 'Test'
+    with ElphyEp do
+    begin
+      create;
+
+      channelCount:=dataFile0.channelCount;
+      for i:=1 to ChannelCount do
+        setChannel(i,v[i]);
+
+      TagChannelCount:=2;
+      for i:=1 to TagChannelCount do
+        setTagChannel(i,vtag[i]);
+    end;
+
+    f.createFile('d:\dac2\test.dat');
+    for i:=1 to EpCount do
+    begin
+      EpNum:=i;
+      f.save(ElphyEp);
+    end;
+    f.close;
+ @notprog
+
+ channelCount@, setChannel@, TagChannelCount@ , TagChannelCount@,  setTagChannel@ permettent de définir les données
+contenus dans un épisode.
+ Ensuite, la méthode save@(TobjectFile.save) de TobjectFile@ permet de sauver ces données dans un fichier.
+
+
+ }
+
+ TspkBlock(Tobject)
+ {$H Objet permettant l'écriture des blocks SPK et WSPK dans un fichier au format Elphy
+
+ Le format de données Elphy est décrit dans la page ElphyFormat@
+ Voir TelphyEpisode@
+
+ }
+ TmotionCloud(Tobject)
+{$H Permet de générer des animations dy type Motion Cloud
+
+ Après une initialisation convenable, l'objet renvoie dans une matrice les images successives de l'animation.
+ Ces matrices peuvent ensuite être sauvées dans un fichier de textures (TtextureFile@)
+
+ @b Utilisation: @notb
+
+  Une fois l'objet créé, il faut effectuer les opérations dans l'ordre suivant:
+     - appeler Init@ qui fixe les paramètres généraux (taille des matrices, seed et ss
+     - installer un filtre avec InstallGaborFilter@ , InstallMaternFilter@ ou InstallFilter@
+     - appeler GetFrame@ pour chaque image générée
+
+  Au premier appel de getFrame, toutes les initialisations nécessaires sont effectuées
+
+  Si on veut faire évoluer un ou plusieurs paramètres de filtre, on peut appeler de nouveau InstallFilter entre deux getFrame.
+Ceci n'entraînera pas de nouvelle initialisation.
+
+  GetFilter@ permet de récupérer dans une matrice le filtre calculé.
+}
+
+
+end;
+
+type
+  TplotXYZonMouseUp=procedure(var plot:TXYZplot);
+
+
+function Int64str(i:int64):string;
+function Int64str(i:int64;n:integer):string;
+{$C CONV convertit un entier en chaine de caractères }
+{$H Convertit la valeur entière i en une chaîne de caractères.
+
+ Quand n est supérieur au nombre de digits, le  nombre est précédé par autant d'espaces qu'il est nécessaire
+pour obtenir n caractères.
+ n vaut zéro par défaut. Dans ce cas, aucun espace ne précède les caractères formant le nombre.
+}
+
+                             { Ttable3  stmIntTable }
+procedure Ttable3.create;
+
+property TTable3.Value(i,j,k:integer):integer default;
+
+function TTable3.length:integer;
+function TTable3.length(i:integer):integer;
+function TTable3.length(i,j:integer):integer;
+
+procedure Ttable3.clear;
+
+
+
+
+                             { TpolyLine3D stmXYZplot1 }
+
+procedure TpolyLine3D.addPoint(x,y,z:real);
+procedure TpolyLine3D.addPoint(x,y,z:real; color: integer);
+
+{$H Ajoute un point de coordonnées x et y à la fin de la liste de points.
+ La propriété count est incrémentée à chaque appel de cette méthode.
+}
+
+
+property TpolyLine3D.count:longint readOnly;
+{$H Renvoie le nombre de points contenus dans la liste.
+}
+property TpolyLine3D.X(i:longint):real;
+{$H La propriété X contient les valeurs de la coordonnée X des points de la liste.
+
+ Le premier point a pour indice 1, le dernier a pour indice Count@.
+ Voir Y@ , Z@
+}
+property TpolyLine3D.Y(i:longint):real;
+{$H La propriété Y contient les valeurs de la coordonnée X des points de la liste.
+
+ Le premier point a pour indice 1, le dernier a pour indice Count@.
+ Voir X@ , Z@
+}
+property TpolyLine3D.Z(i:longint):real;
+{$H La propriété Z contient les valeurs de la coordonnée Z des points de la liste.
+
+ Le premier point a pour indice 1, le dernier a pour indice Count@.
+ Voir X@ , Y@
+}
+
+property TpolyLine3D.PointColor(i:longint):integer;
+{$H La propriété PointColor contient les couleurs  des points de la liste.
+
+ Le premier point a pour indice 1, le dernier a pour indice Count@.
+ Voir X@ , Y@, Z@
+}
+
+
+procedure TpolyLine3D.clear;
+{$H Supprime tous les points de la liste.
+ La propriété count@ vaudra ensuite zéro.
+}
+property TpolyLine3D.color:longint;
+{$H Couleur de tracé de l'objet polyLine.
+}
+
+property TpolyLine3D.UsePointColor: boolean;
+{$H Indique qu'il faut utiliser les couleurs des points plutôt que la propriété Color@ 
+}
+
+property TpolyLine3D.mode:integer;
+{$H Définit le mode d'affichage.
+
+}
+
+property TpolyLine3D.SymbolSize:real;
+{$H Définit la taille des symboles en unités réelles.
+}
+property TpolyLine3D.SymbolSize2:real;
+{$H Définit le deuxième paramètre de taille des symboles en unités réelles.
+ N'est pas utilisé en général.
+}
+property TpolyLine3D.Theta:real;
+{$H Associé à Phi@ , définit l'orientation du symbole.
+
+ Theta et Phi correspondent aux notations habituelles en coordonnées cylindriques.
+ Ne sont pas utilisés en général.
+}
+
+property TpolyLine3D.Phi:real;
+{$H Associé à Theta@ , définit l'orientation du symbole.
+
+ Theta et Phi correspondent aux notations habituelles en coordonnées cylindriques.
+ Ne sont pas utilisés en général.
+}
+
+property TpolyLine3D.DottedLine: boolean;
+{$H Quand mode=1, indique que le tracé doit être en pointillés.
+}
+
+procedure TpolyLine3D.LoadFromVectors(var v1,v2,v3:Tvector;i1,i2:integer);
+procedure TpolyLine3D.LoadFromVectors(var v1,v2,v3,v4:Tvector;i1,i2:integer);
+
+{$H Permet de charger une polyline avec des triplets ou quadruplets de valeurs tirées des
+vecteurs v1, v2, v3 et v4.
+
+  v1 contient les X
+  v2 contient les Y
+  v3 contient les Z
+  v4 contient optionnellement les couleurs
+
+ Les points sont pris entre les indices i1 et i2 et sont ajoutés à la fin de la liste
+de points. Il faut donc penser à appeler clear@ auparavant si nécessaire.
+
+ Rien n'est copié si un des indices i1 ou i2 est en dehors des limites de v1 ou de v2.
+}
+
+procedure TpolyLine3D.LoadPolyline(source:TpolyLine3D);
+{$H Copie le contenu d'un objet TpolyLine3D.
+
+ Les points de source sont ajoutés à la fin de la liste de points. Il faut donc
+penser à appeler clear@ auparavant si nécessaire.
+}
+
+
+                             { TXYZplot stmXYplot1 }
+
+procedure TXYZplot.create(stName:string);
+procedure TXYZplot.create;
+{$H Constructeur de l'objet TXYZplot.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+property TXYZplot.PolyLines(i:longint):TpolyLine3D readOnly default;
+{$H Chaque objet du tableau PolyLines est du type TpolyLine3D@ et représente une courbe.
+
+ Polylines[1] est donc la première courbe, Polylines[2] est la seconde, etc..
+ PolyLines[count] est la dernière courbe (voir last@ ).
+
+ Initialement, l'objet TXYZplot ne contient aucun polyline. Il faut appeler
+addPolyline@ avant d'utiliser la propriété PolyLines.
+
+ Polylines est la propriété par défaut de TXYZplot. Ce qui signifie que l'écriture
+ @f6 plot.polylines[1]
+ peut être remplacée par
+ @f6 plot[1]
+}
+
+property TXYZplot.last:TpolyLine3D readOnly;
+{$H Désigne le dernier objet polylines de la liste
+
+ Last est identique à Polylines[count]
+}
+
+
+procedure TXYZplot.addPolyLine;
+{$H Crée un nouvel objet de type TpolyLine3D et le range à la fin de la liste
+polyLines@ .
+ La propriété count est incrémentée.
+
+}
+property TXYZplot.count:integer readOnly;
+{$H Renvoie le nombre de courbes contenue dans la liste.
+}
+procedure TXYZplot.clear;
+{$H Supprime toutes les courbes de la liste.
+}
+
+property TXYZplot.NextColor:integer;
+{$H Définit la couleur qui sera utilisée par les nouveaux objets polylines.
+
+ Quand on modifie NextColor, on ne change pas la couleur des polylines existants. Seuls
+ceux qui seront créés par la suite utiliseront cette couleur.
+
+}
+
+
+procedure TXYZplot.autoscaleX;
+procedure TXYZplot.autoscaleY;
+procedure TXYZplot.autoscaleZ;
+
+property TXYZplot.Xmin:real;
+property TXYZplot.Xmax:real;
+property TXYZplot.Ymin:real;
+property TXYZplot.Ymax:real;
+property TXYZplot.Zmin:real;
+property TXYZplot.Zmax:real;
+
+property TXYZplot.D0:real;
+property TXYZplot.ThetaD:real;
+property TXYZplot.PhiD:real;
+property TXYZplot.FOV:real;
+
+property TXYZplot.ScaleColor:integer;
+property TXYZplot.ShowGrid:boolean;
+property TXYZplot.ShowScale:boolean;
+property TXYZplot.Scaling3D:boolean;
+property TXYZplot.refAxis: integer;
+property TXYZplot.Ortho:boolean;
+
+
+procedure TXYZplot.InitD0;
+
+procedure TXYZplot.GetProjection(x,y,z:real;var x1,y1,z1:real);
+procedure TXYZplot.ProjectToMatrix(var mat:Tmatrix);
+procedure TXYZplot.ProjectToXYplot(var xp:TXYplot);
+
+procedure TXYZplot.ProjectToMatrix1(NumPol:integer;var mat:Tmatrix;var table:Ttable3);
+
+property TXYZplot.OnMouseUp: TplotXYZonMouseUp;
+
+
+
+{TwaveListA}
+
+procedure TwaveListA.create(NbUnit:integer);
+procedure TwaveListA.create(NbUnit,tpNum,i1,i2:integer);
+
+{$H Constructeur de TWaveListA
+
+ NbUnit est le nombre maximal d'unités
+
+ tpNum est le type numérique des vecteurs
+ i1 et i2 sont les indices de début et de fin des vecteurs
+ Les paramètres tpNum, i1 et i2 ne sont plus utiles dans cette version car
+ils seront fixés dans le premier appel à AddVector@
+
+
+}
+
+procedure TwaveListA.AddVector(var vec:Tvector;numU:integer);
+{$H Ajoute un vecteur à la liste
+
+ NumU est le numéro d'unité.
+
+ Les paramètres du premier vecteur ajouté (type numérique, indices de début et fin) fixent les paramètres des waveforms.
+ Les vecteurs ajoutés par la suite doivent avoir les mêmes paramètres.
+}
+
+procedure TwaveListA.UpdateVectors;
+{$H Met à jour les listes correspondant aux unités.
+
+ Par soucis d'efficacité, ces listes ne sont pas mises à jour après chaque appel à AddVector@
+ Il faut appeler UpdateVectors une fois que l'on a rempli la liste.
+}
+
+procedure TwaveListA.AddWaveList(var Wlist:TwaveList);
+{$H Copie toutes les waveforms d'une autre liste.
+}
+
+{ TregionList Suite }
+
+property TregionList.EditMode:boolean;
+{$H Autorise l'édition des régions dans une fenêtre multigraph.
+
+ False par défaut
+}
+property TregionList.SelectedTool:integer;
+{$H Outil de dessin des régions
+
+ Il y cinq outils donc cinq valeurs possibles:
+   1: dessine un rectangle
+   2: dessine une ellipse
+   3: dessine un polygone fermé
+   4: outil de sélection
+   5: dessine une ligne fermée continue
+
+ Toute autre valeur de SelectedTool désélectionne tous les outils.
+
+}
+
+property Tregion.Selected:boolean;
+{$H Indique si la région est sélectionnée.
+
+}
+
+
+{TElphyEpisode}
+
+
+procedure TElphyEpisode.create;
+
+property TElphyEpisode.ChannelCount: integer;
+property TElphyEpisode.TagChannelCount:integer;
+
+procedure TElphyEpisode.setChannel(num:integer;var v:Tvector);
+procedure TElphyEpisode.setChannel(num:integer;var v:Tvector; x1,x2:real);
+
+procedure TElphyEpisode.setTagChannel(num:integer;var v:Tvector);
+procedure TElphyEpisode.setTagChannel(num:integer;var v:Tvector; x1,x2,th:real);
+
+property TElphyEpisode.nbSpk: integer;
+
+{TspkBlock}
+procedure TspkBlock.create;
+property TspkBlock.ChannelCount: integer;
+procedure TspkBlock.setChannel(num:integer;var Vspk:Tvector);
+procedure TspkBlock.setChannel(num:integer;var Vspk:Tvector; var Wspk: Twavelist);
+
+
+procedure BuildKernel1(var stim:TvectorArray;var Vm: Tvector;Ntau:integer; var VA,VAnorm:TvectorArray; First:boolean);
+{$H Permet de construire les kernels du premier ordre.
+
+ Stim contient les vecteurs d'entrées alors que Vm contient le vecteur de sortie.
+ Tous les vecteurs doivent être de type double et doivent avoir les mêmes paramètres Istart et Iend.
+ Les vecteurs d'entrée et de sortie doivent avoir le même paramètre Dx@ . On considère donc
+que les entrées et la sortie sont échantillonnées de façon identique.
+
+ Ntau est le nombre de décalages temporels.
+
+ En sortie, VA contiendra les kernels non normalisés. Si le fichier analysé contient plusieurs épisodes, on peut
+accumuler les résultats en appelant BuildKernel1 pour chaque épisode
+
+ Une fois que tous les épisodes ont été accumulés, il faut diviser VA par VAnorm point par point.
+
+ Si First est vrai, les objets VA et VAnorm seront initialisés et remplis avec des zéros.
+
+
+}
+
+procedure BuildKernel2(var stim:TvectorArray;var Vm: Tvector;Ntau:integer; var mat,Mnorm:Tmatrix; First:boolean);
+{$H Permet de construire les kernels de second ordre.
+
+ Stim contient les vecteurs d'entrées alors que Vm contient le vecteur de sortie.
+ Tous les vecteurs doivent être de type double et doivent avoir les mêmes paramètres Istart et Iend.
+ Les vecteurs d'entrée et de sortie doivent avoir le même paramètre Dx@ . On considère donc
+que les entrées et la sortie sont échantillonnées de façon identique.
+
+ Ntau est le nombre de décalages temporels.
+
+ Mat sera une matrice carrée de type Double.
+ Sa dimension sera N = Ni*Nj*Ntau;
+
+ avec  Ni = imax-imin+1
+       Nj = jmax-jmin+1
+ imin, jmin, imax et jmax étant les limites de la grille de stim.
+ Un triplet (i,j,tau) correspond à l'index k:=tau+Ntau*j+Ntau*Nj*i;
+
+  Si First est vrai, les objets mat et Mnorm seront initialisés et remplis avec des zéros
+
+}
+
+
+
+procedure TmotionCloud.Create;
+{$H Constructeur de l'objet TmotionCloud
+}
+procedure TmotionCloud.Init(dt: real;Nsample,Nx,Ny: integer; seed: longword);
+{$H Initialisation du calcul
+
+ Nx et Ny sont les dimensions des images
+ Seed permet d'initialiser le générateur de nombres aléatoire.
+}
+procedure TmotionCloud.InstallGaborFilter( ss,r0, sr0, sTheta0: real);
+procedure TmotionCloud.InstallMaternFilter( ss, eta, alpha: real);
+procedure TmotionCloud.InstallFilter( var mat:Tmatrix);
+
+procedure TmotionCloud.getFilter(var mat: Tmatrix);
+procedure TmotionCloud.done;
+procedure TmotionCloud.getFrame(var mat: Tmatrix);
+procedure TmotionCloud.SetExpansion(DxF1,x0F1,DyF1,y0F1:real);
+

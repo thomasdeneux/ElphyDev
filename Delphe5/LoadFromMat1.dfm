@@ -1,0 +1,447 @@
+object LoadFromMatDlg: TLoadFromMatDlg
+  Left = 337
+  Top = 116
+  BorderStyle = bsDialog
+  Caption = 'Load data  from vector'
+  ClientHeight = 476
+  ClientWidth = 329
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox1: TGroupBox
+    Left = 4
+    Top = 7
+    Width = 321
+    Height = 270
+    Caption = 'Choose a matrix'
+    TabOrder = 0
+  end
+  object PageControl1: TPageControl
+    Left = 4
+    Top = 283
+    Width = 241
+    Height = 186
+    ActivePage = TabSheet3
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'Copy'
+      object Label6: TLabel
+        Left = 16
+        Top = 24
+        Width = 168
+        Height = 13
+        Caption = 'Copy data with structure and scales'
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Extract'
+      ImageIndex = 1
+      object Label1: TLabel
+        Left = 8
+        Top = 8
+        Width = 99
+        Height = 13
+        Caption = 'extract data from x1='
+      end
+      object Label2: TLabel
+        Left = 78
+        Top = 30
+        Width = 29
+        Height = 13
+        Caption = 'to x2='
+      end
+      object Label10: TLabel
+        Left = 47
+        Top = 60
+        Width = 61
+        Height = 13
+        Caption = 'and from y1='
+      end
+      object Label11: TLabel
+        Left = 80
+        Top = 82
+        Width = 29
+        Height = 13
+        Caption = 'to y2='
+      end
+      object enX1: TeditNum
+        Left = 116
+        Top = 4
+        Width = 93
+        Height = 21
+        TabOrder = 0
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object enX2: TeditNum
+        Left = 116
+        Top = 26
+        Width = 93
+        Height = 21
+        TabOrder = 1
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object bcadrerX1: TBitBtn
+        Left = 212
+        Top = 5
+        Width = 15
+        Height = 15
+        TabOrder = 2
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object bCadrerX2: TBitBtn
+        Left = 212
+        Top = 29
+        Width = 15
+        Height = 15
+        TabOrder = 3
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object enY1: TeditNum
+        Left = 116
+        Top = 56
+        Width = 93
+        Height = 21
+        TabOrder = 4
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object bcadrerY1: TBitBtn
+        Left = 212
+        Top = 57
+        Width = 15
+        Height = 15
+        TabOrder = 5
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object enY2: TeditNum
+        Left = 116
+        Top = 78
+        Width = 93
+        Height = 21
+        TabOrder = 6
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object bcadrerY2: TBitBtn
+        Left = 212
+        Top = 81
+        Width = 15
+        Height = 15
+        TabOrder = 7
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Move'
+      ImageIndex = 2
+      object Label3: TLabel
+        Left = 8
+        Top = 8
+        Width = 99
+        Height = 13
+        Caption = 'extract data from x1='
+      end
+      object Label4: TLabel
+        Left = 78
+        Top = 30
+        Width = 29
+        Height = 13
+        Caption = 'to x2='
+      end
+      object Label5: TLabel
+        Left = 26
+        Top = 112
+        Width = 81
+        Height = 13
+        Caption = 'Send data to xd='
+      end
+      object Label12: TLabel
+        Left = 47
+        Top = 60
+        Width = 61
+        Height = 13
+        Caption = 'and from y1='
+      end
+      object Label13: TLabel
+        Left = 80
+        Top = 82
+        Width = 29
+        Height = 13
+        Caption = 'to y2='
+      end
+      object Label16: TLabel
+        Left = 69
+        Top = 134
+        Width = 38
+        Height = 13
+        Caption = 'and yd='
+      end
+      object enMoveX1: TeditNum
+        Left = 116
+        Top = 4
+        Width = 93
+        Height = 21
+        TabOrder = 0
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object McadrerX1: TBitBtn
+        Left = 212
+        Top = 5
+        Width = 15
+        Height = 15
+        TabOrder = 1
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object enMoveX2: TeditNum
+        Left = 116
+        Top = 26
+        Width = 93
+        Height = 21
+        TabOrder = 2
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object McadrerX2: TBitBtn
+        Left = 212
+        Top = 29
+        Width = 15
+        Height = 15
+        TabOrder = 3
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object enXD: TeditNum
+        Left = 117
+        Top = 109
+        Width = 93
+        Height = 21
+        TabOrder = 4
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object enMoveY1: TeditNum
+        Left = 116
+        Top = 56
+        Width = 93
+        Height = 21
+        TabOrder = 5
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object McadrerY1: TBitBtn
+        Left = 212
+        Top = 57
+        Width = 15
+        Height = 15
+        TabOrder = 6
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object McadrerY2: TBitBtn
+        Left = 212
+        Top = 81
+        Width = 15
+        Height = 15
+        TabOrder = 7
+        OnClick = cadrerClick
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          3333333333333333333333333333333333333333333333333333300000000000
+          0033388888888888883330F888888888803338F333333333383330F333333333
+          803338F333333333383330F333333333803338F333333333383330F333303333
+          803338F333333333383330F333000333803338F333333333383330F330000033
+          803338F333333333383330F333000333803338F333333333383330F333303333
+          803338F333333333383330F333333333803338F333333333383330F333333333
+          803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+          0033388888888888883333333333333333333333333333333333}
+        NumGlyphs = 2
+      end
+      object enMoveY2: TeditNum
+        Left = 116
+        Top = 78
+        Width = 93
+        Height = 21
+        TabOrder = 8
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+      object enYD: TeditNum
+        Left = 117
+        Top = 131
+        Width = 93
+        Height = 21
+        TabOrder = 9
+        Text = 'enX1'
+        Tnum = G_byte
+        Max = 255.000000000000000000
+        UpdateVarOnExit = False
+        Decimal = 0
+        Dxu = 1.000000000000000000
+      end
+    end
+  end
+  object Bok: TButton
+    Left = 255
+    Top = 334
+    Width = 63
+    Height = 20
+    Caption = 'OK'
+    TabOrder = 2
+    OnClick = BokClick
+  end
+  object Bcancel: TButton
+    Left = 255
+    Top = 362
+    Width = 63
+    Height = 20
+    Cancel = True
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 3
+  end
+end

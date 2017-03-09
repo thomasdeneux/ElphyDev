@@ -1,0 +1,613 @@
+***  Installation Started 01/08/2008 14:44  ***
+Title: Python for Delphi Installation
+Source: D:\Bid\P4D.exe | 01-02-2008 | 10:33:18 | 1851446
+Made Dir: C:\Program Files\PythonForDelphi
+File Copy: C:\Program Files\PythonForDelphi\UNWISE.EXE | 09-28-2001 | 18:00:28 | | 164864 | acd7a536
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Python for Delphi
+RegDB Val: Python for Delphi
+RegDB Name: DisplayName
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Python for Delphi
+RegDB Val: C:\PROGRA~1\PYTHON~1\UNWISE.EXE C:\PROGRA~1\PYTHON~1\INSTALL.LOG
+RegDB Name: UninstallString
+RegDB Root: 2
+File Copy: C:\Program Files\PythonForDelphi\Yahoo! Groups  pythonfordelphi.url | 04-25-2005 | 00:16:36 | | 168 | 66d749a6
+File Copy: C:\Program Files\PythonForDelphi\Andy Bulka Tutorials.url | 04-14-2005 | 00:01:20 | | 182 | 95a423e
+File Copy: C:\Program Files\PythonForDelphi\P4D.dll | 10-09-2006 | 00:09:26 | | 482304 | 579dc9d4
+Made Dir: C:\Program Files\PythonForDelphi\PythonIDE
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\uEditAppIntfs.pas | 10-07-2006 | 22:06:32 | | 6843 | 90549b1
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\uCommonFunctions.pas | 10-16-2006 | 00:57:26 | | 26326 | da30a57c
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\uMMMXP_MainService.pas | 02-26-2006 | 00:41:24 | | 3758 | f647f2ec
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\SynHighlighterPython.pas | 10-09-2006 | 23:17:42 | | 40188 | cd3b36b1
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\SynCompletionProposal.pas | 10-07-2006 | 22:06:30 | | 114313 | f1b915ca
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\StringResources.pas | 10-07-2006 | 22:06:26 | | 2981 | 54a6f7d6
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\StoHtmlHelp.pas | 02-26-2006 | 00:41:24 | | 14018 | 98813f2d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\Readme.txt | 10-09-2006 | 23:17:42 | | 2133 | b5edafa1
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\uParams.pas | 10-07-2006 | 22:06:26 | | 21004 | 6ee13f61
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\PyScripter.res | 10-16-2006 | 00:57:26 | | 28464 | a8f7c4b7
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\PyScripter.ico | 02-26-2006 | 00:41:24 | | 27456 | 36572369
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\PyScripter.dpr | 10-16-2006 | 00:57:26 | | 4681 | c824ea8b
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\uHighlighterProcs.pas | 10-07-2006 | 22:06:28 | | 4847 | fdeff0e0
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\PyScripter.bdsproj.local | 10-07-2006 | 22:06:28 | | 5313 | 17ba8f68
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\PyScripter.bdsproj | 10-16-2006 | 00:57:26 | | 9096 | ac86aa98
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\PyScripter Logo.bmp | 10-07-2006 | 22:06:26 | | 43254 | 2a5d9eda
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvProgramVersionCheck.pas | 10-07-2006 | 22:06:26 | | 70067 | 305dc33a
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvDockVSNetStyle.pas | 10-07-2006 | 22:06:26 | | 115586 | 2e0aa39e
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvDockControlForm.pas | 10-07-2006 | 22:06:26 | | 173798 | 76ca3186
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvCreateProcess.pas | 10-07-2006 | 22:03:42 | | 46631 | f9d8186f
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvChangeNotify.pas | 10-07-2006 | 22:06:32 | | 18962 | 9938d27
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvAppStorage.pas | 10-07-2006 | 22:06:26 | | 129681 | d9d102d7
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\JvAppIniStorage.pas | 10-07-2006 | 22:06:30 | | 24448 | 318efcdf
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\Install.txt | 10-07-2006 | 22:06:30 | | 88 | 60227ff
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmWatches.pas | 10-07-2006 | 22:06:30 | | 8154 | 1389f505
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmWatches.dfm | 10-07-2006 | 22:06:28 | | 5453 | 67508363
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmVariables.pas | 10-07-2006 | 22:06:32 | | 13199 | 83abb82b
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmVariables.dfm | 10-07-2006 | 22:06:30 | | 6192 | 51aef2a0
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmUnitTests.pas | 10-07-2006 | 22:06:32 | | 21661 | b138bb9a
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmUnitTests.dfm | 10-07-2006 | 22:06:28 | | 38820 | a9a605c9
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmToDo.pas | 10-07-2006 | 22:06:26 | | 28862 | 6aea6776
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmToDo.dfm | 02-26-2006 | 00:41:24 | | 40279 | 1c699bfe
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmRegExpTester.pas | 10-07-2006 | 22:06:28 | | 8958 | fe37993d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmRegExpTester.dfm | 10-07-2006 | 22:06:32 | | 14102 | b1ef6d3f
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmPythonII.pas | 10-07-2006 | 22:06:32 | | 41940 | 88949635
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmPythonII.dfm | 10-07-2006 | 22:06:30 | | 24022 | cc53bcf8
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmPyIDEMain.pas | 10-16-2006 | 00:57:26 | | 94379 | 23d660f0
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmPyIDEMain.dfm | 10-07-2006 | 22:06:30 | | 38142 | ef5c828
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmMessages.pas | 10-07-2006 | 22:06:32 | | 9511 | 74a6bc59
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmMessages.dfm | 10-07-2006 | 22:06:28 | | 7624 | 48005d16
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmIDEDockWin.pas | 10-07-2006 | 22:06:32 | | 3013 | b17d14bc
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmIDEDockWin.dfm | 02-26-2006 | 00:41:24 | | 1102 | 3de41b08
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmFunctionList.pas | 02-26-2006 | 00:41:24 | | 19705 | cfdd79a4
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmFunctionList.dfm | 02-26-2006 | 00:41:24 | | 9153 | 4d3c6a01
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmFindResults.pas | 10-07-2006 | 22:06:32 | | 41225 | a993bb1
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmFindResults.dfm | 02-26-2006 | 00:41:24 | | 12484 | 1616b53c
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmFileExplorer.pas | 10-09-2006 | 23:17:42 | | 15298 | ca8bb60f
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmFileExplorer.dfm | 10-16-2006 | 00:57:26 | | 12377 | eaeb9f20
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmEditor.pas | 10-16-2006 | 00:57:26 | | 71255 | bdcfb140
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmEditor.dfm | 10-16-2006 | 00:57:26 | | 11880 | dc03e705
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmDocView.pas | 03-13-2006 | 19:55:52 | | 5269 | 7f23b2c9
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmDocView.dfm | 02-26-2006 | 00:41:24 | | 40930 | 3e5041bc
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmDisassemlyView.pas | 03-13-2006 | 23:46:48 | | 3153 | cbacd47b
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmDisassemlyView.dfm | 02-26-2006 | 00:41:24 | | 1183 | 1d0df7c5
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmCommandOutput.pas | 10-09-2006 | 23:17:42 | | 20325 | 7bbe660f
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmCommandOutput.dfm | 10-09-2006 | 23:17:42 | | 6281 | d8ca433e
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmCodeExplorer.pas | 10-16-2006 | 00:57:26 | | 24774 | f1ab8b3a
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmCodeExplorer.dfm | 10-07-2006 | 22:06:32 | | 4064 | 3efbdec5
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmCallStack.pas | 10-07-2006 | 22:06:30 | | 5985 | efbbc66b
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmCallStack.dfm | 10-07-2006 | 22:06:34 | | 4820 | 9a895705
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmBreakPoints.pas | 10-07-2006 | 22:06:28 | | 7902 | f1863eb7
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\frmBreakPoints.dfm | 03-13-2006 | 19:55:52 | | 5485 | fac7dfc8
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\FastMM4Options.inc | 10-07-2006 | 22:06:30 | | 13931 | 46548a9f
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dmCommands.pas | 10-07-2006 | 22:06:30 | | 78692 | e05679a7
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dmCommands.dfm | 10-07-2006 | 22:06:28 | | 662513 | 6a88dd35
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgUnitTestWizard.pas | 03-13-2006 | 19:55:52 | | 10644 | fc375e74
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgUnitTestWizard.dfm | 03-13-2006 | 19:55:52 | | 3409 | 1c159a2d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgToolProperties.pas | 10-07-2006 | 22:06:32 | | 11865 | 89b57825
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgToolProperties.dfm | 10-07-2006 | 22:06:30 | | 21754 | 51d13ba7
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgToDoOptions.pas | 02-26-2006 | 00:41:24 | | 8286 | cf884484
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgToDoOptions.dfm | 02-26-2006 | 00:41:24 | | 4443 | 46a28c06
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSynPrintPreview.pas | 02-26-2006 | 00:41:24 | | 6177 | 144692dc
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSynPrintPreview.dfm | 02-26-2006 | 00:41:24 | | 10828 | 93d06a58
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSynPageSetup.pas | 02-26-2006 | 00:41:24 | | 18127 | 87ceebd5
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSynPageSetup.dfm | 02-26-2006 | 00:41:24 | | 58628 | 2a861ec3
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSynEditOptions.pas | 10-07-2006 | 22:06:32 | | 45128 | a7dea484
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSynEditOptions.dfm | 10-07-2006 | 22:06:30 | | 13463 | 4fa2eefa
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSearchText.pas | 02-26-2006 | 00:41:24 | | 6703 | da096a7
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgSearchText.dfm | 02-26-2006 | 00:41:24 | | 1573 | fb45a6fc
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgReplaceText.pas | 02-26-2006 | 00:41:24 | | 3740 | d1df10be
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgReplaceText.dfm | 02-26-2006 | 00:41:24 | | 593 | 9e8a2106
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgReplaceInFiles.pas | 02-26-2006 | 00:41:24 | | 5386 | 714270d1
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgReplaceInFiles.dfm | 02-26-2006 | 00:41:24 | | 2270 | 3be07e9e
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgPickList.pas | 03-13-2006 | 19:55:52 | | 1370 | e559e24
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgPickList.dfm | 03-13-2006 | 19:55:52 | | 1706 | ef6be36
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgOptionsEditor.pas | 02-26-2006 | 00:41:24 | | 3427 | fcdadbcf
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgOptionsEditor.dfm | 02-26-2006 | 00:41:24 | | 1940 | 8548ba17
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgNewFile.pas | 10-07-2006 | 22:06:32 | | 4455 | af688c8c
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgNewFile.dfm | 10-07-2006 | 22:06:30 | | 3988 | 52db0abf
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgFindResultsOptions.pas | 02-26-2006 | 00:41:24 | | 4878 | c4acd330
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgFindResultsOptions.dfm | 02-26-2006 | 00:41:24 | | 3618 | 8c38d0ef
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgFindInFiles.pas | 02-26-2006 | 00:41:24 | | 11425 | b87792cd
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgFindInFiles.dfm | 02-26-2006 | 00:41:24 | | 4872 | 9146978d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgFileTemplates.pas | 10-07-2006 | 22:06:28 | | 8963 | 697f853d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgFileTemplates.dfm | 10-07-2006 | 22:06:32 | | 8301 | 633c1c48
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgExceptionMail.pas | 10-09-2006 | 23:17:42 | | 26871 | 5589c596
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgExceptionMail.dfm | 10-07-2006 | 22:06:32 | | 2441 | ec05d663
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgDirectoryList.pas | 10-07-2006 | 22:06:28 | | 4770 | 4db6512c
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgDirectoryList.dfm | 10-07-2006 | 22:06:32 | | 2099 | e0c7c4be
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCustomShortcuts.pas | 10-07-2006 | 22:06:30 | | 13633 | c40f7e78
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCustomShortcuts.dfm | 10-07-2006 | 22:06:26 | | 3521 | 9d8e3af3
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCustomParams.pas | 10-07-2006 | 22:06:30 | | 5831 | dde331d4
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCustomParams.dfm | 10-07-2006 | 22:06:28 | | 6287 | c8f020b6
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgConfirmReplace.pas | 02-26-2006 | 00:41:24 | | 3417 | bd8e67fe
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgConfirmReplace.dfm | 02-26-2006 | 00:41:24 | | 921 | 85d13cc9
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgConfigureTools.pas | 10-07-2006 | 22:06:30 | | 4964 | f7fea5d3
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgConfigureTools.dfm | 10-07-2006 | 22:06:28 | | 2417 | 78e73449
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCommandLine.pas | 10-07-2006 | 22:06:30 | | 2359 | 577a41a
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCommandLine.dfm | 10-07-2006 | 22:03:42 | | 3780 | af498e1c
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCodeTemplates.pas | 10-07-2006 | 22:06:30 | | 8324 | 77f7d7a6
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgCodeTemplates.dfm | 10-07-2006 | 22:03:42 | | 7392 | d6244c7d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgAskParam.pas | 02-26-2006 | 00:41:24 | | 3854 | 738169a8
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgAskParam.dfm | 02-26-2006 | 00:41:24 | | 1376 | c4de9dc6
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgAboutPyScripter.pas | 10-07-2006 | 22:06:32 | | 1602 | 20aa9d2
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\dlgAboutPyScripter.dfm | 10-07-2006 | 22:06:30 | | 116092 | 26862deb
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cTools.pas | 10-07-2006 | 22:03:42 | | 14327 | 9cfd98dc
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cRefactoring.pas | 10-07-2006 | 22:06:28 | | 47442 | cc058774
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cPythonSourceScanner.pas | 10-16-2006 | 00:57:26 | | 47658 | 8a1d13c4
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cPyRemoteDebugger.pas | 10-07-2006 | 22:06:30 | | 5179 | 7dbfc762
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cPyDebugger.pas | 10-07-2006 | 22:06:28 | | 18529 | 9403a2b5
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cPyBaseDebugger.pas | 10-12-2006 | 19:17:36 | | 24775 | b5587638
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cParameters.pas | 10-07-2006 | 22:06:30 | | 31793 | 3b0aad85
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cFindInFiles.pas | 02-26-2006 | 00:41:24 | | 24463 | ccdf8e49
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cFileTemplates.pas | 10-07-2006 | 22:06:30 | | 6935 | 683dfb82
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cFileSearch.pas | 02-26-2006 | 00:41:24 | | 14446 | 76b7d265
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cFilePersist.pas | 10-07-2006 | 22:06:26 | | 8602 | bf78873d
+File Copy: C:\Program Files\PythonForDelphi\PythonIDE\cCodeHint.pas | 10-07-2006 | 22:06:30 | | 8069 | c1fb26e5
+File Copy: C:\Program Files\PythonForDelphi\Deploying P4D.PDF | 02-26-2006 | 00:42:00 | | 110131 | 4b8a5716
+File Copy: C:\Program Files\PythonForDelphi\Kylix Notes.txt | 02-26-2006 | 00:42:00 | | 4681 | 564054d3
+File Copy: C:\Program Files\PythonForDelphi\Python official site.URL | 10-09-2006 | 23:15:32 | | 104 | d0f02d63
+File Copy: C:\Program Files\PythonForDelphi\Mark Hammond Pythonwin.URL | 03-24-2005 | 18:21:08 | | 67 | e42e2ba7
+File Copy: C:\Program Files\PythonForDelphi\Home Site.URL | 04-14-2005 | 00:01:38 | | 78 | 4889ca65
+File Copy: C:\Program Files\PythonForDelphi\Tutorial.txt | 02-26-2006 | 00:42:00 | | 36064 | 1bd4df74
+File Copy: C:\Program Files\PythonForDelphi\To do.txt | 02-26-2006 | 00:42:00 | | 23 | 37fd6aab
+File Copy: C:\Program Files\PythonForDelphi\Readme.txt | 02-26-2006 | 00:42:00 | | 5896 | c355d0e8
+File Copy: C:\Program Files\PythonForDelphi\Python.txt | 02-26-2006 | 00:42:00 | | 765 | 8bd9e233
+File Copy: C:\Program Files\PythonForDelphi\Deployment.txt | 02-26-2006 | 00:42:00 | | 939 | 1a3338fa
+File Copy: C:\Program Files\PythonForDelphi\Changes.txt | 10-13-2006 | 22:57:42 | | 75593 | b35fe46
+File Copy: C:\Program Files\PythonForDelphi\C++ Builder Notes.txt | 02-26-2006 | 00:42:00 | | 4698 | 97757ac4
+Made Dir: C:\Program Files\PythonForDelphi\Demos
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo32
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo32\Unit1.pas | 08-27-2005 | 23:54:20 | | 4640 | c0585d0a
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo32\Unit1.dfm | 08-27-2005 | 23:48:20 | | 2642 | c6334ee4
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo32\Project1.res | 04-19-2005 | 04:21:00 | | 876 | e98d39db
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo32\Project1.dpr | 04-20-2005 | 01:32:00 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo32\Project1.cfg | 04-20-2005 | 01:32:00 | | 434 | b4ee8631
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo31
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Unit2.pas | 08-13-2005 | 21:44:14 | | 689 | c9cfb062
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Unit2.dfm | 07-01-2005 | 10:06:10 | | 1247 | 72a0f738
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Unit1.pas | 10-11-2006 | 23:11:18 | | 6241 | 42099b72
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Unit1.dfm | 10-11-2006 | 00:23:54 | | 14798 | a1edf1ad
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Project1.res | 09-14-2005 | 11:53:54 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Project1.dpr | 11-27-2005 | 00:41:22 | | 846 | 1fd88e72
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Project1.dof | 10-11-2006 | 23:21:28 | | 3595 | 52d32600
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo31\Project1.cfg | 10-11-2006 | 23:21:28 | | 798 | 2fcff306
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo30
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Unit1.xfm | 03-24-2005 | 18:22:38 | | 1449 | 1be01452
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Unit1.pas | 04-09-2005 | 19:22:34 | | 2856 | 25727d3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Unit1.dfm | 04-09-2005 | 19:17:18 | | 1724 | db3cdf09
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Project1.res | 03-24-2005 | 18:22:38 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Project1.dpr | 03-24-2005 | 18:22:38 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Project1.dof | 04-09-2005 | 19:22:46 | | 4282 | d20a08cf
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Project1.conf | 03-24-2005 | 18:22:38 | | 174 | 587a0ee9
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo30\Project1.cfg | 04-09-2005 | 19:22:46 | | 434 | efb7d0ae
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo29
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo29\Unit1.pas | 03-24-2005 | 18:22:40 | | 2355 | df7d2d62
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo29\Unit1.dfm | 03-24-2005 | 18:22:42 | | 2059 | 279b545d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo29\Project1.res | 03-24-2005 | 18:22:40 | | 876 | cc771f40
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo29\Project1.dpr | 03-24-2005 | 18:22:42 | | 188 | 3dd62ee2
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo29\Project1.dof | 03-24-2005 | 18:22:42 | | 4909 | dec74b60
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo29\Project1.cfg | 03-24-2005 | 18:22:40 | | 434 | b4ee8631
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo28
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Unit1.xfm | 03-24-2005 | 18:22:38 | | 1449 | 1be01452
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Unit1.pas | 03-24-2005 | 18:22:38 | | 8415 | 679cd605
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Unit1.dfm | 03-24-2005 | 18:22:38 | | 2426 | f71ea27f
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Project1.res | 03-24-2005 | 18:22:38 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Project1.kof | 03-24-2005 | 18:22:38 | | 631 | cf089b4e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Project1.dpr | 03-24-2005 | 18:22:38 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Project1.dof | 03-24-2005 | 18:22:38 | | 4282 | d20a08cf
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Project1.conf | 03-24-2005 | 18:22:38 | | 174 | 587a0ee9
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo28\Project1.cfg | 03-24-2005 | 18:22:38 | | 434 | efb7d0ae
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo27
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo27\Unit1.pas | 03-24-2005 | 18:22:34 | | 1408 | e269abb5
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo27\Unit1.dfm | 03-24-2005 | 18:22:36 | | 1773 | 70d15f7b
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo27\Project1.res | 03-24-2005 | 18:22:34 | | 876 | cc771f40
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo27\Project1.dpr | 03-24-2005 | 18:22:36 | | 188 | 3dd62ee2
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo27\Project1.dof | 03-24-2005 | 18:22:36 | | 2015 | aa5016e6
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo27\Project1.cfg | 03-24-2005 | 18:22:34 | | 434 | b4ee8631
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo26
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo26\Unit1.pas | 03-24-2005 | 18:22:28 | | 8490 | 4b85cafa
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo26\Unit1.dfm | 03-24-2005 | 18:22:28 | | 3408 | e241be7a
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo26\Project1.res | 03-05-2006 | 10:22:24 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo26\Project1.dpr | 03-24-2005 | 18:22:28 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo07
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo07\Project1.res | 03-24-2005 | 18:22:20 | | 876 | bb60c00d
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo11
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\ThrdDemo.dpr | 03-24-2005 | 18:21:52 | | 311 | b9ff80f5
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\ThrdDemo.cfg | 03-24-2005 | 18:21:52 | | 386 | 8fafed64
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\ThrdDemo.res | 03-24-2005 | 18:21:52 | | 876 | 937d4790
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo01
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo01\Project1.res | 04-27-2005 | 23:26:36 | | 876 | f88ffc3e
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo02
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo02\Project1.res | 03-24-2005 | 18:21:54 | | 876 | 483416c3
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo03
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo03\Project1.res | 03-24-2005 | 18:21:58 | | 876 | 3cad1145
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo25
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\VarPythUnitTest.conf | 03-24-2005 | 18:22:22 | | 206 | 3ee3b93b
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\fmMain.xfm | 03-24-2005 | 18:22:22 | | 6246 | 79230af9
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo07\Project1.conf | 03-24-2005 | 18:22:20 | | 174 | 587a0ee9
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo02\Project1.conf | 03-24-2005 | 18:21:54 | | 174 | 587a0ee9
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo01\Unit1.xfm | 03-24-2005 | 18:21:52 | | 1449 | 1be01452
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo01\Project1.conf | 03-24-2005 | 18:21:52 | | 174 | 587a0ee9
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo02\Unit1.xfm | 03-24-2005 | 18:21:54 | | 1447 | db957827
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo03\Project1.conf | 03-24-2005 | 18:21:58 | | 174 | 587a0ee9
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo20
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\py21.lib | 03-24-2005 | 18:21:54 | | 81920 | d4c95303
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo18
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo18\py21.lib | 03-24-2005 | 18:22:32 | | 81920 | d4c95303
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\VarPythUnitTest.res | 03-24-2005 | 18:22:22 | | 876 | bc0f32f4
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\VarPythUnitTest.dpr | 03-24-2005 | 18:22:22 | | 262 | c6666858
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\MyModule.py | 03-24-2005 | 18:22:22 | | 32 | ff25a8ec
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\fmMain.pas | 05-28-2005 | 12:35:12 | | 34253 | 9de8b35d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo25\fmMain.dfm | 05-21-2005 | 13:03:06 | | 6419 | cf933e5
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo24
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo24\Unit1.pas | 03-24-2005 | 18:22:14 | | 2666 | ffe6c1fc
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo24\Unit1.dfm | 03-24-2005 | 18:22:14 | | 1711 | e793607b
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo24\Project1.res | 04-14-2005 | 11:39:58 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo24\Project1.dpr | 03-24-2005 | 18:22:14 | | 188 | 3dd62ee2
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo23
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo23\Unit1.pas | 03-24-2005 | 18:22:08 | | 1859 | e92df684
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo23\Unit1.dfm | 03-24-2005 | 18:22:10 | | 1391 | 2cbede50
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo23\Project1.res | 03-24-2005 | 18:22:08 | | 876 | f7395c42
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo23\Project1.dpr | 03-24-2005 | 18:22:10 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo23\Project1.cfg | 03-24-2005 | 18:22:08 | | 386 | 72845ecb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo22
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo22\Unit1.pas | 03-24-2005 | 18:22:04 | | 1502 | ea09017f
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo22\Unit1.dfm | 03-24-2005 | 18:22:04 | | 1313 | c856a7ff
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo22\Project1.res | 03-24-2005 | 18:22:04 | | 876 | f7395c42
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo22\Project1.dpr | 03-24-2005 | 18:22:04 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo22\Project1.cfg | 03-24-2005 | 18:22:04 | | 386 | 72845ecb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo21
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo21\Unit1.pas | 03-24-2005 | 18:22:00 | | 5890 | 333c0f29
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo21\Unit1.dfm | 03-24-2005 | 18:22:00 | | 2050 | b45644fd
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo21\Project1.res | 03-24-2005 | 18:22:00 | | 876 | f7395c42
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo21\Project1.dpr | 03-24-2005 | 18:22:00 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\Unit1.h | 03-24-2005 | 18:21:56 | | 2029 | d1feed18
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\Unit1.dfm | 03-24-2005 | 18:21:56 | | 2621 | 93ef6c32
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\Unit1.cpp | 03-24-2005 | 18:21:54 | | 5077 | 1c2a2af5
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\py15.lib | 03-24-2005 | 18:21:54 | | 41984 | b4bcf81c
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\Project1.res | 03-24-2005 | 18:21:54 | | 876 | f5885556
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\Project1.cpp | 03-24-2005 | 18:21:56 | | 665 | f2c28fb8
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo20\Project1.bpr | 03-24-2005 | 18:21:56 | | 5976 | 9839983b
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo19
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo19\Unit1.h | 03-24-2005 | 18:22:36 | | 1447 | bdc2b1e0
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo19\Unit1.dfm | 03-24-2005 | 18:22:36 | | 1562 | 7d545216
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo19\Unit1.cpp | 03-24-2005 | 18:22:36 | | 1742 | 601dabce
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo19\Project1.res | 03-24-2005 | 18:22:36 | | 876 | f5885556
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo19\Project1.cpp | 03-24-2005 | 18:22:36 | | 644 | 7724516c
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo19\Project1.bpr | 03-24-2005 | 18:22:36 | | 5841 | c20aa6cd
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo18\py15.lib | 03-24-2005 | 18:22:32 | | 41984 | b4bcf81c
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo18\Project1.res | 03-24-2005 | 18:22:32 | | 876 | 288b80e1
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo18\Project1.cpp | 03-24-2005 | 18:22:34 | | 1217 | 46997d22
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo18\Project1.bpr | 03-24-2005 | 18:22:34 | | 4472 | be81a5f0
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo17
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo17\Unit1.pas | 03-24-2005 | 18:22:26 | | 2545 | 12c90c20
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo17\Unit1.dfm | 03-24-2005 | 18:22:26 | | 1534 | f294cf65
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo17\Project1.res | 03-24-2005 | 18:22:26 | | 876 | f7395c42
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo17\Project1.dpr | 03-24-2005 | 18:22:26 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo16
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo16\Example2
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example2\Unit1.pas | 03-24-2005 | 18:22:16 | | 4201 | cf9b3417
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example2\Unit1.dfm | 03-24-2005 | 18:22:16 | | 3349 | e56d1f54
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example2\Project1.res | 03-24-2005 | 18:22:16 | | 876 | b9c27d33
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example2\Project1.dpr | 03-24-2005 | 18:22:16 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo16\Example1
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example1\Unit1.pas | 03-24-2005 | 18:22:16 | | 4201 | cf9b3417
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example1\Unit1.dfm | 03-24-2005 | 18:22:16 | | 3349 | e56d1f54
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example1\Project1.res | 03-24-2005 | 18:22:16 | | 876 | b9c27d33
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo16\Example1\Project1.dpr | 03-24-2005 | 18:22:16 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo15
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo15\Unit1.pas | 03-24-2005 | 18:22:10 | | 4410 | a2de18de
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo15\Unit1.dfm | 03-24-2005 | 18:22:10 | | 2560 | 2cc05555
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo15\Project1.res | 03-24-2005 | 18:22:10 | | 876 | 3cad1145
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo15\Project1.dpr | 03-24-2005 | 18:22:10 | | 188 | 3dd62ee2
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo14
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\Unit1.pas | 03-24-2005 | 18:22:06 | | 729 | 78a12869
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\Unit1.dfm | 03-24-2005 | 18:22:06 | | 1901 | 80fbfb24
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\Project1.res | 03-24-2005 | 18:22:06 | | 876 | a3f9ee99
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\Project1.dpr | 03-24-2005 | 18:22:06 | | 188 | 3dd62ee2
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\module.pas | 03-24-2005 | 18:22:06 | | 645 | d0131a0f
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\database.res | 03-24-2005 | 18:22:06 | | 876 | b9c27d33
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo14\database.dpr | 03-24-2005 | 18:22:06 | | 874 | 82a85171
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo13
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\fmMain.pas | 03-24-2005 | 18:22:00 | | 4617 | 333df257
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\fmMain.dfm | 03-24-2005 | 18:22:02 | | 11523 | 7c9d43a
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Example6.py | 03-24-2005 | 18:22:00 | | 1857 | 16fed042
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Example5.py | 03-24-2005 | 18:22:00 | | 3720 | 7291277d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Example4.py | 03-24-2005 | 18:22:00 | | 759 | 19bc0ab0
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Example3.py | 03-24-2005 | 18:22:00 | | 817 | f1290030
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Example2.py | 03-24-2005 | 18:22:00 | | 2354 | fecae9dc
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Example1.py | 03-24-2005 | 18:22:00 | | 1433 | 914dc258
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Demo13.res | 03-24-2005 | 18:22:00 | | 876 | f7395c42
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo13\Demo13.dpr | 03-24-2005 | 18:22:02 | | 185 | a7bff45d
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo12
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo12\tstPythonAtom.res | 03-24-2005 | 18:21:56 | | 876 | 7c77b4b1
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo12\tstPythonAtom.dpr | 03-24-2005 | 18:21:56 | | 204 | 8bfa3360
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo12\tstPythonAtom.cfg | 03-24-2005 | 18:21:56 | | 395 | 6abe0644
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo12\f_main.txt | 03-24-2005 | 18:21:56 | | 4377 | 90fa4910
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo12\F_Main.pas | 03-24-2005 | 18:21:56 | | 4069 | d805696d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo12\F_Main.dfm | 03-24-2005 | 18:21:56 | | 3247 | fd08b064
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\ThSort.pas | 03-24-2005 | 18:21:52 | | 6302 | e253971a
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\ThSort.dfm | 03-24-2005 | 18:21:52 | | 2918 | c0050761
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\test.py | 03-24-2005 | 18:21:52 | | 831 | c5fe6b79
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo11\SortThds.pas | 03-24-2005 | 18:21:52 | | 3802 | 14cd94c4
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo10
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\pyDBTables.pas | 03-24-2005 | 18:21:52 | | 48748 | 67b3ef0b
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\pyDB.pas | 03-24-2005 | 18:21:50 | | 87831 | 859dc69d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\fmMain.pas | 03-24-2005 | 18:21:52 | | 9462 | 61e5f664
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\fmMain.dfm | 03-24-2005 | 18:21:52 | | 13377 | d986f4a6
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Example6.py | 03-24-2005 | 18:21:52 | | 1846 | cbb07070
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Example5.py | 03-24-2005 | 18:21:52 | | 3709 | 895384d5
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Example4.py | 03-24-2005 | 18:21:52 | | 748 | 9f781ea1
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Example3.py | 03-24-2005 | 18:21:50 | | 818 | 6a877053
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Example2.py | 03-24-2005 | 18:21:50 | | 2373 | d587ae10
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Example1.py | 03-24-2005 | 18:21:50 | | 1428 | e334d77d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Demo10.res | 03-24-2005 | 18:21:52 | | 876 | f7395c42
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo10\Demo10.dpr | 03-24-2005 | 18:21:52 | | 243 | 118b37f5
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo09
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo09\Unit1.pas | 03-24-2005 | 18:22:30 | | 850 | d594d283
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo09\Unit1.dfm | 03-24-2005 | 18:22:30 | | 995 | f7129d15
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo09\Project1.res | 03-24-2005 | 18:22:30 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo09\Project1.dpr | 03-24-2005 | 18:22:32 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo09\module.pas | 03-24-2005 | 18:22:32 | | 925 | b42ddbc4
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo09\demodll.dpr | 03-24-2005 | 18:22:30 | | 232 | d81b6b4b
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo08
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo08\Unit1.pas | 03-24-2005 | 18:22:24 | | 8401 | a198321e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo08\Unit1.dfm | 03-24-2005 | 18:22:24 | | 2781 | 2dba93de
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo08\Project1.res | 03-24-2005 | 18:22:24 | | 876 | bb60c00d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo08\Project1.dpr | 03-24-2005 | 18:22:24 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo07\Unit1.pas | 03-24-2005 | 18:22:20 | | 9908 | 58987aef
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo07\Unit1.dfm | 03-24-2005 | 18:22:20 | | 2637 | d2c2757d
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo07\test.py | 03-24-2005 | 18:22:20 | | 305 | 2406a3a8
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo07\Project1.dpr | 03-24-2005 | 18:22:20 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo06
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo06\Unit1.pas | 04-23-2005 | 12:50:22 | | 8636 | ac6f47c4
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo06\Unit1.dfm | 03-24-2005 | 18:22:12 | | 2420 | e0157976
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo06\Project1.res | 04-23-2005 | 12:43:34 | | 876 | f88ffc3e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo06\Project1.dpr | 03-24-2005 | 18:22:12 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo05
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo05\Unit1.pas | 03-24-2005 | 18:22:06 | | 2117 | f41aef70
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo05\Unit1.dfm | 03-24-2005 | 18:22:08 | | 1630 | 331273ab
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo05\Project1.res | 03-24-2005 | 18:22:06 | | 876 | 3cad1145
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo05\Project1.dpr | 03-24-2005 | 18:22:08 | | 278 | 25f5f4cb
+Made Dir: C:\Program Files\PythonForDelphi\Demos\Demo04
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo04\Unit1.pas | 03-24-2005 | 18:22:02 | | 3071 | 89257a54
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo04\Unit1.dfm | 03-24-2005 | 18:22:02 | | 2502 | 909e1efc
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo04\Project1.res | 03-24-2005 | 18:22:02 | | 876 | 7aee1fcd
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo04\Project1.dpr | 03-24-2005 | 18:22:02 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo03\Unit1.pas | 03-24-2005 | 18:21:58 | | 1651 | f0ba7be8
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo03\Unit1.dfm | 03-24-2005 | 18:21:58 | | 1823 | aacb2c95
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo03\Project1.dpr | 03-24-2005 | 18:21:58 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo02\Unit1.pas | 03-24-2005 | 18:21:54 | | 1891 | 15bb947e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo02\Unit1.dfm | 03-24-2005 | 18:21:54 | | 1363 | 3a1b8a73
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo02\Project1.dpr | 03-24-2005 | 18:21:54 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo01\Unit1.pas | 03-24-2005 | 18:21:52 | | 1484 | 97cae75e
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo01\Unit1.dfm | 03-24-2005 | 18:21:52 | | 1505 | e95b8909
+File Copy: C:\Program Files\PythonForDelphi\Demos\Demo01\Project1.dpr | 03-24-2005 | 18:21:52 | | 278 | 25f5f4cb
+File Copy: C:\Program Files\PythonForDelphi\pythonAtom.hlp | 02-26-2006 | 00:42:00 | | 38728 | 2e384de0
+Made Dir: C:\Program Files\PythonForDelphi\Components
+Made Dir: C:\Program Files\PythonForDelphi\Components\Sources
+Made Dir: C:\Program Files\PythonForDelphi\Components\Sources\Core
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\TinyWideStrings.pas | 10-09-2006 | 00:02:00 | | 5281 | 9e58c20d
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb6.cpp | 05-22-2006 | 23:25:34 | | 887 | 99e751cb
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb6.bpk | 05-22-2006 | 23:25:34 | | 4581 | 7ebd16f1
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb6.res | 05-22-2006 | 23:25:34 | | 1536 | 3330fb43
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb6.cpp | 05-22-2006 | 23:25:34 | | 499 | 6c892f4
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb6.bpk | 05-22-2006 | 23:25:34 | | 4231 | 2dabaf88
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb6.res | 05-22-2006 | 23:25:34 | | 1536 | 3330fb43
+Made Dir: C:\Program Files\PythonForDelphi\Components\Sources\Core\UnitTests
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\UnitTests\Tests.res | 03-04-2006 | 19:52:12 | | 876 | cc771f40
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\UnitTests\Tests.dpr | 02-27-2006 | 18:38:00 | | 196 | e85bbb73
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\UnitTests\Tests.dof | 05-22-2006 | 21:50:26 | | 2015 | aa5016e6
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\UnitTests\Tests.cfg | 05-22-2006 | 21:50:26 | | 434 | b4ee8631
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\UnitTests\MethodCallBackTest.pas | 05-22-2006 | 21:50:20 | | 9036 | d917122a
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds4.res | 03-24-2005 | 18:21:44 | | 1508 | b2aa576
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds4.dpk | 01-11-2006 | 20:48:28 | | 776 | 5a12d558
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds4.cfg | 01-11-2006 | 20:56:24 | | 494 | 12b568a7
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds4.bdsproj | 01-11-2006 | 20:48:28 | | 8169 | 207ab05f
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds4.res | 03-24-2005 | 18:21:46 | | 1536 | 73f0d375
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds4.dpk | 01-11-2006 | 20:44:54 | | 926 | a3b8ed34
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds4.cfg | 01-11-2006 | 20:56:26 | | 494 | 12b568a7
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds4.bdsproj | 01-11-2006 | 20:44:54 | | 8264 | 889bf65
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiGraphics.pas | 12-18-2005 | 18:56:24 | | 81337 | b3d8b7ab
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiButtons.pas | 11-27-2005 | 01:18:02 | | 3100 | 2b1fb5f6
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiGrids.pas | 10-10-2006 | 00:16:20 | | 21348 | 2167c351
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiWindows.pas | 12-18-2005 | 14:13:00 | | 2950 | a600363b
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiComCtrls.pas | 02-26-2006 | 00:23:00 | | 19279 | 818af03a
+Made Dir: C:\Program Files\PythonForDelphi\Modules
+Made Dir: C:\Program Files\PythonForDelphi\Modules\Delphi
+File Copy: C:\Program Files\PythonForDelphi\Modules\Delphi\Delphi.cfg | 07-01-2005 | 10:06:10 | | 478 | 1f4abc83
+File Copy: C:\Program Files\PythonForDelphi\Modules\Delphi\uMain.pas | 07-01-2005 | 10:06:10 | | 715 | 5712c6c2
+File Copy: C:\Program Files\PythonForDelphi\Modules\Delphi\Delphi.res | 07-01-2005 | 10:06:10 | | 876 | 29bda79e
+File Copy: C:\Program Files\PythonForDelphi\Modules\Delphi\Delphi.dpr | 07-01-2005 | 10:06:10 | | 859 | 2215afac
+File Copy: C:\Program Files\PythonForDelphi\Modules\TestApp.py | 08-13-2005 | 22:23:26 | | 626 | e959bc4c
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiTypes.pas | 10-18-2005 | 21:45:16 | | 18936 | 544eb462
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiStdCtrls.pas | 11-27-2005 | 01:02:38 | | 13403 | cb93c1af
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiForms.pas | 08-13-2005 | 13:26:18 | | 92725 | 4dcd67b6
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiExtCtrls.pas | 08-13-2005 | 13:25:48 | | 12827 | b8de0daa
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiControls.pas | 10-11-2006 | 00:11:54 | | 24319 | 454553c2
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiClasses.pas | 12-21-2005 | 00:16:52 | | 50001 | b46bf762
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiActnList.pas | 08-13-2005 | 13:25:42 | | 5396 | ce242599
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphiVCL.pas | 11-27-2005 | 01:03:02 | | 519 | bbf67f22
+File Copy: C:\Program Files\PythonForDelphi\Components\p4dlaz.lpk | 05-25-2005 | 20:02:44 | | 1996 | 837bdb08
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\WrapDelphi.pas | 10-11-2006 | 00:10:04 | | 105127 | 61f05df9
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds3.res | 03-24-2005 | 18:21:44 | | 1508 | b2aa576
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds3.dpk | 03-24-2005 | 18:21:46 | | 776 | 80a09abd
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds3.cfg | 03-24-2005 | 18:21:46 | | 494 | 12b568a7
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_bds3.bdsproj | 03-24-2005 | 18:21:48 | | 7788 | 7125cad6
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds3.res | 03-24-2005 | 18:21:46 | | 1536 | 73f0d375
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds3.dpk | 12-18-2005 | 19:27:06 | | 926 | 273ab35a
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds3.cfg | 12-18-2005 | 19:28:14 | | 494 | 12b568a7
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_bds3.bdsproj | 12-18-2005 | 19:27:06 | | 7781 | 9013428b
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb5.bpi | 03-24-2005 | 18:21:42 | | 37876 | a1541f92
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb4.bpi | 03-24-2005 | 18:21:42 | | 44148 | 990fa44c
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d7.dpk | 03-24-2005 | 18:21:48 | | 763 | c8c4b403
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d7.dof | 03-24-2005 | 18:21:44 | | 2040 | 6b28d123
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d7.cfg | 03-24-2005 | 18:21:46 | | 438 | dd910c85
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d7.res | 03-24-2005 | 18:21:44 | | 1536 | 5c1318
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d7.dpk | 10-09-2006 | 23:21:40 | | 1023 | d3dba4a4
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d7.dof | 10-09-2006 | 23:22:00 | | 2262 | 9c566624
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d7.cfg | 10-09-2006 | 23:22:00 | | 438 | dd910c85
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d7.res | 03-24-2005 | 18:21:44 | | 1536 | a55d4199
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\PythonEngine.dcr | 05-08-2005 | 19:04:38 | | 4120 | 2543f091
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_kylix.conf | 03-24-2005 | 18:21:44 | | 210 | 1edb9371
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_kylix.dpk | 03-24-2005 | 18:21:48 | | 741 | ca9939b8
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_kylix.kof | 03-24-2005 | 18:21:44 | | 692 | 5a0ccb56
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_kylix.res | 03-24-2005 | 18:21:44 | | 32 | 245d8dcd
+Made Dir: C:\Program Files\PythonForDelphi\Components\Include
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\unicodeobject.h | 03-24-2005 | 18:21:28 | | 30605 | 740afe4
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\ucnhash.h | 03-24-2005 | 18:21:26 | | 711 | 1e2a4ea8
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\tupleobject.h | 03-24-2005 | 18:21:28 | | 1627 | d68cd30a
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\traceback.h | 03-24-2005 | 18:21:28 | | 595 | 53019d84
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\token.h | 03-24-2005 | 18:21:28 | | 1735 | 30b3bea8
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\sysmodule.h | 03-24-2005 | 18:21:28 | | 762 | 11eaf3cd
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\symtable.h | 03-24-2005 | 18:21:28 | | 3720 | 7e7d0b3d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\structmember.h | 03-24-2005 | 18:21:28 | | 1957 | 6f9a75d3
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\stringobject.h | 03-24-2005 | 18:21:26 | | 4649 | fe2d3259
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\sliceobject.h | 03-24-2005 | 18:21:28 | | 1010 | f6b20e49
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\rangeobject.h | 03-24-2005 | 18:21:28 | | 640 | 4aca6d7d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pythread.h | 03-24-2005 | 18:21:28 | | 1493 | c0b64cdc
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pythonrun.h | 03-24-2005 | 18:21:28 | | 4597 | 63f17c5d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\Python.h | 03-24-2005 | 18:21:28 | | 3056 | eb1ddf8d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pystate.h | 03-24-2005 | 18:21:26 | | 2019 | 885bac13
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pyport.h | 03-24-2005 | 18:21:26 | | 12651 | f1fd21fa
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pymem.h | 03-24-2005 | 18:21:28 | | 5349 | 75d82ce
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pygetopt.h | 03-24-2005 | 18:21:28 | | 340 | 28c5fde6
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pyfpe.h | 03-24-2005 | 18:21:28 | | 8671 | 668d9456
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pyerrors.h | 03-24-2005 | 18:21:28 | | 4418 | 55b205ef
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pydebug.h | 03-24-2005 | 18:21:28 | | 564 | 7b474303
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\py_curses.h | 03-24-2005 | 18:21:28 | | 3668 | efbe0e6c
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\pgenheaders.h | 03-24-2005 | 18:21:28 | | 1386 | 9799775f
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\patchlevel.h | 03-24-2005 | 18:21:28 | | 1305 | d030e09a
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\parsetok.h | 03-24-2005 | 18:21:30 | | 641 | 90a401af
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\osdefs.h | 03-24-2005 | 18:21:28 | | 955 | 1dfb58fd
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\opcode.h | 03-24-2005 | 18:21:28 | | 4302 | 107c71ee
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\objimpl.h | 03-24-2005 | 18:21:28 | | 11245 | 50114d41
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\object.h | 03-24-2005 | 18:21:28 | | 21575 | fc554d78
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\node.h | 03-24-2005 | 18:21:28 | | 1052 | 6080caf6
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\moduleobject.h | 03-24-2005 | 18:21:28 | | 593 | fce9392a
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\modsupport.h | 03-24-2005 | 18:21:28 | | 3416 | a85d4f94
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\methodobject.h | 03-24-2005 | 18:21:28 | | 1897 | 1c9de46a
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\metagrammar.h | 03-24-2005 | 18:21:28 | | 271 | ba18b369
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\marshal.h | 03-24-2005 | 18:21:28 | | 734 | e15de1e2
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\longobject.h | 03-24-2005 | 18:21:28 | | 1585 | a7e27a6d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\longintrepr.h | 03-24-2005 | 18:21:28 | | 1826 | e0b642f6
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\listobject.h | 03-24-2005 | 18:21:28 | | 1849 | bdfc8495
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\intrcheck.h | 03-24-2005 | 18:21:28 | | 300 | 75802a20
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\intobject.h | 03-24-2005 | 18:21:28 | | 2313 | 2c25de5f
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\import.h | 03-24-2005 | 18:21:28 | | 1589 | 1fc0439d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\grammar.h | 03-24-2005 | 18:21:28 | | 2114 | 1617b00d
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\graminit.h | 03-24-2005 | 18:21:28 | | 1455 | fc75063b
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\funcobject.h | 03-24-2005 | 18:21:28 | | 1519 | 1c573793
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\frameobject.h | 03-24-2005 | 18:21:28 | | 2961 | 9c15bd03
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\floatobject.h | 03-24-2005 | 18:21:26 | | 753 | b29cf99b
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\fileobject.h | 03-24-2005 | 18:21:28 | | 983 | b63a79eb
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\eval.h | 03-24-2005 | 18:21:28 | | 266 | 3e87202e
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\errcode.h | 03-24-2005 | 18:21:28 | | 1156 | 320998cd
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\dictobject.h | 03-24-2005 | 18:21:28 | | 1283 | 88712122
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\cStringIO.h | 03-24-2005 | 18:21:28 | | 4150 | 6cac8ea9
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\complexobject.h | 03-24-2005 | 18:21:28 | | 1523 | 76c77f42
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\compile.h | 03-24-2005 | 18:21:28 | | 2530 | 31a29f68
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\codecs.h | 03-24-2005 | 18:21:28 | | 3477 | 85e476b7
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\cobject.h | 03-24-2005 | 18:21:28 | | 1747 | 511072a2
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\classobject.h | 03-24-2005 | 18:21:26 | | 2349 | c2d4561c
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\ceval.h | 03-24-2005 | 18:21:28 | | 3590 | 2822b678
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\cellobject.h | 03-24-2005 | 18:21:28 | | 664 | d5efdc8e
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\bufferobject.h | 03-24-2005 | 18:21:28 | | 962 | 58aa1dca
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\bitset.h | 03-24-2005 | 18:21:26 | | 824 | d621a5ce
+File Copy: C:\Program Files\PythonForDelphi\Components\Include\abstract.h | 03-24-2005 | 18:21:28 | | 33215 | 81bb210c
+File Copy: C:\Program Files\PythonForDelphi\Components\py21.lib | 03-24-2005 | 18:21:44 | | 81920 | d4c95303
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d6.res | 03-24-2005 | 18:21:44 | | 1536 | a55d4199
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d6.dpk | 03-24-2005 | 18:21:48 | | 763 | 56f1dc25
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d6.res | 03-24-2005 | 18:21:44 | | 1536 | 5c1318
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d6.dpk | 08-13-2005 | 22:42:20 | | 915 | b9768ee3
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\VarPyth.pas | 05-22-2006 | 23:38:30 | | 68371 | 2056ea4a
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\AtomPythonEngine.pas | 05-13-2005 | 12:25:48 | | 2483 | 54e1c0c8
+Made Dir: C:\Program Files\PythonForDelphi\Components\Sources\Vcl
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Vcl\PythonDatabase.pas | 03-24-2005 | 18:21:38 | | 1616 | d7fbccb
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Vcl\PythonDatabase.dcr | 03-24-2005 | 18:21:38 | | 484 | 6361af53
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Vcl\pyDBTables.pas | 03-24-2005 | 18:21:38 | | 52443 | 302c1067
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Vcl\pyDB.pas | 01-11-2006 | 20:54:58 | | 94751 | 5d9f80b4
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\PythonGUIInputOutput.pas | 10-08-2006 | 23:09:34 | | 11680 | 3ea57221
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\PythonEngine.pas | 10-11-2006 | 23:17:50 | | 343453 | b722e1b8
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\PythonAtom.pas | 12-19-2005 | 10:53:10 | | 19144 | 92af0978
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\MethodCallBack.pas | 06-04-2006 | 15:33:12 | | 10280 | c733b585
+File Copy: C:\Program Files\PythonForDelphi\Components\Sources\Core\Definition.Inc | 10-11-2006 | 23:20:46 | | 7518 | d0ac6d62
+File Copy: C:\Program Files\PythonForDelphi\Components\py15.lib | 03-24-2005 | 18:21:48 | | 41984 | b4bcf81c
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb3.bpk | 03-24-2005 | 18:21:44 | | 4917 | b25503c6
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb3.cpp | 03-24-2005 | 18:21:46 | | 810 | 6b12a00b
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb3.dpk | 03-24-2005 | 18:21:44 | | 653 | 8866561d
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb3.res | 03-24-2005 | 18:21:44 | | 1536 | 327438f2
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb4.bpk | 03-24-2005 | 18:21:44 | | 5919 | 9d429f8f
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb4.cfg | 03-24-2005 | 18:21:48 | | 302 | 9f955a61
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb4.cpp | 03-24-2005 | 18:21:46 | | 900 | 917f49f5
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb4.dpk | 03-24-2005 | 18:21:44 | | 765 | 90a819cd
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb4.res | 03-24-2005 | 18:21:44 | | 1536 | 3330fb43
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb5.bpk | 03-24-2005 | 18:21:44 | | 3022 | 5f967cff
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb5.cpp | 03-24-2005 | 18:21:46 | | 812 | c95e804d
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_cb5.res | 03-24-2005 | 18:21:44 | | 1536 | 3330fb43
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d3.dpk | 03-24-2005 | 18:21:44 | | 687 | dadce920
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d3.res | 03-24-2005 | 18:21:44 | | 692 | 665242a1
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d4.cfg | 03-24-2005 | 18:21:48 | | 329 | ec0b7b98
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d4.dpk | 03-24-2005 | 18:21:44 | | 872 | be27dfc9
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d4.res | 03-24-2005 | 18:21:44 | | 1536 | 5c1318
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d5.cfg | 10-11-2006 | 00:07:38 | | 390 | c9d1175b
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d5.dpk | 10-11-2006 | 00:02:48 | | 976 | 8b162f3
+File Copy: C:\Program Files\PythonForDelphi\Components\Python_d5.res | 03-24-2005 | 18:21:44 | | 1536 | 5c1318
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb3.bpk | 03-24-2005 | 18:21:44 | | 4732 | c1414771
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb3.cpp | 03-24-2005 | 18:21:46 | | 852 | 246a028c
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb3.dpk | 03-24-2005 | 18:21:44 | | 660 | 81256ae1
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb3.res | 03-24-2005 | 18:21:44 | | 1536 | 327438f2
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb4.bpk | 03-24-2005 | 18:21:44 | | 5530 | dbff318e
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb4.cfg | 03-24-2005 | 18:21:48 | | 302 | 9f955a61
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb4.cpp | 03-24-2005 | 18:21:46 | | 854 | 91920ca3
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb4.dpk | 03-24-2005 | 18:21:44 | | 761 | 30b1003c
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb4.res | 03-24-2005 | 18:21:44 | | 1536 | 3330fb43
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb5.bpk | 03-24-2005 | 18:21:44 | | 3114 | 1cdaeae2
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb5.cpp | 03-24-2005 | 18:21:46 | | 883 | a24cd935
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_cb5.res | 03-24-2005 | 18:21:44 | | 1536 | 3330fb43
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d3.dpk | 03-24-2005 | 18:21:48 | | 668 | 59dc5cc6
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d3.res | 03-24-2005 | 18:21:44 | | 32 | 245d8dcd
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d4.cfg | 03-24-2005 | 18:21:46 | | 302 | 9f955a61
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d4.dpk | 03-24-2005 | 18:21:48 | | 759 | dbdacfea
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d4.res | 03-24-2005 | 18:21:44 | | 1536 | 82959dfd
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d5.cfg | 03-24-2005 | 18:21:46 | | 302 | 9f955a61
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d5.dpk | 03-24-2005 | 18:21:48 | | 770 | d811585e
+File Copy: C:\Program Files\PythonForDelphi\Components\PythonVCL_d5.res | 03-24-2005 | 18:21:44 | | 1536 | a55d4199
+Made Dir: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\C++ Builder Notes.lnk
+Link Info: C:\Program Files\PythonForDelphi\C++ Builder Notes.txt | c:\sandbox\P4D\PythonForDelphi |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Changes.lnk
+Link Info: C:\Program Files\PythonForDelphi\Changes.txt | c:\sandbox\P4D\PythonForDelphi |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Deployment.lnk
+Link Info: C:\Program Files\PythonForDelphi\Deployment.txt | c:\sandbox\P4D\PythonForDelphi |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\pythonAtom.lnk
+Link Info: C:\Program Files\PythonForDelphi\pythonAtom.hlp | c:\sandbox\P4D\PythonForDelphi |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Readme.lnk
+Link Info: C:\Program Files\PythonForDelphi\Readme.txt | c:\sandbox\P4D\PythonForDelphi |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Tutorial.lnk
+Link Info: C:\Program Files\PythonForDelphi\Tutorial.txt | c:\sandbox\P4D\PythonForDelphi |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Home Site.lnk
+Link Info: C:\Program Files\PythonForDelphi\Home Site.URL |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Mark Hammond Pythonwin.lnk
+Link Info: C:\Program Files\PythonForDelphi\Mark Hammond Pythonwin.URL |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Python official site.lnk
+Link Info: C:\Program Files\PythonForDelphi\Python official site.URL |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Andy Bulka Tutorials.lnk
+Link Info: C:\Program Files\PythonForDelphi\Andy Bulka Tutorials.url |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Yahoo! Groups  pythonfordelphi.lnk
+Link Info: C:\Program Files\PythonForDelphi\Yahoo! Groups  pythonfordelphi.url |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Kylix Notes Read Me.lnk
+Link Info: C:\Program Files\PythonForDelphi\Kylix Notes.txt |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Documents and Settings\Gerard\Menu Démarrer\Programmes\Python for Delphi\Deploying P4D.lnk
+Link Info: C:\Program Files\PythonForDelphi\Deploying P4D.PDF |  |  | 0 | 1 | 0 | 
+RegDB Key: Software\Open Source\Python for Delphi\3.x
+RegDB Val: C:\PROGRA~1\PYTHON~1
+RegDB Name: MainPath
+RegDB Root: 2
+RegDB Key: Software\Open Source\Python for Delphi\3.x
+RegDB Val: C:\PROGRA~1\PYTHON~1\Components
+RegDB Name: ComponentsPath
+RegDB Root: 2
+Made Dir: C:\Program Files\PythonForDelphi\BACKUP
+File Delete: C:\PROGRA~1\PYTHON~1\P4D.dll
+Backup Copy: C:\Program Files\PythonForDelphi\BACKUP\P4D.dll
+User Rights: Admin

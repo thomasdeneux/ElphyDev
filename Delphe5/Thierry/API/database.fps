@@ -1,0 +1,1204 @@
+Hpage JDBC; { JDBC }
+{$P
+ JDBC signifie Java Data Base Connectivity
+ C'est une API qui permet aux programmes JAVA d'accéder à toutes sortes de bases de données
+à condition de disposer des bons drivers
+ Ce système a été implémenté pour Delphi sous la forme d'une librairie appelée ZeosLib et
+nous avons utilisé Zeoslib pour implémenter JDBC dans Elphy.
+
+ Nous avons essayé de suivre au plus près la syntaxe originale pour faire en sorte que l'abondante
+littérature disponible sur le web puisse servir de documentation pour l'accès aux bases de données via Elphy
+
+ Actuellement, Elphy gère l'accès à un seul type de serveur (postgresql) mais il serait facile de mettre en
+place l'accès à d'autres types de serveurs.
+
+
+}
+
+Object
+  TDBconnection (Tobject)
+{$H Objet permettant la gestion d'une base de données.
+
+  La base proprement dite, qu'elle soit locale ou distante, doit être créée en dehors de Elphy.
+  TDBconnection permet d'établir la connection avec cette base ( voir create@ ) , d'ajouter ou modifier des données
+ou de consulter ces données.
+
+}
+
+  TDBUnic (Tobject)
+{$H Objet permettant d'accéder à la base de données.
+
+}
+
+  TDBModel (Tobject)
+{$H Objet permettant d'accéder aux propriétés d'une table de la base de données.
+
+}
+
+  TDBQuerySet (Tobject)
+{$H Objet représentant une liste de TDBObject@.
+
+}
+
+  TDBManager (Tobject)
+{$H Objet représentant une entité responsable de l'insertion et de la recherche d'enregistrement dans la base de données.
+
+}
+
+  TDBresultset(Tobject)
+{$H Objet contenant le résultat d'une requête SQL
+
+ On considère que le résultat d'une requête SQL est un tableau de données auquel
+on accède ligne par ligne.
+
+ La méthode Next@ permet de sélectionner la ligne suivante du tableau. Juste après la requête,
+aucune ligne n'est sélectionnée, il faut appeler Next pour sélectionner la première ligne.
+
+}
+  TDBconnectionMetadata (Tobject)
+  TDBstatement (Tobject)
+  TDBPreparedStatement (TDBstatement)
+  TDBCallableStatement (TDBPreparedStatement)
+  TDBresultsetMetadata (Tobject)
+  TDBBlob (Tobject)
+  TDBNotification (Tobject)
+  TDBSequence (Tobject)
+
+  TDBrecord(Tobject)
+{$H Permet de manipuler une liste de données.
+
+ Un objet TDBrecord contient une liste de couples nom+valeur ,
+valeur pouvant être un entier, un réel, un booléen ou une chaine
+de caractères.
+
+ La propriété clé est ImplicitValue@
+
+ TDBrecord est utilisé par (TDBconnection.insertDBrecord)@(TDBconnection.insertDBrecord)
+
+}
+
+  TDBObject (Tobject)
+{$H Objet représentant une ligne d'une table de la base de données. Ajoute de nouvelles fonctionnalités a la classe TDBrecord@.
+
+}
+
+  TDBgrid(TwinObject)
+{$H L'objet TDBgrid permet d'afficher les données contenues dans un objet TDBresultset@
+
+  Le constructeur create@ contient un seul paramètre qui est l'objet TDBresultset que l'on veut visualiser.
+
+  Il suffit ensuite d'appeler la méthode show@ pour voir la grille dans une fenêtre.
+  On peut aussi ranger cette fenêtre dans un cadre de Tmultigraph@ au moyen de (Tmultigraph.AddObjectEx)@(Tmultigraph.AddObjectEx)
+
+  Les propriétés de la grille peuvent être modifiées: largeur et hauteur des colonnes (DefaultColWidth@, DefaultRowHeight@ ,ColWidths@ ),
+jeu de caractères utilisé (font@) , couleurs ( color@, FixedColor@ ), Visibilité des noms de colonnes et de rangées ( FirstColVisible@,
+FirstRowVisible@ ).
+
+  Le gestionnaire d'événements OnSelectCell@ permet de réagir à la sélection d'une cellule.
+
+  Les colonnes et les lignes sont numérotées en commençant à la valeur zéro.
+
+  La colonne 0 contient les numéros de lignes
+  La rangée 0 contient les noms des colonnes.
+
+  En modifiant FirstColVisible@ et FirstRowVisible@, on peut masquer la colonne 0 et la ligne 0 mais cela ne change pas la numérotation.
+
+}
+
+end;
+
+  Const
+        {$T types SQL }
+
+{$H Constantes utilisées par TDBconnection@
+}
+  sql_Unknown=        0;
+  sql_Boolean=        1;
+  sql_Shortint=       2;
+  sql_Smallint=       3;
+  sql_Integer=        4;
+  sql_Long=           5;
+  sql_Single=         6;
+  sql_Double=         7;
+  sql_BigDecimal=     8;
+  sql_String=         9;
+  sql_UnicodeString= 10;
+  sql_Bytes=         11;
+  sql_Date=          12;
+  sql_Time=          13;
+  sql_Timestamp=     14;
+  sql_AsciiStream=   15;
+  sql_UnicodeStream= 16;
+  sql_BinaryStream=  17;
+
+
+procedure DBgetSupportedProtocols(var memo:TMemo);
+
+procedure TDBconnection.create(protocol,host:string;port:integer;base,user,password:string);
+{$H Constructeur de l'objet TDBconnection@
+
+ La méthode établit la connection avec le serveur. Une erreur est générée si cela est impossible.
+
+ Protocol est le nom du protocol utilisé. Par défaut, si on laisse la chaîne vide, c'est le protocole posgresql-8
+qui est utilisé.
+ Un grand nombre de protocoles sont disponibles dans la bibliothèque Zeos mais actuellement, seul postgresql-8
+a été testé.
+
+ Host est le nom de la machine serveur. Par défaut, si la chaîne host est laissée vide, sa valeur est 'localhost'.
+
+ Port est le numéro du port utilisé.
+
+ Base est le nom de la base de données
+ User est le nom d'utilisateur
+ Password est le mot de passe
+}
+
+
+procedure TDBconnection.CreateStatement(var ss: TDBstatement);
+procedure TDBconnection.PrepareStatement(SQL: string;var  ss:TDBPreparedStatement);
+procedure TDBconnection.PrepareCall(SQL: string;var ss: TDBCallableStatement);
+
+procedure TDBconnection.CreateStatementWithParams(var Info: Tmemo;var ss:TDBstatement);
+procedure TDBconnection.PrepareStatementWithParams(SQL: string; var Info: Tmemo;var ss:TDBPreparedStatement);
+procedure TDBconnection.PrepareCallWithParams(SQL: string; var Info: Tmemo;var ss:TDBCallableStatement);
+
+function TDBconnection.NativeSQL(SQL: string): string;
+
+property TDBconnection.AutoCommit: Boolean;
+
+
+property TDBconnection.Metadata: TDBconnectionMetadata readonly;
+property TDBconnection.IsReadOnly: Boolean;
+
+property TDBconnection.Catalog: string;
+
+property TDBconnection.TransactionIsolation:integer;
+
+procedure TDBconnection.commit;
+procedure TDBconnection.rollback;
+
+
+procedure TDBconnection.insertDBrecord(tableName:string;var db:TdbRecord);
+{$H Ajoute un nouvel enregistrement dans la table de nom tableName.
+
+ Les données introduites sont contenues dans un objet de type TDBrecord@.
+}
+
+
+{**** TDBModel ****}
+
+procedure TDBModel.Create(table:String);
+{$H Crée un objet de type TDBModel@ à partir d'une table de la base de données.
+
+}
+
+function TDBModel.hasKey(key:String):Boolean;
+{$H Indique si la chaîne 'key' fait bien partie des champs du modèle.
+
+}
+
+function TDBModel.isPKey(key:String):Boolean;
+{$H Indique si la chaîne 'key' fait bien partie des champs constituant la clef primaire du modèle.
+
+}
+
+function TDBModel.isFKey(key:String):Boolean;
+{$H Indique si la chaîne 'key' fait bien partie de l'ensemble des clefs étrangères du modèle.
+
+}
+
+function TDBModel.nPKeys:Integer;
+{$H Renvoie le nombre de champs constituant la clef primaire du modèle.
+
+}
+
+function TDBModel.nFKeys:Integer;
+{$H Renvoie le nombre de clefs étrangères du modèle.
+
+}
+
+function TDBModel.getTable:String;
+{$H Renvoie le nom de la table de la base de données relative au modèle.
+
+}
+
+function TDBModel.getConstraint(key:String):String;
+{$H Renvoie le type de contrainte du champ 'key' du modèle.
+
+}
+
+function TDBModel.getType(key:String):String;
+{$H Renvoie le type du champ 'key' du modèle.
+
+}
+
+procedure TDBModel.getFields(var memo:TMemo);
+{$H Stocke dans un object TMemo@ les champs constituant le modèle.
+
+}
+
+procedure TDBModel.getPKeys(var memo:TMemo);
+{$H Stocke dans un TMemo@ les champs constituant les clefs primaires du modèle.
+
+}
+
+procedure TDBModel.getFKeys(var memo:TMemo);
+{$H Stocke dans un TMemo@ les champs correspondant aux clefs étrangères du modèle.
+
+}
+
+procedure TDBModel.getLookup(key:String;var memo:TMemo);
+{$H Stocke dans un TMemo@ la combinaison des tables et champs référencés à partir de la clef étrangère 'key' du modèle.
+
+}
+
+{**** TDBQuerySet ****}
+
+procedure TDBQuerySet.Create;
+{$H Crée un objet de type TDBQuerySet@ qui stocke une liste de TDBObject@.
+
+  NB : En pratique il n'y a pas besoin d'utiliser cette fonction puisque c'est un TDBManager@ qui génère automatiquement ce type d'objet.
+
+}
+
+procedure TDBQuerySet.remove;
+{$H Retire à la fois les objets contenus dans un TDBQuerySet@ et leur alter ego dans la base de données.
+
+}
+
+procedure TDBQuerySet.getObject(index:Integer;var dbobject:TDBObject);
+{$H Sélectionne l'objet d'indice 'index' situé dans un TDBQuerySet@.
+
+}
+
+procedure TDBQuerySet.getResultSet(var resultset:TDBResultSet);
+{$H Convertit la liste d'objets contenus dans le TDBQuerySet@ en un TDBResultSet@.
+
+}
+
+procedure TDBQuerySet.clear;
+{$H Efface le contenu d'un objet TDBQuerySet@ sans affecter la base de données.
+
+}
+
+function TDBQuerySet.countObjects:Integer;
+{$H Renvoie le nombre d'objets contenu dans un objet TDBQuerySet@.
+
+}
+
+{**** TDBManager ****}
+
+procedure TDBManager.Create(var model:TDBModel);
+{$H Crée un objet de type TDBManager@ responsable de l'insertion et de la recherche d'objets de type TDBObject à partir du TDBModel@ 'model'.
+
+}
+
+procedure TDBManager.get(where:String;var dbobject:TDBObject);
+{$H Renvoie un TDBObject@ correspondant à la condition SQL 'where'.
+
+}
+
+procedure TDBManager.all(order:String;var qset:TDBQuerySet);
+{$H Renvoie la liste de tous les TDBObject@ classés suivant l'ordre défini par 'order'.
+
+}
+
+procedure TDBManager.filter(where,order:String;var qset:TDBQuerySet);
+{$H Renvoie la liste de tous les TDBObject@ correspondant à la condition SQL 'where' classés suivant l'ordre défini par 'order'.
+
+}
+
+procedure TDBManager.search(join,where,order:String;var qset:TDBQuerySet);
+{$H Renvoie la liste de tous les TDBObject@ correspondant à la jointure 'join' et la condition SQL 'where' et classés suivant l'ordre défini par 'order'.
+
+}
+
+procedure TDBManager.insert(var dbobject:TDBObject;commit:Boolean);
+{$H Insère un TDBObject@ dans la base de données.
+
+}
+
+
+
+{************************************************** TDBstatement *****************************}
+
+procedure TDBstatement.ExecuteQuery(SQL: string;var ss:TDBresultset);
+procedure TDBstatement.ExecuteQuery(var SQL: Tmemo;var ss:TDBresultset);
+{$H Envoie une commande SQL renvoyant un résultat.
+
+ L'argument peut être soit une chaîne, soit un objet Tmemo@.
+
+ Les résultats sont dans l'objet ss de type TDBresultset@
+}
+
+function TDBstatement.ExecuteUpdate(SQL: string): Integer;
+function TDBstatement.ExecuteUpdate(var SQL:Tmemo): Integer;
+{$H Envoie une commande SQL ne renvoyant pas de résultat.
+
+ L'argument peut être soit une chaîne, soit un objet Tmemo@.
+}
+
+property TDBstatement.FetchDirection:integer;
+property TDBstatement.FetchSize: Integer;
+property TDBstatement.ResultSetConcurrency:integer;
+property TDBstatement.ResultSetType:integer;
+property TDBstatement.PostUpdates:integer;
+property TDBstatement.LocateUpdates:integer;
+
+
+procedure TDBstatement.Close;
+
+{*************************************************** TDBPreparedStatement *********************}
+
+procedure TDBPreparedStatement.ExecuteQueryPrepared(var ss: TDBresultset);
+function TDBPreparedStatement.ExecuteUpdatePrepared: Integer;
+function TDBPreparedStatement.ExecutePrepared: Boolean;
+
+procedure TDBPreparedStatement.SetDefaultValue(ParameterIndex: Integer; Value: string);
+
+procedure TDBPreparedStatement.SetNull(ParameterIndex: Integer; SQLType: integer);
+procedure TDBPreparedStatement.SetBoolean(ParameterIndex: Integer; Value: Boolean);
+procedure TDBPreparedStatement.setShortint(ParameterIndex: Integer; Value: ShortInt);
+procedure TDBPreparedStatement.setSmallint(ParameterIndex: Integer; Value: SmallInt);
+procedure TDBPreparedStatement.SetInteger(ParameterIndex: Integer; Value: Integer);
+procedure TDBPreparedStatement.SetSingle(ParameterIndex: Integer; Value: Single);
+procedure TDBPreparedStatement.SetDouble(ParameterIndex: Integer; Value: Double);
+procedure TDBPreparedStatement.SetString(ParameterIndex: Integer; Value: string);
+
+procedure TDBPreparedStatement.SetElphyObject(ParameterIndex: Integer; var obj:Tobject);
+
+procedure TDBPreparedStatement.ClearParameters;
+
+{**************************************** Callable SQL statement ****************}
+
+procedure TDBCallableStatement.RegisterOutParameter(ParameterIndex: Integer; SQLType: Integer);
+function TDBCallableStatement.WasNull: Boolean;
+
+function TDBCallableStatement.IsNull(ParameterIndex: Integer): Boolean;
+function TDBCallableStatement.GetString(ParameterIndex: Integer): string;
+function TDBCallableStatement.GetBoolean(ParameterIndex: Integer): Boolean;
+function TDBCallableStatement.GetShortint(ParameterIndex: Integer): ShortInt;
+function TDBCallableStatement.GetSmallint(ParameterIndex: Integer): SmallInt;
+function TDBCallableStatement.GetInteger(ParameterIndex: Integer): Integer;
+function TDBCallableStatement.GetSingle(ParameterIndex: Integer): Single;
+function TDBCallableStatement.GetDouble(ParameterIndex: Integer): Double;
+
+
+
+{***************************************** TDBresultset ***************************}
+
+procedure TDBResultSet.Create;
+function TDBresultset.Next: Boolean;
+procedure TDBresultset.Close;
+function TDBresultset.WasNull: Boolean;
+
+function TDBresultset.IsNull(ColumnIndex: Integer): Boolean;
+function TDBresultset.IsNull(ColumnName: string): Boolean;
+
+function TDBresultset.GetString(ColumnIndex: Integer): string;
+function TDBresultset.GetString(ColumnName: string): string;
+
+function TDBresultset.GetBoolean(ColumnIndex: Integer): Boolean;
+function TDBresultset.GetBoolean(ColumnName: string): Boolean;
+
+function TDBresultset.GetShortint(ColumnIndex: Integer): ShortInt;
+function TDBresultset.GetShortint(ColumnName: string): ShortInt;
+
+function TDBresultset.GetSmallint(ColumnIndex: Integer): SmallInt;
+function TDBresultset.GetSmallint(ColumnName: string): SmallInt;
+
+function TDBresultset.GetInteger(ColumnIndex: Integer): Integer;
+function TDBresultset.GetInteger(ColumnName: string): Integer;
+
+function TDBresultset.GetSingle(ColumnIndex: Integer): Single;
+function TDBresultset.GetSingle(ColumnName: string): Single;
+
+function TDBresultset.GetDouble(ColumnIndex: Integer): Double;
+function TDBresultset.GetDouble(ColumnName: string): Double;
+
+procedure TDBresultset.GetElphyObject(ColumnIndex: Integer; var obj:Tobject);
+procedure TDBresultset.GetElphyObject(ColumnName:string; var obj:Tobject);
+
+property TDBresultset.Metadata: TDBresultsetMetadata readonly;
+function TDBresultset.FindColumn(ColumnName: string): Integer;
+
+function TDBresultset.IsBeforeFirst: Boolean;
+function TDBresultset.IsAfterLast: Boolean;
+function TDBresultset.IsFirst: Boolean;
+function TDBresultset.IsLast: Boolean;
+procedure TDBresultset.BeforeFirst;
+procedure TDBresultset.AfterLast;
+function TDBresultset.First: Boolean;
+function TDBresultset.Last: Boolean;
+function TDBresultset.GetRow: Integer;
+function TDBresultset.MoveAbsolute(Row: Integer): Boolean;
+function TDBresultset.MoveRelative(Rows: Integer): Boolean;
+function TDBresultset.Previous: Boolean;
+
+function TDBresultset.RowUpdated: Boolean;
+function TDBresultset.RowInserted: Boolean;
+function TDBresultset.RowDeleted: Boolean;
+
+procedure TDBresultset.UpdateNull(ColumnIndex: Integer);
+procedure TDBresultset.UpdateNull(ColumnName: string);
+
+procedure TDBresultset.UpdateBoolean(ColumnIndex: Integer; Value: Boolean);
+procedure TDBresultset.UpdateBoolean(ColumnName: string; Value: Boolean);
+
+procedure TDBresultset.UpdateShortint(ColumnIndex: Integer; Value: ShortInt);
+procedure TDBresultset.UpdateShortint(ColumnName: string; Value: ShortInt);
+
+procedure TDBresultset.UpdateSmallint(ColumnIndex: Integer; Value: SmallInt);
+procedure TDBresultset.UpdateSmallint(ColumnName: string; Value: SmallInt);
+
+procedure TDBresultset.UpdateInteger(ColumnIndex: Integer; Value: Integer);
+procedure TDBresultset.UpdateInteger(ColumnName: string; Value: Integer);
+
+procedure TDBresultset.UpdateSingle(ColumnIndex: Integer; Value: Single);
+procedure TDBresultset.UpdateSingle(ColumnName: string; Value: Single);
+
+procedure TDBresultset.UpdateDouble(ColumnIndex: Integer; Value: Double);
+procedure TDBresultset.UpdateDouble(ColumnName: string; Value: Double);
+
+procedure TDBresultset.UpdateString(ColumnIndex: Integer; Value: string);
+procedure TDBresultset.UpdateString(ColumnName: string; Value: string);
+
+procedure TDBresultset.UpdateElphyObject(ColumnIndex: Integer; var obj:Tobject);
+procedure TDBresultset.UpdateElphyObject(ColumnName: string; var obj:Tobject);
+
+
+procedure TDBresultset.InsertRow;
+procedure TDBresultset.UpdateRow;
+procedure TDBresultset.DeleteRow;
+procedure TDBresultset.RefreshRow;
+procedure TDBresultset.CancelRowUpdates;
+procedure TDBresultset.MoveToInsertRow;
+procedure TDBresultset.MoveToCurrentRow;
+
+procedure TDBresultset.show;
+
+procedure TDBresultset.getDBrecord(var db:TDBrecord;num:integer);
+procedure TDBresultset.setDBrecord(var db:TDBrecord;num:integer);
+procedure TDBresultset.deleteDBrecord(num:integer);
+procedure TDBresultset.insertDBrecord(var db:TDBrecord);
+function TDBresultset.RowCount:integer;
+
+
+{********************************************* ResultSet metadata *********************}
+
+function TDBresultsetMetadata.GetColumnCount: Integer;
+function TDBresultsetMetadata.IsAutoIncrement(Column: Integer): Boolean;
+function TDBresultsetMetadata.IsCaseSensitive(Column: Integer): Boolean;
+function TDBresultsetMetadata.IsSearchable(Column: Integer): Boolean;
+function TDBresultsetMetadata.IsCurrency(Column: Integer): Boolean;
+function TDBresultsetMetadata.IsNullable(Column: Integer): integer;
+
+function TDBresultsetMetadata.IsSigned(Column: Integer): Boolean;
+function TDBresultsetMetadata.GetColumnDisplaySize(Column: Integer): Integer;
+function TDBresultsetMetadata.GetColumnLabel(Column: Integer): string;
+function TDBresultsetMetadata.GetColumnName(Column: Integer): string;
+function TDBresultsetMetadata.GetSchemaName(Column: Integer): string;
+function TDBresultsetMetadata.GetPrecision(Column: Integer): Integer;
+function TDBresultsetMetadata.GetScale(Column: Integer): Integer;
+function TDBresultsetMetadata.GetTableName(Column: Integer): string;
+function TDBresultsetMetadata.GetCatalogName(Column: Integer): string;
+function TDBresultsetMetadata.GetColumnType(Column: Integer): integer;
+function TDBresultsetMetadata.GetColumnTypeName(Column: Integer): string;
+function TDBresultsetMetadata.IsReadOnly(Column: Integer): Boolean;
+function TDBresultsetMetadata.IsWritable(Column: Integer): Boolean;
+function TDBresultsetMetadata.IsDefinitelyWritable(Column: Integer): Boolean;
+function TDBresultsetMetadata.GetDefaultValue(Column: Integer): string;
+
+
+{  Compléments à Tdialog   }
+
+procedure Tdialog.setDBresultSet(var Rset:TDBresultSet);
+procedure Tdialog.setDBnavigator;
+
+function Tdialog.getDBInteger(titre:String;n,FieldNum:integer):integer;
+function Tdialog.getDBInteger(titre:String;n,FieldNum,id:integer):integer;
+function Tdialog.getDBInteger(titre:String;n:integer;FieldName:string):integer;
+function Tdialog.getDBInteger(titre:String;n:integer;FieldName:string;id:integer):integer;
+
+
+function Tdialog.getDBReal(titre:String;n,m,FieldNum:integer):integer;
+function Tdialog.getDBReal(titre:String;n,m,FieldNum,id:integer):integer;
+function Tdialog.getDBReal(titre:String;n,m:integer;FieldName:string):integer;
+function Tdialog.getDBReal(titre:String;n,m:integer;FieldName:string;id:integer):integer;
+
+
+function Tdialog.getDBString(titre:String;n,FieldNum:integer):integer;
+function Tdialog.getDBString(titre:String;n,FieldNum,id:integer):integer;
+function Tdialog.getDBString(titre:String;n:integer;FieldName:string):integer;
+function Tdialog.getDBString(titre:String;n:integer;FieldName:string;id:integer):integer;
+
+
+{ TDBrecord }
+
+Const
+{$T Types de donnée utilisés par TDBrecord}
+
+{$H Les constantes suivantes sont utilisées par la propriété Vtype@(TDBrecord.Vtype) de TDBrecord@
+
+}
+  gv_Null    = 0;
+  gv_Boolean = 1;
+  gv_Integer = 2;
+  gv_Float   = 3;
+  gv_String  = 4;
+  gv_DateTime= 5;
+  gv_Object  = 6;
+
+
+
+procedure TDBrecord.create;
+{$H Constructeur de l'objet TDBrecord
+}
+procedure TDBrecord.AddField(st:string;tp:integer);
+{$H Ajoute un champ de nom st dans la liste de données
+
+ Il n'est pas nécessaire d'utiliser cette méthode car le simple fait de ranger une
+valeur dont le nom n'existe pas crée un nouveau champ.
+}
+procedure TDBrecord.DeleteField(st:string);
+{$H Supprime le champ de nom st de la liste
+}
+
+procedure TDBrecord.clear;
+{$H Supprime tous les champs de la liste.
+}
+
+function TDBrecord.FieldExists(st:string):boolean;
+{$H Indique si le champ de nom st existe.
+}
+
+property TDBrecord.ImplicitValue(stName:string):variant implicit;
+{$H Propriété clé de TDBrecord
+
+ ImplicitValue introduit pour la première fois deux nouvelles notions: le type VARIANT
+et la directive IMPLICIT
+
+ Une propriété de type variant peut contenir une donnée de n'importe quel type simple,
+à savoir un entier, un réel, un booléen ou une chaine de caractères.
+
+ Il est donc toujours légal de faire les affectations:
+ @f6       ImplicitValue['X']:='Hello'
+ @f6       ImplicitValue['X']:=125;
+ @f6       ImplicitValue['X']:=FALSE;
+
+
+ En sens inverse, si on veut ranger un variant dans une variable, il faut que la donnée
+contenue dans le variant soit compatible avec la variable, sinon une erreur d'exécution
+est générée.
+
+ Exemple: si w est de type real, l'instruction
+ @f6            w:=ImplicitValue['X'];
+
+ générera une erreur si le variant contient autre chose qu'un réel ou un entier.
+
+ Le mot clé IMPLICIT signifie que l'écriture suivante (où db est un objet TDBrecord)
+ @f6       db.ImplicitValue['FileName']
+ peut être remplacée par
+ @f6       db.FileName
+
+ En fait, quand le compilateur rencontrera une propriété inconnue, il considèrera
+qu'il s'agit du paramètre de la propriété implicite.
+
+ Pour revenir à TDBrecord, la propriété ImplicitValue permet de manipuler la donnée de nom stName.
+ En écriture, s'il existe déjà une donnée de nom stName, sa valeur est modifiée. Sinon, la donnée est ajoutée
+à la liste.
+ En lecture, une erreur est générée si le nom n'existe pas.
+}
+
+property TDBrecord.count:integer readonly;
+{$H Nombre de champs de l'objet }
+
+property TDBrecord.Vtype(n:integer):integer readonly;
+{$H Renvoie le type de donnée contenue dans le champ de numéro n
+
+ n doit être compris entre 1 et count
+ Le type est renvoyé sous la forme d'un nombre entier dont la signification est
+donnée par les (constantes de type)@(Types de donnée utilisés par TDBrecord)
+
+}
+property TDBrecord.Names(n:integer):string readonly;
+{$H Noms des champs contenus dans l'objet
+
+  n doit être compris entre 1 et count
+}
+property TDBrecord.ValString(n:integer):string readonly;
+{$H Renvoie le contenu de n'importe quel champ sous la forme d'une chaine de caractères.
+
+  n doit être compris entre 1 et count
+
+}
+
+{**** TDBObject ****}
+
+procedure TDBObject.create;
+{$H Crée un nouveau TDBObject@.
+
+}
+
+procedure TDBObject.save(commit:Boolean);
+{$H Met à jour les propriétés de l'objet dans la base de données.
+
+ - commit : indique si la base de données doit être automatiquement mise à jour
+
+}
+
+procedure TDBObject.remove(commit:Boolean);
+{$H Efface le TDBObject de la base de données.
+
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+
+procedure TDBObject.AddField(st:string;tp:integer);
+procedure TDBObject.DeleteField(st:string);
+procedure TDBObject.clear;
+function TDBObject.FieldExists(st:string):boolean;
+property TDBObject.ImplicitValue(stName:string):variant implicit;
+property TDBObject.count:integer readonly;
+property TDBObject.Vtype(n:integer):integer readonly;
+property TDBObject.Names(n:integer):string readonly;
+property TDBObject.ValString(n:integer):string readonly;
+
+{**** Shortcuts ****}
+{**** For string manipulations ****}
+procedure splitString(st,separator:String;var memo:TMemo);
+procedure replaceString(source,target:String;var st:String);
+
+
+function dbUnic:TDBUnic;
+{$H Correspond à l'objet unique TDBUnic@ qui interagit avec le système de base de données.
+
+}
+
+procedure TDBUnic.initConnection(protocol,host:String;port:Integer;database,login,password:String);
+{$H Connecte Elphy à la base de données :
+
+ - protocol : protocole utilisé (par défaut utiliser '')
+ - host : adresse IP du serveur (local:127.0.0.1)
+ - port : port de communication du serveur (choisir par défaut 5432)
+ - database : name of the database
+ - login : identifiant de l'utilisateur
+ - password : mot de passe
+
+}
+
+procedure TDBUnic.closeConnection;
+{$H Déconnecte Elphy de la base de données
+
+}
+
+procedure TDBUnic.launchCommit;
+{$H Force l'insertion des données dans la base.
+
+}
+
+{**** For Analysis Model Install and Uninstall ****}
+procedure TDBUnic.installAnalysisModel;
+{$H Installe le modèle utile au stockage des analyses.
+
+}
+
+procedure TDBUnic.uninstallAnalysisModel;
+{$H Désinstalle le modèle utile au stockage des analyses.
+
+}
+
+procedure TDBUnic.getModels(var memo:TMemo);
+{$H Stocke la liste des tables présentes dans la base de données.
+
+}
+
+{**** For Analysis Types Definition, Updates and deletion ****}
+procedure TDBUnic.defineAnalysisType(id,usecase,path:String;commit:Boolean);
+{$H Défini un nouveau type d'analyse dans la base de données :
+ - id : identifiant de l'analyse
+ - usecase : ce qu'est supposé faire le type d'analyse
+ - path : la localisation du fichier contentna le programme qui réalise le type d'analyse
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.renameAnalysisType(old_id,new_id:String;commit:Boolean);
+{$H Donne un nouvel identifiant 'new_id' à l'analyse nommée 'old_id' :
+ - old_id : l'identifiant actuel du type d'analyse
+ - new_id : le nouvel identifiant
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.relocateAnalysisType(id,new_path:String;commit:Boolean);
+{$H Relocalise le type d'analyse :
+ - id : l'identifiant du type d'analyse
+ - new_path : le nouveau chemin du fichier contenant le programme d'analyse
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.explainAnalysisType(id,usecase:String;commit:Boolean);
+{$H Redéfinit l'explication de l'analyse :
+ - id : l'identifiant du type d'analyse
+ - usecase : la nouvelle explication
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.removeAnalysisType(id:String;commit:Boolean);
+{$H Efface un type d'analyse ainsi que toutes les entrées/sortie/analyses qui en sont dépendentes :
+ - id : l'identifiant du type d'analyse
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.defineInputOutput(analysis_type,name,iotype,iocoding,usecase:String;commit:Boolean);
+{$H Définit une nouvelle entrée/sortie pour un type d'analyse :
+ - analysis_type : l'identifiant du type d'analyse
+ - name : l'identifiant de l'entrée/sortie
+ - usecase : le rôle de l'entrée/sortie
+ - iotype : spécifie si on a affaire à une Entrées (Input) ou un sortie (Output)
+ - iocoding : le type de codage correspondant à l'entrée/sortie choisi parmi [str,int,bool,float,file]
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.removeInputOutput(analysis_type,name:String;commit:Boolean);
+{$H Efface une entrée/sortie et les valeurs qu'elle peut prendre dans un analyse
+
+ - analysis_type : l'identifiant du type d'analyse
+ - name : l'identifiant de l'entrée/sortie
+ - commit : indique si la base de données doit être automatiquement mise à jour
+
+}
+
+procedure TDBUnic.renameInputOutput(analysis_type,old_name,new_name:String;commit:Boolean);
+{$H Renomme une entrée/sortie :
+ - analysis_type : l'identifiant du type d'analyse
+ - old_name : ancien identifiant de l'entrée/sortie
+ - new_path : nouvel identifiant de l'entrée/sortie
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.explainInputOutput(analysis_type,name,usecase:String;commit:Boolean);
+{$H Redéfinit le rôle de l'entrée/sortie dans un type d'analyse :
+ - analysis_type : l'identifiant du type d'analyse
+ - name : l'identifiant de l'entrée/sortie
+ - usecase : le nouveau rôle de l'entrée/sortie
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.storeAnalysis(var analysis_object:TDBObject;commit:Boolean);
+{$H Stores a complete analysis :
+ - analysis_object : le TDBObject@ qui contient tous les paramètres de l'analyse, il doit contenir ces champs :
+
+  + id : l'identifiant de l'analyse
+  + component : le nom du type d'analyse relatif à cette nouvelle analyse
+  + si in1 ... inN and out1 ... outM correspondent à  des noms d'entrées/sorties d'un type d'analyse, le TDBObject@ doit contenir des champs qui portent le même nom
+
+  Un champ nommé 'comments' peut être ajouté pour stocker un commentaire spécifique sur l'analyse
+
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.removeAnalysis(id:String;commit:Boolean);
+{$H Efface une analyse :
+ - id : l'identifiant de l'analyse
+ - commit : indique si la base de données doit être automatiquement mise à jour
+}
+
+procedure TDBUnic.getAnalyses(analysis_type,condition,order:String;var resultset:TDBResultSet);
+{$H Stocke la liste de toutes les analyses d'un type d'analyse 'analysis_type' donné respectant la condition 'condition' dans un TDBResultSet@ 'resultset'
+ - id : l'identifiant du type d'analyse
+ - condition : la clause SQL 'WHERE' qui permet de filtrer les analyses
+ - order : ordre de tri
+ - resultset : le TDBResultSet@ qui contiendra le résultat
+
+ Example :
+
+     getAnalyses('myAnalysisType', '"Input1" > 10 AND "Input1" < 20 AND "Output" > 100', 'Input1', resultset);
+
+ NB :
+     Sachant que 'condition' est du SQL, si les entrées/sorties contiennent des majuscules, la condition doit être encadrée par des guillemets (").
+
+}
+
+procedure TDBUnic.getStatistics(var resultset:TDBResultSet);
+{$H Calcule diverses statistiques sur l'ensemble des analyses contenues dans le TDBResultSet@ 'resultset'
+
+ NB : As getStatistics needs the SQL script generated during getAnalyses, it is necessary to launch getAnalyses before getStatistics.
+
+}
+
+procedure TDBUnic.getAnalysesAsObjects(analysis_type,condition,order:String;var queryset:TDBQuerySet);
+{$H Stockes toutes les analyses correspondant à un type d'analyse spécifique et respectant une condition spécifique sous forme de TDBQuerySet@
+ - id : l'identifiant du type d'analyse
+ - condition : la clause SQL 'WHERE' qui permet de filtrer les analyses
+ - order : ordre de tri
+ - queryset: la liste des TDBObject@ correspondant à la condition SQL
+
+ Example :
+
+     getAnalyses('myAnalysisType', '"Input1" > 10 AND "Input1" < 20 AND "Output" > 100', 'Input1', queryset);
+
+ NB :
+     Sachant que 'condition' est du SQL, si les entrées/sorties contiennent des majuscules, la condition doit être encadrée par des guillemets (").
+
+
+}
+
+{**** TDBGrid ****}
+procedure TDBgrid.create(src:TDBresultSet);
+{$H Constructeur de TDBgrid
+
+ src est l'objet TDBresultSet qui sera visualisé dans la grille.
+
+}
+
+property TDBgrid.ShowButtons:boolean;
+{$H Autorise l'affichage des boutons
+}
+
+property TDBgrid.CanModify:boolean;
+{$H Autorise la modification des données
+}
+
+property TDBgrid.FirstColVisible:boolean;
+{$H Rend visible la colonne contenant les numéros de ligne
+
+}
+
+property TDBgrid.FirstRowVisible:boolean;
+{$H Rend visible la rangée contenant les noms des colonnes
+
+}
+
+
+property TDBgrid.RowSelect:boolean;
+{$H Autorise la sélection d'une rangée entière
+
+}
+
+property TDBgrid.ColSizing:boolean;
+{$H Autorise la modification par l'utilisateur des largeurs de colonne.
+
+}
+
+property TDBgrid.ColWidths(n:integer):integer;
+{$H Largeurs des colonnes.
+
+ A la création, toutes les colonnes ont pour largeur DefaultColWidth@
+}
+
+property TDBgrid.OnSelectCell:Tprocedure2;
+{$H Gestionnaire d'événement appelé quand l'utilisateur sélectionne une cellule.
+
+ Le gestionnaire d'événement doit être déclaré:
+
+ @f6  Procedure MyProc(col,row:integer);
+
+ La procédure recevra les coordonnées de la cellule sélectionnée
+}
+
+property TDBgrid.FixedColor:integer;
+{$H Définit la couleur de la première ligne et de la première colonne.
+}
+property TDBgrid.Color:integer;
+{$H Définit la couleur de la grille excepté la première ligne et de la première colonne.
+}
+
+property TDBgrid.DefaultColWidth:integer;
+{$H Permet de modifier la largeur de toutes les colonnes.
+}
+property TDBgrid.DefaultRowHeight:integer;
+{$H Permet de modifier la hauteur de toutes les rangées.
+}
+property TDBgrid.Font:Tfont readonly;
+{$H Jeu de caractères utilisé.
+
+ Si vous modifiez ce jeu de caractères, il faudra sans doute ajuster les dimensions de la grille.
+}
+
+procedure Tacquisition.WriteDBFileInfo(var db:TDBrecord);
+procedure Tacquisition.WriteDBepInfo(var db:TDBrecord);
+
+procedure TdataFile.ReadDBfileInfo(var db:TDBrecord);
+procedure TdataFile.ReadDBepInfo(var db:TDBrecord);
+
+Hpage DBUnic; {Bibliothèque d'accès à la base de données}
+
+{$P
+ Cette bibliothèque a été développée pour fournir aux utilisateurs d'Elphy une interface d'accès à la base de données où aucune connaissance préalable du langage SQL n'est requise.
+}
+{$P Quelques concepts de base concernant les bases de données :
+
+ Une base de données permet de recueillir de manière cohérente et de restituer de manière efficace les données relatives aux divers états que peut prendre un système.
+L'acquisition des données et leur récupération par un utilisateur ne peuvent être opérationnelles qu'à condition d'intégrer dans la base de données un modèle du système.
+Ce dernier est constitué d'un ensemble d' 'entités' interdépendantes qui représentent les concepts clefs du système et qui permettent de diviser celui-ci en plusieurs sous-ensembles de 'paramètres' ou 'attributs' caractéristiques.
+Chaque entité possède elle-même un état, directement lié à celui du système, qui définit l'ensemble des valeurs que peuvent prendre les paramètres de l'entité.
+La combinaison de ces valeurs est plus communément appelée 'enregistrement'.
+D'un point de vue implémentation, on utilisera les termes 'table' et 'champ' pour identifier respectivement 'entité' et 'paramètre'.
+
+ L'interaction entre utilisateur et base de données se fait par le biais de 'commandes' ou 'requêtes' écrites en langage SQL.
+Ces requêtes permettent d'insérer, d'extraire, de mettre à jour ou encore d'effacer des données.
+}
+{$P Descriptif général de la bibliothèque :
+
+ C'est un ensemble de 5 classes (TDBModel@,TDBManager@,TDBObject@,TDBQuerySet@,TDBUnic@).
+Il peut être scindé en deux sous-ensembles distincts : (TDBModel@, TDBManager@, TDBObject@, TDBQuerySet@) et (TDBUnic@).
+Le premier propose une représentation des éléments clefs d'une base de données tels que les tables ou les enregistrements
+et se charge de générer automatiquement les requêtes SQL d'insertion, d'extraction, de modification ou d'effacement des données en fonction des actions utilisateurs sur les instances
+de ces classes quelque soit le modèle présent dans la base de données et d'encapsuler les résultats dans des objets manipulables sous Elphy.
+Le second permet d'initialiser la connection avec la base de données et les détails bas niveaux de la bibliothèque
+et possède un ensemble de fonctionnalités spécifiques au stockage de données relatives aux analyses.
+
+ Un fichier 'analysisTools.PG2' est associé à la bibliothèque. Il contient :
+
+ - une fonction qui permet de s'authentifier et d'activer l'accès à la base de données ('Login')
+ - quelques exemples d'utilisation de la bibliothèque ('Test Analyses Storage', 'Analysis Test Suite')
+ - des fonctions qui permettent d'activer le modèle lié aux analyses ('Install Analysis Model', 'Uninstall Analysis Model')
+ - des fonctions qui activent l'interface de visualisation des analyses ('Analyses Visualizer')
+ - un programme qui stocke les résultats d'analyse de la bistabilité de Nazied ('Bistability Analyses')
+}
+{$P Descriptif des classes TDBModel, TDBManager, TDBObject et TDBQuerySet :
+
+ La classe TDBModel@ représente une table particulière de la base de données.
+Elle permet d'extraire les propriétés générales d'une table et entre autres de déterminer :
+
+ - quels sont les champs contenus dans une table ((TDBModel.getFields)@(TDBModel.getFields))
+ - quel est le type associé à chaque champ ((TDBModel.getConstraint)@(TDBModel.getConstraint))
+ - quels sont parmi ces champs ceux qui forment la clef primaire ((TDBModel.getPKeys)@(TDBModel.getPKeys))
+ - quels sont ceux parmi ces champs qui sont des clefs étrangères ((TDBModel.getFKeys)@(TDBModel.getFKeys))
+ - à quels champs ces clefs étrangères font elles référence ((TDBModel.getLookup)@(TDBModel.getLookup))
+
+ NB : Associée à la fonction (TDBUnic.getModels)@(TDBUnic.getModels), il est possible d'avoir une vision globale du modèle intégré dans la base de données.
+
+ Chaque table contient une liste d'enregistrements. Une requête SQL sur la base permet :
+
+  - d'insérer un nouvel enregistrement dans la liste (INSERT)
+  - de récupérer la liste complète ou filtrée des enregistrements (SELECT)
+  - de mettre à jour une liste d'enregistrements (UPDATE)
+  - d'effacer une liste d'enregistrements (DELETE)
+
+ Les classes TDBObject@ et TDBQuerySet@ représentent respectivement un enregistrement et une liste d'enregistrements.
+Un objet de type TDBQuerySet@ correspond alors à une liste d'objets TDBObject@. La classe TDBManager@ est responsable de l'insertion, de l'extraction et de l'effacement d'enregistrements.
+L'utilisateur peut insérer un nouvel enregistrement dans la table ou bien y récupérer un ou plusieurs enregistrements via un TDBManager@.
+L'insertion s'effectue par le biais de la fonction (TDBManager.insert)@(TDBManager.insert) à partir d'un TDBObject (cf Ex1).
+La récupération se fait grâce aux fonctions suivantes :
+
+ - (TDBManager.get)@(TDBManager.get) qui génère un TDBObject@ à partir d'une liste qui possède un enregistrement unique (cf Ex2)
+ - (TDBManager.all)@(TDBManager.all) qui génère un TDBQuerySet@ à partir de la liste complète des enregistrements (cf Ex4)
+ - (TDBManager.filter)@(TDBManager.filter) qui génère un TDBQuerySet@ à partir de la liste filtrée d'enregistrements qui respectent certains critères (cf Ex5)
+
+ L'effacement d'un enregistrement ou d'une liste d'enregistrements est respectivement accompli par le biais des fonctions (TDBObject.remove)@(TDBObject.remove) (cf Ex3) et (TDBQuerySet.remove)@(TDBQuerySet.remove) (cf Ex4 et Ex5).
+
+ La valeur des champs est accessible comme pour un TDBRecord@, par le biais de la propriété (TDBRecord.ImplicitValue)@(TDBRecord.ImplicitValue).
+Pour mettre à jour un enregistrement, il suffit d'affecter de nouvelles valeurs aux paramètres contenus dans un TDBObject@ et d'utiliser la méthode (TDBObject.save)@(TDBObject.save) pour mettre à jour la base de données (cf Ex2).
+}
+{$P Descriptif de la classe TDBUnic :
+
+ Comme signalé en introduction, cette classe se charge d'initialiser la connection entre Elphy et le système de base de données via la fonction (TDBUnic.initConnection)@(TDBUnic.initConnection).
+En ce qui concerne le modèle relatif aux analyses, il peut être directement intégré à la base de données via la fonction (TDBUnic.installAnalysisModel)@(TDBUnic.installAnalysisModel).
+De plus, la classe expose des fonctions de plus haut niveau que celles offertes par les classes précédemment décrites pour faciliter la vie de l'utilisateur.
+Le modèle ne contient pas moins de 18 tables, par conséquent il n'est plus réaliste d'un point de vue utilisateur d'aborder une table en particulier, mais d'agir sur un ensemble de tables pour :
+
+ - cacher à l'utilisateur la complexité du modèle
+ - garantir son intégrité lors de diverses mises à jour
+ - éviter certaines tâches répétitives liées à la navigation du programme dans le modèle.
+
+ Pour stocker une analyse dans la base de données (cf Ex7), il est au préalable nécessaire, d'une part, de spécifier le type d'analyse sur lequel elle se base
+et d'autre part dedéfinir quelles en sont les entrées-sorties (cf Ex6). Ensuite, il suffit de créer un nouveau TDBObject@ qui doit contenir obligatoirement les champs suivants :
+
+  + id : l'identifiant de l'analyse
+  + component : le nom du type d'analyse relatif à cette nouvelle analyse
+
+ De plus, si in1 ... inN and out1 ... outM correspondent à  des noms d'entrées/sorties d'un type d'analyse, le TDBObject@ doit contenir des champs qui portent le même nom.
+Un champ nommé 'comments' peut être éventuellement ajouté pour stocker un commentaire spécifique sur l'analyse. Au final, pour effectivement insérer l'analyse il faut utiliser la fonction (TDBUnic.storeAnalysis)@(TDBUnic.storeAnalysis).
+
+ Pour retrouver une liste d'analyses correspondant à certains critères d'entrées-sorties, il suffit d'utiliser la fonction (TDBUnic.getAnalysesAsObjects)@(TDBUnic.getAnalysesAsObjects) qui génère un TDBQuerySet@.
+Il suffit de faire une itération sur cette liste de TDBObject@ pour accéder aux paramètres de chaque analyse.
+
+ NB: Sous Elphy n'existe qu'un seul représentant de la classe TDBUnic. Il est accessible globalement dans un script Elphy sous le nom de dbUnic.
+}
+{$P Descriptif de l'interface graphique fournie dans analysisTools.PG2:
+
+ Après compilation, il suffit de sélectionner le programme 'Login' pour rendre effectif l'accès à la base.
+Si le modèle relatif aux analyses n'est pas installé dans le système de base de données, il suffit de sélectionner le programme 'Install Analysis Model'.
+Ensuite, il faut sélectionner le programme 'Analyses Visualizer'. Un nouvelle page est créée sous Elphy, celle-ci contient 4 cadres :
+
+ - 1er cadre : Liste des types d'analyse avec possibilité d'ajouter un nouveau type, de modifier ou d'effacer un type existant
+ - 2ème cadre : Liste des entrées-sorties relatives à un type d'analyse avec possibilité d'en ajouter une nouvelle ou d'en effacer une existance
+ - 3ème cadre : Liste des analyses basées sur un type d'analyse spécifique avec possiblité d'en ajouter une nouvelle, d'en effacer une existance ou de filtrer cette liste par rapport à certain critères sur les valeurs d'entrées-sorties
+ - 4ème cadre : Calcul du minimum, maximum, de la valeur moyenne, du médian et de l'écart type pour chaque paramètre de la liste d'analyses du 3ème cadre
+
+ NB1 : L'aspect graphique est surtout prévu pour visualiser les analyses déjà intégrées dans la base de données.
+On préférera créer de nouvelles analyses par le biais des fonctionnalités de la classe TDBUnic@ directement dans un programme (cf Ex 6 et 7).
+
+ NB2 : Avant compilation, remplacer la valeur de la constante ROOT_FILES par le chemin du répertoire contenant les fichiers Elphy dont les noms pourraient être mis en entrée-sortie de type 'file' d'un type d'analyse.
+Ainsi le programme sera capable d'ouvrir le fichier lorsque l'utilisateur clique sur le nom du fichier. 
+}
+
+{$P Notes sur les analyses de Bistabilité :
+
+ Avant compilation, il faut remplacer la valeur de la constante ROOT_CSV par le chemin du répertoire où se situe les fichiers CSV fournis avec le programme.
+Après compilation, il suffit de sélectionner le programme 'Bistability Analyses'.
+
+}
+{$P Exemples :
+
+ Ex1 : Création d'un nouvel enregistrement, on suppose que la base de données possède une table helmholtz_experiment
+et que le modèle de la table contient les champs ref, start_datetime et end_datetime
+
+ @f6 var
+ @f6     model:TDBModel;
+ @f6     manager:TDBManager;
+ @f6     dbobject:TDBObject;
+
+ @f6 begin
+ @f6     dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6     model.Create('helmholtz_experiment');
+ @f6     manager.Create(model);
+ @f6     dbobject.Create;
+ @f6     dbobject.ref := 'new_experiment';
+ @f6     dbobject.start_datetime := '2009-01-01 10:00:00';
+ @f6     dbobject.end_datetime := '2009-01-01 11:30:00';
+ @f6     dbobject.notes := 'notes about the experiment';
+ @f6     manager.insert(obj,False);
+ @f6     dbUnic.launchCommit;
+ @f6     dbUnic.closeConnection;
+ @f6 end;
+
+ Ex2: Recherche et modification d'un enregistrement unique
+
+ @f6 var
+ @f6     model:TDBModel;
+ @f6     manager:TDBManager;
+ @f6     dbobject:TDBObject;
+
+ @f6 begin
+ @f6     dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6     model.Create('helmholtz_experiment');
+ @f6     manager.Create(model);
+ @f6     manager.get('ref=''experiment_1''', dbobject);
+ @f6     dbobject.notes := 'new notes concerning new_experiment';
+ @f6     dbobject.start_datetime := '2009-01-01 10:30:00';
+ @f6     dbobject.end_datetime := '2009-01-01 12:30:00';
+ @f6     dbobject.save(False);
+ @f6     dbUnic.launchCommit;
+ @f6     dbUnic.closeConnection;
+ @f6 end;
+
+ Ex3: Recherche et effacement d'un enregistrement unique
+
+ @f6 var
+ @f6     model:TDBModel;
+ @f6     manager:TDBManager;
+ @f6     dbobject:TDBObject;
+
+ @f6 begin
+ @f6     dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6     model.Create('helmholtz_experiment');
+ @f6     manager.Create(model);
+ @f6     manager.get('ref=''experiment_1''', dbobject);
+ @f6     dbobject.remove(False);
+ @f6     dbUnic.launchCommit;
+ @f6     dbUnic.closeConnection;
+ @f6 end;
+
+ Ex4: Balayer et effacer la liste de tous les enregistrements
+
+ @f6 var
+ @f6     model:TDBModel;
+ @f6     manager:TDBManager;
+ @f6     dbobject:TDBObject;
+ @f6     dbobjects:TDBQuerySet;
+ @f6     i:Integer;
+
+ @f6 begin
+ @f6     dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6     model.Create('helmholtz_experiment');
+ @f6     manager.Create(model);
+ @f6     manager.all('ref', dbobjects);
+ @f6     for i := 1 to dbobjects.countObjects do
+ @f6         begin
+ @f6             dbobjects.getObjects(i-1,dbobject);
+ @f6             messageBox('ref:' + dbobject.ref);
+ @f6         end;
+ @f6     dbobjects.remove(False);
+ @f6     dbUnic.launchCommit;
+ @f6     dbUnic.closeConnection;
+ @f6 end;
+
+ Ex5: Balayer et effacer une liste filtrée  d'enregistrements
+
+ @f6 var
+ @f6     model:TDBModel;
+ @f6     manager:TDBManager;
+ @f6     dbobject:TDBObject;
+ @f6     dbobjects:TDBQuerySet;
+ @f6     i:Integer;
+
+ @f6 begin
+ @f6     dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6     model.Create('helmholtz_experiment');
+ @f6     manager.Create(model);
+ @f6     manager.filter('ref LIKE ''experiment_%''','ref', dbobject);
+ @f6     for i := 1 to dbobjects.countObjects do
+ @f6         begin
+ @f6             dbobjects.getObjects(i-1,dbobject);
+ @f6             messageBox('ref:' + dbobject.ref);
+ @f6         end;
+ @f6     dbobjects.remove(False);
+ @f6     dbUnic.launchCommit;
+ @f6     dbUnic.closeConnection;
+ @f6 end;
+
+ Ex6 : Spécifier un nouveau type d'analyse
+
+ @f6    begin
+ @f6        dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6        dbUnic.defineAnalysisType('analysis_type_1','comments concerning the analysis type','path/to/file.pg2',True);
+ @f6        dbUnic.defineInputOutput('analysis_type_1','input_1','Input','int','comments concerning input_1',True);
+ @f6        dbUnic.defineInputOutput('analysis_type_1','input_2','Input','int','comments concerning input_2',True);
+ @f6        dbUnic.defineInputOutput('analysis_type_1','input_3','Input','int','comments concerning input_3',True);
+ @f6        dbUnic.defineInputOutput('analysis_type_1','output','Output','int','comments concerning output',True);
+ @f6        dbUnic.closeConnection;
+ @f6    end;
+
+ Ex7 : Stocker une analyse relative à un type d'analyse
+
+ @f6    var
+ @f6        analysis:TDBObject;
+
+ @f6    begin
+ @f6        dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6        analysis.Create;
+ @f6        analysis.component := 'analysis_type_1';
+ @f6        analysis.id := 'analysis_type_1_analysis_1';
+ @f6        analysis.comments := 'some comments concerning the analysis';
+ @f6        analysis.input_1 := 1;
+ @f6        analysis.input_2 := 2;
+ @f6        analysis.input_3 := 3;
+ @f6        analysis.output := 1 + 2 + 3;
+ @f6        dbUnic.storeAnalysis(analysis,True);
+ @f6        dbUnic.closeConnection;
+ @f6    end;
+
+ Ex8 : Générer une liste filtrée d'analyse
+
+ @f6    var
+ @f6        analyses:TDBQuerySet;
+ @f6        analysis:TDBObject;
+ @f6        i:Integer;
+
+ @f6    begin
+ @f6        dbUnic.initConnection('', '127.0.0.1', 5432, 'helmholtz', 'login', 'password');
+ @f6        dbUnic.getAnalysesAsObjects('analysis_type_1','output = 3','id',analyses);
+ @f6        for i := 1 to analyses.countObjects do
+ @f6            begin
+ @f6                 analyses.getObject(i-1,analysis);
+ @f6                 messageBox(analysis.id);
+ @f6            end;
+ @f6        dbUnic.closeConnection;
+ @f6    end;
+}
+
+
+
+

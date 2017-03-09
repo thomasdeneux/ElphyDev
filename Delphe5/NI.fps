@@ -1,0 +1,187 @@
+Object
+TNIinterface(Tobject)
+{$H Objet permettant de contrôler une carte National Instrument.
+
+ Il peut s'agir de la carte principale ( à condition d'éviter les conflits avec le processus d'acquisition/stimulation)
+ou bien d'une autre carte.
+
+ Les contrôles possibles sont actuellement assez limités
+
+ Avec Din@, Dout@, Ain@, Aout@ il est possible de lire ou de modifier statiquement une entrée digitale ou analogique.
+ Avec ces méthodes, il n'est pas nécessaire d'appeler le contructeur de l'objet.
+
+ Avec setAnalogOutput@, il est possible de créer une tâche du type sortie analogique, c'est à dire d'envoyer
+un vecteur sur une sortie analogique avec un cadencement bien déterminé.
+
+ Avec setDigitalOutput@, il est possible de créer une tâche du type sortie digitale, c'est à dire d'envoyer
+un vecteur sur une sortie digitale avec un cadencement bien déterminé.
+
+}
+
+end;
+
+function TNIinterface.DIn(stchan:string; var DataValue:integer):Integer;
+{$H Lecture d'une ou plusieurs entrées digitales.
+
+ stChan désigne les entrées.
+ La valeur lue est renvoyée dans dataValue.
+
+ La fonction renvoie 0 si tout s'est bien passé. Sinon elle renvoie un code d'erreur.
+
+
+ Quand on appelle Din, il n'est pas nécessaire de créer un objet.
+ Exemple:
+  @prog
+  var
+    Ni: TNIinterface;
+
+  procedure ReadNI: integer;
+  var
+    res, data: integer;
+  begin
+    res:= Ni.Din('Dev1/Port1',data);
+    if res=0
+      then ReadNi:=data
+      else ReadNi:=-1;
+  end;
+  @notprog
+
+}
+function TNIinterface.DOut(stchan:string; DataValue:integer):Integer;
+{$H Ecriture sur une ou plusieurs sorties digitales.
+
+ stChan désigne les sorties.
+ dataValue contient la valeur à écrire.
+
+ La fonction renvoie 0 si tout s'est bien passé. Sinon elle renvoie un code d'erreur.
+}
+
+function TNIinterface.AIn(stchan:string; TerminalConfig: integer;var DataValue:real):Integer;
+{$H Lecture d'une entrée analogique.
+
+ stChan désigne l' entrée.
+ TerminalConfig doit être l'une de ces quatre valeurs:
+
+   1 ==> Not Referenced Single Ended
+   2 ==> Referenced Single Ended
+   3 ==> Differential
+   4 ==> Pseudo-differential
+
+ Ce paramètre doit correspondre à la configuration matérielle de l'installation.
+
+ Au retour, dataValue contient la valeur lue, exprimée en Volts
+
+ La fonction renvoie 0 si tout s'est bien passé. Sinon elle renvoie un code d'erreur.
+}
+
+function TNIinterface.AOut(stchan:string; DataValue:real):Integer;
+{$H Ecriture sur une sortie analogique.
+
+ stChan désigne la sortie.
+ dataValue contient la valeur à écrire, exprimée en Volts
+
+ La fonction renvoie 0 si tout s'est bien passé. Sinon elle renvoie un code d'erreur.
+}
+
+procedure TNIinterface.create(devName:String);
+{$H Constructeur de l'objet
+
+ devName est le nom du device tel qu'il apparait dans le logiciel de configuration NI
+Measurement And Automation
+
+ La méthode vérifie simplement l'existence du device
+}
+
+procedure TNIinterface.setScale(ymin,ymax: real; unitY:string);
+{$H Définit les échelles du vecteur de stimulation vector@ .
+
+ Ces échelles ne sont prises en compte que pour les sorties analogiques.
+ Par défaut, on considère que le vecteur de stimulation vector@ contient des valeurs comprises entre -10000 et +10000 mV
+ Sur la plupart des cartes NI, ces valeurs correspondent effectivement à la tension présente sur la sortie .
+
+ Si la sortie est reliée à une chaine d'amplification, on peut faire en sorte que les valeurs contenues dans le vecteur
+correspondent à la grandeur utile exprimée en mV, pA, etc..
+ Dans ce cas, on donne à setScale les paramètres ymin et ymax correspondant aux limites utiles:
+ ymin correspondra à -10V en sortie
+ ymax correspondra à +10V en sortie
+
+ unitY indique les unités.
+
+}
+procedure TNIinterface.setAnalogOutput(PhysNum:integer;PeriodeMS, DurationMS:real; Fcont:boolean);
+{$H Crée une tâche du type sortie analogique
+
+ PhysNum est le numéro physique du canal
+ PeriodeMS est la période d'échantillonnage exprimée en millisecondes
+ DurationMS est la durée de stimulation exprimée en millisecondes
+
+ Après l'appel de cette méthode, le vecteur de stimulation sera dimensionné correctement
+et pourra être rempli convenablement.
+ Si Fcont vaut TRUE (mode continu), le vecteur de stimulation sera répété indéfiniment, sinon
+la stimulation sera envoyée une seule fois.
+}
+
+procedure TNIinterface.setDigitalOutput(PhysNum,Bitnum: integer;PeriodeMS, DurationMS:real; Fcont:boolean);
+procedure TNIinterface.setDigitalOutput(PhysNum,Bitnum: integer;PeriodeMS, DurationMS:real; Fcont:boolean; AOaux:integer);
+{$H Crée une tâche du type sortie analogique
+
+ PhysNum est le numéro physique du port utilisé (en général, c'est le port 0)
+ BitNum est le numéro du bit dans le port (en général, il est compris entre 0 et 7 )
+ PeriodeMS est la période d'échantillonnage exprimée en millisecondes
+ DurationMS est la durée de stimulation exprimée en millisecondes
+
+ Après l'appel de cette méthode, le vecteur de stimulation sera dimensionné correctement
+et pourra être rempli convenablement.
+ Si Fcont vaut TRUE (mode continu), le vecteur de stimulation sera répété indéfiniment, sinon
+la stimulation sera envoyée une seule fois.
+}
+
+procedure TNIinterface.setCounterOutput(counter:integer;idleStateHigh: boolean; initialDelay,highTime, lowTime: double; Frepeat: boolean; outNum:integer);
+{$H Crée une tâche qui génèrera un ou plusieurs pulses sur une sortie d'un compteur.
+
+ Counter est le numéro du compteur. Les numéros commencent à zéro
+ Exemples: sur la 6221 et la 6251, il y a 2 compteurs. Counter doit donc valoir 0 ou 1. Sur la 6351, il y a 4 compteurs.
+
+ Si idleStateHigh vaut true, la sortie sera au niveau haut quand la tâche est terminée. Elle sera au niveau bas dans le cas contraire.
+ initialDelay est le temps (en secondes) avant l'apparition du premier pulse.
+ highTime est la durée du pulse au niveau haut (en secondes)
+ lowTime est la durée du pulse au niveau bas (en secondes)
+ Si Frepeat vaut true, les pulses seront répétés d'une façon continue. Sinon, un seul pulse sera généré.
+ outNum est le numéro de la sortie PFI utilisée (1 à 15 en principe)
+
+
+}
+
+
+procedure TNIinterface.Start(trigName: string);
+{$H  Exécute la tâche
+
+ trigName est le nom du trigger. Si cette chaîne est vide, la tâche commence immédiatement
+ Sinon, on attend un front montant sur l'entrée trigger.
+
+ Les noms les plus utiles sont 'PFI1', 'PFI2', etc...
+}
+
+procedure TNIinterface.Stop;
+{$H Permet l'arrêt de la tâche en mode continu.
+}
+
+function TNIinterface.vector: Tvector;
+{$H Vecteur associé à la tâche
+
+ Il doit être rempli avec le signal de stimulation.
+ Pour une sortie digitale, toute valeur différente de 0 sera considérée comme le niveau logique haut.
+}
+
+function TNIinterface.getLastError: string;
+{$H Renvoie un message du driver NI décrivant la dernière erreur.
+}
+
+procedure TNIinterface.setClock(st: string);
+{$H  Indique l'horloge à utiliser
+
+ Par défaut, l'horloge principale de la carte NI est utilisée.
+ On peut demander l'utilisation de l'horloge d'un des sous-systèmes de la carte: les valeurs possibles sont
+AI, AO, DI et DO pour désigner respectivement les sous-systèmes Analog Input, Analog output, Digital Input et Digital output
+
+}

@@ -1,0 +1,362 @@
+Object
+
+  TDBrecord(TwinObject)
+{$H Permet de manipuler une liste de données.
+
+ Un objet TDBrecord contient une liste de couples nom+valeur ,
+valeur pouvant être un entier, un réel, un booléen ou une chaine
+de caractères.
+
+ La propriété clé est ImplicitValue@
+
+ TDBrecord est utilisé par (TDBconnection.insertDBrecord)@(TDBconnection.insertDBrecord)
+
+}
+
+
+  TDBgrid0 (TwinObject)
+{$H Objet intermédiaire permettant de regrouper les propriétés communes à TDBtable@ et TDBgrid@
+}
+
+  TDBtable(TDBgrid0)
+{$H
+
+}
+
+end;
+
+{ TDBrecord }
+
+Const
+{$T Types de donnée utilisés par TDBrecord}
+
+{$H Les constantes suivantes sont utilisées par la propriété Vtype@(TDBrecord.Vtype) de TDBrecord@
+
+}
+  gv_Null    = 0;
+  gv_Boolean = 1;
+  gv_Integer = 2;
+  gv_Float   = 3;
+  gv_String  = 4;
+  gv_DateTime= 5;
+  gv_Object  = 6;
+  gv_complex = 7;
+
+
+
+procedure TDBrecord.create;
+{$H Constructeur de l'objet TDBrecord
+}
+procedure TDBrecord.AddField(st:string;tp:integer);
+{$H Ajoute un champ de nom st dans la liste de données
+
+ Il n'est pas nécessaire d'utiliser cette méthode car le simple fait de ranger une
+valeur dont le nom n'existe pas crée un nouveau champ.
+}
+procedure TDBrecord.DeleteField(st:string);
+{$H Supprime le champ de nom st de la liste
+}
+
+procedure TDBrecord.clear;
+{$H Supprime tous les champs de la liste.
+}
+
+function TDBrecord.FieldExists(st:string):boolean;
+{$H Indique si le champ de nom st existe.
+}
+
+function TDBrecord.FieldIndex(st:string):integer;
+{$H Renvoie l'index du champ de nom st.
+
+ Si le champ n'existe pas, la fonction renvoie zéro.
+}
+
+
+property TDBrecord.ImplicitValue(stName:string):variant implicit;
+{$H Propriété clé de TDBrecord
+
+ ImplicitValue introduit pour la première fois deux nouvelles notions: le type VARIANT
+et la directive IMPLICIT
+
+ Une propriété de type variant peut contenir une donnée de n'importe quel type simple,
+à savoir un entier, un réel, un booléen ou une chaine de caractères.
+
+ Il est donc toujours légal de faire les affectations:
+ @f6       ImplicitValue['X']:='Hello'
+ @f6       ImplicitValue['X']:=125;
+ @f6       ImplicitValue['X']:=FALSE;
+
+
+ En sens inverse, si on veut ranger un variant dans une variable, il faut que la donnée
+contenue dans le variant soit compatible avec la variable, sinon une erreur d'exécution
+est générée.
+
+ Exemple: si w est de type real, l'instruction
+ @f6            w:=ImplicitValue['X'];
+
+ générera une erreur si le variant contient autre chose qu'un réel ou un entier.
+
+ Le mot clé IMPLICIT signifie que l'écriture suivante (où db est un objet TDBrecord)
+ @f6       db.ImplicitValue['FileName']
+ peut être remplacée par
+ @f6       db.FileName
+
+ En fait, quand le compilateur rencontrera une propriété inconnue, il considèrera
+qu'il s'agit du paramètre de la propriété implicite.
+
+ Pour revenir à TDBrecord, la propriété ImplicitValue permet de manipuler la donnée de nom stName.
+ En écriture, s'il existe déjà une donnée de nom stName, sa valeur est modifiée. Sinon, la donnée est ajoutée
+à la liste.
+ En lecture, une erreur est générée si le nom n'existe pas.
+}
+
+property TDBrecord.Value(n:integer): variant;
+{$H Permet d'accéder à un champ par son numéro
+
+ n est le numéro du champ (compris entre 1 et count@ ).
+}
+
+property TDBrecord.count:integer readonly;
+{$H Nombre de champs de l'objet }
+
+property TDBrecord.Vtype(n:integer):integer readonly;
+{$H Renvoie le type de donnée contenue dans le champ de numéro n
+
+ n doit être compris entre 1 et count
+ Le type est renvoyé sous la forme d'un nombre entier dont la signification est
+donnée par les (constantes de type)@(Types de donnée utilisés par TDBrecord)
+}
+
+property TDBrecord.Names(n:integer):string readonly;
+{$H Noms des champs contenus dans l'objet
+
+  n doit être compris entre 1 et count
+}
+property TDBrecord.ValString(n:integer):string readonly;
+{$H Renvoie le contenu de n'importe quel champ sous la forme d'une chaine de caractères.
+
+  n doit être compris entre 1 et count
+
+}
+
+function TDBrecord.text: string;
+function TDBrecord.text(nbDeci:integer): string;
+{$H Renvoie une chaîne de caractères contenant tout le texte du DBrecord, tel qu'il apparaît quand on appelle Show@
+
+  NbDeci est le nombre de décimales utilisé pour les nombres réels. Sa valeur par défaut est 3. En donnant à NbDeci
+une valeur négative, on obtient la notation scientifique sans perte d'information.
+}
+
+
+procedure Tacquisition.WriteDBFileInfo(var db:TDBrecord);
+procedure Tacquisition.WriteDBepInfo(var db:TDBrecord);
+
+procedure TdataFile.ReadDBfileInfo(var db:TDBrecord);
+procedure TdataFile.ReadDBepInfo(var db:TDBrecord);
+
+
+
+{ TDBgrid0 }
+
+
+property TDBgrid0.ShowButtons:boolean;
+{$H Autorise l'affichage des boutons
+}
+
+property TDBgrid0.CanModify:boolean;
+{$H Autorise la modification des données
+}
+
+property TDBgrid0.FirstColVisible:boolean;
+{$H Rend visible la colonne contenant les numéros de ligne
+
+}
+
+property TDBgrid0.FirstRowVisible:boolean;
+{$H Rend visible la rangée contenant les noms des colonnes
+
+}
+
+property TDBgrid0.ButtonColumn:boolean;
+{$H Ajoute une colonne supplémentaire contenant des boutons
+
+}
+
+
+property TDBgrid0.RowSelect:boolean;
+{$H Autorise la sélection d'une rangée entière
+
+}
+
+property TDBgrid0.ColSizing:boolean;
+{$H Autorise la modification par l'utilisateur des largeurs de colonne.
+
+}
+
+property TDBgrid0.ColWidths(n:integer):integer;
+{$H Largeurs des colonnes.
+
+ A la création, toutes les colonnes ont pour largeur DefaultColWidth@
+}
+
+property TDBgrid0.OnSelectCell:Tprocedure2;
+{$H Gestionnaire d'événement appelé quand l'utilisateur sélectionne une cellule.
+
+ Le gestionnaire d'événement doit être déclaré:
+
+ @f6  Procedure MyProc(col,row:integer);
+
+ La procédure recevra les coordonnées de la cellule sélectionnée
+}
+
+
+property TDBgrid0.OnDblClick:Tprocedure2;
+{$H Gestionnaire d'événement appelé quand l'utilisateur double-clique sur une cellule.
+
+ Le gestionnaire d'événement doit être déclaré:
+
+ @f6  Procedure MyProc(col,row:integer);
+
+ La procédure recevra les coordonnées de la cellule sélectionnée
+}
+
+
+property TDBgrid0.OnRightClick:Tprocedure2;
+{$H Gestionnaire d'événement appelé quand l'utilisateur clique sur une cellule avec le bouton droit de la souris enfoncé.
+
+ Le gestionnaire d'événement doit être déclaré:
+
+ @f6  Procedure MyProc(col,row:integer);
+
+ La procédure recevra les coordonnées de la cellule sélectionnée
+}
+
+property TDBgrid0.OnClickButton:Tprocedure1;
+{$H Gestionnaire d'événement appelé quand l'utilisateur clique sur le bouton de début de ligne.
+
+ Le gestionnaire d'événement doit être déclaré:
+
+ @f6  Procedure MyProc(row:integer);
+
+ La procédure recevra le numéro de la ligne sélectionnée.
+}
+
+property TDBgrid0.FixedColor:integer;
+{$H Définit la couleur de la première ligne et de la première colonne.
+}
+property TDBgrid0.Color:integer;
+{$H Définit la couleur de la grille excepté la première ligne et de la première colonne.
+}
+
+property TDBgrid0.MarkColor:integer;
+{$H Définit la couleur de la grille pour les lignes marquées.
+}
+
+property TDBgrid0.DefaultColWidth:integer;
+{$H Permet de modifier la largeur de toutes les colonnes.
+}
+property TDBgrid0.DefaultRowHeight:integer;
+{$H Permet de modifier la hauteur de toutes les rangées.
+}
+property TDBgrid0.Font:Tfont readonly;
+{$H Jeu de caractères utilisé.
+
+ Si vous modifiez ce jeu de caractères, il faudra sans doute ajuster les dimensions de la grille.
+}
+
+property TDBgrid0.ColCount:integer readonly;
+{$H Nombre de colonnes utiles
+
+  Ne tient compte ni de la colonne contenant les numéros de ligne, ni  de la colonne
+contenant les boutons, qu'elles soient visibles ou non.
+}
+
+
+property TDBgrid0.RowCount:integer readonly;
+
+property TDBgrid0.Col:integer;
+property TDBgrid0.Row:integer;
+
+property TDBgrid0.RowMarked(n:integer):boolean;
+{$H Marque associée à chaque ligne de la grille.
+
+ n est le numéro de la ligne de données ( de 1 à RowCount ).
+
+ Quand une ligne est marquée, elle apparait avec une couleur spéciale ( MarkColor@ ).
+}
+
+procedure TDBgrid0.MarkSelectedRows(mode:integer);
+{$H Marque les lignes sélectionnées dans la grille.
+
+ Ces lignes apparaitront avec une couleur particulière ( MarkColor@ )
+
+ Si mode=0, les lignes sont démarquées (RowMarked@ devient False pour ces lignes).
+ Si mode=1, les lignes sont marquées (RowMarked@ devient True pour ces lignes).
+ Si mode=2, les marques sont inversées (RowMarked@ devient Not RowMarked pour ces lignes).
+
+
+ }
+
+property TDBgrid0.ColVisible(n:integer):boolean;
+{$H Indique si un colonne est visible.
+
+  Vaut true par défaut pour toutes les colonnes.
+  n est le numéro de colonne utilse (de 1 à ColCount)
+
+}
+
+procedure TDBgrid0.GetSelection(var x1,y1,x2,y2: integer);
+{$H Renvoie le rectangle de selection
+
+ x1 et x2 sont les limites horizontales, comprises entre 1 et ColCount@
+ y1 et y2 sont les limites verticales, comprises entre 1 et RowCount@
+
+}
+
+procedure TDBgrid0.CopySelectionToClipboard;
+procedure TDBgrid0.CopySelectionToClipboard(WithNames: boolean; sep, StringSep: String; Nbdeci:integer);
+{$H Copie la sélection courante dans le presse-papier.
+
+  Si WithNames=true , les noms des colonnes font partie de la copie
+  Sep est le séparateur entre colonnes
+  StringSep est le caractère éventuel qui encadre les chaines de caractère
+  Nbdeci est le nombre de décimales pour les nombres réels. Si nbDeci est négatif, on utilise la notation scientifique
+avec le maximum de chiffres significatifs.
+
+}
+function TDBgrid0.GetSelectionAsText(WithNames: boolean; sep, StringSep: String; Nbdeci:integer): string;
+{$H Renvoie la sélection courante dans une chaine de caractères.
+
+  Si WithNames=true , les noms des colonnes sont inclus dans le résultat.
+  Sep est le séparateur entre colonnes
+  StringSep est le caractère éventuel qui encadre les chaines de caractère
+  Nbdeci est le nombre de décimales pour les nombres réels. Si nbDeci est négatif, on utilise la notation scientifique
+avec le maximum de chiffres significatifs.
+
+  La chaine de caractères obtenue peut être passée par exemple à la propriété text@(Tmemo.text) d'un objet Tmemo@.
+}
+
+
+{ TDBtable }
+
+procedure TDBtable.create;
+
+procedure TDBtable.AddField(st:string;tp:integer);
+procedure TDBtable.DeleteField(st:string);
+procedure TDBtable.clear;
+function TDBtable.FieldExists(st:string):boolean;
+
+function TDBtable.Vtype(n:integer):integer;
+function TDBtable.Names(n:integer):string;
+
+property TDBtable.Lines(n:integer): TDBrecord readOnly default;
+procedure TDBtable.AddLine;
+procedure TDBtable.AddRecord(var rec: TDBrecord);
+
+
+function TdataFile.VisuInfo: TDBrecord;
+{$H Donne accès aux informations de stimulation visuelle de l'épisode courant.
+
+
+}
+

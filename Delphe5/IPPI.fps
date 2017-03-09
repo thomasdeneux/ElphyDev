@@ -1,0 +1,249 @@
+Object
+
+  TOIfile(Tobject)
+{$H TOIfile permet de charger les données contenues dans un fichier créé par les
+logiciels de Optical Imaging Inc. (R)
+
+ On ouvre un fichier avec OpenFile@ (OpenFile est aussi le constructeur de l'objet).
+
+ Ensuite, StimCount@ et FramesPerStim@ indiquent respectivement les nombres de stimuli
+et d'images par stimuli. Le nombre total d'images est StimCount * FramesPerStim .
+
+ On peut alors charger une image dans une matrice avec LoadFrame@ .
+}
+
+
+end; {of object}
+
+Const
+{$T Types de filtres matriciels}
+
+{$H Les constantes suivantes sont utilisées par MfixedFilter@
+
+}
+  MF_PrewittHoriz      =1;
+  MF_PrewittVert       =2;
+  MF_ScharrHoriz       =3;
+  MF_ScharrVert        =4;
+  MF_SobelHoriz        =5;
+  MF_SobelVert         =6;
+  MF_SobelHorizSecond  =7;
+  MF_SobelVertSecond   =8;
+  MF_SobelCross        =9;
+  MF_RobertsDown       =10;
+  MF_RobertsUp         =11;
+  MF_Laplace           =12;
+  MF_Gauss             =13;
+  MF_Hipass            =14;
+  MF_Lowpass           =15;
+  MF_Sharpen           =16;
+
+
+procedure MfixedFilter(var src,dest:Tmatrix;mask:integer;FilterType:integer);
+{$H Applique l'un des filtres fixes de la bibiothèque IPP.
+
+ La matrice source src doit être de type t_single ou t_smallint (pour certains types
+de filtres seulement).
+ mask peut valoir 33 ou 55 . Ces deux valeurs désignant des kernels de dimensions 3x3 ou 5x5.
+ FilterType peut prendre l'une des valeurs des (constantes de filtre)@(Types de filtres matriciels)
+
+}
+
+
+
+procedure Mconv(var src1,src2,dest:Tmatrix);
+procedure Mconv(var src1,src2,dest:Tmatrix;Full:boolean);
+
+{$C ManMat Convolution de deux matrices }
+{$H Produit de convolution de deux matrices .
+
+ Le rôle des opérandes n'est pas symétrique.
+ On considère que la matrice src1 est filtrée au moyen du "fitre" src2 pour donner la matrice dest.
+
+ Les dimensions de src2 doivent être inférieures à celles de src1 et les dimensions de src2 doivent
+être impaires.
+
+ La matrice obtenue a les mêmes dimensions et les mêmes paramètres d'échelle que src1.
+
+ Si le paramètre Full vaut false (valeur par défaut), les bords de la matrice dest
+contiendront des zéros car le calcul ne sera fait que pour les situations ou le recouvrement
+des deux matrices est complet.
+
+ Sinon, le calcul sera fait sur les bords en considérant que les valeurs inexistantes valent zéro.
+
+ Le seul type supporté est t_single.
+
+}
+
+procedure Mexpand(var src,dest:Tmatrix;IFactor,JFactor:integer;interpol:integer;FadjustScale:boolean);
+{$C ManMat Additionne deux matrices }
+{$H Augmente la taille de la matrice tout en conservant les données.
+
+ Le principe consiste à ajouter (Ifactor-1) cellules entre chaque couple de cellules sur une ligne
+de la matrice source, puis (Jfactors-1) lignes entre les lignes de la matrice obtenue.
+
+ Les cellules créées sont ensuite remplies en utilisant une méthode d'interpolation.
+
+ Src est la matrice source, Dest est la matrice destination.
+
+ Ifactor est le facteur d'expansion suivant l'axe des x
+ Jfactor est le facteur d'expansion suivant l'axe des y
+ On choisira de préférence des valeurs impaires.
+
+ La matrice destination est modifiée de sorte que:
+     - son type numérique devient celui de src
+     - ses propriétés Istart et Jstart deviennent égales à celles de src
+     - sa propriété Icount devient src.Icount*Ifactor
+     - sa propriété Jcount devient src.Jcount*Jfactor
+
+ La valeur de la matrice située en (i,j) se retrouve dans dest aux coordonnées
+(Istart + Ifactor div 2 + (i-Istart)*Ifactor , Jstart + Jfactor div 2 + (j-Jstart)*Jfactor ).
+
+ Dans les cellules non remplies de cette façon, on range des valeurs calculées par une
+méthode d'interpolation:
+
+ si interpol=0, la valeur rangée est celle du plus proche voisin de la cellule
+ si interpol=1, la valeur rangée est obtenue par interpolation linéaire en considérant les valeurs
+des quatre plus proches voisins.
+ si interpol=2, la valeur rangée est obtenue par interpolation cubique en considérant les valeurs
+des seize plus proches voisins.
+
+ Si FadjustScale est vrai, les paramètres d'échelle de dest sont ajustés sur ceux de src.
+
+}
+procedure MatProfile(var mat:Tmatrix;x0,y0,theta:real;var vec:Tvector);
+{$C ManMat Additionne deux matrices }
+{$H Construit le profil d'une matrice selon un axe donné.
+
+ L'axe est une droite passant par le point (x0,y0) et faisant un angle theta (en radians)
+avec l'axe Ox. Les angles sont mesurés dans le sens trigonométrique.
+
+ Le calcul tient compte des paramètres d'échelle de la matrice mat.
+
+ La structure du vecteur vec n'est pas modifiée par la procédure. Son paramètre Dx
+doit être ajusté au préalable en fonction de la définition souhaitée.
+}
+
+procedure MatSectorToVec(var mat:Tmatrix;xa,ya,theta,Dtheta:real;var vec:Tvector;mode:integer);
+{$C ManMat Additionne deux matrices }
+{$H Construit le profil d'une matrice selon un secteur.
+
+ Le secteur est défini par son sommet (xa,ya) , la direction de son axe principal theta
+et son angle au sommet Dtheta. Les angles sont exprimés en radians.
+
+ Le paramètre Dx du vecteur vec doit avoir été fixé au préalable.
+
+ Le calcul consiste à partitionner le secteur avec des arcs de cercles de rayons vec.Dx*k (k entier positif)
+puis à compter les éléments de matrice dans les régions obtenues.
+
+ Si mode=0, on range dans le vecteur la somme des valeurs de la matrice dans chaque région.
+ Si mode=1, on range dans le vecteur la moyenne des valeurs de la matrice dans chaque région.
+
+}
+
+
+                              { TOIfile stmImaging }
+
+procedure TOIfile.OpenFile(stFile:string);
+{$H Constructeur de l'objet TOIfile@ .
+
+ stFile est le nom du fichier qu'il faut ouvrir.
+ stFile devient la propriété FileName@ .
+}
+property TOIfile.fileName:string readOnly;
+{$H Renvoie le nom du fichier ouvert avec OpenFile@ }
+
+property TOIfile.StimCount:integer readOnly;
+{$H Renvoie le nombre de stimuli.
+
+ Le nombre d'images est en principe StimCount * FramesPerStim@ .
+}
+property TOIfile.FramesPerStim:integer readOnly;
+{$H Renvoie le nombre d'images par stimulus.
+
+ Le nombre d'images est en principe StimCount@ * FramesPerStim .
+}
+property TOIfile.FrameWidth:integer readOnly;
+{$H Largeur d'une image en pixels.
+}
+property TOIfile.FrameHeight:integer readOnly;
+{$H Hauteur d'une image en pixels.
+}
+property TOIfile.DataType:integer readOnly;
+{$H type des données.
+
+ La valeur renvoyée est un (type de nombre)@(types de nombre)
+ Les valeurs possibles sont:
+   T_byte
+   T_word
+   T_longint
+   T_single
+}
+
+procedure TOIfile.loadFrame(stim,frame:integer;var mat:Tmatrix);
+{$H Charge une image dans une matrice.
+
+ Stim est le numéro du stimulus et doit être compris entre 1 et StimCount@ .
+ Frame est le numéro de l'image dans le stimulus et doit être compris entre 1 et FramesPerStim@ .
+ Quel que soit le type de données ( voir dataType@ ), la matrice obtenue est
+toujours du type T_single.
+}
+
+procedure TOIfile.loadFile(var mat:TmatrixArray);
+{$H Charge toutes les images dans un objet TmatrixArray.
+
+ Le premier indice sera le numéro de frame
+ Le second indice sera le numéro de stimulus
+
+ Quel que soit le type de données ( voir dataType@ ), la matrice obtenue est
+toujours du type T_single.
+}
+
+
+procedure MresizeImage(var src,dest:Tmatrix; Dxf,x0f,Dyf,y0f: real; mode:integer);
+{$H Effectue une opération zoom-translation sur le contenu de la matrice.
+
+  Le contenu de la matrice src est recopié dans la matrice dest en effectuant pour chaque pixel (x,y) les opérations
+suivantes:
+  @prog
+  x' = Dxf * x +x0f
+  y' = Dyf * y +y0f
+  @notprog
+
+ La matrice dest peut avoir des dimensions quelconques.
+ Les pixels manquants sont calculés en tenant compte du mode d'interpolation
+  @prog
+    Nearest_Neighbor  = 1;
+    LINEAR = 2;
+    CUBIC  = 4;
+    SUPER  = 8;
+  @notprog
+
+ }
+
+procedure MremapImage(var src,dest,Xmap,Ymap:Tmatrix; mode:integer);
+{$H Remapping d'une image
+
+  src,dest,Xmap et Ymap doivent être des matrices de type single.
+
+  dest, Xmap et Ymap doivent avoir les mêmes dimensions.
+
+  L'opération Remap peut s'écrire en pseudo-code:
+
+    dest[i,j] := src[ Xmap[i,j], Ymap[i,j] ];
+
+  Pour chaque pixel de la destination, les matrices Xmap et Ymap doivent donc contenir les coordonnées du pixel de la source qui doit être copié.
+  Si la position trouvée est en dehors des limites de la source, le pixel destination n'est pas modifié.
+  Si la position n'est pas exactement sur un pixel de la source, la valeur affectée au pixel destination dépendra du mode d'interpolation.
+
+  @prog
+    Nearest_Neighbor  = 1;
+    LINEAR = 2;
+    CUBIC  = 4;
+    SUPER  = 8;
+  @notprog
+
+
+
+}
+

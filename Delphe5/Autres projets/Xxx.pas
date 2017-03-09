@@ -1,0 +1,1 @@
+Y0u[num]:=Yru1[num]-Jru1[num]*Dyu[num];

@@ -1,0 +1,1633 @@
+Hpage ProgElphy; { Elphy Programming }
+{$P
+  This chapter describes the Elphy language.  
+}
+
+{$TITLE  Elphy Programs }
+
+{$P
+ In general, an Elphy program comes in the form of a single text file.
+The filename extension is usually PG2 although this is not an obligation.
+ It is theoretically possible to create compilation units in the style of Borland Pascal but
+currently, this approach is rarely used.
+
+  The compiler creates an executable code that is stored in a file with the same name as the PG2 file but
+with the PGC extension.
+  This file is stored in the same directory as the source file.
+  The user does not directly manipulate the PGC file. This file is only used by Elphy
+to quickly load a configuration@ . It is recreated each time it is needed, particularly
+when a new version of Elphy is installed.
+
+ The executable code is not a "native" code but a byte-code which is interpreted by Elphy.
+
+}
+
+{$TITLE  The Elphy language }
+{$P Elphy and Pascal
+
+ The Elphy language is a kind of standard Pascal with some restrictions, but also
+some improvements that enable object management.
+
+ For Pascal programmers, here are some elements of comparison:
+
+ The predefined data types can be classified as:
+   - integer, real, complex, character, string ,boolean
+   - object types,
+   - variant
+
+ The user can define structured types (records) or array types.
+
+ It is not possible to create new object types.
+ It is not possible to directly manipulate pointers. The code is intended to secure Elphy
+and memory management is not directly accessible to the programmer.
+
+ The body of the program is not bounded by  "begin ... end."
+but by keywords: Program, InitProcess0, InitProcess, Process and EndProcess.
+
+ Procedures and functions cannot be nested (a procedure cannot contain another procedure or function).
+
+ There are a number of predefined types of objects (About 150 in 2010)
+
+ You can directly manipulate complex numbers.
+}
+
+
+{$TITLE  Programs and Blocks }
+{$P
+ The text of the program must contain one or more blocks beginning with one of the following keywords:
+
+ Program@
+ Const@ Var@ Type@
+ Procedure@ Function@
+ InitProcess0@Process	InitProcess@Process	Process@	EndProcess@Process
+
+ The blocks beginning with the word Program, Const, Var, Procedure or Function may appear several times in
+the text and in any order.
+ The blocks InitProcess0, InitProcess, Process and EndProcess can appear only once.
+}
+
+{$P The Program Block
+
+ A program block consists of the keyword @b Program @notb followed by a program name and followed by
+a sequence of statements.
+ The sequence ends when another block begins
+
+ Example:
+ @prog
+ Program Test
+ MessageBox ('Hello');
+@notprog
+
+ In this example, Test is the name of the program. MessageBox is the name of a procedure often
+used to display a short message in a window.
+ If you want to include accented characters or spaces in the name of the program, you must put the
+ name between single quotes as below.
+ @prog
+ Program 'Message Test'
+ MessageBox('Hello');
+@notprog
+
+ If you want to include an apostrophe in the name of the program, you must double the apostrophe:
+
+ @prog
+ Program 'Joan''s test'
+ MessageBox ('Hello');
+@notprog
+
+ The two-apostrophes rule also applies to character strings.
+
+ The name of the program has an important role since this name will appear in the program menu.
+To see the effect of previous program, you can compile it, and click on the
+Execute command in the editor menu or click on the Pg button in the main window.
+
+ Note that you can change the position of the popup menu by clicking with the mouse
+in the main window while holding down the SHIFT and CONTROL keys.
+
+ Each time you add a block starting with @b Program @notb, you add a new item in the menu.
+It is also possible to create sub-menus by introducing a slash '/' in the name of the program.
+
+ Example:
+ @prog
+ Program 'Menu/SubMenu1'
+ MessageBox ('It is the first subMenu');
+ Program 'Menu/SubMenu2'
+ MessageBox ('It is the second subMenu');
+@notprog
+
+ Program words therefore define entry points in the program.
+They must of course be followed by sequences of correct statements.
+
+}
+
+{$TITLE Symbols and reserved words }
+
+{$P
+ Elphy uses the following characters:
+   - unaccented letters in uppercase or lowercase: a, b, .. z A, B, ..Z
+   The uppercase and lowercase are equivalent.
+   - digits 0..9
+   - underscore: _
+   - symbols: + - * / = <>  , ( )  $
+
+}
+{$P
+ All control characters (ASCII 0-31) are ignored, including end of line characters and
+carriage return, they play a role of separator.
+
+ The following words have special meaning and can not be redefined
+by the programmer. These are reserved words:
+@prog
+  AND  BEGIN   BREAK CASE  CONST  DIV  DO  DOWNTO  ELSE END
+  ENDPROCESS   EXIT  FALSE FOR  FUNCTION   IF   INITPROCESS
+  INITPROCESS0 MOD   NOT  OR  PROCEDURE
+  PROCESS   PROGRAM  RECORD   REPEAT  SHL  SHR   THEN
+  TO  TRUE  UNTIL    VAR  WHILE WITH   XOR
+@notprog
+
+ Simple types and object types also have names which cannot be redefined.
+
+}
+
+
+{$TITLE Identifiers, numbers and character strings }
+{$P Identifiers
+ Identifiers denote constants, variables, types, fields, properties, procedures and functions.
+An identifier begins with a letter or an underscore and can be followed by any number of
+letters, digits or underscore.
+
+ Like Pascal language, the Elphy language is case insensitive. For example, the identifier FIRSTROW can be written
+ @prog
+ firstrow   FirstRow   or   FIRSTROW
+@notprog
+
+ It is sometimes necessary to qualify the identifier. The syntax for a qualified identifier is
+ @prog
+ Identifier1.iIdentifier2
+@notprog
+
+where Identifier1 qualifies Identifier2.
+
+ Identifier1 is generally an object identifier or a record identifier
+}
+
+(*$P Numbers
+
+ The integer and real constants use usual decimal notation .
+The real constants can use scientific notation with signed exponent.
+
+ Examples:
+ @prog                
+ 576
+ -78.80
+ 6.02E23
+ 3E-9
+@notprog
+
+ The integers can be written in hexadecimal by writing a $ before the number.
+ Examples:
+ @prog
+ $FF
+ $A000
+@notprog
+*)
+
+(*$P Strings
+
+ A string constant is a sequence of up to 255 characters selected in the extended ASCII character set.
+The string must be written on a single line of source program. It is bounded by two
+single quotes. To write an apostrophe in a string, write two consecutive single quotes.
+
+ Examples: @prog
+ 'Hello'
+ ''   {Chaîne Vide}
+ 'That''s all folks'
+@notprog
+*)
+
+{$TITLE  Constant Declarations}
+
+{$P
+ The syntax for declaring a constant is
+ @prog
+ identifier = ConstantExpression ;
+@notprog
+
+ where identifier is any valid identifier and constantExpression is an expression that the compiler
+can evaluate without executing your program.
+ In the current version of Elphy, ConstantExpression can only be a number,
+a string, the word TRUE or the word FALSE.
+ The statement ends with a semicolon. Constant declarations must be located in a block beginning
+with the reserved word CONST.
+
+ Example: @prog
+CONST
+   Start = 21;
+   Xorigin = 25.5,
+   FileName = 'C:\DATA1\CELL12.DAT';
+   NoProblem = FALSE;
+@notprog
+}
+
+{$TITLE  Comments }
+(*$P
+ A comment is a piece of text ignored by the compiler.
+
+ Comments must be bracketed by braces @b { @notb and  @b } @notb     *)
+{$P
+ or by @b (* @notb and @b *) @notb
+
+ To enclose a comment in another comment, you must use the two methods . The compiler does not count the number of braces opened
+and closed.
+
+ It is also possible to create a comment in C++ style: when the symbol @b // @notb is found, all
+the characters until the end of the line are considered as a comment.
+
+ A comment can be placed anywhere in the program but not inside
+an identifier or constant.
+
+ A comment that contains a dollar sign @b $ @notb immediately after the opening symbol is a (compiler directive)@CompilerDirective .
+
+ Example: @prog (*$B+ *) @notprog
+}
+
+
+{$TITLE Data Types}
+
+{$P Integer Types
+
+ Integers can be stored on 1, 2, 4 or 8 bytes. They can be signed or unsigned.
+@prog
+  Type        Range                      Format
+  Shortint    -128 .. 127                signed 8-bit
+  SMALLINT    -32768 .. 32767            signed 16-bit
+  Longint     -2147483648 ..2147483647   signed 32-bit
+  Byte        0 .. 255                   unsigned 8-bit
+  Word        0 .. 65 535                unsigned 16-bit
+  Longword    0 .. 4294967295            unsigned 32-bit
+  int64       -2 63 .. 2 ^ 63-1          signed 64-bit
+@notprog
+
+ In addition to these 7 names of integer types, you can use the word INTEGER which is equivalent to longint.
+ In general, arithmetic operations on integers return a value of type Integer. Operations return a value of type Int64
+only when performed on an Int64 operand.
+ Whenever possible, you must use integer (longint) type since this result in the best performance
+for the underlying CPU and operating system.
+}
+
+{$P Real Types
+
+ A real number can be stored on 4, 8 or 10 bytes.
+@prog
+ Type        Range                           Significant digits   Size in bytes
+ Single      1.5 x 10^-45 .. 3.4 x 10^38          7-8	                 4
+ Double      5.0 x 10^-324 .. 1.7 x 10^308       15-16                   8
+ Extended    3.6 x 10^-4951 .. 1.1 x 10^4932     19-20                  10
+@notprog
+
+ In addition to these three types of real numbers, you can use the word REAL which is equivalent to extended.
+ In general, arithmetic operations on reals return a value of type Extended. So Elphy calculations are always
+performed with the biggest precision.
+}
+
+{$P Complex Types
+
+ Elphy can directly manipulate complex numbers.
+ The three complex types correspond to the three real types.
+@prog
+ Scomplex corresponds to a pair of two real numbers of type Single
+ Dcomplex corresponds to a pair of two real numbers of type Double
+ Complex corresponds to a pair of two real numbers of type Extended
+@notprog
+}
+
+{$P Boolean type
+
+ A Boolean variable can be set to TRUE or FALSE.
+}
+
+{$P String Type
+
+ Two types of strings are handled by Elphy, short strings ( @b ShortString @notb )
+and long strings ( @b AnsiString @notb )
+
+ A short string cannot exceed 255 characters. Long strings are practically not limited in size.
+
+ When you declare a shortstring, you give the maximum number of characters that the string can contain.
+
+ Example:      @prog
+ STRING [12]   @notprog
+
+ is a string whose maximum length is 12 characters.
+ The memory allocated to store this string will always be 13 bytes ( One byte to store the length and 12 to store the characters )
+
+ If there is no size attribute, one consider that we are dealing with a long string.
+ Example: @prog
+ STRING   @notprog
+
+ In this case, the memory used to store the string is dynamically allocated. The size of the string
+is only limited by the size of the memory available for the application.
+
+ The keyword @prog SHORTSTRING @notprog is equivalent to @prog STRING[255] @notprog
+
+ Both string definitions are fully compatible.
+
+ When running the program, the length of the string may vary. This length is given by the standard function length.
+
+}
+(*$P Arrays
+
+ An array is a structure consisting of a fixed number of elements of the same type (the base type). In Elphy language, the base type
+should be a simple type, a record type or an object type, and the indices are necessarily integers.
+The second index should be greater than or equal to the first index.
+
+ Examples: @prog
+  ARRAY [1 .. 10] of real;
+  ARRAY [2.10 .. 1 .. 20] of integer;
+  ARRAY [1 .. 5] of STRING [10];
+  ARRAY [1 .. 10] of Tvector; { Tvector is a predefined object type }
+@notprog
+
+*)
+
+{$P Object Types
+
+ The Elphy language includes a number of object types that can be created and
+handled by the program. The number of objects increases steadily. Their list can be found in the online help.
+
+ Every object type name conventionally begin with the letter T.
+ Objects can be declared as simple variables or as arrays.
+}
+
+{$P Variant type
+
+ With variables of type @b Variant @notb , it is possible to manipulate data whose type varies or cannot be
+determined at compile time.
+
+ See Variants@
+
+}
+
+{$P Type Compatibility
+
+ In an assignment x1:=x2 , x1 and x2 must be of compatible types. This is done
+if one of the following conditions is true:
+
+    - x1 and x2 have the same type but are not objects.
+    - x1 and x2 are both integer
+    - x1 is real , x2 is real or integer.
+    - x1 is complex , x2 is complex , real or integer
+
+ In a string assignment, if the destination string has a maximum size which is lower
+than the number of characters in the expression x2, excess characters will be discarded.
+
+ The assignment between object variables is currently forbiden.
+}
+
+{$TITLE Structured Types }
+  
+{$P Declaring types
+  In addition to existing types, the user can declare his own data types.
+  Declarations are made in blocks beginning with the keyword @b Type @notb followed by a list
+of type declarations delimited by a semicolon.
+
+  Each declaration specifies an identifier and a type. The syntax for a type declaration is:
+@prog
+    type
+      TypeName = TypeDef;
+@notprog
+ where TypeName is a valid identifier and TypeDef is a type definition.
+
+ TypeDef can be
+   - an existing type (integer, real, etc... )
+   - a record definition
+   - an array definition
+
+ When a type is declared, there is no memory allocated. Type declarations give only definitions which
+will be used in variable declarations.
+
+ The Type block can be written inside a procedure or function. In this case, the type definitions are said @b local @notb to
+the procedure or function and can only be used inside the procedure or function.
+
+}
+
+{$P Records
+  Elphy Pascal supports fixed records (not records with variable parts).
+
+  A record gives a name to an heterogeneous set of elements. Each element is called a field, the declaration of a record type
+specify the name and type for each field.
+  The syntax of a record type declaration is
+
+  @prog
+  RecType = record
+              fieldList1: type1;
+              fieldList2: type2;
+              ...
+            end;
+  @notprog
+
+  RecType is a valid identifier which will be the name of the type.
+  @u Record @notu is a reserved word
+  FieldList(n) is a single identifier or a comma-delimited list of identifiers.
+  type(n) is a type name (any simple type or user-declared type except an object type or a long String).
+
+  Examples:
+  @prog
+  type
+    TXYrecord = record
+                  X,Y:integer;
+                  st:string[20];
+                end;
+
+    TarrayRecord = record
+                     x,y:array[1..10] of integer;
+                   end;
+  @notprog
+
+
+}
+{$P Array Types
+
+ The user can declare array types in this way:
+ @prog
+  type
+    NewType1 = array[1..10] of integer;
+
+ @notprog
+
+}
+
+(*$TITLE Variable Declarations
+
+ To declare a variable is to assign a symbolic name to a memory location. It is also
+to indicate its type.
+ Variables must be declared in a block beginning with the reserved word VAR.
+
+ A declaration of variables consists of a list of identifiers followed by ':',
+then followed by a type name and a semicolon.
+
+ Examples:  @prog
+     VAR
+       x, y, z: real;
+       i, j: integer;
+       Message: string; { A long string: occupies 4 bytes when the string
+                          is empty, then the memory is dynamically
+                          allocated when the string length grows up }
+       FileName: string [128]; { a short string: occupies always 129 bytes in memory}
+       W: array [1 .. 10] of integer;
+       Vec: Tvector;
+       Maps: Array [1 .. 10] of Tmatrix,
+@notprog
+
+  The Var block can be written inside a procedure or function. In this case, variables are said @b local @notb to
+the procedure or function. In the other case, variables are said @b global @notb .
+
+  If types have been declared, variables of this type can be declared:
+@prog
+  type
+    Trec= record
+            x,y:integer;
+            w:real;
+          end;
+  var
+    rec1,rec2: Trec;
+@notprog
+  After this kind of declarations, record fields can be accessed by qualifying fields:
+@prog
+  rec1.x:=27;
+@notprog
+ or through a @b WITH @notb statement (see below)
+@prog
+  with rec1 do
+  begin
+    x:=27;
+    y:=76;
+    w:=1.6;
+  end;
+@notprog
+
+
+*)
+
+{$P The Data Segment
+
+  When a program is compiled, the global variables are placed in the data segment. This data segment is a block
+of memory which is allocated only at compilation time. So the user can inspect all this variables at any time.
+If the variables are object variables, the objects can be seen in the @b Object Inspector @notb window.
+}
+{$P The Stack Segment
+
+  Each time a procedure or function is called, it allocates a set of local variables on the Stack.
+On exit, the local variables are disposed. This Stack is a block of memory which is allocated only
+once when Elphy starts.
+  The user cannot inspect local variables because, when a program stops, the stack content is undetermined.
+When local variables are object variables, the objects are freed at the end of the procedure, even when a runtime
+error has occured.
+}
+
+{$TITLE  Expressions and operators }
+{$P
+ In Elphy, expressions exactly obey Pascal syntax. Here is the list of
+available operators in order of priority:
+@prog
+     Level 1   NOT
+     Level 2   *   /   DIV   MOD   AND   SHL   SHR
+     Level 3   +   -   OR    XOR
+     Level 4   =   <>  <     >     <=    >=
+@notprog
+
+ The precedence rules for operators are:
+ 1 - An operand between two operators of different priorities is linked
+to the operator with the highest priority.
+ 2 - An operand between two equal operators is related to the one on its left.
+ 3 - Expressions within parentheses are evaluated first.
+
+ Level 2 operators are called multiplicative operators
+ Level 3 operators are called additives operators
+ Level 4 operators are called relational operators
+}
+{$P Expression Syntax
+
+  Expressions are constructed from factors, terms and simples expressions.
+
+  A @b factor @notb may be:
+  - a variable reference
+  - an unsigned constant
+  - an expression in parentheses
+  - NOT followed by a factor
+  - a sign followed by a factor
+  - a function call
+  - an object property
+
+  Examples of factors: @prog
+     X
+     67
+     (X + Y)
+     Sin (X +1)
+     Not B
+@notprog
+
+  The @b terms @notb are formed by applying multiplicative operators to factors.
+  Here are some examples of terms: @prog
+     X * Y
+     Z / (X +1)
+     A shl 2
+     A and B
+@notprog
+
+  @b Simple expressions @notb are formed by applying additive operators to terms.
+  Here are some examples of simple expressions: @prog
+     X + Y
+     A
+     A * B + C
+     A and B OR C
+@notprog
+
+  @b Expressions @notb are formed by applying relational operators to simple expressions.
+  Examples: @prog
+     x<=12
+     (a+b)*(c+d) > a*d + b*c
+@notprog
+
+  Of course, an expression can be formed of a single factor, a single term or a single
+simple expression.
+}
+{$P Operators
+
+  In Elphy the type of numbers can be
+  - one of the seven integer types.
+  - one of the three real types.
+  - one of the three complex types
+
+  Shortly, the numbers are integer, real or complex.
+  Taken in this order, these numbers have increasing range.
+
+  @ul @b Arithmetic operators: @notul @notb
+
+  The operands of operators @b + - * / @notb can be integer, real or complex.
+  When the two operands are integer, the result is integer ( longint )
+  When one operand is real and the other is real or integer, the result is real (extended).
+  When one operand is complex, the result is complex (a pair (extended,extended) ).
+
+  The result of the operation / is real when the operands are not complex
+and is complex when at least one operand is complex.
+
+  The operands of DIV and MOD operators must be of an integer type. The result is integer.
+
+  The result of unary operation + or - is of the type of the operand.
+
+  @ul @b Logical Operator @notul @notb
+
+  NOT operator applies to integers or booleans. The result type is the operand type.
+
+  The operands of AND, OR and XOR are both of an integer type or both of boolean type.
+The result type is the common type of the operands .
+
+  The operands of SHL and SHR must be of an integer type. The result is integer.
+
+  @ul @b String Operators @notul @notb
+
+  When applied to two strings, the + operator give a string that is
+the concatenation of two operands.
+
+  @ul @b Relational Operators @notul @notb
+
+  The result of a relational operation ( = , <> , < ,<=, > , >= ) is always of boolean type.
+The operands have either both a numeric type, or have both the same simple type.
+
+  @ul @b Function call @notul @notb
+
+  A function call (see syntax below) always returns a simple type value.
+This value is handled in an expression like the other factors.
+
+  @ul @b Evaluation of expressions @notul @notb
+
+  Elphy evaluate integer expressions by converting all operands to longint
+  Elphy evaluates real expressions by converting all operands to extended
+  Elphy evaluates complex expressions by converting all operands to complex
+
+  Example:
+
+  Let be W: = (a + b) * x,  where a is a SMALLINT variable, b is
+a longint variable and x is a single variable.
+  Elphy first evaluates y = a + b by first converting a to longint. The result is a longint.
+  Then, to compute the product, it first converts x and y to extended. The result is an extended.
+  At the time of the assignment, a new conversion is made to reflect the type of W
+(which may be real or complex).
+
+ The calculations are always carried out with maximum precision.
+
+}
+
+{$TITLE Statements}
+{$P
+ Statements describe algorithmic actions to be executed. The Elphy instructions are :
+
+ - Assignment statement
+ - Procedure Call
+ - Compound statement
+ - FOR statement
+ - REPEAT statement
+ - WHILE statement
+ - IF statement
+ - CASE statement
+ - WITH statement
+}
+
+{$P Assignment statement
+
+ The assignment statement replaces the current value of a variable with a new value
+specified by an expression. The symbol of the assignment is ": =".
+ The assignment can be written schematically:
+@prog
+   Variable Reference @b := @notb Expression
+@notprog
+
+ The type of expression must be compatible with the type of the variable. That is to say that one
+following conditions must be satisfied:
+ - The variable and expression are of the same type but are not objects
+ - The variable and expression are of  integer type
+ - The variable is real and the expression is of integer or real type
+ - The variable is complex and the expression is of integer, real or complex type.
+
+ The compatibility conditions are also true when passing parameters by value
+in procedures and functions.
+
+ Examples:
+@prog
+  X := 12
+  X := 2 * sin (pi / 3)
+  Pair := (i mod 2 = 0)
+  StFile := stData + '. DAT'
+@notprog
+}
+
+(*$P Procedure call.
+
+ A Procedure Call Statement makes the activation of the procedure specified by the identifier
+procedure. If the definition of a procedure contains a list of formal parameters,
+the procedure must be called with a corresponding list of actual parameters.
+
+ Basically, we can write:
+
+ Procedure Call = Procedure-Identifier [List-of-Parameters]
+ List-of-Parameters = "(" Parameter { "," Parameter } ")"
+
+ In this definition and in what follows, we use a notation inspired by the BNF notation (Backus Naur Form ).
+The brackets [] indicate that the expression can be written 0 or once. Curly braces {} mean that
+the expression can be written 0 or more times.
+
+ There are two types of parameters: value parameters and reference parameters. In the definition,
+reference parameters are distinguished by the fact that they are preceded by the word VAR.
+ A parameter value can be replaced by any expression of compatible type.
+ A reference parameter must be a variable of the requested type. The variable passed as parameter will
+possibly modified by the called procedure.
+
+ Example:
+ The Slope procedure is a standard procedure declared as follows:
+ @prog
+ Procedure Slope (var source: Tvector x1, x2: real; var a, b, R: real);
+@notprog
+
+ x1 and x2 are value parameters, they can be replaced by any expression of real type.
+ a, b and R are reference parameters. They should be replaced by variables of the type requested.
+ To use this procedure in a program, we can write:
+
+@prog
+  Slope (vec, 0.1, xa, xb, xR)
+@notprog
+ or
+@prog
+  Slope (vec, Xref, Xref+10, xa, xb, xR)
+@notprog
+
+ vec must be a vector (type Tvector).
+ xa, xb and xR must have been declared as REAL or EXTENDED.
+ Xref must have been declared as a variable of integer or real type.
+
+
+ @ul @b Untyped reference parameters @notul @notb
+
+ Some standard procedures allow the passage of reference parameters without a type.
+For example, the sizeof function is declared as:
+@prog
+ Function sizeof (var x): longint;
+@notprog
+
+ In this case, the parameter x can be replaced by a variable of any type.
+*)
+
+(*$P Compound Statement
+
+ A compound statement is a sequence of statements separated by semicolons,
+preceded by the reserved word BEGIN and followed by the reserved word END.
+
+ Compound Statement = BEGIN { statement ";" } END
+
+ The compound statements are treated as one statement. This means that whenever the word statement
+appears in the syntax rules, we must understand that the word statement can be replaced by a
+compound statement.
+
+ Example:
+@prog
+  BEGIN
+    X: = 1;
+    Y: = 12;
+    T1: = max (v1, 0.100);
+  END;
+@notprog
+
+ A compound statement can be empty:
+@prog
+  BEGIN
+  END;
+@notprog
+*)
+
+{$P FOR statement
+
+ The for statement cause a statement (possibly a compound staement) to be repeated executed
+while a progression of values is assigned to a control variable.
+ The FOR statement will repeat a statement (possibly compound).
+
+ The syntax is:
+ FOR statement = FOR variable ": =" Expression Direction Expression DO statement
+ Direction = TO | DOWNTO
+
+ The variable referenced is the control variable. It must be of an integer type.
+The first expression is the initial value, it must be of integer type. The second expression
+is the final value, it must also be of type integer.
+
+ The instruction is executed for each value of the control variable between the initial value
+and the final value. With the word TO, the final value must be greater than the initial value.
+With the word DOWNTO, the final value must be lower than the initial value. Nothing is done
+when this condition is not verified.
+
+ The instruction must not change the control variable.
+ Example:
+@prog
+  For i: = 1 to 10 do
+  Begin
+    T [a, i]: = 10 * sin (2 * Pi * I/10);
+    T [2, i]: = 10 * cos (2 * Pi * I/10);
+  End;
+@notprog
+}
+(*$P Repeat Statement
+
+ With a REPEAT statement, a sequence of statements  is repeated until a boolean expression is true.
+
+ REPEAT statement = REPEAT { statement ";" } UNTIL expression
+
+ expression must be of boolean type.
+
+ The sequence may possibly be empty.
+
+ Example:
+@prog
+  I: = 1;
+  Repeat
+    EpNum: = i;
+    T [a, i]: = max (v1, 0.100);
+    I: = i +1;
+  Until I > EpCount;
+@notprog
+*)
+
+{$P While Statement
+
+  With the While statement, a statement is executed while a boolean expression is true.
+The test is done at the beginning of the loop.
+
+  Instruction-While = WHILE expression DO Statement
+
+ Statement can be a compound statement.
+
+ Example:
+ @prog
+   I: = 0;
+   While i <= 100 do
+   Begin
+     Calculate (i);
+     i: = i +1;
+   End;
+ @notprog
+}
+
+{$P IF statement
+
+ With the IF statement, a statement is executed only if a condition is verified.
+
+ Education-If = IF expression THEN statement [ELSE statement]
+
+ Expression must yield a result of type boolean.
+ If the result is true, the statement following the THEN is executed.
+ If the result is false, the statement following the ELSE is executed
+(if this part of the statement exists).
+
+ Examples:
+@prog
+   If (i <0) or (i> 10) then
+   begin
+     X: = 0;
+     Y: = 0;
+   end
+   else
+   begin
+     X:=i;
+     Y:=j;
+   end;
+@notprog
+
+  The statement following the THEN or ELSE can itself be an If statement:
+@prog  IF c1 THEN INST1 ELSE IF c2 THEN INST2 ELSE INST3 @notprog
+
+ An ambiguity arises from this structure. It is resolved if one agrees that the ELSE is always
+associated with the closest IF not already associated with another ELSE.
+}
+(*$P Case Statement
+
+ The CASE statement can advantageously replace a series of IF statements. The syntax is as follows
+
+  CASE expression OF
+     Constant ":" Instruction ";"
+     { Constant ":" instruction ";" }
+     [ELSE statement ";"]
+  END
+
+  expression is of integer type
+  Constant is either an integer constant or an interval. An interval is written with two
+integer constants separated by two successive points.
+  Example: 12 .. 16
+  Second constant must be greater than the first.
+
+  The case statement is equivalent to the construction:
+  IF expression=Cte1 THEN statement1
+  else
+  IF expression = Cte2 Then statement2
+  else
+  ...
+  else statement;
+
+  Example:
+@prog
+   Case I of
+     1: x: =- 15;
+     2: x: = 15;
+     10 .. 12: x: = 2;
+     Else x: = 0;
+   End;
+@notprog
+*)
+
+(*$P WITH statement
+
+ The With statement is a shorthand  for referencing the fields of a record
+or the properties and methods of objects.
+
+ Its syntax is as follows:
+
+ Instruction-WITH = "WITH" list-of-variables DO statement
+ list-of-variable = variable-identifier { "," variable-identifier }
+
+
+  Example:
+
+  The following sequence of statements
+@prog
+  vec.color:=cl_blue;
+  vec.mode:=DM_histo3;
+  vec.Xmin:=0;
+  vec.Xmax:=250;
+  vec.Ymax:=150;
+@notprog
+
+  can be replaced with:
+
+  @prog
+  with vec do
+  begin
+    color:=cl_blue;
+    mode:=DM_histo3;
+    Xmin:=0;
+    Xmax:=250;
+    Ymax:=150;
+  end;
+@notprog
+
+*)
+
+
+{$TITLE Procedures }
+(*$P Procedure Declaration
+
+ A procedure statement gives a name to a sequence of statements.
+ The procedure can then be called by a @b Procedure Call @notb statement.
+
+ Procedure-Declaration = Procedure-header ";" procedure-body ";"
+
+ Procedure-Header = PROCEDURE Name Formal-Parameters-List
+
+ Formal-Parameter-list = "("  Parameter-Declaration { Parameter-Declaration } ")"
+
+ Parameter-Declaration = [VAR] Identifier-List ":" Parameter-Type
+
+ Identifier-List = Identifier { ","  Identifier }
+
+ Procedure-Body = { Type-Block }{ Const-Block } { Var-Block } BEGIN statement-list END ";"
+
+ Statement-List = { Statement ";" }
+
+ Note that, unlike Pascal, it is not possible to declare another procedure inside a procedure.
+
+  @ul @b Value Parameters  @notul @notb
+
+ When the parameter declaration does not include the optional word VAR, the parameters are
+VALUE parameters. At the time of the call, this parameter will be replaced by an expression
+of a type compatible with the parameter type.
+
+ @ul @b Reference Parameters @notul @notb
+
+ When the parameter declaration contains the word VAR, the parameters are reference parameters.
+At the time of the call, this parameter should be replaced by a variable of a type which is the parameter type.
+ During the procedure, the variable will be modified exactly like the formal parameter.
+
+  @ul @b Local Variables and Constants @notul @notb
+
+ If the procedure contains  variable declaration blocks or constant declaration blocks, these variables
+and constants can be used only inside the procedure. They may have
+the same name as a variable or constant defined globally or in another procedure.
+
+ Example:
+@prog
+  Procedure Calculation (x1, x2: real);
+  Var
+     W: real;
+  Begin
+     W: = sqr (x1) + sqr (x2);
+     MessageBox ('Result =' + Rstr (w, 10,3));
+  End;
+
+  Program 'Test'
+  Calculation (12.9);
+  Calculation (13.6,7.2);
+
+  @ul @b Forward directive @notul @notb
+
+  A declaration header can be followed by the "forward" keyword, with no procedure body after forward .
+In this case, the procedure is declared but not defined. It can be called in the program, but the definition
+will be written later.
+  Somewhere after the forward declaration, the routine must be redeclared in a defining declaration that includes
+a procedure body.
+ The defining declaration must repeat exactly the routine’s parameter list and return type.
+
+
+
+
+
+@notprog
+*)
+
+(*$P Function Declaration
+
+ A function is a subroutine that returns a value. The statement resembles
+a procedure but you specify the type of the return value.
+
+ Function Declaration = function-header ";" { FORWARD ";" }function-body ";"
+
+ function-header = FUNCTION name formal-parameter-list ':' result-type
+
+ Result-Type is the name of a simple-type
+ Function-body is identical to procedure-body.
+
+ Function must contain at least one statement that assigns a value to the identifier of the function.
+
+ Examples:
+@prog
+  SumSqr Function (x, y: real): real;
+  Begin
+    SumSqr: = sqr (x) + sqr (y);
+  End;
+
+  Function Power (x: real, n: integer): real;
+  Var
+    I: integer;
+    Z: real;
+  Begin
+    Z: = x;
+    For i: = 2 to n do z: = z * x;
+    Power: = z;
+  End;
+@notprog
+*)
+
+{$P Standard procedures and functions
+
+ Elphy contains a large number of standard functions and procedures to control all kinds of actions:
+message display, file handling, vector measurements, etc. ..
+
+ The list of these procedures is found in the online help. It is constantly growing.
+
+ These procedures and functions are part of the system. They may be called in the same way as
+user-defined functions and procedures. The online help shows their declaration and gives some explanation.
+Sometimes an alias is reported. This means that the procedure can be called with two different names in
+order to ensure some compatibility with the Acquis1 language ( Acquis1 is an old software which is the Elphy ancestor ).
+Of course, it is not recommended to use aliases. You had better to use new vocabulary.
+
+ Some Standard procedures use a special method to declare integer or real reference parameters.
+ If we list integer types and real types in order of increasing range, we have:
+@prog
+   byte,    shortint,   word,    smallint,  longword ,   longint,    int64
+   single,  double,     extended
+@notprog
+
+ When a procedure accepts a reference parameter of more than one integer type, it is possible to declare
+the procedure using an "interval" notation.
+
+ Example:  the procedure DBgetInteger is declared as:
+@prog
+   procedure DBgetInteger(title:string;var x:byte..longword;n:integer);
+@notprog
+
+ This means that the reference parameter x can be replaced with any actual parameter of type
+byte,  shortint, word, smallint, longword or longint .
+
+ This declaration is equivalent to:
+@prog
+   procedure DBgetInteger(title:string;var x:byte;n:integer);
+   procedure DBgetInteger(title:string;var x:shortint;n:integer);
+   procedure DBgetInteger(title:string;var x:word;n:integer);
+   procedure DBgetInteger(title:string;var x:smallint;n:integer);
+   procedure DBgetInteger(title:string;var x:longint:integer);
+   procedure DBgetInteger(title:string;var x:longword;n:integer);
+@notprog
+
+ In the same way, we have
+@prog
+   procedure DBgetReal(title:string;var x:single..extended;m,n:integer);
+@notprog
+  x can be replaced with a variable of type single, double or extended
+
+}
+
+
+
+{$TITLE The objects }
+{$P
+ The manipulation of objects is relatively simple because it is not possible to declare
+new types of objects ( There is no reserved word CLASS or OBJECT in the current Elphy version).
+
+ An object is a structure manipulated by the Elphy program or by the different Elphy commands.
+ Three steps can be distinguished in the handling of objects: declaration, creation and use.
+}
+{$P Declaring objects
+
+  In general, we declare an object like any other variable. For example:
+@prog
+   Var
+     Vec: Tvector;
+@notprog
+
+  In this example, Tvector is a predefined type.
+  We can also declare arrays of objects:
+@prog
+    Var
+      Vec: array [1 .. 10,1 .. 10] of Tvector;
+@notprog
+
+  Some objects are part of the system and always exist. They do not need to be declared.
+For example, datafile0, multigraph0, realArray0 and Acquis1  can be considered as declared at the beginning
+of any program, in a text like this:
+@prog
+  Var
+     DataFile0: TdataFile;
+     Multigraph0: Tmultigraph;
+     RealArray0: TrealArray;
+     Acquis1: Tacquis1;
+@notprog
+
+ A declared object does not exist yet. The object variable is a field of 4 bytes (one pointer in Pascal) which
+contains NIL ( zero). Before to use an object, you have to create it.
+}
+{$P Creating objects
+
+  Most objects have one (sometimes several) special method called a @b constructor @notb.
+This special method is often called create.
+
+  Example:
+    The online help shows that the constructor create of Tvector is declared as:
+@prog
+    Procedure Tvector.create (tp: integer; n1, n2: longint);
+@notprog
+
+  This declaration is similar to a procedure declaration except that
+the object type name is written just before the name of the procedure. A point is used as separator between the
+two names. This writing is conventional, it recalls that the procedure applies to objects of type Tvector.
+Such a procedure is called a method@ (see below)
+
+  To use this method, we write for example:
+@prog
+  Var
+    Vec: Tvector;
+
+  Program 'Init'
+  Vec.create (t_single, 0, 999);
+@notprog
+
+  We leave aside the significance of parameters. The important point is that to call a
+method, we wrote the name of the variable followed by a point and then followed by a
+classical procedure call.
+
+  At this stage, a structure has been allocated in memory. This structure depends on the type of object. It
+contains a number of fields that determine the properties of the object:  structural parameters,
+scale parameters, display parameters, etc. .. It is now possible to act on the object, either by program,
+or by using the Elphy commands .
+
+  All fields of the object have default values. In many situations, it is sufficient to modify only a few
+number of fields.
+
+  When an object is created, its name appears immediately at the end of the object list contained in the
+Object Inspector. If you run the 4 lines in the example above, you will see
+the name 'PG0.Vec' at the end of the list of objects. Vec is the name of variable in the program.
+PG0 is a name of the object which control your program. This is an indication that the object belongs to the program and
+that this object will be destroyed if the program is recompiled .
+
+You can now drag the Object 'Vec' to a Multigraph window, change its coordinates, its display settings, etc. ...
+
+A method can have more that one declaration. So you can call the method with different sets of parameters.
+In earlier versions of Elphy, the first parameter of each constructor was a character string and this let you give
+the object a name different from the variable name. Now, this method is not recommended : it is better to have the
+same name, for the variable and for the object.
+
+}
+
+(*$P Using objects
+
+ An object can be manipulated by calling its methods or by modifying its properties.
+
+ If you look at the online help, you will see the list of @b methods @notb
+and @b properties @notb associated with each object.
+
+ A method is a procedure or function that applies to an object. What we have seen about constructors in the
+previous paragraph applies to any method.
+ To call a method, we write the name of the object, then a dot, then the method call.
+
+ Examples:
+@prog
+  Vec.invalidate;
+  X: = vec.maxi (0,100);
+@notprog
+
+ A property behaves (almost) like a variable associated with the object. For example, we can write:
+@prog
+  Vec.color: = cl_green;        { cl_green is a predefined constant }
+  X: = vec.color;               { X is a variable of integer type }
+@notprog
+
+ In the first line, we change the display color of the object.
+ In the second line, this color is stored in the variable X.
+
+ Some properties are declared as ReadOnly. In this case, it is not possible to change
+the property value.
+
+ Some properties may behave like arrays.
+ Example:
+@prog
+ vec.Yvalue[i]:=124;      { Yvalue is the value stored in the vector at index i }
+@notprog
+
+ Some properties can be of an object type. Example:
+ @prog
+ vec.font.color:=cl_blue; { font is a Tvector property of type Tfont }
+ @notprog
+
+ Some array properties can be declared as default property. An object can have only one
+default property. In this case, writing a statement using this property can be greatly simplified
+because you can omit the property name.
+
+  Example: Yvalue@(Tvector.Yvalue) is the default property of Tvector@
+  Instead of writing
+@prog
+ Var
+   Vec: Tvector;
+   ....
+   Vec.Yvalue[1]: = 0;
+@notprog
+  We can write
+@prog
+ Var
+   Vec: Tvector
+   ....
+   Vec[1]: = 0;
+@notprog
+
+ However, a property is more complex than a single field in a structure. Assigning a property
+can result in a number of changes in the structure of an object and a number of actions can immediately
+be performed when a property is modified.
+
+  When a procedure has a reference parameter, it is not possible to replace the formal parameter
+with an object property.
+*)
+
+(*$P Inheritance
+
+ Online help documentation shows that many objects contains a section "Inherits From" in Hierarchy page.
+ For example, we can see that
+@prog
+      Tvector@      inherits from   TdataObject@
+      TdataObject@  inherits from   TdataPlot@
+      TdataPlot@    inherits from   Tplot@
+      Tplot@        inherits from   TwinObject@
+      TwinObject@   inherits from   TObject@
+@notprog
+  In the other direction, we can see that Tvector is the ancestor of Tpsth@, Tcorrelogram@, etc ..
+
+  Elphy objects form a tree. At the tree root is the simplest object Tobject.
+Then in the branches, objects become more and more complex. Each object has been constructed
+by adding or modifying properties of a simpler object.
+
+  To make programs, it is not necessary to know the hierarchy of objects because Elphy documentation
+always gives the complete list of properties and methods for any object.
+  However, having in mind this hierarchy can be very helpful to understand object operations.
+
+  For example, once the Tvector@ object is well-knowned (this is one of the most used objects), the understanding
+of Tpsth@ object will be very easy since it is build by adding only one property (BinWidth@(Tpsth.BinWidth)) and
+two methods (Add, AddEx) to Tvector .
+
+  When a procedure parameter is of an object type, this parameter is always a reference parameter.
+This is true for standard or user-defined functions.
+ For example, VaddNum@ adds a number to each vector element. The VaddNum declaration is
+@prog
+procedure VaddNum(var src:Tvector; num:Complex);
+@notprog
+
+  When calling the VaddNum procedure, src must be replaced with a variable of Tvector type or
+of Tvector descendant type.
+
+*)
+
+(*$P Destruction of objects
+
+  By program, an object is destroyed by calling its method free. This method has no effect
+if the object has not been created by the program. Conversely, it is not possible
+destroy an object created by the program by pressing the button Destroy in the Object Inspector window.
+
+  Calling the free method frees memory allocated to the object and returns the object variable to zero
+(nil in Pascal language). Before the destruction, many checks are made in order to properly
+remove all references between objects.
+
+  If an object constructor is called when the object is already created, the object is
+first destroyed before being recreated.
+
+  The operations of creating and destroying objects can be time consuming ,especially when
+they are inserted in loops. So, in a program, it is recommended to separate object creation from
+the calculation part.
+
+  Objects created by the program are always automatically destroyed as soon as you compile the
+program or as soon as you load a new configuration.
+*)
+
+(*$P Back to the WITH statement
+
+  The With statement simplifies the writing of a sequence of method calls of the same
+object.
+
+  It is possible to nest WITH instructions or to include more than one variable in the
+WITH statement:
+@prog
+  With Vec, datafile1 do
+  For i := IStart To Iend do Yvalue[i]:= v1.Yvalue[i +10];
+@notprog
+  In this example, IStart, Iend and Yvalue applie to Vec while v1 applies to datafile1 .
+
+  Such a construction can be ambiguous if the objects have methods or
+properties with the same name. In this case, the last variables in the list takes precedence on the formers.
+  Obviously it is not recommended to use this possibility given the loss of
+clarity it brings.
+
+ @ul @b Implicit With  @notul @notb
+
+  The methods of some objects can be called without specifying the name of the object. We
+say that these objects are given an IMPLICIT WITH property.
+  This is the case of datafile0@, multigraph0@, RealArray0@ and Acquis1@ which are declared in that order.
+
+  For example, we can write:
+  @prog   Page: = 2;   @notprog
+  instead of
+  @prog Multigraph0.Page: = 2; @notprog
+
+  If you want to select a page in another Multigraph object (example: multigraph1), you must
+always write
+  @prog  Multigraph1.Page: = 2; @notprog
+
+*)
+
+{$P External Objects
+
+ It is possible to create objects outside your program, for example by using the command @b Objects/New @notb in the main Elphy menu.
+This objects can be saved to and reloaded from a configuration file (command File/Configuration in the main menu) .
+
+ You can access this objects from the program by using the construction
+@prog
+ TypeName( Aname )
+@notprog
+where TypeName is the name of any Elphy object type, and Aname is the name of an object you have created.
+TypeName will act like a function which returns an object of TypeName type.
+
+Example:
+@prog
+Tvector('Vector1').show;
+@notprog
+
+ This methods also applies to objects created in another Tmacro@ object.
+
+}
+
+
+{$TITLE Variants }
+{$P  Definition
+ Variants represent values that can change type at runtime. Variants offer greater flexibility but
+operations on them are slower than on regular variables. Moreover, illicit operations on variants often
+result in runtime errors, where similar mistakes with regular variables would have been caught at compile time.
+
+ Variants can hold values of any type except records and  arrays.
+ Examples:
+@prog
+  var
+    st:string;
+    i:integer;
+    x:real;
+    w: variant;
+
+  (* The following assignments are legal *)
+  program Test1
+    w:= 124;
+    w:= 'Hello';
+    w:= TRUE;
+
+  (* This assignments are legal at compile time but
+    are perhaps illicit at runtime *)
+  program Test2
+    st:= w;       (* OK only if w contains a string *)
+    x:=  w;       (* OK only if w contains an integer or real value *)
+
+  (* For procedure parameters, it is the same problem *)
+  program Test3
+    messageBox(w); (* OK at compile time but w must contain a string at run time *)
+@notprog
+}
+{$P Variants and objects
+
+ One of the principles of the Elphy language is to forbid object variable assignment because
+it is considered as unsafe. However, it is possible to work around this rule because you can assign
+an object variable to a variant variable.
+
+Example:
+@prog
+  var
+    vec:Tvector;
+    w:variant;
+
+  procedure Execute(var vv:Tvector);
+  begin
+    vv.show;
+  end;
+
+  program test
+  vec.create(t_single,0,999);
+  w:=vec;
+  execute(w);
+@notprog
+
+ Moreover, some standard procedures are able to store an object in a variant variable.
+
+  In the example below, the user choose a vector in a dialog box. When the dialog is closed, the variant variable w contains this
+Tvector object. This variable is passed to the procedure Execute which waits for a Tvector object as parameter.
+This procedure then performs some task with the vector.
+
+@prog
+  var
+    dlg:Tdialog;
+    w:variant;
+
+  procedure Execute(var vv:Tvector);
+  begin
+    vv.show;
+  end;
+
+  program test
+  dlg.create;
+  dlg.getObject('Source',w,20,'Tvector');
+  if dlg.showModal=mr_ok then dlg.updatevar;
+
+  execute(w);
+@notprog
+
+ A question arises: what happens to the variant variable when the vector is later destroyed ?
+ The response is that the variant variable is automatically cleared because there is a smart link
+between any object and the variants which point to the object.
+
+}
+
+
+
+{$TITLE  Process Programs}
+
+(*$P 
+  Blocks starting with the keywords @b InitProcess0 @notb , @b InitProcess @notb , @b Process @notb ,
+@b ProcessCont @notb  and @b EndProcess @notb
+are used during data acquisition. They are also used when you use the Elphy command "Process File".
+
+  Each block which begins with one of these keywords should be followed by a list of
+statements. These blocks thus obey the same syntax as the program block .
+
+  Each block will be executed at a particular time during data acquisition , when the option
+"Execute program loaded in editor"  is checked in the Acquisition Parameters dialog.
+*)
+(*$P InitProcess0
+
+ When the user starts a data acquisition ( Using the Acquisition / Start command), he optionnaly gives
+a data file name then the statements in this block are executed.
+ In this block, the program can modify acquisition parameters if necessary. It can also modify
+any parameter which affects the structure of the data file.
+ This will not be possible later.
+*)
+(*$P InitProcess
+
+  After running InitProcess0 , the header file is written to disk and the object dataFile0
+is modified to take into account the new acquisition parameters. At that time, the vectors v1, v2, ...,
+will have scale parameters fixed by the acquisition parameters, and in Episode mode, their length
+will corresponds to the choosen episode duration divided by the sampling interval.
+
+  In the InitProcess block, the program can initialize everything concerning the display and future calculations
+during acquisition.
+*)
+(*$P Process
+
+  This block is executed after the acquisition of each episode in "Episode" mode.
+  In "continuous" mode, it is ignored.
+
+  In this block, the program can perform measurements on the episode that just ended. At that time,
+the vectors v1, v2,..., are filled with acquired data and any data processing can be performed.
+The program can also display results in the Elphy graphic pages.
+
+  The WaitMode@(Tacquisition.WaitMode) property of the Acquisition@Tacquisition object determines whether to wait for the completion 
+of computations definied in the @b Process @notb block before starting a new acquisition.
+
+*)
+(*$P ProcessCont
+
+  This block is executed during a continuous acquisition ("Continuous" mode ).
+  In "episode" mode, it is ignored.
+
+  This program block is called about every 50 milliseconds (This interval depends on sampling frequency,
+number of acquired channels and processor load ).
+
+  When the block is called, it is its responsiblility to process the samples acquired since the previous call.
+
+  In many situations, this kind of program have to detect some event on a channel and the Tdetector@ object is
+very useful because it greatly simplify programming.
+
+*)
+(*$P EndProcess
+  This block is executed at the end of acquisition, regardless of how the acquisition was stopped.
+
+  This block can calculate final results, save and display this results, etc. ...
+*)
+
+{$TITLE Compiler Directives }
+
+{$P
+  A compiler directive is a comment whose first character is '$'
+  The dollar character must immediately  follow the open brace or the pair @b (* @notb .
+
+}
+
+(*$P Include File
+
+ The {$I filename} directive tells the compiler to read further statements from the file filename.
+ The statements read there will be inserted as if they occurred in the current file.
+ Example:
+@prog
+  {$I C:\temp\list.PG2}
+@notprog
+
+ In this example, the file c:\temp\list.pg2 will be inserted in the program text
+at  compilation time.
+*)
+
+(*$P Boolean Evaluation
+
+ By default, the evaluation of Boolean expressions is optimized. For example,
+if we write:
+@prog
+   z:= ExpX OR expY;
+@notprog
+
+ At runtime, the Boolean expression evaluate Expx first. If the result is TRUE,
+Expy will not be evaluated because the result will certainly be TRUE;
+
+ Similarly, if we write
+@prog
+ z := ExpX AND ExpY
+@notprog
+ At runtime, if the evaluation of EXPX give FALSE ,
+ExpY will not be evaluated because the result will certainly be FALSE.
+
+ There are cases where you wish that the expressions are always evaluated completely.
+In this case, we write:
+@prog
+ {$B+ }
+ z := expX AND expY;
+ {$B-}
+@notprog
+ The directive {$B+} forces complete boolean evaluation.
+ The directive {$B+} set optimized evaluation.
+*)
+
+(*$P Conditional Compilation
+
+ The directives $DEFINE, $IFDEF, $IFNDEF, $ELSE and $ENDIF are used to manage the conditionnal compilation of
+code.
+ Here's an example:
+@prog
+
+  {$Define MyVersion}      { Remove this line if necessary (or remove only the $ ) }
+  ...
+  {$IFDEF MyVersion}
+  ... lines of code for MyVersion
+  {$ELSE}
+  ... lines of code for other versions
+  {$ENDIF}
+@notprog
+
+ Lines between $IFDEF and $ELSE will be compiled if the word MyVersion has been used in a $DEFINE directive
+ The situation is reversed for lines between $ELSE and $ENDIF
+
+ The $ELSE part could be omitted
+
+ This enables the user to compile different versions of the same program only by modifying
+a single line of text.
+
+*)
+
+(*$P Decomposition of the primary file
+
+  Using $EDIT directive, it is possible to edit the main file (primary file) into several parts.
+  This is interesting as soon as the number of lines of text becomes important.
+
+  Example:
+@prog
+ {$EDIT Variables}
+  ... Some code
+ {$EDIT Initialisation}
+  ... Some code
+  {$EDIT Display}
+  ... Some code
+@notprog
+  When the primary file contains $EDIT directives, the "Split Primary File" command in the popup menu
+which appears when right clicking in the text editor has the effect of splitting the primary file
+into several edit windows. This windows have the name written just after the $EDIT directive.
+
+ For the compiler, the primary file is always considered as a single text file, but the edition is improved.
+
+*)

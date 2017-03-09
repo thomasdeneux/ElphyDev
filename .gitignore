@@ -1,0 +1,123 @@
+# Problem! MKLdll.dll file exceeds GitHub max allowed! (50MB)
+#DelpheXE/Win64/Bin/MKL/MKLdll.dll
+
+# Files or folders used by Gerard or Thomas not needed for Elphy
+Elphy Tests/
+Ignore/
+DelpheXE-Win64-Bin.lnk
+
+# Temporary and backup files
+*.~*
+*.bak
+
+# Compilation folders and extensions
+DCU/*.dcu
+Debug/
+Release/
+x64/
+*.pdb
+*.exp
+*.ilk
+*.lib
+*.PGC
+*.PGC64
+
+# Files created automatically by Delphi that do not need to be kept
+*.ddp
+*.cfg
+*.dsk
+Delphe5/elphy2_DX9.dsm
+Delphe5/VarPack.dsm
+Delphe5/Autres projets/PreHelpHTML1.dsm
+DelpheXE/Elphy64.stat
+
+# Compilation of VarPack
+Delphe5/VarPack.drc
+Dexe5/VarPack.bpl
+Dexe5/VarPack.map
+
+# Compilation of 'Build Elphy' tool
+Delphe5/Autres projets/PreHelpHTML1.drc
+Dexe5/PreHelpHTML1.exe
+Dexe5/PreHelpHTML1.map
+
+# Results of 'Build Elphy'
+Delphe5/Elphy-objects.txt
+Delphe5/Elphy2.mph
+Delphe5/Elphy2.prc
+Delphe5/Elphy2.adr
+DelpheXE/Elphy2.prc
+Delphe5/cle.txt
+Dexe5/Elphy2.prc
+Dexe5/elphy.chm
+elphyHTML/*.html
+elphyHTML/Elphy.hhc
+elphyHTML/Elphy.hhk
+elphyHTML/elphy.chm
+elphyHTML/elphy.hhc
+elphyHTML/elphy.wli
+DelpheXE/Win64/Bin/Elphy2.prc
+DelpheXE/Win64/Bin/elphy.chm
+
+# Compilation of Elphy 32 bits
+Delphe5/elphy2_DX9.drc
+Dexe5/elphy2_DX9.exe
+Dexe5/Elphy2.exe
+Dexe5/elphy2_DX9.map
+
+# Files created automatically by DelpheXE
+DelpheXE/ProjOptions.optset
+DelpheXE/ProjectGroup1.groupproj
+DelpheXE/ProjectGroup1.groupproj.local
+DelpheXE/Elphy64.dproj.local
+DelpheXE/Elphy64.identcache
+
+# Compilation of VarPack in DelpheXE
+DelpheXE/VarPackage1.bpl
+DelpheXE/VarPackage1.dproj.local
+DelpheXE/VarPackage1.rsm
+DelpheXE/VarPackage1.stat
+
+# Compilation of Elphy 64 bits
+DelpheXE/Elphy64.res
+DelpheXE/Win64/Bin/Elphy64.exe
+DelpheXE/Win64/Bin/Elphy64.rsm
+
+# Files created automatically by Visual Studio
+*.sdf
+*.opensdf
+ipch/
+*.vcxproj.user
+*.suo
+
+# Compilation of Cuda
+Dexe5/Cuda/cudart*.dll
+Dexe5/Cuda/cuda65.dll
+Dexe5/Cuda/CudaMC65.dll
+Dexe5/Cuda/cuda80.dll
+Dexe5/Cuda/CudaMC80.dll
+DelpheXE/Win64/Bin/Cuda/cudart*.dll
+DelpheXE/Win64/Bin/Cuda/cuda65.dll
+DelpheXE/Win64/Bin/Cuda/CudaMC65.dll
+DelpheXE/Win64/Bin/Cuda/cuda80.dll
+DelpheXE/Win64/Bin/Cuda/CudaMC80.dll
+
+# Output of Inno Setup and zipping BAT scripts
+Setup/
+
+# Files created by the Elphy program
+Dexe5/AppData/DAC2.GFC
+Dexe5/AppData/*.OPT
+DelpheXE/Win64/Bin/AppData/DAC64.GFC
+DelpheXE/Win64/Bin/AppData/*.OPT
+
+# Temporary code versions
+Delphe5/stmTransform1_.pas
+Delphe5/stmTransform1___.pas
+Delphe5/stmTransform1__.pas
+stmTransform2.pas
+
+# To be sorted
+*.dll
+*.exe
+Users/Examples/4103Er5.DAT

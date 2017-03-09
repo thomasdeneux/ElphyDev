@@ -1,0 +1,101 @@
+Object
+  TRTchannel
+  TRTdigiChannel
+  TRTNeuron  (Tobject)
+  TNeuronServer (Tobject)
+{$H Objet permettant de contrôler le logiciel NEURON ( version 6.0 ) de M.Hines et T.Carnevale.
+
+ Le logiciel Neuron a été modifié afin d'être appelé à partir d'Elphy (ou à partir d'un autre programme)
+ Cette version modifiée s'appelle NrnElphyServer. Cette version s'installe simplement en installant d'abord la version
+standard de Neuron 6.0 puis en copiant le ficher NrnElphyServer.exe dans le répertoire Nrn\bin .
+
+ Lorsque l'on crée un objet TneuronServer (constructeur create@), on doit donner comme paramètre le chemin d'accès
+à NrnElphyServer.exe.
+
+ Exemple:
+ @f6 var
+ @f6   nrn:TneuronServer;
+ @f6
+ @f6 program 'Create'
+ @f6 nrn.create('D:\nrn60\bin\NrnElphyServer.exe');
+
+ L'appel de create ouvre le logiciel Neuron qui se met en attente des ordres de Elphy.
+ Dans la version actuelle de NrnElphyServer, il n'est pas possible d'entrer des commandes au niveau de la console.
+
+ Pour envoyer une commande à Neuron sous la forme d'une chaîne de caractères, on utilise la méthode Execute@
+ Pour lire ou modifier une variable Neuron, on utilise la propriété Value@ .
+
+ Avec Execute et Value , on peut pratiquement tout faire sur Neuron mais pour rendre plus efficace la simulation d'un modèle,
+nous avons introduit les méthodes ResetVectors@ , SetInputVector@ ,SetOutputVector@  et Run@:
+
+ SetInputVector@ définit un vecteur d'entrée et associe ce vecteur à une variable Neuron
+ SetOutputVector@ définit un vecteur de sortie
+ ResetVectors@ efface les listes de vecteurs
+ Run@ execute le modèle en place dans Neuron: c'est à dire que pour chaque indice des vecteurs d'entrée,
+la méthode calcule les sorties et les range dans les vecteurs associés.
+
+
+ Run est efficace car les transferts de données se font en une seule fois (dans le sens Elphy-Neuron
+avant le calcul puis dans le sens Neuron-Elphy après le calcul).
+
+  }
+end;
+
+
+{ TRTchannel }
+
+function TRTchannel.Dy:real;
+function TRTchannel.y0:real;
+procedure TRTchannel.setScale(j1,j2:integer;y1,y2:real);
+property TRTchannel.unitY:string;
+property TRTchannel.NrnSymbolName:string;
+property TRTchannel.HoldingValue:real;
+property TRTchannel.UseHoldingValue:boolean;
+
+
+{ TRTdigiChannel }
+
+property TRTdigiChannel.NrnSymbolName:string;
+property TRTdigiChannel.IsInput:boolean;
+
+
+
+{ RTNeuron}
+
+function RTNeuron:TRTNeuron;
+
+procedure TRTNEURON.execute(st:string);
+procedure TRTneuron.getTestData(var Vnb,Vt:Tvector);
+procedure TRTneuron.getTestData2(var Vnb,Vt:Tvector);
+
+function TRTneuron.getNrnValue(st:string):real;
+function TRTneuron.getNrnStepDuration:real;
+
+property TRTneuron.AdcChan(n:integer):TRTchannel readOnly;
+property TRTneuron.DacChan(n:integer):TRTchannel readOnly;
+property TRTneuron.DigiChan(n:integer):TRTdigiChannel readOnly;
+
+procedure TRTneuron.ResetParams;
+procedure TRTneuron.ReStart;
+property TRTneuron.StartFlag:boolean;
+property TRTneuron.FadvanceON:boolean;
+property TRTneuron.BaseClockInt: integer;
+
+{ NeuronServer}
+
+procedure TNeuronServer.create(FileName:string);
+procedure TNeuronServer.execute(st:string);
+
+property TNeuronServer.value(Name:string):real;
+
+procedure TNeuronServer.ResetVectors;
+procedure TNeuronServer.setInputVector(name:string;var vec:Tvector);
+procedure TNeuronServer.setOutputVector(name:string;var vec:Tvector);
+
+procedure TNeuronServer.run;
+
+function TNeuronServer.ChooseSymbol:string;
+
+
+
+

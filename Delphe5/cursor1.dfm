@@ -1,0 +1,178 @@
+object LineCursor: TLineCursor
+  Left = 631
+  Top = 213
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
+  Caption = 'LineCursor'
+  ClientHeight = 126
+  ClientWidth = 268
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = True
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object BackPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 268
+    Height = 126
+    Align = alClient
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 10
+      Top = 23
+      Width = 32
+      Height = 13
+      Caption = 'Label1'
+    end
+    object Label2: TLabel
+      Left = 10
+      Top = 44
+      Width = 32
+      Height = 13
+      Caption = 'Label2'
+    end
+    object Ltitle: TLabel
+      Left = 10
+      Top = 3
+      Width = 26
+      Height = 13
+      Caption = 'Title'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Ldiff: TLabel
+      Left = 10
+      Top = 65
+      Width = 20
+      Height = 13
+      Caption = 'Ldiff'
+    end
+    object BOK: TButton
+      Left = 73
+      Top = 89
+      Width = 56
+      Height = 20
+      Caption = 'OK'
+      ModalResult = 1
+      TabOrder = 0
+      Visible = False
+    end
+    object Bcancel: TButton
+      Left = 142
+      Top = 89
+      Width = 56
+      Height = 20
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 1
+      Visible = False
+    end
+    object scrollbarV1: TscrollbarV
+      Tag = 1
+      Left = 145
+      Top = 23
+      Width = 91
+      Height = 16
+      Max = 30000
+      PageSize = 0
+      TabOrder = 2
+      Xmax = 1000.000000000000000000
+      dxSmall = 1.000000000000000000
+      dxLarge = 10.000000000000000000
+      OnScrollV = scrollbarV1ScrollV
+    end
+    object scrollbarV2: TscrollbarV
+      Tag = 2
+      Left = 145
+      Top = 43
+      Width = 91
+      Height = 16
+      Max = 30000
+      PageSize = 0
+      TabOrder = 3
+      Xmax = 1000.000000000000000000
+      dxSmall = 1.000000000000000000
+      dxLarge = 10.000000000000000000
+      OnScrollV = scrollbarV1ScrollV
+    end
+    object Bprop: TBitBtn
+      Left = 240
+      Top = 22
+      Width = 26
+      Height = 20
+      TabOrder = 4
+      OnClick = BpropClick
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333333333333333333FFF333333333333000333333333
+        3333777FFF3FFFFF33330B000300000333337F777F777773F333000E00BFBFB0
+        3333777F773333F7F333000E0BFBF0003333777F7F3337773F33000E0FBFBFBF
+        0333777F7F3333FF7FFF000E0BFBF0000003777F7F3337777773000E0FBFBFBF
+        BFB0777F7F33FFFFFFF7000E0BF000000003777F7FF777777773000000BFB033
+        33337777773FF733333333333300033333333333337773333333333333333333
+        3333333333333333333333333333333333333333333333333333333333333333
+        3333333333333333333333333333333333333333333333333333}
+      NumGlyphs = 2
+    end
+    object Bsearch1: TBitBtn
+      Left = 123
+      Top = 22
+      Width = 15
+      Height = 15
+      TabOrder = 5
+      OnClick = Bsearch1Click
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000130B0000130B00001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333333333333333333333333333333333300000000000
+        0033388888888888883330F888888888803338F333333333383330F333333333
+        803338F333333333383330F333333333803338F333333333383330F333303333
+        803338F333333333383330F333000333803338F333333333383330F330000033
+        803338F333333333383330F333000333803338F333333333383330F333303333
+        803338F333333333383330F333333333803338F333333333383330F333333333
+        803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+        0033388888888888883333333333333333333333333333333333}
+      NumGlyphs = 2
+    end
+    object Bsearch2: TBitBtn
+      Left = 124
+      Top = 43
+      Width = 15
+      Height = 15
+      TabOrder = 6
+      OnClick = Bsearch2Click
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000130B0000130B00001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333333333333333333333333333333333300000000000
+        0033388888888888883330F888888888803338F333333333383330F333333333
+        803338F333333333383330F333333333803338F333333333383330F333303333
+        803338F333333333383330F333000333803338F333333333383330F330000033
+        803338F333333333383330F333000333803338F333333333383330F333303333
+        803338F333333333383330F333333333803338F333333333383330F333333333
+        803338F333333333383330FFFFFFFFFFF03338FFFFFFFFFFF833300000000000
+        0033388888888888883333333333333333333333333333333333}
+      NumGlyphs = 2
+    end
+  end
+end

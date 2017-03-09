@@ -1,0 +1,99 @@
+Object
+  TPythonEng(TwinObject)
+{$H TpythonEng permet l'exécution d'un programme Python à partir de Elphy.
+
+ Python version 2.5 doit être installé sur le PC .
+ Un seul objet de ce type peut être créé dans Elphy.
+
+ Quand un objet TpythonEng est créé, la fenêtre qui lui est associée contient deux objets Tmemo@.
+
+ Le premier memo est accessible à travers la propriété Source@. Il est destiné à gérer le
+fichier programme Python.
+ Le second memo est accessible à travers la propriété Output@ . Il recevra le texte de sortie
+du programme Python. Par exemple, une intruction PRINT enverra le texte dans ce memo.
+
+ Pour exécuter un programme Python, il suffit de charger le memo Source@ avec le programme et
+d'appeler ensuite la méthode Execute@ .
+ On peut aussi utiliser ExecuteString@ ou ExecuteFile@ .
+
+
+ Le texte de sortie est ensuite récupérable dans le memo output@.
+
+ Pour une interaction plus fine entre Elphy et Python, on peut utiliser les méthodes setvar@ et getvar@
+qui permettent un transfert de données d'une variable Elphy vers une variable Python et réciproquement.
+
+ Les méthodes setVector@ et getVector@ permettent le tranfert d'un objet Tvector vers un objet LIST
+
+
+}
+
+end;
+
+procedure TPythonEng.create;
+{$H Constructeur de l'objet TpythonEng@ .
+}
+
+property TPythonEng.Source:Tmemo readonly;
+{$H Memo destiné à la gestion du fichier programme Python
+}
+
+property TPythonEng.Output:Tmemo readonly;
+{$H Memo destiné à recevoir les sorties texte du programme Python
+}
+
+procedure TPythonEng.execute;
+{$H Lance l'exécution du programme contenu dans le memo source@ .
+}
+
+procedure TPythonEng.executeString(st:string);
+{$H Lance l'exécution du programme contenu dans st .
+
+ Si votre programme est dans une objet Tmemo@ , vous pouvez appeler:
+
+ @@f6 PythonEng.executeString(memo.text);
+}
+
+
+procedure TPythonEng.executeFile(stFile:string);
+{$H Lance l'exécution du programme contenu dans le memo source@ .
+}
+
+
+function TPythonEng.getVar(st:string):variant;
+{$H Récupère le contenu d'une variable Python.
+
+ st est le nom de la variable. Rappelons que Python différencie les majuscules-minuscules.
+
+ La variable doit contenir un nombre (entier ou réel) , une chaîne de caractère ou un booléen.
+
+ Le résultat de la fonction est un variant@ . Ce résutat peut être rangé dans une variable
+Elphy ayant le type adéquat.
+}
+procedure TPythonEng.setVar(st:string; w:variant);
+{$H Range une valeur dans une variable Python.
+
+ st est le nom de la variable. Rappelons que Python différencie les majuscules-minuscules.
+
+ w est un variant@ et peut contenir un nombre (entier ou réel), une chaîne de caractère ou un booléen.
+
+
+}
+
+procedure TPythonEng.getVector(st:string;var vec:Tvector);
+{$H Récupère le contenu d'une variable séquence Python et la range dans une vecteur.
+
+ st est le nom de la variable. Rappelons que Python différencie les majuscules-minuscules.
+
+ La variable doit être une liste ou un tuple qui contient des nombres.
+ Le type du vecteur est inchangé. Ses bornes sont modifiées afin de correspondre
+au nombre d'éléments de la séquence. Istart est fixé à zéro.
+}
+
+procedure TPythonEng.SetVector(st:string;var vec:Tvector);
+{$H Range le contenu d'un vecteur dans une variable Python .
+
+ st est le nom de la variable. Rappelons que Python différencie les majuscules-minuscules.
+
+ La variable deviendra une liste contenant toutes les valeurs du vecteur.
+}
+

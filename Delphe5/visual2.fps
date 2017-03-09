@@ -1,0 +1,207 @@
+Object
+
+TGaborNoise (TRevCor)
+
+{$H Objet permettant de réaliser un bruit dense avec des Gabors.
+
+ Les gabors sont disposés sur une grille (voir l'objet Trevcor@ ).
+ On peut faire varier les paramètres des gabors (Lum@,period@ , phase@ , contrast@, Orientation@ )
+en ajustant les paramètres suivants:
+
+ @f6  period@,         phase@,        contrast@
+ @f6  LumInc@,         PeriodInc@,    PhaseInc@,    OrientInc@
+ @f6  LumCount@,       PeriodCount@,  PhaseCount@,  OrientCount@
+}
+
+TgaborSparse(TgaborNoise)
+
+end;
+
+{TGaborNoise  stmGaborDense1 }
+
+property TGaborNoise.overlap:boolean;
+{$H true si recouvrement des objets dans la stimulation}
+property TGaborNoise.preSim:boolean;
+{$H true si on veut faire une préstimulation non aléatoire}
+property TGaborNoise.extensionX:double;
+{$H Si extensionx vaut 1, le gabor est ajusté sur la grille. Sinon, ce coefficient détermine la dilatation du gabor
+par rapport à la grille, selon x.}
+property TGaborNoise.extensionY:double;
+{$H Si extensionY vaut 1, le gabor est ajusté sur la grille. Sinon, ce coefficient détermine la dilatation du gabor
+par rapport à la grille, selon Y.}
+
+property TGaborNoise.attenuationX:double;
+{$H Définit le Lx@(TLGabor.Lx) du Gabor de manière relative:
+ @f6 Lx = attenuationX * dx de la grille de départ
+ }
+property TGaborNoise.attenuationY:double;
+{$H voir attenuationX@
+}
+property TGaborNoise.period:double;
+{$H Les périodes des différents gabors présentés vont de period@ à period@+(PeriodCount@-1)*PeriodInc@
+}
+property TGaborNoise.phase:double;
+{$H Analogue à period@ mais pour la phase des gabors présentés
+}
+property TGaborNoise.contrast:double;
+{$H Analogue à period@ mais pour la luminance des gabors présentés
+}
+property TGaborNoise.LumInc:double;
+{$H Analogue à PeriodInc@ mais pour la luminance des gabors présentés
+}
+property TGaborNoise.PeriodInc:double;
+{$H Les périodes des différents gabors présentés vont de period@ à period+(PeriodCount@-1)*PeriodInc@
+}
+property TGaborNoise.PhaseInc:double;
+{$H Analogue à PeriodInc@ mais pour la phase des gabors présentés
+}
+property TGaborNoise.OrientInc:double;
+{$H Les orientations des différents gabors présentés vont de 0 à (OrientCount@-1)*OrientInc@ avec un pas de OrientInc
+
+ L'orientation absolue du gabor sera RFtheta@+ i*OrientInc@
+ RFtheta étant l'orientation de la grille
+}
+property TGaborNoise.LumCount:longint;
+{$H Analogue à PeriodCount@ mais pour la luminance des gabors présentés
+}
+property TGaborNoise.PeriodCount:longint;
+{$H Les périodes des différents gabors présentés vont de period@ à period+(PeriodCount@-1)*PeriodInc@
+}
+property TGaborNoise.PhaseCount:longint;
+{$H Analogue à PeriodCount@ mais pour la phase des gabors présentés
+}
+property TGaborNoise.OrientCount:longint;
+
+property TGaborNoise.State(x,y,t:integer):integer;
+{$H Définit l'état de la case (x,y) dans la t-ième grille de stimulation.
+
+ x et y commencent à 1
+ t commence à zéro.
+}
+
+property TGaborNoise.LqrMode:integer;
+{$H Mode de calcul LqrPstw
+  0: à chaque paramètre correspond une réponse
+  1: les phases opposées donnent des réponses opposées.
+}
+property TGaborNoise.Blank:boolean;
+{$H Si Blank=TRUE, on ajoute un objet transparent dans l'ensemble des objets présentés.
+ Cet objet est sensé ne provoquer aucune réponse.
+}
+
+
+
+procedure TGaborNoise.create(stName:String);
+
+function TgaborNoise.encodeZ(orient1,period1,lum1,phase1:integer):integer;
+procedure TgaborNoise.decodeZ(code:integer;var orient1,period1,lum1,phase1:integer);
+
+function TgaborNoise.LQRencodeZ(orient1,period1,lum1,phase1:integer):integer;
+procedure TgaborNoise.LQRdecodeZ(code:integer;var orient1,period1,lum1,phase1:integer);
+
+procedure TgaborNoise.BuildSignal(var pstw:TvectorArray;var vec:Tvector);
+procedure TgaborNoise.BuildSignalSpk(var pstw:TvectorArray;var vec:Tvector;Nmax:integer);
+
+
+procedure TGaborNoise.initPsth(var psth:TpsthArray;var source:Tvector;x1,x2,deltaX:real);
+procedure TGaborNoise.calculatePsth(var psth:TpsthArray;var source:Tvector);
+
+procedure TGaborNoise.initPstw(var pstw:TaverageArray;var source:Tvector;x1,x2:real);
+procedure TGaborNoise.calculatePstw(var pstw:TaverageArray;var source:Tvector);
+
+procedure TGaborNoise.initPstw2(var pstw:TaverageArray;var source:Tvector;x1,x2:real);
+procedure TGaborNoise.calculatePstw2(var pstw:TaverageArray;var source:Tvector;dtau:integer);
+
+procedure TGaborNoise.encodePstw2(x,y,z,z2,d:integer;var gx,gy:integer);
+procedure TGaborNoise.decodePstw2(gx,gy:integer;var x,y,z,z2,d:integer);
+
+
+property TGaborNoise.NoiseModel:integer;
+{$H Définit le modèle de bruit.
+
+ Par défaut, NoiseModel=0, ce qui correspond au modèle utilisé dans les premières versions.
+ Avec ce modèle, les valeurs d'état rangées dans chaque case des grilles de stimulation ne
+sont pas modifiables.
+ Si l'on veut contrôler complètement le bruit (ou pseudo bruit), il faut choisir NoiseModel=1.
+
+ Le fait de modifier NoiseModel positionne un flag interne qui empêche l'initialisation de la
+séquence aléatoire juste avant la stimulation. Ce flag est remis à false en fin de stimulation.
+ Si l'on veut modifier le bruit, il faut donc appeler  NoiseModel:=1 avant chaque stimulation.
+}
+
+{Fonctions pour traiter le signal acquis avant de le décomposer en noyaux}
+procedure SamplingIntAbove(var source,dest,evenements:TVector;seuil:real);
+{$H les fonctions Sampling échantillonnent un signal source et appliquent une certaine fonction
+sur l'intervalle entre 2 événements.
+Par exemple, l'événement peut être un top synchro. Ceci est utilisé pour le calcul des noyaux.
+
+Ici, entre 2 événements, on intègre tout ce qui se trouve au dessus d'un certain seuil.}
+
+procedure SamplingIntBelow(var source,dest,evenements:TVector;seuil:real);
+{$H les fonctions Sampling échantillonnent un signal source et appliquent une certaine fonction
+sur l'intervalle entre 2 événements.
+Par exemple, l'événement peut être un top synchro. Ceci est utilisé pour le calcul des noyaux en bruit dense.
+
+Ici, entre 2 événements, on intègre tout ce qui se trouve en dessous d'un certain seuil.}
+procedure SamplingEnergie1(var source,dest,evenements:TVector;Y0:real);
+{$H les fonctions Sampling échantillonnent un signal source et appliquent une certaine fonction
+sur l'intervalle entre 2 événements.
+Par exemple, l'événement peut être un top synchro. Ceci est utilisé pour le calcul des noyaux en bruit dense.
+
+Ici, entre 2 événements, on calcule l'énergie par rapport à un Y0 (voir la fonction @Energie1.}
+
+
+procedure TGaborNoise.SinglePstw2(var mm:Taverage;var source:Tvector;x1,y1,z1,x2,y2,z2,dtau:integer);
+{$H Calcul d'une moyenne correspondant à une seule condition du second ordre.
+
+  Dans la séquence courante, on examine chaque top synchro (instant t).
+  Si, à l'instant t, le gabor placé en (x1,y1) est du type z1 et si à l'instant t+dtau*(dtON+dtOff),
+le gabor placé en (x2,y2) est du type z2, alors on accumule la région du vecteur source centrée sur t
+dans l'objet moyenne
+
+ L'objet Taverage peut être initialisé avec InitSinglePstw2@ .
+
+}
+
+procedure TGaborNoise.InitSinglePstw2(var mm:Taverage;var source:Tvector;x1,x2:real);
+{$H Donne à mm les paramètres suivants:
+
+   dx:=source.dx;
+   x0:=0;
+   Xstart:=x1;
+   Xend:=x2;
+   Le type numérique est inchangé.
+
+   On peut ensuite utiliser SinglePstw2.
+
+}
+
+procedure TGaborNoise.SinglePsth2(var psth:Tpsth;var source:Tvector;x1,y1,z1,x2,y2,z2,dtau:integer);
+{$H Calcul d'un psth correspondant à une seule condition.
+
+  Dans la séquence courante, on examine chaque top synchro (instant t).
+  Si, à l'instant t, le gabor placé en (x1,y1) est du type z1 et si à l'instant t+dtau*(dtON+dtOff),
+le gabor placé en (x2,y2) est du type z2, alors on accumule la région du vecteur source centrée sur t
+dans l'objet Psth
+
+ L'objet Tpsth peut être initialisé avec InitSinglePsth2@ .
+
+}
+procedure TGaborNoise.InitSinglePsth2(var psth:Tpsth;var source:Tvector;x1,x2,Width:real);
+{$H Donne à psth les paramètres suivants:
+
+   dx:=Width; (* ou binWidth:=width *)
+   x0:=0;
+   Xstart:=x1;
+   Xend:=x2;
+   Le type numérique est inchangé.
+
+   On peut ensuite utiliser SinglePsth2.
+
+}
+
+
+{TGaborSparse  stmGaborSparse1 }
+
+procedure TGaborSparse.create(stName:String);
+

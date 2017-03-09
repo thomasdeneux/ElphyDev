@@ -1,0 +1,15 @@
+
+var
+  n: integer;
+
+Program 'Test'
+n:=213;  
+messageBox('Hello N='+Istr(n));
+statuslineTxt('ICI');
+
+Program 'Messages/Bonjour'
+messageBox('Bonjour');
+
+Program 'Messages/Bonsoir'
+messageBox('Bonsoir');
+

@@ -1,0 +1,46 @@
+package Python_d7;
+
+{$R *.res}
+{$R 'Sources\Core\PythonEngine.dcr'}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Components for Python'}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  rtl;
+
+contains
+  PythonEngine in 'Sources\Core\PythonEngine.pas',
+  WrapDelphi in 'Sources\Core\WrapDelphi.pas',
+  PythonGUIInputOutput in 'Sources\Core\PythonGUIInputOutput.pas',
+  MethodCallBack in 'Sources\Core\MethodCallBack.pas',
+  AtomPythonEngine in 'Sources\Core\AtomPythonEngine.pas',
+  PythonAtom in 'Sources\Core\PythonAtom.pas',
+  VarPyth in 'Sources\Core\VarPyth.pas',
+  TinyWideStrings in 'Sources\Core\TinyWideStrings.pas';
+
+end.

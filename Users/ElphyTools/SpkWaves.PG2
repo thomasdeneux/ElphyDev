@@ -1,0 +1,221 @@
+{$ELPHYTOOL Waveforms }
+
+{****************************** Amplitude Histogram ***************************}
+
+var
+  mgWspk:Tmultigraph;
+  dlgWSpk:Tdialog;
+    
+
+  Index1,maxWave:integer;
+  XminW,XmaxW,YminW,YmaxW:real;
+  PageMode:integer;
+  
+  
+procedure initvar;
+begin
+  Index1:=1;
+  maxWave:=100;
+  XminW:=-1;
+  XmaxW:=4;
+  YminW:=-10;
+  YmaxW:=10;
+  
+  PageMode:=1;   
+end;  
+  
+procedure setMulti(w:boolean;n1,n2:integer);
+var
+  i,j:integer;
+begin
+  for i:=1 to maxVSpkCount do
+  begin 
+    Wspk[i].setMultiDisplay(w,n1,n2);
+    for j:=0 to Wspk[i].WUcount-1 do Wspk[i].WU[j].setMultiDisplay(w,n1,n2);   
+  end;         
+end;    
+
+procedure SetMgWspkCoo;
+begin
+  with mgWspk.mgPage['Page 1'].Vparams do
+  begin
+    Xmin:=XminW;
+    Xmax:=XmaxW;
+    Ymin:=YminW;
+    Ymax:=YmaxW;
+  end;
+end;        
+
+procedure AutoscaleXWspk;
+begin
+  XminW:=Wspk[1].Xstart;
+  XmaxW:=Wspk[1].Xend;   
+end;
+
+procedure AutoscaleYWspk;
+var
+  i,j:integer;
+  min,max:real;
+begin
+  min:=1E12;
+  max:=-1E12;
+  for i:=1 to maxVSpkCount do
+  begin 
+    Wspk[i].getminmax(min,max);
+    for j:=0 to Wspk[i].WUcount-1 do Wspk[i].WU[j].getminmax(min,max);   
+  end;       
+  
+  YminW:=min;
+  YmaxW:=max;  
+end;    
+
+procedure InitPage;
+var
+  i,j,col,lin:integer;
+begin
+  with mgWspk,mgPage['Page 1'] do
+  begin
+    pageFont:=true;
+    color:=cl_black;
+    scaleColor:=cl_white;
+    
+    UseVparams:=true;
+  
+    Vparams.Xscale:=false;
+    Vparams.Yscale:=false;    
+    Vparams.Xticks:=false;
+    Vparams.Yticks:=false;    
+
+    DestroyAllWindows;     
+    
+    case PageMode of
+      1:begin
+          DefineGrid(0,0,PageWidth-1,PageHeight-1,16,12);
+          for i:=1 to 32 do
+          for j:=0 to 5 do
+          begin
+            if i<=16 then 
+            begin
+              col:=i;
+              lin:=j+1;
+            end
+            else 
+            begin
+              col:=i-16;
+              lin:=7+j;
+            end;  
+            addObject( col+16*(lin-1),Wspk[i].WU[j]);
+          end;
+        end;  
+      2:begin
+          DefineGrid(0,0,PageWidth-1,PageHeight-1,8,4);
+          for i:=1 to 32 do           
+            addObject( i,Wspk[i]);
+        end;
+    end;
+  end;
+end;
+
+
+procedure dlgWSpkEvent(n:integer);
+begin
+  case n of 
+    101: begin
+           dlgWSpk.updateVar;
+           SetMgWspkCoo;
+           setMulti(true,index1,index1+maxWave-1);
+           mgWspk.refresh;
+           setMulti(false,1,1);
+         end;
+         
+    201: begin
+           AutoscaleXWspk;
+           dlgWspk.update;
+         end;
+         
+    202: begin
+           AutoscaleYWspk;
+           dlgWspk.update;
+         end;
+         
+    301: begin
+           dlgWSpk.updateVar;
+           initPage;
+         end; 
+  end;       
+
+end;
+
+
+procedure initWspk;
+var
+  i,j,col,lin:integer;
+begin
+  Initvar;
+  
+  mgWspk.create;
+  mgWspk.caption:='Spike Waveforms';
+  mgWspk.toolbarVisible:=false;
+
+  with dlgWSpk do
+  begin
+    create;
+    setButtons(0);
+    dividePanel(0,4,true);
+
+    selectPanel(1);
+    getStringListA('Display Mode','1 |2 ',PageMode,301);
+
+    selectPanel(2);
+    setPanelProp(true,1);
+    
+    getReal('Xmin',XminW,10,3);
+    getReal('Xmax',XmaxW,10,3);
+    getReal('Ymin',YminW,10,3);
+    getReal('Ymax',YmaxW,10,3);
+    
+    selectPanel(3);
+    setPanelProp(true,1);
+    getCommandA('AutoscaleX',0,201);
+    getCommandA('AutoscaleY',0,202);
+    
+
+    selectPanel(4);
+    setPanelProp(true,1);
+    getInteger('First Index',Index1,6);
+    getInteger('Max waveforms',MaxWave,6);    
+    getCommandA('Display All',0,101);
+
+    OnEvent:=dlgWSpkEvent;
+    
+  end;
+
+  
+  mgWspk.newWindow(1,10,10);
+  mgWspk.addMGDialog(Al_top,dlgWSpk);
+
+  with mgWspk,mgPage['Page 1'] do
+  begin
+    pageFont:=true;
+    color:=cl_black;
+    scaleColor:=cl_white;
+    
+    UseVparams:=true;
+  
+    Vparams.Xscale:=false;
+    Vparams.Yscale:=false;    
+    Vparams.Xticks:=false;
+    Vparams.Yticks:=false;    
+
+    InitPage;
+  end;
+
+  mgWspk.show;
+end;
+
+program 'Waveforms'
+if not assigned(mgWspk)
+  then initWspk
+  else mgWspk.show;
+
+

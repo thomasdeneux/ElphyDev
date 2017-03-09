@@ -1,0 +1,106 @@
+//                     Tmultigraph             
+
+// Multigraph0 ( type Tmultigraph ) is always available
+// It's the set of graphic pages in the main window of Elphy
+// Like Datafile0, it has a special property (implicit WITH) that allows to skip its name
+
+// We give two methods to design a page
+// CreateApage1 uses old Tmultigraph methods.
+// CreateAPage2 uses the methods of TmgPage, a sub-object of Tmultigraph. We get the same result
+// but it's the preferred method
+
+// When a page is created, we have to put objects in multigraph windows, this is done
+// with Tmultigraph.AddObject or Tmgpage.AddObject  
+
+ 
+procedure CreateAPage1;
+Const
+  stName='My New Page';
+var
+  Pagenum,i: integer;
+begin
+  // we create the page only if it does not exist
+  if PageIndex(stName)=0 then AddPage(stName);
+  PageNum:=PageIndex(stName);
+  
+  DestroyAllWindows(pageNum);  // to be sure there is nothing in the page
+  NewWindow(PageNum,1,1);      // has the same effect as 'New window' in design mode
+                               // when we right-click in position (1,1)
+                               
+  { We can also write DefineWindow(PageNum,0,0,PageWidth-1,PageHeight-1); }
+  
+  DivideWindow(PageNum,1,1,4);  // We get 4 windows with the same size
+   
+  for i:=1 to 4 do AddObject(PageNum,i,v[i]);
+   
+   
+end;
+
+
+procedure CreateAPage2;
+Const
+  stName='My New Page';
+var
+  i:integer;
+begin 
+  if PageIndex(stName)=0 then AddPage(stName);
+  
+  with MgPage[stName] do
+  begin  
+    DestroyAllWindows; 
+    NewWindow(1,1);            
+    { OR DefineWindow(0,0,PageWidth-1,PageHeight-1); }
+  
+    DivideWindow(1,1,4);  // We get 4 windows with the same size
+    
+    color:=cl_black;
+    scaleColor:=cl_white;
+    PageFont:=true;
+    for i:=1 to 4 do AddObject(i,v[i]);  
+  end; 
+end;
+
+
+
+program 'Create Page'
+CreateApage2;
+
+
+// It's also possible to create a new Tmultigraph object. Here is an example:
+// In this case, you can you can forbid the creation of new pages by the user (ToolbarVisible=false)
+
+var
+  mg: Tmultigraph;
+
+procedure CreateNewMG;
+var
+  i:integer;
+begin
+  mg.create(1,4);
+  mg.caption:='My title'; 
+   
+  with mg.CurMgPage do
+  begin       
+    PageFont:=true;
+    color:=cl_black;
+    scaleColor:=cl_white;
+    for i:=1 to 4 do AddObject(i,v[i]);  
+  end; 
+  
+  mg.show;
+end;
+
+program 'New MG'
+CreateNewMG;
+
+
+
+
+
+
+
+
+
+
+
+

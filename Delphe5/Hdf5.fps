@@ -1,0 +1,108 @@
+Object
+Thdf5file(Tobject)
+{$H Gère un fichier au format Hdf5
+
+ Actuellement, le fichier est ouvert uniquement pour la lecture des données.
+
+ Les fonctions utilisées sont celles de la bibliothèque hdf5-lite
+
+ Le schéma classique est le suivant:
+
+ @prog
+ var
+   f: THdf5file;
+ ...
+
+  f.openFile(AFileName);
+  Nchannel:= f.getInt('/application_data/spikedetekt/n_channels');
+  SampleRate:= f.getInt('/application_data/spikedetekt/sample_rate'); 
+  
+  Vmain.create;
+  Vorg.create;
+  Vrecord.create;
+  Vfrac.create;
+  Vspike.create;
+  
+  f.getVector('/channel_groups/0/spikes/clusters/main',Vmain);
+  f.getVector('/channel_groups/0/spikes/clusters/original',Vorg);
+  f.getVector('/channel_groups/0/spikes/recording',Vrecord);
+  f.getVector('/channel_groups/0/spikes/time_fractional',Vfrac);
+  f.getVector('/channel_groups/0/spikes/time_samples',Vspike);
+
+  f.free;
+
+  @notprog
+
+  Les objets du type attribute ou dataset sont traités de la même façon.
+}
+
+end;
+
+procedure Thdf5file.OpenFile(stf: string);
+{$H Ouvre un fichier au format hdf5
+
+}
+
+function Thdf5file.getString(id:string; var error: integer): string;
+function Thdf5file.getString(id:string): string;
+{$H Lecture d'un attribut de type string
+
+ id est l'identificateur de l'attribut
+ Dans la première variante, le paramètre error contiendra une valeur positive ou nulle si
+tout s'est bien passé et une valeur négative dans le cas contraire.
+ Dans la seconde variante, le programme s'arrête en cas d'erreur.
+}
+
+function Thdf5file.getInt(id:string; var error: integer): int64;
+function Thdf5file.getInt(id:string): int64;
+{$H Lecture d'un attribut de type entier
+
+id est l'identificateur de l'attribut
+ Dans la première variante, le paramètre error contiendra une valeur positive ou nulle si
+tout s'est bien passé et une valeur négative dans le cas contraire.
+ Dans la seconde variante, le programme s'arrête en cas d'erreur.
+}
+
+function Thdf5file.getReal(id:string; var error: integer): double;
+function Thdf5file.getReal(id:string): double;
+{$H Lecture d'un attribut de type réel
+
+id est l'identificateur de l'attribut
+ Dans la première variante, le paramètre error contiendra une valeur positive ou nulle si
+tout s'est bien passé et une valeur négative dans le cas contraire.
+ Dans la seconde variante, le programme s'arrête en cas d'erreur.
+}
+
+procedure Thdf5file.getVector(id:string; var vec: Tvector; var error:integer);
+procedure Thdf5file.getVector(id:string; var vec: Tvector);
+{$H Lecture d'un dataset de type entier ou réel
+
+ Quel que soit le nombre de dimensions du dataset, les données sont rangées dans le vecteur vec.
+
+ id est l'identificateur du dataset
+ Dans la première variante, le paramètre error contiendra une valeur positive ou nulle si
+tout s'est bien passé et une valeur négative dans le cas contraire.
+ Dans la seconde variante, le programme s'arrête en cas d'erreur.
+}
+
+procedure Thdf5file.getDataSetInfo(id:String;var  vec: Tvector; var tp, tpSize, error:integer);
+procedure Thdf5file.getDataSetInfo(id:String;var  vec: Tvector; var tp, tpSize:integer);
+{$H Renvoie des informations sur un dataset
+
+ id est l'identificateur du dataset
+
+ Au retour, le nombre d'éléments du vecteur correspond au nombre de dimensions du dataset, et
+chaque valeur du vecteur correspond à une dimension.
+ tp indique le type de données (voir les (constantes de type numérique)@(types de nombre)  )
+ tpSize est une indication complémentaire sur la taille des éléments.
+
+ Dans la première variante, le paramètre error contiendra une valeur positive ou nulle si
+tout s'est bien passé et une valeur négative dans le cas contraire.
+ Dans la seconde variante, le programme s'arrête en cas d'erreur.
+
+
+}
+
+
+
+

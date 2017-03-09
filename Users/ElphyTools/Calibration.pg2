@@ -1,0 +1,383 @@
+{$ELPHYTOOL Visual Stimulation }
+
+var
+  dlg: Tdialog;
+  lum: array[0..255] of real;
+    
+  fit: TcurveFitting;
+  vec1,vec2:Tvector;
+  vecMavo: Tvector;
+  Graph: Tgraph;
+  mg: Tmultigraph;
+  numFit: integer;
+  stf:string;
+
+  SerialPort: TserialCom;
+  NumCom: integer;
+  
+  
+  
+  
+procedure createCurve;
+var
+  i: integer;
+begin
+  for i:=0 to 11 do vec2[i]:=lum[i];  
+  with fit do
+  begin
+    setXdata(vec1);
+    setYdata(vec2);
+    IstartFit:=0;
+    IendFit:=11;
+    StandardModel:=  10+numFit; //Polynome de degré 3 minimum
+    
+    setGraphParam(0,255,0,255);
+    execute;
+  end;
+end;  
+  
+     
+function readMavoValue: real;
+var
+  st,st1: string;
+  i:integer;
+begin
+  readMavoValue:=0;
+  with serialPort do
+  begin
+    writeString('?'+#10);
+    st:=readString(#10);
+    if length(st)<6 then exit;
+    //messageBox(st);
+    { le format est nnnnn E-xy uu }
+    i:=pos('E',st)+3;
+    st:=copy(st,1,i);
+    st1:='';
+    for i:=1 to length(st) do    
+    if st[i]<>' ' then st1:=st1+st[i];
+    readMavoValue:=valReal(st1);    
+  end;
+end;  
+  
+procedure MavoCalibration(Fctrl: boolean);
+var
+  i: integer;
+  x:real;
+begin
+  with mg do
+  begin
+    clearObjects(1,1);
+    AddObject(1,1,VecMavo);
+  end;
+  
+  with SerialPort do
+  begin
+    create(NumCom);
+    setParams(9600,7,2,2);
+    setTimeOuts(500,500,500,500,500);
+    
+    StimScreen.ColorIndexMode:=true;
+    StimScreen.UseGammaRamp:=Fctrl;
+    
+    for i:=0 to 255 do
+    begin
+      StimScreen.BackGroundLum:=i;  
+      delay(1000);
+      
+      x:=readMavoValue;
+      if x=0 then
+      begin
+        messageBox('Mavo-monitor not responding');
+        exit;
+      end
+      else vecMavo[i]:=x;      
+      vecMavo.invalidate;
+      
+      mg.update;
+    end;    
+    
+  end;
+end;  
+  
+procedure DlgEvent(n:integer);
+var
+  ind:integer;
+begin
+  case n of
+    100..111 :
+      begin
+        with mg do
+        begin
+          if getwin(graph)=0 then
+          begin
+            clearObjects(1,1);
+            AddObject(1,1,graph);
+            AddObject(1,1,fit);
+          end;  
+        end;
+
+        StimScreen.ColorIndexMode:=true;
+        ind:=(n-100)*25;
+        if ind>255 then ind:=255;
+        StimScreen.BackGroundLum:=ind;
+      end;
+    200..211:
+      begin
+        dlg.updatevar;
+        vec2[n-200]:=lum[n-200];
+        graph.invalidate;
+      end;  
+    302: 
+      begin
+        dlg.updatevar;
+        createCurve;
+      end;
+    303: 
+      begin
+        dlg.updatevar;
+        if saveFileDialog(stF,'txt') then fit.saveAsText(stf,false,3);
+      end; 
+    306: 
+      begin
+        dlg.updatevar;
+        MavoCalibration(false);
+      end;
+    307: 
+      begin
+        dlg.updatevar;
+        if saveFileDialog(stF,'txt') then vecMavo.saveAsText(stf,false,3);
+      end; 
+    308: 
+      begin
+        dlg.updatevar;
+        MavoCalibration(true);
+      end; 
+        
+    309: 
+      begin
+        dlg.updatevar;
+        StimScreen.ColorIndexMode:=false;
+        StimScreen.UseGammaRamp:= true;
+    
+      end; 
+          
+  end;  
+end;
+  
+  
+procedure init;
+var
+  i: integer;
+begin
+  NumCom:=3;
+  for i:=0 to 10 do lum[i]:=sqr(i*25)/1000;
+  lum[11]:=sqr(255)/1000;
+  
+  vec1.create(t_single,0,11);
+  vec1.setScaleParams(1,0,1,0);
+  vec2.create(t_single,0,11);
+  vec2.setScaleParams(1,0,1,0);
+  
+  with vecMavo do
+  begin
+    create(t_single,0,255);
+    mode:=dm_square;
+    color:=cl_lime;
+    Xmax:=256;
+    Ymax:=300;
+  end;
+  
+  with Graph do
+  begin
+    create(vec1,vec2,0,11);
+    cpx:=1;
+    cpy:=1;
+    mode:=dm_square;
+    color:=cl_lime;
+    Xmax:=256;
+    Ymax:=300;
+  end;  
+  
+  for i:=0 to 10 do vec1[i]:=i*25;
+  vec1[11]:=255;
+  for i:=0 to 11 do vec2[i]:=lum[i];
+  
+  with fit do
+  begin
+    create;
+    cpx:=1;
+    cpx:=1;
+    color:= rgb(255,255,0);
+    Xmax:=256;
+    Ymax:=200;
+  end;
+   
+  with dlg do
+  begin
+    create;
+    setButtons(0);
+    caption:='Calibration';
+    OnEvent:=dlgEvent;
+
+    dividePanel('1',2,false);
+    dividePanel('1.1',2,true);
+    
+    for i:=0 to 10 do
+    begin
+      selectPanel('1.1.1');
+      getCommandA(Istr(i*25),0,100+i);
+      selectPanel('1.1.2');
+      getRealA('==>',Lum[i],10,3,200+i);
+    end;  
+    selectPanel('1.1.1');
+    getCommandA('255',0,111);
+    selectPanel('1.1.2');
+    getRealA('==>',Lum[11],10,3,211);
+    
+    selectPanel('1.2');
+    getStringListA('Fit Model','poly3| poly4|poly5|poly6|poly7|poly8',NumFit,301);
+    getCommandA('Fit data',0,302);
+    getCommandA('Save calibration file',0,303);
+    setText('');
+    setText('****************************************');
+    
+    getIntegerA('Com Channel',NumCom,6,305);
+    getCommandA('Start Mavo-Monitor calibration',0,306);
+    getCommandA('Save Mavo calibration file',0,307);
+    getCommandA('Start Calibration Control',0,308);
+                                                    
+    setText('****************************************');
+    getCommandA('Reset',0,309);                                                
+  end;
+  
+  with mg do
+  begin
+    create;
+    caption:='Calibration curve';
+    toolbarVisible:=false;
+  
+    newWindow(1,10,10);
+    addMGDialog(Al_right,dlg);
+
+    with mgPage['Page 1'] do
+    begin
+      pageFont:=true;
+      color:=cl_black;
+      scaleColor:=cl_white;
+      addObject(1,graph);
+      addObject(1,fit);      
+    end;
+
+    winHeight:=dlg.winHeight+50;
+    show;
+  end;  
+end;
+
+program 'Screen Calibration'
+init;
+
+var
+  bar: Tbar;
+  onOff: TonOff;
+  memo:Tmemo;
+  det:Tdetect;
+  MgSpot: Tmultigraph;
+  
+procedure testTops;
+var
+  tt1, tt2: array[1..10] of real;
+  i: integer;
+begin
+  with bar do
+  begin
+    create;
+    dx:=10;
+    dy:=10;
+    lum:=stimScreen.BackGroundLum;
+  end;  
+  with onOff do
+  begin
+    create;
+    DtOn:=0.008;
+    DtOff:=0;
+    cycleCount:=50;
+    //setCyclicSyncPulse(0);
+    setVisualObject(bar);
+  end;  
+    
+  with memo do
+  begin
+    create;
+    font.size:=14;
+    font.color:=cl_lime;
+  end; 
+
+  with mgSpot do
+  begin
+    create;
+    caption:='Spot Time Adjust';
+    toolbarVisible:=false;
+  
+    newWindow(1,10,10);
+
+    with mgPage['Page 1'] do
+    begin
+      color:=cl_black;      
+      addObject(1,memo);      
+    end;
+
+    winHeight:=200;
+    winWidth:=400;
+    show;
+  end;  
+    
+    
+  repeat
+    VisualStim.syncDebugMode:=true;
+    visualStim.animate;
+  
+    with det do
+    begin
+      create;
+      installSource(Vtag1);
+      XStart:=2;
+      mode:=sm_crossUp;
+      height:=0.5;
+      execute;
+      
+      for i:=1 to 5 do 
+        if i<=count 
+          then tt1[i]:= Vevent[i]
+          else tt1[i]:=0;    
+    end;
+    
+    with det do
+    begin
+      create;
+      installSource(Vtag2);
+      Xstart:= 2;
+
+      mode:=sm_crossUp;
+      height:=0.5;
+      execute;
+      
+      for i:=1 to 5 do 
+        if i<=count
+          then tt2[i]:= Vevent[i]
+          else tt2[i]:=0;      
+    end;
+    
+      
+    memo.lines[1]:='Vtag1  dt1= '+Rstr(tt1[2]-tt1[1],10,3 )+'   dt2= '+ Rstr(tt1[3]-tt1[2],10,3);
+    memo.lines[2]:='Vtag2  lag1='+Rstr(tt2[3]-tt1[3],10,3)+ '   lag2='+ Rstr(tt2[4]-tt1[4],10,3);
+    
+    mgSpot.refresh;
+
+  until visualStim.stopStim;    
+  
+end;
+
+program 'Spot Time Adjust'
+TestTops;
+
+

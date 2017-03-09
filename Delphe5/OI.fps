@@ -1,0 +1,697 @@
+Object
+  TOIseq(TbitmapPlot)
+{$H TOIseq permet de gérer une séquence d'imagerie optique
+
+ La séquence peut être contenue dans un fichier de données au format Elphy, et dans ce cas,
+on y accède à travers la propriété OIseq@(Tdatafile.OIseq) de Tdatafile@ .
+
+ La propriété FrameCount@ donne le nombre d'images contenues dans la séquence.
+ La propriété RefFrame@ ( de type Tmatrix@ ) permet d'accéder à l'image de référence si elle existe.
+ La propriété Frame@ ( de type Tmatrix@ ) permet d'accéder à une image quelconque de la séquence.
+ Les images sont indicées de 0 à FrameCount-1.
+
+ Les propriétés Nx@ et Ny@ donnent les dimensions des images.
+ NumType@ donne le type des données du fichier. Quel que soit ce type, les données
+sont converties en réels sur 4 octets (t_single) quand elles sont chargées en mémoire.
+
+
+ Voir aussi AppendOIblocks@
+
+ Une séquence peut être considérée comme un tableau de nombres réel (single) à 3 dimensions.
+ Ces tableaux peuvent faire l'objet d'opérations mathématiques point par point (voir add@ ,
+sub@ , addNum@, mulNum@ ).
+
+}
+
+  TOIseqAverage(TOIseq)
+{$H TOIseqAverage permet de moyenner des séquences d'images.
+
+ Le constructeur create@ crée un objet vide, il n'a pas de paramètres.
+
+ Quand la méthode Add@ est appelée pour la première fois, l'objet TOIseqAverage prend
+les paramètres Nx@, Ny@ et Nframe@ de l'objet Toiseq donné en paramètre.
+
+ Les appels suivants à la méthode Add accumulent pour chaque pixel et chaque frame
+la somme des valeurs de pixel Sx et la somme des carrés de ces valeurs Sx².
+
+ Pour terminer le calcul, il faut impérativement appeler la méthode Update@ afin
+de calculer la moyenne et la standard déviation.
+
+ Le calcul de la standard deviation est facultatif, il dépend de la propriété StON@.
+ Quand StdON vaut true, la propriété OIstdDev@ contient une séquence d'images dont
+chaque pixel est une standard deviation.
+
+ La propriété count@ renvoie le nombre de séquences accumulées.
+
+ La méthode Reset@ vide l'objet et remet la propriété count à zéro.
+}
+
+  TOIseqPCL(TOIseq)
+{$H Permet d'ouvrir un fichier PCL sous la forme d'une séquence d'images.
+
+ Les fichiers PCL sont constitués d'une suite d'enregistrements dont le format est:
+
+ @f6  TPCLrecord = object
+ @f6                time:double;
+ @f6                X,Y,Z:smallint;
+ @f6              end;
+
+ Les nombres sont stockés en Big Endian Format (high byte first).
+ Chaque enregistrement, qui occupe 14 octets, représente l'occurence d'un photon dans
+le système d'imagerie.
+ Time est le temps absolu d'apparition du photon, exprimé en secondes. L'origine des temps est
+prise le 1er janvier 1904 à midi.
+
+ X et Y sont les coordonnées du photon sur le capteur de la caméra. Ce sont des nombres
+compris entre 0 et 511 pour la caméra utilisée.
+ Z est un paramètre supplémentaire inutilisé (?)
+
+ InitFile@ permet d'ouvrir le fichier. Ensuite, les données se manipulent comme n'importe quelle séquence d'images.
+
+
+
+
+
+}
+  TKStest(Tobject)
+{$H Test de Kolmogorov- Smirnov
+
+  Soient deux listes de vecteurs Vlist1 et Vlist2.
+  Les vecteurs ont tous les mêmes propriétés Istart et Iend (N valeurs).
+  Le test KS est fait sur la distribution des points d'indice i dans la liste Vlist1 et sur la distribution des points d'indice i
+dans la liste Vlist2.
+  Pour chaque indice i compris entre Istart et Iend, on calcule l'écart maximal D entre les deux fonctions de distribution empirique
+et la probabilité P pour que les distributions soient identiques.
+  Les résultats sont rangés dans deux vecteurs vecD et vecP
+
+  Utilisation:
+    - Créer l'objet
+    - Indiquer Vlist1 avec setVlist1@
+    - Indiquer Vlist2 avec setVlist2@
+    - Appeler Execute@ qui remplit les vecteurs vecD et vecP
+
+  Si seule la liste Vlist2 est modifiée, il n'est pas nécessaire d'appeler setVlist1 avant d'appeler de nouveau execute .
+
+
+}
+  TRandTest(Tobject)
+{$H Randomization Test
+
+  Soient deux listes de vecteurs Vlist1 (N1 éléments) et Vlist2 (N2 éléments).
+  Les vecteurs ont tous les mêmes propriétés Istart et Iend (N valeurs).
+
+  Pour chaque indice i compris entre Istart et Iend, le test de randomization  est fait sur les N1 points d'indice i de la liste Vlist1 et sur les N2 points d'indice i de la liste Vlist2.
+
+  Soit D0 la différence entre la moyenne du groupe 1 et la moyenne du groupe 2.
+  La question posée est : la moyenne du groupe 1 est-elle significativement différente de la moyenne du groupe 2?
+
+  Pour répondre à cette question, on mélange les N1+N2 valeurs et on les répartit en deux groupes de N1 éléments et N2 élements.
+  On calcule ensuite la différence D des moyennes de ces deux groupes.
+  Ce calcul est répété un grand nombre de fois (Nrep) et on s'intéresse à la distribution des valeurs D obtenues.
+
+  En fixant un seuil de significativité (proportion du nombre d'essais), on peut déterminer les limites Dmin et Dmax entre lesquelles doit se trouver la différence D0 mesurée
+pour être considérée comme non signifiactive.
+
+  On peut aussi calculer le pourcentage correspondant à la valeur D0 (indice de significativité).
+
+
+  Utilisation:
+    - Créer l'objet
+    - Indiquer Vlist1 avec setVlist1@
+    - Indiquer Vlist2 avec setVlist2@
+    - Appeler Execute@
+
+  Si seule la liste Vlist2 est modifiée, il n'est pas nécessaire d'appeler setVlist1 avant d'appeler de nouveau execute .
+
+  avril 2015: une variante est introduite avec le paramètre MatchedPairs de create@ : quand ce paramètre vaut TRUE,
+on considère que les deux listes ont le même nombre d'éléments (N1=N2) et que les éléments de même indice forment
+une paire qu'il ne faut pas dissocier. Le test consiste à calculer, à chaque essai, la différence entre les deux éléments d'une paire,
+en donnant au résultat un signe positif ou négatif, d'une façon aléatoire. La valeur de D est ensuite la moyenne obtenue sur toutes les paires.
+L'analyse de la distribution de D est ensuite identique.
+}
+
+end;
+
+
+procedure TOIseq.create(Stname:string;Nx1,Ny1,Nframe1:integer;WithRef1:boolean);
+procedure TOIseq.create(Nx1,Ny1,Nframe1:integer;WithRef1:boolean);
+
+
+{$H Constructeur de l'objet TOIseq
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+
+  Nx1 et Nx2 sont les dimensions d'une image
+  Nframe1 est le nombre d'image de la séquence
+
+  withRef1 indique sil'on veut réserver une image de référence
+
+  Ces paramètres deviennent respectivement les propriétés Nx@ , Ny@ , FrameCount@ et HasRefFrame@
+de l'objet.
+
+}
+
+procedure TOIseq.createCompact(Nx1,Ny1,Nframe1:integer; Fdouble: boolean);
+{$H Crée un séquence d'image en un seul bloc
+
+  Nx1 et Nx2 sont les dimensions d'une image
+  Nframe1 est le nombre d'image de la séquence
+  Le type des données est soit double (si Fdouble=true) ou single .
+}
+
+property TOIseq.Nx:integer readOnly;
+{$H Dimension horizontale d'une image
+}
+property TOIseq.Ny:integer readOnly;
+{$H Dimension verticale d'une image
+}
+property TOIseq.NumType:integer readOnly;
+{$H Type numérique utilisé dans le fichier d'images
+
+ Ce type n'est pas le type des MatImages qui sont toujours de type t_single
+}
+property TOIseq.frameCount:integer;
+{$H Nombre d'images contenues dans la séquence.
+
+ Pour TOIseqPCL, il est possible de modifier FrameCount mais cette valeur ne sera prise en
+compte que si NoOverlap@(TOISeqPCL.NoOverlap) vaut True
+}
+property TOIseq.HasRefFrame:boolean readOnly;
+{$H Renvoie true si la séquence contient une image de référence.
+
+ Dans ce cas RefFrame@ contient cette image.
+}
+property TOIseq.RefFrame:Tmatrix readOnly;
+{$H Image de référence si elle existe
+}
+property TOIseq.Frame(n:integer):Tmatrix readOnly;
+{$H Image d'indice n
+
+ Les indices sont compris entre 0 et FrameCount@ -1
+}
+
+procedure TOIseq.getV(x,y:integer;vec:Tvector);
+{$H Renvoie dans vec le vecteur associé au point (x,y)
+
+ Les indices sont compris entre 0 et Nx@-1 pour x
+ et entre 0 et Ny@-1 pour y .
+
+}
+
+procedure TOIseq.setV(x,y:integer;vec:Tvector);
+{$H Copie le vecteur vec dans la séquence
+
+ Chaque point du vecteur est rangé dans une image au point de coordonnées (x,y)
+
+ Les indices sont compris entre 0 et Nx@-1 pour x
+ et entre 0 et Ny@-1 pour y .
+}
+
+
+property TOIseq.InMemory:boolean;
+{$H Si la propriété vaut True, la totalité de la séquence résidera en mémoire.
+
+ Vaut False par défaut.
+}
+
+
+property TdataFile.OIseqCount:integer readOnly;
+{$H Nombre de séquences d'images contenues dans le fichier de données.
+
+ Voir Toiseq@
+}
+property TdataFile.OIseq(n:integer):TOIseq readOnly;
+{$H Objet de type TOISeq@ permettant d'accéder aux images d'une séquence particulière.
+
+ n est le numéro de la séquence. Il doit être compris entre 1 et OIseqCount@
+}
+
+property TdataFile.PCL:TOIseqPCL readOnly;
+{$H Objet de type TOISeqPCL@ permettant d'accéder aux séquences de photons.
+}
+
+
+procedure AppendOIblocks(src,dest:string);
+procedure AppendOIblocks(src,dest:string; tp: integer);
+
+{$H Convertit les fichiers générés par MICAM Ultima ou OPTICAL IMAGING INC. en blocs TOIseq@ et ajoute ces blocs à
+la fin d'un fichier de données.
+
+ Si tp=1 (valeur par défaut), les fichiers sources  doivent être des fichiers MICAM Ultima (extension RSH)
+ Un fichier RSH contient une liste de fichiers d'images (extension RSD ou RSM)
+
+ Si tp=2 , les fichiers sources doivent être des fichiers OPTICAL Imaging (extension BLK).
+
+ src doit être un fichier d'extension RSH (resp BLK) ou encore un nom générique de fichier RSH (resp BLK).
+ Exemple:  Cell18.RSH ou Cell*.RSH
+
+ En général, l'étoile du nom générique désignera une liste de chiffres formant un numéro.
+ Les fichiers seront triés dans l'ordre des numéros croissants.
+
+ Le fichier dest doit être un fichier de données au format Elphy .
+ Aucune vérification n'est effectuée sur ce fichier destination.
+}
+
+
+procedure RemoveOIblocks(src,dest:string);
+{$H Copie src dans dest en retirant tous les blocs Optical Imaging du fichier source
+
+ Voir aussi AppendOIblocks@
+}
+
+property TOIseq.Index:integer;
+{$H Indice de l'image courante.
+
+ L'image courante est celle qui est affichée.
+ Index doit être compris entre 0 et FrameCount-1 .
+}
+
+property TOIseq.Selected(n:integer):boolean;
+
+property TOIseq.CpIndex:integer;
+{$H Coefficient de couplage pour les indices
+
+ Quand plusieurs objets TOIseq ont le même coefficient CpIndex (différent de zéro),
+tout changement d'index pour un objet entraîne le même changement d'index pour les autres objets.
+}
+
+property TOIseq.Zmin:real;
+property TOIseq.Zmax:real;
+
+property TOIseq.AspectRatio:real;
+
+property TOIseq.TwoColors:boolean;
+
+property TOIseq.PalColor(n:integer):integer;
+
+property TOIseq.PalName:String;
+
+procedure TOIseq.getMinMax(var Vmin,Vmax:real);
+
+procedure TOIseq.AutoscaleZ;
+procedure TOIseq.AutoscaleZ(AllFrames:boolean);
+
+procedure TOIseq.AutoscaleZsym;
+
+
+property TOIseq.RegionList:TregionList readOnly;
+
+procedure TOIseq.BuildVector(var reg:Tregion;var vec:Tvector);
+procedure TOIseq.BuildVector(var reg:Tregion;var vec:Tvector; mode:integer);
+
+procedure TOIseq.BuildVectors(var reglist:TregionList;var vecList:TVlist);
+procedure TOIseq.BuildVectors(var reglist:TregionList;var vecList:TVlist; mode:integer);
+
+procedure TOIseq.BuildVectorFromRect(i1,i2,j1,j2:integer; var vec: Tvector);
+procedure TOIseq.BuildVectorFromRect(i1,i2,j1,j2:integer; var vec: Tvector; mode:integer);
+
+
+procedure TOIseq.copy(oi:Toiseq);
+{$H Importe le contenu d'une séquence d'images
+
+ Les propriétés Nx@ , Ny@ , Nframe@ et HasRefFrame@ sont modifiées afin de correspondre à celles
+de oi, puis toutes les images de oi sont copiées.
+}
+procedure TOIseq.copyFrames(var oi:Toiseq;f1,f2,fD:integer);
+{$H Importe un groupe d'images appartenant à une autre séquence.
+
+ Les images de oi d'indices compris entre f1 et f2 sont copiées à partir de l'indice fD
+
+ La taille des images de oi doit être la même que celle des images de la destination
+}
+
+procedure TOIseq.extract(var oi:Toiseq;i1,i2,j1,j2,f1,f2:integer);
+{$H Extrait une sous séquence de la séquence oi
+
+ Les propriétés Nx@ , Ny@ , Nframe@ sont modifiées de sorte que
+
+ Nx:=i2-i1+1;
+ Ny:=j2-j1+1;
+ Nframe:=f2-f1+1;
+
+ Ensuite, pour chaque image de oi d'indice compris entre f1 et f2, on copie
+les pixels d'abscisse comprise entre i1 et i2, et d'ordonnée comprise entre j1 et j2.
+}
+
+
+procedure TOIseq.Add(var oi:Toiseq);
+{$H Ajoute une séquence entière point par point.
+
+ La séquence oi doit avoir la même structure (Nx, Ny, Nframe) que la destination.
+}
+procedure TOIseq.sub(var oi:Toiseq);
+{$H Retranche une séquence entière point par point.
+
+ La séquence oi doit avoir la même structure (Nx, Ny, Nframe) que la destination.
+}
+procedure TOIseq.AddNum(w:real);
+{$H Ajoute la valeur w à tous les points de la séquence
+}
+procedure TOIseq.MulNum(w:real);
+{$H Multiplie tous les points de la séquence par le nombre w
+}
+
+procedure TOIseq.Mul(var oi:Toiseq);
+{$H Multiplie la séquence entière point par point.
+
+ La séquence oi doit avoir la même structure (Nx, Ny, Nframe) que la destination.
+}
+
+procedure TOIseq.Div1(var oi:Toiseq; threshold,value:real);
+{$H Divise la séquence entière point par point par une autre séquence.
+
+ Lorsque la valeur absolue d'un élément du diviseur est inférieure à threshold, le résultat
+est égal à value.
+  Threshold doit donc être une valeur positive.
+
+ La séquence oi doit avoir la même structure (Nx, Ny, Nframe) que la destination.
+}
+
+procedure TOIseq.OIVconvolve(var Hf:Tvector;src,dest:string);
+procedure TOIseq.OIVaverage(var vecStim:Tvector;src,destMoy,destStd:string);
+procedure TOIseq.OIVSNR(var vecStim:Tvector;srcMoy,srcStd,dest:string);
+
+procedure TOIseq.readFromGSD(stF:string);
+
+procedure TOIseq.Synthesis1(v,sv,rho,srho,theta,stheta: real);
+procedure TOIseq.SynthesisJV(  ss, rf, tf, rs, ts, eta, alpha: real; seed: longword; Fty:boolean);
+
+function TOIseq.getRSHinfo(st: string;var w:real): string;
+{$H Renvoie une information RSH si elle existe.
+
+ Quand l'objet provient d'un bloc OIblock dans le fichier de données, le bloc contient
+une chaine de caractères correspondant au fichier d'extension RSH d'origine.
+ Ce fichier RSH contient une succession de lignes du genre NOM = valeur.
+
+ Si st est vide, la fonction renvoie toute la chaine RSH.
+ Sinon, on cherche la ligne commençant par le nom st. Si on la trouve, on renvoie la valeur sous la forme d'une
+chaine de caractères.
+ Si la valeur contient un nombre, ce nombre est renvoyé dans le paramètre w
+
+ Si on ne trouve pas le nom, on renvoie une chaine vide.
+
+}
+
+
+
+
+procedure SNRanalysis(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma:TMatrix;zero:real);
+procedure SNRanalysis(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma:TMatrix;zero:real;SinglePrecision:boolean);
+procedure SNRanalysis(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma, MatModulusMoy:TMatrix;zero:real);
+procedure SNRanalysis(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy:TMatrix;zero:real;SinglePrecision:boolean);
+procedure SNRanalysis(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma, MatModulusMoy,MatPhase,MatPhaseSigma:TMatrix;zero:real);
+procedure SNRanalysis(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy,MatPhase,MatPhaseSigma:TMatrix;zero:real;SinglePrecision:boolean);
+
+{$H Analyse SNR
+
+ Vlist est une liste de vecteurs de données
+ TabFil est une liste de vecteurs filtres complexes, chaque vecteur correspondant
+à une fréquence d'analyse.
+
+ Les matrices calculées sont
+   SNRmat :       SNR,
+   MatModulus:    module résultant moyen
+   MatSigma:      déviation standard du module.
+   MatModulusMoy: moyenne des modules
+   MatPhase:      phase du vecteur résultant
+   MatPhaseSigma: variance circulaire de la phase
+
+
+
+  La structure de ces matrices est modifiée uniquement si les dimensions
+sont trop petites. Leur type n'est pas modifié.
+
+ Zero est une valeur qui sera affectée au SNR lorsque la standard déviation est nulle.
+
+ Par défaut, tous les calculs sont faits en double précision.
+ Si le paramètre SinglePrecision est présent et vaut TRUE, les calculs sont faits en simple
+précision. Dans ce cas, le temps de calcul est presque divisé par 2.
+
+
+ L'algorithme est le suivant:
+ @prog
+ - pour chaque filtre
+   - pour chaque vecteur de la liste
+       - Convoluer le vecteur avec la partie réelle du filtre, on obtient VRe
+       - Convoluer le vecteur avec la partie imaginaire du filtre, on obtient Vim
+
+       - Accumuler Vre  dans Sx  et Vim dans Sy
+       - Accumuler le carré de Vre dans Sx2 et le carré de Vim dans Sy2
+
+       - Calculer le module de (Vre, Vim) et l'accumuler dans VecSumMod
+       - Calculer la phase de (Vre, Vim) et l'accumuler dans VecSumPhase
+       - Calculer le cosinus de la phase et l'accumuler dans VecPhaseX
+       - Calculer le sinus de la phase et l'accumuler dans VecPhaseY
+
+       - accumuler également le carré de la phase dans vecSumPhase2
+
+    - Après avoir bouclé sur tous les vecteurs, le module de la moyenne est donné par
+          moy = sqrt(((Sx)² + (Sy)²)/(N*N))
+      la déviation standard est donnée par
+          sigma =  sqrt((((Sx)² + (Sy)²)/N  - (Sx2+Sy2)) /(N-1)   )
+      N étant le nombre de vecteurs
+
+      la moyenne des modules est donnée par vecSumMod/N
+
+      la phase du vecteur résultant est la phase du nombre complexe (Sx,Sy)
+      la variance circulaire de la phase est donnée par
+          sigmaPhase =  1- module(vecPhaseX,vecPhase)/N
+
+
+  @notprog
+}
+
+procedure SNRanalysis2(var Vlist,TabFil:TVlist;var SNRmat, SMat, Nmat,Mmat:TMatrix;zero:real);
+procedure SNRanalysis2(var Vlist,TabFil:TVlist;var SNRmat, SMat, Nmat,Mmat:TMatrix;zero:real;SinglePrecision:boolean);
+{$H Analyse SNR
+
+ Obsolète: utiliser de préférence SNRanalysis@ qui regroupe tous les jeux de paramètres
+
+
+}
+
+
+
+{Méthodes de TOIseqAverage }
+
+procedure TOIseqAverage.create;
+{$H Constructeur de l'objet TOIseqAverage
+}
+
+Procedure TOIseqAverage.Add(var oiseq:TOIseq);
+{$H Accumule la séquence d'images oiseq.
+
+ Quand count@ vaut zéro, l'objet TOIseqAverage est initialisé et
+prend les dimensions de oiseq (propriétés Nx@, Ny@, Nframe@ et HasRefFrame@ )
+
+ Les appels ultérieurs doivent fournir un objet oiseq ayant les mêmes dimensions
+qu'au premier appel, sinon une erreur est générée.
+
+ Add accumule pour chaque pixel et chaque frame la somme des valeurs de pixel Sx
+et la somme des carrés de ces valeurs Sx² (si stdOn@ vaut true).
+
+ La somme des carrés est calculée en double précision.
+ La somme est calculée en simple précision.
+
+}
+
+Procedure TOIseqAverage.Update;
+{$H Permet de finaliser le calcul.
+
+ Les appels à Add ne calculent pas immédiatement la moyenne et la standard déviation.
+ Ils accumulent pour chaque pixel et chaque frame la somme des valeurs de pixel Sx
+et la somme des carrés de ces valeurs Sx².
+
+ Avec Update , on calcule pour chaque pixel et chaque frame les quantités:
+
+ @f6    m = Sx/N ;
+ @f6    s = sqrt( 1/(N-1)*( Sx2 - ( Sx)²/N ) ) ;
+
+ s n'est calculé que si stON@ vaut true.
+
+ N étant le nombre de séquences accumulées (count@)
+
+}
+procedure TOIseqAverage.reset;
+{$H Vide l'objet moyenne
+
+ La propriété count est remise à zéro et les dimensions sont fixées au minimum
+afin de réduire au mieux l'encombrement de l'objet.
+
+}
+
+function TOIseqAverage.Count:integer;
+{$H Renvoie le nombre de séquences accumulées.
+}
+
+property TOIseqAverage.StdOn:boolean;
+{$H Indique si la standard déviation doit être calculée.
+
+}
+
+property TOIseqAverage.OIstdDev:TOIseq readOnly;
+{$H Séquence d'images contenant la standard deviation.
+}
+
+
+
+procedure TOIseqPCL.create;
+
+procedure TOIseqPCL.LoadFile(stf:string);
+
+procedure TOIseqPCL.InitFrames( Nx1, Ny1:integer; dt: real);
+procedure TOIseqPCL.InitFrames( Nx1, Ny1:integer; dt: real; tOrg,tend: real);
+
+property TOIseqPCL.BinX: integer;
+property TOIseqPCL.BinY: integer;
+property TOIseqPCL.BinDT: real;
+
+
+property TOIseqPCL.Vtimes: Tvector readOnly;
+property TOIseqPCL.Vx: Tvector readOnly;
+property TOIseqPCL.Vy: Tvector readOnly;
+property TOIseqPCL.Vz: Tvector readOnly;
+
+
+property TOIseqPCL.NoOverlap: boolean;
+procedure TOIseqPCL.InstallFilter(x,y,dx,dy,theta:real);
+
+procedure Tvector.LoadFromSTFfile(stf:string);
+
+
+
+{                          TKStest                      }
+procedure TKStest.create;
+{$H Constructeur de l'objet TKStest
+}
+procedure TKStest.setVlist1(var Vlist:TVlist);
+{$H Installe la première liste de vecteurs.
+
+ Les vecteurs doivent avoir tous les mêmes propriétés Istart@(Tvector.Istart) et Iend@(Tvector.Iend)
+
+ SetVlist1 doit être appelée avant setVlist2
+ Voir setVlist2@
+
+}
+procedure TKStest.setVlist2(var Vlist:TVlist);
+{$H Installe la seconde liste de vecteurs.
+
+ Les vecteurs doivent avoir tous les mêmes propriétés Istart@(Tvector.Istart) et Iend@(Tvector.Iend).
+ De plus, ces propriétés doivent être égales aux propriétés correspondantes des vecteurs de la liste 1
+
+ SetVlist1 doit être appelée avant setVlist2
+ Voir setVlist2@
+}
+
+procedure TKStest.execute(var vecD,vecP: Tvector);
+procedure TKStest.execute(var vecD,vecP: Tvector;Flog:boolean);
+{$H Execute le test de  Kolmogorov- Smirnov pour chaque point des vecteurs sources.
+
+  Pour chaque indice i compris entre Istart et Iend, on calcule l'écart maximal D entre les deux fonctions de distribution empirique
+et la probabilité P pour que les distributions soient identiques.
+  Les résultats sont rangés dans deux vecteurs vecD et vecP
+
+  Si Flog vaut true, on remplacera P par -ln(P)/ln(10)
+
+ De plus, on donne à P le signe de  (moyenne liste 2- (moyenne liste1).
+
+}
+
+
+procedure KStest(var vec1,vec2: Tvector; var D,P:real);
+
+
+{                          TRandTest                      }
+procedure TRandTest.create;
+procedure TRandTest.create(MatchedPairs: boolean);
+{$H Constructeur de l'objet TrandTest
+
+ Si MatchedPairs vaut true, le calcul considère que l'on fournit deux listes
+ayant le même nombre de vecteurs, et que deux éléments de même indice
+forment une paire. 
+
+}                                                                
+procedure TRandTest.setVlist1(var Vlist:TVlist);
+{$H Installe la première liste de vecteurs.
+
+ Les vecteurs doivent avoir tous les mêmes propriétés Istart@(Tvector.Istart) et Iend@(Tvector.Iend)
+
+ SetVlist1 doit être appelée avant setVlist2
+ Voir setVlist2@
+
+ Notez que les différences calculées sont (moyenne liste 2)-(moyenne liste 1)
+}
+procedure TRandTest.setVlist2(var Vlist:TVlist);
+{$H Installe la seconde liste de vecteurs.
+
+ Les vecteurs doivent avoir tous les mêmes propriétés Istart@(Tvector.Istart) et Iend@(Tvector.Iend).
+ De plus, ces propriétés doivent être égales aux propriétés correspondantes des vecteurs de la liste 1
+
+ SetVlist1 doit être appelée avant setVlist2
+ Voir setVlist2@
+
+ Notez que les différences calculées sont (moyenne liste 2)-(moyenne liste 1)
+}
+procedure TRandTest.execute(Nrep: integer;pvalue:real; var vecmin, vecmax: Tvector);
+procedure TRandTest.execute(Nrep: integer;pvalue:real; var vecmin, vecmax,vecP: Tvector;Flog:boolean);
+{$H Exécution du test
+
+ Nrep est le nombre de répétitions
+ pvalue indique le seuil de significativité souhaité. C'est la proportion de répétitions qui donnent les différences D
+les plus élevées ou les plus basses.
+ Exemple: si Nrep=1000 et pvalue=0.05, on recherche les 50 valeurs obtenues les plus faibles et les 50 valeurs les plus fortes.
+
+ En retour, la procédure renvoie dans vecmin la valeur la plus élevée parmi les plus faibles, et dans vecmax la valeur la plus basse parmi les plus fortes.
+
+ Dans la seconde variante, la procédure s'efforce de situer la valeur D0 dans la distribution des D.
+ vecP renverra soit la proportion d'essais P ayant donné D>=D0 (quand D0 est positif),
+soit la proportion d'essais ayant donné D<=D0  (quand D0 est négatif),
+
+ Si Flog vaut true, on remplacera P par -ln(P)/ln(10) quand P>0, et par P=5 si P=0
+
+ De plus, on donne à P le signe de D0.
+}
+
+
+
+procedure RespDistri(var Vlist: TVlist;Nbg, Nrep:integer;var mat: Tmatrix);
+procedure RespDistri(var Vlist: TVlist;Nbg, Nrep:integer;var mat: Tmatrix; Fsort:boolean);
+{$H
+  Vlist doit contenir une liste de N vecteurs de même structure
+
+  Ces vecteurs sont organisés en groupes de Nbg vecteurs. Le nombre de groupes est donc Vlist.count div Nbg .
+
+  On calcule un vecteur moyenne en prenant un vecteur au hasard dans le premier groupe, puis un dans le second groupe, etc...
+  Le vecteur moyenne est rangé dans une ligne de la matrice mat.
+
+  Cette opération est recommencée Nrep fois. On obtient donc une matrice de Nrep lignes , le nombre
+de colonnes étant le nombre de points par vecteur.
+
+  Pour terminer, on trie chaque colonne de la matrice mat dans un ordre croissant (sauf si Fsort vaut False).
+
+
+}
+
+procedure TOIseq.SaveBinaryData(var fbin:TbinaryFile;tp: integer; LineFirst:boolean);
+{$H Sauve la séquence dans un fichier binaire.
+
+ tp est le type de données (voir (types de nombre)@)
+
+ Les données sont sauvées sous la forme d'un tableau à trois dimensions Nx@ * Ny@ * Nframe@
+
+ Si LineFirst vaut True, les images sont sauvées ligne par ligne. Sinon, elles sont sauvées colonne par colonne.
+
+}
+procedure TOIseq.LoadBinaryData(var fbin:TbinaryFile;tp: integer; LineFirst:boolean);
+{$H Sauve la séquence dans un fichier binaire.
+
+ fBin doit être ouvert et le pointeur de fichier doit être correctement positionné.
+ L'objet OIseq doit être correctement dimensionné.
+
+ tp est le type des données sauvées(voir (types de nombre)@) . Ce n'est pas forcément le type des données NumType@
+
+ Les données sont forment un tableau à trois dimensions Nx@ * Ny@ * Nframe@
+
+ Si LineFirst vaut True, les images sont stockées ligne par ligne. Sinon, elles sont stockées colonne par colonne.
+
+}

@@ -1,0 +1,320 @@
+
+Hpage ElphyDaq; { Data Acquisition }
+{$P Installing a device
+
+ To perform data acquisition, you must install a data acquisition device.
+This installation depends on the device used.
+
+
+ @b @ul National Instrument Cards @notb @notul : install drivers and softwares from the supplied CD (NI-daqmx) .
+ Then launch the program "Measurements and Automation" . With this program, you can verify that your device is properly installed
+and you can test its functionality
+
+ @b @ul MCC cards(Measurement Computing Corporation) @notb @notul : install drivers and softwares from the supplied CD.
+ Then launch the program "InstaCal" . With this program, you can verify that your device is properly installed
+and you can test its functionality
+
+ @b @ul Axon Digidata 1322 @notb @notul : Nothing to do but the device must be switched on before starting Elphy.
+
+ @b @ul Instrutech Cards (ITC1600 , ITC16, ITC18) @notb @notul : install supplied CD
+
+ @b @ul Blackrock Multi-electrode system @notb @notul :
+ The supplied software (Central software) must be installed and must be launched before starting Elphy.
+}
+
+{$P Selecting a device
+
+  For Elphy uses the card installed in your PC, you must select it in the menu  Acquisition/System.
+  This selection is stored in the (main configuration file)@configurationFile.
+
+  If the name of the card is not visible in the list, it's probably because the hardware installation is not correct.
+
+  On the other hand, the BlackRock system always appears in the list (CyberK) even if this equipment was has never been installed.
+
+}
+{$P Acquisition setup
+
+ To manually set up an acquisition, we can distinguish three stages:
+
+ - (Set Acquisition Parameters)@(ElphyDaq#Acquisition Parameters)
+
+ - (Set Stimulation Parameters)@(ElphyDaq#Electric Stimulation)
+
+ - (Manage the display )@(ElphyDaq#Display during acquisition)
+
+}
+
+{$TITLE Acquisition Parameters }
+{$P
+  Acquisition parameters are set in the @b Acquisition/Parameters @notb dialog box.
+  This dialog if made of several panels that you select with a tab.
+
+    @(@ AcqPar1.bmp)
+
+  @b @ul Mode @notb @notul :
+  We distinguish @i Episode mode @noti and @i Continuous mode @noti .
+   In continuous mode, the user starts the acquisition with the start command and can stop at any time
+with the Stop command. In general, the acquisition duration is not defined, although the option exists, and we do not use any trigger.
+The system behaves like an ordinary recorder. The data file is viewed as a single block of data with no temporal break.
+
+   In Episode mode, we usually decide some recording duration (the episode duration), and this episode is repeated a number of times.
+In addition, the start of an episode may be conditioned by a particular event (trigger).
+   This gives a data file that is structured into episodes. Within each episode, there is no break but some time
+could elapse between each episode.
+
+   In continuous mode, times are in seconds. In Episode mode, they are in milliseconds.
+   (> Acquisition.Fcontinuous)@(TAcquisition.Fcontinuous)
+
+  @b @ul Episode Count @notb @notul
+  In Episode mode, acquisition stops when the number of episodes reaches this value.
+  When Episode Count is set to zero, there is no limit.
+  The user can always stop the acquisition with the Stop command
+
+  (> Acquisition.MaxEpCount)@(TAcquisition.MaxEpCount)
+
+  @b @ul Channel Count @notb @notul
+  Number of logical channels acquired. For each channel, you must define the parameters in the @i Channels @noti panel.
+  This number includes analog and "event" channels.
+  An analog channel corresponds to an analog input on the device. An "event" channel is generally an analog channel on which event
+were detected and only event times are stored in the data file  ( Event Analog Type ).
+  For National Instruments devices, one of the event channels can be a Digital Event Channel (it uses device counters for better time resolution).
+  The Channel Count Number does not include the Vtag channels (this channels correspond to digital inputs and are treated separately).
+  (> Acquisition.ChannelCount)@(TAcquisition.ChannelCount)
+
+  @b @ul Periode Per Channel @notb @notul
+  It is the nominal sampling interval in milliseconds.
+  This value will be modified if a down-sampling factor is set in the @i Channels @noti panel.
+  The corresponding frequency (Sampling_frequency) is shown on the right of the dialog
+  (> Acquisition.PeriodPerChannel)@(TAcquisition.PeriodPerChannel)
+
+  The product Sampling_frequency * ChannelCount is the "aggregate sampling rate". For a given device,
+this value must be lower than some hardware limit.
+
+  @b @ul Duration @notb @notul
+  It's the episode duration in millisecondes.
+  The number of samples per channel and per episode is obtained by dividing this value by Periode_Per_Channel and rounding the result.
+  (> Acquisition.EpDuration)@(TAcquisition.EpDuration)
+
+  @b @ul Pretrig.Duration @notb @notul
+  In some cases it is possible to keep a number of samples acquired before the trigger. This is possible because the system
+continually acquires samples and store them into a circular buffer while monitoring the trigger condition.
+  For most devices, this possibility exists only for an analog trigger and only if it creates no electrical stimulation.
+  With National Instrument cards, it is possible to create a synchronized electrical stimulation while using the pre-trigger (NI-Analog trigger mode )
+  Pretrig_Duration is the duration of the episode part before the trigger. This value must be between zero and @b Duration @notb.
+  (> Acquisition.PretrigDuration)@(TAcquisition.PreTrigDuration)
+
+  @b @ul Max Duration @notb @notul
+  In continuous acquisition, the acquisition will stop when this duration is reached.
+  A value of zero means there is no limit.
+  (> Acquisition.MaxDuration)@(TAcquisition.MaxDuration)
+
+  @b @ul Stimulate @notb @notul
+  You must check this box if you want to create electrical stimulation.
+  Before moving to Stimulation dialog box, it is necessary to properly complete all sections of this panel.
+  (> Acquisition.Fstimulate)@(TAcquisition.Fstimulate)
+
+  @(@ AcqPar2.bmp)
+
+  @b @ul Trigger Mode @notb @notul
+  This parameter is not used in continuous mode
+  In Episode mode, it defines how an episode starts. Here are the different options:
+
+  @i Immediate @noti : A new episode starts immediately after the previous episode terminates. This ensures that there will be no gap between two 
+consecutive episodes (i.e. the interval between consecutive episodes will be kept constant by hardward).
+
+  @i Keyboard @noti : when an episode ends, a small dialog box appears and the next episode begins only when the user clicks on the "Continue" button.
+
+  @i Analog Absolute @noti : An episode starts when the signal on the @i Trigger Channel @noti crosses one of the two thresholds. @i Upper Threshold @noti
+applies to a signal crossing the threshold from bottom to top.  @i Lower Threshold @noti
+applies to a signal crossing the threshold from top to bottom.
+  To disable a threshold, simply give the threshold a very high or very low value.
+
+  @i Analog Differential @noti : An episode starts when the signal on the @i Trigger Channel @noti undergoes a rapid change.
+This change is measured by calculating the amplitude difference between two samples separated by "Test Interval" samples.
+  @i Upper Threshold @noti applies to an increasing signal .  @i Lower Threshold @noti applies to a decreasing signal.
+  To disable a threshold, simply give the threshold a very high value.
+
+  @i Numerical (Rising edge) @noti : An episode starts when a signal goes from LOW to HIGH on a digital input.
+Many devices have a dedicated trigger input and the TTL trigger signal must be applied on this input.
+
+  @i Numerical (falling edge) @noti : this mode is no more used
+
+  @i Internal @noti : with this mode, the software triggers new episode starts. The parameter ISI (inter-stimulus interval) defines
+the interval between the beginning of two consecutive episodes.
+
+  @i Program @noti :  only used in the RT-Neuron version. With this mode, it is possible to start an episode at any time while the RT-Neuron
+simulator is running. The ProgRestart@(Tacquisition.ProgRestart) method enables this action.
+
+  @i NI analog @noti : This mode can only be used with National Instrument cards. It acts like the @i Analog @noti mode but it is also possible to trigger
+an electric stimulation. However, it is not possible to use a pretrigger.
+
+  Note that for @i Immediate, Internal @noti and @i Numerical @noti trigger modes, setting the WaitMode@(Tacquisition.WaitMode) property to true will 
+delay the start of a new episode until computations defined in the Process@(ProgElphy#Process_Programs) block are finished.
+
+  (> Acquisition.TriggerMode)@(TAcquisition.TriggerMode)
+
+  @b @ul Trigger Channel @notb @notul
+  This parameter is used when TriggerMode is "Analog Absolute", "Analog Differential" or "NI Analog".
+  It is the logical channel number for the tested channel. This number is between 1 and @i ChannelCount @noti .
+  (> Acquisition.TrigChannel)@(TAcquisition.TrigChannel)
+
+  @b @ul Upper Threshold @notb @notul
+  When TriggerMode is "Analog Absolute" or "Analog Differential", an episode starts when this threshold
+is crossed from bottom to top.
+  When TriggerMode is "NI Analog" and NIrisingSlope is true ,  an episode starts when this threshold
+is crossed from bottom to top . When TriggerMode is "NI Analog" and NIrisingSlope is false ,  an episode starts when this threshold
+is crossed from top to bottom.
+  (> Acquisition.ThresholdUp)@(TAcquisition.ThresholdUp)
+
+  @b @ul Lower Threshold @notb @notul
+  When TriggerMode is "Analog Absolute" or "Analog Differential", an episode starts when this threshold
+is crossed from top to bottom.
+  When TriggerMode is "NI Analog" , this parameter is not used.
+  (> Acquisition.ThresholdDw)@(TAcquisition.ThresholdDw)
+
+  @b @ul Test Interval @notb @notul
+  Parameter used when TriggerMode is "Analog Differential".
+  Its value must be greater than or equal to 1.
+  (> Acquisition.TestInterval)@(TAcquisition.TestInterval)
+
+  @b @ul ISI (Inter Stimulus Interval @notb @notul
+  When the Trigger Mode is "Internal", ISI is the interval between the beginning of two consecutive episodes.
+  (> Acquisition.ISI)@(TAcquisition.ISI)
+
+  @b @ul NI rising slope @notb @notul
+  This option is visible when a National Instrument card is installed
+  When the Trigger Mode is "NI analog", this parameter defines the direction of the signal that activates the trigger.
+  (> Acquisition.NIrisingSlope)@(TAcquisition.NIrisingSlope)
+
+  @(@ AcqPar3.bmp)
+
+  The number of analog channels was defined in the first panel. Now, for each of these channels, we must set some parameters
+in the third panel. The logical channel number  can be selected with a tab.  Only the parameters for logical channel numbers between 1 and ChannelCount
+must be defined.
+
+  @b @ul Vertical Scaling Factors @notb @notul define the correspondance between internal values (j) and practical (or real) values (y) .
+  Internal values are always two-byte integer values (except "Neuron" type channels) . These values are between -32768 and + 32767 for 16-bit daq cards, or
+sometimes between -2048 and +2047 for 12-bit daq cards.
+  Practical values are real numbers expressed in volts, milliamps, etc
+  The two kinds of value are related by a linear relationship: @prog  y = Dy*j +y0 @notprog
+  To define unambiguously this linear relationship, just give two pairs of values (j, y)
+  For many system, j=0 always corresponds to y=0, and for the second pair, we can give the real value corresponding to the maximum internal value.
+
+  In the example above, we suppose we measure the voltage present on an analog input of a 16-bit daq card. According to
+the device documentation, the maximum voltage we can measure is 10 volts. As we decided to express the data in millivolts, we wrote:
+@prog  32767 corresponds to 10000 @notprog
+  Now, if the analog input comes from an amplifier or from another device that measures a current, a pressure, etc.., we must write the
+corresponding value in place of the number 10000, expressed in appropriate units.
+  (> TacqChannel.setscale)@(TacqChannel.setscale)
+  (> TacqChannel.unitY)@(TacqChannel.unitY)
+
+  @b @ul Device @notul @notb
+  Some acquisition systems are made of more than one device (ex: ITC1600 with 3 or 4 units). In this case,
+you must set this parameters.
+  For many systems, there is only one device and this value is always zero.
+  (> TacqChannel.device)@(TacqChannel.device)
+
+  @b @ul Physical Channel Number @notul @notb
+  Generally, it is the number written on the interface box.
+  Remember that the number in the tab is the logical channel number.
+  (> TacqChannel.PhysNum)@(TacqChannel.PhysNum)
+
+  @b @ul Range @notul @notb
+  For some systems (MCC), the user can choose the voltage gain of the device.
+  According to this gain, we can have different input ranges.
+  (> TacqChannel.Gain)@(TacqChannel.Gain)
+
+  @b @ul Down Sampling factor @notul @notb
+  When this parameter has the default value (1 or 0), every acquired sample is stored in the datafile (and in
+the corresponding Elphy vector).
+  When this parameter has some value N greater than 1, we keep one sample in N. This reduces the nominal sampling rate
+by a factor N .
+  (> TacqChannel.DownSamplingFactor)@(TacqChannel.DownSamplingFactor)
+
+  @b @ul Channel Type @notul @notb
+  For most devices, two types are available: "Analog" and "Analog Event" . For "RT-Neuron" device, a third type is available: "Neuron" and
+for National Instruments devices, the type " Digital Events" is available
+  When "Analog" is selected, there is no other option under this field. "Analog" corresponds to an ordinary analog acquisition.
+
+  With "Analog Event", the data on this channel are converted into event data. This means that the system tries to detect events
+in the data flow and store only the event times in the datafile.
+  To detect events, you must set a Threshold, an Hysteresis factor and tell if you detect rising or falling edges.
+  The time accuracy will correspond to the analog sampling rate.
+
+  With "Digital Event", the data come from a special digital input on the NI device (PFI9): we uses counters with a 1 MegaHertz clock
+to measure event times. The time resolution is always 1 µs . There can be only one channel of this type.
+
+  With "Neuron", the data come from a particular variable of the Real-Time sytem. The name of this variable must be set below.
+
+  (> TacqChannel.ChannelType)@(TacqChannel.ChannelType)
+
+  @b @ul Event Threshold @notul @notb
+  Threshold used when ChannelType is "Event Analog". It is expressed in real units (it uses scaling parameters above).
+  (> TacqChannel.EvtThreshold)@(TacqChannel.EvtThreshold)
+
+  @b @ul Event Hysteresis @notul @notb
+  To improve noise immunity, we can define a second threshold slightly different from Threshold and require that the signal
+crosses this second threshold before to cross the first threshold again in the right direction.
+  This second threshold will be @b Threshold+Hysteresis @notb
+  (> TacqChannel.EvtHysteresis)@(TacqChannel.EvtHysteresis)
+
+  @b @ul Event Rising Edge  @notul @notb
+  Check this box to detect a rising signal.
+  (> TacqChannel.EvtRisingEdge)@(TacqChannel.EvtRisingEdge)
+
+  @(@ AcqPar4.bmp)
+  @b @ul Generic File Name  @notul @notb
+  This character string set the directory and the base filename which will be proposed at the beginning of an acquisition.
+  For example, if the user enters 'D:\DataDir\mydat.dat' , the first filename proposed will be ''D:\DataDir\mydat1.dat'.
+  At the beginning of the next acquisition, this will be 'D:\DataDir\mydat2.dat' , and so on.
+  If the user enters digits at the end of the generic file name, these digits will be ignored.
+  The extension will also be ignored because the proposed extension is always '.dat'.
+
+  Using the '$' character or the '#' character, it is possible to include the current date into the file name.
+  With '$', date format is yymdd (year-month-day). Only one character for the month because when month is october, november or december, m is A, B or C.
+  With '#', date format is yymmdd ( 2 characters for year, two for month, two for day).
+
+  Ex: with 'D:\dac2\$TX' , the first name will be D:\dac2\11520TX1.dat
+  Ex: with 'D:\dac2\AUX-#' , the first name will be D:\dac2\AUX-150520-1.dat
+
+  (> Tacquisition.GenericFileName)@(Tacquisition.GenericFileName)
+
+  @b @ul File Information Block Size  @notul @notb
+  In this field, you can reserve some number of bytes to store user informations at the beginning of the file (fileInfo)
+but generally this is done in a PG2 program.
+  (> Tacquisition.fileInfoSize)@(Tacquisition.fileInfoSize)
+
+  @b @ul Episode Information Block Size  @notul @notb
+  In this field, you can reserve some number of bytes to store user informations at the beginning of every episode in the file (EpInfo)
+but generally this is done in a PG2 program.
+  (> Tacquisition.EpInfoSize)@(Tacquisition.EpInfoSize)
+
+  @b @ul Minimal Comment Size  @notul @notb
+  Not used.
+
+  @b @ul File Format  @notul @notb
+  During acquisition, Elphy can use Elphy format or Dac2 format.
+  Elphy is the recommended format.
+  Dac2 format exists only to ensure compatibility with older software.  With this format, all Elphy features are not available.
+
+  @b @ul Comment panel @notul @notb
+  In this panel, you can write a text that will be saved in the datafile.
+  We rarely use it because it seems not convenient.
+  (> Tacquisition.Comment@(Tacquisition.Comment)
+
+  @b @ul Process panel @notul @notb
+  In this panel, the option @b Execute primary file @notb is the most important
+  When the option is checked, the InitProcess0@(ProgElphy#Process_Programs) ,InitProcess@(ProgElphy#Process_Programs) ,
+Process@(ProgElphy#Process_Programs) and EndProcess@(ProgElphy#Process_Programs) blocks
+in the primary file will be executed if they exist.
+
+}
+
+
+{$TITLE Electric Stimulation  }
+{$P
+}
+
+{$TITLE Display during acquisition }
+{$P
+}

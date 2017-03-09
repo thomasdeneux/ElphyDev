@@ -1,0 +1,56 @@
+
+[ELPHY 32 BITS]
+
+Installer Delphi 7
+Copier répertoire Delphe5
+Créer répertoire Dexe5
+
+Options d'environnement : auto-enregistrement
+Options de l'éditeur > Options du source : ajouter fps (déclarations du langage Elphy) comme une extension Pascal
+
+Désactiver indy7 dans Composants > Installer des paquets (puisqu'on utilise indy10)
+
+Installer les composants de VarPack.dpk :
+- compiler
+- installer
+- faire glisser le nouvel onglet vers la gauche pour la commodité d'accès
+
+[problème : chemin 'DebugPath' dans util1.pas est spécifique à chaque machine, ce qui n'est pas compatible avec la synchronisation git
+un mauvais chemin ne génère pas forcément d'erreur, mais il faudrait tout de même faire disparaître complètement cette variable]
+
+Ouvrir Autres Projets/PreHelpHTML1.dpr :
+- compiler
+- ajouter l'outil qui vient d'être créé : Outils > Configurer les outils... (Dexe5\PreHelpHTML1.exe, on lui donne le nom "Build Elphy")
+- installer le compilateur d'aide HTML de Microsoft (HTML Help Workshop) (il semble que Windows 10 a déjà un compilateur d'aide installé ?)
+- lancer l'outil (Outils > Build Elphy)
+cela crée l'aide d'Elphy (en particulier lancer le compilateur d'aide Microsoft) mais aussi en particulier les fichiers DacVer.pas et Elphy2.adr qui font le lien entre objects Elphy et leur code Pascal
+
+Récupérer toutes les librairies "externes", par exemple en exécutant une installation d'Elphy
+
+Maintenant on peut compiler Elphy, puis l'exécuter !!
+
+[ELPHY 64 BITS]         
+
+Installer Delphi XE8
+
+Options d'environnement : auto-enregistrement
+Options de l'éditeur > Options du source : ajouter fps (déclarations du langage Elphy) comme une extension Pascal
+
+(Indy : rien à faire, on utilise celui de DelpheXE)
+
+Installer les composants de VarPack.dpk :
+- compiler
+- installer
+- faire glisser le nouvel onglet vers la gauche pour la commodité d'accès
+
+(rien à faire à propos de l'outil Build Elphy puisqu'il suffit de le lancer une fois, dans la version 32 bits)
+
+Compiler Elphy64 !
+
+[CUDA] 
+
+Installer Visual Studio
+Installer CUDA Toolkit (version actuelle : 8.0)
+
+Ouvrir et compiler les solutions cuda80.sln et CudaMC80.sln (vérifier éventuellement les configurations des projets)
+

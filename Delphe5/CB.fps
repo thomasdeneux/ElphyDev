@@ -1,0 +1,375 @@
+HPage MCC; {Measurement Computing Corporation}
+
+{$P
+ Il s'agit du nom d'une société qui fabrique l'une des familles de cartes d'acquisition
+pilotées par Elphy.
+
+  Autrefois, la société s'appelait ComputerBoards.
+
+  ==> http://www.mccdaq.com/
+
+  En France, ces cartes sont commercialisées par DIPSI
+
+  ==> http://www.dipsi.com/
+}
+
+{$TITLE Universal Library}
+
+{$P
+ Nom de la bibiothèque de routines permettant de piloter les cartes d'acquisition
+de Measurement Computing Corporation
+
+  Voir MCC@
+}
+
+{$TITLE Instacal}
+
+{$P
+ Nom du programme d'installation des cartes d'acquisition de Measurement Computing Corporation
+
+  Voir MCC@
+}
+
+object
+  TMCCinterface(Tobject)
+  {$H Objet permettant de gérer une carte Measurement Computing ( MCC@ )
+
+   Ces cartes sont pilotées en utilisant une bibliothèque spécialisée: Universal Library (UL@)
+
+   Nous nous sommes efforcés de rester le plus près possible de cette bibiothèque. On trouvera donc
+des noms de méthodes calqués sur ceux de UL@ .
+   Toutefois, des modifications ont été nécessaires afin de rendre fiable l'allocation des buffers
+d'acquisition/stimulation.
+
+  Les buffers d'entrée ou de sortie sont alloués par les méthodes setAinBuffer@ et setAoutBuffer@ et
+on accède à leur contenu via les vecteurs Vin@ et Vout@
+
+  Dans le constructeur create@, on fournit le numéro de la carte tel qu'il apparait dans Instacal@
+
+  Ensuite, les méthodes Ain@ ou Aout@ permettent des accès directs aux entrées ou sorties analogiques
+alors que les méthodes AinScan@ et AoutScan permettent des accès en mode synchronisé.
+
+  Pour disposer des constantes de la bibliothèque UL, on pourra inclure de fichier MCC_constante.inc
+dans le programme PG2.
+  }
+
+end;
+
+procedure TMCCinterface.create(num:integer);
+{$H Constructeur de l'objet TMCCinterface
+
+ Num est le numéro de la carte tel qu'il apparait dans le programme InstaCal
+}
+
+property  TMCCinterface.boardName:string readOnly;
+{$H Renvoie le nom de l'interface.
+
+ Ce nom apparait dans la liste des cartes installées dans le programme InstaCal.
+}
+
+function TMCCinterface.DConfigPort( PortNum:Integer; Direction:Integer):Integer;
+{$H  Configure un port logique.
+
+ PortNum est le numéro du port.
+
+ D'après la documentation MCC , les ports sont définis de la façon suivante:
+
+ @f6    FIRSTPORTA       = 10;
+ @f6    FIRSTPORTB       = 11;
+ @f6    FIRSTPORTCL      = 12;
+ @f6    FIRSTPORTCH      = 13;
+ @f6    SECONDPORTA      = 14;
+ @f6    SECONDPORTB      = 15;
+ @f6    SECONDPORTCL     = 16;
+ @f6    SECONDPORTCH     = 17;
+ @f6    etc...
+
+ Sur une carte PCI-DIO24, les 4 premiers ports sont disponibles.
+
+ Direction indique la configuration Entrée ou Sortie du port:
+
+ @f6    DIGITALOUT       = 1;
+ @f6    DIGITALIN        = 2;
+
+}
+function TMCCinterface.DIn(PortNum:Integer; var dataValue:byte..longword):Integer;
+{$H Lit un port logique.
+
+ PortNum est le numéro du port. ( voir DConfigPort@ )
+
+ datavalue reçoit la valeur lue sur le port. Les bits non utilisés vaudront zéro.
+
+}
+function TMCCinterface.DOut(PortNum,DataValue:Word):Integer;
+{$H Envoie une donnée sur un port logique
+
+ PortNum est le numéro du port. ( voir DConfigPort@ )
+
+ datavalue est la valeur écrite sur le port. Les bits non utilisés sont ignorés.
+}
+
+function TMCCinterface.DConfigBit(portType, BitNum, Direction:integer): integer;
+{$H Configure un bit du port AUXPORT
+
+ Certaines cartes comme la PCI 6023 gérent 8 entrées ou sorties logiques sans utiliser le
+composant 8255. Dans ce cas, chaque entrée est configurable individuellement.
+
+ Chaque bit peut être configuré en entrée ou en sortie avec cette fonction.
+
+ PortType: utiliser la valeur AUXPORT=1 pour la 6023
+ BitNum: numéro du bit de 0 à 7 sur 6023
+ Direction: utiliser DIGITALOUT=1 pour une sortie et DIGITALIN= 2 pour une entrée.
+
+
+}
+
+function TMCCinterface.DBitIn(PortType:Integer; BitNum:Integer;var BitValue:byte..longword):Integer;
+{$H Lit une valeur sur une entrée logique
+
+ PortType est le numéro du port
+ BitNum est le numéro du bit
+ La valeur retournée BitValue vaudra 0 ou 1 selon l'état de l'entrée
+}
+
+
+function TMCCinterface.DBitOut(PortType:Integer; BitNum:Integer;BitValue:integer):Integer;
+{$H Sort une valeur sur une sortie logique
+
+ PortType est le numéro du port
+ BitNum est le numéro du bit
+ BitValue doit valoir 0 ou 1 
+}
+
+
+function TMCCinterface.Ain(channel,range:integer;var dataValue:word):integer;
+{$H Lit une entrée analogique.
+
+ channel est le numéro de l'entrée.
+ range détermine le gain de l'entrée.
+
+ datavalue reçoit la valeur lue.
+
+}
+function TMCCinterface.Aout(channel,range:integer;dataValue:word):integer;
+{$H Sort une valeur sur une sortie analogique.
+
+ channel est le numéro de l'entrée.
+ range détermine le gain de la sortie.
+
+ datavalue est la valeur envoyée sur la sortie.
+
+}
+
+procedure TMCCinterface.SetAinBuffer(Nchan1,Nsample1:integer);
+{$H Fixe la taille du buffer d'acquisition pour la procédure AinScan@
+
+ Nchan1 est le nombre de canaux . Il doit être compris entre 1 et 16.
+ Nsample1 est le nombre de points par voie.
+}
+
+procedure TMCCinterface.SetAoutBuffer(Nchan1,Nsample1:integer);
+{$H Fixe la taille du buffer de stimulation pour la procédure AoutScan@
+
+ Nchan1 est le nombre de canaux . Il doit être compris entre 1 et 16.
+ Nsample1 est le nombre de points par voie.
+}
+
+
+procedure TMCCinterface.setAinChannelScale(num:integer;j1,j2:integer;y1,y2:real;unitY:string);
+{$H Fixe les paramètres d'échelle de la voie num
+
+ Num doit être compris entre 1 et AinCount@
+
+ (j1,y1) et j2,y2) sont deux couples de valeurs correspondantes. j1 et j2 sont exprimés
+en unités carte, y1 et y2 sont exprimés en unités réelles (mV, µA...)
+  Cette présentation est utilisée dans le dialogue Acquisition/Parameters/Channels
+sous la forme:
+ @f6  j1 corresponds to y1
+ @f6  j2 corresponds to y2
+
+ unitY représente les unités utilisées.
+
+ Il est équivalent de modifier directement les propriétés Dy@(Tvector.Dy), y0@(Tvector.y0) et
+unitY@(Tvector.unitY) de chaque vecteur v[i]
+
+
+}
+
+procedure TMCCinterface.setAoutChannelScale(num:integer;j1,j2:integer;y1,y2:real;unitY:string);
+{$H Fixe les paramètres d'échelle de la voie num
+
+ Num doit être compris entre 1 et AoutCount@
+
+ (j1,y1) et j2,y2) sont deux couples de valeurs correspondantes. j1 et j2 sont exprimés
+en unités carte, y1 et y2 sont exprimés en unités réelles (mV, µA...)
+  Cette présentation est utilisée dans le dialogue Stimulation/Scale
+sous la forme:
+ @f6  j1 corresponds to y1
+ @f6  j2 corresponds to y2
+
+ unitY représente les unités utilisées.
+
+ Il est équivalent de modifier directement les propriétés Dy@(Tvector.Dy), y0@(Tvector.y0) et
+unitY@(Tvector.unitY) de chaque vecteur Vout[i]
+
+
+}
+
+
+
+function TMCCinterface.AinScan(LowChan, rate, range, options: integer): integer;
+{$H Réalise une acquisition analogique en mode balayage.
+
+ La fonction UL@ appelée est cbAinScan. Auparavant, il faut allouer le buffer d'acquisition
+au moyen de setAinBuffer@ .
+
+ LowChan est le numéro physique de la première voie d'acquisition.
+ Rate est la fréquence d'échantillonnage par voie
+ Range fixe le gain des entrées
+ Options définit les options
+
+ Sur de nombreuses cartes MCC, les numéros des voies doivent être consécutifs. On fixe donc le
+premier numéro et les autres sont fixés automatiquement. Sur ces cartes, le gain (range) est le même pour toutes les voies.
+
+  Sur d'autres cartes, les numéros de voie et les gains peuvent être fixés pour chaque canal au moyen
+de AloadQueue@ . Dans ce cas, les valeurs de LowChan et range sont ignorées.
+
+ Le paramètre Options doit être formé au moyen des constantes MCC (voir UL)
+
+}
+
+function TMCCinterface.AoutScan(LowChan, rate, range, options: integer): integer;
+{$H Réalise une stimulation analogique en mode balayage.
+
+ La fonction UL@ appelée est cbAinScan. Auparavant, il faut allouer le buffer de stimulation
+au moyen de setAoutBuffer@ .
+
+ LowChan est le numéro physique de la première sortie analogique
+ Rate est la fréquence d'échantillonnage par voie
+ Range fixe le gain des sorties
+ Options définit les options
+
+
+ Le paramètre Options doit être formé au moyen des constantes MCC (voir UL@)
+
+}
+
+
+function TMCCinterface.StopBackGround(functionType:integer):integer;
+{$H Arrête une opération tournant en arrière-plan.
+
+ FunctionType doit avoir une des valeurs suivantes:
+
+ @f6          AIFUNCTION         =1;    (* Analog Input Function    *)
+ @f6          AOFUNCTION         =2;    (* Analog Output Function   *)
+ @f6          DIFUNCTION         =3;    (* Digital Input Function   *)
+ @f6          DOFUNCTION         =4;    (* Digital Output Function  *)
+ @f6          CTRFUNCTION        =5;    (* Counter Function         *)
+
+
+ Par exemple, StopBackGround permet d'arrêter AinScan lancé avec l'option BackGround.
+}
+
+property TMCCinterface.Vin(i:integer):Tvector readOnly;
+{$H Vecteur représentant le canal d'acquisition i
+
+ i doit être compris entre 1 et AinCount@ .
+}
+
+property TMCCinterface.Vout(i:integer):Tvector readOnly;
+{$H Vecteur représentant le canal de stimulation i
+
+ i doit être compris entre 1 et AoutCount@ .
+}
+
+
+function TMCCinterface.AinCount:integer;
+{$H Nombre de voies d'acquisition.
+
+ Ce nombre de voies est fixé par SetAinBuffer@ .
+}
+
+function TMCCinterface.AoutCount:integer;
+{$H Nombre de voies analogiques de stimulation.
+
+ Ce nombre de voies est fixé par SetAoutBuffer@ .
+}
+
+
+function TMCCinterface.AloadQueue(var ChanArray,GainArray;count:integer): integer;
+{$H Charge une liste de numéros physiques et une liste de gains;
+
+ Certaines cartes MCC peuvent enregistrer une liste contenant pour chaque voie d'acquisition, un
+numéro physique et un gain. Dans ce cas, après avoir appelé AloadQueue, si l'on appelle AinScan@ , les paramètres LowChan et range
+sont ignorés et les valeurs contenues dans les listes sont prises en compte.
+
+ ChanArray et GainArray doivent être des tableaux à une dimension de type smallint
+
+ ChanArray doit contenir la liste des numéros physiques des voies d'acquisition
+ GainArray doit contenir la liste des gains des voies d'acquisition, les gains possibles
+sont définis par des constantes (voir la doc UL)
+
+ Count est le nombre de valeurs utiles de la liste. En général, on choisit une valeur égale
+au nombre de voies d'acquisition, mais ce n'est pas obligatoire.
+
+}
+
+function TMCCinterface.C9513Config(CounterNum,GateControl,CounterEdge,CountSource,SpecialGate,Reload, RecycleMode,BCDMode,CountDirection,OutputControl:Integer):Integer;
+function TMCCinterface.C9513Init(ChipNum, FOutDivider, FOutSource, Compare1, Compare2, TimeOfDay:Integer):Integer;
+function TMCCinterface.CLoad(RegNum:Integer; LoadValue:Word): Integer;
+function TMCCinterface.CLoad32(RegNum:Integer; LoadValue:Longint): Integer;
+function TMCCinterface.CStatus(CounterNum:Integer; var StatusBits:Longint):Integer;
+
+
+
+function cbDConfigPort(Boardnum:Integer; PortNum:Integer; Direction:Integer):Integer;
+{$H  Configure un port logique d'une carte MCC.
+
+ BoardNum est le numéro de la carte tel qu'il apparait dans InstaCal.
+
+ PortNum est le numéro du port.
+
+ D'après la documentation MCC , les ports sont définis de la façon suivante:
+
+ @f6    FIRSTPORTA       = 10;
+ @f6    FIRSTPORTB       = 11;
+ @f6    FIRSTPORTCL      = 12;
+ @f6    FIRSTPORTCH      = 13;
+ @f6    SECONDPORTA      = 14;
+ @f6    SECONDPORTB      = 15;
+ @f6    SECONDPORTCL     = 16;
+ @f6    SECONDPORTCH     = 17;
+ @f6    etc...
+
+ Sur une carte PCI-DIO24, les 4 premiers ports sont disponibles.
+
+ Direction indique la configuration Entrée ou Sortie du port:
+
+ @f6    DIGITALOUT       = 1;
+ @f6    DIGITALIN        = 2;
+
+
+}
+function cbDIn(BoardNum:Integer; PortNum:Integer; var dataValue:byte..longword):Integer;
+{$H Lit un port logique sur une carte MCC
+
+ BoardNum est le numéro de la carte tel qu'il apparait dans InstaCal.
+
+ PortNum est le numéro du port. ( voir cbDConfigPort@ )
+
+ datavalue reçoit la valeur lue sur le port. Les bits non utilisés vaudront zéro.
+
+}
+function cbDOut(BoardNum,PortNum,DataValue:Word):Integer;
+{$H Envoie une donnée sur un port logique d'une carte MCC
+
+ BoardNum est le numéro de la carte tel qu'il apparait dans InstaCal.
+
+ PortNum est le numéro du port. ( voir cbDConfigPort@ )
+
+ datavalue est la valeur écrite sur le port. Les bits non utilisés sont ignorés.
+
+}
+
+
+

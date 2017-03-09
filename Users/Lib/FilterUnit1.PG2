@@ -1,0 +1,370 @@
+unit FilterUnit1;
+
+INTERFACE
+
+procedure DetectSpikes(var Vrep:Tvector; HSpk:real; sensSpk:integer ;var RasterVec:Tdetect);
+
+procedure HighPassFFT(var src:Tvector;f0,deltaF:real);
+procedure LowPassFFT2(var src,dest:Tvector;f0,deltaF:real);
+procedure HighPassFFT2(var src,dest:Tvector;f0,deltaF:real);
+
+procedure LowPassFFT(var src:Tvector;f0,deltaF:real);  
+procedure LowPassFFTdVmdt(var src,dest:Tvector;f0,deltaF:real);  
+  
+procedure LowPassFFTSpikes(var src:Tvector;f0,deltaF:real);  
+  
+procedure RemoveSpikes(var VecSpk,VecNoSpk:tvector; var DetSpk:TDetect;Fc:real);  
+
+PROCEDURE NotchFilter(var src:Tvector;f0,deltaF:real);
+
+IMPLEMENTATION
+
+
+PROCEDURE DETECTSPIKES(var Vrep:Tvector; HSpk:real; sensSpk:integer ;var RasterVec:Tdetect);  
+begin  
+  with RasterVec do  
+  begin  
+    installSource(Vrep);  
+  
+    xstart := Vrep.Xstart +1 ; 
+    xend := Vrep.Xend -1 ;     
+  
+    height:=Hspk;  
+    
+    case sensspk of  
+      1: mode:=sm_crossup;  
+      2: mode:=sm_crossDw;  
+    end;  
+    execute;  
+    
+  end;  
+end; 
+
+{*****************************************************************************************************}  
+
+PROCEDURE HIGHPASSFFT(var src:Tvector;f0,deltaF:real);  
+var  
+  i,k,dk:integer;  
+  Vdum:Tvector;  
+begin  
+  Vdum.create;  
+  
+  dft(src,vdum,true);  
+  k:=Vdum.invconvx(f0);  
+  dk:=round(deltaF/Vdum.dx);  
+  
+  with Vdum do  
+  begin  
+    for i:=0 to k-1 do  
+    begin  
+      Cpxvalue[Istart+i]:=comp(0,0);  
+      Cpxvalue[Iend-i]:=comp(0,0);  
+    end;                                                                                                                                                                                         
+  
+    for i:=0 to dk-1 do  
+    begin  
+      Cpxvalue[Istart+k+i]:=Cpxvalue[Istart+k+i]*(i)/dk;  
+      Cpxvalue[Iend-k-i]:=Cpxvalue[Iend-k-i]*(i)/dk;  
+    end;  
+  end;  
+  
+  dft(Vdum,src,false);  
+end;  
+  
+{*****************************************************************************************************}  
+
+  
+procedure LowPassFFT2(var src,dest:Tvector;f0,deltaF:real);
+
+var
+  i,k,dk:integer;
+  Vdum:Tvector;
+
+begin
+  Vdum.create;
+  dft(src,vdum,true);
+  k:=Vdum.invconvx(f0);
+  dk:=round(deltaF/Vdum.dx);
+  with Vdum do
+  begin
+    for i:=Istart+k to Iend-k do
+      Cpxvalue[i]:=comp(0,0);
+    for i:=0 to dk-1 do
+    begin
+      Cpxvalue[Istart+k-i]:=Cpxvalue[Istart+k-i]*i/(dk);
+      Cpxvalue[Iend-k+i]:=Cpxvalue[Iend-k+i]*i/(dk);
+    end;
+  end;
+
+  dft(Vdum,dest,false);
+      
+  with dest do 
+   begin 
+     dx := src.dx;
+     x0 := src.x0;
+     unitX := src.unitX;
+     Istart := src.Istart;
+   end;   
+
+ if src.NumType<=t_single then
+  begin
+    VchangeType(dest,Vdum,t_single);
+    Vcopy(Vdum,dest);
+  end
+  else
+  if src.NumType=t_double then
+  begin
+    VchangeType(dest,Vdum,t_double);
+    Vcopy(Vdum,dest);
+  end;
+end;
+  
+{*****************************************************************************************************}  
+{*****************************************************************************************************}
+    
+procedure HighPassFFT2(var src,dest:Tvector;f0,deltaF:real);
+var
+  i,k,dk:integer;
+  Vdum:Tvector;
+begin
+  Vdum.create;
+  dft(src,vdum,true);
+  k:=Vdum.invconvx(f0);
+  dk:=round(deltaF/Vdum.dx);
+
+  with Vdum do
+  begin
+    for i:=0 to k-1 do
+    begin
+      Cpxvalue[Istart+i]:=comp(0,0);
+      Cpxvalue[Iend-i]:=comp(0,0);
+    end;
+
+  for i:=0 to dk-1 do
+    begin
+      Cpxvalue[Istart+k+i]:=Cpxvalue[Istart+k+i]*i/dk;
+      Cpxvalue[Iend-k-i]:=Cpxvalue[Iend-k-i]*i/dk;
+    end;
+  end;
+
+  dft(Vdum,dest,false);
+
+  with dest do 
+   begin 
+     dx := src.dx;
+     x0 := src.x0;
+     unitX := src.unitX;
+     Istart := src.Istart;
+   end;   
+
+ if src.NumType<=t_single then
+  begin
+    VchangeType(dest,Vdum,t_single);
+    Vcopy(Vdum,dest);
+  end
+  else
+  if src.NumType=t_double then
+  begin
+    VchangeType(dest,Vdum,t_double);
+    Vcopy(Vdum,dest);
+  end;
+
+end;
+
+  
+{*****************************************************************************************************}  
+{*****************************************************************************************************}
+
+PROCEDURE LOWPASSFFT(var src:Tvector;f0,deltaF:real);  
+var  
+  i,k,dk:integer;  
+  Vdum:Tvector;  
+begin  
+  Vdum.create;  
+  
+  dft(src,vdum,true);  
+  k:=Vdum.invconvx(f0);  
+  dk:=round(deltaF/Vdum.dx);  
+  
+  with Vdum do  
+  begin  
+    for i:=Istart+k to Iend-k do  
+      Cpxvalue[i]:=comp(0,0);  
+  
+    for i:=0 to dk-1 do  
+    begin  
+      Cpxvalue[Istart+k-i]:=Cpxvalue[Istart+k-i]*i/(dk);  
+      Cpxvalue[Iend-k+i]:=Cpxvalue[Iend-k+i]*i/(dk);  
+    end;  
+  end;  
+  
+  dft(Vdum,src,false);  
+end;
+
+{*****************************************************************************************************}  
+{*****************************************************************************************************}
+
+PROCEDURE LOWPASSFFTdVmdt(var src,dest:Tvector;f0,deltaF:real);  
+var  
+  i,k,dk,tt:integer;
+  Vdum:Tvector;    
+begin  
+  Vdum.create;  
+      
+  dft(src,vdum,true);  
+  k:=Vdum.invconvx(f0);  
+  dk:=round(deltaF/Vdum.dx);
+    
+  with Vdum do  
+  begin  
+          
+    for i:=IStart to IStart+trunc((Iend-IStart+1)/2)-1 do  
+      Cpxvalue[i]:=Cpxvalue[i]*comp(0,2*pi*(i)/src.Icount/src.dx);  
+      
+    for i:=Iend downto Iend-trunc((Iend-IStart+1)/2)-1 do  
+      Cpxvalue[i]:=conj(Cpxvalue[Iend-i+1]);
+      
+    if k<>0 then
+    begin  
+      for i:=Istart+k to Iend-k do  
+        Cpxvalue[i]:=comp(0,0);  
+    
+      if dk<>0 then
+        for i:=0 to dk-1 do  
+        begin  
+          Cpxvalue[Istart+k-i]:=Cpxvalue[Istart+k-i]*i/(dk);  
+          Cpxvalue[Iend-k+i]:=Cpxvalue[Iend-k+i]*i/(dk);  
+        end;
+    end;  
+      
+  end;  
+  
+  dft(Vdum,dest,false); 
+   
+end;  
+
+{*****************************************************************************************************}  
+{*****************************************************************************************************}
+ 
+  
+PROCEDURE LOWPASSFFTSPIKES(var src:Tvector;f0,deltaF:real);  
+var  
+  i,k,dk:integer;  
+  Vdum:Tvector;  
+begin  
+  Vdum.create;  
+  
+  dft(src,vdum,true);  
+  k:=Vdum.invconvx(f0);  
+  dk:=round(deltaF/Vdum.dx);  
+  
+  with Vdum do  
+  begin  
+    for i:=Istart+k to Iend-k do  
+      Cpxvalue[i]:=comp(0,0);  
+  
+    for i:=0 to dk-1 do  
+    begin  
+      Cpxvalue[Istart+k-i]:=Cpxvalue[Istart+k-i]*i/(dk);  
+      Cpxvalue[Iend-k+i]:=Cpxvalue[Iend-k+i]*i/(dk);  
+    end;  
+  end;  
+  
+  dft(Vdum,src,false);  
+end;  
+
+var  
+  detSpk:tdetect;  
+  xxx,hhh:integer;  
+
+{*****************************************************************************************************}  
+{*****************************************************************************************************}
+  
+PROCEDURE REMOVESPIKES(var VecSpk,VecNoSpk:tvector; var DetSpk:TDetect;Fc:real);  
+var  
+  i:integer;  
+  tfin,tdeb:real;
+  Vdum1, Vdum2: Tvector;  
+begin  
+  Vdum1.create;  
+  Vdum1.unitX:='ms';
+  Vdum2.create;
+    
+  Vcopy1(VecSpk,VecNoSpk);  
+  supSpike(VecSpk,Vdum1,1,2,VecSpk.Xstart,VecSpk.Xend);  
+  LowPassFFTSpikes(Vdum1,Fc,1);  
+  Vcopy(Vdum1,Vdum2);  
+  Vdum1.modify(t_single,VecSpk.Istart,VecSpk.Iend);  
+  for i:=Vdum1.Istart to Vdum1.Iend do  
+    Vdum1.Yvalue[i]:=Vdum2.Yvalue[i-Vdum1.Istart];  
+    
+  for XXX:=DetSpk.vevent.istart to DetSpk.vevent.iend do  
+    begin  
+       tfin:=VecSpk.invconvX(DetSpk.vevent.Yvalue[xxx]);  
+       tdeb:=VecSpk.invconvX(DetSpk.vevent.Yvalue[xxx]);  
+  
+       repeat  
+         tdeb:=tdeb-1;  
+       until ((VecSpk.Yvalue[round(tdeb)]<Vdum1.Yvalue[round(tdeb)])  
+              or (tdeb<=VecSpk.istart));  
+  
+  
+       if (tfin< (VecSpk.iend)) then  
+         begin  
+           repeat  
+             tfin:=tfin+1;  
+           until ((VecSpk.Yvalue[round(tfin)]<Vdum1.Yvalue[round(tfin)])  
+                   or (tfin>=VecSpk.iend));  
+         end  
+       else tfin:= VecSpk.iend;  
+  
+  
+       if (tfin< (VecSpk.iend-2)) then  
+         begin  
+           tfin:=tfin+1;  
+           repeat  
+             tfin:=tfin+1;  
+           until ((VecSpk.Yvalue[round(tfin)]>Vdum1.Yvalue[round(tfin)])  
+                   or (tfin>=VecSpk.iend));  
+          end  
+       else tfin:= VecSpk.iend;  
+  
+       for HHH:=round(tdeb) to round(tfin) do  
+         begin  
+           VecNoSpk.Yvalue[HHH]:= Vdum1.Yvalue[HHH];  
+         end;  
+  
+    end;  
+end;
+
+
+PROCEDURE NotchFilter(var src:Tvector;f0,deltaF:real);  
+var  
+  i,k,dk:integer;  
+  Vdum:Tvector;  
+begin  
+  Vdum.create;  
+  
+  dft(src,vdum,true);  
+  k:=Vdum.invconvx(f0);  
+  dk:=round(deltaF/Vdum.dx);  
+  
+  with Vdum do  
+  begin  
+  
+    for i:=0 to dk-1 do  
+    begin  
+      Cpxvalue[Istart+k-i]:=Cpxvalue[Istart+k-i]*i/dk;  
+      Cpxvalue[Iend-k+i]:=Cpxvalue[Iend-k+i]*i/dk;
+      
+      Cpxvalue[Istart+k+i]:=Cpxvalue[Istart+k+i]*i/dk;  
+      Cpxvalue[Iend-k-i]:=Cpxvalue[Iend-k-i]*i/dk;
+        
+    end;  
+  end;  
+  
+  dft(Vdum,src,false);
+  VRealPart(src,src);  
+end;
+
+end.

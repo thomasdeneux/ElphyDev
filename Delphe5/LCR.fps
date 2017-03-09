@@ -1,0 +1,103 @@
+object
+  TLCR
+end;
+
+procedure TLCR.create;
+
+
+function TLCR.SetLedCurrents(Red, Green, Blue: byte ): integer;
+function TLCR.GetLedCurrents(var Red, Green, Blue: byte ): integer;
+
+function TLCR.SetMode(mode: boolean): integer;
+function TLCR.GetMode(var Mode: boolean ): integer;
+
+
+function TLCR.SetInputSource (source: longword ; portWidth: longword ): integer;
+function TLCR.GetInputSource (var pSource: longword ; var portWidth: longword ): integer;
+function TLCR.SetPixelFormat (format: longword ): integer;
+function TLCR.GetPixelFormat (var pFormat: longword ): integer;
+function TLCR.SetPortClock (clock: longword ): integer;
+function TLCR.GetPortClock (var pClock: longword ): integer;
+function TLCR.SetDataChannelSwap (port: longword ; swap: longword ): integer;
+function TLCR.GetDataChannelSwap (var pPort: longword ; var pSwap: longword ): integer;
+function TLCR.SetFPD_Mode_Field (PixelMappingMode: longword ; SwapPolarity: boolean ; FieldSignalSelect: longword ): integer;
+function TLCR.GetFPD_Mode_Field (var pPixelMappingMode: longword ; var pSwapPolarity: boolean ; var pFieldSignalSelect: longword ): integer;
+function TLCR.SetPowerMode (w:boolean): integer;
+function TLCR.SetLongAxisImageFlip (w:boolean): integer;
+function TLCR.GetLongAxisImageFlip : boolean;
+function TLCR.SetShortAxisImageFlip (w:boolean): integer;
+function TLCR.GetShortAxisImageFlip : boolean;
+function TLCR.SetTPGSelect (pattern: longword ): integer;
+function TLCR.GetTPGSelect (var pPattern: longword ): integer;
+function TLCR.SetLEDPWMInvert (invert: boolean ): integer;
+function TLCR.GetLEDPWMInvert (var inverted: boolean ): integer;
+function TLCR.SetLedEnables (SeqCtrl: boolean ; Red: boolean ; Green: boolean ; Blue: boolean ): integer;
+function TLCR.GetLedEnables (var pSeqCtrl: boolean ; var pRed: boolean ; var pGreen: boolean ; var pBlue: boolean ): integer;
+function TLCR.GetVersion (var pApp_ver: longword ; var pAPI_ver: longword ; var pSWConfig_ver: longword ; var pSeqConfig_ver: longword ): integer;
+function TLCR.SoftwareReset : integer;
+function TLCR.GetStatus (var pHWStatus: byte ; var pSysStatus: byte ; var pMainStatus: byte ): integer;
+function TLCR.SetPWMEnable (channel: longword ; Enable: boolean ): integer;
+function TLCR.GetPWMEnable (channel: longword ; var pEnable: boolean ): integer;
+function TLCR.SetPWMConfig (channel: longword ; pulsePeriod: longword ; dutyCycle: longword ): integer;
+function TLCR.GetPWMConfig (channel: longword ; var pPulsePeriod: longword ; var pDutyCycle: longword ): integer;
+function TLCR.SetPWMCaptureConfig (channel: longword ; enable: boolean ; sampleRate: longword ): integer;
+function TLCR.GetPWMCaptureConfig (channel: longword ; var pEnabled: boolean ; var pSampleRate: longword ): integer;
+function TLCR.SetGPIOConfig (pinNum: longword ; enAltFunc: boolean ; altFunc1: boolean ; dirOutput: boolean ; outTypeOpenDrain: boolean ; pinState: boolean ): integer;
+function TLCR.GetGPIOConfig (pinNum: longword ; var pEnAltFunc: boolean ; var pAltFunc1: boolean ; var pDirOutput: boolean ; var pOutTypeOpenDrain: boolean ; var pState: boolean ): integer;
+{function TLCR.SetDisplay (croppedArea: TLCRrectangle ; displayArea: TLCRrectangle ): integer;}
+{function TLCR.GetDisplay (var pCroppedArea: TLCRrectangle ; var pDisplayArea: TLCRrectangle ): integer;}
+function TLCR.MemRead (addr: longword ; var readWord: longword ): integer;
+function TLCR.MemWrite (addr: longword ; data: longword ): integer;
+function TLCR.ValidatePatLutData (var pStatus: longword ): integer;
+function TLCR.SetPatternDisplayMode ( w:boolean): integer;
+function TLCR.GetPatternDisplayMode (var w: boolean ): integer;
+function TLCR.SetTrigOutConfig (trigOutNum: longword ; invert: boolean ; rising: longword ; falling: longword ): integer;
+function TLCR.GetTrigOutConfig (trigOutNum: longword ; var pInvert: boolean ;var pRising: longword ; var pFalling: longword ): integer;
+function TLCR.SetRedLEDStrobeDelay (rising: byte ; falling: byte ): integer;
+function TLCR.SetGreenLEDStrobeDelay (rising: byte ; falling: byte ): integer;
+function TLCR.SetBlueLEDStrobeDelay (rising: byte ; falling: byte ): integer;
+function TLCR.GetRedLEDStrobeDelay (var rising, falling: byte ): integer ;
+function TLCR.GetGreenLEDStrobeDelay (var rising, falling: byte ): integer ;
+function TLCR.GetBlueLEDStrobeDelay (var rising, falling: byte ): integer ;
+function TLCR.EnterProgrammingMode : integer;
+function TLCR.ExitProgrammingMode : integer;
+
+function TLCR.GetFlashManID ( var manID: word ): integer;
+function TLCR.GetFlashDevID (var devID: longword ): integer;
+function TLCR.GetBLStatus (var BL_Status: byte ): integer;
+function TLCR.SetFlashAddr (Addr: longword ): integer;
+function TLCR.FlashSectorErase : integer;
+function TLCR.SetDownloadSize (dataLen: longword ): integer;
+function TLCR.DownloadData (var pByteArray: byte ; dataLen: longword ): integer;
+
+function TLCR.SetFlashType (tp: byte): integer;
+function TLCR.CalculateFlashChecksum : integer;
+function TLCR.GetFlashChecksum (var checksum: longword): integer;
+function TLCR.LoadSplash (index: longword ): integer;
+function TLCR.GetSplashIndex (var pIndex: longword ): integer;
+function TLCR.SetTPGColor (redFG: word ; greenFG: word ; blueFG: word ; redBG: word ; greenBG: word ; blueBG: word ): integer;
+function TLCR.GetTPGColor (var pRedFG: word ; var pGreenFG: word ; var pBlueFG: word ; var pRedBG: word ; var pGreenBG: word ; var pBlueBG: word ): integer;
+function TLCR.ClearPatLut : integer;
+function TLCR.AddToPatLut (TrigType: integer ; PatNum: integer ;BitDepth: integer ;LEDSelect: integer ;InvertPat: boolean ; InsertBlack: boolean ;BufSwap: boolean ; trigOutPrev: boolean ): integer;
+function TLCR.GetPatLutItem (index: integer ; var pTrigType: integer ; var pPatNum: integer ;var pBitDepth: integer ;var pLEDSelect: integer ;var pInvertPat: boolean ; var pInsertBlack: boolean ;var pBufSwap: boolean ; var pTrigOutPrev: boolean ): integer;
+function TLCR.SendPatLut : integer;
+function TLCR.SendSplashLut ( var lutEntries: byte ; numEntries: longword ): integer;
+function TLCR.GetPatLut (numEntries: integer ): integer;
+function TLCR.GetSplashLut (var pLut: byte ; numEntries: integer ): integer;
+function TLCR.SetPatternTriggerMode (w:boolean): integer;
+function TLCR.GetPatternTriggerMode (var w:boolean): integer;
+function TLCR.PatternDisplay (Action: integer ): integer;
+function TLCR.SetPatternConfig (numLutEntries: longword ; rep: boolean ; numPatsForTrigOut2: longword ; numSplash: longword ): integer;
+function TLCR.GetPatternConfig (var pNumLutEntries: longword ; var pRepeat: boolean ; var pNumPatsForTrigOut2: longword ; var pNumSplash: longword ): integer;
+function TLCR.SetExposure_FramePeriod (exposurePeriod: longword ; framePeriod: longword ): integer;
+function TLCR.GetExposure_FramePeriod (var pExposure: longword ; var pFramePeriod: longword ): integer;
+function TLCR.SetTrigIn1Delay (Delay: longword ): integer;
+function TLCR.GetTrigIn1Delay (var pDelay: longword ): integer;
+function TLCR.SetInvertData (invert: boolean ): integer;
+function TLCR.PWMCaptureRead (channel: longword ; var pLowPeriod: longword ; var pHighPeriod: longword ): integer;
+function TLCR.SetGeneralPurposeClockOutFreq (clkId: longword ; enable: boolean ; clkDivider: longword ): integer;
+function TLCR.GetGeneralPurposeClockOutFreq (clkId: longword ; var pEnabled: boolean ; var pClkDivider: longword ): integer;
+function TLCR.MeasureSplashLoadTiming (startIndex: longword ; numSplash: longword ): integer;
+function TLCR.ReadSplashLoadTiming (var pTimingData: longword ): integer;
+
+procedure TLCR.WaitforFlashReady ;

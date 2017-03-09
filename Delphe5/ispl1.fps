@@ -1,0 +1,2133 @@
+object
+  TLQRsolver(Tobject)
+{$H Objet permettant la résolution d'un système d'équations linéaires par une méthode
+de moindres carrés.
+
+ Le système peut s'écrire:
+
+       A11*X1 + A12*X2 + .... A1n*Xn = B1
+       A21*X1 + A22*X2 + .... A2n*Xn = B2
+       ....
+       Am1*X1 + Am2*X2 + .... Amn*Xn = Bm
+
+ ou bien, sous forme matricielle A*X = B
+
+ On suppose que m>n . Il y a donc plus d'équations que d'inconnues et il n'y a pas de solution
+exacte. On recherche donc un vecteur X qui minimise la quantité
+  || A*X-B||
+ Les barres verticales désignent la norme-2 d'un vecteur, c'est à dire:
+ ||V|| = sqrt(V1²+V2²+...+Vn²)
+
+ Après avoir créé l'objet avec Create@ , il faut initialiser les matrices soit avec
+initMats@, soit avec Init@ .
+
+ Avec InitMats@, on fixe le nombre d'inconnues n, le nombre d'équations m et aussi le
+nombre de colonnes du second membre B. En effet, B et X sont en principe des vecteurs mais
+l'objet est capable de résoudre en une seule fois le système pour des seconds membres
+différents. B et X sont donc des matrices contenant m lignes et Nt colonnes, Nt étant
+le nombre de seconds membres souhaité.
+
+ Après avoir utilisé initMats, il suffit de remplir les matrices A et B en utilisant
+les propriétés matA@ et matB@ .
+
+ Avec Init@ , on fixe seulement le nombres d'inconnues n et le nombre de seconds membres.
+Ensuite, on ajoute des lignes aux matrices A et B avec Addline@ . Cette méthode est intéressante
+si l'on ne connait pas à l'avance le nombre d'équations.
+
+ Une fois les matrices A et B en place, on appelle Solve@ pour résoudre le système.
+
+ La solution se trouve alors dans matX@ .
+ La propriété Residual@ donne pour chaque second membre la valeur de l'erreur résiduelle moyenne.
+
+ Cette erreur est égale || A*X-B||²/m .
+
+ GetVector@ permet de transférer une partie de X dans un vecteur.
+ GetResidual permet de transférer tous les résidus dans un vecteur.
+}
+
+  TCHKsolver(Tobject)
+{$H Objet permettant la résolution d'un système d'équations linéaires par une méthode
+de moindres carrés.
+
+ Le système peut s'écrire:
+
+       A11*X1 + A12*X2 + .... A1n*Xn = B1
+       A21*X1 + A22*X2 + .... A2n*Xn = B2
+       ....
+       Am1*X1 + Am2*X2 + .... Amn*Xn = Bm
+
+ ou bien, sous forme matricielle A*X = B
+
+ On suppose que m>n . Il y a donc plus d'équations que d'inconnues et il n'y a pas de solution
+exacte. On recherche donc un vecteur X qui minimise la quantité
+  || A*X-B||
+ Les barres verticales désignent la norme-2 d'un vecteur, c'est à dire:
+ ||V|| = sqrt(V1²+V2²+...+Vn²)
+
+ En général, X et B sont des vecteurs colonnes (n lignes pour X et m lignes pour B) .
+ En pratique, X et B sont des matrices à Np colonnes, ce qui revient à résoudre Np systèmes
+d'équations simultanément.
+
+ Après avoir créé l'objet avec Create@ , il faut initialiser les matrices avec Init@ .
+
+ Avec Init@ , on fixe le nombres d'inconnues n et le nombre de seconds membres Np.
+Ensuite, on ajoute des lignes aux matrices A et B avec Addline@ .
+
+  En réalité, on ne stocke pas les matrices A et B, on construit directement les matrices
+ @f6             A'=transposée(A)*A
+ @f6          et B'=transposée(A)*B .
+  On sait que la solution du système initial (1) s'obtient en résolvant le système de n équations à n inconnues
+ @f6           A'*X=B'     (2)
+
+ Une fois les équations rentrées, on appelle Solve@ pour résoudre le système.
+ Solve décompose la matrice A' en utilisant la factorisation de Cholewsky puis en déduit le vecteur X
+
+ La solution se trouve alors dans matX@ .
+
+ GetVector@ permet de transférer une partie de X dans un vecteur.
+
+}
+  TCHKsolverXY(Tobject)
+{$H Objet permettant la résolution d'un système linéaire par une méthode
+de moindres carrés.
+
+  L'objet utilise les mêmes principes que TchkSolver mais est adapté aux stimulations visuelles
+de type grille, à savoir Trevcor@, TdenseNoise@ et TMdense@ .
+
+ @b @ul Exemple: @notb @notul
+
+ @f6 var
+ @f6     chk:TchkSolverXY;
+ @f6     stm:TMdense;
+ @f6     pstwX:array[1..2] of TvectorArray;
+ @f6
+ @f6  procedure test;
+ @f6  var
+ @f6    i,j,k:integer;
+ @f6  begin
+ @f6    chk.create('');
+ @f6    chk.setGvalues( 0,0,0,1,0);     (* case contenant 0 ==> Etat 0, coeff 1 *)
+ @f6    chk.setGvalues( 1,1,1,1,0);     (* case contenant 1 ==> Etat 1, coeff 1 *)
+ @f6
+ @f6    MList.create('');
+ @f6
+ @f6    for i:=1 to EpCount do
+ @f6    begin
+ @f6      EpNum:=i;
+ @f6
+ @f6      stm.installStimSeq(Vseed,nbX,nbY,expans,scot);
+ @f6      stm.installTimes(TopSync.Vevent,Vtag1.dx);
+ @f6      stm.getMlist(Mlist);          (* obtenir la liste des grilles de stimulation *)
+ @f6
+ @f6      if i=1 then
+ @f6      begin
+ @f6        chk.installSources(v1,VTag1,Mlist);
+ @f6        chk.init(0,5,2,false,0);
+ @f6      end;
+ @f6
+ @f6      chk.updateSources(v1,VTag1,Mlist);
+ @f6    end;
+ @f6
+ @f6    chk.solve;
+ @f6
+ @f6    for k:=1 to 2 do
+ @f6    with pstwX[k] do
+ @f6    begin
+ @f6      create('',1,nbX,1,nbY);
+ @f6      initObjects(t_single,0,0);
+ @f6      for i:=Imin to Imax do
+ @f6      for j:=Jmin to Jmax do
+ @f6        chk.getVector(i,j,k-1,v[i,j],false,false);
+ @f6    end;
+ @f6  end;
+
+
+}
+  TCHKsolverXYB(Tobject)
+
+end;
+
+
+HPage {ISPL};
+{$P
+  ISPL signifie INTEL SIGNAL PROCESSING LIBRARY .
+
+  Il s'agit d'un ensemble de routines de traitement du signal réalisées par la société INTEL.
+  Ces routines sont situées dans plusieurs fichiers DLL dont les noms sont les suivants:
+      nsp.dll
+      nspa6.dll
+      nspm5.dll
+      nspm6.dll
+      nspp6.dll
+      nsppx.dll
+      nspw7.dll
+
+  Ces DLL doivent être installées indépendamment du programme Elphy.
+  La méthode d'installation la plus simple consiste à décompresser le fichier ISPL.zip
+dans le répertoire du programme Elphy.
+  ISPL.zip est disponible sur le même site que Elphy.
+
+  La bibliothèque ISPL ne gère pas tous les types de données. Ses types numériques
+préférés sont:
+
+ @f6   T_single
+ @f6   T_double
+ @f6   T_Scomplex
+ @f6   T_Dcomplex
+
+ De plus, pour certaines opérations binaires, toutes les combinaisons de type ne sont pas
+autorisées. Pour effectuer des traitements efficaces, on aura intérêt à créer des vecteurs
+et matrices dont le type est choisi dans la paire (T_single, T_Scomplex), ce qui convient
+en général, ou encore dans la paire (T_double, T_Dcomplex) pour des précisions plus élevées.
+}
+
+
+function Re(z:complex):real;
+{$H Renvoie la partie réelle d'un nombre complexe z}
+
+                             { Gestion des nombres complexes stmCpx1 }
+
+function Im(z:complex):real;
+{$H Renvoie la partie imaginaire d'un nombre complexe z}
+
+function Comp(x,y:real):complex;
+{$H Renvoie le nombre complexe dont les parties réelle et imaginaire sont
+respectivement x et y
+}
+
+function Comp1(r,theta:real):complex;
+{$H Renvoie le nombre complexe dont les module et argument sont
+respectivement r et theta
+
+  Theta doit être exprimé en radians
+}
+
+function Mdl(z:Complex):real;
+{$H Renvoie le module d'un nombre complexe z}
+
+function Angle(z:Complex):real;
+{$H Renvoie l'argument (en radians) d'un nombre complexe z
+
+}
+
+function Angle1(x,y:real):real;
+{$H Renvoie l'argument (en radians) du nombre complexe de partie réelle x et de partie imaginaire y}
+
+
+function Conj(z:Complex):complex;
+{$H Renvoie le nombre complexe conjugué du nombre complexe z}
+
+function Cstr(z:Complex;n,m:Integer):string;
+{$H Renvoie une chaîne de caractères permettant d'afficher le nombre complexe z sous la forme
+ a + jb
+
+ n est le champ dans lequel s'inscrivent a ou b
+ m est le nombre de décimales
+
+}
+
+function RandUni(var vec:Tvector;Seed:integer;  LowValue, HighValue: real):integer;
+function RandUni(var mat:Tmatrix;Seed:integer;  LowValue, HighValue: real):integer;
+
+{$H Génère des échantillons pseudo-aléatoires dans le vecteur vec ou la matrice mat avec une distribution uniforme.
+
+ Seed initialise le générateur de nombres.
+ Les échantillons auront des valeurs comprises entre LowValue et HighValue.
+
+ La fonction renvoie une valeur qui caractérise l'état du générateur aléatoire. Cette valeur peut être utilisée
+dans le prochain appel de RandUni.
+}
+
+function RandGauss(var vec:Tvector; Seed:integer;  Mean, StdDev: real):integer;
+function RandGauss(var mat: Tmatrix; Seed:integer;  Mean, StdDev: real):integer;
+
+{$H Génère des échantillons pseudo-aléatoires dans le vecteur vec ou la matrice mat avec une distribution gaussienne.
+
+ Seed initialise le générateur de nombres.
+ Les échantillons auront des valeurs distribuées autour de Mean avec une déviation standard StdMean
+
+ La fonction renvoie une valeur qui caractérise l'état du générateur aléatoire. Cette valeur peut être utilisée
+dans le prochain appel de RandGauss.
+}
+
+
+procedure Triangle(var vec:Tvector;period,phase,Mag,asym:real);
+ {$H Génération d'un signal triangulaire.
+
+ La procédure appelle la bibliothèque ISPL@. Elle fonctionne avec des nombres complexes.
+
+ Le vecteur vec doit avoir un des types numériques suivant:
+     T_smallint, T_single, T_double, T_Scomplex, T_Dcomplex
+
+ periode est la durée d'un cycle, exprimée en unités du vecteur.
+ Phase exprime le déphasage du triangle et doit être compris entre 0 et 2 pi.
+ Mag est l'amplitude du triangle.
+ asym est son asymétrie. c'est un nombre compris entre - pi et + pi . Avec une valeur de zéro,
+on obtient un signal symétrique.
+ }
+
+procedure WinHamming(var src,dest : Tvector);
+{$H Multiplication du vecteur src par une fenêtre de Hamming.
+ Le résultat est rangé dans le vecteur dest
+ Dest peut être identique à src.
+
+ La fenêtre de Hamming est définie par
+ w(i)=0.54+0.46*cos(2*pi*i/(N-1)) pour 0<=i<N
+
+ La procédure appelle la bibliothèque ISPL@.
+
+ Le vecteur vec doit avoir un des types numériques suivant:
+     T_smallint, T_single, T_double, T_Scomplex, T_Dcomplex
+
+}
+procedure WinHann(var src,dest : Tvector);
+{$H Multiplication du vecteur src par une fenêtre de Hann.
+ Le résultat est rangé dans le vecteur dest
+ Dest peut être identique à src.
+
+ La procédure appelle la bibliothèque ISPL@.
+
+ Le vecteur vec doit avoir un des types numériques suivant:
+     T_smallint, T_single, T_double, T_Scomplex, T_Dcomplex
+
+}
+
+procedure WinBlackMan(var src,dest : Tvector; alpha:real);
+{$H Multiplication du vecteur src par une fenêtre de BlackMan.
+ Le résultat est rangé dans le vecteur dest
+ Dest peut être identique à src.
+
+ La procédure appelle la bibliothèque ISPL@.
+
+ Le vecteur vec doit avoir un des types numériques suivant:
+     T_smallint, T_single, T_double, T_Scomplex, T_Dcomplex
+
+ La fenêtre de Blackman est définie de la façon suivante:
+ @(@ d:\delphe5\Blackman.bmp)
+
+ En donnant au paramètre Alpha la valeur de -0.16 , on obtient la
+fenêtre de Blackman standard.
+
+}
+procedure WinKaiser(var src,dest : Tvector;beta:real);
+{$H Multiplication du vecteur src par une fenêtre de Kaiser.
+ Le résultat est rangé dans le vecteur dest
+ Dest peut être identique à src.
+
+ La procédure appelle la bibliothèque ISPL@.
+
+ Le vecteur vec doit avoir un des types numériques suivant:
+     T_smallint, T_single, T_double, T_Scomplex, T_Dcomplex
+
+
+ La fenêtre de Bartlett est définie de la façon suivante:
+
+ @(@ d:\delphe5\Kaiser.bmp)
+
+ I0 étant la fonction de Bessel modifiée d'ordre 0 de première espéce.
+}
+procedure WinBartlett(var src,dest : Tvector);
+{$H Multiplication du vecteur src par une fenêtre de Bartlett.
+ Le résultat est rangé dans le vecteur dest
+ Dest peut être identique à src.
+
+ La procédure appelle la bibliothèque ISPL@.
+
+ Le vecteur vec doit avoir un des types numériques suivant:
+     T_smallint, T_single, T_double, T_Scomplex, T_Dcomplex
+
+ La fenêtre de Bartlett est définie de la façon suivante:
+
+ @(@ d:\delphe5\Bartlett.bmp)
+
+ N étant le nombre de points du vecteur source
+}
+
+
+procedure DFT(var src,dest: Tvector; FWD:boolean);
+{$H Discrete Fourier Transform
+
+ src et dest sont les vecteurs source et destination.
+ Si FWD vaut True, la transformée directe est calculée, sinon la transformée inverse
+est calculée.
+
+ Les transformées directe et inverse sont définies par les relations:
+
+ X[k]:= sum( x[n]*exp(-j*2*pi*k*n/N )        0<= n <= N-1
+
+ x[n]:= 1/N * sum( X[k]*exp(-j*2*pi*k*n/N )        0<= k <= N-1
+
+
+ Dans ces relations:
+    x[n] désigne un élément du vecteur initial (domaine temporel)
+    X[k] désigne un élément de la transformée de Fourier (domaine fréquence)
+    j est le nombre imaginaire de module 1
+    N est le nombre d'éléments du vecteur
+
+ DFT considère la totalité du vecteur source et adapte le vecteur destination pour qu'il
+contienne exactement le vecteur résultat.
+
+ On remarquera que les relations ci-dessus ignorent complètement les paramètres d'échelle ainsi
+que les indices de début et de fin. Seul compte le nombre d'éléments du vecteur.
+
+ Toutefois, pour la commodité, lorsque FWD est vrai, les paramètres d'échelle du vecteur destination
+sont ajustés afin d'exprimer les abscisses en Hertz, avec la convention suivante:
+ - si le temps était exprimé en millisecondes (unitX='ms'), dest.dx prendra la valeur
+   1000/(src.dx*src.Icount)
+   sinon, dest.dx prendra la valeur
+   1/(src.dx*src.Icount)
+
+ Quand FWD vaut False, les paramètres d'échelle de Dest ne sont pas modifiés.
+
+ Le type numérique de dest sera
+   -  SComplex si le type numérique de src est SComplex
+   -  DComplex si le type numérique de src est DComplex
+   -  SComplex dans tous les autres cas
+
+ Il n'y a aucune contrainte sur le nombre de points du vecteur source.
+ Si le nombre de points est une puissance de deux, un algorithme rapide est utilisé (CFFT@ est appelée).
+
+}
+
+procedure CFFT(var src,dest: Tvector; FWD:boolean);
+{$H Transformée de Fourier rapide
+
+ Il s'agit d'un cas particulier de DFT@ : le nombre de points du vecteur source doit être
+une puissance de 2.
+
+ Voir DFT@
+}
+
+procedure realFFT(var src,dest: Tvector; FWD:boolean);
+{$H Transformée de Fourier rapide sur un vecteur réel.
+
+ Quand le signal de départ est réel, le vecteur FFT (d'indices 0 à N-1) présente une symétrie (presque) par rapport
+au point d'abscisse N div 2 . On peut donc se contenter de stocker la première moitié
+du vecteur FFT + un point, ce qui sera suffisant pour reconstituer le signal de départ.
+
+ La procédure RealFFT exploite cette particularité. Elle appelle la bibliothèque IPP@ .
+
+ Pour une transformée directe (FWD=TRUE), le vecteur src doit contenir un nombre de points N
+qui est une puissance de 2, son type numérique doit être T_single ou T_double.
+ Le vecteur dest contiendra N div 2 +1 points, son type numérique sera T_Scomplex si src.NumType=T_single,
+et sera T_Dcomplex si src.NumType=T_double.
+
+ Pour une transformée inverse (FWD=FALSE), le vecteur src doit contenir un nombre de points N1
+qui peut s'écrire N1 = N div 2 +1 ou N est une puissance de 2 , son type numérique doit
+être T_Scomplex ou T_Dcomplex.
+ Le vecteur dest contiendra N points, son type numérique sera T_Single si src.NumType=T_Scomplex,
+et sera T_double si src.NumType=T_Dcomplex.
+
+ Pour la commodité, lorsque FWD est vrai, les paramètres d'échelle du vecteur destination
+sont ajustés afin d'exprimer les abscisses en Hertz, avec la convention suivante:
+ - si le temps était exprimé en millisecondes (unitX='ms'), dest.dx prendra la valeur
+   1000/(src.dx*src.Icount)
+   sinon, dest.dx prendra la valeur
+   1/(src.dx*src.Icount)
+
+ Quand FWD vaut False, les paramètres d'échelle de Dest ne sont pas modifiés.
+
+ voir realDFT
+}
+procedure realDFT(var src,dest: Tvector; FWD:boolean);
+{$H Transformée de Fourier sur un vecteur réel.
+
+ Quand le signal de départ est réel, le vecteur DFT (d'indices 0 à N-1) présente une symétrie (presque) par rapport
+au point d'abscisse N div 2 . On peut donc se contenter de stocker la première moitié
+du vecteur DFT + un point, ce qui sera suffisant pour reconstituer le signal de départ.
+
+ La procédure RealDFT exploite cette particularité. Elle appelle la bibliothèque IPP@ .
+
+ Pour une transformée directe (FWD=TRUE), le vecteur src doit contenir un nombre pair de points N .
+Son type numérique doit être T_single ou T_double.
+ Le vecteur dest contiendra N div 2 +1 points, son type numérique sera T_Scomplex si src.NumType=T_single,
+et sera T_Dcomplex si src.NumType=T_double.
+
+ Pour une transformée inverse (FWD=FALSE), le vecteur src doit contenir un nombre de points N1
+qui peut s'écrire N1 = N div 2 +1 ou N est un nombre pair 2 , son type numérique doit
+être T_Scomplex ou T_Dcomplex.
+ Le vecteur dest contiendra N points, son type numérique sera T_Single si src.NumType=T_Scomplex,
+et sera T_double si src.NumType=T_Dcomplex.
+
+ Pour la commodité, lorsque FWD est vrai, les paramètres d'échelle du vecteur destination
+sont ajustés afin d'exprimer les abscisses en Hertz, avec la convention suivante:
+ - si le temps était exprimé en millisecondes (unitX='ms'), dest.dx prendra la valeur
+   1000/(src.dx*src.Icount)
+   sinon, dest.dx prendra la valeur
+   1/(src.dx*src.Icount)
+
+ Quand FWD vaut False, les paramètres d'échelle de Dest ne sont pas modifiés.
+
+ voir realFFT
+}
+
+procedure SFFT(var src:Tvector;var dest:Tmatrix;delta:real;Nfft,WM:integer);
+{$H Effectue une FFT glissante et range le résultat dans une matrice complexe.
+
+ Le vecteur source src doit contenir des données non complexes.
+
+ On extrait les  NFFT premiers points de src, on leur applique une fonction fenêtre (voir plus loin), on
+calcule une FFT sur ces points et on range le résultat dans la première colonne de la matrice.
+ Ensuite, on recommence la même opération en se décalant d'une abscisse delta dans le
+vecteur source et on range le résultat dans la 2ème colonne de la matrice. Puis, on recommence le
+décalage tant qu'il est possible d'extraire NFFT points du vecteur src.
+
+ NFFT doit être une puissance de 2.
+
+ Le paramètre WM définit la fonction fenêtre de la façon suivante:
+   1 :   fenêtre de Hamming
+   2 :   fenêtre de Hann
+   3 :   fenêtre de Blackman standard
+   4 :   fenêtre de Bartlett
+
+ Toute autre valeur de WM impose une fenêtre rectangulaire.
+
+ La matrice obtenue contient des nombres complexes. Ses propriétés sont les suivantes:
+   NumType = Scomplex
+   Istart = 0
+   Iend = trunc( (src.Xend-src.Xstart-Nfft*src.Dx)/delta) -1
+   Jstart = 0
+   Jend = = Nfft div 2
+
+   Si les unités de src sont des millisecondes (UnitX='ms')
+    alors Dy:=1000/(src.dx*NFFT)
+    sinon Dy:=1/(src.dx*NFFT);
+   Y0:=0;
+   unitY:='Hz'
+
+  Dx = delta
+  X0 = src.x0
+  unitX = src.unitX
+
+
+ Chaque colonne contient (Nfft div 2 +1) points. On n'a donc conservé que la première moitié de la FFT
+comme le fait la procédure realFFT@, afin de réduire l'encombrement de la matrice.
+
+
+}
+
+function PowerSpectrum(var src,dest:Tvector;x1,x2,Len,delta:real;WM:integer):integer;
+function PowerSpectrum(var src,dest:Tvector;x1,x2,Len,delta:real;WM:integer; OneSide:boolean):integer;
+{$H Calcul de la densité spectrale de puissance d'un signal (méthode de Welch) .
+
+  src est le  vecteur source
+  Le résultat est rangé dans dest
+  x1 et x2 définissent la zone analysée dans les vecteurs sources.
+  Len est la longueur des segments pris pour l'analyse de Fourier
+
+  Delta est décalage appliqué à la position d'un segment pour passer au segment suivant.
+  Le nombre de segments utilisés est
+           N = trunc( (x2-x1-Len)/delta);
+
+  Wm définit le type de fonction fenêtre appliquée au segment:
+        0: pas de fonction fenêtre
+        1:  Bartlett
+        2:  Blackman
+        3:  Hamming
+        4:  Hann
+
+  Le principe du calcul est le suivant:
+
+  - pour chaque segment, on calcule la transformée de Fourier et on calcule les carrés des modules
+de ces DFT
+  - on fait la moyenne des vecteurs obtenus
+
+  Si OneSide vaut TRUE, le carré du module de la DFT est multiplié par 2 et on ne conserve que la première moitié du vecteur Dest. Ce
+qui est justifié quand le signal analysé est réel: en effet, dans ce cas, le résultat contient deux parties symétriques par rapport
+au milieu du vecteur.
+
+  Pour coïncider avec la définition usuelle du PSD , le vecteur résultant doit être divisé par (N*fs) où N
+est le nombre d'échantillons contenus dans l'intervalle Len et fs est la fréquence d'échantillonnage.
+
+  Contrairement à la routine Matlab, on ne cherche pas à obtenir des segments dont la taille est une puissance de 2 .
+
+  La fonction renvoie le nombre de segments moyennés.
+
+ Voir aussi : CrossSpectrum@ , Coherence@
+}
+
+function CrossSpectrum(var src1,src2,dest:Tvector;x1,x2,Len,delta:real;WM:integer):integer;
+function CrossSpectrum(var src1,src2,dest:Tvector;x1,x2,Len,delta:real;WM:integer; OneSide: boolean):integer;
+
+{$H Calcul de la cross power spectrum density de deux signaux (méthode de Welch) .
+
+  src1 et src2 sont les vecteurs sources
+  Le résultat est rangé dans dest
+  x1 et x2 définissent la zone analysée dans les vecteurs sources.
+  Len est la longueur des segments pris pour l'analyse de Fourier
+
+  Delta est décalage appliqué à la position d'un segment pour passer au segment suivant.
+  Le nombre de segments utilisés est
+           N = trunc( (x2-x1-Len)/delta);
+
+  Wm définit le type de fonction fenêtre appliquée au segment:
+        0: pas de fonction fenêtre
+        1:  Bartlett
+        2:  Blackman
+        3:  Hamming
+        4:  Hann
+
+  Le principe du calcul est le suivant:
+
+  - pour chaque segment, on calcule les transformées de Fourier DFT1 et DFT2 et on
+calcule le produit DFT1 * conjugué(DFT2)
+
+  - on fait la moyenne des vecteurs obtenus
+
+  Si OneSide vaut TRUE, le carré du module de la DFT est multiplié par 2 et on ne conserve que la première moitié du vecteur Dest.
+
+  Pour coïncider avec la définition usuelle du CPSD , le vecteur résultant doit être divisé par (N*fs) où N
+est le nombre d'échantillons contenus dans l'intervalle Len et fs est la fréquence d'échantillonnage.
+
+ Le vecteur obtenu est un vecteur complexe.
+
+ Contrairement à la routine Matlab, on ne cherche pas à obtenir des segments dont la taille est une puissance de 2 .
+
+ La fonction renvoie le nombre de segments moyennés.
+
+  Voir aussi : PowerSpectrum@ , Coherence@
+}
+
+
+
+
+function Coherence(var src1,src2,dest:Tvector;x1,x2,Len,delta:real;WM:integer):integer;
+function Coherence(var src1,src2,dest:Tvector;x1,x2,Len,delta:real;WM:integer; OneSide:boolean):integer;
+{$H Calcul de la cohérence de deux signaux (méthode de Welch) .
+
+  src1 et src2 sont les deux vecteurs sources
+  Le résultat est rangé dans dest
+  x1 et x2 définissent la zone analysée dans les vecteurs sources.
+  Len est la longueur des segments pris pour l'analyse de Fourier
+
+  Delta est décalage appliqué à la position d'un segment pour passer au segment suivant.
+  Le nombre de segments utilisés est
+           N = trunc( (x2-x1-Len)/delta);
+
+  Wm définit le type de fonction fenêtre appliquée au segment:
+        0: pas de fonction fenêtre
+        1:  Bartlett
+        2:  Blackman
+        3:  Hamming
+        4:  Hann
+
+  Le principe du calcul est le suivant:
+
+  - on calcule le vecteur VP12, crossSpectrum@ de src1 et src2
+  - on calcule le vecteur VP11, PowerSpectrum@ de src1
+  - on calcule le vecteur VP22, PowerSpectrum@ de src2
+
+  - le vecteur VCoherence est ensuite donné par la relation
+
+      VCoherence[i] = | VP12[i] |² /( VP11[i] * VP22[i] )
+
+  Si OneSide vaut TRUE (valeur par défaut), on ne conserve que la première moitié du vecteur Destination.
+
+  Voir aussi : PowerSpectrum@ , CrossSpectrum@
+}
+
+procedure Convolve(var src,H,dest:Tvector);
+{$H Réalise la convolution entre src et H.
+
+ Le résultat est rangé dans dest.
+ Le vecteur dest aura les mêmes paramètres d'échelle que le vecteur src.
+ Son type dépendra du type de src et H suivant la table suivante:
+
+ @f6      src             H          dest
+ @f6      single          single     single
+ @f6      single          Scomplex   Scomplex
+ @f6      Scomplex        single     Scomplex
+ @f6      double          double     double
+ @f6      double          Dcomplex   Dcomplex
+ @f6      Dcomplex        double     Dcomplex
+ @f6      autres cas             single
+
+
+ On suppose que la taille du vecteur H est plus petite que celle de src et que:
+ H.Istart<=0
+ H.x0 = 0
+ H.dx = src.dx
+
+ Ceci impose que H ait la même échelle X que src et contienne le point d'abscisse réelle zéro.
+
+ Pour src.Istart <= n  <= src.Iend , on a:
+
+    dest.Yvalue[n] = sum (H.Yvalue[k]*src.Yvalue[n-k])
+
+ la somme étant étendue à toutes les valeurs de k comprises entre H.Istart et H.Iend
+
+ Sur les bords, quand n-k sort des limites du vecteur src, on considère que src.Yvalue[n-k] = 0.
+
+ On remarquera que les opérandes src et H n'ont pas un rôle symétrique. La procédure
+est avant tout destinée à l'application d'un filtre de réponse impulsionnelle H au signal src.
+On obtient une réponse dest de même durée que le signal.
+
+}
+
+procedure Circonv(var src1,src2,dest:Tvector);
+{$H Réalise la convolution circulaire entre src1 et src2 et range le résultat dans dest.
+
+ Le vecteur dest aura les mêmes paramètres d'échelle que le vecteur src.
+ Son type dépendra du type de src1 et src2 suivant la table suivante:
+
+ @f6      src1        src2       dest
+ @f6      single      single     single
+ @f6      single      Scomplex   Scomplex
+ @f6      Scomplex    single     Scomplex
+ @f6      double      double     double
+ @f6      double      Dcomplex   Dcomplex
+ @f6      Dcomplex    double     Dcomplex
+ @f6      autres cas             single
+
+ src1 et src2 doivent contenir le même nombre de points.
+
+ L'opération ignore les paramètres d'échelle X de src1 et src2.
+ dest reçoit les paramètres d'échelle X de src1
+
+ Pour src1.Istart <= n  <= src1.Iend , on a:
+
+    dest.Yvalue[n] = sum (src2.Yvalue[k]*src1.Yvalue[n-k])
+
+ la somme étant étendue à toutes les valeurs de k comprises entre src2.Istart et src2.Iend
+
+ Sur les bords, quand n-k sort des limites du vecteur src1, on considère que src1
+est périodique de période égale au nombre de points qu'il contient.
+
+
+}
+
+
+procedure ConvolveGauss(var src,dest:Tvector;stdDev:real);
+{$H Réalise la convolution de src par une gaussienne d'écart-type stdDev (lissage gaussien)
+
+ Le résultat est rangé dans dest.
+ Le vecteur dest aura les mêmes paramètres d'échelle que le vecteur src.
+ Son type dépendra du type de src et H suivant la table suivante:
+
+ @f6      src         H          dest
+ @f6      single      single     single
+ @f6      single      Scomplex   Scomplex
+ @f6      Scomplex    single     Scomplex
+ @f6      double      double     double
+ @f6      double      Dcomplex   Dcomplex
+ @f6      Dcomplex    double     Dcomplex
+ @f6      autres cas             single
+
+}
+
+
+procedure Vcopy(var src,dest:Tvector);
+{$CAT ManVec Manipulation de vecteurs}
+{$CAT MesVec Mesures sur des vecteurs}
+
+
+{$C ManVec Copie un vecteur dans un autre vecteur }
+{$H Copie les données du vecteur src dans le vecteur dest.
+
+ La structure du vecteur dest est d'abord modifiée pour correspondre à celle du
+vecteur src. Les propriétés affectées sont Istart, Iend, NumType, Dx, x0 ainsi que
+Dy et y0 quand le type de nombre est entier.
+
+  Ensuite les données de src sont copiées dans dest.
+
+  Vcopy1@ effectue la même opération sans modifier le type numérique de dest
+}
+
+procedure Vcopy1(var src,dest:Tvector);
+{$C ManVec  Copie un vecteur dans un autre vecteur }
+{$H Copie les données du vecteur src dans le vecteur dest.
+
+ La structure du vecteur dest est d'abord modifiée pour correspondre à celle du
+vecteur src. Les propriétés affectées sont Istart, Iend, Dx et x0 .
+
+  Ensuite les données ce src sont copiées dans dest.
+
+  Vcopy effectue la même opération en modifiant également le type numérique de dest
+}
+
+
+procedure Vextract(var src:Tvector;x1,x2:real;var dest:Tvector);
+{$C ManVec  Extrait une partie d'un vecteur }
+{$H Extrait les données du vecteur src comprises entre x1 et x2 pour les ranger dans le vecteur dest.
+
+ La structure de dest est d'abord modifiée de la façon suivante:
+
+   dest.Istart devient égal à zéro
+   dest.Iend devient égal à src.invconvX(x2)-src.invconvX(x1)
+   dest.numType devient égal à src.numType
+
+   dest.x0 devient égal à zéro
+   dest.dx devient égal à src.dx
+   dest.dy et dest.y0 prennent les valeurs de src.dy et src.y0 si le type numérique est entier.
+
+ Ensuite, les données comprises entre x1 et x2 sont copiées dans dest.
+
+ La destination peut être égale à la source, ce qui permet d'éliminer efficacement
+des données situées au début ou à la fin du vecteur.
+
+ Vextract1@ effectue la même opération sans modifier le type numérique de dest
+}
+procedure Vextract1(var src:Tvector;x1,x2:real;var dest:Tvector);
+{$C ManVec  Extrait une partie d'un vecteur }
+{$H Extrait les données du vecteur src comprises entre x1 et x2 pour les ranger dans le vecteur dest.
+
+ La structure de dest est d'abord modifiée de la façon suivante:
+
+   dest.Istart devient égal à zéro
+   dest.Iend devient égal à src.invconvX(x2)-src.invconvX(x1)
+
+   dest.x0 devient égal à zéro
+   dest.dx devient égal à src.dx
+
+ Ensuite, les données comprises entre x1 et x2 sont copiées dans dest.
+
+ Vextract@ effectue la même opération en modifiant également le type numérique de dest
+
+}
+procedure Vextract0(var src:Tvector;x1,x2,x0:real;var dest:Tvector);
+{$C ManVec  Extrait une partie d'un vecteur }
+{$H Extrait les données du vecteur src comprises entre x1 et x2 pour les ranger dans le vecteur dest.
+
+ La procedure fonctionne comme Vextract mais, la propriété Istart du vecteur destination ne sera
+pas forcément égale à zéro.
+
+ La structure de dest est d'abord modifiée de la façon suivante:
+
+   dest.Istart devient égal à -src.invconvX(x0)
+   dest.Iend devient égal à src.invconvX(x2)-src.invconvX(x1)-src.invconvX(x0)
+
+   dest.x0 devient égal à zéro
+   dest.dx devient égal à src.dx
+
+ Ensuite, les données comprises entre x1 et x2 sont copiées dans dest.
+
+ Le point d'abscisse x0 du vecteur source se retrouvera à l'indice 0 dans le vecteur
+destination, du moins si x0 est compris entre x1 et x2.
+}
+
+procedure VmoveData(var src:Tvector;x1,x2:real;var dest:Tvector;xd:real);
+{$C ManVec  Copie une partie d'un vecteur dans un autre vecteur }
+{$H Copie les données du vecteur src comprises entre x1 et x2 à partir de
+l'abscisse xd dans le vecteur dest.
+
+ Aucune modification de structure n'est introduite dans le vecteur dest.
+
+ Les vecteurs source et destination doivent avoir le même paramètre d'échelle Dx.
+}
+
+
+procedure Vappend(var src:Tvector;x1,x2:real;var dest:Tvector);
+{$C ManVec  Copie une partie d'un vecteur à la fin d'un autre vecteur }
+{$H Copie les données du vecteur src comprises entre x1 et x2 à la fin du vecteur dest.
+
+ La propriété Iend du vecteur dest est d'abord augmentée du nombre de points nécessaire
+pour recevoir les données comprises entre x1 et x2.
+
+ Ensuite, les données comprises entre x1 et x2 sont copiées dans dest.
+ Les paramètres d'échelle de Dest ne sont pas modifiés.
+
+ Aucune vérification n'est faite sur les paramètres d'échelle selon X.
+
+}
+
+procedure VrealPart(var src,dest:Tvector);
+{$C ManVec Calcule la partie réelle d'un vecteur complexe }
+{$H Range la partie réelle de src dans dest
+
+ Les propriétés Istart, Iend, Dx, x0 sont modifiées pour correspondre à celles de src
+
+ Le type de dest est modifié uniquement si la résolution n'est pas suffisante.
+
+
+ Quand le vecteur src n'est pas complexe, l'opération est équivalente à une copie
+de src dans dest.
+}
+
+procedure VimPart(var src,dest:Tvector);
+{$C ManVec Calcule la partie imaginaire d'un vecteur complexe }
+{$H Range la partie imaginaire de src dans dest
+
+ Les propriétés Istart, Iend, Dx, x0 sont modifiées pour correspondre à celles de src
+
+ Quand le vecteur src n'est pas complexe, le vecteur dest est rempli avec des zéros.
+}
+
+procedure Vconj(var src,dest:Tvector);
+{$C ManVec Calcule le conjugué d'un vecteur complexe }
+{$H Range le conjugué de src dans dest
+
+ Dest peut être égal à Src.
+ Les propriétés NumType, Istart, Iend, Dx, x0 de dest sont modifiées pour correspondre à celles de src
+
+}
+
+
+procedure Vmodulus(var src,dest:Tvector);
+{$C ManVec Calcule le module d'un vecteur complexe }
+{$H Range le module des éléments du vecteur source dans le vecteur dest
+
+ Les propriétés Istart, Iend, Dx, x0 sont modifiées pour correspondre à celles de src.
+
+ Pour chaque point, on calcule dest.Yvalue[i] = sqrt(sqr(src.Yvalue[i])+sqr(src.ImValue[i]))
+
+ Si le vecteur src n'est pas complexe, on calcule la valeur absolue des éléments du vecteur.
+
+ La procédure Vabs@ a un effet identique.
+}
+procedure Vabs(var src,dest:Tvector);
+{$C ManVec Calcule le module d'un vecteur }
+{$H Range le module des éléments du vecteur source dans le vecteur dest
+
+ Les propriétés Istart, Iend, Dx, x0 sont modifiées pour correspondre à celles de src
+
+ Pour chaque point, on calcule dest.Yvalue[i] = sqrt(sqr(src.Yvalue[i])+sqr(src.ImValue[i]))
+
+ Si le vecteur src n'est pas complexe, on calcule la valeur absolue des éléments du vecteur.
+
+ La procédure Vmodulus@ a un effet identique.
+}
+
+procedure Vphase(var src,dest:Tvector);
+{$C ManVec Calcule l'argument des éléments d'un vecteur }
+{$H Range la phase (ou argument) des éléments du vecteur source dans le vecteur dest
+
+ Les propriétés Istart, Iend, Dx, x0 sont modifiées pour correspondre à celles de src
+ Le type de dest n'est pas modifié.
+
+ Pour chaque point, on calcule un angle compris entre -pi et +pi
+ Si le vecteur src n'est pas complexe, dest est rempli avec des zéros.
+}
+
+procedure Vpower(var src,dest:Tvector);
+{$C ManVec Calcule le carré du modulé des éléments d'un vecteur }
+{$H Range le carré du module des éléments du vecteur source dans le vecteur dest
+
+ Les propriétés Istart, Iend, Dx, x0 de dest sont modifiées pour correspondre à celles de src
+ Le type de dest n'est pas modifié.
+
+ Pour chaque point, on calcule dest.Yvalue[i] = sqr(src.Yvalue[i])+sqr(src.ImValue[i])
+}
+
+procedure VChangeType(var src,dest:Tvector;tp:integer);
+{$C ManVec Change le type numérique d'un vecteur }
+{$H Copie le contenu de src dans dest en changeant le type de dest.
+ tp est le nouveau type de la destination.
+}
+
+procedure Vadd(var src1,src2,dest:Tvector);
+procedure Vadd(var src,dest:Tvector; xdest:real);
+
+{$C ManVec Addition de deux vecteurs }
+{$H Range la somme point par point des éléments des vecteurs src1 et src2 dans le vecteur dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart et Iend
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Dx, x0 de Dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i] = src1.Cpxvalue[i]) + src2.CpxValue[i]
+
+ Dans la deuxième variante, les points du vecteur src sont ajoutés à chacun des points
+situés à partir de l'abscisse xdest dans le vecteur dest
+}
+
+procedure Vsub(var src1,src2,dest:Tvector);
+{$C ManVec soustraction de deux vecteurs }
+{$H Range la différence point par point des éléments des vecteurs src1 et src2 dans le vecteur dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart et Iend
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Dx, x0 de Dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i] = src1.Cpxvalue[i]) - src2.CpxValue[i]
+}
+procedure Vmul(var src1,src2,dest:Tvector);
+{$C ManVec Multiplication point par point de deux vecteurs }
+{$H Range le produit point par point des éléments des vecteurs src1 et src2 dans le vecteur dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart et Iend
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Dx, x0 de Dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i] = src1.Cpxvalue[i]) * src2.CpxValue[i]
+}
+
+
+procedure VmulConj(var src1,src2,dest:Tvector);
+{$C ManVec Multiplication point par point d'un vecteur par le conjugué d'un autre vecteur }
+
+{$H Range le produit point par point des éléments de src1 et des conjugués des éléments de src2
+dans le vecteur dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart et Iend.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Dx, x0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque indice, on calcule dest.CpxValue[i] = src1.Cpxvalue[i]) * conj(src2.CpxValue[i])
+}
+procedure Vdiv(var src1,src2,dest:Tvector);
+{$C ManVec Division point par point de deux vecteurs }
+{$H Range le quotient point par point des éléments des vecteurs src1 et src2 dans le vecteur dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart et Iend
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Dx, x0 de Dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i] = src1.Cpxvalue[i]) / src2.CpxValue[i]
+}
+
+procedure Vinv(var src,dest:Tvector);
+{$C ManVec Calcule l'inverse des éléments d'un vecteur }
+{$H Calcule l'inverse des éléments du vecteur src et les range dans le vecteur dest.
+
+ dest peut être égal à src
+
+ Les propriétés Istart, Iend, Dx, x0 de Dest sont modifiées pour correspondre à celles de src
+
+ Pour chaque point, on calcule dest.CpxValue[i] = 1 / src.CpxValue[i]
+}
+
+procedure Vsqrt(var src,dest:Tvector);
+{$C ManVec Calcule la racine des éléments d'un vecteur }
+{$H Calcule la racine des éléments du vecteur src et les range dans le vecteur dest.
+
+ dest peut être égal à src
+
+ Les propriétés Istart, Iend, Dx, x0 de Dest sont modifiées pour correspondre à celles de src
+
+ Pour chaque point, on calcule dest.CpxValue[i] =  sqrt(src.CpxValue[i])
+
+}
+
+procedure VaddNum(var src:Tvector; num:Complex);
+{$C ManVec Ajoute un nombre à chaque élément d'un vecteur }
+{$H Ajoute le nombre Num à chaque élément du vecteur src
+
+ Pour chaque point, on calcule dest.CpxValue[i] =  src.CpxValue[i] + Num
+}
+
+procedure VmulNum(var src:Tvector; num:Complex);
+{$C ManVec Multiplie chaque élément d'un vecteur par un nombre}
+{$H Multiplie chaque élément du vecteur src par le nombre Num
+
+ Pour chaque point, on calcule dest.CpxValue[i] =  src.CpxValue[i] * Num
+}
+
+function VdotProd(var src1,src2:Tvector):real;
+{$C ManVec Calcule du produit scalaire de deux vecteurs}
+{$H Calcule le produit scalaire des vecteurs src1 et src2.
+
+ src1 et src2 doivent avoir le même nombre d'éléments  .
+
+ Pour effectuer un produit scalaire entre des parties des deux vecteurs, il faut
+utiliser VdotProd1@ .
+
+}
+function VdotProd1(var src1,src2:Tvector;x1,x2,x3:real):real;
+{$C MesVec Calcule du produit scalaire de deux vecteurs extraits de deux autres vecteurs}
+{$H Calcule un produit scalaire entre deux vecteurs extraits des vecteurs src1 et src2.
+
+ On extrait d'abord un vecteur v1 formé des éléments de src1 compris entre x1 et x2.
+ Soit N le nombre d'éléments de ce vecteur.
+ On extrait ensuite un vecteur v2 formé de N éléments de src2 situés après l'abscisse x3.
+ On calcule ensuite le produit scalaire de v1 et v2.
+
+ Voir aussi VdotProd@ .
+}
+
+procedure CrossCorNorm(var src1,src2,dest:TVector; x1,x2,x1a,x2a:real);
+{$H Calcul de la cross-corrélation normalisée.
+
+ src1 et src2 sont les vecteurs source.
+ dest est le vecteur destination.
+ x1 et x2 déterminent la région des vecteurs sources à analyser
+ x1a et x2a déterminent l'extension du vecteur destination.
+
+ src1 et src2 doivent avoir les mêmes paramètres d'échelle selon X. Leurs types de nombre
+doivent être tous les deux t_single ou tous les deux t_double.
+
+ Le type de dest sera toujours t_double.
+
+ La valeur calculée en un point d'abscisse x de dest peut s'écrire en pseudo-code:
+
+      dest(x) = vec1 . vec2 /(||vec1||*||vec2||)
+
+   vec1 est un vecteur extrait de src1 entre x1 et x2
+   vec2 est un vecteur extrait de src2 entre x1+x et x2+x
+ en sachant que, si l'on sort des limites du vecteur src2, on réduit l'intervalle
+considéré en conséquence.
+
+  Dans vec1 et vec2, on a retranché la valeur moyenne respectivement de vec1 et vec2.
+
+ Dans la formule ci-dessus, le signe '.' au numérateur désigne le produit scalaire
+de vec1 et vec2, alors qu'au dénominateur, les doubles barres désignent la norme-2
+d'un vecteur.
+
+ Le résultat est toujours un nombre compris entre -1 et 1.
+
+}
+
+procedure DownSample(var src,dest:Tvector;nbi:integer);
+{$H Sous-échantillonne un vecteur.
+
+ On découpe le vecteur source en groupes de nbi points et on remplace chaque
+groupe par un seul point dont la valeur est la valeur moyenne des points du groupe.
+
+ src est le vecteur source.
+ dest est le vecteur destination.
+ nbi est le nombre de points par groupe.
+
+ Le nombre de points du vecteur résultant est src.Icount div nbi
+}
+
+procedure NewSampling(var src,dest:Tvector;newDx:real);
+{$H Modifie l'échantillonnage du vecteur source.
+
+ NewDx est la nouvelle valeur de la propriété Dx@ de dest.
+ D'autre part, on aura dest.x0 = src.x0 + newDx/2 .
+
+ NewDx peut ne pas être un multiple ou sous-multiple exact de Dx mais dans ce cas,
+la procédure doit être utilisée avec précautions.
+
+ Dans le vecteur destination, chaque point correspond à la moyenne de points
+compris dans un segment de longueur Dx.
+
+
+
+}
+
+procedure NewSamplingGauss(var src,dest:Tvector;newDx:real);
+
+procedure VsubMean(var src:Tvector);
+{$C ManVec Retranche la valeur moyenne}
+{$H Soustrait la valeur moyenne du vecteur à tous les points du vecteur.
+
+ src peut être un vecteur complexe.
+}
+
+
+procedure Mcopy(var src,dest:Tmatrix);
+{$CAT ManMat Manipulation de matrices }
+
+{$C ManMat Copie une matrice dans une autre matrice }
+{$H Copie les données de la matrice src dans la matrice dest.
+
+ La structure de la matrice dest est d'abord modifiée pour correspondre à celle de
+la matrice src. Les propriétés affectées sont Istart, Iend, Jstart, Jend, NumType, Dx, x0, Dy, y0 ainsi que
+Dz et z0 quand le type de nombre est entier.
+
+  Ensuite les données de src sont copiées dans dest.
+
+  Mcopy1@ effectue la même opération sans modifier le type numérique de dest
+}
+
+procedure Mcopy1(var src,dest:Tmatrix);
+{$C ManMat Copie une matrice dans une autre matrice }
+{$H Copie les données de la matrice src dans la matrice dest.
+
+ La structure de la matrice dest est d'abord modifiée pour correspondre à celle du
+vecteur src. Les propriétés affectées sont Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0
+
+  Ensuite les données ce src sont copiées dans dest.
+
+  Mcopy effectue la même opération en modifiant également le type numérique de dest
+}
+
+procedure MmoveData(var src:Tmatrix;x1,x2,y1,y2:real;var dest:Tmatrix;xd,yd:real);
+{$H Déplace une partie des données de la matrice src vers la matrice destination
+
+ Les données déplacées viennent du rectangle (x1,y1,x2,y2) de la matrice source
+ Elles sont déplacées  vers un rectangle dont l'un des coins a pour coordonnées (xd,yd)
+dans la matrice destination
+
+}
+procedure Mextract(var src:Tmatrix;x1,x2,y1,y2:real;var dest:Tmatrix);
+{$C ManMat Extrait une sous-matrice d'une matrice }
+{$H Extrait les données de la matrice src comprises entre x1 et x2 et entre y1 et y2 pour les
+ranger dans la matrice dest.
+
+ La structure de dest est d'abord modifiée de la façon suivante:
+
+   dest.numType devient égal à src.numType
+
+   dest.Istart devient égal à zéro
+   dest.Iend devient égal à src.invconvX(x2)-src.invconvX(x1)
+   dest.x0 devient égal à zéro
+   dest.dx devient égal à src.dx
+
+   dest.Jstart devient égal à zéro
+   dest.Jend devient égal à src.invconvY(y2)-src.invconvY(y1)
+   dest.y0 devient égal à zéro
+   dest.dy devient égal à src.dy
+
+   dest.dz et dest.z0 prennent les valeurs de src.dz et src.z0 si le type numérique est entier.
+
+ Ensuite, les données comprises entre x1 et x2 sont copiées dans dest.
+
+ Mextract1@ effectue la même opération sans modifier le type numérique de dest
+}
+procedure Mextract1(var src:Tmatrix;x1,x2,y1,y2:real;var dest:Tmatrix);
+{$C ManMat Extrait une sous-matrice d'une matrice }
+{$H Extrait les données de la matrice src comprises entre x1 et x2 et entre y1,et y2 pour les ranger
+dans la matrice dest.
+
+ La structure de dest est d'abord modifiée de la façon suivante:
+
+   dest.Istart devient égal à zéro
+   dest.Iend devient égal à src.invconvX(x2)-src.invconvX(x1)
+   dest.x0 devient égal à zéro
+   dest.dx devient égal à src.dx
+
+   dest.Jstart devient égal à zéro
+   dest.Jend devient égal à src.invconvY(y2)-src.invconvY(y1)
+   dest.y0 devient égal à zéro
+   dest.dy devient égal à src.dy
+
+ Ensuite, les données comprises dans (x1 x2, y1 y2) sont copiées dans dest.
+
+ Mextract@ effectue la même opération en modifiant également le type numérique de dest
+
+}
+
+procedure MrealPart(var src,dest:Tmatrix);
+{$C ManMat Calcule la partie réelle des éléments d'une matrice }
+{$H Range la partie réelle de src dans dest
+
+ dest peut être égale à src
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 sont modifiées pour correspondre à celles de src
+
+ Quand la matrice src n'est pas complexe, l'opération est équivalente à une copie
+de src dans dest.
+}
+
+procedure MimPart(var src,dest:Tmatrix);
+{$C ManMat Calcule la partie imaginaire des éléments d'une matrice }
+{$H Range la partie imaginaire de src dans dest
+
+ dest peut être égale à src
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0  sont modifiées pour correspondre à celles de src
+
+ Quand la matrice src n'est pas complexe, la matrice dest est rempli avec des zéros.
+}
+
+procedure Mmodulus(var src,dest:Tmatrix);
+{$C ManMat Calcule le module des éléments d'une matrice }
+{$H Range le module des éléments de la matrice source dans la matrice dest
+
+ dest peut être égale à src
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest  sont modifiées pour correspondre à celles de src.
+
+ Pour chaque point, on calcule dest.Zvalue[i,j] = sqrt(sqr(src.Zvalue[i,j])+sqr(src.ImValue[i,j]))
+
+ Si la matrice src n'est pas complexe, on calcule la valeur absolue des éléments de la matrice.
+
+ La procédure Mabs@ a un effet identique.
+}
+procedure Mabs(var src,dest:Tmatrix);
+{$C ManMat Calcule le module des éléments d'une matrice }
+{$H Range le module des éléments de la matrice source dans la matrice dest
+
+ dest peut être égale à src
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src
+
+ Pour chaque point, on calcule dest.Zvalue[i,j] = sqrt(sqr(src.Zvalue[i,j])+sqr(src.ImValue[i,j]))
+
+ Si la matrice src n'est pas complexe, on calcule la valeur absolue des éléments de la matrice.
+
+ La procédure Mmodulus@ a un effet identique.
+}
+procedure Mphase(var src,dest:Tmatrix);
+{$C ManMat Calcule l'argument des éléments d'une matrice }
+{$H Range la phase (ou argument) des éléments de la matrice source dans la matrice dest
+
+ dest peut être égale à src
+
+ Les propriétés Istart, Iend, Dx, x0 sont modifiées pour correspondre à celles de src
+
+ Pour chaque point, on calcule un angle compris entre -pi et +pi
+ Si la matrice src n'est pas complexe, dest est rempli avec des zéros.
+}
+procedure Mpower(var src,dest:Tmatrix);
+{$C ManMat Calcule le carré du module des éléments d'une matrice }
+{$H Range le carré du module des éléments de la matrice source dans la matrice dest
+
+ dest peut être égale à src
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src
+
+ Pour chaque point, on calcule dest.Zvalue[i,j] = sqr(src.Zvalue[i,j])+sqr(src.ImValue[i,j])
+}
+
+procedure MChangeType(var src,dest:Tmatrix;tp:integer);
+{$C ManMat Change le type numérique d'une matrice }
+{$H Effectue une copie des données de src dans dest en changeant le type de données.
+}
+
+procedure Madd(var src1,src2,dest:Tmatrix);
+{$C ManMat Additionne deux matrices }
+{$H Range la somme point par point des éléments des matrices src1 et src2 dans la matrice dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy et y0.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i,j] = src1.Cpxvalue[i,j]) + src2.CpxValue[i,j]
+}
+
+procedure Msub(var src1,src2,dest:Tmatrix);
+{$C ManMat Soustrait deux matrices }
+{$H Range la différence point par point des éléments des vecteurs src1 et src2 dans la matrice dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy et y0.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i,j] = src1.Cpxvalue[i,j]) - src2.CpxValue[i,j]
+}
+procedure Mmul(var src1,src2,dest:Tmatrix);
+{$C ManMat Multiplication point par point de deux matrices }
+{$H Range le produit point par point des éléments des matrices src1 et src2 dans la matrice dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy et y0.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i,j] = src1.Cpxvalue[i,j]) * src2.CpxValue[i,j]
+}
+
+procedure MmulConj(var src1,src2,dest:Tmatrix);
+{$C ManMat Multiplication point par point d'une matrice par la conjuguée d'une autre matrice }
+
+{$H Range le produit point par point des éléments de src1 et des conjugués des éléments de src2
+dans la matrice dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy et y0.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i,j] = src1.Cpxvalue[i,j]) * conj(src2.CpxValue[i,j])
+}
+
+procedure Mdiv(var src1,src2,dest:Tmatrix);
+{$C ManMat Division point par point de deux matrices }
+{$H Range le quotient point par point des éléments des matrices src1 et src2 dans la matrice dest.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy et y0.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i,j] = src1.Cpxvalue[i,j]) / src2.CpxValue[i,j]
+
+ Voir aussi Mdiv1@
+}
+
+procedure Mdiv1(var src1,src2,dest:Tmatrix;th:real;Vr:complex);
+{$C ManMat Division point par point de deux matrices }
+{$H Range le quotient point par point des éléments des matrices src1 et src2 dans la matrice dest.
+
+ Mdiv1 effectue la même opération que Mdiv mais en évitant les éventuelles divisions par zéro.
+ Si le module du diviseur est inférieur au seuil, on range la valeur Vr dans la destination.
+
+ src1 et src2 doivent avoir les mêmes propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy et y0.
+ dest peut être égal à src1 ou src2
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on effectue l'opération :
+
+   if modulus(src2.cpxValue[i,j])>=th
+     then dest.CpxValue[i,j] := src1.Cpxvalue[i,j]) / src2.CpxValue[i,j]
+     else dest.CpxValue[i,j] := Vr;
+
+ Voir aussi Mdiv@
+}
+
+
+procedure Minv(var src,dest:Tmatrix);
+{$C ManMat Calcule l'inverse de chaque élément d'une matrice }
+{$H Calcule l'inverse des éléments de la matrice src et les range dans la matrice dest.
+
+ dest peut être égal à src
+
+ Les propriétés Istart, Iend, Jstart, Jend, Dx, x0, Dy, y0 de dest sont modifiées pour correspondre à celles de src1 et src2
+
+ Pour chaque point, on calcule dest.CpxValue[i,j] = 1 / src.CpxValue[i,j]
+}
+
+procedure MaddNum(var src:Tmatrix; num:Complex);
+{$C ManMat Ajoute un nombre à chaque élément d'une matrice }
+{$H Ajoute le nombre Num à chaque élément de la matrice src
+
+ Pour chaque point, on calcule src.CpxValue[i,j] =  src.CpxValue[i,j] + Num
+
+ Remarque importante: le type de src n'est pas modifié. Par exemple, si le type de src est réel
+alors que num possède un partie imaginaire, cette partie imaginaire sera ignorée.
+
+}
+
+procedure MmulNum(var src:Tmatrix; num:Complex);
+{$C ManMat Multiplie chaque élément d'une matrice par un nombre}
+{$H Multiplie chaque élément de la matrice src par le nombre Num
+
+ Pour chaque point, on calcule src.CpxValue[i,j] =  src.CpxValue[i,j] * Num
+
+ Remarque importante: le type de src n'est pas modifié. Par exemple, si le type de src est réel
+alors que num possède un partie imaginaire, cette partie imaginaire sera ignorée.
+
+
+}
+procedure Mrotate90(var src,dest:Tmatrix;nb:integer);
+{$C ManMat Rotation d'une matrice}
+{$H Rotation du contenu d'une matrice.
+
+ On fait tourner le contenu de la matrice source de nb fois 90 degrés
+et on range le résultat dans dest.
+}
+procedure Mtranspose(var src,dest:Tmatrix);
+{$C ManMat Calcule la transposée d'une matrice}
+{$H Calcule la transposée de la matrice src.
+
+ La structure de la matrice dest est modifiée de la façon suivante:
+
+ @f6 dest.dx:=src.dy;
+ @f6 dest.x0:=src.y0;
+ @f6 dest.unitX:=src.unitY;
+
+ @f6 dest.dy:=src.dx;
+ @f6 dest.y0:=src.x0;
+ @f6 dest.unitY:=src.unitX;
+
+ Puis, on calcule:
+
+ @f6 for i:=dest.Istart to dest.Iend do
+ @f6 for j:=dest.Jstart to dest.Jend do
+ @f6      dest.Cpxvalue[i,j]:=src.Cpxvalue[j,i];
+
+}
+
+procedure Msup(var src1,src2,dest:Tmatrix);
+{$C ManMat Calcule le maximum de chaque couple d'éléments de deux matrices}
+{$H Calcul du maximum pour chaque couple d'éléments
+
+ L'algorithme est le suivant:
+
+ @f6   for i:=src1.Istart to src1.Iend do
+ @f6   for j:=src1.Jstart to src1.Jend do
+ @f6   begin
+ @f6     y1:=src1.ZValue[i,j];
+ @f6     y2:=src2.ZValue[i,j];
+ @f6     if y1>y2
+ @f6       then dest.Zvalue[i,j]:=y1
+ @f6       else dest.Zvalue[i,j]:=y2;
+ @f6   end;
+}
+
+
+procedure Msup1(var src1,src2,dest:Tmatrix);
+{$C ManMat Calcule le (pseudo-)maximum de chaque couple d'éléments de deux matrices}
+{$H Calcul d'un pseudo-maximum pour chaque couple d'éléments
+
+ Pour chaque couple d'éléments (y1,y2) , on range y1 dans dest si y1>y2
+ et on range -y2 dans dest si y2>=y1.
+
+ L'algorithme est le suivant:
+
+ @f6   for i:=src1.Istart to src1.Iend do
+ @f6   for j:=src1.Jstart to src1.Jend do
+ @f6   begin
+ @f6     y1:=src1.ZValue[i,j];
+ @f6     y2:=src2.ZValue[i,j];
+ @f6     if y1>y2
+ @f6       then dest.Zvalue[i,j]:=y1
+ @f6       else dest.Zvalue[i,j]:=-y2;
+ @f6  end;
+}
+
+procedure Msup2(var src,dest,destLat:Tmatrix;tt:real);
+{$C ManMat Opération de comparaison-seuillage sur deux matrices}
+{$H Remplace les valeurs y2 de dest par les valeurs y1 de src à condition
+que y1>y2. Si c'est le cas, on range aussi tt dans destLat.
+
+ L'algorithme est le suivant:
+
+ @f6  for i:=src.Istart to src.Iend do
+ @f6  for j:=src.Jstart to src.Jend do
+ @f6  begin
+ @f6    y1:=src.ZValue[i,j];
+ @f6    y2:=dest.ZValue[i,j];
+ @f6    if y1>y2 then
+ @f6    begin
+ @f6      dest.Zvalue[i,j]:=y1;
+ @f6      destLat.Zvalue[i,j]:=tt;
+ @f6    end;
+ @f6  end;
+
+ La procédure est utilisée dans le calcul de cartes optimales Revcor à tau flottant.
+ On initialise dest et destlat à zéro avec les mêmes dimensions que src.
+ Puis on appelle successivement Msup2 pour src contenant les cartes à chaque instant t.
+ Au final, dest contient la carte optimale et destlat contient une carte des latences.
+}
+
+procedure Minter(var src1,src2,dest:Tmatrix;threshold:real);
+{$C ManMat intersection de deux matrices}
+{$H Intersection des deux matrices.
+
+ On remplit la matrice dest selon la formule
+
+ dest[i,j] := ord(src1[i,j]>threshold) * ord(src2[i,j]>threshold)
+
+ Autrement dit, un élément de la destination vaudra 1 si et seulement si les éléments correspondants de
+src1 et src2 sont supérieurs au seuil. Les autres éléments vaudront zéro. 
+}
+
+function MdotProd(var src1,src2:Tmatrix): complex;
+{$C ManMat Produit scalaire de deux matrices lignes ou de deux matrices colonnes}
+{$H Renvoie le produit scalaire de deux matrices lignes ou deux matrices colonnes.
+
+ La valeur renvoyée est la somme des produits src1.Cpxvalue[i,j]*src2.Cpxvalue[i,j] pour tous
+les éléments des deux matrices.
+
+ La fonction fonctionne aussi si les matrices ont des dimensions quelconques (mais identiques).
+
+}
+
+Object
+  Tmat(Tmatrix)
+{$H L'objet Tmat implémente une matrice au sens ordinaire.
+
+ Historiquement, l'objet Tmatrix@ a été créé pour représenter graphiquement des données.
+C'est pourquoi l'accent a été mis sur les méthodes graphiques, en laissant de côté
+tout ce qui concerne les calculs d'algèbre linéaire.
+ En conséquence, dans Tmatrix, certaines définitions ne correspondent pas aux conventions utilisées dans
+les logiciels de calcul matriciel. En particulier, un élément (i,j) correspond à un emplacement
+d'abscisse I et d'ordonnée J dans un repère cartésien et non pas à l'élément de la ligne I
+dans la colonne J d'un tableau de nombres.
+
+ L'objet Tmat corrige ce problème: Tmat hérite de toutes les propriétés et méthodes de Tmatrix
+mais les rôles des indices sont inversés. Dans Zvalue[i,j] ou Kvalue[i,j], le premier indice
+représente la ligne alors que le second représente la colonne. Certaines méthodes comme
+ColToVec@ ou LineToVec@ ont également été corrigées pour tenir compte de cette situation.
+
+ En général, on utilisera Tmat pour manipuler des données ne nécessitant pas un affichage
+sous forme de cartes colorées bien que ce soit toujours possible.
+
+
+}
+end;
+
+procedure Tmat.create(Stname:string;t:integer;i1,i2,j1,j2:integer);
+procedure Tmat.create(t:integer;i1,i2,j1,j2:integer);
+procedure Tmat.create(t:integer;Nrow,Ncol:integer);
+
+{$H Constructeur de Tmat@
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+ t est le type de nombre . Les valeurs privilégiées sont
+    t_single et t_double pour les réels
+    t_Scomplex et t_Dcomplex pour les complexes.
+ En effet, ces types sont utilisés par les bibiothèques INTEL.
+
+ i1 et i2 sont les numéros des première et dernière lignes
+ j1 et j2 sont les numéros des première et dernière colonnes
+
+ Dans la troisième variante, Nrow et Ncol sont les nombres de lignes et de colonnes.
+ Dans ce cas, les indices Istart et Jstart valent 1.
+}
+
+procedure Tmat.Mcov(var src:Tmat;Fline:boolean);
+{$H Calcul d'une matrice de covariance.
+
+  Les données de src peuvent être organisées en lignes ou colonnes.
+
+  Si les lignes de src représentent des réalisations d'un vecteur aléatoire,
+il faut indiquer Fline=true . On obtient alors une matrice carrée de dimension src.Jcount
+(nombre de colonnes de src) .
+
+  Si les colonnes de src représentent des réalisations d'un vecteur aléatoire,
+il faut indiquer Fline=false .  On obtient alors une matrice carrée de dimension src.Icount
+(nombre de lignes de src)
+
+  Le type de nombre de Tmat est inchangé.
+
+}
+
+procedure Tmat.prod(var src1,src2:Tmat);
+procedure Tmat.prod(var src1,src2:Tmat;op1,op2:integer);
+procedure Tmat.prod(var src1,src2:Tmat;op1,op2:integer;alpha,beta:Dcomplex);
+{$H Calcul du produit des deux matrices src1 et src2.
+
+ Dans la première variante, on effectue le produit des matrices.
+ src1 et src2 doivent avoir le même (type de nombre)@(types de nombre).
+ La matrice prend le type de src1 et src2 .
+
+ Dans la seconde variante, on a la possibilité d'effectuer une opération préalable sur les opérandes  .
+ mat := f1(src1)*f2(src2)
+ Les valeurs possibles de op1 et op2 sont:
+
+   0: aucune opération
+   1: la matrice est transposée
+   2: la matrice est transposée conjuguée.
+
+ op1 s'applique à src1, op2 s'applique à src2 .
+
+ Dans la troisième variante, l'opération réalisée est mat := alpha*f1(src1)*f2(src2) + beta*mat,
+
+ Si le type des matrices est réel, on n'utilise que les parties réelles de alpha et beta.
+
+}
+
+procedure Tmat.prod1(var src1,src2:Tmat;op1,op2:integer);
+{$H Calcul du produit des deux matrices src1 et src2 avec la possibilité
+d'effectuer une opération préalable sur les opérandes  .
+
+ Les valeurs possibles de op1 et op2 sont:
+
+   0: aucune opération
+   1: la matrice est transposée
+   2: la matrice est transposée conjuguée.
+
+ op1 s'applique à src1, op2 s'applique à src2 .
+
+ src1 et src2 doivent avoir le même (type de nombre)@(types de nombre).
+ La matrice prend le type de src1 et src2 .
+
+ Voir aussi prod@, prod2@
+
+}
+
+procedure Tmat.prod2(var src1,src2:Tmat;op1,op2:integer;alpha,beta:Dcomplex);
+{$H Calcul du produit pondéré des deux matrices src1 et src2
+
+ L'opération réalisée est mat := alpha*f1(src1)*f2(src2) + beta*mat,
+
+ f1 et f2 désignent des opérations effectuées auparavant sur les opérandes src1 et src2.
+ Les valeurs possibles de op1 et op2 sont:
+   0: aucune opération
+   1: la matrice est transposée
+   2: la matrice est transposée conjuguée.
+
+ op1 s'applique à src1, op2 s'applique à src2 .
+
+ src1 et src2 doivent avoir le même (type de nombre)@(types de nombre).
+ La matrice prend le type de src1 et src2 .
+ Si le type est un type réel, on n'utilise que les parties réelles de alpha et beta.
+
+ Voir aussi prod@, prod1@
+
+}
+
+procedure Tmat.loadFromVector(var vec:Tvector);
+{$H Range le vecteur vec dans la matrice.
+
+  Les dimensions de la matrice sont modifiées afin d'obtenir une seule colonne
+contenant exactement le vecteur. Les propriétés deviennent:
+            Istart = vec.Istart
+            Iend = vec.Iend
+            Jstart = 1
+            Jend = 1
+            tpNum = vec.tpNum
+
+}
+
+procedure Mcov(var Vlist:TVlist;var dest:Tmat;Vexp:boolean);
+procedure Mcov(var wf:TwavelistA;var dest:Tmat);
+{$H Calcul d'une matrice de covariance
+
+ Vlist doit contenir une liste de vecteurs ayant tous la même structure.
+ Chaque vecteur peut représenter une réalisation d'un vecteur aléatoire ou bien
+les différentes réalisations du méme élément d'un vecteur aléatoire.
+ Pour dire les choses autrement: Vlist représente une matrice dont soit les lignes,
+soient les colonnes contiennent des réalisations d'un vecteur aléatoire.
+ Dans le premier cas, on donnera à Vexp la valeur TRUE, dans le second la valeur FALSE.
+
+ Dans la version TwaveList, toutes les waveforms contenues dans la wavelist sont considérées
+comme les réalisations d'un vecteur aléatoire.
+
+ Au retour, dest contiendra la matrice de covariance.
+
+}
+
+function EigenVectors1(var src,dest:Tmat;var Vec:Tvector):integer;
+{$H Calcule les vecteurs propres et valeurs propres d'une matrice réelle symétrique
+ou d'une matrice complexe hermitienne.
+
+ src est la matrice source.
+ dest est une matrice dont chaque colonne, au retour, contiendra un vecteur propre.
+ Vec est un vecteur qui contiendra les valeurs propres
+
+ La valeur renvoyée par la fonction sera nulle si tout s'est bien passé, et aura une
+valeur différente de zéro si l'algorithme n'a pas pu converger.
+}
+
+procedure Tmat.extract(var src:Tmat;row1,row2,col1,col2:integer);
+procedure Tmat.extractCol(var src:Tmat;j:integer);
+procedure Tmat.extractRow(var src:Tmat;i:integer);
+procedure Tmat.transpose;
+procedure Tmat.ColMeans(var src:Tmat);
+procedure Tmat.LineMeans(var src:Tmat);
+procedure Tmat.copy(var src:Tmat);
+function Tmat.FrobNorm:real;
+procedure Tmat.normalizeFrob;
+
+procedure Tmat.add(var mat:Tmat);
+procedure Tmat.sub(var mat:Tmat);
+procedure Tmat.AddNum(w:complex);
+procedure Tmat.MulNum(w:Complex);
+
+procedure Tmat.SVD(var matU,matV,matS:Tmat);
+
+procedure Mdft(var src,dest:Tmatrix;fwd:boolean);
+
+                     { TLQRsolver stmLqr0 }
+
+procedure TLQRsolver.create(name:string);
+procedure TLQRsolver.InitMats(Ni1,Nt1,Neq:integer);
+procedure TLQRsolver.Init(Ni1,Nt1:integer);
+procedure TLQRsolver.AddLine(var Coef,signal:Tvector);
+procedure TLQRsolver.Solve;
+procedure TLQRsolver.GetVector(code,ntau: integer;var vec: Tvector);
+procedure TLQRsolver.GetResidual(var vec: Tvector);
+property TLQRsolver.Residual(n:integer):real readOnly;
+
+property TLQRsolver.matA:Tmat readOnly;
+property TLQRsolver.matB:Tmat readOnly;
+property TLQRsolver.matX:Tmat readOnly;
+
+                     { TCHKsolver stmCHK0 }
+
+procedure TCHKsolver.create(name:string);
+procedure TCHKsolver.create;
+
+{$H Constructeur de l'objet .
+}
+procedure TCHKsolver.Init(Ni, Nt:integer);
+{$H Initialisation de l'objet
+
+  On fixe le nombre d'inconnues Ni et le nombre de seconds membres Nt
+}
+
+procedure TCHKsolver.AddLine(var Coef,signal:Tvector);
+procedure TCHKsolver.AddLine(var Coef:Tvector; signal:real);
+{$H Ajoute une équation dans le système
+
+  Le vecteur coeff doit contenir les coefficients pour chaque inconnue. Sa longueur
+doit être égale au nombre d'inconnues fixé dans Init@
+
+  Signal contient les seconds membres. S'il n'y a qu'une valeur, on utilise la seconde variante.
+Sinon, on doit fournir un vecteur dont le nombre d'éléments est égal au paramètre Nt fixé dans Init@
+
+}
+
+procedure TCHKsolver.BuildLine1(var Mat: Tmatrix; y: real; mode: integer);
+{$H Introduit une équation dans le système pour un modèle particulier.
+
+ 
+}
+
+
+procedure TCHKsolver.Solve;
+procedure TCHKsolver.Solve(KeepMatrix:boolean);
+{$H Résoud le système d'équations.
+
+ Par défaut, le paramètre KeepMatrix vaut false. Dans ce cas, le contenu de la matrice A'
+n'est pas conservé car la factorisation de Cholewsky est faite "en place"
+
+ Si on lui donne la valeur TRUE, la matrice A' sera conservée. Le seul intérêt est de pouvoir
+appeler Solve à nouveau avec un paramètre Lambda différent.
+}
+
+procedure TCHKsolver.GetVector(code,ntau: integer;var vec: Tvector);
+
+property TCHKsolver.matH:Tmat readOnly;
+property TCHKsolver.matB:Tmat readOnly;
+property TCHKsolver.matX:Tmat readOnly;
+
+property TCHKsolver.Lambda:real;
+procedure TCHKsolver.FillManu1(var In1,In2,out1:Tvector;nbtau,i1,i2:integer);
+
+procedure TCHKsolver.InitManu2(nbtau:integer);
+procedure TCHKsolver.FillManu2(var In1,In2,out1:Tvector;x1,x2:real);
+procedure TCHKsolver.FillManu2(var In1,In2,out1:Tvector;x1,x2:real;var VL:TVlist);
+procedure TCHKsolver.getManu2(var VF1,VF2:Tvector;var M00,M01,M10,M11:Tmatrix);
+
+procedure TCHKsolver.InitManu2ex(nbtau:integer);
+procedure TCHKsolver.FillManu2ex(var In1,In2,out1:Tvector;x1,x2:real);
+procedure TCHKsolver.FillManu2ex(var In1,In2,out1:Tvector;x1,x2:real;var VL:TVlist);
+procedure TCHKsolver.getManu2ex(var VF1,VF2:Tvector;var M00,M01,M10,M11:Tmatrix;var h0:real);
+
+
+procedure TCHKsolver.InitManu3(nbtau:integer);
+procedure TCHKsolver.FillManu3(var In1,out1:Tvector;x1,x2:real);
+procedure TCHKsolver.getManu3(var VF1:Tvector;var M00:Tmatrix);
+
+procedure BuildManu2(var in1,in2,out1:Tvector;var VH1,VH2:Tvector;var MK11,MK12,MK21,MK22:Tmatrix);
+procedure BuildManu3(var in1,out1:Tvector;var VH:Tvector;var MKK:Tmatrix);
+
+property TCHKsolver.BlockSize:integer;
+{$H Taille des blocs d'équations.
+
+ Cette taille doit être modifiée AVANT d'appeler Init@
+
+}
+property TCHKsolver.NormalizeBlock:boolean;
+
+procedure TCHKsolver.StoreISA2(var src,dest,Vbeta:Tvector);
+
+                     { TCHKsolverXY stmChkXY }
+
+
+procedure TchkSolverXY.create(stName:string);
+{$H Constructeur de l'objet TchkSolverXY
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+
+function TchkSolverXY.installSources(var src,sync:Tvector;var Mlist1:TmatList):real;
+function TchkSolverXY.installSources(var src,sync:Tvector;var Mlist1:TmatList;TopEvt:boolean):real;
+{$H Installation des vecteurs sources
+
+  Doit être appelée dans la partie initialisation de TchkSolverXY.
+
+  src contient le signal de sortie du système.
+  sync contient les tops synchro.
+  Mlist1 contient la liste des grilles de stimulation.
+
+  TopEvt vaut false quand il est omis. Dans ce cas, sync doit être un vecteur du type Vtag1@(TdataFile.Vtag1).
+
+  Sinon, si TopEvt vaut true, sync doit être un vecteur d'événements contenant les dates d'apparition de chaque grille
+de la liste.
+}
+
+procedure TchkSolverXY.selectRegion(I1,J1,I2,J2:integer);
+{$H Permet de réduire le nombre d'inconnues en ne considérant qu'une partie de la grille.
+
+ I1,J1,I2,J2 déterminent le rectangle utile dans les matrices de la liste fournie dans InstallSources@
+
+ En procédant ainsi, on fait l'hypothèse que les parties hors du rectangle n'ont aucun effet sur la réponse.
+}
+procedure TchkSolverXY.updateSources(var src,sync:Tvector;var Mlist1:TmatList);
+{$H Valide le contenu des différents vecteurs sources.
+
+  src, sync et Mlist ne sont pas obligatoirement les mêmes vecteurs que ceux qui sont fournis dans installSources@
+mais ils doivent avoir les mêmes caractéristiques.
+
+  UpdateSources remplit les matrices représentant le système d'équations en utilisant le contenu
+des vecteurs sources.
+}
+
+procedure TchkSolverXY.Init(tau1,tau2,Ns1:integer;modePsth:boolean;Lclasse:real);
+procedure TchkSolverXY.Init(tau1,tau2,Ns1:integer;modePsth:boolean;Lclasse:real;nbt:integer);
+{$H Initialise le système d'équations en fixant:
+    - les limites tau1 et tau2
+    - le nombre d'états Ns1
+    - le fait que l'on calcule un Pstw ou un Psth (dans ce cas, modePsth=TRUE)
+    - la largeur de classe Lclasse pour le mode Psth
+
+ nbt est le nombre de points au second membre du système d'équations. Si on indique zéro (valeur par défaut),
+ce paramètre est calculé à partir des vecteurs fournis dans installSources.
+
+ nbt ne doit être fixé que si l'on utilise BuildSignal@ .
+}
+
+procedure TchkSolverXY.setGvalues(min1,max1:real;state1:integer;Amp1:real;flag1:integer);
+{$H Définit la façon dont on écrit les coefficients des équations en fonction du contenu des matrices de la liste.
+
+ Il faut appeler setGvalues pour chaque état du système. Le nombre d'états a été fixé avec Init@ .
+
+ Chaque matrice de la liste génère une équation du genre Sum( An*Xn) = B
+ A chaque triplet (X,Y,state) correspond un coefficient An
+
+ SetGvalues signifie: si dans la case (X,Y) de la matrice, on trouve une valeur w comprise
+entre min1 et max1, alors on se trouve dans l'état state1 et, selon la valeur de flag, le coefficient An vaudra:
+
+  si flag=0, An = Amp1
+  si flag=1, An = w
+  si flag=2, An = -w
+  si flag=3, An = getK(t,state1,w)
+  si flag=4, An= sqr(w)
+
+  Dans le cas 3, getK est une fonction définie par l'utilisateur.
+
+
+}
+
+procedure TchkSolverXY.Solve;
+procedure TCHKsolverXY.Solve(KeepMatrix:boolean);
+{$H Résolution du système.
+
+ Par défaut, la matrice initiale définissant les équations n'est pas conservée.
+ Si KeepMatrix=true, elle sera conservée.
+}
+
+procedure TchkSolverXY.GetVector(x,y,z:integer;var vec: Tvector;raw,norm:boolean);
+
+procedure TchkSolverXY.setVector(x,y,z:integer;var vec: Tvector);
+
+property TchkSolverXY.matH:Tmat readOnly;
+property TchkSolverXY.matB:Tmat readOnly;
+property TchkSolverXY.matX:Tmat readOnly;
+property TchkSolverXY.lambda:real;
+
+procedure TCHKsolverXY.BuildSignal(var vec, top: Tvector; var mat: TmatList);
+procedure TCHKsolverXY.BuildSignal(var vec, top: Tvector; var mat: TmatList;topEvt:boolean);
+
+property TCHKsolverXY.getK:TgetK;
+procedure TCHKsolverXY.ClearMats;
+
+property TCHKsolverXY.BlockSize:integer;
+{$H Taille des blocs d'équations.
+
+ Cette taille doit être modifiée AVANT d'appeler Init@
+
+}
+property TCHKsolverXY.NormalizeBlock:boolean;
+{$H
+}
+property TCHKsolverXY.Nbefore:integer;
+{$H Nombre d'équations écrites avant le premier stimulus élémentaire
+
+ Vaut zéro par défaut.
+
+ Voir Nafter@
+}
+
+property TCHKsolverXY.Nafter:integer;
+{$H Nombre d'équations écrites après le dernier stimulus élémentaire
+
+ Vaut zéro par défaut.
+
+ Voir Nbefore@
+}
+
+
+
+                     { TCHKsolverXYB stmChkXY1 }
+
+procedure TchkSolverXYB.create(stName:string);
+function TchkSolverXYB.installSources(var src,sync:Tvector;var Mlist1:TmatList):real;
+procedure TchkSolverXYB.updateSources(var src,sync:Tvector;var Mlist1:TmatList);
+procedure TchkSolverXYB.Init(t1,t2,Ns1:integer;modePsth:boolean;Lclasse:real);
+procedure TchkSolverXYB.setGvalues(min1,max1:real;state1:integer;Amp1:real;flag1:integer);
+procedure TchkSolverXYB.Solve;
+procedure TchkSolverXYB.GetVector(x,y,z:integer;var vec: Tvector;raw,norm:boolean);
+procedure TchkSolverXYB.setVector(x,y,z:integer;var vec: Tvector);
+property TchkSolverXYB.matH:Tmat readOnly;
+property TchkSolverXYB.matB:Tmat readOnly;
+property TchkSolverXYB.matX:Tmat readOnly;
+property TchkSolverXYB.lambda:real;
+procedure TchkSolverXYB.BuildSignal(var vec, top: Tvector; var mat: TmatList);
+
+property TchkSolverXYB.getK:TgetK;
+
+
+
+
+procedure VSample(var src:Tvector;x1,x2,dx1:real;var dest:Tvector);
+procedure VSample(var src:Tvector;dx1:real;var dest:Tvector);
+
+{$C ManVec Rééchantillonnage d'un vecteur }
+{$H Rééchantillonnage d'un vecteur.
+
+ Les données du vecteur source comprises entre x1 et x2 sont rééchantillonnées avec
+une période dx1
+
+ Le nombre de points du vecteur dest devient égal à N = trunc( (x2-x1)/dx) ) +1;
+ Ses propriétés deviennent :
+        Istart = 0;
+        Iend = N-1;
+        X0 = x1 si sur-échantillonnage
+        X0 = x1 +dx1/2 si sous-échantillonnage
+        DX = dx1
+ Son type numérique est inchangé.
+
+ Si le nouveau paramètre Dx est plus petit que src.dx (sur-échantillonage), les valeurs des nouveaux
+échantillons sont obtenues en effectuant une interpolation linéaire entre les points du vecteur source.
+ Sinon (sous-échantillonage), chaque nouveau point est la moyenne du groupe d'échantillons remplacés.
+
+ Le vecteur source peut être complexe.
+}
+procedure VHilbert(var src,dest:Tvector);
+{$C ManVec Transformée de Hilbert }
+{$H Calcule la transformée de Hilbert vecteur source
+
+ Le vecteur source doit être réel.
+ Le type du vecteur dest n'est pas modifié.
+ Si le type de dest est complexe, le vecteur contiendra le signal analytique: la partie réelle
+sera égale à src, la partie imaginaire sera la transformée de Hilbert.
+ Si le type de dest est réel, dest contiendra la transformée de Hilbert.
+
+ Ses indices de début et de fin deviennent égaux à ceux du vecteur source.
+}
+
+function Vnorm(var src:Tvector):real;
+function Vnorm(var src:Tvector;norm:integer):real;
+{$C MesVec Norme d'un vecteur }
+{$H Calcule la norme du vecteur source
+
+  Le type de norme dépend du paramètre Norm:
+  si Norm=0, la fonction renvoie le maximum du module des éléments du vecteur (norme infinie)
+  si Norm=1, la fonction renvoie la somme des modules des éléments du vecteur (norme L1)
+  is Norm=2, la fonction renvoie la somme des carrés des modules des éléments du vecteur (norme L2)
+
+  Si le paramètre Norm est omis, la fonction renvoie la norme L2.
+}
+function VnormDiff(var src1,src2:Tvector):real;
+function VnormDiff(var src1,src2:Tvector;norm:integer):real;
+{$C MesVec Norme de la différence de deux vecteurs }
+{$H Calcule la norme de la différence de deux vecteurs.
+
+  Le type de norme dépend du paramètre Norm:
+  si Norm=0, la fonction renvoie le maximum du module des éléments du vecteur différence (norme infinie)
+  si Norm=1, la fonction renvoie la somme des modules des éléments du vecteur différence(norme L1)
+  is Norm=2, la fonction renvoie la somme des carrés des modules des éléments du vecteur différence (norme L2)
+
+  Si le paramètre Norm est omis, la fonction renvoie la norme L2 .
+}
+
+
+procedure VRealToCpx(var src1,src2,dest:Tvector);
+{$C ManVec Construit un vecteur complexe à partir de deux vecteurs réels}
+{$H Construit un vecteur complexe à partir de deux vecteurs réels
+
+ src1 et src2 sont deux vecteurs de type non complexe, ayant les mêmes indices de début et de fin.
+
+ dest sera un vecteur complexe dont la partie réelle sera formée des valeurs contenues dans src1 et dont
+la partie imaginaire sera formée des valeurs contenues dans src2 .
+
+ Le type de dest sera fixé en fonction du type de src1 et src2:
+ Si le type de src1 ou src2 est t_extended, dest sera de type t_complex
+ sinon
+ si le type de src1 ou src2 est t_double, dest sera de type t_Dcomplex
+ sinon dest sera de type t_Scomplex
+
+ Voir aussi VCpxToReal@
+}
+
+procedure VCpxToReal(var src,dest1,dest2:Tvector);
+{$C ManVec Décompose un vecteur complexe en 2 vecteurs contenant les réels et les imaginaires}
+{$H Décompose un vecteur complexe en deux vecteurs contenant les parties réelles et les parties imaginaires
+
+ src est un vecteur contenant des nombres complexes.
+
+ La procédure remplit dest1 avec les parties réelles de src, et remplit dest2
+avec les parties imaginaires de src.
+
+ dest1 et dest2 seront modifiés de sorte que leurs propriétés Istart, Iend, dx et x0 seront égales
+à celles de src.
+
+ Le type de dest1 et dest2 sera fixé en fonction du type de src:
+ Si le type de src est t_complex, dest1 et dest2 seront de type t_extended
+ Si le type de src est t_Dcomplex, dest1 et dest2 seront de type t_double
+ Si le type de src est t_Scomplex, dest1 et dest2 seront de type t_single
+
+ Voir aussi VRealToCpx@ 
+ }
+
+procedure VmedianFilter(var src,dest:Tvector;N:integer);
+{$C ManVec Filtrage Median d'un vecteur }
+{$H Applique un filtage median au vecteur source.
+
+ Le résultat est rangé dans Dest.
+ Dest peut être égal à src.
+ Si Dest est différent de src, la structure de Dest est modifiée pour correspondre à celle de Src
+
+ Les types supportés sont T_smallint, T_longint, T_single et T_double .
+
+}
+
+function Erf(w: double):double;
+{$H  Computes the error function value.
+
+ @(@ d:\delphe5\erf.jpg)
+}
+
+function Erfc(w: double):double;
+{$H  Computes the complementary error function value.
+
+ @(@ d:\delphe5\erfc.jpg)
+}
+
+procedure VAadd(var src1,src2,dest:TvectorArray);
+{$H Addition de deux VectorArray
+
+ src1 et src2 doivent avoir la même structure
+ Vadd@ est appelée pour chaque vecteur
+}
+
+procedure VAsub(var src1,src2,dest:TvectorArray);
+{$H Soustraction de deux VectorArray
+
+ src1 et src2 doivent avoir la même structure
+ Vsub@ est appelée pour chaque vecteur
+}
+
+procedure VAmul(var src1,src2,dest:TvectorArray);
+{$H Multiplication de deux VectorArray
+
+ src1 et src2 doivent avoir la même structure
+ Vmul@ est appelée pour chaque vecteur
+}
+
+procedure VAdiv(var src1,src2,dest:TvectorArray);
+{$H Division de deux VectorArray
+
+ src1 et src2 doivent avoir la même structure
+ Vdiv@ est appelée pour chaque vecteur
+}
+
+procedure VAmulNum(var src:Tvector; num:Complex);
+{$H Multiplie chaque vecteur du VectorArray par un nombre
+
+ VmulNum@ est appelé pour chaque vecteur.
+}
+
+
+procedure VAaddNum(var src:Tvector; num:Complex);
+{$H Multiplie chaque vecteur du VectorArray par un nombre
+
+ VaddNum@ est appelé pour chaque vecteur.
+}
+
+
+procedure Vflip(var src,dest:Tvector);
+procedure Vflip(var srcdest:Tvector);
+{$H Renverse l'ordre des éléments d'un vecteur.
+
+}
+
+procedure BuildXTmapFromMatList(var src:TmatList;var dest:Tmatrix;FY,Fnorm:boolean;Zth:real;AgTh:integer);
+{ Construction d'une carte XT
+
+ On suppose que l'on a déjà calculé les cartes XY en Z-score et rangé les résultats dans la liste de matrices src.
+ src contient donc des matrices de mêmes dimensions.
+
+ Les dimensions de la matrice dest seront modifiées de sorte que
+ - Icount deviendra égal au nombre de matrices stockées dans src
+ - Jcount deviendra égal au Icount des matrices de src si FY vaut true, et deviendra égal au Jcount des matrices de src si FY vaut false.
+
+ Chaque colonne de dest est calculée en faisant la somme des pixels d'une colonne de src si FY vaut true ou bien
+en faisant la somme des pixels d'une ligne de src si FY vaut false.
+
+ Si Fnorm vaut True, la matrice dest est normalisée en la multipliant par un facteur Alpha tel que:
+   Alpha = maximum (abs(src))/ maximum(dest)
+ On s'arrange donc pour l'amplitude maximale de la carte XT corresponde au maximum des cartes XY en valeur absolues
+
+ Avant de faire la somme des lignes ou colonnes des cartes XY, un filtrage par agrégats sera effectué sur chaque carte XY lorsque Zth et AgTh sont strictement positifs.
+
+ Ce filtrage AgFilter
+
+
+}

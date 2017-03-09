@@ -1,0 +1,204 @@
+Object
+
+  TauxChannel(Tobject)
+{$H Objet représentant un canal de l'objet TauxStimulator@
+}
+  TauxStimulator(Tobject)
+{$H TauxStimulator permet de piloter une ou deux cartes PD2-AO-16/32 de UEI
+
+  Ces cartes contiennent chacune 32 sorties analogiques.
+  On peut donc piloter 32 ou 64 sorties analogiques.
+
+  Les sorties sont sur le connecteur arrière.
+  Sur le connecteur J2 interne , on trouve une entrée trigger et des entrées sorties
+pour la synchronisation de deux cartes.
+
+  Trigger : entrée IRQC borne 31 sur J2
+  Ext Clock : TMR2 borne 4 sur J2
+
+  Pour synchroniser deux cartes, il faut relier les TMR2 avec une résistance de 100 ou 200 ohms.
+
+  J2 connector  (view looking into the connector as mounted on the board):
+    35  ------  1
+    36  ------  2
+
+
+}
+end;
+
+property TauxChannel.PhysNum:integer;
+{$H Numéro physique du port analogique.
+
+ C'est en général le numéro figurant sur le boitier de l'appareil. Les numéros commencent à zéro.
+}
+
+property TauxChannel.Dy:real readOnly;
+{$H Paramètre d'échelle du canal .
+ Les paramètres d'échelle sont Dy et Y0@ . Ils relient les valeurs internes j aux
+valeurs réelles y par la relation:
+                 y:=Dy * j +Y0
+
+ j est la valeur entière rangée dans le registre DAC alors que y est la valeur
+réelle (en mV, pA, etc...) significative pour l'utilisateur.
+
+ On fixe Dy et y0 avec setScale@ .
+}
+property TauxChannel.y0:real readOnly;
+{$H Paramètre d'échelle du canal .
+
+ Voir Dy@
+}
+
+property TauxChannel.unitY:string;
+{$H Unités du canal .
+
+ Par défaut, la chaîne unitY est égale à 'mV'
+ On peut modifier les paramètres d'échelle Dy@ et y0@ pour exprimer les valeurs
+imposées sur les sorties d'une façon plus significative (pA, Volts, etc...)
+}
+
+procedure TauxChannel.setScale(j1,j2:integer;y1,y2:real);
+{$H Permet de fixer les paramètres d'échelle du canal s'il est de type analogique.
+
+ j1 et j2 sont des valeurs internes correspondant à des valeurs réelles y1 et y2.
+
+}
+property TauxStimulator.ChannelCount:integer;
+{$H Nombre de canaux logiques utilisés.
+
+ Ce nombre doit être fixé par l'utilisateur avant toute programmation des canaux
+( propriété Channels@ ).
+
+ Les canaux seront ensuite numérotés de 1 à ChannelCount.
+}
+property TauxStimulator.Channels(n:integer):TauxChannel readOnly;
+{$H Permet de définir les propriétés d'un canal logique.
+
+ n est un nombre compris entre 1 et ChannelCount@
+
+ Voir TauxChannel@
+}
+
+Property TauxStimulator.vector(num:integer):Tvector readOnly;
+{$H Vecteur associé à un canal logique.
+}
+
+
+procedure TauxStimulator.create(stName:string);
+procedure TauxStimulator.Create;
+procedure TauxStimulator.Create( Simulate:boolean; Nadapter:integer);
+
+{$H Constructeur de l'objet TauxStimulator.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+ Dans la deuxième variante, le nom sera le nom de la variable.
+
+ La troisième variante permet d'utiliser l'objet sans la présence physique de la carte.
+Il suffit de donner au paramètre Simulate la valeur True et de fixer le nombre de cartes (1 ou 2)
+
+
+}
+
+property TauxStimulator.FswapAdapters: boolean;
+{$H Modifie l'ordre des cartes de stimulation
+
+ Lorsque deux cartes de stimulation sont présentes dans le PC, la première carte
+reçoit le trigger externe, la seconde carte reçoit les signaux d'horloge de la première.
+
+ Par défaut, on considère que la première carte détectée par le système est la carte maîtresse
+et que l'autre est la carte esclave
+ Si on veut inverser les choses sans intervenir à l'intérieur du PC, on pourra écrire
+ @f6  FswapAdapters:=true
+ Il faut modifier cette propriété juste après l'appel de create@
+
+
+
+}
+
+
+property TauxStimulator.EpDuration:real;
+{$H Durée d'un épisode en millisecondes.
+
+ Comme ce paramètre est ajusté en fonction des contraintes du matériel, il est
+conseillé de le relire après avoir fixé sa valeur.
+
+ }
+
+property TauxStimulator.SamplingInt:real;
+{$H Intervalle entre deux échantillons en millisecondes
+
+ Comme ce paramètre est ajusté en fonction des contraintes du matériel, il est
+conseillé de le relire après avoir fixé sa valeur.
+
+ Voir EpDuration@ et SamplesPerChannel@
+ }
+
+property TauxStimulator.SamplesPerChannel:integer readOnly;
+{$H Nombre d'échantillons par canal.
+
+  Ce nombre est déterminé par EpDuration@ et SamplingInt@
+ }
+
+procedure TauxStimulator.InitVectors;
+{$H Initialise les vecteurs ( Propriété Vector@ )
+
+ Une fois que l'on a fixé les paramètres de stimulation, il faut appeler InitVectors.
+ On peut alors remplir les vecteurs avec les signaux de stimulation.
+
+}
+
+procedure TauxStimulator.Start(UseTrigger:boolean);
+{$H Lance la stimulation.
+
+ Si UseTrigger vaut False, la stimulation démarre immédiatement sinon, on attend la présence d'un signal
+sur l'entrée IRQC (borne 31 sur J2)
+}
+procedure TauxStimulator.Stop;
+{$H Arrête la stimulation.
+}
+
+property TauxStimulator.ExternalClock:boolean;
+{$H Si ExternalClock vaut false (valeur par défaut), l'horloge utilisée est celle de la carte
+sinon on utilise l'horloge externe appliquée sur TMR2 (borne 4 sur J2)
+}
+
+property TauxStimulator.Fcontinuous:boolean;
+{$H Définit le mode continu.
+
+ Par défaut, Fcontinuous vaut False.
+ Pour travailler en mode continu, il faut
+   - donner à cette propriété la valeur True,
+   - Définir un nombre de pseudo-épisodes (EpCount@)
+   - Définir un gestionnaire d'événement BuildEp@
+   - Appeler Update@ dans la partie ProcessCont@
+
+ Il faut modifier les propriétés citées avant InitVectors@
+}
+
+property TauxStimulator.EpCount:integer;
+{$H Définit le nombre de pseudo-épisodes en mode continu
+}
+
+property TauxStimulator.BuildEp:Tprocedure1;
+{$H Gestionnaire d'événement utilisé en mode continu.
+
+ L'utilisateur doit écrire une procédure ayant un paramètre entier.
+ Cette procédure sera appelée par le système à chaque fois qu'il sera
+nécessaire de remplir un pseudo-épisode avec des signaux.
+
+
+}
+
+procedure TauxStimulator.update;
+{$H Procédure devant être appelée en mode continu dans la partie ProcessCont@ du
+programme.
+
+  Cette procédure vérifie si une mise à jour des buffers est nécessaire et
+appelle BuildEp si nécessaire.
+
+}
+
+procedure TauxStimulator.BuildNextEpisod;
+{$H Construit l'épisode suivant en mode continu.
+}
+

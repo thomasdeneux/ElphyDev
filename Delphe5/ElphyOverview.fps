@@ -1,0 +1,298 @@
+
+Hpage Elphy; { Elphy Overview }
+{$P
+ At the beginning, Elphy is a software designed to meet the needs of researchers of the
+UNIC laboratory ( Unité de Neurosciences Integratives et Computationnelles - CNRS ).
+
+ We can consider that it is the Windows successor of Acquis1, an old MS-DOS software marketed
+by companies DIPSI and BIOLOGIC, although its field of application is far more extensive and
+that its programming language differs significantly from that of Acquis1 by use of object programming.
+
+ In the past, Elphy was also called DAC1 or DAC2.
+ Elphy was originally designed to analyze the files created by Acquis1, or by Axon softwares. Later,
+we introduced a Data Acquisition module,  then a Visual Stimulation module.
+
+ Today, Elphy is mainly used in the field of Electrophysiology but it is built like
+a general purpose DAQ software and could be used in others domains.
+
+ Elphy can control an experiment through multifunction interfaces provided by National Instrument, MCC , Instrutech , AXON, UEI
+or Blackrock-microsystems.
+ Data acquired on this devices can be analyzed and presented in real-time on a PC, using a built-in programming language.
+ This language include about 160 dedicated objects and 2500 functions ( in june 2010 )
+
+ The next pages show how to start with Elphy.
+
+ Data Acquisition is described in the chapter (Data Acquisition)@ElphyDaq
+ Data Analysis is presented in (Data Analyzis)@ElphyAnalyzis and developped in (The Elphy language)@ProgElphy
+ Visual Stimulation is shown in (Visual Stimulation)@ElphyVisualStim
+
+ All the Elphy Commands are described in (Command Reference)@ElphyCommands
+}
+
+
+{$TITLE The TMultigraph Object }
+{$P
+
+ When you open Elphy for the first time, the main window can look like this.
+If this is not the case, you can use the command "File / Configuration / New " from the main menu,
+so be sure to start from scratch.
+
+ @(@ intro1.bmp)
+
+
+ All the white part is intended to display graphs, maps, and so on. It is a page of what we call
+a multigraph object. The multigraph object is a set of graphic pages. Only one of this pages is
+visible at a time and can be selected with a tab.
+ More precisely, in the programming language, the type of this object is Tmultigraph and its name
+is Multigraph0.
+
+ In an Elphy session, more than one multigraph object can exist at the same time, with different names.But Multigraph0
+is particular in the sense that it can never be destroyed, it is a part of the Elphy application.
+ Many operations can be performed on this object with the mouse, using a double-click on the left button
+or a simple click on the right button.
+}
+
+{$P Double-click.
+ A double-click on the left button when the mouse cursor is in any place of the multigraph window brings up a
+popup menu :
+
+ @(@ doubleclic.bmp)
+
+ Click on the "Options" command and check the "Show Outlines" , "Show Titles"  and "Show number" boxes.
+This options are not essential but they will be useful to make our next actions immediately visible.
+ With this dialog, you can change the aspect of the current page. For example, you can change the page name
+(this name appears in a tab at the top of the main window) or the background color.
+
+ @(@ MgOptions.bmp)
+
+ Now, click on the"Design" command in the popup menu. You are now in the "Design" mode. To exit this mode, you
+must use an other double-click and click on "Design" again ("Design" is changed in "End Design").
+
+}
+
+{$P The design mode.
+ In this mode, you can draw one or more "Multigraph windows". These windows are only non-overlapping rectangles drawn
+in the white part of the main window.
+ If multigraph windows exist, they are made visible by a dotted rectangle that shows the limits of the windows.
+ You can catch the edges of the rectangles or the whole rectangle with the mouse and change their positions.
+
+ Now, try a simple click on the right mouse button. You will see a new popup menu.
+ If your click was inside some rectangle, you will see this menu
+
+ @(@ MgRightClickInside.bmp)
+
+ but if your click was outside any rectangle, you will see:
+
+ @(@ MgRightClickOutside.bmp)
+
+ In the first case, you can destroy the rectangle, remove all the objects which are displayed inside
+this rectangle (we will see this point later) and you can also divide the rectangle in equal smaller rectangles.
+
+ In the second case, you can only create a new multigraph window. When you choose this command, you create
+a rectangle which contains the clicked point and with a maximum size.
+
+ If you click inside a rectangle and hold the button down, you will see the click coordinates displayed in the bottom
+of the main window together with the window number. This number is often used when programming and it is useful to
+know how to control it.
+}
+
+{$P Other multigraph commands
+ Now we can exit the design mode and, left double-click again and try the other commands.
+
+ @(@ doubleclic.bmp)
+
+ With "New Page" , you create a new graphic page. A new tab appears after the other tabs
+at the top of the main window. The default name for this page is "Page Num" (Num is some number).
+You can select the page by clicking on the tab. Then you can double-click to modify the design,
+the options, and so on.
+
+ With "Delete Page", you delete the current page.
+
+ With the "Refresh" command, all the objects placed in the multigraph windows are redrawn.
+
+}
+{$TITLE The TDatafile Object }
+{$P Opening a data file
+ The main menu contains the command File/Load Data File
+ With this command, you can open a data file. This data file can have been created by Elphy
+but also by some other software (Acquis1, Pclamp).
+ We make a distinction between episode files and continuous files. A continuous file contains a
+single recording and the data in this file can be greater than the computer memory.
+  An episode file contains one or more data segments (episodes), each data segment being a continuous recording.
+An episode must hold in computer memory.
+
+  When you open an episode file, the first episode is loaded in memory. Then, you can select another episode
+with the red arrows or with "File/Select Episode" . Only one episode is available at a time for display or analysis.
+  When you open a continuous file, only a small amount of data is loaded in memory. Other data will be loaded only as needed.
+But the user "see" a single huge episode.
+
+ When a datafile is loaded, the data in the episode are seen as a set of vectors, one for each data channel.
+ So to understand how to display or analyze a file, you only need to understand how to manipulate vectors.
+
+ To understand where are the vectors, it's time to open the object inspector.
+}
+{$P The Object Inspector
+
+ The object inspector is a window that you open with the command "Objects/Inspect" in the main menu.
+ It contains a hierachical list of all existing objects at any time.
+ When you start Elphy for the first time, it might look like this
+
+   @(@ ObjectInspector.bmp)
+
+ Some objects are perhaps missing, depending on your version, but these two objects are always present:
+ Multigraph0: a Tmultigraph@ object
+ Datafile0: a Tdatafile@ object
+
+ These objects belong to the system and the associated commands are embedded in the main window. It is possible
+to create other objects with the same type but their behaviour will be slightly different.
+ In the bottom of the window are three buttons: "Show", "Destroy" and "Info".
+ When an object is selected in the list, the "Show" button opens the window associated to the object (if this
+window exists). The "Destroy" button destroys the object, but only if the object has been created by the user.
+The "Info" button is used for debugging purposes.
+
+ When right-clicking on an object name in the list, you activate a popup menu associated to the object (if this
+menu exists).
+
+}
+{$P Expanding DataFile0
+
+  If you expand the datafile0 object in the tree view (with a click on @b + @notb ), other objects
+become visible.
+
+   @(@ ObjectInspDataFile.bmp)
+
+ These objects are classified into "Channels", "Averages"..., only for clarity.
+  In "Channels", you find:
+  datafile0.v1   ( to simplify: v1)
+  datafile0.v2   ( to simplify: v2)
+  ...
+
+  The objects such as v1, v2... that are not at the root of the tree list belong to another object (datafile0). We say
+that datafile0 is the owner of these objects: it is responsible for their creation and destruction. Datafile0 is also
+responsible for their management.
+
+  v1, v2,... are objects of type Tvector@. These vectors contains the data for each analog channel in the selected episode
+of the loaded file.
+  If there are 8, or 16 or 32 channels in the list, this does not mean that there are 8, or 16 or 32 analog channels
+in the loaded file. If the file contains 2 channels, only v1 and v2 will contain data, the other vectors will be empty.
+
+  To view the content of a vector (v1 for example), you select v1 in the list. Then you can:
+  1) click on the "Show" button or
+  2) right-click on v1 and click on show in the popup menu or
+  3) drag v1 from the object inspector and drop it into a multigraph window
+
+  With the methods 1 or 2, the v1-window is opened. With the method 3, the vector is displayed
+in a multigraph window.
+  Now you can act on the vector v1 in the same way in the v1-window  or in the multigraph window.
+  The multigraph object is more interesting because you can display several objects in the same page,
+and also several objects in the same multigraph window.
+
+}
+{$P Displaying  vectors
+
+ We suppose you have loaded the example file 4103ER5.dat.
+ You have dragged and dropped v1 in a multigraph window,
+ you have dragged and dropped v2 in another multigraph window,
+ and the screen looks like:
+
+  @(@ MgV1V2.bmp)
+
+ The display is not good because coordinates have to be adjusted for the two signals.
+ Two methods are available:
+    1) you can open the v1-popup menu with a right click in the v1 multigraph window, and click on "Coordinates". This will open
+the Coordinates dialog.
+    2) you can right-click on the vertical scale or the horizontal scale to open a small command window.
+
+ For the first method, the right click must be to the right of the vertical axis and above the horizontal axis.
+Here is the Coordinates dialog box:
+
+  @(@ VecCoo.bmp)
+
+ The more important parameters are Xmin@(TdataPlot.Xmin), Xmax@(TdataPlot.Xmax), Ymin@(TdataPlot.Ymin), Ymax@(TdataPlot.Ymax) which set
+the limits of the display.
+ The "Autoscale X" button searches for the minimum possible value for Xmin and the maximum possible value for Xmax
+ The "Autoscale Y" button searches for the minimum and maximum values in the vector and stores the result in Ymin and Ymax.
+
+ Many parameters in the dialog are easy to understand, you can modify them to safely test.
+ When the parameters are adjusted, the "OK" button closes the dialog and the vector display is refreshed in all places where you put it.
+
+ If you right-click on the horizontal scale, you will see this command window:
+
+  @(@ FastCooX.bmp)
+
+ This window shows the Xmin and Xmax values and a small button which works like the AutoscaleX button in the Coordinates dialog.
+ There are also two scrollbars. The left scrollbar changes the position of the displayed region (not the size of this region). The
+right scrollbar modify the size of the displayed region (the position of the point in the middle of the window doesn't change).
+
+ If you right-click on the vertical scale, you will see this window:
+
+  @(@ FastCooY.bmp)
+
+ This window shows the Ymin and Ymax values and a small button which works like the AutoscaleY button in the Coordinates dialog.
+ There are also two scroll bars with which you can adjust the coordinates.
+
+ Now, with a better adjustment of the coordinates, we can have this display:
+
+ @(@ MgV1V2-1.bmp)
+
+ In many situations, it is useful to ensure that a group of vectors always have the same X-coordinates or Y-coordinates.
+
+ In our example, v1 and v2 have been recorded at the same time and we would like they will always have the same X-coordinates.
+To do this, just give v1 and v2 the same value of the X-coupling parameter in the Coordinates dialog. This value can be any non-zero integer
+value (0=No coupling). After this modification, any change of Xmin or Xmax for any vector of the group will cause the same change for
+the other vectors of the group.
+
+ Use the Y-coupling parameter to control the Y-coordinate.
+
+ You can display more that one object in the same multigraph window. You can try to drop v1 and v2 in the same window. In this case,
+only the coordinates of the first object dropped are visible and the small command windows which appear when clicking on the coordinates
+correspond to first object.
+  In this case, when right clicking in the multigraph window, the popup menu of all the objects except the first in the list have
+and additional item: "bring to front".
+  With this command, the object is installed at the beginning of the list, its coordinates are displayed and you can access the small
+command windows.
+
+ @(@ MgV1V2-2.bmp)
+
+}
+
+{$P Other objects owned by Tdatafile.
+
+ The Vtag objects (called Vtag1, Vtag2,...) are vectors containing data coming from digital inputs on the acquisition device. Data are
+coded in a different way but are seen as analog vectors except that the values can only be 0 or 1.
+ If you display Vtag1 (and adjust the coordinates), you will see
+
+ @(@ Vtag1.bmp)
+
+ The average objects (called m1, m2,...) are used to store average calculations on episodes. The main menu in Elphy has a command "Averaging"
+which enables the user to select episodes and to perform averages. The type of these objects is Taverage@. m1 will contains the v1 average,
+m2 will contains the v2-average...
+
+ The Vlist objects give the possibility to display all the episodes of a channel in a window at the same time.
+ These objects are called Vlist1, Vlist2,... and correspond to v1, v2,...
+
+ Vsound1 and Vsound2 were used to record sound from a microphone during data acquisition. This possibility is no more used.
+
+ Mtag is a set of "manual tags" . During a continuous recording, the user can signal an event at any time. The acquisition time of this
+event is recorded with a code and a character string. When Mtag is dropped in a window containing a channel, the events are displayed
+as  vertical lines at times when the events occur.
+
+ Comment is a character string written by the user when the acquisition started.
+}
+
+
+{$TITLE The Tvector Object }
+{$P
+
+}
+
+
+
+
+
+
+
+
+
+
+

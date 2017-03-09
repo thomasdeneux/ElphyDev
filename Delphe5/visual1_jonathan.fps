@@ -1,0 +1,3743 @@
+Object
+  TvisualStim
+{$H Object permettant de contrôler la stimulation visuelle.
+
+ Il existe un objet unique VisualStim@ ,appartenant au système, de type TvisualStim ,
+permettant de gérer la stimulation visuelle.
+
+ Avec OpenDataFile@ , on ouvre un menu permettant de saisir un fichier de données.
+ Avec Animate@, on lance l'animation.
+ StopStim@ vérifie que l'utilisateur à demandé un arrêt de l'animation à la fin de
+la séquence courante.
+ AbortStim@ vérifie que l'utilisateur à demandé un arrêt immédiat de l'animation.
+
+}
+
+  Ttracks
+{$H Représente une liste de marques affichées sur l'écran de contrôle
+
+ TcontrolStreen@ possède un tableau de deux propriétés de type Ttracks.
+
+ Les marques sont des petits points colorés qui matérialisent la position d'un stimulus
+(en général une barre) quand survient un événement (un spike).
+
+ Count@ représente le nombre de marques
+ XP@ contient l'abscisse de chaque marque
+ YP@ contient l'abscisse de chaque marque
+ colorP@ contient la couleur de chaque marque
+
+ Clear@ supprime toutes les marques.
+}
+
+  TcontrolScreen
+{$H Objet permettant de gérer l'écran de contrôle du stimulateur visuel.
+
+ Il existe un objet unique appelé ControlScreen@ ,appartenant au système, de type TcontrolScreen ,
+qui représente l'écran de contrôle.
+
+ Avec Clear@ , on peut effacer tous les objets affichés sur l'écran. Avec DisplayAll@,
+on peut les afficher tous.
+ La propriété ShowTracks@ permet de monter ou de ne pas montrer les marques de spikes.
+ La méthode ClearTracks@ permet de les effacer définitivement.
+
+}
+  TstimScreen
+{$H Objet permettant de gérer l'écran de stimulation du stimulateur visuel.
+
+ Il existe un objet unique appelé StimScreen@ ,appartenant au système, de type TstimScreen ,
+qui représente l'écran de stimulation.
+
+ Avec Clear@ , on peut effacer tous les objets affichés sur l'écran. Avec DisplayAll@,
+on peut les afficher tous.
+
+}
+  TvisualObject(Tobject)
+{$H TvisualObject est l'ancêtre de tous les objets pouvant s'afficher sur l'écran de
+stimulation visuelle.
+ Ses propriétés importantes sont OnScreen@ et OnControl@ qui permettent de les afficher
+ou de les cacher, respectivement sur les écrans de stimulation ou de contrôle.
+
+ Les objets visuels ont également une propriété Lum@ définissant la luminance de
+l'objet sur l'écran de stimulation et une propriété ControlColor@ définissant leur couleur
+sur l'écran de contrôle, mais ces propriétés ne sont pas forcément utilisées.
+
+}
+  Tresizable(TvisualObject)
+{$H Tresizable est l'ancêtre des objets visuels pouvant être redimensionnés avec la souris
+sur l'écran de contrôle.
+
+  Parmi ces objets, on trouve Tbar@, Tdisk@, TLgrating@ et TLgabor@.
+
+  Le point commun de ces objets visuels est qu'ils s'inscrivent dans un rectangle
+défini par les propriétés suivantes:
+
+  x@ et y@: position du centre du rectangle sur l'écran de stimulation.
+  dx@ et dy@: dimensions du rectangle.
+  theta@: orientation du rectangle.
+
+  Tous ces paramètres peuvent être fixés en une seule fois avec SetParams@ .
+
+  Jusqu'à Avril 2002, les coordonnées étaient exprimées en pixels avec un axe des y
+dirigé de haut en bas et une origine située en haut à gauche de l'écran.
+
+  Depuis Avril 2002, les coordonnées sont exprimées en degrés visuels (ou en cm),
+l'origine est au centre de l'écran et l'axe des y est dirigé de bas en haut.
+
+  Quant aux angles, il sont toujours exprimés en degrés et comptés positivement dans le
+sens trigonométrique.
+
+  Quand theta=0 (position de repos) , dx et dy sont les dimensions suivant les axes x et y.
+
+  Par convention, on choisira de préférence dx>dy quand c'est possible. Dx sera alors
+interprété comme la longueur et dy comme la largeur.
+
+  La figure ci-dessous représente une barre au repos (theta=0) et la même barre avec
+theta=30 degrés.
+  @(@ d:\delphe5\barre1.bmp)
+
+
+  Quand l'objet est affiché sur l'écran de contrôle, l'utilisateur peut le manipuler au
+moyen de la souris grâce à des poignées qui apparaissent quand l'objet est sélectionné.
+  On peut également le faire tourner (s'il est sélectionné) en cliquant sur l'écran
+de contrôle tout en maintenant le bouton droit enfoncé. On voit alors apparaitre un
+segment de droite qui joint le centre du rectangle à la position de la souris. En déplaçant
+la souris autour du centre, bouton droit enfoncé, on fait pivoter l'objet.
+
+
+}
+  TVSLine(TvisualObject)
+{$H TVSline permet d'afficher une ligne quelconque sur l'écran de contrôle ou
+l'écran de stimulation.
+
+ Cette ligne est simplement destinée à placer un repère sur l'écran. Elle est définie
+par un point de coordonnées x0@ et y0@ et un angle Theta@.
+
+ Sur le point (x0,y0) se trouve une poignée que l'on peut attraper avec la souris sur
+l'écran de contrôle. Quand la ligne est sélectionnée, on peut également la faire tourner
+autour de la poignée, comme on le fait pour une barre, en déplaçant la souris tout en
+maintenant le bouton droit enfoncé sur l'écran de contrôle.
+
+}
+
+  TRF(Tresizable)
+{$H TRF est un objet destiné à matérialiser un champ récepteur sur l'écran de contrôle ou
+de stimulation.
+ Il apparait sous la forme d'un contour rectangulaire que l'utilisateur peut positionner
+au moyen de la souris.
+
+ Ses propriétés clés sont x@, y@, dx@, dy@ et theta@ .
+
+ Il est rarement nécessaire de créer des objets TRF car il existe cinq objets système
+de type TRF. Ces objets sont nommés RF1, RF2, RF3, RF4 et RF5 dans l'inspecteur d'objet
+mais existent en programmation sous la forme d'une variable déclarée de la façon suivante:
+
+ @f6 var
+ @f6   RFsys:array[1..5] of TRF;
+
+}
+  Tbar(Tresizable)
+{$H Tbar apparait sur l'écran de stimulation sous la forme d'un rectangle de luminance
+uniforme.
+
+ Ses propriétés et méthodes sont celles de Tresizable@.
+}
+
+  Tdisk(Tresizable)
+{$H Tdisk apparait sur l'écran de stimulation sous la forme d'une ellipse de luminance
+uniforme. Cette ellipse s'inscrit dans le rectangle défini dans Tresizable@
+
+ Ses propriétés et méthodes sont celles de Tresizable@.
+}
+
+  Tmark(Tresizable)
+{$H Tmark apparait sur l'écran de stimulation sous la forme d'une croix dont le centre
+a pour coordonnées x@ et y@ .
+
+ Cette croix est destinée à repérer une position. L'utilisateur peut la positionner
+avec la souris.
+
+ Il existe deux objets système appelés ACleft et ACright (correspondant aux variables
+de même nom) de type Tmark, destinés à repérer les aera centralis.
+}
+
+  TLgrating(Tresizable)
+
+{$H L'objet TLgrating apparait sur l'écran de stimulation sous la forme d'un réseau
+longitudinal.
+ Il s'inscrit dans un rectangle ou une ellipse suivant la valeur de la propriété elliptic@.
+
+ Ce rectangle ou cette ellipse est déterminés par les valeurs de x@, y@, dx@, dy@ et theta@.
+
+ Le réseau proprement dit est déterminé par sa période spatiale period@ et par sa phase
+phase@. Quand le rectangle est en position de repos (theta=0), les franges du réseau
+apparaissent horizontales et la frange passant par le centre du rectangle a une luminance
+maximale quand la phase est nulle, comme dans la première image ci-dessous:
+
+ @(@ d:\delphe5\grating1.bmp)
+
+ Si vous augmentez la phase, vous verrez les franges se déplacer vers le haut.
+
+ Il est possible de modifier l'orientation du réseau par rapport au rectangle qui le
+contient en modifiant la propriété orientation@ . La seconde image ci-dessus montre le
+même réseau avec theta=30 degrés alors que la troisème image montre le réseau avec
+une orientation de 30 degrés.
+
+ La luminance du réseau est fixée par une relation du type:
+
+ @f6 lum(d):=BKlum+contrast*BKlum*cos(2*pi/period*d);
+
+ Dans cette formule, BKlum est la luminance du fond. Contrast@ est une propriété du
+réseau qui caractérise son contraste (valeur comprise entre 0 et 1). Period est la
+période spatiale. d est la distance entre le point considéré et l'axe de référence
+du rectangle (sur la première image ci-dessus, cet axe est l'axe horizontal passant par le
+centre du rectangle).
+
+ Habituellement, l'animation d'un réseau consiste à faire varier sa phase d'une façon
+linéaire. Ceci s'obtient en utilisant l'objet TphaseTranslation@ . On peut aussi animer
+un réseau tout comme on le fait pour une barre, en utilisant Ttranslation@ ou encore TRevcor@ .
+
+
+}
+
+  TLgabor(TLgrating)
+{$H L'objet TLgabor s'obtient en appliquent des fonctions d'atténuation à la luminance
+d'un objet TLgrating.
+
+ TLgabor possède donc toutes les propriétés de TLgrating@ . Toutefois, la propriété
+orientation@ n'est pas utilisée.
+
+ De plus, il possède les propriétés clés Lx@ et Ly@ .
+
+ Lx@ est le facteur d'atténuation suivant l'axe des x
+ Ly@ est le facteur d'atténuation suivant l'axe des x
+
+ Quand theta=0, si on fait passer un axe Ox horizontal et un axe Oy vertical par le centre
+du rectangle qui contient l'objet, la luminance peut se calculer au moyen de la formule:
+
+ @f6 Lum:= BKlum + contrast*BKlum*exp(-0.5*(sqr(abs(x)/Lx)+sqr(abs(y)/Ly)))
+ @f6       *cos(2*pi/period*d+phase*pi/180);
+
+ BKlum est la luminance du fond.
+ contrast@, period@ et phase@ sont les propriétés de l'objet (voir TLgrating@ ).
+
+ x et y sont les coordonnées du point considéré.
+ d est la distance du point à l'axe des x.
+
+ La luminance est donc maximale au centre du rectangle (pour phase=0) et s'atténue quand
+on s'éloigne du centre pour rejoindre la luminance du fond.
+
+ On remarquera que, dans la formule précédente, il est possible de donner à Contrast une
+valeur supérieure à l'unité sans saturer vers le bas.
+
+ L'image ci-dessous montre deux objets TLgabor avec des paramètres différents.
+
+ Pour le premier: Dx=100, Dy=100, Theta=0, Period=40, Lx=20, Ly=20
+ Pour le second: Dx=100, Dy=100, Theta=60, Period=20, Lx=10, Ly=30
+
+ @(@ d:\delphe5\gabor1.bmp)
+
+ Si l'on souhaite faire disparaitre les bords du rectangle, il faut donner au
+rectangle des dimensions environ six fois supérieures aux paramètres Lx et Ly, mais
+tout dépend du contraste utilisé.
+
+
+}
+
+  TVSbitmap(Tresizable)
+{$H Permet d'afficher un bitmap sur l'écran de stimulation.
+
+ Le bitmap s'affiche dans le rectangle défini par x@, y@, dx@ , dy@  et theta@ .
+
+ La partie du bitmap qui est affichée est définie par les propriétés x0@, y0@, dx0@ , dy0@ et theta0@ .
+
+ x0 et y0 sont les coordonnées d'un point M0 défini de la façon suivante:
+
+  - dans le bitmap, on considère un repère orthonormé dont l'origine est au centre du bitmap,
+l'axe des y étant dirigé vers le haut.
+  - M0 est le point du bitmap qui sera affiché au centre du rectangle (x,y,dx,dy)
+  - x0 et y0 sont exprimés en coordonnées réelles ( degrés visuels ou centimètres )
+
+  Avec cette définition, quand x0 et y0 sont nuls, le bitmap est exactement centré dans
+le rectangle (x,y,dx,dy) , quelles que soient ses dimensions.
+
+ dx0@ et dy0@ sont les dimensions vraies du bitmap en cm ou degrés visuels. Si ces dimensions sont plus grandes que celles du
+rectangle d'affichage, seule une partie du bitmap est affichée. Si ces dimensions sont plus petites que celles du
+rectangle d'affichage, on peut obtenir un pavage du rectangle d'affichage en fixant TileMode à true.
+
+ Theta0@ est l'orientation du bitmap à l'intérieur du rectangle d'affichage.
+}
+
+  Tstm(Tobject)
+{$H Tstm est l'ancêtre des stimulus visuels.
+
+ En général, les stimuli (les mouvements) vont s'appliquer à un objet visuel (une
+barre, un disque, un réseau, etc...). Cet objet sera choisi en appliquant la méthode
+setVisualObject@ .
+
+ La propriété StartTime@ détermine la date (exprimée en secondes) du démarrage
+de l'animation.
+
+ La propriété active@ détermine le fait que le stimulus sera lancé ou non par la méthode
+animate@(TvisualStim.animate).
+
+}
+
+  TonOff(Tstm)
+{$H TonOff a pour effet de montrer et cacher un objet visuel suivant un protocole
+déterminé par les propriétés dtOn@, dtOff@ et CycleCount@ .
+
+ L'objet sera montré pendant un temps DtOn après StartTime@, puis caché pendant
+DtOff. Si CycleCount a une valeur supérieure à 1, le cycle montrer/cacher sera
+répété plusieurs fois.
+
+ Dans ce genre d'animation, les paramètres de l'objet visuel sont inchangés.
+
+}
+  Ttranslation(TonOff)
+{$H Ttranslation applique un mouvement de translation uniforme à l'objet choisi au
+moyen de setVisualObject@ .
+
+ Le mouvement commence au point de coordonnées x0@ et y0@ . Le vecteur vitesse est
+défini par son module v0@ et son orientation theta0@ .
+
+ La distance parcourue est déterminée par les valeurs de dtOn@ et de v0 .
+
+ Si la propriété Orthogonal@ vaut TRUE, l'objet visuel est d'abord orienté
+perpendiculairement au vecteur vitesse avant l'animation (on applique la
+relation theta:=theta0-90).
+
+
+
+
+}
+  TrevCor(TonOff)
+{$H Le stimulus Trevcor présente successivement un objet visuel en tous les points
+d'une grille de l'écran.
+
+ Pour définir la grille, on choisit en général un des champs récepteurs au moyen de setRF@.
+ Ceci définit un rectangle de base RF que l'on divise ensuite en divXcount@ * divYcount@
+petits rectangles.
+
+ Jusqu'à Avril 2002, les coordonnées écran étaient exprimées en pixels avec un axe des y dirigé
+de haut en bas et une origine située en haut à gauche de l'écran. La case (1,1) de la grille
+était donc en haut à gauche pour RFtheta@=0.
+
+ Depuis Avril 2002, les coordonnées écran sont exprimées en degrés visuels (ou en cm),
+ l'origine est au centre de l'écran et l'axe des y est dirigé de bas en haut. La case (1,1)
+ est donc en bas à gauche pour RFtheta@ = 0.
+
+
+ En général, on souhaite explorer une zone plus grande que le champ récepteur. Aussi,
+on multiplie les dimensions du rectangle RF par un facteur d'expansion (expansion@) tout
+en essayant de conserver la dimension des pavés initiaux.
+ Concrètement, si on appelle RFdx et RFdy les dimensions de RF, les dimensions d'un pavé
+sont:
+
+ @f6 dx = RFdx/divXcount
+ @f6 dy = RFdy/divYcount
+
+ Pour étendre la zone explorée, on modifie DivXcount et et DivYcount de la façon suivante:
+
+ @f6 Xcount@ := round(DivXcount*Expansion/100);
+ @f6 Ycount@ := round(DivYcount*Expansion/100);
+
+ Les dimensions du rectangle exploré sont donc RFdx/divXcount*Xcount et RFdy/divYcount*Ycount.
+
+}
+
+  TmultiRev(TonOff)
+{$H Le stimulus TmultiRev est analogue à Trevcor@ mais présente chaque petite barre pendant
+une durée pseudo-aléatoire.
+}
+
+  TNrev(TonOff)
+{$H Le stimulus TNRev est analogue à Trevcor@ mais présente plusieurs barres ( ObjCount@ )
+simultanément.
+
+
+}
+
+
+
+  TphaseTranslation(TonOff)
+{$H TphaseTranslation permet de faire varier la phase d'un réseau (TLgrating@) d'une façon
+linéaire.
+ Sa propriété Speed@ est la vitesse de variation de la phase du réseau exprimée en degrés par seconde.
+
+}
+  Tmsequence(Trevcor)
+
+  TdenseNoise(TrevCor)
+
+{$H TdenseNoise permet de créer une stimulation de type Bruit blanc.
+}
+  TMnoise(Trevcor)
+
+  Ttrajectory(TonOff)
+{$H Ttrajectory permet d'animer un objet en établissant à l'avance fixant établissant une liste de points de coordonnées (x,y) .
+
+ Si l'objet visuel animé est défini avec setVisualObject@ , les propriétés x@ et y@ de
+l'objet prendront successivement, à chaque trame, les valeurs contenues dans la liste.
+
+ Si l'objet visuel animé est défini avec setBMObject@ , les propriétés x0@(TVSbitmap_x0) et
+y0@(TVSbitmap_y0) de l'objet prendront successivement, à chaque trame, les valeurs contenues dans la liste.
+
+ Pour construire la liste de points, on utilise AddPoint@.
+ On peut vider la liste avec clear@ .
+
+}
+  TVSgrid(Tresizable)
+
+  TVSmovie(TonOff)
+
+  TVSgraph(TvisualObject)
+{$H Objet permettant de dessiner directement sur l'écran de stimulation ou sur l'écran de contrôle.
+
+ Cet objet n'est pas utilisable pendant les animations.
+ Il permet seulement de dessiner des repères (lignes, symboles, etc..) en dehors de l'animation
+proprement dite.
+
+ Il n'est pas utilisable avec la version DX9
+
+ Voici un exemple d'utilisation:
+
+ @f6
+ @f6 procedure DisplayGraph;
+ @f6 var
+ @f6   i:integer;
+ @f6 const
+ @f6   N=5;
+ @f6   R=10;
+ @f6 begin
+ @f6   with VisualStim do
+ @f6   begin
+ @f6     VSpenColor:=cl_yellow;
+ @f6     VSpenLum:=50;
+ @f6
+ @f6     VSmoveto(R,0);
+ @f6     for i:=1 to N do
+ @f6       VSlineto(R*cos(2*pi/N*i),R*sin(2*pi/N*i));
+ @f6   end;
+ @f6 end;
+ @f6
+ @f6 procedure ShowVSgraph;
+ @f6 begin
+ @f6   VSgraph.create;
+ @f6   VSgraph.OnPaint:=DisplayGraph;
+ @f6   VSgraph.onScreen:=true;
+ @f6   VSgraph.onControl:=true;
+ @f6 end;
+
+}
+
+  TPlayGrid(TonOff)
+
+  TVSstream(TonOff)
+{$H TVSstream permet de présenter une suite d'images dans le stimulateur visuel.
+
+ VSstream sera toujours associé à un objet TVSbitmap avec setVisualObject@
+ En ajustant les propriétés de VSbitmap ,(x@(TVSbitmap.x) , y@(TVSbitmap.y) , dx@(TVSbitmap.dx) , dy@(TVSbitmap.dy) , theta@(TVSbitmap.theta) ,
+imageWidth@(TVSbitmap.imageWidth) ,imageHeight@(TVSbitmap.imageWidth) ) , on fixe la zone d'affichage.
+
+ DtON@ indiquera la période de rafraichissement
+ CycleCount@ précisera le nombre d'images présentées.
+
+ Quand les images sont dans des fichiers BMP, JPEG ou PNG, la liste d'images peut être construite en utilisant AddImage@ et ClearImages@,
+mais il est plus efficace de construire un fichier de Textures (avec TtextureFile@ ) et d'utiliser InstallTextureFile@ .
+De cette façon, toutes les images seront rassemblées dans un seul fichier et seront sous un format immédiatement utilisable
+pour l'anaimation.
+
+ Si les images sont dans un objet TOIseq@ , on peut aussi utiliser InstallOIseq@ .
+
+ Actuellement, les images doivent contenir des nombres compris entre 0 et 255.
+ L'intervalle des luminances correspondantes peut être fixé avec setLminLmax@ .
+
+}
+
+  TtextureFile(Tobject)
+{$H  L'objet TextureFile permet de gérer la création d'un fichier de textures
+destinées au stimulateur visuel.
+
+ Les textures utilisées sont des images monochromes et peuvent être représentées par de simples tableaux de nombres.
+
+ Les fichiers de textures ont la structure la plus simple possible afin de permettre
+un chargement rapide en mémoire. Ils sont formés d'un header de taille fixe suivi par une sucession de tableaux
+de nombres à deux dimensions. Ces tableaux ont tous la même taille.
+
+ Le header contient essentiellement les dimensions et le type des tableaux de nombres
+ En pascal, sa déclaration est la suivante:
+ @prog
+ Theader = record
+             ident: string[13];    // 14 bytes
+             mySize:integer;       // 4 bytes
+             Nx: integer;          // Nombre de points par ligne  4 bytes
+             Ny: integer;          // Nombre de lignes  4 bytes
+             tpNum: byte;          // type numérique    1 byte
+           end;
+ @notprog
+ ident est une chaine Pascal contenant 'Elphy Texture'. Cette chaîne occupe 14 octets. Le premier octet contient la longueur de
+la chaîne (13). Il est suivi des 13 caractères de la chaîne.
+ mySize contient la taille de Theader (soit 27). Ce champ serait utile en cas d'ajout d'informations dans le header.
+ tpNum peut actuellement contenir
+   0 = BYTE
+   5 = SINGLE
+   7 = DOUBLE
+
+ Après le header, viennent les textures proprement dites.
+ Chaque texture est stockée ligne par ligne.
+ Une texture occupe
+   Nx*Ny octets pour le type byte
+   Nx*Ny*4 octets pour le type SINGLE
+   Nx*Ny*8 octets pour le type DOUBLE
+
+
+ Pour ouvrir un fichier de textures, on appelle CreateFile@ ou bien Append@ .
+ Ensuite, on range une nouvelle texture dans le fichier avec WriteImage@ ou bien WriteMatrix@
+
+ WriteImage@ permet d'utiliser des fichiers au format BMP, JPEG ou PNG
+ WriteMatrix@ permet d'utiliser des matrices.
+ Close@ ferme le fichier.
+}
+
+  TVSmotionCloud(TonOff)
+{$H TVSmotionCloud est la version stimulateur visuel  de TmotionCloud@
+
+ On utilise les possibilités des cartes NVIDIA à travers la programmation CUDA .
+
+ Avec Init@, on fixe les dimensions de l'image utilisée (la texture) (choisir 256 ou 512) , le seed du générateur de nombres aléatoires
+et le paramètre temporel ss .
+
+ Un filtre spatial peut être installé avec InstallGaborFilter@ , InstallMaternFilter@ ou installFilter@ .
+
+ La propriété PolarMode@ permet d'installer la conversion Cartesian To polar
+
+ SetExpansion@ permet de montrer un motion cloud en expansion.
+
+ SetGainOffset@ permet de corriger éventuellement l'échelle de luminance.
+
+ TVSmotionCloud est un descendant de TonOff@ , il faut l'associer à un objet visuel de type TVSbitmap@
+avec setVisualObject@ . En effet, à chaque rafraichissement, la texture sera plaquée sur l'objet VSbitmap,
+puis cet objet sera affiché sur l'écran.
+
+ Il faut donc dimensionner et positionner correctement l'objet VSbitmap.
+ Il est même possible d'appliquer un mouvement ( translation, rotation...) au VSbitmap
+
+ Le paramètre DtON@ permet de fixer la fréquence de rafraichissement. Pour obtenir, la vitesse
+maximale, on peut choisir DtON:= VisualStim.Tframe;
+ Le paramètre CycleCOunt@ permet de fixer la durée de stimulation.
+
+ La méthode (Tvisualstim.animate)@ se charge de l'affichage du stimulus.
+
+ getFrame@ permet de récupérer une image dans une matrice.
+
+}
+
+TVStransform(TOnOff)
+{$H TVStransform est l'objet de base qui permet de définir les propriétés et méthodes communes aux transformations Bitmap-Bitmap .
+
+ Ces transformations sont construites en général avec des routines CUDA.
+
+ Actuellement (janvier 2016), les objets descendants de TVStransform sont:
+        TVSpolarToCart@
+        TVSwave@
+        TVSBlt@
+        TVSsmooth@
+
+ Les méthodes setSource@ et setDestination@ permettent de définir le bitmap source et le bitmap destination (objets TVSbitmap@)
+ Quand la source ou la destination n'est pas définie, c'est tout l'écran de stimulation qui est pris par défaut.
+ Signalons que setVisualObject@, méthode hérité de TonOff@ a le même effet que setDestination.
+
+ Les objets descendant de TVStransform se comportent comme tous les stimuli : il faut fixer les propriétés DtON@ et StartTime@.
+ En général, DtOff@ , CycleCount@ ou Pause@ ne sont pas gérés.
+ La méthode (visualstim.animate)@(visualstim.animate) gère les transformations
+
+ La méthode Execute@ permet d'exécuter "manuellement" une transformation. Ceci est très utile pour les tests.
+
+}
+TVSpolarToCart(TVStransform)
+{$H 
+ Passage des coordonnées cartésiennes aux coordonnées polaires.
+}
+TVSwave(TVStransform)
+
+TVSBlt(TVStransform)
+
+TVSsmooth(TVStransform)
+{$H
+}
+
+
+end;
+
+
+                         { TvisualStim stmVS0 }
+
+function visualStim:TvisualStim;
+{$H visualStim est l'unique objet de type TvisualStim@ qui permet de commander
+le système de stimulation visuelle.
+}
+property Tsystem.RFsys(n:integer):TRF readOnly;
+{$H RFsys désigne les champs récepteurs du système de stimulation visuelle.
+
+ Il y a cinq objets permanents de type TRF@. Donc n doit être compris entre 1 et 5.
+}
+function ACleft:Tmark;
+{$H ACleft signifie Left Aera Centralis. C'est un objet de type Tmark@ destiné
+au repérage d'un point particulier dans le système de stimulation visuelle.
+
+ Voir ACright@ .
+}
+function ACright:Tmark;
+{$H ACright signifie Right Aera Centralis. C'est un objet de type Tmark@ destiné
+au repérage d'un point particulier dans le système de stimulation visuelle.
+
+ Voir ACleft@ .
+}
+
+procedure TvisualStim.AnimateSeq(num:integer);
+{$H Lance la stimulation visuelle.
+
+ Le paramètre num étant actuellement inutile, il est préférable d'utiliser Animate@
+qui a le même effet.
+}
+procedure TvisualStim.Animate;
+procedure TvisualStim.Animate(var f: TobjectFile);
+procedure TvisualStim.Animate(delayMS: integer);
+procedure TvisualStim.Animate(delayMS: integer; var f: TobjectFile );
+{$H Lance la stimulation visuelle.
+
+ Pour créer une stimulation visuelle, on crée d'abord des stimuli (decendants de Tstm@) agissant
+sur des objets visuels (descendants de Tresizable@ )
+
+ Une fois que tous les paramètres de ces objets sont en place, il suffit d'appeler Animate.
+
+ Animate lance également l'acquisition d'un épisode dont la durée englobe tous les stimulis qui ont été programmés.
+ Dans les variantes 2 et 4, les objets ayant participé à la stimulation visuelle seront
+sauvés dans le fichier d'objets f. Cette sauvegarde se fait indépendamment de la sauvegarde dans
+le fichier de data. C'est une option destinée aux utilisateurs du stimulateur visuel n'utilisant pas de carte d'acquisition.
+
+ Si le paramètre delayMS est présent, la stimulation démarre après une attente qui dure delayMS millisecondes.
+ Pendant cette attente, le bouton STOP est actif et on peut interrompre la stimulation à tout moment.
+}
+
+procedure TvisualStim.InitAcqParams;
+{$H Initialise les paramètres d'acquisition.
+
+ Dans Elphy, la stimulation visuelle est couplée à l'acquisition de données.
+ Une fois que tous les objets participant à la stimulation visuelle sont créés et convenablement
+paramètrés, les paramètres temporels d'acquisition (en particulier la durée de l'épisode)
+peuvent être initialisés automatiquement.
+ Cette initialisation se fait en général quand on appelle Animate@ . Toutefois, il y a des cas
+où l'on souhaite faire cette initialisation afin de connaitre les paramètres d'acquisition avant
+l'appel de Animate@] .
+ Pour cela, il suffit d'appeler InitAcqParams.
+
+
+}
+
+function TvisualStim.OpenDataFile:boolean;
+{$H Ouvre un dialogue qui permet à l'utilisateur de saisir le nom du fichier de données.
+
+ Le dialogue tient compte du nom générique de fichier indiqué dans la rubrique Acquisition/Parameters.
+
+ La fonction renvoie True si l'utilisateur a appuyé sur le bouton OK du dialogue.
+
+ Si l'utilisateur a choisi un fichier existant, ce fichier sera détruit.
+
+ Les données enregistrées pendant les appels ultérieurs à Animate@ seront sauvées dans le
+fichier.
+ Le format du fichier est le format de données Elphy .
+
+ La structure habituelle d'un programme d'animation avec sauvegarde des données acquises sera:
+
+ @f6 if visualStim.openDataFile then
+ @f6 begin
+ @f6   for i:=1 to 10 do
+ @f6   begin
+ @f6     ...
+ @f6     (* modifier les paramètres des stimulations *)
+ @f6     visualStim.animate;
+ @f6   end;
+ @f6 end;
+
+}
+function TvisualStim.AppendDataFile:boolean;
+{$H Ouvre un dialogue qui permet à l'utilisateur de saisir le nom d'un fichier de données existant.
+
+ La fonction renvoie True si l'utilisateur a appuyé sur le bouton OK du dialogue.
+
+ Les données enregistrées pendant les appels ultérieurs à Animate@ seront sauvées à la fin du
+fichier.
+  Le fichier doit être au format de données Elphy.
+}
+
+function TvisualStim.abortStim:boolean;
+{$H La fonction renvoie True si l'utilisateur a appuyé sur la touche F12 pendant l'animation.
+
+ L'appui sur cette touche a pour effet d'interrompre immédiatement l'animation ( ce qui
+n'est pas recommandé ).
+}
+property TvisualStim.StopStim:boolean;
+{$H La fonction renvoie True si l'utilisateur a appuyé sur la touche 'S' pendant l'animation.
+
+}
+
+property TvisualStim.TrackingPoint(num:Integer):integer;
+{$H Indique le point traçant sur l'écran de contrôle.
+
+ Dans le système, un objet visuel au plus a sa propriété Tracked@(Tresizable.tracked) à TRUE.
+
+ Pendant l'animation, cet objet particulier a la possibilité d'inscrire une marque sur l'écran de contrôle
+à chaque fois qu'un événement a été détecté .
+
+ Le point de l'objet générant la marque est défini par la valeur de TrackingPoint.
+ Cette valeur est comprise entre 1 et 9, et chacune de ces 9 possibiltés correspond
+aux positions suivantes:
+
+  @(@ d:\delphe5\trackPoint.bmp)
+
+ Il y a deux voies de détection possibles. Num représente le numéro de la voie (1 ou 2) .
+}
+property TvisualStim.TrackShift(num:Integer):integer;
+{$H Décalage des marques de l'objet marqueur.
+
+ Num est le numéro de la voie de détection.
+
+ Si, par exemple, une barre effectue un mouvement d'aller-retour sur l'écran, et
+si cette barre affiche des marques en son centre (ou un autre point), les marques du retour risquent
+de s'afficher sur les marques de l'aller.
+ Pour éviter cet inconvénient, on peut décaler légèrement les marques du retour vers la
+gauche ou vers la droite de la trajectoire en donnant à TrackShift une valeur non nulle.
+
+ TrackShift est exprimé en pixels.
+}
+property TvisualStim.TrackColor(num:Integer):longint;
+{$H Couleur des marques pour la voie de détection Num.
+
+ Num peut valoir 1 ou 2.
+}
+
+property TvisualStim.PeriodPerChannel:real;
+{$H Période par voie de l'acquisition en millisecondes.
+
+ Quand on programme une stimulation visuelle avec acquisition simultanée, certains paramètres du dialogue
+Acquisition/Paramètres sont imposés automatiquement, d'autres ne sont pas utilisés.
+
+ En particulier, les paramètres (acquisition.SamplesperChannel)@(Tacquisition.SamplesperChannel) et
+(Acquisition.EpDuration)@(Tacquisition.SamplesperChannel) ne sont pas utilisés.
+ En effet, la durée de l'épisode est déterminée par l'ensemble des stimuli actifs alors que le nombre
+de points de l'épisode est déterminé par VisualStim.PeriodPerChannel .
+
+
+}
+
+property TvisualStim.ErrorCount:longint readOnly;
+{$H Renvoie le nombre d'erreurs produites pendant une stimulation visuelle.
+
+ Il s'agit des erreurs de timing dans la succession d'images de la stimulation visuelle.
+ Une erreur se produit quand le logiciel ne parvient pas à afficher une image en temps voulu.
+
+ Pour détecter ces erreurs, on utilise des marques de synchronisation incrustées dans chaque image.
+Ces marques sont simplement des demi-lignes bleues situées en haut de l'écran. On place une
+marque une image sur deux dans le déroulement de la stimulation. Ces marques génèrent des
+impulsions qui sont détectées par le système d'acquisition.
+ Quand tout se passe bien, le système d'acquisition reçoit des impulsions régulièrement espacées
+comme ci-dessous:
+
+  @(@ d:\delphe5\TopControl.bmp)
+
+  Si, une erreur se produit, la même image est sortie deux fois de suite sur l'écran et on trouvera un
+intervalle entre deux impulsions soit trop grand, soit trop court comme ci-dessous:
+
+  @(@ d:\delphe5\TopControlError.bmp)
+
+  On dispose donc d'un moyen infailible pour détecter les erreurs de timing.
+
+}
+property TvisualStim.ErrorPos(n:longint):real readOnly;
+{$H Renvoie la position de la nième erreur en millisecondes.
+
+
+}
+
+property TvisualStim.ExtraTime:real;
+{$H Détermine la durée de stimulation visuelle supplémentaire.
+
+ Cette propriété permet d'allonger artificiellement la durée de la stimulation visuelle,
+et par conséquent, la durée de l'acquisition de données.
+
+ En effet, la fin de la stimulation visuelle est déterminée par la fin du dernier stimulus
+visuel actif, et souvent, on souhaitera enregistrer des données après la fin de ce dernier stimulus.
+
+ ExtraTime est exprimé en secondes.
+
+}
+procedure TvisualStim.DisableStims;
+{$H Désactive tous les stimulus visuels du système.
+
+ Tous les stimuli visuels (descendants de Tstm@) on une propriété booléenne appelée
+Active@(Tstm.active).
+ Quand Active vaut true (valeur par défaut) , la méthode Animate@ inclut le stimulus dans
+l'animation.
+
+ DisableStims met à False la propriété Active de tous les stimuli
+}
+
+property TvisualStim.DetChannel(num:Integer):integer;
+{$H Détermine la voie d'acquisition sur laquelle on détecte les événements pour
+les marques de numéro num.
+
+ Il y a deux séries de marques (num=1) et (num=2).
+
+ On donne à detChannel un numéro de voie logique (de 1 à Acquisition.channelCount)
+}
+property TvisualStim.TrackThreshold(num:Integer):real;
+{$H Détermine le seuil de détection pour les marques num.
+
+ num vaut 1 ou 2.
+
+ Le seuil est absolu. Il est exprimé dans les unités de la voie analogique associée
+aux marques num
+}
+property TvisualStim.TrackDetectMode(num:Integer):integer;
+{$H Détermine le Mode de détection pour les marques num.
+
+ num vaut 1 ou 2.
+
+ Actuellement, les valeurs possibles sont:
+   0 : détection du franchissement du seuil de bas en haut .
+   1 : détection du franchissement du seuil de haut en bas .
+}
+
+property TvisualStim.Tframe:real;
+{$H Période de rafraichissement de l'écran exprimée en secondes
+
+ En général, on se contente de lire la valeur de Tframe. On obtient alors la
+valeur qui a été mesurée avec précision dans le menu système du stimulateur visuel.
+
+ Un programme peut aussi modifier temporairement cette valeur afin de réaliser un simulation avec
+BuildSim@ . L'appel de BuildSim remet la valeur initiale dans Tframe après la simulation.
+
+ Si on modifie Tframe, cette modification doit être faite avant la programmation des
+stimuli.
+}
+
+property TvisualStim.OnStartAnimate1:Tprocedure;
+{$H Gestionnaire d'événement appelé immédiatement avant le départ de l'acquisition
+
+ Voir aussi OnstartAnimate2@
+
+ Le gestionnaire a été introduit pour tester une entrée du système d'acquisition juste avant
+la stimulation visuelle. Il est donc possible de retarder le départ de la stimulation visuelle
+en fonction de l'état de cette entrée.
+
+ OnStartAnimate1 est situé AVANT la programmation de la carte d'acquisition
+ OnStartAnimate2 est situé APRES la programmation de la carte d'acquisition
+
+ OnStartAnimate2 est donc en principe plus précis que OnStartAnimate1 mais il faut
+que le test d'une entrée asynchrone soit possible alors que la carte est déja programmée
+pour le mode synchronisé.
+
+}
+
+property TvisualStim.OnStartAnimate2:Tprocedure;
+{$H Gestionnaire d'événement appelé immédiatement avant le départ de l'acquisition
+
+  Voir aussi OnstartAnimate1@
+}
+
+procedure TvisualStim.TestStopStim;
+{$H Test le bouton 'Stop' pendant l'attente du démarrage d'une stimulation visuelle.
+
+ Ne doit être utilisé que dans OnStartAnimate1@ ou OnStartAnimate2@
+}
+
+
+Procedure TvisualStim.BuildSim(var Smask:Tmatrix;var Xpos,Ypos:Tvector;Nx,Ny:integer;var Mlist:TmatList);
+Procedure TvisualStim.BuildSim(x1,y1,x2,y2: integer;var Mlist:TmatList; LumValues:boolean);
+Procedure TvisualStim.BuildSim(x,y,Dx,Dy: real; var Mlist:TmatList; LumValues:boolean);
+Procedure TvisualStim.BuildSim(x1,y1,x2,y2: integer;stTex: string; LumValues:boolean);
+Procedure TvisualStim.BuildSim(x,y,Dx,Dy: real;stTex: string; LumValues:boolean);
+
+
+{$H Construit une simulation
+
+ @b Variante 1 @notb :
+ Smask est une matrice construite avec Trevcor.BuildSimMask@(Trevcor_BuildSimMask)
+ Xpos et Ypos sont deux vecteurs contenant les positions des points de la grille.
+ Nx et Ny sont les dimensions de la grille de simulation
+
+ Pour effectuer une simulation, on programme des stimuli de la façon habituelle
+puis, au lieu d'appeler Animate@ , on appelle BuildSim@ .
+
+ Les images successives ne sont pas affichées mais sont construites de façon interne
+et comprimées dans des matrices de dimensions (Nx,Ny) . Dans ces matrices,
+chaque élément contient la luminance moyenne d'une case de la grille de stimulation.
+
+ En sortie, la liste de matrices est dans Mlist de type TmatList@ .
+
+ @b Variante 2 @notb :
+ x1, y1, x2, y2 sont les coordonnées en pixels d'un rectangle contenu dans l'écran de stimulation.
+ Pour chaque image, la valeur de chaque pixel de ce rectangle sera rangée dans une matrice.
+ Si LumValues vaut true, la matrice contiendra des luminances, sinon elle contiendra la valeur du pixel.
+
+ @b Variante 3 @notb :
+ Identique à la variante 2 mais les coordonnées du rectangle sont données en cm (ou degrés visuels) en
+utilisant les conventions du stimulateur visuel: (x,y) est le centre du rectangle, (Dx,Dy) sont ses dimensions.
+ Si LumValues vaut true, la matrice contiendra des luminances, sinon elle contiendra la valeur du pixel.
+
+ @b Variante 4 @notb :
+ Identique à la variante 2 mais on range les matrices dans un Texture File de nom stf
+
+ @b Variante 5 @notb :
+ Identique à la variante 3 mais on range les matrices dans un Texture File de nom stf
+
+ @b Attention @notb : les variantes 2 et 3 (ou 4 et 5) ont des jeux de paramètres presque identiques (integer est remplacé par real).
+Il faut veiller à donner de bonnes indications au compilateur. Exemple:
+@prog
+  BuildSim( 0, 0, 10,10,Mlist,false);     // la variante 2 sera appelée (paramètres entiers)
+  BuildSim( 0, 0, 10.0,10.0,Mlist,false); // la variante 3 sera appelée (au moins un des paramètres est réel)
+@notprog
+
+}
+
+property TvisualStim.FsaveObjects:boolean;
+{$H Indique que les objets participant à la stimulation visuelle doivent
+être sauvés dans le fichier de données.
+
+ Vaut TRUE par défaut.
+}
+
+procedure TvisualStim.MatAddcos(var mat:Tmatrix;Amp,Periode,Phi,Orient:real);
+{$H Construit un réseau sinusoïdal dans la matrice.
+
+ Amp est l'amplitude
+ Periode est la période spatiale exprimée en cm ou degrés visuels
+ Phi est la phase exprimée en degrés
+ Orient est l'orientation exprimée en degrés
+
+}
+
+procedure TvisualStim.MatSetSize(var mat:Tmatrix;width,height:real);
+{$H Modifie les dimensions de la matrice mat ainsi que ses paramètres d'échelle.
+
+ width et height sont respectivement la largeur et la hauteur exprimées en degrés visuels
+(ou cm).
+
+ Les paramètres d'échelle sont modifiés afin que l'origine se trouve au centre de la matrice.
+
+ Le but de l'opération est de tranférer plus tard le contenu de la matrice dans un
+objet VSbitmap.
+}
+
+procedure TvisualStim.MatLumToPix(var mat:Tmatrix);
+{$H Convertit les données contenues dans la matrice (qui correspondent à des valeurs de luminance)
+en valeurs de pixel.
+
+  On utilise la courbe d'étalonnage chargée dans le stimulateur visuel pour faire la conversion.
+
+  On peut ensuite tranférer le contenu de la matrice dans un objet VSbitmap.
+
+}
+procedure TvisualStim.MatPixToLum(var mat:Tmatrix);
+{$H Convertit les données contenues dans la matrice en valeurs de luminances.
+
+ On suppose que la matrice contient des valeurs comprises entre 0 et 254
+
+ On utilise la courbe d'étalonnage chargée dans le stimulateur visuel pour faire la conversion.
+
+
+}
+
+procedure TvisualStim.show;
+{$H Montre le panneau de contrôle du stimulateur visuel.
+}
+procedure TvisualStim.Hide;
+{$H Cache le panneau de contrôle du stimulateur visuel.
+}
+
+procedure TVisualStim.VSlineto(x,y:real);
+{$H Dessine une ligne sur l'écran de stimulation visuelle entre le point courant
+et le point (x,y)
+
+   N'est pas utilisable avec la version DX9
+   x et y sont les coordonnées d'un point en unités réelles
+
+   (x,y) devient le nouveau point courant.
+
+   Voir aussi VSmoveto@ , VSpenLum@ , VSpenWidth@ et TVSgraph@
+}
+
+procedure TVisualStim.VSmoveto(x,y:real);
+{$H Place le point courant sur l'écran de stimulation visuelle en (x,y)
+
+   N'est pas utilisable avec la version DX9
+
+   x et y sont les coordonnées d'un point en unités réelles
+
+   Voir aussi VSlineto@ , VSpenLum@ , VSpenWidth@ et TVSgraph@
+}
+property TVisualStim.VSpenLum:real;
+{$H Luminance du tracé au crayon sur l'écran de stimulation visuelle.
+
+   Voir aussi VSlineto@ , VSmoveto@ , VSpenWidth@ et TVSgraph@
+}
+
+property TVisualStim.VSbrushLum:real;
+{$H Luminance de remplissage pour le tracé de polygones sur l'écran de stimulation visuelle.
+
+   Voir aussi VSpolygon@ , VSlineto@ , VSmoveto@ , VSpenWidth@ et TVSgraph@
+}
+property TVisualStim.VSpenWidth:integer;
+{$H Largeur du tracé au crayon sur l'écran de stimulation visuelle.
+
+   Voir aussi VSlineto@ , VSmoveto@ , VSpenLum@ et TVSgraph@
+}
+
+property TVisualStim.VSpenColor:integer;
+{$H Couleur du tracé au crayon sur l'écran de contrôle.
+
+   Voir aussi VSlineto@ , VSmoveto@ , VSpenLum@ et TVSgraph@
+}
+
+procedure TVisualStim.VSPolygon(var Vx,Vy: Tvector);
+{$H Dessine un polygône sur l'écran de stimulation visuelle.
+
+   N'est pas utilisable avec la version DX9
+   Vx et Vy contiennent les coordonnées des points du polygône en unités réelles
+
+
+   Voir aussi VSmoveto@ , Vlineto@ , VSpenLum@ , VSpenWidth@ et TVSgraph@
+}
+
+
+property TVisualStim.Vsynchro:Tvector readonly;
+{$H Désigne le vecteur choisi pour recevoir les tops synchro dans le stimulateur visuel.
+
+  Le choix se fait dans le dialogue Visual Stimulation /Acquisition /Parameters
+
+  Voir aussi Vcontrol@
+}
+property TVisualStim.Vcontrol:Tvector readonly;
+{$H Désigne le vecteur choisi pour recevoir les tops control dans le stimulateur visuel.
+
+  Le choix se fait dans le dialogue Visual Stimulation /Acquisition /Parameters
+  Voir aussi Vsynchro@
+}
+
+property TvisualStim.SyncDebugMode:boolean;
+{$H Installe un mode debug pour les signaux de synchronisation.
+
+ Dans ce mode, on génère un top synchro et un top contrôle à CHAQUE image.
+
+ A la fin de Animate@, ce mode est toujours désactivé.
+
+}
+
+property TvisualStim.ImmediateTrigger:boolean;
+{$H Désactive le trigger de la carte d'acquisition
+
+ Normalement, le trigger est du type digital , c'est à dire que l'acquisition
+démarre dés la réception d'une impulsion sur l'entrée digitale Trigger.
+ Cette impulsion est générée par la première image de la stimulation visuelle.
+
+ On peut désactiver le trigger pour certains tests.
+ ImmediateTrigger doit être à false en conditions normales.
+}
+
+procedure Tvisualstim.SetFakeData(num:integer;var vec:Tvector);
+{$H Installe un vecteur de données fabriquées.
+
+ num est le numéro de la voie d'acquisition.
+
+ Cette instruction est destinée à la mise au point en mode stimulation visuelle.
+ A la fin de la procédure Animate@ , la voie acquise de numéro num sera remplacée par le vecteur vec.
+
+ vec doit être de type t_smallint. Ses propriétés Istart et Iend doivent être égales à celles des voies d'acquisition
+(sans tenir compte du sous-échantillonnage).
+ Il faut appeler SetFakeData après InitAcqParams@ et avant Animate@ .
+
+
+}
+
+function TvisualStim.LumToPix(lum:real):integer;
+{$H Convertit un luminance en valeur de pixel
+
+ Dans le menu Visual Stimulation/System/Parameters, on a introduit une courbe d'étalonnage de l'écran utilisé.
+ L'axe horizontal contient des valeurs comprises entre 0 et 255 (les valeurs de pixel) et l'axe vertical contient les luminances vraies
+ Cette courbe établit la correspondance entre valeur de pixel et luminance.
+
+ En fait, dans les versions DX9, on a linéarisé la réponse de l'écran en utilisant le dispositif "Gamma Ramp" de la carte graphique
+et la relation pourrait s'écrire simplement Lum= G0*pix
+
+ Les relations LumToPix et PixToLum@ permettent les conversions pixel-luminance
+
+ Notez que les valeurs 254 et 255 sont réservées à la génération des tops synchro (luminance maximale)
+ 
+}
+
+function TvisualStim.PixToLum(pix:integer):real;
+{$H Convertit une valeur de pixel en luminance.
+
+ Voir LumToPix@
+}
+
+
+                               { Ttracks  stmVS0 }
+
+property Ttracks.count:integer;
+
+procedure Ttracks.addPoint(x,y:real;color:integer);
+procedure Ttracks.deletePoint(index:integer);
+
+property Ttracks.XP(n:integer):real;
+property Ttracks.YP(n:integer):real;
+property Ttracks.colorP(n:integer):integer;
+
+procedure Ttracks.clear;
+
+
+                               { TcontrolScreen  stmVS0 }
+
+property Tsystem.controlScreen:TcontrolScreen readOnly;
+{$H Désigne l'écran de contrôle dans le système de stimulation visuelle.
+
+ Cet écran de contrôle est l'unique objet de type TcontrolScreen.
+}
+
+procedure TcontrolScreen.clear;
+{$H Efface tous les objets de l'écran de contrôle.
+
+ Ceci revient à mettre la propriété OnControl@(TvisualObject.oncontrol) de tous
+les objets à false.
+}
+procedure TcontrolScreen.DisplayAll;
+{$H Affiche tous les objets visuels sur l'écran de contrôle.
+
+ Ceci revient à mettre la propriété OnControl@(TvisualObject.oncontrol) de tous
+les objets à true.
+}
+
+property TcontrolScreen.Tracks(n:integer):Ttracks readOnly;
+{$H Objets de type Ttracks@ représentant les ensembles de marques affichées sur l'écran
+
+ n peut valoir 1 ou 2
+
+}
+
+property TcontrolScreen.showTracks(n:integer):boolean;
+{$H Permet de montrer ou cacher les marques de numéro num
+
+ num vaut 1 ou 2.
+}
+procedure TcontrolScreen.ClearTracks(n:integer);
+{$H Efface les marques de numéro num.
+
+ num vaut 1 ou 2.
+
+ Le buffer contenant les marques est vidé.
+}
+
+function TcontrolScreen.Xmouse:real;
+{$H Renvoie l'abscisse de la souris sur l'écran de contrôle.
+
+ Cette abscisse est exprimée en degrés visuels.
+ Rappelons que l'origine est au centre de l'écran.
+}
+function TcontrolScreen.Ymouse:real;
+{$H Renvoie l'ordonnée de la souris sur l'écran de contrôle.
+
+ Cette ordonnée est exprimée en degrés visuels.
+ Rappelons que l'origine est au centre de l'écran.
+}
+function TcontrolScreen.ShiftON:boolean;
+{$H Renvoie l'état de la touche SHIFT lors du dernier clic de la souris
+sur l'écran de contrôle.
+}
+function TcontrolScreen.CtrlON:boolean;
+{$H Renvoie l'état de la touche CTRL lors du dernier clic de la souris
+sur l'écran de contrôle.
+}
+function TcontrolScreen.AltON:boolean;
+{$H Renvoie l'état de la touche ALT lors du dernier clic de la souris
+sur l'écran de contrôle.
+}
+
+property TcontrolScreen.OnMrUp:Tprocedure;
+{$H Gestionnaire d'événement appelé quand on a cliqué sur l'écran de contrôle et
+que l'on relâche la souris.
+}
+
+property TcontrolScreen.active:boolean;
+{$H Détermine l'état de l'écran de contrôle pendant l'animation.
+ Si Active vaut True, l'animation sera visible sur l'écran de contrôle.
+}
+
+property TcontrolScreen.StopOnClick:boolean;
+{$H Si StopOnClick est vrai, la séquence de stimulation sera interrompue dés
+le premier clic de souris sur l'écran de contrôle.
+}
+
+procedure TcontrolScreen.refresh;
+{$H Réaffiche l'écran de contrôle.
+}
+
+                               { TstimScreen  stmVS0}
+
+property Tsystem.StimScreen:TstimScreen readOnly;
+{$H Objet de type TstimScreen@ permettant de manipuler l'écran de stimulation.
+
+}
+
+procedure TStimScreen.clear;
+{$H Efface tous les objets de l'écran en mettant leur propriété OnScreen@(TvisualObject_onScreen)
+à false.
+
+  DisplayAll@ a l'effet inverse
+}
+procedure TStimScreen.DisplayAll;
+{$H Affiche tous les objets visuels en mettant leur propriété OnScreen@(TvisualObject_onScreen)
+à true.
+
+  Clear@ a l'effet inverse
+}
+property TstimScreen.BackGroundLum:real;
+{$H Définit la luminance du fond de l'écran de stimulation ( en Cd/m² ) .
+}
+property TstimScreen.active:boolean;
+{$H Pendant une animation, rend les objets visibles sur l'écran de stimulation
+
+ Cette propriété vaut TRUE par défaut.
+
+ Elle correspond à l'enfoncement du bouton Stim de la fenêtre de contrôle.
+
+}
+
+property TstimScreen.ColorIndexMode:boolean;
+{$H Permet de travailler avec des index de couleur plutôt qu'avec des luminances.
+
+ Sert pour l'étalonnage.
+}
+
+property TstimScreen.UseGammaRamp:boolean;
+{$H Permet d'utiliser la calibration GammaRamp de la carte graphique.
+
+ En mode DX9, cete propriété est toujours vraie par défaut.
+}
+
+
+procedure TstimScreen.SetSyncLine(Fsync,Fcont:boolean);
+{$H Permet d'allumer ou d'éteindre les lignes générant les tops SYNCHRO et CONTROLE.
+
+ Si Fsync=True, on allume une demi-ligne bleue en haut de l'écran.
+ Si Fcont=True, on allume une demi-ligne rouge en haut de l'écran.
+
+ Cette méthode sert uniquement aux tests et à la mise au point du système.
+ Elle ne fonctionne que lorsque les signaux de synchronisation sont générés en utilisant les composantes
+Rouge et Bleue du signal vga.
+}
+
+property TstimScreen.height:real readOnly;
+{$H Renvoie la hauteur de l'écran de stimulation en unités réelles (cm ou degrés visuels).
+
+ Dans le menu système du stimulateur visuel, l'utilisateur introduit deux paramètres
+ - la hauteur H0 de l'écran en cm
+ - la distance D0 entre l'écran et l'observateur en cm
+
+ Height est donnée par la formule Height= (H0/D0) * (180/PI)
+ H0/D0 est approximativement l'angle en radians sous lequel on voit la hauteur de l'écran
+et 180/pi est le facteur permettant la conversion de radians en degrés.
+
+ Si D0=57.3 cm , on a D0 = 180/PI et Height = H0 . La hauteur exprimée en degrés visuels
+coïncide avec la hauteur exprimée en cm.
+
+ Si D0 ne vaut pas 57.3 cm, Height désigne toujours la hauteur exprimée en degrés visuels
+mais c'est une valeur différente de la hauteur exprimée en cm.
+}
+
+property TstimScreen.width:real readOnly;
+{$H Renvoie la hauteur  de l'écran exprimée en unités réelles (cm ou degrés visuels).
+
+ Le rapport d'aspect R est donné par le rapport des dimensions de l'écran en pixels
+
+ Width est donc déduite de Height par la relation width = height * R
+
+ Voir Height@
+}
+
+property TstimScreen.PixHeight:integer readOnly;
+{$H Renvoie la hauteur de l'écran de stimulation en pixels.
+
+ Voir aussi Height@
+}
+
+property TstimScreen.PixWidth:integer readOnly;
+{$H Renvoie la hauteur  de l'écran exprimée en pixels.
+
+ On considère que le rapport d'aspect de l'écran est toujours 4/3 .
+
+ Width est donc déduite de Height par la relation width = height * 4/3
+
+ Voir aussi Width@
+}
+
+procedure TstimScreen.refresh;
+
+
+                               { TvisualObject stmObv0 }
+property  TvisualObject.onScreen:boolean;
+property  TvisualObject.onControl:boolean;
+
+procedure TvisualObject.alignOnObject(p:TvisualObject;numO,num:integer);
+
+
+function  TvisualObject.selected:boolean;
+
+
+                              { Tresizable stmObv0 }
+property  Tresizable.tracked:boolean;
+{$H Si tracked vaut True, des points lumineux sont affichés sur l'écran de contrôle, sur la trajectoire
+de l'objet.
+
+ Chaque point correspond à la détection d'un événement sur une voie d'acquisition.
+}
+property  Tresizable.x:real;
+{$H Abscisse de l'objet en degrés visuels ou cm
+
+  Sur l'écran de stimulation, l'origine est au centre de l'écran.
+}
+
+property  Tresizable.y:real;
+{$H Ordonnée de l'objet en degrés visuels ou cm
+
+  Sur l'écran de stimulation, l'origine est au centre de l'écran.
+}
+
+property  Tresizable.dx:real;
+{$H Dimension horizontale de l'objet quand theta@ = 0
+
+Cette valeur est exprimée en degrés visuels ou cm.
+}
+
+property  Tresizable.dy:real;
+{$H Dimension verticale de l'objet quand theta@ = 0
+
+Cette valeur est exprimée en degrés visuels ou cm.
+}
+
+property  Tresizable.theta:real;
+{$H Orientation de l'objet
+
+  Par défaut, Theta=0 et ses dimensions horizontale et verticale sont respectivement dx@ et dy@
+  Quand theta augmente, l'objet tourne autour de son centre dans le sens trigonométrique (anti-horaire)
+
+  Cette valeur est exprimée en degrés.
+}
+
+
+property Tresizable.Lum:real;
+{$H Luminance de l'objet.
+
+ Quand on affecte cette valeur, le programme utilise la courbe d'étalonnage de l'écran pour affecter
+la bonne valeur aux pixels de l'objet.
+}
+
+property Tresizable.ControlColor:longint;
+{$H Couleur sur l'écran  de contrôle.
+}
+property Tresizable.RgbColor:longint;
+{$H Couleur rgb de l'objet visuel.
+
+ Dans la version DX9, il est possible d'imposer une couleur à l'objet.
+ Dans ce cas, on n'utilise plus la luminance lum.
+
+ RgbColor vaut -1 par défaut et dans ce cas, cette propriété est ignorée .
+ RgbColor est prise en compte après une affectation comme:
+
+ @f6 RgbColor:= rgb(255,0,0);
+
+
+}
+
+property Tresizable.BlendAlpha:real;
+{$H Facteur de transparence de l'objet
+
+ Version DX9 uniquement
+
+ Sa valeur par défaut est 1. Elle doit être fixée entre 0 et 1 .
+
+
+}
+property Tresizable.Zdistance: smallint;
+{$H Paramètre de profondeur de l'objet
+
+ Version DX9 uniquement.
+ Sa valeur par défaut est 0. Elle doit être fixée entre -32767 et 32768 .
+
+ Par défaut, tous les objets sont dans le même plan, à la même distance de l'observateur.
+ Comme les objets sont affichés dans l'odre de leur création, le premier créé se retrouve derrière les autres.
+
+ Pour changer cet ordre, on peut changer le paramètre Zdistance. Les objets avec une valeur de Zdistance
+élévée seront derrière ceux qui ont une valeur plus faible.
+
+}
+
+
+procedure Tresizable.setParams(x,y,dx,dy,theta,lum:real);
+{$H Permet de modifier en une seule fois les propriétés x@, y@, dx@, dy@, theta@ et lum@
+}
+property  Tresizable.markedSide:integer;
+property  Tresizable.markedSideVisible:boolean;
+
+procedure Tresizable.saveToMat(var mat:Tmatrix);
+{$H Sauve l'objet dans une matrice en valeurs de luminances.
+}
+
+property  Tresizable.Dcolor:integer;
+property  Tresizable.DlineWidth:integer;
+property  Tresizable.Fmask:boolean;
+
+property Tresizable.UseContour:boolean;
+{$H Indique qu'il faut utiliser le contour défini par l'utilisateur.
+
+ Voir SetContour@ .
+}
+property Tresizable.RotateContour:boolean;
+{$H Sans effet dans la version DX9 (vaut toujours TRUE)
+
+ Indique que le contour défini par l'utilisateur doit tourner en fonction
+de la propriété Theta@ .
+
+ RotateContour vaut TRUE par défaut.
+ Voir SetContour@ .
+}
+property Tresizable.MagnifyContour:boolean;
+{$H Sans effet dans la version DX9 (vaut toujours TRUE)
+  Indique que le contour défini par l'utilisateur doit se dilater en fonction
+des propriétés Dx@ et Dy@ .
+
+ MagnifyContour vaut TRUE par défaut.
+ Voir SetContour@ .
+}
+
+procedure Tresizable.SetContour(var plot:TXYplot);
+procedure Tresizable.SetContour(var plot:TXYplot;mode: integer);
+
+{$H Définit un contour.
+
+  Plot doit contenir un ou plusieurs contours (des polylines)
+  Ensuite, si la propriété UseContour@ vaut TRUE, seules les régions de l'objet
+situées à l'intérieur de ces contours seront affichées.
+
+ La notion de contour a beaucoup évolué dans la version actuelle.
+ Quand le paramètre mode est omis, les polylines de l'objet plot doivent contenir une
+courbe fermée, mais cette méthode ne marche bien que lorsque le contour est convexe.
+
+ Si on utilise le paramètre mode, il faut considérer que chaque polyline de N points contient une liste de
+primitives qui définissent la surface à afficher. Ces primitives dépendent du mode:
+
+ mode 1 = PointList : chaque point est affiché isolément (N points)
+ mode 2 = LineList : chaque couple de points défini un segment de droite isolé (N/2 sgments)
+ mode 3 = LineStrip: tous les couples de points consécutifs (N-1 segments)
+ mode 4 = TriangleList: chaque triplet définit un triangle isolé (N/3 triangles)
+ mode 5 = TriangleStrip: chaque groupe de trois points consécutifs définit un triangle (N-2 triangles)
+ mode 6 = TriangleFan: le premier point de la polyline est considéré comme un sommet commun à tous les triangles.
+Le premier triangle est formé par les points (1,2,3), le second est formé par (1,3,4), le troisième est (1,4,5),etc...
+On obtient (N-2) triangles
+
+ Quand on crée un contour, on doit considérer que la propriété Theta@ vaut zéro
+et il faut que les propriétés Dx@ et Dy@ soient correctement fixées.
+ Les coordonnées des points des contours sont relatives à une origine située au centre
+de l'objet, et sont exprimées en unités réelles (degrés visuels ou cm ).
+
+ Les propriétés RotateContour@ et MagnifyContour@ sont obsolètes.
+
+ Le contour tourne toujours avec l'objet
+ Il se dilate si on modifie Dx@ et Dy@ .
+
+
+}
+
+procedure Tresizable.AddMultiDisplay(x,y,dx,dy,theta: real);
+{$H Ajoute un affichage à la liste MultiDisplay
+
+ L'idée est la suivante: on a parfois besoin d'afficher le même objet plusieurs fois sur l'écran
+en changeant seulement la position (x@,y@), les dimensions (dx@, dy@) ou encore l'orientation theta@
+On peut évidemment déclarer plusieurs objets et les afficher simultanément mais il est plus efficace
+de déclarer un seul objet et d'appeler AddMultiDisplay pour chaque affichage supplémentaire.
+
+ Exemple:
+
+ @prog
+ var
+   bar: Tbar;
+
+ procedure test;
+ var
+   i:integer;
+ begin
+   bar.create ;
+   bar.setParams(0,0,1,10,0);
+   for i:=-5 to 5 do
+     if i<>0 then bar.AddMultiDisplay(i*2,0,1,10,0);
+   // on obtient en tout onze barres affichées côte à côte
+   bar.Onscreen:=true;
+ end;
+ @notprog
+
+ Si on applique ensuite un stimulus TOnOff à la barre, toutes les barres
+secondaires vont s'afficher ou s'effacer en même temps que la barre principale.
+ Si on modifie ensuite les coordonnées (x,y) de la barre principale, par exemple au moyen d'un stimulus Ttranslation, les coordonnées (x1,y1) des barres secondaires
+vont varier de la meme façon (en conservant x1-x et y1-y)
+  Par contre, les paramètres dx, dy et theta des barres secondaires ne varieront pas.
+
+ ResetMultiDisplay@ permet d'effacer la liste des affichages secondaires
+}
+procedure Tresizable.ResetMultiDisplay;
+{$H Efface le contenu de la liste multidisplay
+
+ Voir AddMultiDisplay@
+}
+
+property Tresizable.BlendOp:integer;
+{$H Précise l'opération de Alpha Blending pour les composantes RGB
+
+ Les valeurs possibles sont:
+   1:  Keep DEST
+   2:  COPY SRC
+   3:  Use ALPHA SRC
+   4:  Use ALPHA DEST
+   5:  MAX (SRC , DEST)
+   6:  MIN (SRC , DEST)
+
+
+}
+property Tresizable.BlendOpAlpha:integer;
+{$H Précise l'opération de Alpha Blending pour la composante ALPHA
+
+Les valeurs possibles sont:
+   1:  Keep DEST
+   2:  COPY SRC
+   3:  Use ALPHA SRC
+   4:  Use ALPHA DEST
+   5:  MAX (SRC , DEST)
+   6:  MIN (SRC , DEST)
+
+}
+
+                              { TVSline stmline0 }
+
+procedure TVSline.create;
+procedure TVSline.create(name:string);
+
+property TVSline.x0:real;
+property TVSline.y0:real;
+property TVSline.theta:real;
+
+
+                              { TRF stmObv0}
+procedure TRF.create;                              
+procedure TRF.create(name:string);
+
+                              { TBAR stmObv0}
+procedure Tbar.create;
+procedure Tbar.create(name:string);
+
+                              { TDisk stmObv0}
+procedure Tdisk.create;
+procedure Tdisk.create(name:string);
+
+                              {TLgrating gratDX1}
+procedure TLgrating.create;
+procedure TLgrating.create(name:string);
+property TLgrating.period:real;
+property TLgrating.phase:real;
+property TLgrating.contrast:real;
+property TLgrating.diameter:real;
+property TLgrating.elliptic:boolean;
+property TLgrating.orientation:real;
+property TLgrating.SquareWave:boolean;
+procedure TLgrating.CudaTest(n:integer);
+
+                              {TLgabor gratDX1}
+procedure TLgabor.create;
+procedure TLgabor.create(name:string);
+property TLgabor.Lx:real;
+property TLgabor.Ly:real;
+
+
+                              { TSTM StmMvtX1 }
+
+property Tstm.StartTime:real;
+property Tstm.active:boolean;
+
+procedure Tstm.setVisualObject(ob:Tresizable);
+
+procedure Tstm.setSyncPulse(time:real);
+{$H Place un pulse de synchronisation à l'instant Time.
+
+ Time est référencé par rapport au début du stimulus.
+}
+procedure Tstm.setCyclicSyncPulse(time:real);
+{$H Place un pulse de synchronisation à chaque cycle du stimulus.
+
+ Time est l'intervalle de temps entre le début du cycle et la position du pulse.
+
+ La durée d'un cycle étant égale à dtOn@ + dtOff@, time doit être compris entre 0
+et dtOn+dtOff .
+}
+procedure Tstm.setCyclicSyncPulse1(time,dtime:real);
+{$H Crée un pulse de synchronisation périodique.
+
+ Dtime est la période.
+ Time est l'intervalle de temps entre le début du stimulus et le début du premier pulse.
+
+}
+
+procedure Tstm.resetSyncPulse;
+
+
+
+                         { TonOff }
+procedure TonOff.create;
+procedure TonOff.create(name:string);
+
+property TonOff.CycleCount:integer;
+property TonOff.dtON:real;
+property TonOff.dtOff:real;
+property TonOff.Pause:real;
+
+                         { Ttranslation }
+procedure Ttranslation.create;
+procedure Ttranslation.create(name:string);
+
+property  Ttranslation.x0:real;
+property  Ttranslation.y0:real;
+property  Ttranslation.v0:real;
+property  Ttranslation.theta0:real;
+property  Ttranslation.orthogonal:boolean;
+property  Ttranslation.KeepInitialPos:boolean;
+property  Ttranslation.BackAndForth:boolean;
+
+procedure Ttranslation.setParam(v0,theta0:real;x0,y0:real);
+
+                         {TphaseTranslation PhaseTR1}
+procedure TphaseTranslation.create;
+procedure TphaseTranslation.create(name:string);
+property TphaseTranslation.speed:real;
+property TphaseTranslation.phase0:real;
+
+
+
+                         { TREVCOR }
+procedure TrevCor.create;
+procedure TrevCor.create(stName:string);
+{$H Constructeur de l'objet TRevcor.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+
+property Trevcor.divXcount:integer;
+{$H Nombre de divisions suivant X dans la grille.
+
+ Ce nombre ne tient pas compte du facteur d'expansion (voir expansion@ ).
+
+ Le nombre réel de divisions suivant X est donné par la fonction Xcount@ .
+}
+property Trevcor.divYcount:integer;
+{$H Nombre de divisions suivant Y dans la grille.
+
+ Ce nombre ne tient pas compte du facteur d'expansion (voir expansion@ ).
+
+ Le nombre réel de divisions suivant Y est donné par la fonction Ycount@ .
+}
+property Trevcor.lum1:real;
+{$H Luminance de la première barre.
+
+  Voir aussi lum2@ .
+}
+property Trevcor.lum2:real;
+{$H Luminance de la seconde barre.
+
+  Voir aussi lum1@ .
+}
+property Trevcor.expansion:integer;
+{$H Facteur d'expansion de la grille .
+
+ Ce facteur est exprimé en pourcentage de la valeur nominale. Sa valeur par défaut est 100.
+
+ L'utilisateur fixe les valeur nominales DivXcount@ et DivYcount@ qui déterminent le
+pavage du champ récepteur. Ensuite, les dimensions du rectangle exploré sont multipliées
+par le facteur d'expansion.
+
+ Les valeurs réelles Xcount@ et Ycount@ sont calculées à l'aide des
+formules suivantes:
+
+ @f6  Xcount = round(DivXCount * Expansion / 100);
+ @f6  Ycount = round(DivYCount * Expansion / 100);
+}
+property Trevcor.scotome:integer;
+{$H Le scotome détermine une région du champ récepteur qui ne sera pas explorée
+par le stimulus.
+
+ Cette région est un rectangle centré sur le champ récepteur
+ Le paramètre Scotome est exprimé en pourcentage des dimensions du champ récepteur.
+
+ Quand scotome=0, tout le champ récepteur est exploré.
+ Quand scotome=100, tout le champ récepteur est exclus de l'exploration (Dans ce
+cas, la périphérie peut être explorée si expansion>100).
+
+}
+
+property Trevcor.seed:integer;
+{$H La propriété Seed fixe la séquence pseudo-aléatoire d'exploration de la grille.
+
+ Pour un ensemble de paramètres [ DivXcount@, DivYcount@,expansion@,scotome@,seed@ ],
+la suite des positions explorées sera toujours la même.
+
+ Remarque: dans les premières versions de Elphy, ce paramètre était incrémenté
+automatiquement à chaque animation. Ceci n'est plus vrai actuellement.
+}
+property Trevcor.adjustObjectSize:boolean;
+{$H Si cette propriété vaut True, les dimensions de l'objet seront ajustées
+avant l'animation afin de le faire couvrir exactement un petit pavé de la grille.
+
+ Sinon, l'objet gardera ses dimensions actuelles.
+
+}
+
+property  Trevcor.RFx:real;
+{$H Position X de la grille.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+property  Trevcor.RFy:real;
+{$H Position Y de la grille.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+property  Trevcor.RFdx:real;
+{$H Dimension X de la grille nominale (sans tenir compte de expansion).
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+property  Trevcor.RFdy:real;
+{$H Dimension Y de la grille nominale (sans tenir compte de expansion).
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+property  Trevcor.RFtheta:real;
+{$H Orientation de la grille en degrés.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+function Trevcor.Xcount:integer;
+{$H Nombre réel de divisions X de la grille.
+
+ Ce nombre est égal DivXcount@ si expansion=100. Sinon, il est donné par la formule:
+
+ @f6  Xcount = round(DivXCount * Expansion / 100);
+}
+function Trevcor.Ycount:integer;
+{$H Nombre réel de divisions Y de la grille.
+
+ Ce nombre est égal DivYcount@ si expansion=100. Sinon, il est donné par la formule:
+
+ @f6  Ycount = round(DivYCount * Expansion / 100);
+}
+
+procedure Trevcor.updateSequence;
+
+procedure Trevcor.setRF(num:integer);
+{$H Permet de positionner et dimensionnner la grille.
+
+ Num est le numéro du champ récepteur RFsys que l'on veut prendre pour modèle.
+
+ L'appel de cette procédure est équivalent à la suite d'instructions:
+
+ @f6 RFx:=RFsys[num].x;
+ @f6 RFy:=RFsys[num].y;
+ @f6 RFdx:=RFsys[num].dx;
+ @f6 RFdy:=RFsys[num].dy;
+ @f6 RFtheta:=RFsys[num].theta;
+
+}
+procedure Trevcor.installStimSeq(seed,nbDivX,nbDivY,expansion,scotome:integer);
+{$H Installation des paramètres décrivant la séquence de stimulation
+
+ Seed est la valeur d'initialisation de la séquence pseudo-aléatoire.
+
+ NbDivX et NbDivY sont les nombres de divisions suivant chaque axe de la grille de base.
+ La grille réelle utilisée dépend des paramètres expansion et scotome.
+
+ Expansion est un facteur multiplicatif (exprimé en pourcentage) appliqué aux dimensions
+de la grille de base. 100 signifie que la grille réelle est égale à la grille de base.
+200 signifie que les dimensions ont été multipliées par 2, etc..
+
+ Scotome définit une zone au centre de la grille exclue de la stimulation. La valeur
+zéro signifie qu'il n'y a pas de scotome, 100 signifierait que toute la grille est
+exclue.
+
+ Cette méthode peut être appelée pour préparer une stimulation ou bien pour
+préparer l'analyse d'un vecteur.
+
+ Il reviendrait au même d'affecter chacune des propriétés seed@ ,DivXcount@ ,DivYcount@ ,
+expansion@ ,scotome@ puis d'appeler UpdateSequence@ .
+}
+function Trevcor.installTimes(var vecEvt:Tvector;dx:real): boolean;
+function Trevcor.installTimes(var vecEvt:Tvector;dx:real; NoError: boolean): boolean;
+
+{$H Installation des dates de stimulation.
+
+ Cette méthode doit être appelée pour préparer l'analyse d'un vecteur.
+
+ VecEvt doit être un vecteur d'événements contenant les tops synchro de la séquence
+de corrélation.
+
+ Dx doit être égal à l'intervalle d'échantillonnage du vecteur d'événements. Si VecEvt
+a été obtenu à partir d'un objet Tdetect@, il suffit d'écrire:
+ @f6         installTimes(vecEvt, vecEvt.dx)
+
+ Si NoError=false (valeur par défaut), une erreur est générée si l'installation n'est pas possible.
+ Si NoError=true, la fonction renvoie simplement false en cas d'erreur.
+
+ En général, l'installation n'est pas possible quand le nombre d'événements ne correspond pas
+au nombre de cycles de la séquence.
+}
+
+procedure Trevcor.installFP(var vec:Tvector);
+{$H Installation du vecteur contenant les coefficients de pondération.
+
+ Ce vecteur doit contenir autant de valeurs que le vecteur d'événements fourni
+à InstallTimes@ .
+
+ La méthode permet de donner un poids différent à chaque stimulus élémentaire.
+ Ce qui signifie que dans les calculs de Psth ou Pstw, chaque réponse élémentaire
+sera multipliée par un coefficient différent avant d'être sommée.
+
+ Par défaut, chaque stimulus élémentaire reçoit un coefficient égal à un.
+
+ Remarque: actuellement, le vecteur fonctionne en tout ou rien. Un valeur égale à zéro
+signifie que le stimulus élémentaire correspondant sera ignoré dans les calculs.
+
+
+}
+
+
+property Trevcor.Codes(i:integer):integer readOnly;
+{$H Renvoie le code associé à la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Le code associé à un triplet (x,y,z) est donné par
+          (z-1)+2*(y-1+ny*(x-1))
+
+ Les valeurs possibles de x sont comprises entre 1 et Nx@.
+ Les valeurs possibles de y sont comprises entre 1 et Ny@.
+ Les valeurs possibles de z sont comprises entre 1 et 2.
+
+ Le code est compris entre 0 et 2*Nx*Nz-1 .
+}
+
+property Trevcor.Xpos(i:integer):integer;
+{$H Renvoie la position X de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Xpos sont comprises entre 1 et Nx@.
+}
+
+property Trevcor.Ypos(i:integer):integer;
+{$H Renvoie la position Y de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Ypos sont comprises entre 1 et Ny@.
+}
+
+property Trevcor.Zpos(i:integer):integer;
+{$H Renvoie la valeur Z de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Zpos sont comprises entre 1 et 2.
+}
+
+
+function Trevcor.encode(x,y,z:integer):integer;
+{$H Donne le code associé à un triplet (x,y,z) .
+
+ Ce code est donné par (z-1)+2*(y-1+Ny*(x-1))
+
+ Le code est compris entre 0 et 2*Nx*Nz-1 .
+ Voir aussi decode@ .
+}
+procedure Trevcor.decode(code:integer;var x,y,z:integer);
+{$H Décode le code associé à un triplet pour donner chacune des
+composantes x, y et z .
+
+ Voir encode@ .
+}
+
+
+procedure Trevcor.initPsth(var v1,v2:TpsthArray;var source:Tvector;x1,x2,deltaX:real);
+{$H Initialise les Psths (post-stimulus time histograms)
+
+ v1 et v2 sont deux objets de type TpsthArray@ . Ces objets doivent simplement avoir
+été créés en appelant leur constructeur create avec des paramètres quelconques,
+mais n'ont pas besoin d'être initialisés avec initObjects.
+
+ source est le vecteur contenant le signal qui sera moyenné.
+ x1 et x2 définissent l'extension des psths.
+ deltaX est la largeur de classe des histogrammes.
+
+ Cette procédure est équivalente à la suite d'instructions suivante:
+
+ v1.modify(1,Nx@,1,Ny@);
+ v1.initObject(t_single,x1/source.dxu,x2/source/dxu);
+ v2.modify(1,Nx@,1,Ny@);
+ v2.initObject(t_single,x1/source.dxu,x2/source/dxu);
+
+ Après InitPsth, on peut appeler une ou plusieurs fois calculatePsth@ .
+}
+procedure Trevcor.calculatePsth(var v1,v2:TpsthArray;var source:Tvector);
+{$H Calcul des Psths (post-stimulus time histograms)
+
+ Auparavant, il faut avoir appelé InitPsth@ pour initialiser les deux tableaux de
+psth v1 et v2.
+
+ Il faut également avoir initialisé la séquence de corrélation avec installStimSeq@ et
+installTimes@ .
+
+ Pour chaque stimulus (x,y,z,t) de la séquence, la portion du signal source comprise entre
+t+x1 et t+x2 (voir initPstw@ ) est accumulée dans la moyenne (x,y) du tableau v1
+si z=1 ou dans la moyenne (x,y) du tableau v2 si z=2 .
+}
+
+procedure Trevcor.initPstw(var v1,v2:TaverageArray;var source:Tvector;x1,x2:real);
+{$H Initialise les Pstws (post-stimulus waveforms)
+
+ v1 et v2 sont deux objets de type TaverageArray@ . Ces objets doivent simplement avoir
+été créés en appelant leur constructeur create avec des paramètres quelconques,
+mais n'ont pas besoin d'être initialisés avec initObjects.
+
+ source est le vecteur contenant le signal qui sera moyenné.
+ x1 et x2 définissent l'extension des moyennes du tableau.
+
+ Cette procédure est équivalente à la suite d'instructions suivante:
+
+ v1.modify(1,Nx@,1,Ny@);
+ v1.initObject(t_single,x1/source.dxu,x2/source/dxu);
+ v2.modify(1,Nx@,1,Ny@);
+ v2.initObject(t_single,x1/source.dxu,x2/source/dxu);
+
+ Après InitPstw, on peut appeler une ou plusieurs fois calculatePstw@ .
+}
+procedure Trevcor.calculatePstw(var v1,v2:TaverageArray;var source:Tvector);
+{$H Calcul des Pstws (post-stimulus waveforms)
+
+ Auparavant, il faut avoir appelé InitPstw@ pour initialiser deux tableaux de
+moyennes v1 et v2.
+
+ Il faut également avoir initialisé la séquence de corrélation avec installStimSeq@ et
+installTimes@ .
+
+ Pour chaque stimulus (x,y,z,t) de la séquence, la portion du signal source comprise entre
+t+x1 et t+x2 (voir initPstw@ ) est accumulée dans la moyenne (x,y) du tableau v1
+si z=1 ou dans la moyenne (x,y) du tableau v2 si z=2 .
+}
+
+procedure Trevcor.getMatXYZ(var mat1,mat2: Tmatrix);
+{$H Calcule deux matrices contenant les dates des stimulus pour une séquence de stimulation.
+
+ En sortie, les matrices ont pour dimensions (1..nx@ , 1..ny@)
+ mat1 contient les dates des stimulus de type 1 (Zpos@=1)
+ mat2 contient les dates des stimulus de type 2 (Zpos@=2)
+
+ Les dates sont exprimées en coordonnées fichier. Ce sont donc les indices des points
+du vecteur source pour lesquels une barre s'est allumée.
+ Pour obtenir la date d'allumage du pixel (x,y) pour une barre de type 1 (respectivement de type 2),
+il suffit d'utiliser la relation :
+              t:= Vsource.convx(mat1.Jvalue[x,y])
+
+}
+
+procedure Trevcor.getConditionXYZ(var mat1,mat2: Tmatrix);
+{$H Calcule deux matrices contenant les valeurs de condition pour une séquence de stimulation.
+
+ En sortie, les matrices ont pour dimensions (1..nx@ , 1..ny@)
+ mat1 contient les valeurs de condition de type 1 (Zpos@=1)
+ mat2 contient les valeurs de condition de type 2 (Zpos@=2)
+
+ Voir InstallFP@.
+
+}
+
+
+procedure Trevcor.getCodes(var vec: Tvector;num:integer);
+{$H Renvoie un vecteur permettant de retrouver tous les codes d'une stimulation
+survenue num tops synchro avant ou après une stimulation donnée.
+
+ Le vecteur vec obtenu est indicé de 0 à nx*ny*2-1
+
+ Les codes sont des nombres compris entre 0 et nx*ny*2-1 et correspondent à des triplets (x,y,z).
+ Ils sont gérés par les méthodes decode@ et encode@ .
+
+ Les valeurs de Num positives correspondent à des stimulations postérieures à la stimulation donnée.
+ Les valeurs de Num négatives correspondent à des stimulations antérieures à la stimulation donnée.
+ La valeur num=0 n'a pas d'intérêt.
+
+ Exemple: on appelle getCodes avec Num=-1
+ Le vecteur vec permet de répondre à la question: quel est le stimulus (x1,y1,z1) qui a immédiatement précédé
+l'allumage du pixel (x,y,z). En effet, il suffit d'écrire:
+
+ @f6  code:=encode(x,y,z);
+ @f6  if code>=0 then
+ @f6  begin
+ @f6    CodePrecedent:=vec.Jvalue[code];
+ @f6    decode(codePrecedent,x1,y1,z1);
+ @f6  end;
+
+ Quand le code cherché n'existe pas (dans l'exemple ci-dessus, le premier stimulus n'a pas de précédent),
+le code rangé dans le vecteur vaut -1 .
+}
+
+procedure Trevcor.initLqrPstw(var source:Tvector;tau1,tau2:integer);
+{$H Initialisation du calcul des pstws par une méthode de moindres carrés.
+
+ Le principe du calcul est le suivant: à chaque instant, la réponse du système
+peut s'écrire comme la somme des réponses aux stimulus antérieurs.
+ On donne l'indice tau=0 au stimulus qui précède immédiatement l'instant considéré.
+ On donne l'indice tau=1 au stimulus situé immédiatement avant ce stimulus.
+ On donne l'indice tau=2 au stimulus situé encore avant, etc...
+
+ Pour chaque stimulus, on peut donc écrire une équation du type
+ R(t) = K(i0,t) + K(i1,t+dtau) + K(i2,t+2*dtau) + ...
+
+ où i0, i1, i2... sont des indices qui caractérisent d'une façon unique les stimulus
+élémentaires ( position X,Y et luminance) et où dtau est l'intervalle entre deux stimulus
+consécutifs.
+
+ Pour t fixé , l'équation précédente est une relation linéaire entre les coefficients K .
+Ces coefficients sont au nombre de Nstim*Ntau, Nstim étant le nombre de stimulus élémentaires
+et Ntau étant le nombre de valeurs de tau prises en compte.
+
+ Chaque séquence de stimulation permet d'écrire Nstim équations et l'ensemble de
+l'expérience permet d'écrire Nseq*Nstim équations.
+
+ En général, le nombre d'équations Nseq*Nstim est supérieur au nombre d'inconnues
+Nstim*Ntau et la solution du système doit être approchée par une méthode de moindres carrés:
+on cherche la solution qui va générer un signal le plus proche possible du signal mesuré.
+
+ Dans la méthode InitLqrPstw, tau1 et tau2 définissent l'ensemble des valeurs de tau
+considérées. En général, on choisira tau1=0 et tau2=3 ou 4 ou 5 . Il est nécessaire de choisir
+un nombre de valeurs de tau assez faible pour avoir un nombre d'inconnues raisonnable.
+ Formellement, il est possible d'introduire des valeurs de tau négatives (tau1<0)
+mais l'expérience montre qu'on ajoute des degrés de liberté au système, donc des
+fluctuations importantes dans les valeurs calculées.
+
+ Source est le vecteur qui contiendra les données. On le transmet pour indiquer les paramètres
+d'échelle.
+
+ Après avoir appelé InitSqrPstw, il faudra appeler calculateLqrPstw@ pour chaque séquence
+de stimulation. CalculateLqrPstw se contente de dresser la liste des équations .
+
+ Ensuite, il faut appeler SolveLqrPstw@ pour résoudre le système.
+ Finalement, il faut appeler getLqrPstw@ pour obtenir les Pstws .
+
+ Au final, les Pstws contiennent Nbpt*Ntau valeurs.
+}
+
+procedure Trevcor.initLqrPsth(Lclasse:real;tau1,tau2:integer);
+{$H Initialisation du calcul des psths par une méthode de moindres carrés.
+
+}
+
+procedure Trevcor.calculateLqrPstw(var source:Tvector);
+{$H Calcul des pstws par une méthode de moindres carrés.
+
+ Voir InitLqrPstw@ pour le principe de calcul.
+
+ Source est le vecteur qui contient le signal.
+ Pour un traitement correct, il est important que ce vecteur soit centré sur zéro
+et que les spikes soient éliminés.
+}
+
+procedure Trevcor.SolveLqrPstw;
+{$H Calcul des pstws par une méthode de moindres carrés.
+
+ Voir InitLqrPstw@ pour le principe de calcul.
+
+ SolveLqrPstw résout les équations accumulées pendant les appels successifs à calculateLqrPstw@ .
+}
+
+procedure Trevcor.getLqrPstw(pstw:TvectorArray; z:integer; raw,Norm:boolean);
+{$H Range dans Pstw les résultats correspondant à l'indice z
+
+ Si raw est vrai , on range les pstws bruts
+ Sinon, on range les pstws calculés.
+
+ Si Raw et Norm sont vrais, les pstws bruts sont normalisés.
+}
+
+procedure Trevcor.initKlist;
+procedure Trevcor.AddK1(x,y,z:integer);
+procedure Trevcor.AddK2(x1,y1,z1,x2,y2,z2,lag:integer);
+
+procedure Trevcor.initLqrPstw1(var source:Tvector;tau1,tau2:integer);
+procedure Trevcor.calculateLqrPstw1(var source:Tvector);
+procedure Trevcor.getLqrVector(num:integer;var vec:Tvector;raw,norm:boolean);
+procedure Trevcor.getLqrKlist(var Vlist:TVlist;raw,norm:boolean);
+
+
+
+procedure Trevcor.getLqrResidual(var vec:Tvector);
+{$H Renvoie le résidu du calcul LQR.
+
+
+}
+procedure Trevcor.freeLqrPstw;
+{$H Libère la mémoire allouée par SolveLqrPstw
+}
+
+procedure Trevcor.setLqrLambda(w:real);
+
+procedure Trevcor.BuildSignal(var pstw1,pstw2:TvectorArray;var vec:Tvector);
+procedure Trevcor.BuildSignal1(var Vlist:TVlist;var vec:Tvector);
+
+
+procedure Trevcor.GetLQRline(ep:integer;time:real;var vec:Tvector);
+{$H Renvoie une ligne de la matrice LQR dans le vecteur vec.
+
+ Ep est le numéro de la séquence actuellement installée.
+ Time est un instant particulier dans la séquence.
+
+ On recherche le numéro N du stimulus élémentaire qui précède immédiatement
+l'instant Time.
+ La ligne de la matrice renvoyée est la ligne (Ep-1)*CycleCount + N
+
+}
+procedure Trevcor.BuildSimMask(var mat:Tmatrix;var Xpos,Ypos:Tvector);
+{$H Construit un masque destiné à TvisualStim.BuildSim(@TvisualStim.BuildSim) .
+
+}
+
+procedure Trevcor.getMlist(var Mlist: TmatList);
+{$H Donne la liste des stimuli présentés sous forme d'une liste de matrices.
+
+  Pour Trevcor@ , les matrices contiennent
+  -1 pour lum1
+   1 pour lum2
+   0 pour le fond
+
+  Pour Tdensenoise , les matrices contiennent
+   0 pour lum1
+   1 pour lum2
+
+  Pour TMnoise, les matrices contiennent
+   0 pour lum1
+   1 pour lum2
+   2 pour le blank 
+
+}
+procedure Trevcor.setMlist(var Mlist: TmatList);
+{$H Fixe la liste des stimuli.
+
+ N'est actuellement utilisable qu'avec TgaborNoise@ .
+
+ Dans TgaborNoise, il faut affecter NoiseModel@(TgaborNoise.NoiseModel) à un juste avant d'appeler setMlist.
+}
+property Trevcor.matH:Tmat readOnly;
+property Trevcor.matB:Tmat readOnly;
+property Trevcor.matX:Tmat readOnly;
+
+procedure Trevcor.SVD(var mat:Tmat);
+
+procedure Trevcor.GridToScreen(x1,y1:real;var x2,y2:real);
+{$H Permet de passer des coordonnées grille aux coordonnées Ecran de stimulation.
+
+ Les coordonnées grille sont celles d'un point situé dans une matrice contenant une carte Revcor.
+ Un point situé dans la case (1,1) par exemple aura des coordonnées (x,y) telles que
+                1 <= x < 2
+                1 <= y < 2
+
+ Il faut évidemment que les propriétés Rfx, Rfy, RFdx, RFdy, Rftheta ainsi que les paramètres de
+la grille soient fixés auparavant.
+}
+
+procedure BuildRepSim(var pstw1,pstw2:TvectorArray;var Mlist:TmatList;var dest:Tvector;interframe:real);
+{$H Construction de la réponse à une stimulation visuelle.
+
+ pstw1 et pstw2 sont les réponses normalisées aux stimulations visuelles de luminances
+positives et négatives (ie de valeurs supérieures ou inférieures à la luminance du fond.
+ Mlist a été obtenue avec Tvisualstim.buildSim@
+ dest est le vecteur destination.
+ interframe est l'intervalle entre images en millisecondes
+
+}
+
+                         { TmultiRev }
+procedure TmultiRev.create;
+procedure TmultiRev.create(stName:string);
+{$H Constructeur de l'objet TmultiRev.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+
+property TmultiRev.divXcount:integer;
+{$H Nombre de divisions suivant X dans la grille.
+
+ Ce nombre ne tient pas compte du facteur d'expansion (voir expansion@ ).
+
+ Le nombre réel de divisions suivant X est donné par la fonction Xcount@ .
+}
+property TmultiRev.divYcount:integer;
+{$H Nombre de divisions suivant Y dans la grille.
+
+ Ce nombre ne tient pas compte du facteur d'expansion (voir expansion@ ).
+
+ Le nombre réel de divisions suivant Y est donné par la fonction Ycount@ .
+}
+property TmultiRev.lum1:real;
+{$H Luminance de la première barre.
+
+  Voir aussi lum2@ .
+}
+property TmultiRev.lum2:real;
+{$H Luminance de la seconde barre.
+
+  Voir aussi lum1@ .
+}
+property TmultiRev.expansion:integer;
+{$H Facteur d'expansion de la grille .
+
+ Ce facteur est exprimé en pourcentage de la valeur nominale. Sa valeur par défaut est 100.
+
+ L'utilisateur fixe les valeur nominales DivXcount@ et DivYcount@ qui déterminent le
+pavage du champ récepteur. Ensuite, les dimensions du rectangle exploré sont multipliées
+par le facteur d'expansion.
+
+ Les valeurs réelles Xcount@ et Ycount@ sont calculées à l'aide des
+formules suivantes:
+
+ @f6  Xcount = round(DivXCount * Expansion / 100);
+ @f6  Ycount = round(DivYCount * Expansion / 100);
+}
+property TmultiRev.scotome:integer;
+{$H Le scotome détermine une région du champ récepteur qui ne sera pas explorée
+par le stimulus.
+
+ Cette région est un rectangle centré sur le champ récepteur
+ Le paramètre Scotome est exprimé en pourcentage des dimensions du champ récepteur.
+
+ Quand scotome=0, tout le champ récepteur est exploré.
+ Quand scotome=100, tout le champ récepteur est exclus de l'exploration (Dans ce
+cas, la périphérie peut être explorée si expansion>100).
+
+}
+
+property TmultiRev.seed:integer;
+{$H La propriété Seed fixe la séquence pseudo-aléatoire d'exploration de la grille.
+
+ Pour un ensemble de paramètres [ DivXcount@, DivYcount@,expansion@,scotome@,seed@ ],
+la suite des positions explorées sera toujours la même.
+
+ Remarque: dans les premières versions de Elphy, ce paramètre était incrémenté
+automatiquement à chaque animation. Ceci n'est plus vrai actuellement.
+}
+property TmultiRev.adjustObjectSize:boolean;
+{$H Si cette propriété vaut True, les dimensions de l'objet seront ajustées
+avant l'animation afin de le faire couvrir exactement un petit pavé de la grille.
+
+ Sinon, l'objet gardera ses dimensions actuelles.
+
+}
+
+property  TmultiRev.RFx:real;
+{$H Position X de la grille.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+property  TmultiRev.RFy:real;
+{$H Position Y de la grille.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+property  TmultiRev.RFdx:real;
+{$H Dimension X de la grille nominale (sans tenir compte de expansion).
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+property  TmultiRev.RFdy:real;
+{$H Dimension Y de la grille nominale (sans tenir compte de expansion).
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+property  TmultiRev.RFtheta:real;
+{$H Orientation de la grille en degrés.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+function TmultiRev.Xcount:integer;
+{$H Nombre réel de divisions X de la grille.
+
+ Ce nombre est égal DivXcount@ si expansion=100. Sinon, il est donné par la formule:
+
+ @f6  Xcount = round(DivXCount * Expansion / 100);
+}
+function TmultiRev.Ycount:integer;
+{$H Nombre réel de divisions Y de la grille.
+
+ Ce nombre est égal DivYcount@ si expansion=100. Sinon, il est donné par la formule:
+
+ @f6  Ycount = round(DivYCount * Expansion / 100);
+}
+
+procedure TmultiRev.updateSequence;
+
+procedure TmultiRev.setRF(num:integer);
+{$H Permet de positionner et dimensionnner la grille.
+
+ Num est le numéro du champ récepteur RFsys que l'on veut prendre pour modèle.
+
+ L'appel de cette procédure est équivalent à la suite d'instructions:
+
+ @f6 RFx:=RFsys[num].x;
+ @f6 RFy:=RFsys[num].y;
+ @f6 RFdx:=RFsys[num].dx;
+ @f6 RFdy:=RFsys[num].dy;
+ @f6 RFtheta:=RFsys[num].theta;
+
+}
+procedure TmultiRev.installStimSeq(seed,nbDivX,nbDivY,expansion,scotome,DtCount:integer);
+{$H Installation des paramètres décrivant la séquence de stimulation
+
+ Seed est la valeur d'initialisation de la séquence pseudo-aléatoire.
+
+ NbDivX et NbDivY sont les nombres de divisions suivant chaque axe de la grille de base.
+ La grille réelle utilisée dépend des paramètres expansion et scotome.
+
+ Expansion est un facteur multiplicatif (exprimé en pourcentage) appliqué aux dimensions
+de la grille de base. 100 signifie que la grille réelle est égale à la grille de base.
+200 signifie que les dimensions ont été multipliées par 2, etc..
+
+ Scotome définit une zone au centre de la grille exclue de la stimulation. La valeur
+zéro signifie qu'il n'y a pas de scotome, 100 signifierait que toute la grille est
+exclue.
+
+ Dtmin est la durée minimale de présentation d'un stimulus élémentaire (en nombre de frames)
+ DtCount est le nombre de valeurs de Dt possibles
+ DtStep est l'incrément de Dt
+ Le DtOn d'un stimulus élémentaire est
+   @f6      DtOn = DtMin + i*DtStep
+ i étant un nombre entier compris entre 0 et DtCount-1
+
+
+ Cette méthode peut être appelée pour préparer une stimulation ou bien pour
+préparer l'analyse d'un vecteur.
+
+ Il reviendrait au même d'affecter chacune des propriétés seed@ ,DivXcount@ ,DivYcount@ ,
+expansion@ ,scotome@ puis d'appeler UpdateSequence@ .
+
+
+}
+
+property TmultiRev.DtOns(n:integer):real;
+{$H Tableau des DtOns
+
+  Les indices commencent à 1 . Les temps sont exprimés en secondes.
+  Le nombre de DtOns utilisés est fixé dans installStimSeq@
+
+  Il faut remplir le tableau avant d'appeler installStimSeq
+}
+
+function TmultiRev.installTimes(var vecEvt:Tvector;dx:real): boolean;
+function TmultiRev.installTimes(var vecEvt:Tvector;dx:real; NoError: boolean): boolean;
+{$H Installation des dates de stimulation.
+
+ Cette méthode doit être appelée pour préparer l'analyse d'un vecteur.
+
+ VecEvt doit être un vecteur d'événements contenant les tops synchro de la séquence
+de corrélation.
+
+ Dx doit être égal à l'intervalle d'échantillonnage du vecteur d'événements. Si VecEvt
+a été obtenu à partir d'un objet Tdetect@, il suffit d'écrire:
+ @f6         installTimes(vecEvt, vecEvt.dx)
+
+ Si NoError=false (valeur par défaut), une erreur est générée si l'installation n'est pas possible.
+ Si NoError=true, la fonction renvoie simplement false en cas d'erreur.
+
+ En général, l'installation n'est pas possible quand le nombre d'événements ne correspond pas
+au nombre de cycles de la séquence.
+}
+
+procedure TmultiRev.installFP(var vec:Tvector);
+{$H Installation du vecteur contenant les coefficients de pondération.
+
+ Ce vecteur doit contenir autant de valeurs que le vecteur d'événements fourni
+à InstallTimes@ .
+
+ La méthode permet de donner un poids différent à chaque stimulus élémentaire.
+ Ce qui signifie que dans les calculs de Psth ou Pstw, chaque réponse élémentaire
+sera multipliée par un coefficient différent avant d'être sommée.
+
+ Par défaut, chaque stimulus élémentaire reçoit un coefficient égal à un.
+
+ Remarque: actuellement, le vecteur fonctionne en tout ou rien. Un valeur égale à zéro
+signifie que le stimulus élémentaire correspondant sera ignoré dans les calculs.
+
+
+}
+
+
+
+property TmultiRev.Xpos(i:integer):integer;
+{$H Position X de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Xpos sont comprises entre 1 et Nx@.
+}
+
+property TmultiRev.Ypos(i:integer):integer;
+{$H Position Y de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Ypos sont comprises entre 1 et Ny@.
+}
+
+property TmultiRev.Zpos(i:integer):integer;
+{$H Valeur Z de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Zpos sont comprises entre 1 et 2.
+}
+
+property TmultiRev.Tpos(i:integer):integer;
+{$H Valeur dt de la ième stimulation de la séquence ( 1 à cycleCount).
+
+ Les valeurs possibles de Tpos sont comprises entre 1 et DTcount.
+}
+
+
+procedure TmultiRev.initPsth(var v1,v2:TpsthArray;var source:Tvector;x1,x2,deltaX:real);
+{$H Initialise les Psths (post-stimulus time histograms)
+
+ v1 et v2 sont deux objets de type TpsthArray@ . Ces objets doivent simplement avoir
+été créés en appelant leur constructeur create avec des paramètres quelconques,
+mais n'ont pas besoin d'être initialisés avec initObjects.
+
+ source est le vecteur contenant le signal qui sera moyenné.
+ x1 et x2 définissent l'extension des psths.
+ deltaX est la largeur de classe des histogrammes.
+
+ Cette procédure est équivalente à la suite d'instructions suivante:
+
+ v1.modify(1,Nx@,1,Ny@);
+ v1.initObject(t_single,x1/source.dxu,x2/source/dxu);
+ v2.modify(1,Nx@,1,Ny@);
+ v2.initObject(t_single,x1/source.dxu,x2/source/dxu);
+
+ Après InitPsth, on peut appeler une ou plusieurs fois calculatePsth@ .
+}
+procedure TmultiRev.calculatePsth(var v1,v2:TpsthArray;var source:Tvector;num:integer);
+{$H Calcul des Psths (post-stimulus time histograms)
+
+ num est le numéro de DtOn, il doit être compris entre 0 et DtCount-1
+
+ Auparavant, il faut avoir appelé InitPsth@ pour initialiser les deux tableaux de
+psth v1 et v2.
+
+ Il faut également avoir initialisé la séquence de corrélation avec installStimSeq@ et
+installTimes@ .
+
+ Pour chaque stimulus (x,y,z,t) de la séquence, la portion du signal source comprise entre
+t+x1 et t+x2 (voir initPstw@ ) est accumulée dans la moyenne (x,y) du tableau v1
+si z=1 ou dans la moyenne (x,y) du tableau v2 si z=2 .
+}
+
+procedure TmultiRev.initPstw(var v1,v2:TaverageArray;var source:Tvector;x1,x2:real);
+{$H Initialise les Pstws (post-stimulus waveforms)
+
+ v1 et v2 sont deux objets de type TaverageArray@ . Ces objets doivent simplement avoir
+été créés en appelant leur constructeur create avec des paramètres quelconques,
+mais n'ont pas besoin d'être initialisés avec initObjects.
+
+ source est le vecteur contenant le signal qui sera moyenné.
+ x1 et x2 définissent l'extension des moyennes du tableau.
+
+ Cette procédure est équivalente à la suite d'instructions suivante:
+
+ v1.modify(1,Nx@,1,Ny@);
+ v1.initObject(t_single,x1/source.dxu,x2/source/dxu);
+ v2.modify(1,Nx@,1,Ny@);
+ v2.initObject(t_single,x1/source.dxu,x2/source/dxu);
+
+ Après InitPstw, on peut appeler une ou plusieurs fois calculatePstw@ .
+}
+procedure TmultiRev.calculatePstw(var v1,v2:TaverageArray;var source:Tvector;num:integer);
+{$H Calcul des Pstws (post-stimulus waveforms)
+
+  num est le numéro de DtOn, il doit être compris entre 0 et DtCount-1
+
+ Auparavant, il faut avoir appelé InitPstw@ pour initialiser deux tableaux de
+moyennes v1 et v2.
+
+ Il faut également avoir initialisé la séquence de corrélation avec installStimSeq@ et
+installTimes@ .
+
+ Pour chaque stimulus (x,y,z,t) de la séquence, la portion du signal source comprise entre
+t+x1 et t+x2 (voir initPstw@ ) est accumulée dans la moyenne (x,y) du tableau v1
+si z=1 ou dans la moyenne (x,y) du tableau v2 si z=2 .
+}
+
+function TmultiRev.CycleTime(i:integer):real;
+
+procedure TmultiRev.DetectTimes(var vec:Tvector;x1,x2,th,linhib:real;Fup:boolean);
+
+procedure TmultiRev.getMlist(var Mlist: TmatList);
+{$H Donne la liste des stimuli présentés sous forme d'une liste de matrices.
+
+  Les matrices contiennent
+  -1 pour lum1
+   1 pour lum2
+   0 pour le fond
+
+}
+procedure TmultiRev.BuildSignal(var var1,var2:TvectorArray;var vec:Tvector;numT:integer);
+
+procedure TmultiRev.BuildSimMask(var mat:Tmatrix;var Xpos,Ypos:Tvector);
+
+
+
+
+                         { TNrev }
+
+procedure TNrev.create;
+procedure TNrev.create(stName:string);
+
+{$H Constructeur de l'objet TNrev.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+
+property TNrev.divXcount:integer;
+{$H Nombre de divisions suivant X dans la grille.
+
+ Ce nombre ne tient pas compte du facteur d'expansion (voir expansion@ ).
+
+ Le nombre réel de divisions suivant X est donné par la fonction Xcount@ .
+}
+property TNrev.divYcount:integer;
+{$H Nombre de divisions suivant Y dans la grille.
+
+ Ce nombre ne tient pas compte du facteur d'expansion (voir expansion@ ).
+
+ Le nombre réel de divisions suivant Y est donné par la fonction Ycount@ .
+}
+property TNrev.lum1:real;
+{$H Luminance de la première barre.
+
+  Voir aussi lum2@ .
+}
+property TNrev.lum2:real;
+{$H Luminance de la seconde barre.
+
+  Voir aussi lum1@ .
+}
+property TNrev.expansion:integer;
+{$H Facteur d'expansion de la grille .
+
+ Ce facteur est exprimé en pourcentage de la valeur nominale. Sa valeur par défaut est 100.
+
+ L'utilisateur fixe les valeur nominales DivXcount@ et DivYcount@ qui déterminent le
+pavage du champ récepteur. Ensuite, les dimensions du rectangle exploré sont multipliées
+par le facteur d'expansion.
+
+ Les valeurs réelles Xcount@ et Ycount@ sont calculées à l'aide des
+formules suivantes:
+
+ @f6  Xcount = round(DivXCount * Expansion / 100);
+ @f6  Ycount = round(DivYCount * Expansion / 100);
+}
+property TNrev.scotome:integer;
+{$H Le scotome détermine une région du champ récepteur qui ne sera pas explorée
+par le stimulus.
+
+ Cette région est un rectangle centré sur le champ récepteur
+ Le paramètre Scotome est exprimé en pourcentage des dimensions du champ récepteur.
+
+ Quand scotome=0, tout le champ récepteur est exploré.
+ Quand scotome=100, tout le champ récepteur est exclus de l'exploration (Dans ce
+cas, la périphérie peut être explorée si expansion>100).
+
+}
+
+property TNrev.seed:integer;
+{$H La propriété Seed fixe la séquence pseudo-aléatoire d'exploration de la grille.
+
+ Pour un ensemble de paramètres [ DivXcount@, DivYcount@,expansion@,scotome@,seed@ ],
+la suite des positions explorées sera toujours la même.
+
+ Remarque: dans les premières versions de Elphy, ce paramètre était incrémenté
+automatiquement à chaque animation. Ceci n'est plus vrai actuellement.
+}
+property TNrev.adjustObjectSize:boolean;
+{$H Si cette propriété vaut True, les dimensions de l'objet seront ajustées
+avant l'animation afin de le faire couvrir exactement un petit pavé de la grille.
+
+ Sinon, l'objet gardera ses dimensions actuelles.
+
+}
+
+property  TNrev.RFx:real;
+{$H Position X de la grille.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+property  TNrev.RFy:real;
+{$H Position Y de la grille.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+property  TNrev.RFdx:real;
+{$H Dimension X de la grille nominale (sans tenir compte de expansion).
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+property  TNrev.RFdy:real;
+{$H Dimension Y de la grille nominale (sans tenir compte de expansion).
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+property  TNrev.RFtheta:real;
+{$H Orientation de la grille en degrés.
+
+ Généralement, on utilisera setRF@ pour positionner la grille.
+}
+
+function TNrev.Xcount:integer;
+{$H Nombre réel de divisions X de la grille.
+
+ Ce nombre est égal DivXcount@ si expansion=100. Sinon, il est donné par la formule:
+
+ @f6  Xcount = round(DivXCount * Expansion / 100);
+}
+function TNrev.Ycount:integer;
+{$H Nombre réel de divisions Y de la grille.
+
+ Ce nombre est égal DivYcount@ si expansion=100. Sinon, il est donné par la formule:
+
+ @f6  Ycount = round(DivYCount * Expansion / 100);
+}
+
+procedure TNrev.updateSequence;
+
+procedure TNrev.setRF(num:integer);
+{$H Permet de positionner et dimensionnner la grille.
+
+ Num est le numéro du champ récepteur RFsys que l'on veut prendre pour modèle.
+
+ L'appel de cette procédure est équivalent à la suite d'instructions:
+
+ @f6 RFx:=RFsys[num].x;
+ @f6 RFy:=RFsys[num].y;
+ @f6 RFdx:=RFsys[num].dx;
+ @f6 RFdy:=RFsys[num].dy;
+ @f6 RFtheta:=RFsys[num].theta;
+
+}
+procedure TNrev.installStimSeq(seed,nbDivX,nbDivY,expansion,scotome, NbOb:integer);
+{$H Installation des paramètres décrivant la séquence de stimulation
+
+ Seed est la valeur d'initialisation de la séquence pseudo-aléatoire.
+
+ NbDivX et NbDivY sont les nombres de divisions suivant chaque axe de la grille de base.
+ La grille réelle utilisée dépend des paramètres expansion et scotome.
+
+ Expansion est un facteur multiplicatif (exprimé en pourcentage) appliqué aux dimensions
+de la grille de base. 100 signifie que la grille réelle est égale à la grille de base.
+200 signifie que les dimensions ont été multipliées par 2, etc..
+
+ Scotome définit une zone au centre de la grille exclue de la stimulation. La valeur
+zéro signifie qu'il n'y a pas de scotome, 100 signifierait que toute la grille est
+exclue.
+
+  NbOb est le nombre d'objets affichés simultanément.
+
+ Cette méthode peut être appelée pour préparer une stimulation ou bien pour
+préparer l'analyse d'un vecteur.
+
+ Il reviendrait au même d'affecter chacune des propriétés seed@ ,DivXcount@ ,DivYcount@ ,
+expansion@ ,scotome@, ObCount@ puis d'appeler UpdateSequence@ .
+
+
+}
+
+function TNrev.installTimes(var vecEvt:Tvector;dx:real): boolean;
+function TNrev.installTimes(var vecEvt:Tvector;dx:real; NoError: boolean): boolean;
+
+{$H Installation des dates de stimulation.
+
+ Cette méthode doit être appelée pour préparer l'analyse d'un vecteur.
+
+ VecEvt doit être un vecteur d'événements contenant les tops synchro de la séquence
+de corrélation.
+
+ Dx doit être égal à l'intervalle d'échantillonnage du vecteur d'événements. Si VecEvt
+a été obtenu à partir d'un objet Tdetect@, il suffit d'écrire:
+ @f6         installTimes(vecEvt, vecEvt.dx)
+
+ Si NoError=false (valeur par défaut), une erreur est générée si l'installation n'est pas possible.
+ Si NoError=true, la fonction renvoie simplement false en cas d'erreur.
+
+ En général, l'installation n'est pas possible quand le nombre d'événements ne correspond pas
+au nombre de cycles de la séquence.
+}
+
+procedure TNrev.installFP(var vec:Tvector);
+{$H Installation du vecteur contenant les coefficients de pondération.
+
+ Ce vecteur doit contenir autant de valeurs que le vecteur d'événements fourni
+à InstallTimes@ .
+
+ La méthode permet de donner un poids différent à chaque stimulus élémentaire.
+ Ce qui signifie que dans les calculs de Psth ou Pstw, chaque réponse élémentaire
+sera multipliée par un coefficient différent avant d'être sommée.
+
+ Par défaut, chaque stimulus élémentaire reçoit un coefficient égal à un.
+
+ Remarque: actuellement, le vecteur fonctionne en tout ou rien. Un valeur égale à zéro
+signifie que le stimulus élémentaire correspondant sera ignoré dans les calculs.
+
+
+}
+
+
+procedure TNrev.initPsth(var v1,v2:TpsthArray;var source:Tvector;x1,x2,deltaX:real);
+{$H Initialise les Psths (post-stimulus time histograms)
+
+ v1 et v2 sont deux objets de type TpsthArray@ . Ces objets doivent simplement avoir
+été créés en appelant leur constructeur create avec des paramètres quelconques,
+mais n'ont pas besoin d'être initialisés avec initObjects.
+
+ source est le vecteur contenant le signal qui sera moyenné.
+ x1 et x2 définissent l'extension des psths.
+ deltaX est la largeur de classe des histogrammes.
+
+ Cette procédure est équivalente à la suite d'instructions suivante:
+
+ v1.modify(1,Nx@,1,Ny@);
+ v1.initObject(t_single,x1/source.dxu,x2/source/dxu);
+ v2.modify(1,Nx@,1,Ny@);
+ v2.initObject(t_single,x1/source.dxu,x2/source/dxu);
+
+ Après InitPsth, on peut appeler une ou plusieurs fois calculatePsth@ .
+}
+procedure TNrev.calculatePsth(var v1,v2:TpsthArray;var source:Tvector);
+{$H Calcul des Psths (post-stimulus time histograms)
+
+ Auparavant, il faut avoir appelé InitPsth@ pour initialiser les deux tableaux de
+psth v1 et v2.
+
+ Il faut également avoir initialisé la séquence de corrélation avec installStimSeq@ et
+installTimes@ .
+
+ Pour chaque stimulus (x,y,z,t) de la séquence, la portion du signal source comprise entre
+t+x1 et t+x2 (voir initPstw@ ) est accumulée dans la moyenne (x,y) du tableau v1
+si z=1 ou dans la moyenne (x,y) du tableau v2 si z=2 .
+}
+
+procedure TNrev.initPstw(var v1,v2:TaverageArray;var source:Tvector;x1,x2:real);
+{$H Initialise les Pstws (post-stimulus waveforms)
+
+ v1 et v2 sont deux objets de type TaverageArray@ . Ces objets doivent simplement avoir
+été créés en appelant leur constructeur create avec des paramètres quelconques,
+mais n'ont pas besoin d'être initialisés avec initObjects.
+
+ source est le vecteur contenant le signal qui sera moyenné.
+ x1 et x2 définissent l'extension des moyennes du tableau.
+
+ Cette procédure est équivalente à la suite d'instructions suivante:
+
+ v1.modify(1,Nx@,1,Ny@);
+ v1.initObject(t_single,x1/source.dxu,x2/source/dxu);
+ v2.modify(1,Nx@,1,Ny@);
+ v2.initObject(t_single,x1/source.dxu,x2/source/dxu);
+
+ Après InitPstw, on peut appeler une ou plusieurs fois calculatePstw@ .
+}
+procedure TNrev.calculatePstw(var v1,v2:TaverageArray;var source:Tvector);
+{$H Calcul des Pstws (post-stimulus waveforms)
+
+ Auparavant, il faut avoir appelé InitPstw@ pour initialiser deux tableaux de
+moyennes v1 et v2.
+
+ Il faut également avoir initialisé la séquence de corrélation avec installStimSeq@ et
+installTimes@ .
+
+ Pour chaque stimulus (x,y,z,t) de la séquence, la portion du signal source comprise entre
+t+x1 et t+x2 (voir initPstw@ ) est accumulée dans la moyenne (x,y) du tableau v1
+si z=1 ou dans la moyenne (x,y) du tableau v2 si z=2 .
+}
+
+
+procedure TNrev.DetectTimes(var vec:Tvector;x1,x2,th,linhib:real;Fup:boolean);
+
+procedure TNrev.getMlist(var Mlist: TmatList);
+{$H Donne la liste des stimuli présentés sous forme d'une liste de matrices.
+
+  Les matrices contiennent
+  -1 pour lum1
+   1 pour lum2
+   0 pour le fond
+
+}
+procedure TNrev.BuildSignal(var var1,var2:TvectorArray;var vec:Tvector;numT:integer);
+
+procedure TNrev.BuildSimMask(var mat:Tmatrix;var Xpos,Ypos:Tvector);
+
+
+property TNrev.Xpos(b,i:integer):integer readOnly;
+property TNrev.Ypos(b,i:integer):integer readOnly;
+property TNrev.Zpos(b,i:integer):integer readOnly;
+property TNrev.Tpos(b,i:integer):integer readOnly;
+
+property TNrev.ObjCount:integer;
+
+
+                         { Msequence stmMseq0 }
+
+procedure TMsequence.create(name:string;order:integer);
+
+property TMsequence.order:integer;
+property TMsequence.valTap:integer;
+
+procedure Tmsequence.BuildShiftTable;
+procedure Tmsequence.LoadShiftTable(fileName:String);
+procedure Tmsequence.SaveShiftTable(fileName:String);
+
+property Tmsequence.ShiftTable(n:longint):longint readOnly;
+property Tmsequence.length:longint readOnly;
+
+property Tmsequence.Bvalue(n:longint):longint readOnly;
+property Tmsequence.MTvalue(n:longint):longint readOnly;
+property Tmsequence.MGvalue(n:longint):longint readOnly;
+
+procedure Tmsequence.BuildFMT(var Vdata:Tvector);
+procedure Tmsequence.BuildK1(t1,t2:longint);
+procedure Tmsequence.BuildK2(t1,t2:longint);
+
+procedure Tmsequence.CorrectFMT(t1,t2:longint);
+
+property Tmsequence.FMTvalue(n:longint):real readonly;
+
+procedure Tmsequence.FirstOrder(var mat:Tmatrix;tau:longint);
+procedure Tmsequence.SecondOrder(var mat:Tmatrix;x1,y1,tau1,tau2:longint);
+procedure Tmsequence.SecondOrder1(var mat:Tmatrix;tau1,dx,dy,dt:longint);
+
+property Tmsequence.Kernel1(x,y,tau:longint):real;
+property Tmsequence.Kernel2(x1,y1,tau1,x2,y2,tau2:longint):real;
+
+procedure Tmsequence.BuildK1list(tmin,tmax:longint;var RA:TrealArray;Threshold1,Threshold2:real);
+procedure Tmsequence.BuildK2list(tmin,tmax:longint;var RA:TrealArray;Threshold1,Threshold2:real);
+
+procedure Tmsequence.reBuildData1(tmin,tmax:longint;var vec:Tvector;Threshold1,Threshold2:real);
+procedure Tmsequence.reBuildData2(tmin,tmax:longint;var vec:Tvector;Threshold1,Threshold2:real);
+
+procedure Tmsequence.Simulate(var RA:TrealArray;var vec:Tvector);
+
+property Tmsequence.VK1:Tvector readOnly;
+property Tmsequence.VK2:Tvector readOnly;
+
+function TestMseqTap(ordre,Xtap:integer):boolean;
+function Tmsequence.testK2(t1,t2:integer):integer;
+
+                         { DenseNoise stmDN1 }
+
+procedure TdenseNoise.create;
+procedure TdenseNoise.create(name:string);
+property TdenseNoise.Gstate(x,y,t:integer):integer readonly;
+
+property TdenseNoise.divXcount2:integer;
+property TdenseNoise.divYcount2:integer;
+
+                         { MNoise stmDNter1 }
+
+procedure TMNoise.create;
+procedure TMNoise.create(name:string);
+property TMnoise.Lum(n:integer):real;
+
+procedure TMnoise.initPstw(var v1,v2,v3:TaverageArray;var source:Tvector;x1,x2:real);
+procedure TMnoise.calculatePstw(var v1,v2,v3:TaverageArray;var source:Tvector);
+
+procedure TMnoise.initThreadedPstw;
+procedure TMnoise.AddThreadedPstw(var va1, va2, va3: TaverageArray; var source: Tvector);
+procedure TMnoise.CalculateThreadedPstw;
+
+procedure TMnoise.installMatList(var Mlist: Tmatlist;N1,N2:integer);
+
+                         { VSbitmmap stmVSBM1 }
+
+procedure TVSbitmap.create;
+procedure TVSbitmap.create(StName:string);
+{$H Constructeur de l'objet TVSbitmap.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+property TVSbitmap.fileName:string;
+{$H Détermine le fichier contenant l'image qui doit être chargée dans l'objet.
+ Le fichier doit être du type BMP ou JPG.
+
+ Le format de l'image doit être compatible avec le format utilisé pour l'animation.
+ Actuellement, l'animation utilise un format monochrome (8 bits par pixel), l'image
+du fichier doit donc avoir ce format.
+}
+property TVSbitmap.x0:real;
+{$H Abscisse du point qui sera projeté au centre du rectangle (x,y,dx,dy)
+ Cette abscisse est prise sur un axe horizontal dont l'origine est au centre du bitmap
+et est exprimée en coordonnées réelles.
+}
+
+property TVSbitmap.y0:real;
+{$H Ordonnée du point qui sera projeté au centre du rectangle (x,y,dx,dy)
+ Cette ordonnée est prise sur un axe vertical, dirigé de bas enhaut, dont l'origine est
+au centre du bitmap, et est exprimée en coordonnées réelles.
+}
+
+property TVSbitmap.dx0:real;
+{$H Largeur du bitmap en cm (ou degrés visuels)
+
+ Identique à ImageWidth@
+}
+
+property TVSbitmap.dy0:real;
+{$H Hauteur du bitmap en cm (ou degrés visuels)
+
+ Identique à ImageHeight@
+}
+
+property TVSbitmap.theta0:real;
+{$H Orientation de l'image contenue dans le bitmap en degrés.
+}
+
+property TVSbitmap.pixels(x,y:integer):integer;
+{$H Permet d'accéder aux pixels de l'image.
+  Les valeurs sont comprises entre 0 et 255 quand le stimulateur visuel travaille
+en monochrome.
+  Rappelons que:
+        - 0 représente la couleur transparente
+        - les valeurs 254 et 255 sont réservées à la génération de signaux de synchronisation.
+254 crée un point rouge et 255 crée un point bleu.
+        - les valeurs utiles sont donc comprises entre 1 et 253.
+}
+
+property TVSbitmap.pixLum(x,y:integer):real;
+{$H Permet d'accéder à la luminance de chaque pixel de l'image.
+
+ En écriture, la luminance est convertie en valeur de pixel (1 à 253).
+ Voir Pixels@
+}
+
+property TVSbitmap.width:integer readOnly;
+{$H Renvoie la largeur du bitmap en pixels
+
+ Pour redimensionner le bitmap, il faut appeler setBounds@ .
+}
+
+property TVSbitmap.height:integer readOnly;
+{$H Renvoie la hauteur du bitmap en pixels.
+
+ Pour redimensionner le bitmap, il faut appeler setBounds@ .
+}
+
+property TVSbitmap.ImageWidth: real;
+{$H Largeur du bitmap en cm (ou degrés visuels)
+
+  Version DX9 uniquement
+
+  ImageWidth et ImageHeight peuvent être imposés quelles que soient les dimensions en pixels du bitmap.
+  Il faut respecter le rapport d'aspect original sinon l'image sera déformée.
+}
+
+property TVSbitmap.ImageHeight: real;
+{$H Hauteur du bitmap en cm (ou degrés visuels) .
+
+  Version DX9 uniquement
+
+  ImageWidth et ImageHeight peuvent être imposés quelles que soient les dimensions en pixels du bitmap.
+  Il faut respecter le rapport d'aspect original sinon l'image sera déformée.
+}
+
+
+procedure TVSbitmap.saveToFile(stf:string);
+{$H Sauve le bitmap dans un fichier de nom stf.
+
+  Choisissez de préférence l'extension 'bmp' .
+}
+
+procedure TVSbitmap.setBounds(Awidth,Aheight:integer);
+{$H Change les dimensions du bitmap.
+ Après cette opération, l'image contenue dans le bitmap est perdue.
+}
+
+function TVSbitmap.LoadFromMatrix(var mat: Tmatrix): boolean;
+function TVSbitmap.LoadFromMatrix(var mat: Tmatrix;UseVSlum:boolean): boolean;
+
+{$H Transfert le contenu de la matrice mat dans le bitmap.
+
+ Si UseVSlum vaut false (valeur par défaut), les valeurs de la matrice doivent être comprises entre 0 et 255 et ces
+valeurs deviendront les valeurs de pixel du bitmap.
+ Si UseVSlum vaut True, la matrice doit contenir des valeurs de luminance. Ces valeurs seront converties en
+tenant compte de la courbe d'étalonnage du stimulateur visuel.
+
+}
+function TVSbitmap.LoadAlphaFromMatrix(var mat: Tmatrix;Freal:boolean): boolean;
+{$H Charge les composantes Alpha à partir de la matrice mat.
+  Si Freal est vrai, la matrice doit contenir des valeurs réelles comprises entre 0 et 1.
+  Sinon, la matrice doit contenir des valeurs entières comprises entre 0 et 255.
+
+  Quand on appelle cette méthode, l'objet VSbitmap doit déjà contenir l'image proprement dite.
+  Les dimensions de mat doivent correspondre à celles du bitmap
+
+  La fonction renvoie True quand la matrice a été chargée.
+}
+
+function TVSbitmap.SaveToMatrix(var mat: Tmatrix): boolean;
+{$H Transfert le contenu du bitmap dans la matrice.
+
+ Les valeurs de la matrice seront comprises entre 0 et 255.
+}
+
+property TVSbitmap.TileMode:boolean;
+{$H Permet de fixer le mode pavage.
+
+  Par défaut, TileMode vaut True, ce qui signifie que si les dimensions de l'image (imageWidth@ et imageHeight@)
+sont plus petites que les dimensions du bitmap (dx@ et Dy@), l'image est répétée dans les directions
+verticale et horizontale afin de remplir tout le bitmap.
+
+  Si on impose TileMode= false, les parties extérieures à l'image sont remplie avec la couleur du fond.
+
+}
+procedure TVSbitmap.SetBorderLum(lum, alpha:real);
+{$H Permet de fixer la couleur des pixels au delà des limites de l'image quand TileMode vaut false,
+
+ Par défaut cette valeur est égale à la couleur de fond (avec alpha=1).
+ Lum est la luminance souhaitée
+ alpha est la composante de transparence (comprise entre 0 et 1)
+
+ Il faut appeler ResetBorderLum@ pour neutraliser cette propriété.
+}
+procedure TVSbitmap.ReSetBorderLum;
+{$H Annule l'effet de SetBorderLum@
+}
+
+property TVSbitmap.LumFactor: real;
+{$H Facteur de gain pour les luminances de l'image.
+
+ Doit être compris entre 0 et 1 pour être actif
+ N'agit pas sur la composante Alpha
+
+ Il est également possible de moduler la luminance pixel par pixel en utilisant AlphaIsLumFactor@
+
+ Vaut -1 par défaut (état inactif)
+}
+
+property TVSbitmap.AlphaIsLumFactor:boolean;
+{$H Permet de moduler la luminance de l'image pixel par pixel
+
+ Si AlphaIsLumFactor vaut True, la luminance de chaque pixel est multipliée par la
+valeur de la composante alpha sur ce pixel.
+
+ AlphaIsLumFactor peut être contrôlé par un objet Ttrajectory@ . Voir AddVector@(Ttrajectory.AddVector)
+}
+
+procedure TVSbitmap.fillLum(lum,alpha:real);
+{$H Remplit le bitmap avec la luminance Lum et avec le facteur de transparence alpha
+
+ Lum doit être une valeur positive inférieure à la luminance max de l'écran.
+ Toutefois, en donnant à lum une valeur négative, on n'agira que sur la composante alpha
+
+ alpha doit être compris entre 0 et 1 pour être pris en compte.
+ En lui donnant une valeur négative, la composante alpha ne sera pas modifiée.
+
+}
+
+function TVSbitmap.RectArea( x,y,dx,dy,theta: real; kpix:integer; th:real): real;
+{$H Renvoie le nombre de pixels situés à l'intérieur du rectangle (x,y,dx,dy,theta) dont
+la valeur est supérieure ou égale au seuil th.
+
+ La position et les dimensions du rectangle utilisent les conventions du stimulateur visuel.
+ x,y,dx,dy sont exprimés en cm (ou degrés visuel).
+ theta est exprimé en degrés.
+ Ce sont les coordonnées sur l'écran de stimulation. Pour qu'elles correspondent aussi aux coordonnées du VSbitmap,
+il faut placer le VSbitmap au centre de l'écran avec theta=0
+
+ kpix peut valoir 0, 1, 2 ou 3. Ces valeurs indiquent respectivement les composantes R, G, B ou Alpha
+
+ th est le seuil. Sa valeur doit être fixée entre 0 et 255
+
+}
+
+procedure TVSbitmap.DisplayVSBM(var source: TVSbitmap; x0, y0, theta: real; AlphaMode,LumMode:integer; Alpha1,Alpha2, Lum1,Lum2: real);
+{$H Affiche un bitmap dans un autre bitmap
+
+ Le centre du bitmap source est placé en (x0,y0) avec une orientation theta
+
+ x0 et y0 sont exprimés en degrés visuels
+ theta est exprimé en degrés
+
+ Si AlphaMode=1, la composante Alpha est copiée
+ Si AlphaMode=2 :
+  - la composante Alpha reçoit la valeur Alpha1 si le Alpha de la source vaut 1
+  - la composante Alpha reçoit la valeur Alpha2 si le Alpha de la source vaut 2
+  - la composante Alpha n'est pas modifiée dans les autres cas
+
+ Si LumMode=1, la composante Alpha est copiée
+ Si LumMode=2 :
+  - la luminance de la destination deviendra égale à Lum1 si la composante RGB de la source vaut 1
+  - la luminance de la destination deviendra égale à Lum2 si la composante RGB de la source vaut 2
+  - la luminance de la destination n'est pas modifiée dans les autres cas
+
+  Alpha1 et Alpha2 sont des réels compris entre 0 et 1
+  Lum1 et Lum2 sont des valeurs de luminance réelles
+
+}
+function TVSbitmap.PixSum(comp,ref:integer):integer;
+{$H Renvoie le nombre de pixels dont la composante comp contient la valeur ref
+
+ Les valeurs possibles de comp sont
+   1 : composante R
+   2 : composante G
+   3 : composante B
+   4 : composante Alpha
+
+
+ Ref doit être une valeur comprise entre 0 et 255
+ 
+}
+property TVSbitmap.FilterMode:integer;
+{$H Mode de filtrage de la texture
+
+ Quand les dimensions de la texture sont plus petites que les
+dimensions en pixels de la zone d'affichage, les pixels manquants sont calculés à partir des
+plus proches voisins.
+
+ Par défaut, on utilise une interpolation bilinéaire (FilterMode=2).
+ L'autre possibilité est Nearest Neighbour Interpolation (FilterMode=1).
+
+
+}
+
+
+
+
+                          {Trajectory stmTrajectory1 }
+
+procedure Ttrajectory.create;
+procedure Ttrajectory.create(name:string);
+{$H Constructeur de l'objet Ttrajectory.
+
+ Stname est le nom attribué à l'objet. Il devient sa propriété SysName@ .
+}
+procedure Ttrajectory.clear;
+{$H Efface le contenu de la liste de points.
+}
+procedure Ttrajectory.addPoint(x,y:real);
+{$H Ajoute un point à la trajectoire de l'objet.
+
+ Quand on utilise addPoint, chaque point ajouté correspond à l'affichage d'une trame.
+ L'intervalle de temps entre deux trames est donné par la propriété Tframe@(TvisualStim.Tframe)
+de l'objet VisualStim@ .
+
+ On peut aussi utiliser addXYT@ , qui permet souvent d'obtenir le même résultat
+avec moins d'instructions.
+}
+
+procedure Ttrajectory.addXYT(x, y, t: real);
+{$H Permet de définir une trajectoire en fixant une série de positions (xi,yi) pour des temps ti .
+
+ Entre les points ainsi définis, le déplacement sera rectiligne uniforme.
+
+}
+
+procedure Ttrajectory.setBMobject(ob:TVSbitmap);
+{$H Permet de préciser l'objet visuel qui sera controlé par Ttrajectory .
+
+  Si on utilise setVisualObject@(Tstm.setVisualObject) , le stimulus agira
+sur les propriétés x@(Tresizable.x) et y@(Tresizable.y) de l'objet visuel .
+
+  Si on utilise setBMObject@(TVSbitmap.setBMObject) , le stimulus agira
+sur les propriétés x0@(TVSbitmap.x0) et y0@(TVSbitmap.y0) de l'objet visuel .
+
+}
+
+procedure Ttrajectory.setRandom(Frandom:boolean;dx1,dy1,FrameInterval:integer);
+{$H Initialise les paramètres de randomisation de l'image.
+
+ Si Frandom=FALSE, l'image est affichée normalement.
+
+ Si Frandom=TRUE, le rectangle (x,y,dx,dy) est découpé suivant une grille dans laquelle
+chaque pavé aura pour dimensions (dx1,dy1).
+ Ensuite, les pavés de cette grille seront mélangés au moment de l'affichage.
+
+ FrameInterval est le nombre de trames séparant deux modifications de la grille.
+ Si FrameInterval vaut 1, les pavés sont mélangés à chaque trame.
+ Si FrameInterval vaut 2, les pavés sont mélangés une trame sur 2, etc...
+
+}
+
+procedure Ttrajectory.Add(name:string; w: real);
+{$H Ajoute la valeur w à la liste correspondant au paramètre de nom name.
+
+ Add et AddVector@  sont une généralisation de AddPoint@.
+ Add ne fonctionne qu'avec la version DX9. Il ne faut pas utiliser simultanément
+Add et AddPoint
+
+ Name est le nom d'un paramètre de l'objet visuel.
+ Actuellement (janvier 2012), les noms acceptés sont
+  ONSCREEN, X,  Y, DX, DY, THETA, LUM, PERIOD, PHASE, ORIENTATION, CONTRAST, LX, LY, X0, Y0
+
+ On peut utiliser indifféremment les majuscules et minuscules.
+
+ Chaque valeur ajoutée correspond à l'affichage d'une trame.
+
+
+}
+
+procedure Ttrajectory.AddVector(name:string; var vec:Tvector);
+{$H Ajoute les valeurs de vec à la liste correspondant au paramètre de nom name.
+
+ AddVector, tout comme Add@,  est une généralisation de AddPoint@.
+ Add@ et AddVector ne fonctionnent qu'avec la version DX9.
+
+ Name est le nom d'un paramètre de l'objet visuel.
+ Actuellement (janvier 2012), les noms acceptés sont
+  ONSCREEN, X,  Y, DX, DY, THETA, LUM, PERIOD, PHASE, ORIENTATION, CONTRAST, LX, LY, X0, Y0
+
+ On peut utiliser indifféremment les majuscules et minuscules.
+
+ Chaque valeur ajoutée correspond à l'affichage d'une trame.
+
+}
+procedure Ttrajectory.BrownianMvt(xinit, yinit, V0, sigma, tmax: real;var contour: TXYplot);
+{$H Construit un mouvement brownien.
+
+ On construit une liste de valeurs pour les paramètres 'X', 'Y'  .
+
+ xinit et yinit sont les coordonnées de la position initiale.
+ V0 est la vitesse d'une particule en cm/s ou degrés visuels par seconde
+ sigma est le paramètre de la distribution gaussienne de la distance parcourue (en cm ou degrés visuels)
+ tmax est la durée du mouvement en secondes
+
+ Contour doit contenir un objet polyline qui définit les limites imposées au mouvement.
+
+
+}
+procedure Ttrajectory.ParticleFlow(xinit, yinit, V0, theta, tmax: real; var contour: TXYplot);
+{$H Construit la trajectoire d'une particule en mouvement de translation uniforme
+et qui reste à l'intérieur d'un contour
+
+ xinit et yinit sont les coordonnées initiales. Si elles sont en dehors du contour, elles
+sont fixées au hasard à l'intérieur du contour.
+
+ V0 (en degrés visuels ou cm) et theta (en degrés) définissent le vecteur vitesse.
+ tmax est la durée du mouvement.
+
+ Contour doit contenir un objet polyline qui définit les limites imposées au mouvement.
+
+ La particule se déplace à la vitesse V0. Quand elle atteint un bord du contour, elle réapparait
+sur le bord opposé et continue son chemin à la même vitesse.
+
+
+}
+
+procedure TVSgrid.create;
+procedure TVSgrid.create(stName:string);
+procedure TVSgrid.initGrid(nbx,nby:integer);
+procedure TVSgrid.AddObject(var uo:Tresizable);
+
+property TVSgrid.Status(i,j:integer):integer;
+
+
+                          { TVSmovie stmVSmovie }
+
+procedure TVSmovie.create;
+procedure TVSmovie.create(stName:string);
+procedure TVSmovie.AddVisualObject(var ob:Tresizable);
+procedure TVSmovie.AddFrame(x,y:real;num:integer);
+procedure TVSmovie.ClearFrames;
+procedure TVSmovie.ClearVisualObjects;
+
+property  TVSmovie.onScreen:boolean;
+property  TVSmovie.onControl:boolean;
+
+
+
+procedure TVSgraph.create;
+{$H Constructeur de l'objet TVSgraph.
+}
+property TVSgraph.onPaint:Tprocedure;
+{$H Procédure appelée à chaque affichage de l'objet sur l'écran de stimulation ou sur l'écran
+de contrôle.
+
+ Tprocedure correspond à un type de procédure sans paramètres;
+
+}
+
+
+{                        TPlayGrid stmPlayGrid1         }
+
+
+procedure TPlayGrid.create;
+{$H Constructeur de l'objet TPlayGrid.
+}
+
+procedure TPlayGrid.SetLums(nb: integer;LumMin,LumMax:real);
+{$H Fixe les valeurs de luminances utilisées pendant l'animation.
+
+ nb est le nombre de luminances.
+ LumMin et LumMax sont respectivement les valeurs minimale et maximale souhaitées.
+ Les luminances sont données par la relation
+   LumMin +(LumMax-LumMin)/(nb-1)*n        pour 0 <= n  <nb
+}
+
+procedure TPlayGrid.SetValues(var vv:TvectorArray; Fraw:boolean);
+{$H Fixe tous les paramètres de la stimulation.
+
+ Les dimensions du VectorArray fixent les dimensions de la grille.
+
+ Chaque vecteur du VectorArray fixe l'évolution temporelle de chaque pixel de la grille.
+
+ Si Fraw vaut true, les vecteurs doivent contenir les luminances de chaque trame présentée sur l'écran.
+ Sinon, les vecteurs peuvent contenir l'évolution temporelle des luminances avec une résolution quelconque.
+ L'objet TplayGrid se basera sur le dx des vecteurs (en millisecondes) et sur la fréquence de rafraichissement actuelle de l'écran
+pour fixer les luminances dans chaque grille présentée.
+}
+
+property TPlayGrid.Xcount: integer readOnly;
+{$H Renvoie la dimension X de la grille.
+}
+property TPlayGrid.Ycount: integer readOnly;
+{$H Renvoie la dimension Y de la grille.
+}
+
+procedure TplayGrid.setRF(num:integer);
+{$H Permet de positionner la grille.
+
+ Num est le numéro du champ récepteur RFsys que l'on veut prendre pour modèle.
+
+ L'appel de cette procédure est équivalent à la suite d'instructions:
+
+ @f6 RFx:=RFsys[num].x;
+ @f6 RFy:=RFsys[num].y;
+ @f6 RFdx:=RFsys[num].dx;
+ @f6 RFdy:=RFsys[num].dy;
+ @f6 RFtheta:=RFsys[num].theta;
+
+}
+
+property TplayGrid.AdjustObjectSize:boolean;
+{$H Si cette propriété vaut True, les dimensions de l'objet seront ajustées
+avant l'animation afin de le faire couvrir exactement un petit pavé de la grille.
+
+ Sinon, l'objet gardera ses dimensions actuelles.
+
+}
+
+
+procedure BMtool(num:integer; stSource,stDest:string; a1,a2,a3:real;var his:Tvector);
+{$H Calcul sur bitmap monochrome:
+
+
+ stSource et stDest sont des noms de fichier BMP
+
+ Suivant la valeur de num, on réalise l'opération suivante:
+   1:   pour chaque pixel de valeur p, on effectue p:= round(a1*p + a2)
+   2:   pour chaque pixel, on effectue p:= round(a1* exp( a2*ln(p/a3)))
+   3:   calcul de l'histogramme d'amplitude.
+
+ p étant la valeur de pixel (nombre compris entre 0 et 255)
+ On ne vérifie pas les débordements.
+
+}
+
+{ TVSstream }
+procedure TVSstream.create;
+{$H Constructeur de l'objet TVSstream@
+}
+procedure TVSstream.AddImage(st:string);
+{$H Ajoute une image à la liste d'images
+}
+
+procedure TVSstream.InstallOIseq(var oi: Toiseq);
+{$H Installe un objet TOIseq
+
+ Les images contenues dans l'objet oi seront utilisées pour l'animation
+}
+procedure TVSstream.InstallTextureFile(stF:string);
+{$H Installe un fichier de textures.
+
+ stF est le nom du fichier.
+ Les images contenues dans le fichier  seront utilisées pour l'animation.
+
+ Les fichiers de textures peuvent être créés au moyen de TtextureFile@
+}
+
+procedure TVSstream.InstallTextureFileInMemory(stF:string);
+{$H Installe un fichier de textures en mémoire.
+
+ Copie le fichier stf en mémoire puis appelle InstallTexturefile@ .
+
+ Le but est de limiter les accès disque pendant l'animation.
+
+}
+
+procedure TVSstream.ClearImages;
+{$H Réinitialise la liste d'images.
+}
+procedure TVSstream.setLminLmax(L1,L2: real);
+{$H Fixe l'extension des luminances.
+
+ En général, les textures contiennent des nombres compris entre 0 et 255
+ Avec SetLminLmax, on associe la valeur 0 à la luminance L1 et la valeur 255 à la luminance L2
+}
+
+procedure TVSstream.CudaTest(n:integer);
+property TVSstream.PolarMode: boolean;
+
+property TVSstream.RetinaMode: boolean;
+procedure TVSstream.setRetinaParams(var matX, matY: Tmatrix) ;
+
+{ TtextureFile }
+procedure TtextureFile.CreateFile(stFile:String;Nx,Ny,tpNum:integer);
+{$H Crée un fichier de textures.
+
+ Cette méthode est aussi le constructeur de l'objet TtextureFile.
+ Les paramètres Nx , Ny et tpNum fixent respectivement le nombre de pixels par ligne,
+le nombre de lignes et le type numérique.
+
+ Le type numérique peut être indiqué en utilisant les constantes de (type numérique)@(types de nombre)
+ Les seules valeurs autorisées sont t_byte, t_single et t_double.
+
+ Par la suite, les images rangées dans le fichier devront avoir les mêmes dimensions Nx et Ny.
+}
+
+
+procedure TtextureFile.OpenFile(stFile:string);
+{$H Ouvre un fichier de textures en lecture
+
+ Cette méthode est aussi un constructeur de l'objet TtextureFile.
+
+ Des images pourront être rangées à la fin du fichier avec WriteImage ou WriteMatrix.
+ Des images pourront être lues avec ReadMatrix.
+}
+
+property TtextureFile.count:integer readOnly;
+{$H Renvoie le nombre de textures du fichier
+}
+
+property TtextureFile.position:integer;
+{$H Fixe ou renvoie la position de lecture dans le fichier
+
+ Position est utilisé uniquement par ReadMatrix@
+ Sa valeur est comprise entre 1 et count@
+}
+
+procedure TtextureFile.Close;
+{$H Ferme le fichier et détruit l'objet TtextureFile.
+}
+procedure TtextureFile.writeImage(stImage:string;mode: integer);
+{$H Convertit  un fichier image d'extension BMP, JPEG ou PNG en texture.
+
+ La texture est rangée à la fin du fichier.
+ Le type numérique du fichier de textures doit être g_byte (voir CreateFile@ ).
+
+ Si l'image chargée est en 8 bits, chaque valeur de pixel (nombre compris entre 0 et 255)
+est directement rangé dans le fichier , la palette est ignorée.
+ Si l'image chargée est en 24 ou 32 bits, le paramètre mode est utilisé comme suit:
+   - si mode=1, la composante Bleue est rangée dans le fichier
+   - si mode=2, la composante Verte est rangée dans le fichier
+   - si mode=3, la composante Rouge est rangée dans le fichier
+}
+
+procedure TtextureFile.writeMatrix(var mat: Tmatrix);
+{$H Range la matrice mat dans le fichier de textures
+
+  Les données de la matrice sont converties dans le format fixé dans CreateFile@
+
+  Les dimensions de la matrice doivent correspondre aux paramètres Nx et Ny fixés dans CreateFile@
+}
+
+procedure TtextureFile.ReadMatrix(var mat: Tmatrix);
+{$H Lit la texture courante du fichier est la range dans la matrice mat.
+
+  La matrice est d'abord redimensionnée pour correspondre aux paramètres Nx et Ny du fichier.
+  Son type numérique est fixé à t_single.
+
+}
+
+property TtextureFile.Nx:integer readOnly;
+{$H Renvoie le nombre de pixels par ligne des textures.
+
+ Ce nombre est fixé dans CreateFile@ . Il est aussi lu dans le fichier quand on appelle OpenFile@
+}
+
+property TtextureFile.Ny:integer readOnly;
+{$H Renvoie le nombre de ligne des textures.
+
+ Ce nombre est fixé dans CreateFile@ . Il est aussi lu dans le fichier quand on appelle OpenFile@
+}
+
+property TtextureFile.Numtype:integer readOnly;
+{$H Renvoie le (type numérique)@(types de nombre) des données.
+
+ Les seuls types possibles sont t_byte et t_single.
+}
+
+
+{ TVSmotionCloud }
+
+procedure TVSmotionCloud.Create;
+{$H Constructeur de l'objet TVSmotionCloud
+}
+procedure TVSmotionCloud.Init(dt: real;Nsample: integer; Nx,Ny: integer; seed: longword);
+{$H Initialisation du calcul
+
+ dt doit être égal à la période de rafraichissement souhaitée en secondes.
+ C'est donc visualStim.Tframe dans une expérience de stimulation visuelle
+
+ Nsample est un facteur de sur-échantillonnage. Les calculs seront faits avec dt= dt/Nsample
+mais l'image finale ne sera calculée que tous les dt  
+
+ Nx et Ny sont les dimensions des images
+ Seed permet d'initialiser le générateur de nombres aléatoire.
+}
+
+property TVSmotionCloud.Foct: boolean;
+{$H
+ Si Foct = true la largeur de bande en fréquence spatiale est calculée en octaves.
+Sinon elle est calculé en c/image ou c/degrés selon la normalisation.
+}
+procedure TVSmotionCloud.InitPinkNoise(alpha: real; Nx1,Ny1: integer; seed: longword);
+
+procedure TVSmotionCloud.InstallGaborFilter( ss,r0, sr0, sTheta0: real);
+{$H
+ Installe le filtre par défaut des motion clouds décrit dans l'article: https://arxiv.org/pdf/1511.02705.pdf
+}
+procedure TVSmotionCloud.InstallMaternFilter( ss, eta, alpha: real);
+procedure TVSmotionCloud.InstallFilter( var mat:Tmatrix);
+procedure TVSmotionCloud.getFrame(var mat: Tmatrix);
+{$H
+ Calcule la frame suivante.
+}
+property  TVSmotionCloud.PolarMode: boolean;
+{$H
+ Applique une transformation log-polaire.
+}
+
+procedure TVSmotionCloud.SetExpansion(DxF1,x0F1,DyF1,y0F1:real);
+procedure TVSmotionCloud.SetLum(Lmean,Lsigma: real);
+
+
+procedure TVSmotionCloud.getFilter(var mat:Tmatrix);
+{$H 
+Récupère le spatial (en fréquence) utilisé pour la stimulation.
+}
+
+procedure TVSmotionCloud.AddTraj(name:string; var vec: Tvector);
+{$H Permet de modifier certains paramètres pendant l'animation
+
+ Les valeurs contenues dans vec seront affectées au paramètre désigné à chaque image générée.
+ name peut prendre les valeurs 'SS', 'R0', 'SR0', 'STHETA0' . Dans ce cas, on modifie les
+paramètres du Gabor Filter en appelant installGaborFilter à chaque image.
+
+ name peut aussi prendre les valeurs 'Lmean' ou 'Lsigma', ce qui permet de modifier
+la luminance moyenne et la déviation standard de la luminance à chaque image.
+
+}
+procedure TVSmotionCloud.SetAlphaThreshold(th, value:real);
+{$H Permet de contrôler la région recevant le motion cloud en utilisant la composante Alpha du bitmap destination
+
+ Si Alpha est supérieur ou égal au seuil th, le pixel reçoit la valeur calculée.
+ Sinon, le pixel reçoit la valeur de luminance value
+
+ Pour être actif, le seuil Th doit être compris entre 0 et 1 . S'il est négatif ou nul (valeur par défaut),
+tous les pixels sont calculés.
+}
+                                                      
+property TVSmotionCloud.seed:integer;
+{$H Seed du générateur de bruit
+
+ Le seed est fixé dans Init@ ou InitPinkNoise@ mais il peut être modifié sans réinitialiser tout l'objet.
+}
+
+procedure TVSmotionCloud.Restart;
+procedure TVSmotionCloud.Resume;
+
+{ TVStransform }
+
+procedure TVStransform.setSource(var ob: TVSbitmap);
+{$H Permet de fixer l'objet source de la transformation.
+
+ Certaines transformations ignorent cet objet source
+}
+
+procedure TVStransform.setDestination(var ob: TVSbitmap);
+procedure TVStransform.setDestination(var ob: TVSbitmap; DisableDisplay: boolean);
+{$H  Permet de fixer l'objet Destination de la transformation.
+
+ Si on ne donne pas de destination, c'est l'écran de stimulation qui est considéré comme la destination.
+ Si DisableDisplay vaut True, le stimulus ne cherchera pas à afficher l'objet pendant la stimulation.
+ Ceci est utile si l'on construit une suite de transformations: les objets intermédiaires n'ont pas besoin d'être affichés.
+}
+
+procedure TVStransform.AddTraj(name:string; var vec: Tvector);
+{$H Permet de modifier certains paramètres pendant l'animation
+
+ Les valeurs contenues dans vec seront affectées au paramètre désigné à chaque image générée.
+}
+
+procedure TVStransform.Execute;
+{$H Execute la transformation immédiatement en dehors de toute stimulation visuelle.
+
+}
+
+{TVSpolarToCart }
+
+procedure TVSpolarToCart.create;
+procedure TVSpolarToCart.create(x,y,dx,dy:real);
+{$H Constructeur de l'objet TVSpolarToCart
+
+ Dans la seconde variante, on donne les coordonnées du rectangle qui subit la transformation.
+ Ces coordonnées sont données en cm ou degrés visuels.
+ x et y sont les coordonnées du centre du rectangle
+ dx et dy sont les dimensions du rectangle
+
+ Quand on ne donne pas les coordonnées du rectangle (variante 1), c'est tout l'objet destination qui est concerné par la transformation.
+}
+
+{TVSwave }
+
+procedure TVSwave.create(x0,y0,Amp,f0,v0,tau:real);
+procedure TVSwave.create(x0,y0,Amp,f0,v0,tau,x,y,dx,dy:real);
+{$H Constructeur de l'objet TVSwave
+
+ x0 et y0 sont les coordonnées du centre des ondes circulaires (en cm ou degrés visuels)
+ Amp est l'amplitude (en Candela/m²)
+ f0 est la fréquence de la source (en Hz)
+ v0 est la vitesse de propagation . Elle est exprimée en cm/s si waveMode@ = 0 .
+          Elle est exprimée en radians par seconde si wavemode@ = 1
+ tau est l'amortissement de l'onde en cm ou radians par seconde, selon la valeur de WaveMode.
+ x,y,dx,dy déterminent la zone concernée par la transformation
+}
+
+
+property TVSwave.yref: real;
+{$H Niveau de luminance de base quand la source est absente.
+
+}
+property TVSwave.WaveMode: integer;
+{$H Mode de modulation
+
+
+  mode=0 : l'onde se propage de façon circulaire à partir d'un point source S
+           L'amplitude de l'onde obéit à l'équation de propagation
+
+           y= a*sin(2*pi*f*(t-x/v)
+
+           f est la fréquence de la source
+           x est la distance d'un point M du plan à la source S
+           v est la vitesse de propagation
+
+  mode=1 : Dans ce cas, l'amplitude obéit à la même équation que ci-dessus mais en
+           remplaçant x par l'angle polaire theta du vecteur SM
+
+
+
+}
+
+
+
+procedure TVSBlt.create;
+procedure TVSBlt.create(x,y,theta:real);
+
+property TVSBlt.LumMode:integer;
+{$H Mode de copie des luminances.
+
+ Les valeurs possibles sont
+   LumMode = 0  : pas de copie
+   LumMode = 1  : les composantes RGB sont copiées directement
+   LumMode = 2  : On considère que la texture source contient les valeurs n=1, 2 ou 3. Dans ce cas, c'est la valeur LumValue@ [n] qui est rangée
+dans la texture destination. Si une autre valeur est trouvée dans la source, la destination n'est pas modifiée
+
+  LumMode=1 est la valeur par défaut;
+}
+property TVSBlt.AlphaMode:integer;
+{$H Mode de copie des composantes Alpha.
+
+ Les valeurs possibles sont
+   AlphaMode = 0  : pas de copie
+   AlphaMode = 1  : les composantes Alpha de la source sont copiées directement
+   AlphaMode = 2  : On considère que la texture source contient les valeurs alpha=1, 2 ou 3. Dans ce cas, c'est la valeur AlphaValue@ [alpha] qui est rangée
+dans la texture destination. Si une autre valeur est trouvée dans la source, la destination n'est pas modifiée
+
+  AlphaMode=1 est la valeur par défaut;
+}
+
+property TVSBlt.LumValue(n:integer):real;
+{$H Luminances associées à LumMode=2
+
+ n doit être compris entre 1 et 3
+ Les luminances sont exprimées en Candela par mètre carré
+
+ Voir LumMode@
+}
+
+property TVSBlt.AlphaValue(n:integer):real;
+{$H Valeurs Alpha associées à AlphaMode=2
+
+ n doit être compris entre 1 et 3
+ Alpha est un réel compris entre 0 et 1.
+
+ Voir AlphaMode@
+}
+
+property TVSBlt.x0:real;
+{$H Abscisse du point de destination
+
+ Correspond au paramètre x dans create@
+}
+
+property TVSBlt.y0:real;
+{$H Ordonnée du point de destination
+
+
+}
+
+property TVSBlt.theta0:real;
+{$H Orientation donnée au rectangle source
+
+ Correspond au paramètre theta dans create@
+}
+
+
+procedure TVSsmooth.create(Nlum, Nalpha:integer);
+{$H Constructeur de TVSsmooth
+
+  Nlum est le facteur de lissage pour la luminance.
+  Nalpha est le facteur de lissage pour la composante alpha.
+}
+
+
+procedure TVSsmooth.setAttenuationParams(x0,y0,dmax1, dmax2,lumRef:real);
+{$H Installe un point d'atténuation
+
+ Pour les pixels situés à l'intérieur d'un cercle de centre (x0, y0) et de rayon dmax,
+les paramètres Nlum, Nalpha seront réduit d'un facteur proportionnel à la distance au centre.
+
+ D'autre part, si lumRef>=0 , la luminance est également modifiée selon une loi:
+ @prog lum = lumRef* (lum-lumRef)*(d/dmax) @notprog
+ d étant la distance au centre (x0,y0)
+
+
+
+
+
+}

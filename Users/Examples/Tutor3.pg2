@@ -1,0 +1,34 @@
+{
+  A simple modal dialog
+  
+  When you open the dialog, variable values appear in dialog
+  When clicking on OK, displayed values are stored in the variables 
+  When clicking in Cancel, variables are not modified
+  
+  More sophisticated dialogs can be created with the Tdialog object
+}
+
+var
+  i,j,k:integer;
+  x,y:real;
+  bb:boolean;
+  flag:boolean;
+  st:string;
+
+  col:longint;
+
+procedure dialog1;
+begin
+  initDialogBox;
+  DBgetInteger('Variable I',i,6);
+  DBgetReal(   'Variable X',x,10,3);
+  DBgetString( 'Variable ST',st,30);
+  DBgetBoolean('Variable bb',bb);
+  DBgetStringList('A list of options    ','Choice 1|Choice 2|Choice3',k);
+  DBgetColor('Color',col);
+  showDialogBox;
+end;
+
+program 'Dialog1'
+dialog1;
+

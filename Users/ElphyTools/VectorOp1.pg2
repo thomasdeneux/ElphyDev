@@ -1,0 +1,192 @@
+{$ELPHYTOOL Vector Operations}
+{******************** Vector Operations Tool***************************** }
+{
+   Les dialogues doivent être non modaux si on veut faire des
+   glisser-déposer avec les objets.
+
+   Pour ne pas encombrer le système, on utilise un seul dialogue
+   Ce dialogue est recréé quand on change d'opération
+   La source et la destination sont communes
+
+
+}
+
+var
+  dlg:Tdialog;
+  source,dest:variant;
+
+
+
+{******************** Smooth ******************************************** }
+
+var
+  Nsmooth:integer;
+
+procedure SmoothProcess(var vec1,vec2:Tvector);
+begin
+  Smooth(vec1,vec2,Nsmooth);
+  vec2.invalidate;
+end;
+
+procedure DlgSmoothEvent(n:integer);
+begin
+  dlg.updateVar;
+  if n=101 then SmoothProcess(source,dest);
+end;
+
+procedure OpSmooth;
+const
+  cap='Smooth';
+begin
+  if not assigned(dlg) or (dlg.caption<>cap) then
+  with dlg do
+  begin
+    create;
+    getObject('Source',source,20,'Tvector');
+    getObject('Destination',dest,20,'Tvector');
+
+    getInteger('N',Nsmooth,6);
+    getCommandA('Execute',0,101);
+    OnEvent:=DlgSmoothEvent;
+    caption:=cap;
+    setButtons(0);
+  end;
+
+  dlg.show;
+end;
+
+program 'Smooth'
+OpSmooth;
+
+
+{******************** GaussSmooth ******************************************** }
+
+var
+  Gsmooth:real;
+
+procedure GSmoothProcess(var vec1,vec2:Tvector);
+begin
+  GaussSmooth(vec1,vec2,Gsmooth,vec1.Xstart,vec1.Xend);
+  vec2.invalidate;
+end;
+
+procedure DlgGSmoothEvent(n:integer);
+begin
+  dlg.updateVar;
+  if n=101 then GSmoothProcess(source,dest);
+end;
+
+procedure OpGSmooth;
+const
+  cap='Gauss Smooth';
+begin
+  if not assigned(dlg) OR (dlg.caption<>cap) then
+  with dlg do
+  begin
+    create;
+    getObject('Source',source,20,'Tvector');
+    getObject('Destination',dest,20,'Tvector');
+
+    getReal('Sigma',Gsmooth,10,3);
+    getCommandA('Execute',0,101);
+    OnEvent:=DlgGSmoothEvent;
+    caption:=cap;
+    setButtons(0);
+  end;
+
+  dlg.show;
+end;
+
+program 'Gauss Smooth'
+OpGSmooth;
+
+
+{******************** Median ******************************************** }
+var
+  Vdum:Tvector; { Clone ne marche pas si la variable est locale (?) }
+  
+procedure MedianProcess(var vec1,vec2:Tvector); 
+begin
+  if vec1.FreadOnly then
+  begin
+    Vdum.clone('',vec1);
+    VmedianFilter(vdum,vec2,Nsmooth);
+  end  
+  else VmedianFilter(vec1,vec2,Nsmooth);
+  vec2.invalidate;
+  Vdum.free;
+end;
+
+procedure DlgMedianEvent(n:integer);
+begin
+  dlg.updateVar;
+  if n=101 then MedianProcess(source,dest);
+end;
+
+procedure OpMedian;
+const
+  cap='Median Filter';
+begin
+  if not assigned(dlg) or (dlg.caption<>cap) then
+  with dlg do
+  begin
+    create;
+    getObject('Source',source,20,'Tvector');
+    getObject('Destination',dest,20,'Tvector');
+
+    getInteger('N',Nsmooth,6);
+    getCommandA('Execute',0,101);
+    OnEvent:=DlgMedianEvent;
+    caption:=cap;
+    setButtons(0);
+  end;
+
+  dlg.show;
+end;
+
+program 'Median Filter'
+OpMedian;
+
+{******************** Remove spike ******************************************** }
+
+var
+  HsupSpike,LsupSpike:real;
+
+procedure SupSpikeProcess(var vec1,vec2:Tvector);
+begin
+  SupSpike(vec1,vec2,HSupSpike,LsupSpike,vec1.Xstart,vec1.Xend);
+  vec2.invalidate;
+end;
+
+procedure DlgSupSpikeEvent(n:integer);
+begin
+  dlg.updateVar;
+  if n=101 then SupSpikeProcess(source,dest);
+end;
+
+procedure OpSupSpike;
+const
+  cap='Remove Spikes';
+begin
+  if not assigned(dlg) OR (dlg.caption<>cap) then
+  with dlg do
+  begin
+    create;
+    getObject('Source',source,20,'Tvector');
+    getObject('Destination',dest,20,'Tvector');
+
+    getReal('H',HSupSpike,10,3);
+    getReal('L',LSupSpike,10,3);
+
+    getCommandA('Execute',0,101);
+    OnEvent:=DlgSupSpikeEvent;
+    caption:=cap;
+    setButtons(0);
+  end;
+
+  dlg.show;
+end;
+
+program 'Remove Spikes'
+OpSupSpike;
+
