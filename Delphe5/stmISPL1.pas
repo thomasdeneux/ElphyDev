@@ -1211,9 +1211,9 @@ begin
   if x2>src1.Xend then x2:= src1.Xend;
   if x2>src2.Xend then x2:= src2.Xend;
 
-  if x2-x1<Len then sortieErreur('CrossSpectrum: Analyzis Length Too large');
+  if x2-x1+src1.dxu < Len then sortieErreur('CrossSpectrum: Analyzis Length Too large');
 
-  if (x2-x1>=len) and (x2-x1<len+delta) then nx:=1
+  if (x2-x1<len+delta) then nx:=1
   else
   nx:=trunc( (x2-x1-Len)/delta);
   result:=nx;

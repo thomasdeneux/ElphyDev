@@ -14535,6 +14535,9 @@ de la toute première création du fichier.
 
 }
 
+
+procedure LookForWordInFile(stWord, stf: String;var Vpos: Tvector);
+
 (*
 function BestOfToday(x,y:real):real;
 {$H Premier essai de Christophe

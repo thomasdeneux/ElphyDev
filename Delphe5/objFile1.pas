@@ -3,7 +3,7 @@ unit ObjFile1;
 interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
-uses classes,forms,sysutils,comCtrls,graphics,
+uses classes,forms,sysutils,comCtrls,graphics,strUtils,
 
      util1,Gdos,Dgraphic,Ddosfich,varconf1, listG,
      Ncdef2,stmDef,stmObj,stmError,stmPg,
@@ -228,9 +228,11 @@ function fonctionTObjectFile_ObjSizes(n:integer;var pu:typeUO):Integer;pascal;
 
 procedure proTobjectFile_Copy(var f2: TobjectFile; num: integer; var pu: typeUO);pascal;
 
+procedure proLookForWordInFile(stWord, stf: AnsiString;var Vpos: pointer);pascal;
+
 implementation
 
-uses stmDobj1,OIblock1,stmOIseq1, ElphyFormat;
+uses stmDobj1,OIblock1,stmOIseq1, ElphyFormat,stmVec1;
 
 var
   ObjectFiles:Tlist;
@@ -529,11 +531,60 @@ begin
 
 end;
 
-function LookForWord(f: Tstream; Istart, Iend: int64; stWord: AnsiString; var Ipos: int64): boolean;
+function LookForWord(f: Tstream; Istart, Iend: int64; stWord: AnsiString; var Ipos: TarrayOfInt64): boolean;
 Const
   StSize= 1000000;
+var
+  stBuf: AnsiString;
+  Nread, Ioffset: int64;
+  k: integer;
 begin
+  setLength(Ipos,0);
+  f.Position:=Istart;
+  setLength(stBuf,stSize);
 
+  k:=0;
+  while f.position<Iend do
+  begin
+    Nread:= Iend- f.position;
+    if Nread>stSize then Nread:=stSize;
+    if Nread<stSize then setLength(stBuf,Nread);
+
+    Ioffset:= f.Position;
+    f.Read(stBuf[1],Nread);
+
+    k:=1;
+    repeat
+      k:=posEx(stWord,stBuf,k);
+      if k>0 then
+      begin
+        setLength(Ipos,length(Ipos)+1);
+        Ipos[high(Ipos)]:= Ioffset+k-1;
+        k:= k+1;
+      end;
+    until k=0;
+  end;
+
+  result:= (length(Ipos)>0);
+end;
+
+procedure proLookForWordInFile(stWord, stf: AnsiString;var Vpos: pointer);
+var
+  f: TfileStream;
+  Ipos: TarrayOfInt64;
+  i: integer;
+begin
+  if fileExists(stf) then
+  try
+  f:= TfileStream.Create(stf,fmOpenRead);
+  LookForWord(f, 0, f.Size, stWord, Ipos);
+  Tvector(Vpos).modify(g_double,1,length(Ipos));
+  for i:= 1 to length(Ipos) do
+    Tvector(Vpos)[i]:= Ipos[i-1];
+
+  finally
+  f.free;
+  end;
 end;
 
 function TObjectFile.analyzeFile(Const FlookForObj: boolean= false): int64;
