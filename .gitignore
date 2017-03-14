@@ -112,3 +112,4 @@ Delphe5/stmTransform1__.pas
 stmTransform2.pas
 
 # To be sorted
+*.deps

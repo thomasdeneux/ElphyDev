@@ -529,6 +529,12 @@ begin
 
 end;
 
+function LookForWord(f: Tstream; Istart, Iend: int64; stWord: AnsiString; var Ipos: int64): boolean;
+Const
+  StSize= 1000000;
+begin
+
+end;
 
 function TObjectFile.analyzeFile(Const FlookForObj: boolean= false): int64;
 var
@@ -612,8 +618,8 @@ begin
 
     if (stmName='') then
       begin
-        //fileStream.Position:=posf;
-        //LookForObject;
+        fileStream.Position:=posf;
+        LookForObject;
         posf:=fileStream.Size;
         size:=0;
       end

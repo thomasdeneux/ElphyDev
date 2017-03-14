@@ -259,7 +259,7 @@ procedure proTdataObject_Iend(n:integer;var pu:typeUO);pascal;
 function FonctionTdataObject_Icount(var pu:typeUO):longint;pascal;
 procedure proTdataObject_Icount(n:integer;var pu:typeUO);pascal;
 
-function fonctionTdataObject_NumType(var pu:typeUO):smallint;pascal;
+function fonctionTdataObject_NumType(var pu:typeUO):integer;pascal;
 
 
 procedure proReAfficherTrace(var pu:typeUO);pascal;
@@ -1232,7 +1232,7 @@ begin
 end;
 
 
-function fonctionTdataObject_NumType(var pu:typeUO):smallint;
+function fonctionTdataObject_NumType(var pu:typeUO):integer;
   begin
     verifierObjet(pu);
     result:= ord(TdataObj(pu).inf.Tpnum);

@@ -133,6 +133,8 @@ LegalTrademarks=
 OriginalFilename=
 ProductName=ELPHY
 ProductVersion=1.0.0.0
+[Excluded Packages]
+D:\ElphyDev\Dexe5\VarPack.bpl=GS components
 [HistoryLists\hlConditionals]
 Count=1
 Item0=DEBUG
