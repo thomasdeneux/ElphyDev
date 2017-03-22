@@ -670,7 +670,7 @@ begin
     if (stmName='') then
       begin
         fileStream.Position:=posf;
-        LookForObject;
+        //LookForObject;
         posf:=fileStream.Size;
         size:=0;
       end
