@@ -167,7 +167,7 @@ Ceci n'entraînera pas de nouvelle initialisation.
   GetFilter@ permet de récupérer dans une matrice le filtre calculé.
 }
 
-
+  TIIRfilter(Tobject)
 end;
 
 type
@@ -541,4 +541,13 @@ procedure TmotionCloud.getFilter(var mat: Tmatrix);
 procedure TmotionCloud.done;
 procedure TmotionCloud.getFrame(var mat: Tmatrix);
 procedure TmotionCloud.SetExpansion(DxF1,x0F1,DyF1,y0F1:real);
+
+
+{TIIRfilter}
+procedure TIIRfilter.create;
+procedure TIIRfilter.init(order: integer; var vecFilter: Tvector);
+procedure TIIRfilter.execute(var src,dest: Tvector);
+
+
+
 
