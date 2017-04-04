@@ -74,7 +74,8 @@ uses
   DescLabchart1 in 'DescLabchart1.pas',
   Chris1 in 'Chris1.pas',
   hdf5dll in 'hdf5dll.pas',
-  hdf5_lite in 'hdf5_lite.pas';
+  hdf5_lite in 'hdf5_lite.pas',
+  IIR1 in 'IIR1.pas';
 
 {$R *.RES}
 
