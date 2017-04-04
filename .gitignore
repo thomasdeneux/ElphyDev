@@ -113,3 +113,5 @@ stmTransform2.pas
 
 # To be sorted
 *.deps
+desktop.ini
+github_icon.ico

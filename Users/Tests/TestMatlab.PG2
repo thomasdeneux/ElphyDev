@@ -1,0 +1,5 @@
+program testMatlab
+  openMatlab(true);
+  MatlabEvalString('a=1');
+  MatlabEvalString('figure(1)');
+  
