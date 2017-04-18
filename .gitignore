@@ -97,7 +97,7 @@ cuda80.dll
 CudaMC*.dll
 
 # Output of Inno Setup and zipping BAT scripts
-Setup/
+Inno setup scripts/Output
 
 # Files created by the Elphy program
 Dexe5/AppData/DAC2.GFC

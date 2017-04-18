@@ -111,7 +111,7 @@ type
 
             stMotUlex:shortString;    { Le dernier mot ramené par lireUlex }
             stMotUlexMaj:shortString; { ID en majuscules }
-            
+
 
             BlocTraitementExiste,BlocInitExiste,
             BlocInit0Existe,BlocContExiste,BlocFinExiste:boolean;
@@ -171,6 +171,8 @@ type
             DefineList:TstringList;
 
             fileName: AnsiString;
+
+            checksum: integer;
 
             procedure sortie(n:integer);overload;
             procedure sortie(st:AnsiString);overload;
@@ -1067,7 +1069,7 @@ procedure Tcompil.lireUlex;
       begin
         if FlagCondition and not FlagCompile
           then Ulex1.lireIgnore(stMotUlex,genre,x0,errComp)
-          else Ulex1.lire(stMotUlex,genre,x0,errComp);
+          else Ulex1.lire(stMotUlex,genre,x0,errComp,checksum);
         stMotUlexMaj:=Fmaj(stMotUlex);
         {messageCentral(Istr(intG(Plex))+'  '+stmotUlex+'  '+nomlex(Plex^.genre));}
         if errComp<>0 then sortie(errComp);
@@ -1100,11 +1102,11 @@ procedure Tcompil.lireUlex;
     if Plex^.genre=UnitN then
     begin
       NumUnit:=Plex^.numU;
-      Ulex1.lire(stMotUlex,Plex^.genre,x0,errComp);
+      Ulex1.lire(stMotUlex,Plex^.genre,x0,errComp, checksum);
       if errComp<>0 then sortie(errComp);
       accepte(pointL);
 
-      Ulex1.lire(stMotUlex,Plex^.genre,x0,errComp);
+      Ulex1.lire(stMotUlex,Plex^.genre,x0,errComp,checksum);
       if errComp<>0 then sortie(errComp);
       stMotUlexMaj:=Fmaj(stMotUlex);
 

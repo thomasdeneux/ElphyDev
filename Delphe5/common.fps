@@ -5,6 +5,7 @@ Object
 
  Sa propriété SysName@ contient le nom de l'objet.
  Tout objet peut être détruit avec la méthode free@ .
+ 
 }
 
   Tacquis1       (Tobject)
@@ -2411,6 +2412,11 @@ property TdataPlot.keepAspectRatio:boolean;
 
  Par défaut, les objets Tmatrix@, TxyPlot@ et leurs descendants ont cette
 propriété vraie. Pour les autres objets, cette propriété vaut False en général.
+
+}
+
+property TdataPlot.Fgrid: boolean;
+{$H Permet d'associer une grille aux graduations affichées.
 
 }
 

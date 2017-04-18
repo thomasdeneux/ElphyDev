@@ -7,17 +7,17 @@ object Form1: TForm1
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -14
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
-  PixelsPerInch = 96
+  PixelsPerInch = 120
   TextHeight = 16
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 567
+    Width = 575
     Height = 208
     Align = alTop
     TabOrder = 0
@@ -60,7 +60,7 @@ object Form1: TForm1
       Left = 148
       Top = 6
       Width = 513
-      Height = 24
+      Height = 21
       TabOrder = 0
       len = 0
       UpdateVarOnExit = False
@@ -69,7 +69,7 @@ object Form1: TForm1
       Left = 148
       Top = 36
       Width = 513
-      Height = 24
+      Height = 21
       TabOrder = 1
       len = 0
       UpdateVarOnExit = False
@@ -78,7 +78,7 @@ object Form1: TForm1
       Left = 148
       Top = 64
       Width = 513
-      Height = 24
+      Height = 21
       TabOrder = 2
       len = 0
       UpdateVarOnExit = False
@@ -87,7 +87,7 @@ object Form1: TForm1
       Left = 148
       Top = 94
       Width = 513
-      Height = 24
+      Height = 21
       TabOrder = 3
       len = 0
       UpdateVarOnExit = False
@@ -134,7 +134,7 @@ object Form1: TForm1
       Left = 148
       Top = 123
       Width = 513
-      Height = 24
+      Height = 21
       TabOrder = 9
       len = 0
       UpdateVarOnExit = False
@@ -152,8 +152,8 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 0
     Top = 208
-    Width = 567
-    Height = 317
+    Width = 575
+    Height = 322
     Align = alClient
     ScrollBars = ssBoth
     TabOrder = 1

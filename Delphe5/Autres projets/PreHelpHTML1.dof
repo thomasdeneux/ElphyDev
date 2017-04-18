@@ -115,7 +115,7 @@ AutoIncBuild=1
 MajorVer=3
 MinorVer=1
 Release=0
-Build=46
+Build=47
 Debug=0
 PreRelease=0
 Special=0
@@ -126,13 +126,15 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=UNIC-CNRS
 FileDescription=
-FileVersion=3.1.0.46
+FileVersion=3.1.0.47
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=ELPHY
 ProductVersion=1.0.0.0
+[Excluded Packages]
+D:\Dexe5\MyPack.bpl=GS components
 [HistoryLists\hlConditionals]
 Count=13
 Item0=ENG debug

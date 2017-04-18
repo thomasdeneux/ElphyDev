@@ -612,7 +612,8 @@ type
 
             expU:TstringList;         { liste des expressions : nom + pointeur sur TypeExp }
 
-
+            checksum: integer;
+            
             function getFilterParam(NumAbs:integer;f:Tfilter):integer;
             procedure sortie(st:AnsiString);
 
@@ -865,7 +866,7 @@ procedure TvectorEval.lireUlex0;
 var
   errComp:integer;
 begin
-  Ulex1.lire(stMotUlex,genreLex,x0lex,errComp);
+  Ulex1.lire(stMotUlex,genreLex,x0lex,errComp,checksum);
   Ulex1.getLastPos(ligneC,colonneC,stFile);
   stMotUlexMaj:=Fmaj(stMotUlex);
 

@@ -56,16 +56,16 @@ Source: "..\Dexe5\unic-key.txt"; DestDir: "{app}"; Components: VS
 Source: "..\DelpheXE\win64\bin\Appdata\*.pl1"; DestDir: "{app}\AppData"; Components: program
 
 ;Source: "d:\Dexe5\GfcModel\dac2.gfc"; DestDir: "{app}\AppData"; Components: program; flags: onlyifdoesntexist
-
+Source: "..\DelpheXE\win64\bin\Appdata\Dac64Model.gfc"; DestName: Dac64.gfc; DestDir: "{app}\AppData"; Components: program; flags: onlyifdoesntexist
 Source: "..\DelpheXE\win64\bin\mkl\*.*"; DestDir: "{app}\mkl"; Components: IntelLib
 Source: "..\DelpheXE\win64\bin\ipp\*.*"; DestDir: "{app}\ipp"; Components: IntelLib
 
 ; we copy only Cuda dlls version 8.0
-Source: "..\DelpheXE\win64\bin\cuda\cuda80.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\DelpheXE\win64\bin\cuda\cudaMC80.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\DelpheXE\win64\bin\cuda\cudart64_80.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\DelpheXE\win64\bin\cuda\cufft64_80.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\DelpheXE\win64\bin\cuda\curand64_80.dll"; DestDir: "{app}\Cuda"; Components: program
+Source: "..\DelpheXE\win64\bin\cuda\cuda80.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\DelpheXE\win64\bin\cuda\cudaMC80.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\DelpheXE\win64\bin\cuda\cudart64_80.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\DelpheXE\win64\bin\cuda\cufft64_80.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\DelpheXE\win64\bin\cuda\curand64_80.dll"; DestDir: "{app}\Cuda"; Components: VS
 
 
 Source: "..\DelpheXE\win64\bin\MATLAB\bin\*.dll"; DestDir: "{app}\Matlab\bin"; Components: program

@@ -60,13 +60,13 @@ Source: "..\Dexe5\AppData\*.pl1"; DestDir: "{app}\AppData"; Components: program
 
 ;Source: "..\Delphe5\elphy.txt"; DestDir: "{app}"; Components: program
 Source: "..\Dexe5\axdd132x.dll"; DestDir: "{app}"; Components: program
-Source: "..\Dexe5\D3DX81ab.dll"; DestDir: "{app}"; Components: program
+;Source: "..\Dexe5\D3DX81ab.dll"; DestDir: "{app}"; Components: program
 
 Source: "..\Dexe5\CyberK.dll"; DestDir: "{app}"; Components: program
 Source: "..\Dexe5\CyberK37.dll"; DestDir: "{app}"; Components: program
 
 Source: "..\Dexe5\NeuroDll1.dll"; DestDir: "{app}"; Components: program
-Source: "..\Dexe5\Appdata\*.gfc"; DestDir: "{app}\AppData"; Components: program; flags: onlyifdoesntexist
+Source: "..\Dexe5\Appdata\Dac2Model.gfc"; DestName: Dac2.gfc; DestDir: "{app}\AppData"; Components: program; flags: onlyifdoesntexist
 ;Source: "d:\VSprojects\nrnVS6\rtdebug\nrnRT1.rta"; DestDir: "{app}"; Components: program
 
 Source: "..\Dexe5\lcr.dll"; DestDir: "{app}"; Components: program
@@ -78,11 +78,11 @@ Source: "..\Dexe5\ipp\*.*"; DestDir: "{app}\ipp"; Components: IntelLib
 
 
 ; we copy only Cuda dlls version 6.5
-Source: "..\Dexe5\Cuda\cuda65.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\Dexe5\Cuda\cudaMC65.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\Dexe5\Cuda\cudart32_65.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\Dexe5\Cuda\cufft32_65.dll"; DestDir: "{app}\Cuda"; Components: program
-Source: "..\Dexe5\Cuda\curand32_65.dll"; DestDir: "{app}\Cuda"; Components: program
+Source: "..\Dexe5\Cuda\cuda65.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\Dexe5\Cuda\cudaMC65.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\Dexe5\Cuda\cudart32_65.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\Dexe5\Cuda\cufft32_65.dll"; DestDir: "{app}\Cuda"; Components: VS
+Source: "..\Dexe5\Cuda\curand32_65.dll"; DestDir: "{app}\Cuda"; Components: VS
 
 
 Source: "..\Dexe5\MATLAB\bin\*.dll"; DestDir: "{app}\Matlab\bin"; Components: program

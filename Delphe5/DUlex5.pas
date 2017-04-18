@@ -51,6 +51,7 @@ type
                 Fname:AnsiString;
                 f:Text;
                 size,Fpos:integer;
+
              public
                 constructor create(stF:AnsiString);
                 destructor destroy;override;
@@ -81,7 +82,8 @@ type
            procedure lire(var stMot:shortString;
                             var tp0;
                             var x:float;
-                            var error:Integer);
+                            var error:Integer;
+                            var checksum: integer);
 
            procedure lireIgnore
                            (var stMot:shortString;
@@ -143,7 +145,8 @@ const
 procedure TUlex1.lire(var stMot:shortString;
                   var tp0;
                   var x:float;
-                  var error:Integer);
+                  var error:Integer;
+                  var checksum: integer);
 
 var
   tp:typeLex ABSOLUTE tp0;
@@ -177,6 +180,8 @@ var
 
     {messageCentral(result);}
     if result=#9 then result:=' ';  { Remplacer tabulation par espace }
+
+    if (Rchar=#0) then checksum:= checksum + (1 + checksum and 7)*ord(result);
     Rchar:=#0;
   end;
 
@@ -252,7 +257,7 @@ var
 begin
   if assigned(includeUlex) then
   begin
-     IncludeUlex.lire( stMot, tp, x, error);
+     IncludeUlex.lire( stMot, tp, x, error,checksum);
      if (tp=finFich) or (error<>0) then
      begin
        IncludeUlex.Free;
@@ -304,7 +309,7 @@ begin
 
                   if assigned(includeUlex) then
                   begin
-                    IncludeUlex.lire( stMot, tp, x, error);
+                    IncludeUlex.lire( stMot, tp, x, error,checksum);
                     if tp=finFich then
                     begin
                       IncludeUlex.Free;
@@ -763,6 +768,7 @@ begin
 
   size:=fileSize(f);
   Fname:=stF;
+
   except
   Fname:='';
   end;

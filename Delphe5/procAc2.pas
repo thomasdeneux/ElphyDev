@@ -8,6 +8,7 @@ INTERFACE
 uses classes, sysUtils,
      util1,Ncdef2,Dgraphic;
 
+
 const
   IDH_types=10000;
   IDH_const=11000;
@@ -136,6 +137,7 @@ type
 
 
                tbCleO:array[0..nbCleO-1] of TstringList;
+
 
                constructor create;
                destructor destroy;override;
@@ -478,10 +480,12 @@ begin
 end;
 
 
+
 function TtabDefProc.sauver(nom:AnsiString): boolean;
 var
   f:TfileStream;
   tailleSauve:integer;
+  nbId:integer;
 begin
   Pfin:=adTab;
   while Pfin^.nom<>'' do Pfin:=procedureSuivante(Pfin);
@@ -492,6 +496,7 @@ begin
     f:=TfileStream.create(nom,fmCreate);
 
     f.Write(version,sizeof(version));
+
     f.Write(tbCle,sizeof(tbCle));
     f.Write(nbPrc,sizeof(nbPrc));
     f.Write(nbSymb,sizeof(nbSymb));
@@ -518,7 +523,7 @@ function TtabDefProc.charger(nom:AnsiString): boolean;
     t:int64;
     tailleSauve:Integer;
     i:integer;
-
+    nbId: integer;
     ft:text;
   begin
     f:=nil;
@@ -528,6 +533,7 @@ function TtabDefProc.charger(nom:AnsiString): boolean;
     t:=f.size;
 
     f.Read(version,sizeof(version));
+
     f.Read(tbCle,sizeof(tbCle));
     f.Read(nbprc,sizeof(nbprc));
     f.Read(nbsymb,sizeof(nbsymb));
@@ -1255,6 +1261,7 @@ begin
     end;
   end;
 end;
+
 
 end.
 

@@ -1947,6 +1947,8 @@ begin
   PrintObjNames;
 
   memo1.lines.add('Nb Param Max = '+Istr(NparMax));
+
+  DispVersion;
 end;
 
 procedure Tform1.writelnMemo(st:string);

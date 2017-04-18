@@ -168,6 +168,9 @@ Ceci n'entraînera pas de nouvelle initialisation.
 }
 
   TIIRfilter(Tobject)
+{$H Développement en cours
+
+}
 end;
 
 type

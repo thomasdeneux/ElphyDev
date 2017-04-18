@@ -3,7 +3,7 @@ unit Precomp0;
 INTERFACE
 
 uses
-  SysUtils,
+  classes, SysUtils,
   util1,Gdos,Dgraphic,DUlex5,Ncdef2,procac2;
 
 type
@@ -29,6 +29,7 @@ function precompile(stMain,stF:string):integer;
 
 
 }
+procedure DispVersion;
 
 IMPLEMENTATION
 
@@ -95,6 +96,7 @@ var
   Ulex1:TUlex1;
   ligneC,colonneC,numInc:integer;
 
+  checksum: integer;
 
 
 {$O-}     {interdire l'optimisation}
@@ -227,7 +229,7 @@ procedure LireUlex;
     buf:PtabChar;
   begin
     repeat
-      Ulex1.lire(stMot,tp,x0,errorRet);
+      Ulex1.lire(stMot,tp,x0,errorRet,checksum);
       {lireUlex1(buf^,0,PcDef,stMot,tp,x0,errorRet);}
       if errorRet<>0 then sortie(errorRet);
       if tp=vid then identifierMot(stMot,tp,vob);
@@ -778,9 +780,28 @@ begin
   result:=x;
 end;
 
+procedure traiterVersion1;
+var
+  f:text;
+begin
+  tbDef.version:= checkSum;
+  try
+  assignFile(f,repPAS+dacver+'.pas');
+  rewrite(f);
+  writeln(f,'Const');
+  writeln(f,'  DacVersion='+Istr(checksum)+';');
+  closeFile(f);
+  except
+  messageCentral('Unable to write '+Dacver +'.pas');
+  {$I-}closeFile(f);{$I+}
+  end;
+
+end;
+
 function Precompile(stMain,stF:string):integer;
 var
   stFile:string;
+  i,w:integer;
 begin
   repPAS:= extractFilePath(stF);
 
@@ -806,7 +827,7 @@ begin
   with tbDef do
   begin
 
-    version:=traiterVersion;
+    //version:=traiterVersion;
 
     StList:=TUtextFile.create(stMain+'.FPS');
     Ulex1:=TUlex1.create(stList);
@@ -816,6 +837,7 @@ begin
     allouerTab(1000000);
     allouerObj(1000);
 
+    checksum:= -1;
     try
     Compiler;
     except
@@ -838,6 +860,8 @@ begin
     Ulex1.free;
     stList.Free;
 
+    TraiterVersion1;
+
     writeln1(Istr(nbProcedure)+' procédures');
     writeln1(Istr(nbFonction)+' fonctions');
     writeln1(Istr(nbProp)+' propriétés');
@@ -859,6 +883,11 @@ begin
   end;
 
 
+end;
+
+procedure DispVersion;
+begin
+  writeln1('CheckSum = '+Istr(checksum));
 end;
 
 end.

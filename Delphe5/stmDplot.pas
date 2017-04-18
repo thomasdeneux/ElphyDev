@@ -409,6 +409,8 @@ function fonctionTdataPlot_ZeroAxisX(var pu:typeUO):boolean;pascal;
 procedure proTdataPlot_ZeroAxisY(x:boolean;var pu:typeUO);pascal;
 function fonctionTdataPlot_ZeroAxisY(var pu:typeUO):boolean;pascal;
 
+procedure proTdataPlot_Fgrid(x:boolean;var pu:typeUO);pascal;
+function fonctionTdataPlot_Fgrid(var pu:typeUO):boolean;pascal;
 
 
 IMPLEMENTATION
@@ -2479,6 +2481,18 @@ begin
   result:=TdataPlot(pu).visu.FscaleY0;
 end;
 
+procedure proTdataPlot_Fgrid(x:boolean;var pu:typeUO);
+begin
+  verifierObjet(pu);
+  TdataPlot(pu).visu.grille:=x;
+end;
+
+
+function fonctionTdataPlot_Fgrid(var pu:typeUO):boolean;
+begin
+  verifierObjet(pu);
+  result:=TdataPlot(pu).visu.grille;
+end;
 
 
 
