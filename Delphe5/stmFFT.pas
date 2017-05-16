@@ -5,7 +5,7 @@ INTERFACE
 
 uses util1,Dgraphic,dtf0,debug0,
      Ncdef2,stmvec1,stmError,
-     ipps,ippsOvr,ippDefs;
+     ipps17,ippDefs17,ipp17ex;
 
 
 
@@ -17,15 +17,6 @@ procedure ProComplexFFT(var source1,source2,dest1,dest2:Tvector;x1,x2:float;
                         Nb:integer;inverse:boolean);pascal;
 
 function GetOrder2(N:integer;var order:integer):boolean;
-
-procedure ippsFFT(src,dest:PdoubleComp; nb:integer; fwd: boolean);overload;
-procedure ippsFFT(src,dest:PsingleComp; nb:integer; fwd: boolean);overload;
-
-procedure ippsFFTfwd(src:Psingle;dest:PsingleComp; nb:integer);overload;
-procedure ippsFFTinv(src:PsingleComp;dest:Psingle; nb:integer);overload;
-
-procedure ippsFFTfwd(src:Pdouble;dest:PdoubleComp; nb:integer);overload;
-procedure ippsFFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);overload;
 
 IMPLEMENTATION
 
@@ -62,140 +53,6 @@ begin
 end;
 
 
-
-procedure ippsFFT(src,dest:PdoubleComp; nb:integer; fwd: boolean);
-var
-  pFFTSpec:PIppsFFTSpec_C_64fc;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getOrder2(nb,order) then exit;
-
-  ippsFFTInitAlloc_C(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  if fwd
-    then ippsFFTfwd_CtoC(src,dest,PFFTspec,@work[0])
-    else ippsFFTinv_CtoC(src,dest,PFFTspec,@work[0]);
-
-  ippsFFTfree_C(pFFTspec);
-end;
-
-procedure ippsFFT(src,dest:PsingleComp; nb:integer; fwd: boolean);
-var
-  pFFTSpec:PIppsFFTSpec_C_32fc;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getOrder2(nb,order) then exit;
-
-  ippsFFTInitAlloc_C(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  if fwd
-    then ippsFFTfwd_CtoC(src,dest,PFFTspec,@work[0])
-    else ippsFFTinv_CtoC(src,dest,PFFTspec,@work[0]);
-
-  ippsFFTfree_C(pFFTspec);
-end;
-
-procedure ippsFFTfwd(src:Psingle;dest:PsingleComp; nb:integer);
-var
-  pFFTSpec:PIppsFFTSpec_C_32fc;
-  Vaux:array of TsingleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getOrder2(nb,order) then exit;
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TsingleComp)*Nb,0);
-  for i:=0 to Nb-1 do
-    Vaux[i].x:=PtabSingle(src)^[i];
-
-  ippsFFTInitAlloc_C(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTfwd_CtoC(PsingleComp(@Vaux[0]),dest,PFFTspec,@work[0]);
-  ippsFFTfree_C(pFFTspec);
-end;
-
-procedure ippsFFTfwd(src:Pdouble;dest:PdoubleComp; nb:integer);
-var
-  pFFTSpec:PIppsFFTSpec_C_64fc;
-  Vaux:array of TdoubleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getOrder2(nb,order) then exit;
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TsingleComp)*Nb,0);
-  for i:=0 to Nb-1 do
-    Vaux[i].x:=PtabSingle(src)^[i];
-
-  ippsFFTInitAlloc_C(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTfwd_CtoC(PdoubleComp(@Vaux[0]),dest,pFFTspec,@work[0]);
-  ippsFFTfree_C(pFFTspec);
-end;
-
-procedure ippsFFTinv(src:PsingleComp;dest:Psingle; nb:integer);
-var
-  pFFTSpec:PIppsFFTSpec_C_32fc;
-  Vaux:array of TsingleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getOrder2(nb,order) then exit;
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TsingleComp)*Nb,0);
-
-  ippsFFTInitAlloc_C(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTfwd_CtoC(src,PsingleComp(@Vaux[0]),PFFTspec,@work[0]);
-  ippsFFTfree_C(pFFTspec);
-
-  for i:=0 to Nb-1 do
-    PtabSingle(src)^[i]:=Vaux[i].x;
-end;
-
-procedure ippsFFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);
-var
-  pFFTSpec:PIppsFFTSpec_C_64fc;
-  Vaux:array of TdoubleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getOrder2(nb,order) then exit;
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TdoubleComp)*Nb,0);
-
-  ippsFFTInitAlloc_C(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTfwd_CtoC(src,PdoubleComp(@Vaux[0]),PFFTspec,@work[0]);
-  ippsFFTfree_C(pFFTspec);
-
-  for i:=0 to Nb-1 do
-    PtabDouble(src)^[i]:=Vaux[i].x;
-end;
 
 procedure GFFT(source1,source2,dest1,dest2:Tvector;x1,x2:float;Nb:integer;
                mode:integer;inverse:boolean);
@@ -283,7 +140,7 @@ begin
 
 
 
-  ippsFFT(PdoubleComp(@z1FFT[0]), PdoubleComp(@z2FFT[0]), nb, true);
+  FFT64fc(PdoubleComp(@z1FFT[0]), PdoubleComp(@z2FFT[0]), nb, true);
 
 
   max:=nb-1;

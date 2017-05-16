@@ -4,7 +4,7 @@ interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
 uses util1,Dgraphic,
-     IPPS,IPPdefs,IPPSovr,
+     IPPS17,IPPdefs17, ipp17ex,
      Ncdef2,stmPg,
      stmDef,stmObj,stmvec1,stmMat1,mathKernel0,stmKLmat;
 
@@ -153,7 +153,7 @@ begin
       i2:=IdatEnd[i];
       if (i1<=i2) and (i2<=nbpt) then
       begin
-        ippsNorm_L2( Pdouble(@PtabDouble(vec.tb)^[i1]),i2-i1+1,@dd);
+        ippsNorm_L2_64f( Pdouble(@PtabDouble(vec.tb)^[i1]),i2-i1+1,@dd);
         result:=result+sqr(dd);
       end;
     end;
@@ -217,12 +217,12 @@ begin
     getJacobian(para);             { Calcul matrice jacobienne }
 
     for i:=1 to nbpara do
-      if Vclamp[i-1] then ippsSet(1E10 ,Pdouble(Jmat.cell(1,i)),nbpt);
+      if Vclamp[i-1] then ippsSet_64f(1E10 ,Pdouble(Jmat.cell(1,i)),nbpt);
 
 
     beta.prod(Jmat,diff,transpose,normal);
     alpha.prod(Jmat,Jmat,transpose,normal);
-    ippsMulC(1/nbpt,alpha.tbD,nbpara*nbpara);
+    ippsMulC_64f_I(1/nbpt,alpha.tbD,nbpara*nbpara);
 
     for i:=1 to nbpara do
      if abs(alpha[i,i])<epsilon then
@@ -324,10 +324,10 @@ begin
 
   TRY
   {Le résultat du filtre linéaire est donné par une convolution}
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
   yfit.extract(ylin1,1,nbpt,1,1);
-  ippsThreshold_LT(yfit.tbD,nbpt,0);
+  ippsThreshold_LT_64f_I(yfit.tbD,nbpt,0);
 
   FINALLY
   IPPSend;
@@ -346,7 +346,7 @@ begin
 
   TRY
   { calculer le résultat du filtre linéaire ylin1 }
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
   { ensuite, on a dy/dhi(t) =xdat1[t-i]
     Il serait logique de considérer que la dérivée est nulle pour ylin1<0
@@ -451,34 +451,34 @@ end;
 
 procedure ToptiFitTh0.Add(src: Tmat; w: float);
 begin
-  ippsAddC(w,src.tbD,nbpt);
+  ippsAddC_64f_I(w,src.tbD,nbpt);
 end;
 
 procedure ToptiFitTh0.Add(src1, src2: Tmat);
 begin
-  ippsAdd(src1.tbD,src2.tbD,nbpt);
+  ippsAdd_64f_I(src1.tbD,src2.tbD,nbpt);
 end;
 
 procedure ToptiFitTh0.Add(src1, src2, dest: Tmat);
 begin
-  ippsAdd(src1.tbD,src2.tbD,dest.tbD,nbpt);
+  ippsAdd_64f(src1.tbD,src2.tbD,dest.tbD,nbpt);
 end;
 
 
 
 procedure ToptiFitTh0.Mul(src: Tmat; w: float);
 begin
-  ippsMulC(w,src.tbD,nbpt);
+  ippsMulC_64f_I(w,src.tbD,nbpt);
 end;
 
 procedure ToptiFitTh0.Mul(src1, src2: Tmat);
 begin
-  ippsMul(src1.tbD,src2.tbD,nbpt);
+  ippsMul_64f_I(src1.tbD,src2.tbD,nbpt);
 end;
 
 procedure ToptiFitTh0.Mul(src1, src2, dest: Tmat);
 begin
-  ippsMul(src1.tbD,src2.tbD,dest.tbD,nbpt);
+  ippsMul_64f(src1.tbD,src2.tbD,dest.tbD,nbpt);
 end;
 
 
@@ -502,14 +502,14 @@ end;
 procedure ToptiFitTh0.Thresh1(src: Tmat; w: float;up:boolean);
 begin
   if up
-    then ippsThreshold_GT(src.tbD,nbpt,w)
-    else ippsThreshold_LT(src.tbD,nbpt,w);
+    then ippsThreshold_GT_64f_I(src.tbD,nbpt,w)
+    else ippsThreshold_LT_64f_I(src.tbD,nbpt,w);
 end;
 
 procedure ToptiFitTh0.AbsThresh(src:Tmat;w:float);
 begin
-  ippsAbs(src.tbD,nbpt);
-  ippsThreshold_LT(src.tbD,nbpt,w);
+  ippsAbs_64f_I(src.tbD,nbpt);
+  ippsThreshold_LT_64f_I(src.tbD,nbpt,w);
 end;
 
 procedure ToptiFitTh0.vecToJmat(src:Tmat;num:integer);
@@ -529,10 +529,10 @@ begin
 
   TRY
   {Le résultat du filtre linéaire est donné par une convolution}
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
   yfit.extract(ylin1,1,nbpt,1,1);
-  ippsThreshold_LT(yfit.tbD,nbpt,pp[Nblin1+1,1]);
+  ippsThreshold_LT_64f_I(yfit.tbD,nbpt,pp[Nblin1+1,1]);
 
   FINALLY
   IPPSend;
@@ -552,7 +552,7 @@ begin
 
   TRY
   { calculer le résultat du filtre linéaire ylin1 }
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
   { ensuite, on a dy/dhi(t) =xdat1[t-i]
     Il serait logique de considérer que la dérivée est nulle pour ylin1<0
@@ -598,7 +598,7 @@ begin
 
   TRY
         {Le résultat du filtre linéaire est donné par une convolution}
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
         {On applique ensuite le polynome du filtre non-linéaire sur le résultat}
 
@@ -607,10 +607,10 @@ begin
 
   for i:=1 to NbNonLin1 do        { le premier coeff est c2 }
   begin
-    ippsMul(ylin1.tbD,yp.tbD,nbpt);               { yp = yp*ylin1}
+    ippsMul_64f_I(ylin1.tbD,yp.tbD,nbpt);               { yp = yp*ylin1}
     Ydum.copy(yp);                                { ydum = yp}
-    ippsMulC(pp[Nblin1+i,1],ydum.tbD,nbpt);       { ydum = yp*c[i]}
-    ippsMul(ydum.tbD,yfit.tbD,nbpt);              { yfit = yfit + ydum }
+    ippsMulC_64f_I(pp[Nblin1+i,1],ydum.tbD,nbpt);       { ydum = yp*c[i]}
+    ippsMul_64f_I(ydum.tbD,yfit.tbD,nbpt);              { yfit = yfit + ydum }
   end;
 
 
@@ -639,35 +639,35 @@ begin
 
   TRY
   {calculer le résultat du filtre linéaire ylin1 }
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
 
   {calculer les vecteurs non-lin égaux à ylin1 à la puissance q }
 
   move(ylin1.tb^,Jmat.cell(1,Nblin1+1)^,nbpt*8);  { ylin1 dans colonne 1 non lin }
-  ippsMul(ylin1.tbD,Pdouble(Jmat.cell(1,Nblin1+1)),nbpt); { col1 = (ylin1)² }
+  ippsMul_64f_I(ylin1.tbD,Pdouble(Jmat.cell(1,Nblin1+1)),nbpt); { col1 = (ylin1)² }
 
   for i:=2 to NbNonLin1 do                       { puis les autres colonnes }
-    ippsMul(Pdouble(Jmat.cell(1,Nblin1+i-1)), ylin1.tbD, Pdouble(Jmat.cell(1,Nblin1+i)),nbpt);
+    ippsMul_64f(Pdouble(Jmat.cell(1,Nblin1+i-1)), ylin1.tbD, Pdouble(Jmat.cell(1,Nblin1+i)),nbpt);
 
 
   { Calculer yprim = dérivee du polynome nonlin par rapport à yfit }
 
   yprim.copy(ylin1);
-  ippsMulC(2*pp[Nblin1+1,1],yprim.tbD,nbpt);         { yprim = 2*c2*yprim }
-  ippsAddC(1,yprim.tbD,nbpt);                        { yprim = 1 + 2*c2*ylin1 }
+  ippsMulC_64f_I(2*pp[Nblin1+1,1],yprim.tbD,nbpt);         { yprim = 2*c2*yprim }
+  ippsAddC_64f_I(1,yprim.tbD,nbpt);                        { yprim = 1 + 2*c2*ylin1 }
 
   for i:=2 to NbNonLin1 do
   begin
     move(Jmat.cell(1,Nblin1+i-1)^,ydum.tb^,nbpt*8);  { ydum = ylin1 exposant (i) }
-    ippsMulC(pp[Nblin1+i,1],ydum.tbD,nbpt);          { ydum = ydum*c[i]}
-    ippsMulC(i+1,ydum.tbD,nbpt);                     { ydum = ydum*(i+1)}
-    ippsAdd(ydum.tbD,yprim.tbD,nbpt);                 { yprim = yprim + ydum }
+    ippsMulC_64f_I(pp[Nblin1+i,1],ydum.tbD,nbpt);          { ydum = ydum*c[i]}
+    ippsMulC_64f_I(i+1,ydum.tbD,nbpt);                     { ydum = ydum*(i+1)}
+    ippsAdd_64f_I(ydum.tbD,yprim.tbD,nbpt);                 { yprim = yprim + ydum }
   end;
 
   { Calcul de la colonne Lin = yprim(t)*xdat1(t-i)  }
   for i:=1 to Nblin1 do
-    ippsMul(Pdouble(yprim.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(Jmat.cell(i,i)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(yprim.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(Jmat.cell(i,i)),nbpt-i+1 );
 
   (*
   for i:=1 to Nblin1 do
@@ -699,20 +699,20 @@ begin
   try
   TRY
         {Le résultat du filtre linéaire est donné par une convolution}
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
         {On applique ensuite le polynome du filtre non-linéaire sur le résultat}
 
   yfit.extract(ylin1,1,nbpt,1,1); { ranger ylin1 dans yfit   (Attention: ylin1 est plus grand que yfit)  }
 
-  ippsThreshold_LT(yfit.tbD,nbpt,1E-20);        { seuil +epsilon }
-  ippsLn(yfit.tbD,nbpt);                        { yfit = Log(yfit) }
-  ippsMulC(pp[Nblin1+1,1],yfit.tbD,nbpt);       { yfit = cp * Log(yfit) }
+  ippsThreshold_LT_64f_I(yfit.tbD,nbpt,1E-20);        { seuil +epsilon }
+  ippsLn_64f_I(yfit.tbD,nbpt);                        { yfit = Log(yfit) }
+  ippsMulC_64f_I(pp[Nblin1+1,1],yfit.tbD,nbpt);       { yfit = cp * Log(yfit) }
 
-  ippsThreshold_GT(yfit.tbD,nbpt,100);       { seuil +inf }
-  ippsThreshold_LT(yfit.tbD,nbpt,-100);      { seuil -inf }
+  ippsThreshold_GT_64f_I(yfit.tbD,nbpt,100);       { seuil +inf }
+  ippsThreshold_LT_64f_I(yfit.tbD,nbpt,-100);      { seuil -inf }
 
-  ippsMulC(1,yfit.tbD,nbpt);
+  ippsMulC_64f_I(1,yfit.tbD,nbpt);
 
   for i:=1 to yfit.rowCount do yfit[i,1]:=exp(yfit[i,1]);
 
@@ -747,7 +747,7 @@ begin
 
   TRY
   {calculer le résultat du filtre linéaire ylin1 }
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
 
 (*
    {Essai }
@@ -772,32 +772,32 @@ begin
   {calculer le vecteur non-lin  }
 
   yprim.extract(ylin1,1,nbpt,1,1);                { ranger ylin1 dans yprim }
-  ippsThreshold_LT(yprim.tbD,nbpt,1E-20);         { seuil +epsilon }
-  ippsLn(yprim.tbD,nbpt);                         { yprim = Log(ylin1) }
+  ippsThreshold_LT_64f_I(yprim.tbD,nbpt,1E-20);         { seuil +epsilon }
+  ippsLn_64f_I(yprim.tbD,nbpt);                         { yprim = Log(ylin1) }
 
   ydum.copy(yprim);
-  ippsMulC(pp[Nblin1+1,1],ydum.tbD,nbpt);          { ydum = cp * Log(ylin1) }
+  ippsMulC_64f_I(pp[Nblin1+1,1],ydum.tbD,nbpt);          { ydum = cp * Log(ylin1) }
 
 
   {nspdbexp1(ydum.tb,nbpt);  }                    { ydum=exp( cp*Log(ylin1) ) }
   for i:=1 to ydum.rowCount do ydum[i,1]:=exp(ydum[i,1]);
 
-  ippsMul(yprim.tbD,ydum.tbD,nbpt);               { ydum:=Log(ylin1)*exp( cp*Log(ylin1) ) }
+  ippsMul_64f_I(yprim.tbD,ydum.tbD,nbpt);               { ydum:=Log(ylin1)*exp( cp*Log(ylin1) ) }
 
   move(ydum.tb^,Jmat.cell(1,Nblin1+1)^,nbpt*8);    { ydum dans colonne 1 non lin }
 
 
   { Calculer yprim = dérivee du polynome nonlin par rapport à yfit }
                                                     { yprim contient Log(ylin1) }
-  ippsMulC(pp[Nblin1+1,1]-1 ,yprim.tbD,nbpt);       { yprim = (cp-1) * Log(ylin1) }
+  ippsMulC_64f_I(pp[Nblin1+1,1]-1 ,yprim.tbD,nbpt);       { yprim = (cp-1) * Log(ylin1) }
   {nspdbexp1(yprim.tb,nbpt);  }                     { yprim= exp( (cp-1)*Log(ylin1) ) }
   for i:=1 to yprim.rowCount do yprim[i,1]:=exp(yprim[i,1]);
-  ippsMulC(pp[Nblin1+1,1] ,yprim.tbD,nbpt);         { yprim =cp * exp( (cp-1)*Log(ylin1) ) }
+  ippsMulC_64f_I(pp[Nblin1+1,1] ,yprim.tbD,nbpt);         { yprim =cp * exp( (cp-1)*Log(ylin1) ) }
 
 
   { Calcul de la colonne Lin = yprim(t)*xdat1(t-i) }
   for i:=1 to Nblin1 do
-    ippsMul(Pdouble(yprim.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(Jmat.cell(i,i)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(yprim.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(Jmat.cell(i,i)),nbpt-i+1 );
 
 
   FINALLY
@@ -847,21 +847,21 @@ begin
   try
   TRY
         {Les résultats des filtres linéaires sont donnés par des convolutions }
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
-  ippsConv(xdat2.tbD,nbpt,Pdouble(pp.cell(Nblin1+1,1)),Nblin2,ylin2.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat2.tbD,nbpt,Pdouble(pp.cell(Nblin1+1,1)),Nblin2,ylin2.tbD);
 
-  ippsAdd(ylin1.tbD,ylin2.tbD,yfit.tbD,nbpt); { ranger la somme  ylin1+ylin2 dans yfit }
+  ippsAdd_64f(ylin1.tbD,ylin2.tbD,yfit.tbD,nbpt); { ranger la somme  ylin1+ylin2 dans yfit }
         {On applique ensuite le polynome du filtre non-linéaire sur le résultat}
 
 
-  ippsThreshold_LT(yfit.tbD,nbpt,1E-20);       { seuil +epsilon }
-  ippsLn(yfit.tbD,nbpt);                        { yfit = Log(yfit) }
-  ippsMulC(pp[Nblin1+nblin2+1,1],yfit.tbD,nbpt);{ yfit = cp * Log(yfit) }
+  ippsThreshold_LT_64f_I(yfit.tbD,nbpt,1E-20);       { seuil +epsilon }
+  ippsLn_64f_I(yfit.tbD,nbpt);                        { yfit = Log(yfit) }
+  ippsMulC_64f_I(pp[Nblin1+nblin2+1,1],yfit.tbD,nbpt);{ yfit = cp * Log(yfit) }
 
-  ippsThreshold_GT(yfit.tbD,nbpt,100);          { seuil +inf }
-  ippsThreshold_LT(yfit.tbD,nbpt,-100);         { seuil -inf }
+  ippsThreshold_GT_64f_I(yfit.tbD,nbpt,100);          { seuil +inf }
+  ippsThreshold_LT_64f_I(yfit.tbD,nbpt,-100);         { seuil -inf }
 
-  ippsMulC(1,yfit.tbD,nbpt);
+  ippsMulC_64f_I(1,yfit.tbD,nbpt);
 
   g0:=para[Nblin1+nblin2+2,1];
   Cte:=para[Nblin1+nblin2+3,1];
@@ -899,50 +899,50 @@ begin
 
   TRY
         {Calculer les résultats des filtres linéaires  }
-  ippsConv(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
-  ippsConv(xdat2.tbD,nbpt,Pdouble(pp.cell(Nblin1+1,1)),Nblin2,ylin2.tbD);
+  Conv64f(xdat1.tbD,nbpt,pp.tbD,Nblin1,ylin1.tbD);
+  Conv64f(xdat2.tbD,nbpt,Pdouble(pp.cell(Nblin1+1,1)),Nblin2,ylin2.tbD);
 
-  ippsAdd(ylin1.tbD,ylin2.tbD,yprim.tbD,nbpt);             { ranger la somme  ylin1+ylin2 dans yprim }
+  ippsAdd_64f(ylin1.tbD,ylin2.tbD,yprim.tbD,nbpt);             { ranger la somme  ylin1+ylin2 dans yprim }
 
 
   {calculer le vecteur non-lin  }
 
-  ippsThreshold_LT(yprim.tbD,nbpt,1E-20);                  { seuil +epsilon }
-  ippsLn(yprim.tbD,nbpt);                                  { yprim = Log(ylin1) }
+  ippsThreshold_LT_64f_I(yprim.tbD,nbpt,1E-20);                  { seuil +epsilon }
+  ippsLn_64f_I(yprim.tbD,nbpt);                                  { yprim = Log(ylin1) }
 
   ydum.copy(yprim);
-  ippsMulC(pp[Nblin1+nblin2+1,1],ydum.tbD,nbpt);           { ydum = cp * Log(ylin1) }
+  ippsMulC_64f_I(pp[Nblin1+nblin2+1,1],ydum.tbD,nbpt);           { ydum = cp * Log(ylin1) }
 
 
   {nspdbexp1(ydum.tb,nbpt);  }                             { ydum=exp( cp*Log(ylin1) ) }
   for i:=1 to ydum.rowCount do ydum[i,1]:=exp(ydum[i,1]);
   move(ydum.tb^,Jmat.cell(1,Nblin1+nblin2+2)^,nbpt*8);     { ydum dans colonne 2 non lin }
 
-  ippsMul(yprim.tbD,ydum.tbD,nbpt);                        { ydum:=Log(ylin1)*exp( cp*Log(ylin1) ) }
+  ippsMul_64f_I(yprim.tbD,ydum.tbD,nbpt);                        { ydum:=Log(ylin1)*exp( cp*Log(ylin1) ) }
 
   g0:=pp[Nblin1+nblin2+2,1];
   Cte:=pp[Nblin1+nblin2+3,1];
 
-  ippsMulC(g0,ydum.tbD,nbpt);                              { ydum:=g0*Log(ylin1)*exp( cp*Log(ylin1) ) }
+  ippsMulC_64f_I(g0,ydum.tbD,nbpt);                              { ydum:=g0*Log(ylin1)*exp( cp*Log(ylin1) ) }
   move(ydum.tb^,Jmat.cell(1,Nblin1+nblin2+1)^,nbpt*8);     { ydum dans colonne 1 non lin }
 
 
   { Calculer yprim = dérivee du polynome nonlin par rapport à yfit }
                                                           { yprim contient Log(ylin1) }
-  ippsMulC(pp[Nblin1+nblin2+1,1]-1 ,yprim.tbD,nbpt);      { yprim = (cp-1) * Log(ylin1) }
+  ippsMulC_64f_I(pp[Nblin1+nblin2+1,1]-1 ,yprim.tbD,nbpt);      { yprim = (cp-1) * Log(ylin1) }
   {nspdbexp1(yprim.tb,nbpt);  }                           { yprim= exp( (cp-1)*Log(ylin1) ) +Cte }
   for i:=1 to yprim.rowCount do yprim[i,1]:=g0*exp(yprim[i,1]);
-  ippsMulC(pp[Nblin1+nblin2+1,1] ,yprim.tbD,nbpt);        { yprim =cp * exp( (cp-1)*Log(ylin1) ) }
+  ippsMulC_64f_I(pp[Nblin1+nblin2+1,1] ,yprim.tbD,nbpt);        { yprim =cp * exp( (cp-1)*Log(ylin1) ) }
 
 
   { Calcul de la colonne Lin = yprim(t)*xdat1(t-i)  }
   for i:=1 to Nblin1 do
-    ippsMul(Pdouble(yprim.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(Jmat.cell(i,i)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(yprim.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(Jmat.cell(i,i)),nbpt-i+1 );
 
   for i:=1 to nbLin2 do
-    ippsMul(Pdouble(yprim.cell(i,1)),Pdouble(xdat2.Cell(1,1)),Pdouble(Jmat.cell(i,Nblin1+i)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(yprim.cell(i,1)),Pdouble(xdat2.Cell(1,1)),Pdouble(Jmat.cell(i,Nblin1+i)),nbpt-i+1 );
 
-  ippsSet(1, Pdouble(Jmat.cell(1,Nblin1+nblin2+3)),nbpt);
+  ippsSet_64f(1, Pdouble(Jmat.cell(1,Nblin1+nblin2+3)),nbpt);
 
   FINALLY
 

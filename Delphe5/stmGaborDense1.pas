@@ -17,7 +17,7 @@ uses windows,classes,math,
      Gnoise1, VlistA1,
      stmAve1,stmAveA1,
      stmMlist,
-     ipps, ippsOvr;
+     ipps17;
 
 
 const

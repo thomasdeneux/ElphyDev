@@ -20,7 +20,7 @@ uses windows,sysUtils,
 
      tpVector,
      objFile1,stmError,stmPg,binFile1,
-     ipps,ippsovr,
+     ipps17,
      matlab_matrix,
      matlab_Mat,
 
@@ -427,7 +427,7 @@ begin
   if AllocMemory(TotalSize) then
   begin
     if Fzero and (totalSize<>0) then
-      if ippsZero(Pointer(tb),totalSize)<>0 then {messageCentral('ICI')};
+      if ippsZero_8u(Pointer(tb),totalSize)<>0 then {messageCentral('ICI')};
   end
   else MemoryErrorMessage('Unable to allocate sz='+Istr(totalSize)+' for '+ident);
 
@@ -740,7 +740,7 @@ begin
 
   if Falign32Bytes then
   begin
-    tbTemp:=IppsMalloc(Size);   { Falign32Bytes n'est utilisé que par Toptimizer }
+    tbTemp:=IppsMalloc_8u(Size);   { Falign32Bytes n'est utilisé que par Toptimizer }
     result:= (tbTemp<>nil);
     if not result then
     begin
@@ -811,10 +811,10 @@ begin
     else
     if oldSize=0 then                // size>0 et oldsize=0, on alloue directement tbtemp
     begin
-      tbTemp:=IppsMalloc(Size);
+      tbTemp:=IppsMalloc_8u(Size);
       result:=(tbTemp<>nil);
       if result and Fzero
-        then ippsZero(Pointer(tb),Size);
+        then ippsZero_8u(Pointer(tb),Size);
     end
     else
     if size=oldsize then
@@ -824,7 +824,7 @@ begin
     end
     else
     begin                           // size>0 et oldsize>0, on alloue un nouveau bloc et on copie les data
-      tbTemp:=IppsMalloc(Size);
+      tbTemp:=IppsMalloc_8u(Size);
 
       if (tbTemp<>nil) then
       begin
@@ -833,7 +833,7 @@ begin
           else move(p1^,tbTemp^,Size);
 
         if Fzero and (Size>Oldsize)
-          then ippsZero(pointer(@PtabOctet(tb)^[Oldsize]),Size-Oldsize);
+          then ippsZero_8u(pointer(@PtabOctet(tb)^[Oldsize]),Size-Oldsize);
         result:=true;
       end
       else
@@ -841,7 +841,7 @@ begin
         result:= ReallocmemG(tbTemp,size);
         if result then
         begin
-          if Fzero and (Size>Oldsize) then ippsZero(Ppointer(@PtabOctet(tb)^[Oldsize]),Size-Oldsize);
+          if Fzero and (Size>Oldsize) then ippsZero_8u(Pbyte(@PtabOctet(tb)^[Oldsize]),Size-Oldsize);
           Falign32Bytes:= false;
         end;
       end;
@@ -855,7 +855,7 @@ begin
   begin
     result:= ReallocmemG(tbTemp,size);
     if result and Fzero and (Size>Oldsize)
-      then ippsZero(Ppointer(@PtabOctet(tb)^[Oldsize]),Size-Oldsize);
+      then ippsZero_8u(Pbyte(@PtabOctet(tb)^[Oldsize]),Size-Oldsize);
   end;
 end;
 

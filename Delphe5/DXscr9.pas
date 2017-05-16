@@ -7,7 +7,7 @@ uses
   Dialogs,
   util1,DXTypes, Direct3D9G, D3DX9G, BMex1,debug0,
   cuda1,
-  IppDefs, Ipps, ippsovr,
+  IppDefs17, Ipps17,
   reducstim1;
 
 type
@@ -629,7 +629,7 @@ begin
   getMask(mask, Ni,Nj, xp, yp, mat ,@tbS[0],Nx ,Ny ,SSwidth);
 
   IppsSum_32f(Psingle(mask), Ni*Nj, @MaskSum,ippAlgHintNone);
-  if MaskSum<>0 then   IppsMulC(1/MaskSum, Psingle(mat), Nx*Ny);
+  if MaskSum<>0 then   IppsMulC_32f_I(1/MaskSum, Psingle(mat), Nx*Ny);
   IPPSend;
 end;
 

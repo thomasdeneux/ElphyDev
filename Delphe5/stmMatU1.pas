@@ -6,7 +6,7 @@ interface
 uses util1,Dgraphic,
      stmDef,stmObj,stmMat1,stmMlist,stmError,NcDef2,
 
-     IPPS,IPPSovr,IPPI,IPPdefs,
+     IPPS17, IPPI17,IPPdefs17,
      stmvec1,VlistA1,stmJP,stmPsth1,stmave1,
      mathKernel0,mkl_dfti;
 
@@ -230,8 +230,8 @@ begin
   if src.inf.temp and ((src.tpNum=G_singleComp) and (dest.tpNum=G_single) OR
                        (src.tpNum=G_doubleComp) and (dest.tpNum=G_double) ) then
     case src.tpnum of
-      G_singleComp: ippsReal(srcX.tbSC,dest.tbS,src.Kcount);
-      G_doubleComp: ippsReal(srcX.tbDC,dest.tbD,src.Kcount);
+      G_singleComp: ippsReal_32fc(srcX.tbSC,dest.tbS,src.Kcount);
+      G_doubleComp: ippsReal_64fc(srcX.tbDC,dest.tbD,src.Kcount);
     end
   else
   {cas complexes non ISPL}
@@ -276,8 +276,8 @@ begin
   if src.inf.temp and ((src.tpNum=G_singleComp) and (dest.tpNum=G_single) OR
                        (src.tpNum=G_doubleComp) and (dest.tpNum=G_double) ) then
     case src.tpnum of
-      G_singleComp: ippsImag(srcX.tbSC,dest.tbS,src.Kcount);
-      G_doubleComp: ippsImag(srcX.tbDC,dest.tbD,src.Kcount);
+      G_singleComp: ippsImag_32fc(srcX.tbSC,dest.tbS,src.Kcount);
+      G_doubleComp: ippsImag_64fc(srcX.tbDC,dest.tbD,src.Kcount);
     end
   else
   {cas complexes non ISPL}
@@ -318,22 +318,22 @@ begin
   if src.inf.temp and (src.tpNum=G_single) and (dest.tpNum=G_single) then
     begin
       if src=dest
-        then ippsAbs(src.tbS,src.Kcount)
-        else ippsAbs(src.tbS,dest.tbS,src.Kcount);
+        then ippsAbs_32f_I(src.tbS,src.Kcount)
+        else ippsAbs_32f(src.tbS,dest.tbS,src.Kcount);
     end
   else
   if src.inf.temp and (src.tpNum=G_double) and (dest.tpNum=G_double) then
     begin
       if src=dest
-        then ippsAbs(src.tbD,src.Kcount)
-        else ippsAbs(src.tbD,dest.tbD,src.Kcount);
+        then ippsAbs_64f_I(src.tbD,src.Kcount)
+        else ippsAbs_64f(src.tbD,dest.tbD,src.Kcount);
     end
   else
   if src.inf.temp and (src.tpNum=G_singleComp) and (dest.tpNum=G_single)
-    then ippsMagnitude(src.tbSC,dest.tbS,src.Kcount)
+    then ippsMagnitude_32fc(src.tbSC,dest.tbS,src.Kcount)
   else
   if src.inf.temp and (src.tpNum=G_doubleComp) and (dest.tpNum=G_double)
-    then ippsMagnitude(src.tbDC,dest.tbD,src.Kcount)
+    then ippsMagnitude_64fc(src.tbDC,dest.tbD,src.Kcount)
   else
 
   {cas complexes non ISPL}
@@ -382,10 +382,10 @@ begin
 
   {cas ISPL}
   if src.inf.temp and (src.tpNum=G_singleComp) and (dest.tpNum=G_single)
-    then ippsPhase(srcX.tbSC,dest.tbS,src.Kcount)
+    then ippsPhase_32fc(srcX.tbSC,dest.tbS,src.Kcount)
   else
   if src.inf.temp and (src.tpNum=G_doubleComp) and (dest.tpNum=G_double)
-      then ippsPhase(srcX.tbDC,dest.tbD,src.Kcount)
+      then ippsPhase_64fc(srcX.tbDC,dest.tbD,src.Kcount)
   else
   {cas complexes non ISPL}
   if src.tpNum in [G_singleComp..G_extComp] then
@@ -425,16 +425,16 @@ begin
 
   {cas ISPL}
   if src.inf.temp and (src.tpNum=G_single) and (dest.tpNum=G_single)
-    then ippsSqr(srcX.tbS,dest.tbS,src.Kcount)
+    then ippsSqr_32f(srcX.tbS,dest.tbS,src.Kcount)
   else
   if src.inf.temp and (src.tpNum=G_double) and (dest.tpNum=G_double)
-    then ippsSqr(srcX.tbD,dest.tbD,src.Kcount)
+    then ippsSqr_64f(srcX.tbD,dest.tbD,src.Kcount)
   else
   if src.inf.temp and (src.tpNum=G_singleComp) and (dest.tpNum=G_single)
-    then ippsPowerSpectr(srcX.tbSC,dest.tbS,src.Kcount)
+    then ippsPowerSpectr_32fc(srcX.tbSC,dest.tbS,src.Kcount)
   else
   if src.inf.temp and (src.tpNum=G_doubleComp) and (dest.tpNum=G_double)
-    then ippsPowerSpectr(srcX.tbDC,dest.tbD,src.Kcount)
+    then ippsPowerSpectr_64fc(srcX.tbDC,dest.tbD,src.Kcount)
   else
   {cas complexes non ISPL}
   if src.tpNum in [G_singleComp..G_extComp] then
@@ -476,29 +476,29 @@ begin
   if src.inf.temp and (src.tpNum=G_single) and (dest.tpNum=G_single) then
     begin
       if src=dest
-        then ippsThreshold_LTinv(src.tbS,src.Kcount,th)
-        else ippsThreshold_LTinv(src.tbS,dest.tb,src.Kcount,th);
+        then ippsThreshold_LTinv_32f_I(src.tbS,src.Kcount,th)
+        else ippsThreshold_LTinv_32f(src.tbS,dest.tb,src.Kcount,th);
     end
   else
   if src.inf.temp and (src.tpNum=G_double) and (dest.tpNum=G_double) then
     begin
       if src=dest
-        then ippsThreshold_LTinv(src.tbD,src.Kcount,th)
-        else ippsThreshold_LTinv(src.tbD,dest.tbD,src.Kcount,th);
+        then ippsThreshold_LTinv_64f_I(src.tbD,src.Kcount,th)
+        else ippsThreshold_LTinv_64f(src.tbD,dest.tbD,src.Kcount,th);
     end
   else
   if src.inf.temp and (src.tpNum=G_singleComp) and (dest.tpNum=G_singleComp) then
     begin
       if src=dest
-        then ippsThreshold_LTinv(src.tbDC,src.Kcount,th)
-        else ippsThreshold_LTinv(src.tbSC,dest.tbSC,src.Kcount,th);
+        then ippsThreshold_LTinv_32fc_I(src.tbSC,src.Kcount,th)
+        else ippsThreshold_LTinv_32fc(src.tbSC,dest.tbSC,src.Kcount,th);
     end
   else
   if src.inf.temp and (src.tpNum=G_doubleComp) and (dest.tpNum=G_doubleComp) then
     begin
       if src=dest
-        then ippsThreshold_LTinv(src.tbDC,src.Kcount,th)
-        else ippsThreshold_LTinv(src.tbDC,dest.tbDC,src.Kcount,th);
+        then ippsThreshold_LTinv_64fc_I(src.tbDC,src.Kcount,th)
+        else ippsThreshold_LTinv_64fc(src.tbDC,dest.tbDC,src.Kcount,th);
     end
   else
   {cas complexes non ISPL}
@@ -570,17 +570,17 @@ begin
   {cas ISPL}
   if (src.tpNum in [G_single,G_double,G_singleComp, G_doubleComp]) then
     case src.tpnum of
-      G_single:       ippsAddC(num.x,src.tbS,src.Kcount);
-      G_double:       ippsAddC(num.x,src.tbD,src.Kcount);
+      G_single:       ippsAddC_32f_I(num.x,src.tbS,src.Kcount);
+      G_double:       ippsAddC_64f_I(num.x,src.tbD,src.Kcount);
       G_singleComp: begin
                       zs.x:=num.x;
                       zs.y:=num.y;
-                      ippsAddC(zs,src.tbSC,src.Kcount);
+                      ippsAddC_32fc_I(zs,src.tbSC,src.Kcount);
                     end;
       G_doubleComp: begin
                       zd.x:=num.x;
                       zd.y:=num.y;
-                      ippsAddC(zd,src.tbDC,src.Kcount);
+                      ippsAddC_64fc_I(zd,src.tbDC,src.Kcount);
                     end;
     end
   else
@@ -620,17 +620,17 @@ begin
   {cas ISPL}
   if (src.tpNum in [G_single,G_double,G_singleComp, G_doubleComp]) then
     case src.tpnum of
-      G_single:       ippsMulC(num.x,src.tbS,src.Kcount);
-      G_double:       ippsMulC(num.x,src.tbD,src.Kcount);
+      G_single:       ippsMulC_32f_I(num.x,src.tbS,src.Kcount);
+      G_double:       ippsMulC_64f_I(num.x,src.tbD,src.Kcount);
       G_singleComp: begin
                       zs.x:=num.x;
                       zs.y:=num.y;
-                      ippsMulC(zs,src.tbSC,src.Kcount);
+                      ippsMulC_32fc_I(zs,src.tbSC,src.Kcount);
                     end;
       G_doubleComp: begin
                       zd.x:=num.x;
                       zd.y:=num.y;
-                      ippsMulC(zd,src.tbDC,src.Kcount);
+                      ippsMulC_64fc_I(zd,src.tbDC,src.Kcount);
                     end;
     end
   else
@@ -701,26 +701,26 @@ begin
   begin
     if (src1<>dest) and (src2<>dest) then
     case src1.tpNum of
-      G_single:      ippsAdd(src1.tbS,src2.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsAdd(src1.tbD,src2.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsAdd(src1.tbSC,src2.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsAdd(src1.tbDC,src2.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsAdd_32f(src1.tbS,src2.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsAdd_64f(src1.tbD,src2.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsAdd_32fc(src1.tbSC,src2.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsAdd_64fc(src1.tbDC,src2.tbDC,dest.tbDC,src1.Kcount);
     end
     else
     if (src1=dest) then
     case src1.tpNum of
-      G_single:      ippsAdd(src2.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsAdd(src2.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsAdd(src2.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsAdd(src2.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsAdd_32f_I(src2.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsAdd_64f_I(src2.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsAdd_32fc_I(src2.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsAdd_64fc_I(src2.tbDC,dest.tbDC,src1.Kcount);
     end
     else
     if (src2=dest) then
     case src1.tpNum of
-      G_single:      ippsAdd(src1.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsAdd(src1.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsAdd(src1.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsAdd(src1.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsAdd_32f_I(src1.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsAdd_64f_I(src1.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsAdd_32fc_I(src1.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsAdd_64fc_I(src1.tbDC,dest.tbDC,src1.Kcount);
     end
   end
   else
@@ -768,37 +768,37 @@ begin
   begin
     if (src1<>dest) and (src2<>dest) then
     case src1.tpNum of
-      G_single:      ippsSub(src2.tbS,src1.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsSub(src2.tbD,src1.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsSub(src2.tbSC,src1.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsSub(src2.tbDC,src1.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsSub_32f(src2.tbS,src1.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsSub_64f(src2.tbD,src1.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsSub_32fc(src2.tbSC,src1.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsSub_64fc(src2.tbDC,src1.tbDC,dest.tbDC,src1.Kcount);
     end
     else
     if (src1=dest) then
     case src1.tpNum of
-      G_single:      ippsSub(src2.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsSub(src2.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsSub(src2.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsSub(src2.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsSub_32f_I(src2.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsSub_64f_I(src2.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsSub_32fc_I(src2.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsSub_64fc_I(src2.tbDC,dest.tbDC,src1.Kcount);
     end
     else
     if (src2=dest) then
     case src1.tpNum of
       G_single:      begin
-                       ippsSub(src1.tbS,dest.tbS,src1.Kcount);
-                       ippsMulC(-1,dest.tbS,src1.Kcount);
+                       ippsSub_32f_I(src1.tbS,dest.tbS,src1.Kcount);
+                       ippsMulC_32f_I(-1,dest.tbS,src1.Kcount);
                      end;
       G_double:      begin
-                       ippsSub(src1.tbD,dest.tbD,src1.Kcount);
-                       ippsMulC(-1,dest.tbD,src1.Kcount);
+                       ippsSub_64f_I(src1.tbD,dest.tbD,src1.Kcount);
+                       ippsMulC_64f_I(-1,dest.tbD,src1.Kcount);
                      end;
       G_singleComp:  begin
-                       ippsSub(src1.tbSC,dest.tbSC,src1.Kcount);
-                       ippsMulC(singleComp(-1,0),dest.tbSC,src1.Kcount);
+                       ippsSub_32fc_I(src1.tbSC,dest.tbSC,src1.Kcount);
+                       ippsMulC_32fc_I(singleComp(-1,0),dest.tbSC,src1.Kcount);
                      end;
       G_doubleComp:  begin
-                       ippsSub(src1.tbDC,dest.tbDC,src1.Kcount);
-                       ippsMulC(doubleComp(-1,0),dest.tbDC,src1.Kcount);
+                       ippsSub_64fc_I(src1.tbDC,dest.tbDC,src1.Kcount);
+                       ippsMulC_64fc_I(doubleComp(-1,0),dest.tbDC,src1.Kcount);
                      end;
     end
   end
@@ -849,26 +849,26 @@ begin
   begin
     if (src1<>dest) and (src2<>dest) then
     case src1.tpNum of
-      G_single:      ippsMul(src1.tbS,src2.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsMul(src1.tbD,src2.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsMul(src1.tbSC,src2.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsMul(src1.tbDC,src2.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsMul_32f(src1.tbS,src2.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsMul_64f(src1.tbD,src2.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsMul_32fc(src1.tbSC,src2.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsMul_64fc(src1.tbDC,src2.tbDC,dest.tbDC,src1.Kcount);
     end
     else
     if (src1=dest) then
     case src1.tpNum of
-      G_single:      ippsMul(src2.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsMul(src2.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsMul(src2.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsMul(src2.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsMul_32f_I(src2.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsMul_64f_I(src2.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsMul_32fc_I(src2.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsMul_64fc_I(src2.tbDC,dest.tbDC,src1.Kcount);
     end
     else
     if (src2=dest) then
     case src1.tpNum of
-      G_single:      ippsMul(src1.tbS,dest.tbS,src1.Kcount);
-      G_double:      ippsMul(src1.tbD,dest.tbD,src1.Kcount);
-      G_singleComp:  ippsMul(src1.tbSC,dest.tbSC,src1.Kcount);
-      G_doubleComp:  ippsMul(src1.tbDC,dest.tbDC,src1.Kcount);
+      G_single:      ippsMul_32f_I(src1.tbS,dest.tbS,src1.Kcount);
+      G_double:      ippsMul_64f_I(src1.tbD,dest.tbD,src1.Kcount);
+      G_singleComp:  ippsMul_32fc_I(src1.tbSC,dest.tbSC,src1.Kcount);
+      G_doubleComp:  ippsMul_64fc_I(src1.tbDC,dest.tbDC,src1.Kcount);
     end
   end
   else
@@ -917,12 +917,12 @@ begin
   begin
     case src1.tpNum of
       G_singleComp:  begin
-                       ippsConj(Src2.tbSC,Dest.tbSC,src1.Kcount);
-                       ippsMul(src1.tbSC,dest.tbSC,src1.Kcount);
+                       ippsConj_32fc(Src2.tbSC,Dest.tbSC,src1.Kcount);
+                       ippsMul_32fc_I(src1.tbSC,dest.tbSC,src1.Kcount);
                      end;
       G_doubleComp:  begin
-                       ippsConj(Src2.tbDC,Dest.tbDC,src1.Kcount);
-                       ippsMul(src1.tbDC,dest.tbDC,src1.Kcount);
+                       ippsConj_64fc(Src2.tbDC,Dest.tbDC,src1.Kcount);
+                       ippsMul_64fc_I(src1.tbDC,dest.tbDC,src1.Kcount);
                      end;
     end
   end
@@ -1572,23 +1572,23 @@ begin
   if src1.inf.temp and (src1.tpNum=src2.tpNum) and (src1.tpNum in [G_single,G_double,G_singleComp, G_doubleComp]) then
     case src1.tpNum of
       G_single:      begin
-                        ippsDotProd(Src1.tbS, Src2.tbS, src1.Icount,Pdouble(@dd));
+                        ippsDotProd_32f64f(Src1.tbS, Src2.tbS, src1.Icount,Pdouble(@dd));
                         result.x:=dd;
                         result.y:=0;
                      end;
       G_double:      begin
-                        ippsDotProd(Src1.tbD, Src2.tbD, src1.Icount,Pdouble(@dd));
+                        ippsDotProd_64f(Src1.tbD, Src2.tbD, src1.Icount,Pdouble(@dd));
                         result.x:=dd;
                         result.y:=0;
                      end;
 
       G_singleComp:  begin
-                        ippsDotProd(Src1.tbSC, Src2.tbSC, src1.Icount,PdoubleComp(@dc));
+                        ippsDotProd_32fc64fc(Src1.tbSC, Src2.tbSC, src1.Icount,PdoubleComp(@dc));
                         result.x:=dc.x;
                         result.y:=dc.y;
                      end;
       G_doubleComp:  begin
-                        ippsDotProd(Src1.tbDC, Src2.tbDC, src1.Icount,PdoubleComp(@dc));
+                        ippsDotProd_64fc(Src1.tbDC, Src2.tbDC, src1.Icount,PdoubleComp(@dc));
                         result.x:=dc.x;
                         result.y:=dc.y;
                      end;
@@ -1715,6 +1715,7 @@ var
   pBuffer: pointer;
   size:integer;
 begin
+(*
   VerifierMatrice(src);
   VerifierMatrice(dest);
   RefuseSrcEqDest(src,dest);
@@ -1757,6 +1758,7 @@ begin
   end;
 
   ippiEnd;
+  *)
 end;
 
 procedure proMremapImage(var src,dest,Xmap,Ymap:Tmatrix; mode:integer);
@@ -1766,6 +1768,7 @@ var
   pBuffer: pointer;
   size:integer;
 begin
+(*
   VerifierMatrice(src);
   VerifierMatrice(dest);
   VerifierMatrice(Xmap);
@@ -1818,6 +1821,7 @@ begin
                      mode);
 
   ippiEnd;
+  *)
 end;
 
 procedure proBuildXTmapFromMatList(var src:TmatList;var dest:Tmatrix;FY,Fnorm:boolean;Zth:float;AgTh:integer);

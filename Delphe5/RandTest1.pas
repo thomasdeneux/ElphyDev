@@ -5,7 +5,7 @@ interface
 
 uses classes,
      util1, Ncdef2, stmObj,stmvec1,VlistA1, stmPG,
-     ipps, ippsovr;
+     ipps17;
 
 type
   TRandTest = class(typeUO)

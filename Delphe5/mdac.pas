@@ -57,7 +57,7 @@ uses
   Math,stmImaging,
   pwrdaq32G,
   matLab0,
-  ippdefs,ipps,ippi,ippsovr,
+  ippdefs17,ipps17,
 
   Geometry1,
   heap0,
@@ -104,6 +104,8 @@ uses
   RestClientTest,
   cyberK4, cyberKbrd2,
   hdf5dll, hdf5_lite;
+
+
 
 
 
@@ -2373,7 +2375,8 @@ procedure TMainDac.Debug1Click(Sender: TObject);
 begin
   //TCyberK10interface(board).CbSdkDebug;
 
-  testHDF5dll;
+  //testHDF5dll;
+
 
 end;
 

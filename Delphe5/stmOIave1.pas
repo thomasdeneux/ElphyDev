@@ -10,7 +10,7 @@ uses classes,
      varconf1,
      Ncdef2,stmError,stmPg,
      stmOIseq1,
-     ippDefs,ipps,ippsovr;
+     ippDefs17, ipps17;
 
 type
   TOIseqAverage=class(TOIseq)
@@ -228,16 +228,16 @@ begin
   if oiseq.InMemory then
   begin
     for i:=0 to Nframe-1 do
-      ippsAdd(Psingle(oiseq.mainBuf[i]),Psingle(mainBuf[i]),Nx*Ny);
+      ippsAdd_32f_I(Psingle(oiseq.mainBuf[i]),Psingle(mainBuf[i]),Nx*Ny);
   end
   else
   begin
     for i:=0 to Nframe-1 do
-      ippsAdd(oiseq.mat[i].tbS,Psingle(mainBuf[i]),Nx*Ny);
+      ippsAdd_32f_I(oiseq.mat[i].tbS,Psingle(mainBuf[i]),Nx*Ny);
   end;
 
   if withRefFrame then
-    ippsAdd(oiseq.matRef.tbS, matRef.tbS, Nx*Ny);
+    ippsAdd_32f_I(oiseq.matRef.tbS, matRef.tbS, Nx*Ny);
 
   if stdON then
   begin
@@ -245,26 +245,26 @@ begin
     begin
       for i:=0 to Nframe-1 do
       begin
-        ippsConvert(Psingle(oiseq.mainBuf[i]),Pdouble(@TempBuf[0]),Nx*Ny);
-        ippsSqr(Pdouble(@TempBuf[0]),Nx*Ny);
-        ippsAdd(Pdouble(@TempBuf[0]),@Sx2[i][0],Nx*Ny);
+        ippsConvert_32f64f(Psingle(oiseq.mainBuf[i]),Pdouble(@TempBuf[0]),Nx*Ny);
+        ippsSqr_64f_I(Pdouble(@TempBuf[0]),Nx*Ny);
+        ippsAdd_64f_I(Pdouble(@TempBuf[0]),@Sx2[i][0],Nx*Ny);
       end;
     end
     else
     begin
       for i:=0 to Nframe-1 do
       begin
-        ippsConvert(oiseq.mat[i].tbS,Pdouble(@TempBuf[0]),Nx*Ny);
-        ippsSqr(Pdouble(@TempBuf[0]),Nx*Ny);
-        ippsAdd(Pdouble(@TempBuf[0]),@Sx2[i][0],Nx*Ny);
+        ippsConvert_32f64f(oiseq.mat[i].tbS,Pdouble(@TempBuf[0]),Nx*Ny);
+        ippsSqr_64f_I(Pdouble(@TempBuf[0]),Nx*Ny);
+        ippsAdd_64f_I(Pdouble(@TempBuf[0]),@Sx2[i][0],Nx*Ny);
       end;
     end;
 
     if withRefFrame then
     begin
-      ippsConvert(oiseq.matref.tbS,Pdouble(@TempBuf[0]),Nx*Ny);
-      ippsSqr(Pdouble(@TempBuf[0]),Nx*Ny);
-      ippsAdd(Pdouble(@TempBuf[0]),@Sx2[Nframe][0],Nx*Ny);
+      ippsConvert_32f64f(oiseq.matref.tbS,Pdouble(@TempBuf[0]),Nx*Ny);
+      ippsSqr_64f_I(Pdouble(@TempBuf[0]),Nx*Ny);
+      ippsAdd_64f_I(Pdouble(@TempBuf[0]),@Sx2[Nframe][0],Nx*Ny);
     end;
   end;
 
@@ -294,34 +294,34 @@ begin
 
       for i:=0 to Nframe-1 do
       begin
-        ippsConvert(Psingle(mainBuf[i]),Pdouble(@TempBuf[0]),Nx*Ny);      { Sx }
-        ippsSqr(Pdouble(@TempBuf[0]),Nx*Ny);                              { (Sx)² }
-        ippsMulC(1/count,Pdouble(@TempBuf[0]),Nx*Ny);                     { (Sx)²/N }
-        ippsSub(Pdouble(@TempBuf[0]),@Sx2[i][0],Nx*Ny);                   { Sx² - (Sx)²/N }
-        ippsMulC(1/(count-1),Pdouble(@Sx2[i][0]),Nx*Ny);                  { ( Sx² - (Sx)²/N ) / (N-1) }
-        ippsSqrt(Pdouble(@Sx2[i][0]),Nx*Ny);                              { racine }
+        ippsConvert_32f64f(Psingle(mainBuf[i]),Pdouble(@TempBuf[0]),Nx*Ny);      { Sx }
+        ippsSqr_64f_I (Pdouble(@TempBuf[0]),Nx*Ny);                              { (Sx)² }
+        ippsMulC_64f_I(1/count,Pdouble(@TempBuf[0]),Nx*Ny);                     { (Sx)²/N }
+        ippsSub_64f_I(Pdouble(@TempBuf[0]),@Sx2[i][0],Nx*Ny);                   { Sx² - (Sx)²/N }
+        ippsMulC_64f_I(1/(count-1),Pdouble(@Sx2[i][0]),Nx*Ny);                  { ( Sx² - (Sx)²/N ) / (N-1) }
+        ippsSqrt_64f_I(Pdouble(@Sx2[i][0]),Nx*Ny);                              { racine }
 
-        ippsConvert(Pdouble(@Sx2[i][0]),Psingle(stdDev.mainBuf[i]),Nx*Ny);
+        ippsConvert_64f32f(Pdouble(@Sx2[i][0]),Psingle(stdDev.mainBuf[i]),Nx*Ny);
       end;
 
       if withRefFrame then
       begin
-        ippsConvert(matref.tbS,Pdouble(@TempBuf[0]),Nx*Ny);               { Sx }
-        ippsSqr(Pdouble(@TempBuf[0]),Nx*Ny);                              { (Sx)² }
-        ippsMulC(1/count,Pdouble(@TempBuf[0]),Nx*Ny);                     { (Sx)²/N }
-        ippsSub(Pdouble(@TempBuf[0]),@Sx2[Nframe][0],Nx*Ny);              { Sx² - (Sx)²/N }
-        ippsMulC(1/(count-1),Pdouble(@Sx2[Nframe][0]),Nx*Ny);             { ( Sx² - (Sx)²/N ) / (N-1) }
-        ippsSqrt(Pdouble(@Sx2[Nframe][0]),Nx*Ny);                         { racine }
+        ippsConvert_32f64f(matref.tbS,Pdouble(@TempBuf[0]),Nx*Ny);               { Sx }
+        ippsSqr_64f_I(Pdouble(@TempBuf[0]),Nx*Ny);                              { (Sx)² }
+        ippsMulC_64f_I(1/count,Pdouble(@TempBuf[0]),Nx*Ny);                     { (Sx)²/N }
+        ippsSub_64f_I(Pdouble(@TempBuf[0]),@Sx2[Nframe][0],Nx*Ny);              { Sx² - (Sx)²/N }
+        ippsMulC_64f_I(1/(count-1),Pdouble(@Sx2[Nframe][0]),Nx*Ny);             { ( Sx² - (Sx)²/N ) / (N-1) }
+        ippsSqrt_64f_I(Pdouble(@Sx2[Nframe][0]),Nx*Ny);                         { racine }
 
-        ippsConvert(Pdouble(@Sx2[Nframe][0]),stdDev.matRef.tbS,Nx*Ny);
+        ippsConvert_64f32f(Pdouble(@Sx2[Nframe][0]),stdDev.matRef.tbS,Nx*Ny);
       end;
     end;
 
     for i:=0 to Nframe-1 do
-      ippsMulC(1/count,Psingle(mainBuf[i]),Nx*Ny);                        { moyenne= Sx/N }
+      ippsMulC_32f_I(1/count,Psingle(mainBuf[i]),Nx*Ny);                        { moyenne= Sx/N }
 
     if withRefFrame then
-      ippsMulC(1/count,matref.tbS,Nx*Ny);                                 { moyenne= Sx/N }
+      ippsMulC_32f_I(1/count,matref.tbS,Nx*Ny);                                 { moyenne= Sx/N }
 
     ippsEnd;
 

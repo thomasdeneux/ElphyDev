@@ -3,7 +3,7 @@ unit DNkernel1;
 interface
 
 uses  windows,classes,
-      util1,Cuda1,ipps, chrono0;
+      util1,Cuda1,ipps17, chrono0;
 
 type
   TpstwArray = array of PtabSingle; // chaque pointeur pointe sur un pstw

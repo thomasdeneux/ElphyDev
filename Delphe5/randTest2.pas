@@ -5,7 +5,7 @@ interface
 
 uses windows, classes,
      util1, Ncdef2, stmObj,stmvec1,VlistA1, stmPG,
-     ipps, ippsovr,
+     ipps17,
      stmMat1;
 
 type
@@ -175,15 +175,15 @@ begin
     for i:= 0 to N1-1 do
     if mark[i] then
     begin
-      ippsAdd(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
-      ippsSub(Psingle(@tb2[i][0]),Psingle(@moy1[0]),I2-I1+1);
+      ippsAdd_32f_I(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
+      ippsSub_32f_I(Psingle(@tb2[i][0]),Psingle(@moy1[0]),I2-I1+1);
     end
     else
     begin
-      ippsAdd(Psingle(@tb2[i][0]),Psingle(@moy1[0]),I2-I1+1);
-      ippsSub(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
+      ippsAdd_32f_I(Psingle(@tb2[i][0]),Psingle(@moy1[0]),I2-I1+1);
+      ippsSub_32f_I(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
     end;
-    ippsMulC(1/N1,Psingle(@moy1[0]),I2-I1+1);
+    ippsMulC_32f_I(1/N1,Psingle(@moy1[0]),I2-I1+1);
     for i:= 0 to I2-I1 do Vdiff[i,ind]:=moy1[i];
   end
   else
@@ -196,18 +196,18 @@ begin
 
     for i:= 0 to N1-1 do
     if mark[i]
-      then ippsAdd(Psingle(@tb1[i][0]),Psingle(@moy2[0]),I2-I1+1)
-      else ippsAdd(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
+      then ippsAdd_32f_I(Psingle(@tb1[i][0]),Psingle(@moy2[0]),I2-I1+1)
+      else ippsAdd_32f_I(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
 
     for i:= N1 to N1+N2-1 do
     if mark[i]
-      then ippsAdd(Psingle(@tb2[i-N1][0]),Psingle(@moy2[0]),I2-I1+1)
-      else ippsAdd(Psingle(@tb2[i-N1][0]),Psingle(@moy1[0]),I2-I1+1);
+      then ippsAdd_32f_I(Psingle(@tb2[i-N1][0]),Psingle(@moy2[0]),I2-I1+1)
+      else ippsAdd_32f_I(Psingle(@tb2[i-N1][0]),Psingle(@moy1[0]),I2-I1+1);
 
-    ippsMulC(1/N1,Psingle(@moy1[0]),I2-I1+1);
-    ippsMulC(1/N2,Psingle(@moy2[0]),I2-I1+1);
+    ippsMulC_32f_I(1/N1,Psingle(@moy1[0]),I2-I1+1);
+    ippsMulC_32f_I(1/N2,Psingle(@moy2[0]),I2-I1+1);
 
-    ippsSub(Psingle(@moy1[0]),Psingle(@moy2[0]) ,I2-I1+1);
+    ippsSub_32f_I(Psingle(@moy1[0]),Psingle(@moy2[0]) ,I2-I1+1);
 
     for i:= 0 to I2-I1 do Vdiff[i,ind]:=moy2[i];
   end;
@@ -357,18 +357,18 @@ begin
 
   for i:= 0 to N1-1 do
   if mark[i]
-    then ippsAdd(Psingle(@tb1[i][0]),Psingle(@moy2[0]),I2-I1+1)
-    else ippsAdd(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
+    then ippsAdd_32f_I(Psingle(@tb1[i][0]),Psingle(@moy2[0]),I2-I1+1)
+    else ippsAdd_32f_I(Psingle(@tb1[i][0]),Psingle(@moy1[0]),I2-I1+1);
 
   for i:= N1 to N1+N2-1 do
   if mark[i]
-    then ippsAdd(Psingle(@tb2[i-N1][0]),Psingle(@moy2[0]),I2-I1+1)
-    else ippsAdd(Psingle(@tb2[i-N1][0]),Psingle(@moy1[0]),I2-I1+1);
+    then ippsAdd_32f_I(Psingle(@tb2[i-N1][0]),Psingle(@moy2[0]),I2-I1+1)
+    else ippsAdd_32f_I(Psingle(@tb2[i-N1][0]),Psingle(@moy1[0]),I2-I1+1);
 
-  ippsMulC(1/N1,Psingle(@moy1[0]),I2-I1+1);
-  ippsMulC(1/N2,Psingle(@moy2[0]),I2-I1+1);
+  ippsMulC_32f_I(1/N1,Psingle(@moy1[0]),I2-I1+1);
+  ippsMulC_32f_I(1/N2,Psingle(@moy2[0]),I2-I1+1);
 
-  ippsSub(Psingle(@moy1[0]),Psingle(@moy2[0]) ,I2-I1+1);
+  ippsSub_32f_I(Psingle(@moy1[0]),Psingle(@moy2[0]) ,I2-I1+1);
 
   for i:= 0 to I2-I1 do Vdiff0[i]:=moy2[i];
 end;
@@ -574,10 +574,10 @@ begin
     for i:= 0 to Nep-1 do
     begin
       k:= i*Nb + random(Nb);
-      ippsAdd(Psingle(@tb1[k][0]),Psingle(@moy[0]),N);
+      ippsAdd_32f_I(Psingle(@tb1[k][0]),Psingle(@moy[0]),N);
     end;
 
-    ippsMulC(1/Nep,Psingle(@moy[0]),N);
+    ippsMulC_32f_I(1/Nep,Psingle(@moy[0]),N);
     for i:=I1 to I2 do mat[i,rep+1]:= moy[i-I1];
   end;
 

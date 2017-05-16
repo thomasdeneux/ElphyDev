@@ -22,7 +22,7 @@ uses windows,
      DtbEdit2,stmPopup,
      stmPg,
      getColVec1,
-     ipps, ippsOvr,
+     ipps17,
      matlab_matrix,matlab_mat,
      binFile1,
      DoubleExt;
@@ -2725,10 +2725,10 @@ begin
   ok:=true;
   if vec.inf.temp and (vec.tpNum=tpNum) then
     case tpNum of
-      G_single: ippsAdd(vec.tbS, tbS, Icount);
-      G_double: ippsAdd(vec.tbD, tbD, Icount);
-      G_SingleComp: ippsAdd(vec.tbSC, tbSC, Icount);
-      G_DoubleComp: ippsAdd(vec.tbDC, tbDC, Icount);
+      G_single: ippsAdd_32f_I(vec.tbS, tbS, Icount);
+      G_double: ippsAdd_64f_I(vec.tbD, tbD, Icount);
+      G_SingleComp: ippsAdd_32fc_I(vec.tbSC, tbSC, Icount);
+      G_DoubleComp: ippsAdd_64fc_I(vec.tbDC, tbDC, Icount);
 
       else ok:=false;
     end

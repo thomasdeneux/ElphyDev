@@ -2,7 +2,7 @@ unit KStest1;
 
 interface
 
-uses util1, ippdefs, ipps,
+uses util1, ippdefs17, ipps17,
      Ncdef2, stmObj,stmvec1,VlistA1, stmPG;
 
 type

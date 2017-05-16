@@ -6,7 +6,7 @@ interface
 uses math,
      util1,Dgraphic, listG,
      Ncdef2, stmdef,stmObj,stmvec1,stmMat1,stmKLmat,
-     IPPI,IPPdefs,geometry1,
+     IPPI17,IPPdefs17, IPPS17, geometry1,
      stmMatBuffer1 ;
 
 
@@ -97,6 +97,7 @@ var
   psrc,pdst:pointer;
   StepSrc,StepDst:integer;
 begin
+(*
   VerifierObjet(typeUO(src));
   VerifierObjet(typeUO(dest));
 
@@ -226,6 +227,8 @@ begin
   else
   if res<>0 then  sortieErreur(filterName[tpF]+' : IPPI error='+Istr(res));
 
+
+*)
 end;
 
 
@@ -234,7 +237,12 @@ var
   res:integer;
   Mbuf:TmatBuffer;
   di,dj:integer;
+  buffer: pointer;
+  bufferSize: integer;
+
+  Alg: integer;
 begin
+
   IPPItest;
 
   VerifierObjet(typeUO(src1));
@@ -252,14 +260,19 @@ begin
 
   McopyXYscale(src1,dest);
 
+  if Fcomp then Alg:= ippiROIfull else Alg:= ippiROIvalid;
+
   if Fcomp then
   begin
     Mbuf:=TmatBuffer.create(g_single,0,src1.Icount+src2.Icount-2,0,src1.Jcount+src2.Jcount-2) ;
 
     try
-    res:=ippiConvFull_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
+    ippiConvGetBufferSize( src1.sizeIPP, src2.sizeIPP,_ipp32f , 1, 0,@bufferSize);
+    buffer:= ippsMalloc( bufferSize);
+    res:=ippiConv_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
                                src2.tb,src2.stepIPP,src2.sizeIPP,
-                               Mbuf.tb,Mbuf.stepIPP);
+                               Mbuf.tb,Mbuf.stepIPP,
+                               Alg , buffer);
 
     di:=src2.Icount div 2;
     dj:=src2.Jcount div 2;
@@ -268,11 +281,13 @@ begin
 
     finally
     Mbuf.Free;
+    ippsFree(buffer);
     end;
   end
-  else res:=ippiConvValid_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
+  else res:=ippiConv_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
                                    src2.tb,src2.stepIPP,src2.sizeIPP,
-                                   dest.cell(dest.Istart+src2.Icount div 2,dest.Jstart+src2.Jcount div 2),dest.stepIPP);
+                                   dest.cell(dest.Istart+src2.Icount div 2,dest.Jstart+src2.Jcount div 2),dest.stepIPP,
+                                   Alg, buffer);
 
   IPPIend;
 end;
@@ -290,6 +305,7 @@ var
   deltaI,deltaJ:integer;
   xfactor,yfactor:float;
 begin
+(*
   IPPItest;
 
   VerifierObjet(typeUO(src));
@@ -339,6 +355,7 @@ begin
   end;
 
   IPPIend;
+*)
 end;
 
 

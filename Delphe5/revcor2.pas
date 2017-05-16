@@ -11,7 +11,7 @@ uses windows,classes,sysutils, dialogs,controls,math,
      stmError,Ncdef2,stmPg,
 
      stmFFT,
-     IPPS,IPPdefs,IPPSovr,
+     IPPS17,IPPdefs17,ipp17ex,
 
      VlistA1,
      D7random1;
@@ -1696,9 +1696,19 @@ begin
     end;
 end;
 
-procedure RealFftNip(src:Psingle; dest:PsingleComp; Order:integer);
+procedure FFT_single(src:Psingle; dest:PsingleComp; Order:integer);
+var
+  i,nb: integer;
+  tb: array of TsingleComp;
+  DstLen, phase: integer;
 begin
+  nb:= 1 shl order;
+  setlength(tb,nb);
+  DstLen:=nb*2;
 
+  ippsSampleUp_32f(src,nb, @tb[0], @DstLen,2, @phase);
+
+  FFT32fc(@tb[0],dest,nb,true);
 end;
 
 procedure TrevCorAnalysis.calculatePsdMat;
@@ -1751,17 +1761,17 @@ begin
           begin
             move(PtabSingle(vec1.tb)^[k],tbAux[0],length(tbAux)*sizeof(single));
             case psdMatRec.windowMode of
-              1:  ippsWinBartlett(Psingle(@tbAux[0]),length(tbAux));
-              2:  ippsWinBlackmanOpt(Psingle(@tbAux[0]),length(tbAux));
-              3:  ippsWinHamming(Psingle(@tbAux[0]),length(tbAux));
-              4:  ippsWinHann(Psingle(@tbAux[0]),length(tbAux));
+              1:  ippsWinBartlett_32f_I(Psingle(@tbAux[0]),length(tbAux));
+              2:  ippsWinBlackmanOpt_32f_I(Psingle(@tbAux[0]),length(tbAux));
+              3:  ippsWinHamming_32f_I(Psingle(@tbAux[0]),length(tbAux));
+              4:  ippsWinHann_32f_I(Psingle(@tbAux[0]),length(tbAux));
             end;
 
-            ippsFFTfwd(Psingle(@tbAux[0]),PsingleComp(@tbX[0]),Order);
+            FFT_single(Psingle(@tbAux[0]),PsingleComp(@tbX[0]),Order);
           end
         else
           begin
-           ippsFFTfwd(Psingle(@PtabSingle(vec1.tb)^[k-vec1.Istart]),PsingleComp(@tbX[0]),Order);
+           FFT_single(Psingle(@PtabSingle(vec1.tb)^[k-vec1.Istart]),PsingleComp(@tbX[0]),Order);
           end;
 
         case psdMatRec.Fpsd of
@@ -1852,8 +1862,8 @@ begin
         for i:=Imin to Imax do
         for j:=Jmin to Jmax do
           case psdMatRec.Fpsd of
-            0:   ippsMulC(1/psdMatRec.count,matrix(i,j).tbS,nbEltMat);
-            1,2: ippsMulC(Value,PsingleComp(matrix(i,j).tb),nbEltMat);
+            0:   ippsMulC_32f_I(1/psdMatRec.count,matrix(i,j).tbS,nbEltMat);
+            1,2: ippsMulC_32fc_I(Value,PsingleComp(matrix(i,j).tb),nbEltMat);
 
             3:  with matrix(i,j) do
                 for i1:=0 to nbEltMat-1 do

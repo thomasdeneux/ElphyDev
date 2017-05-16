@@ -4,7 +4,7 @@ interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
 uses util1, stmvec1,
-     IPPdefs,IPPS,IPPSovr;
+     IPPdefs17,IPPS17;
 
 
 { Tevalvec est sensé accélérer les calculs vectoriels en simplifiant l'écriture des routines IPPS.
@@ -173,84 +173,84 @@ end;
 {Copie}
 procedure TevalVec.copy(src, dest: Tvector);
 begin
-  ippsmove(src.tbD,dest.tbD,nbpt);
+  ippsmove_64f(src.tbD,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.copy(src: double; dest: Tvector);
 begin
-  ippsSet(src,dest.tbD,nbpt);
+  ippsSet_64f(src,dest.tbD,nbpt);
 end;
 
 {Addition}
 procedure TevalVec.Add(src1, src2, dest: Tvector);
 begin
-  if src1=dest then ippsAdd(src2.tbD,dest.tbD,nbpt)
+  if src1=dest then ippsAdd_64f_I(src2.tbD,dest.tbD,nbpt)
   else
-  if src2=dest then ippsAdd(src1.tbD,dest.tbD,nbpt)
+  if src2=dest then ippsAdd_64f_I(src1.tbD,dest.tbD,nbpt)
   else
-  ippsAdd(src1.tbD,src2.tbD,dest.tbD,nbpt);
+  ippsAdd_64f(src1.tbD,src2.tbD,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.Add(src1: double; src2, dest: Tvector);
 begin
-  if src2<>dest then ippsmove(src2.tbD,dest.tbD,nbpt);
-  ippsAddC(src1,dest.tbD,nbpt);
+  if src2<>dest then ippsmove_64f(src2.tbD,dest.tbD,nbpt);
+  ippsAddC_64f_I(src1,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.Add(src1: Tvector; src2: double; dest: Tvector);
 begin
-  if src1<>dest then ippsmove(src1.tbD,dest.tbD,nbpt);
-  ippsAddC(src2,dest.tbD,nbpt);
+  if src1<>dest then ippsmove_64f(src1.tbD,dest.tbD,nbpt);
+  ippsAddC_64f_I(src2,dest.tbD,nbpt);
 end;
 
 
 {Soustraction}
 procedure TevalVec.Sub(src1, src2, dest: Tvector);
 begin
-  if src1=dest then ippsSub(src2.tbD,dest.tbD,nbpt)
+  if src1=dest then ippsSub_64f_I(src2.tbD,dest.tbD,nbpt)
   else
   if src2=dest then
     begin
-      ippsSub(src1.tbD,dest.tbD,nbpt);   {on obtient l'opposé 2-1}
-      ippsMulC(-1,dest.tbD,nbpt);        {multiplier par -1 }
+      ippsSub_64f_I(src1.tbD,dest.tbD,nbpt);   {on obtient l'opposé 2-1}
+      ippsMulC_64f_I(-1,dest.tbD,nbpt);        {multiplier par -1 }
     end
   else
-  ippsSub(src2.tbD,src1.tbD,dest.tbD,nbpt);
+  ippsSub_64f(src2.tbD,src1.tbD,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.Sub(src1: double; src2, dest: Tvector);
 begin
-  if src2<>dest then ippsmove(src2.tbD,dest.tbD,nbpt); {copier 2 dans dest}
-  ippsmulC(-1,dest.tbD,nbpt);                          {prendre l'oposé de dest}
-  ippsAddC(src1,dest.tbD,nbpt);                        {ajouter 1 }
+  if src2<>dest then ippsmove_64f(src2.tbD,dest.tbD,nbpt); {copier 2 dans dest}
+  ippsmulC_64f_I(-1,dest.tbD,nbpt);                          {prendre l'oposé de dest}
+  ippsAddC_64f_I(src1,dest.tbD,nbpt);                        {ajouter 1 }
 end;
 
 procedure TevalVec.Sub(src1: Tvector; src2: double; dest: Tvector);
 begin
-  if src1<>dest then ippsmove(src1.tbD,dest.tbD,nbpt);
-  ippsAddC(-src2,dest.tbD,nbpt);
+  if src1<>dest then ippsmove_64f(src1.tbD,dest.tbD,nbpt);
+  ippsAddC_64f_I(-src2,dest.tbD,nbpt);
 end;
 
 {Multiplication}
 procedure TevalVec.Mul(src1, src2, dest: Tvector);
 begin
-  if src1=dest then ippsMul(src2.tbD,dest.tbD,nbpt)
+  if src1=dest then ippsMul_64f_I(src2.tbD,dest.tbD,nbpt)
   else
-  if src2=dest then ippsMul(src1.tbD,dest.tbD,nbpt)
+  if src2=dest then ippsMul_64f_I(src1.tbD,dest.tbD,nbpt)
   else
-  ippsMul(src1.tbD,src2.tbD,dest.tbD,nbpt);
+  ippsMul_64f(src1.tbD,src2.tbD,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.Mul(src1: double; src2, dest: Tvector);
 begin
-  if src2<>dest then ippsmove(src2.tbD,dest.tbD,nbpt);
-  ippsMulC(src1,dest.tbD,nbpt);
+  if src2<>dest then ippsmove_64f(src2.tbD,dest.tbD,nbpt);
+  ippsMulC_64f_I(src1,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.Mul(src1: Tvector; src2: double; dest: Tvector);
 begin
-  if src1<>dest then ippsmove(src1.tbD,dest.tbD,nbpt);
-  ippsMulC(src2,dest.tbD,nbpt);
+  if src1<>dest then ippsmove_64f(src1.tbD,dest.tbD,nbpt);
+  ippsMulC_64f_I(src2,dest.tbD,nbpt);
 end;
 
 
@@ -259,16 +259,16 @@ procedure TevalVec.Divide(src1, src2, dest: Tvector);
 var
   Vdum:array of double;
 begin
-  if src1=dest then ippsDiv(src2.tbD,dest.tbD,nbpt)
+  if src1=dest then ippsDiv_64f_I(src2.tbD,dest.tbD,nbpt)
   else
   if src2=dest then
     begin
       setlength(Vdum,nbpt);
-      ippsDiv(dest.tbD,src1.tbD,@Vdum[0],nbpt);  {Calcul dans Vdum}
-      ippsMove(@Vdum[0],dest.tbD,nbpt);          {Copier dans Dest}
+      ippsDiv_64f(dest.tbD,src1.tbD,@Vdum[0],nbpt);  {Calcul dans Vdum}
+      ippsMove_64f(@Vdum[0],dest.tbD,nbpt);          {Copier dans Dest}
     end
   else
-  ippsDiv(src2.tbD,src1.tbD,dest.tbD,nbpt);
+  ippsDiv_64f(src2.tbD,src1.tbD,dest.tbD,nbpt);
 end;
 
 procedure TevalVec.Divide(src1: double; src2, dest: Tvector);
@@ -276,26 +276,26 @@ var
   Vdum:array of double;
 begin
   setLength(Vdum,Nbpt);
-  ippsSet(src1,@Vdum[0],nbpt);            { src1 dans Vdum }
-  ippsdiv(src2.tbD,@Vdum[0],nbpt);        { diviser par src2 }
-  ippsMove(@Vdum[0],dest.tbD,nbpt);       { copier dans dest }
+  ippsSet_64f(src1,@Vdum[0],nbpt);            { src1 dans Vdum }
+  ippsdiv_64f_I(src2.tbD,@Vdum[0],nbpt);        { diviser par src2 }
+  ippsMove_64f(@Vdum[0],dest.tbD,nbpt);       { copier dans dest }
 end;
 
 procedure TevalVec.Divide(src1: Tvector; src2: double; dest: Tvector);
 begin
-  if src1<>dest then ippsmove(src1.tbD,dest.tbD,nbpt);
-  ippsMulC(1/src2,dest.tbD,nbpt);
+  if src1<>dest then ippsmove_64f(src1.tbD,dest.tbD,nbpt);
+  ippsMulC_64f_I(1/src2,dest.tbD,nbpt);
 end;
 
 { threshold à zéro }
 procedure TevalVec.thresh(src, dest: Tvector);
 begin
-  ippsThreshold_LT(src.tbD,dest.tbD,nbpt,0)
+  ippsThreshold_LT_64f(src.tbD,dest.tbD,nbpt,0)
 end;
 
 procedure TevalVec.thresh(dest: Tvector);
 begin
-  ippsThreshold_LT(dest.tbD,nbpt,0)
+  ippsThreshold_LT_64f_I(dest.tbD,nbpt,0)
 end;
 
 
@@ -304,15 +304,15 @@ procedure Tevalvec.shiftR(src:Tvector;n:integer;dest:Tvector);
 begin
   if n>0 then
   begin
-    ippsmove(src.tbD, @PtabDouble(dest.tbD)^[n],nbpt-n);
-    ippsZero(dest.tbD,n);
+    ippsmove_64f(src.tbD, @PtabDouble(dest.tbD)^[n],nbpt-n);
+    ippsZero_64f(dest.tbD,n);
   end
   else
   if n<0 then
   begin
     n:=-n;
-    ippsmove(@PtabDouble(src.tbD)^[n],dest.tbD, nbpt-n);
-    ippsZero(Pdouble(@PtabDouble(dest.tbD)^[nbpt-1-n]),n);
+    ippsmove_64f(@PtabDouble(src.tbD)^[n],dest.tbD, nbpt-n);
+    ippsZero_64f(Pdouble(@PtabDouble(dest.tbD)^[nbpt-1-n]),n);
   end;
 end;
 

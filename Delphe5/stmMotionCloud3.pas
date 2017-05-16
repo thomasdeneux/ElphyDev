@@ -10,7 +10,7 @@ uses windows, classes,graphics, sysutils, math,
      Direct3D9G, D3DX9G,
 
      util1,varconf1,Dgraphic, debug0, clock0,
-     ippDefs,ipps,ippsOvr,
+     ippDefs17, ipps17,
      stmdef,stmObj,stmMvtX1, stmObv0, defForm,
      Ncdef2,stmPG,
      syspal32,
@@ -281,7 +281,7 @@ begin
   for rep:=1 to Nrep do
   begin
     res:=0;
-    ippsSum(Pdouble(@tb[0]),Ntot,@res);
+    ippsSum_64f(Pdouble(@tb[0]),Ntot,@res);
     //for i:=0 to Ntot-1 do res:=res+tb[i];
   end;
   messageCentral('IPPS res= '+Estr(res,3)+'   time='+Estr(getTimer2/1000/Nrep,3));

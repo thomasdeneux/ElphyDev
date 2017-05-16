@@ -2,7 +2,7 @@ unit ReducStim1;
 
 interface
 uses windows, classes,
-     ippdefs,ipps,
+     ippdefs17,ipps17,
      util1;
 
 

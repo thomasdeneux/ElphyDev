@@ -8,7 +8,7 @@ uses windows, classes,graphics, sysutils,
      Direct3D9G, D3DX9G,
 
      util1,varconf1,Dgraphic, debug0,  DibG,
-     ippDefs,ipps,ippsOvr,
+     ippDefs17,ipps17,
      stmdef,stmObj,stmMvtX1, stmObv0, defForm,
      Ncdef2,stmPG,
      syspal32,

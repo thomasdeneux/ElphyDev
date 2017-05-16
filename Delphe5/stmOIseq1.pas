@@ -9,7 +9,7 @@ uses windows,classes,sysUtils,types,graphics,math, menus,forms,
      stmobj,ElphyFormat,varconf1,dtf0, stmPopup,
      NcDef2,stmpg,
      stmdef, Acqdef2,
-     ippdefs,ipps,ippsovr, mathKernel0, MKL_dfti,
+     ippdefs17,ipps17, ipp17ex, mathKernel0, MKL_dfti,
      visu0,stmDplot,stmDobj1,stmBMplot1,OIblock1,stmMat1,stmvec1,
      MatCood0, OIcood0, regions1, stmRegion1,
      VlistA1,
@@ -681,10 +681,10 @@ procedure TOIseq.transferData(src,dest:pointer );
 begin
   ippsTest;
   case tpNumFile of
-    G_byte:       ippsConvert(Pbyte(src),Psingle(dest),Nx*Ny);
-    G_smallint:   ippsConvert(Psmallint(src),Psingle(dest),Nx*Ny);
-    G_word:       ippsConvert(Pword(src),Psingle(dest),Nx*Ny);
-    G_longint :   ippsConvert(Plongint(src),Psingle(dest),Nx*Ny);
+    G_byte:       ippsConvert_8u32f(Pbyte(src),Psingle(dest),Nx*Ny);
+    G_smallint:   ippsConvert_16s32f(Psmallint(src),Psingle(dest),Nx*Ny);
+    G_word:       ippsConvert_16u32f(Pword(src),Psingle(dest),Nx*Ny);
+    G_longint :   ippsConvert_32s32f(Plongint(src),Psingle(dest),Nx*Ny);
     G_single:     move(src^, dest^, Nx*Ny*4);
   end;
   ippsEnd;
@@ -1103,9 +1103,9 @@ begin
   ippsTest;
   case tpnum of
     g_single: for i:=0 to Nframe-1 do
-                ippsAdd(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
+                ippsAdd_32f_I(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
     g_double: for i:=0 to Nframe-1 do
-                ippsAdd(Pdouble(oiseq.memFrame(i)),Pdouble(memFrame(i)),Nx*Ny);
+                ippsAdd_64f_I(Pdouble(oiseq.memFrame(i)),Pdouble(memFrame(i)),Nx*Ny);
   end;
   ippsEnd;
 
@@ -1125,9 +1125,9 @@ begin
   ippsTest;
   case tpNum of
     g_single: for i:=0 to Nframe-1 do
-                ippsSub(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
+                ippsSub_32f_I(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
     g_double: for i:=0 to Nframe-1 do
-                ippsSub(Pdouble(oiseq.memFrame(i)),Pdouble(memFrame(i)),Nx*Ny);
+                ippsSub_64f_I(Pdouble(oiseq.memFrame(i)),Pdouble(memFrame(i)),Nx*Ny);
   end;
 
   ippsEnd;
@@ -1145,9 +1145,9 @@ begin
   ippsTest;
   case tpNum of
     g_single: for i:=0 to Nframe-1 do
-                ippsAddC(w,Psingle(memFrame(i)),Nx*Ny);
+                ippsAddC_32f_I(w,Psingle(memFrame(i)),Nx*Ny);
     g_double: for i:=0 to Nframe-1 do
-                ippsAddC(w,Pdouble(memFrame(i)),Nx*Ny);
+                ippsAddC_64f_I(w,Pdouble(memFrame(i)),Nx*Ny);
   end;
   ippsEnd;
 end;
@@ -1162,9 +1162,9 @@ begin
   ippsTest;
   case tpNum of
     g_single: for i:=0 to Nframe-1 do
-                ippsmulC(w,Psingle(memFrame(i)),Nx*Ny);
+                ippsmulC_32f_I(w,Psingle(memFrame(i)),Nx*Ny);
     g_double: for i:=0 to Nframe-1 do
-                ippsmulC(w,Pdouble(memFrame(i)),Nx*Ny);
+                ippsmulC_64f_I(w,Pdouble(memFrame(i)),Nx*Ny);
   end;
   ippsEnd;
 end;
@@ -1182,9 +1182,9 @@ begin
   ippsTest;
   case tpNum of
     g_single: for i:=0 to Nframe-1 do
-                ippsAdd(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
+                ippsAdd_32f_I(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
     g_double: for i:=0 to Nframe-1 do
-                ippsAdd(Psingle(oiseq.memFrame(i)),Psingle(memFrame(i)),Nx*Ny);
+                ippsAdd_64f_I(Pdouble(oiseq.memFrame(i)),Pdouble(memFrame(i)),Nx*Ny);
   end;
   ippsEnd;
 
@@ -1228,8 +1228,8 @@ begin
   ippsTest;
   for i:=0 to Nframe-1 do
     if w=0
-      then ippszero(Psingle(memFrame(i)),Nx*Ny)
-      else ippsSet(w,Psingle(memFrame(i)),Nx*Ny);
+      then ippszero_32f(Psingle(memFrame(i)),Nx*Ny)
+      else ippsSet_32f(w,Psingle(memFrame(i)),Nx*Ny);
   ippsEnd;
 end;
 
@@ -2224,10 +2224,10 @@ begin
  begin
    phase:=i;
    destlen:=Nframe;
-   ippsSampleDown(Psmallint(src),Nx*Ny*Nframe,Psmallint(@dest^[Nframe*i]),@destlen,Nx*Ny,@phase);
+   ippsSampleDown_16s(Psmallint(src),Nx*Ny*Nframe,Psmallint(@dest^[Nframe*i]),@destlen,Nx*Ny,@phase);
  end;
 
- ippsConvert(Psmallint(dest),Psingle(dest1),Nx*Ny*Nframe);
+ ippsConvert_16s32f(Psmallint(dest),Psingle(dest1),Nx*Ny*Nframe);
 
 
  f.WriteBuffer(dest1^,Nx*Ny*Nframe*4);
@@ -2283,10 +2283,10 @@ begin
   begin
     fs.ReadBuffer(tbSrc[0],Nframe*4);
 
-    ippsConv(Psingle(@tbSrc[0]),Nframe,Psingle(@tbHfR[0]),length(tbHfR),Psingle(@tbDest[0]));
+    Conv32f(Psingle(@tbSrc[0]),Nframe,Psingle(@tbHfR[0]),length(tbHfR),Psingle(@tbDest[0]));
     fd.WriteBuffer(tbDest[tStart],Nframe*4);
 
-    ippsConv(Psingle(@tbSrc[0]),Nframe,Psingle(@tbHfI[0]),length(tbHfI),Psingle(@tbDest[0]));
+    Conv32f(Psingle(@tbSrc[0]),Nframe,Psingle(@tbHfI[0]),length(tbHfI),Psingle(@tbDest[0]));
     fd.WriteBuffer(tbDest[tStart],Nframe*4);
   end;
 
@@ -2355,9 +2355,9 @@ begin
       fs.position:= Nx*Ny*Nframe*8*i;
       fs.ReadBuffer(tbSrc[0],Nx*Ny*Nframe*4*2);
 
-      ippsAdd(Psingle(@tbSrc[0]),Psingle(@Sz[0]),Nx*Ny*Nframe*2);
-      ippsSqr(Psingle(@tbSrc[0]),Nx*Ny*Nframe*2);
-      ippsAdd(Psingle(@tbSrc[0]),Psingle(@Sz2[0]),Nx*Ny*Nframe*2);
+      ippsAdd_32f_I(Psingle(@tbSrc[0]),Psingle(@Sz[0]),Nx*Ny*Nframe*2);
+      ippsSqr_32f_I(Psingle(@tbSrc[0]),Nx*Ny*Nframe*2);
+      ippsAdd_32f_I(Psingle(@tbSrc[0]),Psingle(@Sz2[0]),Nx*Ny*Nframe*2);
     end;
 
   end;
@@ -2434,7 +2434,7 @@ begin
   matRef.initTemp(0,Nx-1,0,Ny-1,G_single);
 
   ippsTest;
-  ippsConvert(Psmallint(temp),Psingle(MatRef.tb),Nx*Ny);
+  ippsConvert_16s32f(Psmallint(temp),Psingle(MatRef.tb),Nx*Ny);
   ippsEnd;
 
 
@@ -2447,7 +2447,7 @@ begin
       move(temp^[(info.topSkip+j)*info.Xsize+ info.LeftSkip],temp^[j*info.ImgXsize],info.ImgXsize*2);
 
     ippsTest;
-    ippsConvert(Psmallint(temp),Psingle(MemFrame(i)),Nx*Ny);
+    ippsConvert_16s32f(Psmallint(temp),Psingle(MemFrame(i)),Nx*Ny);
     ippsEnd;
 
     transpose(MemFrame(i));
@@ -2586,13 +2586,14 @@ begin
     PtabDouble(MemFrame(t))^[x+Nx*y]:=speed(x1,y1,t1)*radial(x1,y1,t1)*angular(x1,y1,t1)*1000;
   end;
 
-  res:= ippsNorm_L2(Pdouble(p0),Nx*Ny*Nframe,@w);
-  ippsMulC(1/w,Pdouble(p0),Nx*Ny*Nframe);
+  res:= ippsNorm_L2_64f(Pdouble(p0),Nx*Ny*Nframe,@w);
+  ippsMulC_64f_I(1/w,Pdouble(p0),Nx*Ny*Nframe);
 
 
   // Vdum = random
   getmem(Vdum,Nx*Ny*Nframe*sizeof(double)*2);
-  res:= ippsRandGauss_Direct(Vdum,Nx*Ny*Nframe,0,1, @Seed);
+  seed:=0;
+  RandGauss64f(Vdum,Nx*Ny*Nframe,0,1, Seed);
 
 
   //Vdum = random en complexes
@@ -2648,10 +2649,10 @@ begin
   DftiFreeDescriptor(hdfti);
 
 
-  ippsReal(PdoubleComp(Vdum),Pdouble(p0),Nx*Ny*Nframe);
+  ippsReal_64fc(PdoubleComp(Vdum),Pdouble(p0),Nx*Ny*Nframe);
 
-  ippsMax(Pdouble(p0),Nx*Ny*Nframe,@ymax);
-  ippsMin(Pdouble(p0),Nx*Ny*Nframe,@ymin);
+  ippsMax_64f(Pdouble(p0),Nx*Ny*Nframe,@ymax);
+  ippsMin_64f(Pdouble(p0),Nx*Ny*Nframe,@ymin);
 
   for i:=0 to Nx*Ny*Nframe-1 do p0^[i]:=(p0^[i]-ymin)/(ymax-ymin)*255;
 
@@ -2824,8 +2825,8 @@ begin
 
     ippsTest;
     case SampleSize of
-      1:  ippsConvert(Pbyte(FrameBuf),Psingle(m.tb),Nx*Ny);
-      2:  ippsConvert(Psmallint(FrameBuf),Psingle(m.tb),Nx*Ny);
+      1:  ippsConvert_8u32f(Pbyte(FrameBuf),Psingle(m.tb),Nx*Ny);
+      2:  ippsConvert_16s32f(Psmallint(FrameBuf),Psingle(m.tb),Nx*Ny);
     end;
     ippsEnd;
 

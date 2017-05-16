@@ -17,8 +17,8 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 0
     Top = 41
-    Width = 449
-    Height = 270
+    Width = 441
+    Height = 258
     Align = alClient
     ScrollBars = ssBoth
     TabOrder = 0
@@ -26,7 +26,7 @@ object Form1: TForm1
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 449
+    Width = 441
     Height = 41
     Align = alTop
     TabOrder = 1

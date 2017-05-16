@@ -5,7 +5,7 @@ interface
 
 uses Windows,sysutils,forms,classes, graphics,
      util1,Dgraphic,Gdos,dtf0,tbe0,listG,
-     ipps, ippsovr,
+     ipps17 ,
      Stmdef,stmObj,
      Dpalette,
      stmObv0,stmMvtX1,
@@ -2253,15 +2253,15 @@ begin
         if w>0 then
         begin
           move(p1^,temp[0],nb*sizeof(single));
-          ippsMulC(w,Psingle(@temp[0]),nb);
-          ippsAdd(Psingle(@temp[0]),Psingle(@pdest^[i0]),nb);
+          ippsMulC_32f_I(w,Psingle(@temp[0]),nb);
+          ippsAdd_32f_I(Psingle(@temp[0]),Psingle(@pdest^[i0]),nb);
         end
         else
         if w<0 then
         begin
           move(p2^, temp[0],nb*sizeof(single));
-          ippsMulC(w,Psingle(@temp[0]),nb);
-          ippsAdd(Psingle(@temp[0]),Psingle(@pdest^[i0]),nb);
+          ippsMulC_32f_I(w,Psingle(@temp[0]),nb);
+          ippsAdd_32f_I(Psingle(@temp[0]),Psingle(@pdest^[i0]),nb);
         end;
       end;
   end;

@@ -114,7 +114,6 @@ function getNormalPosition(wnd:hwnd):Trect;
 procedure PushG;
 procedure PopG;
 
-function roundG(x:float):integer;
 
 IMPLEMENTATION
 
@@ -145,6 +144,15 @@ Const
   PfastY:integer=0;
 
 
+function roundG(x:float):integer;
+const
+   max=20000;
+begin
+  if x>max then result:=max
+  else
+  if x<-max then result:=-max
+  else result:=round(x);
+end;
 
 
 function BadCanvas:boolean;
@@ -837,15 +845,6 @@ begin
   affdebug('Pop Gstack='+Istr(GstackPos),19);
 end;
 
-function roundG(x:float):integer;
-const
-   max=20000;
-begin
-  if x>max then result:=max
-  else
-  if x<-max then result:=-max
-  else result:=round(x);
-end;
 
 function RectToString(r:Trect):AnsiString;
 begin

@@ -168,7 +168,27 @@ Ceci n'entraînera pas de nouvelle initialisation.
 }
 
   TIIRfilter(Tobject)
-{$H Développement en cours
+{$H Gestion d'un filtre IIR
+
+  La sortie d'un filtre IIR (Infinite Impulse Response) peut s'écrire:
+
+  @(@ IIR_Formula1.jpg)
+
+  L'objet TIIRfilter s'appuie sur les fonctions des bibliothèques INTEL IPP . Ces fonctions permettent
+à l'utilisateur de construire le filtre soit en choisissant lui-même les jeux de coefficients Ak et Bk,
+soit en choisissant les paramètres de filtres du type Butterworth ou Chebyshev, les coefficients Ak et Bk
+étant alors calculés automatiquement.
+
+  En général, un filtre introduit les déphasages, donc des retards dans le signal filtré. Pour supprimer ces retards,
+une technique classique consiste à appliquer le filtre deux fois: une fois dans le sens forward, une seconde fois dans
+le sens backward. Les fonctions IPP permettent ce double filtrage de façon efficace.
+
+  Après avoir créé l'objet avec create@ , le choix des coefficients peut se faire avec installUserFilter@
+
+  Les filtres de Butterworth ou Chebyshev peuvent être construits avec  installButterworth@ ou installChebyshev@ .
+
+  Ensuite, on applique le filtre en appelant execute@
+
 
 }
 end;
@@ -548,9 +568,52 @@ procedure TmotionCloud.SetExpansion(DxF1,x0F1,DyF1,y0F1:real);
 
 {TIIRfilter}
 procedure TIIRfilter.create;
-procedure TIIRfilter.init(order: integer; var vecFilter: Tvector);
+{$H Constructeur de l'objet}
+
+procedure TIIRfilter.installUserFilter(order: integer; BF: boolean; var vecFilter: Tvector);
+{$H Installation des coefficients du filtre.
+
+ order est l'ordre du filtre (de 1 à 12)
+ Si BF vaut true, le filtre sera appliqué deux fois, d'abord forward puis backward.
+
+ vecFilter doit contenir les 2*(order+1) coefficients. Sa longueur doit donc être supérieure à 2*(order+1)
+
+ Les coefficients doivent être rangés dans l'ordre suivant:
+
+ B0, B1,... ,Border, A0, A1,...,Aorder
+
+ A0 ne peut pas être égal à zéro . Sa valeur habituelle est 1 . S'il est différent de 1,
+tous les coefficients seront divisés par A0
+
+}
+procedure TIIRfilter.installButterworth(HighPass: boolean; order: integer; BF:boolean; Fcut: real);
+{$H Installe un filtre de Butterworth
+
+ HighPass permet de choisir un filtre passe-haut ou passe-bas
+ order est l'ordre du filtre (de 1 à 12)
+ Si BF vaut true, le filtre sera appliqué deux fois, d'abord forward puis backward.
+ Fcut est la fréquence de coupure, exprimée en Hertz
+
+}
+
+procedure TIIRfilter.installChebyshev(HighPass: boolean; order: integer; BF:boolean; Fcut, Ripple: real);
+{$H Installe un filtre de Chebyshev
+
+ HighPass permet de choisir un filtre passe-haut ou passe-bas
+ order est l'ordre du filtre (de 1 à 12)
+ Si BF vaut true, le filtre sera appliqué deux fois, d'abord forward puis backward.
+ Fcut est la fréquence de coupure, exprimée en Hertz
+ Ripple définit le taux d'ondulation acceptable dans la bande passante
+
+}
+
 procedure TIIRfilter.execute(var src,dest: Tvector);
+{$H Application du filtre
 
+ src est le vecteur source. Le type de données doit être single ou double
+ dest est le vecteur destination. Il ne peut être identique à src. Son type numérique, ses limites et ses paramètres d'échelle
+seront modifiés pour correspondre à ceux du vecteur source.
 
+}
 
 

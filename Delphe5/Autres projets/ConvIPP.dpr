@@ -2,10 +2,11 @@ program ConvIPP;
 
 
 
+
+
 uses
   Forms,
-  IPPAPIconv0 in 'IPPAPIconv0.pas' {Form1},
-  UlexC in 'UlexC.pas';
+  IPPAPIconv0 in 'IPPAPIconv0.pas' {Form1};
 
 {$R *.res}
 

@@ -17,7 +17,7 @@ uses Windows,
      varconf1,
      stmVec1,
      stmError,stmPg,
-     ippDefs,ipps,ippsovr,
+     ippDefs17,ipps17,
      Cuda1, CudaRT1, CudaNPP1;
 
 type
@@ -47,7 +47,6 @@ type
                   function loadFromStream1(f:Tstream;size:LongWord;Fdata:boolean):boolean;
 
                   procedure AddTempAverage(vec:Tvector;isrc,idest,nb:integer);
-                  procedure AddTempAverageCuda(vec:Tvector;isrc,idest,nb:integer);
                   procedure SubTempAverage(vec:Tvector;isrc,idest,nb:integer);
 
                   Procedure Add0(vec:Tvector;complet:boolean);
@@ -342,48 +341,39 @@ var
   wS:TsingleComp;
   wD:TdoubleComp;
 begin
-{ Il faut oublier ça pour le moment.
-  IPP est bien plus rapide que NPP.
-
-  if initNPPS then
-  begin
-    AddTempAverageCuda(vec,isrc,idest,nb);
-    exit;
-  end;
-}
   IPPStest;
   case tpNum of
     G_single: begin
-                ippsMulC(count-1,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
-                ippsAdd(Psingle(@PtabSingle(vec.tb)^[isrc-vec.Istart]) , Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
-                ippsMulC(1/count,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
+                ippsMulC_32f_I(count-1,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
+                ippsAdd_32f_I(Psingle(@PtabSingle(vec.tb)^[isrc-vec.Istart]) , Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
+                ippsMulC_32f_I(1/count,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
               end;
     G_double: begin
-                ippsMulC(count-1,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-                ippsAdd(Pdouble(@Ptabdouble(vec.tb)^[isrc-vec.Istart]) , Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-                ippsMulC(1/count,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
+                ippsMulC_64f_I(count-1,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
+                ippsAdd_64f_I(Pdouble(@Ptabdouble(vec.tb)^[isrc-vec.Istart]) , Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
+                ippsMulC_64f_I(1/count,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
               end;
 
     G_singleComp:
               begin
                 ws.x:=count-1;
                 ws.y:=0;
-                ippsMulC(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
-                ippsAdd(PsingleComp(@PtabSingleComp(vec.tb)^[isrc-vec.Istart]) , PsingleComp(@PtabSingleComp(tb)^[idest-Istart]), nb);
+                ippsMulC_32fc_I(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
+                ippsAdd_32fc_I(PsingleComp(@PtabSingleComp(vec.tb)^[isrc-vec.Istart]) , PsingleComp(@PtabSingleComp(tb)^[idest-Istart]), nb);
                 ws.x:=1/count;
                 ws.y:=0;
-                ippsMulC(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
+                ippsMulC_32fc_I(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
               end;
 
     G_doubleComp:
               begin
                 wd.x:=count-1;
                 wd.y:=0;
-                ippsMulC(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
-                ippsAdd(PdoubleComp(@PtabdoubleComp(vec.tb)^[isrc-vec.Istart]) , PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]), nb);
+                ippsMulC_64fc_I(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
+                ippsAdd_64fc_I(PdoubleComp(@PtabdoubleComp(vec.tb)^[isrc-vec.Istart]) , PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]), nb);
                 wd.x:=1/count;
                 wd.y:=0;
-                ippsMulC(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
+                ippsMulC_64fc_I(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
               end;
 
   end;
@@ -394,80 +384,6 @@ end;
 // avril 2013 :  il faut se rendre à l'évidence: NPP est beaucoup plus lente que IPP !!!
 
 
-procedure Taverage.AddTempAverageCuda(vec:Tvector;isrc,idest,nb:integer);
-var
-  wS:TsingleComp;
-  wD:TdoubleComp;
-  Src,dest:pointer;
-  st:string;
-  res:integer;
-const
-  devSrc: pointer=nil;
-  devDest:pointer=nil;
-
-begin
-  //if not initNPPS then exit;
-  if not initCudaLib2 then exit;
-
-  st:='';
-  case tpNum of
-    G_single: begin
-                src:=  Psingle(@PtabSingle(vec.tb)^[isrc-vec.Istart]);
-                dest:= Psingle(@PtabSingle(tb)^[idest-Istart]);
-
-                res:=testAverage(src,dest,nb,count);
-                //messageCentral('res='+Istr(res));
-                {
-                st:=st+'- '+Istr(cudaMalloc(devSrc, nb*sizeof(single)));
-                st:=st+'- '+Istr(cudaMalloc(devDest, nb*sizeof(single)));
-
-                st:=st+'- '+Istr(cudaMemCpy(devSrc,Src, nb*sizeof(single),cudaMemcpyHostToDevice));
-                st:=st+'- '+Istr(cudaMemCpy(devDest,dest, nb*sizeof(single),cudaMemcpyHostToDevice));
-
-                st:=st+'- '+Istr(nppsMulC_32f_I(count-1,devDest,nb));
-                st:=st+'- '+Istr(nppsAdd_32f_I(devSrc , devDest,nb));
-                st:=st+'- '+Istr(nppsMulC_32f_I(1/count,devDest,nb));
-
-                st:=st+'- '+Istr(cudaMemCpy(Dest,Devdest,nb*sizeof(single),cudaMemcpyDeviceToHost));
-
-                st:=st+'- '+Istr(cudaFree(devSrc));
-                st:=st+'- '+Istr(cudaFree(devDest));
-
-                messageCentral(st);
-                }
-              end;
-    G_double: begin
-                ippsMulC(count-1,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-                ippsAdd(Pdouble(@Ptabdouble(vec.tb)^[isrc-vec.Istart]) , Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-                ippsMulC(1/count,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-              end;
-
-    G_singleComp:
-              begin
-                ws.x:=count-1;
-                ws.y:=0;
-                ippsMulC(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
-                ippsAdd(PsingleComp(@PtabSingleComp(vec.tb)^[isrc-vec.Istart]) , PsingleComp(@PtabSingleComp(tb)^[idest-Istart]), nb);
-                ws.x:=1/count;
-                ws.y:=0;
-                ippsMulC(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
-              end;
-
-    G_doubleComp:
-              begin
-                wd.x:=count-1;
-                wd.y:=0;
-                ippsMulC(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
-                ippsAdd(PdoubleComp(@PtabdoubleComp(vec.tb)^[isrc-vec.Istart]) , PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]), nb);
-                wd.x:=1/count;
-                wd.y:=0;
-                ippsMulC(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
-              end;
-
-  end;
-  NPPSend;
-end;
-
 
 procedure Taverage.SubTempAverage(vec:Tvector;isrc,idest,nb:integer);
 var
@@ -477,36 +393,36 @@ begin
   IPPStest;
   case tpNum of
     G_single: begin
-                ippsMulC(count+1,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
-                ippsSub(Psingle(@PtabSingle(vec.tb)^[isrc-vec.Istart]) , Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
-                ippsMulC(1/count,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
+                ippsMulC_32f_I(count+1,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
+                ippsSub_32f_I(Psingle(@PtabSingle(vec.tb)^[isrc-vec.Istart]) , Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
+                ippsMulC_32f_I(1/count,Psingle(@PtabSingle(tb)^[idest-Istart]),nb);
               end;
     G_double: begin
-                ippsMulC(count+1,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-                ippsSub(Pdouble(@Ptabdouble(vec.tb)^[isrc-vec.Istart]) , Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
-                ippsMulC(1/count,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
+                ippsMulC_64f_I(count+1,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
+                ippsSub_64f_I(Pdouble(@Ptabdouble(vec.tb)^[isrc-vec.Istart]) , Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
+                ippsMulC_64f_I(1/count,Pdouble(@Ptabdouble(tb)^[idest-Istart]),nb);
               end;
 
     G_singleComp:
               begin
                 ws.x:=count+1;
                 ws.y:=0;
-                ippsMulC(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
-                ippsSub(PsingleComp(@PtabSingleComp(vec.tb)^[isrc-vec.Istart]) , PsingleComp(@PtabSingleComp(tb)^[idest-Istart]), nb);
+                ippsMulC_32fc_I(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
+                ippsSub_32fc_I(PsingleComp(@PtabSingleComp(vec.tb)^[isrc-vec.Istart]) , PsingleComp(@PtabSingleComp(tb)^[idest-Istart]), nb);
                 ws.x:=1/count;
                 ws.y:=0;
-                ippsMulC(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
+                ippsMulC_32fc_I(ws,PsingleComp(@PtabSingleComp(tb)^[idest-Istart]),nb);
               end;
 
     G_doubleComp:
               begin
                 wd.x:=count+1;
                 wd.y:=0;
-                ippsMulC(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
-                ippsSub(PdoubleComp(@PtabdoubleComp(vec.tb)^[isrc-vec.Istart]) , PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]), nb);
+                ippsMulC_64fc_I(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
+                ippsSub_64fc_I(PdoubleComp(@PtabdoubleComp(vec.tb)^[isrc-vec.Istart]) , PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]), nb);
                 wd.x:=1/count;
                 wd.y:=0;
-                ippsMulC(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
+                ippsMulC_64fc_I(wd,PdoubleComp(@PtabdoubleComp(tb)^[idest-Istart]),nb);
               end;
 
   end;

@@ -7,7 +7,7 @@ INTERFACE
 uses windows,classes, sysutils,math,
      util1,Gdos,debug0,
      stmvec1,
-     IPPdefs,IPPS,IPPSovr,
+     IPPdefs17,IPPS17, ipp17ex,
      DUlex5,NcDef2,stmVecU2,
      evalVec1;
 
@@ -711,14 +711,14 @@ end;
 procedure Thresh1(src: Tvector; w: float;up:boolean;nbpt:integer);
 begin
   if up
-    then ippsThreshold_GT(src.tbD,nbpt,w)
-    else ippsThreshold_LT(src.tbD,nbpt,w);
+    then ippsThreshold_GT_64f_I(src.tbD,nbpt,w)
+    else ippsThreshold_LT_64f_I(src.tbD,nbpt,w);
 end;
 
 procedure AbsThresh(src:Tvector;w:float;nbpt:integer);
 begin
-  ippsAbs(src.tbD,nbpt);
-  ippsThreshold_LT(src.tbD,nbpt,w);
+  ippsAbs_64f_I(src.tbD,nbpt);
+  ippsThreshold_LT_64f_I(src.tbD,nbpt,w);
 end;
 
 procedure ln1(src: Tvector;nbpt:integer);
@@ -737,13 +737,13 @@ begin
 
   if w=2 then
   begin
-    ippsSqr(dest.tbD,nbpt);
+    ippsSqr_64f_I(dest.tbD,nbpt);
     exit;
   end;
 
   Thresh1(dest,1E-20,false,nbpt);     { seuil +epsilon }
   Ln1(dest,nbpt);                     { dest = Log(dest) }
-  ippsMulC(w,dest.tbD,nbpt);          { dest = cc * Log(dest) }
+  ippsMulC_64f_I(w,dest.tbD,nbpt);          { dest = cc * Log(dest) }
 
   Thresh1(dest,100,true,nbpt);         { seuil +inf }
   Thresh1(dest,-100,false,nbpt);       { seuil -inf }
@@ -758,7 +758,7 @@ var
 begin
   Thresh1(src,1E-100,false,nbpt);         { seuil +epsilon }
   Ln1(src,nbpt);                          { y = Log(y) }
-  ippsMulC(alpha,src.tbD,nbpt);           { y = alpha * Log(y) }
+  ippsMulC_64f_I(alpha,src.tbD,nbpt);           { y = alpha * Log(y) }
 
   Thresh1(src,100,true,nbpt);             { seuil +inf }
   Thresh1(src,-100,false,nbpt);           { seuil -inf }
@@ -772,14 +772,14 @@ var
 begin
   Thresh1(src,1E-100,false,nbpt);         { seuil +epsilon }
   Ln1(src,nbpt);                          { y = Log(y) }
-  ippsMulC(alpha,src.tbD,nbpt);           { y = alpha * Log(y) }
+  ippsMulC_64f_I(alpha,src.tbD,nbpt);           { y = alpha * Log(y) }
 
   Thresh1(src,100,true,nbpt);             { seuil +inf }
   Thresh1(src,-100,false,nbpt);           { seuil -inf }
 
   exp1(src,nbpt);
-  ippsmulC(g0,src.tbD,nbpt);
-  ippsaddC(cte,Pdouble(src.tb),nbpt);
+  ippsmulC_64f_I(g0,src.tbD,nbpt);
+  ippsaddC_64f_I(cte,Pdouble(src.tb),nbpt);
 end;
 
 
@@ -1089,10 +1089,10 @@ begin
           evaluer(rac^.g,x);
           evaluer(rac^.d,y);
           case rac^.opnom of
-            plus: ippsadd(x.tbD,y.tbD,res.tbD,nbpt);
-            moins: ippssub(y.tbD,x.tbD,res.tbD,nbpt);
-            mult: ippsmul(x.tbD,y.tbD,res.tbD,nbpt);
-            divis: ippsdiv(y.tbD,x.tbD,res.tbD,nbpt);
+            plus: ippsadd_64f(x.tbD,y.tbD,res.tbD,nbpt);
+            moins: ippssub_64f(y.tbD,x.tbD,res.tbD,nbpt);
+            mult: ippsmul_64f(x.tbD,y.tbD,res.tbD,nbpt);
+            divis: ippsdiv_64f(y.tbD,x.tbD,res.tbD,nbpt);
           end;
         finally
           x.free;
@@ -2606,7 +2606,7 @@ begin
   {for i:=1 to nbpt do
     output1[i]:=sqr(input1[i]); }
 
-  ippsSqr(input1.tbD,output1.tbD,nbpt);
+  ippsSqr_64f(input1.tbD,output1.tbD,nbpt);
 end;
 
 procedure TsqrFilter.evaluerDeriv(numParam:integer;argIN,output:Tvector;numOcc:integer);
@@ -2621,8 +2621,8 @@ begin
       output[i]:=2*Vx[i]* argIn[i];
     }
 
-    ippsMul(Vx.tbD,argin.tbD,output.tbD,nbpt);
-    ippsMulC(2,output.tbD,nbpt);
+    ippsMul_64f(Vx.tbD,argin.tbD,output.tbD,nbpt);
+    ippsMulC_64f_I(2,output.tbD,nbpt);
   end;
 end;
 
@@ -2710,35 +2710,25 @@ end;
 
 { THilbertFilter }
 
+
 procedure THilbertFilter.evaluer(input1,output1:Tvector;numOcc:integer);
 var
   p1:array of single;
-  p2:array of TSingleComp;
-  status:integer;
-  spec: PIppsHilbertSpec_32f32fc ;  { la version 64f n'existe pas! }
 
 begin
   inherited;
 
   setlength(p1,nbpt);
-  setlength(p2,nbpt);
+  ippsConvert_64f32f(Pdouble(input1.tb),@P1[0],nbpt);
 
-  ippsConvert(Pdouble(input1.tb),@P1[0],nbpt);
+  hilbert32f(@P1[0],nbpt);
 
-  status := ippsHilbertInitAlloc(spec,nbpt, ippAlgHintNone);
-  status := ippsHilbert(@p1[0],@p2[0], spec);
-  ippsHilbertFree(spec);
-
-  ippsimag(PsingleComp(@p2[0]),@p1[0],nbpt);
-  ippsConvert(Psingle(@p1[0]),Pdouble(output1.tb),nbpt);
+  ippsConvert_32f64f(Psingle(@p1[0]),Pdouble(output1.tb),nbpt);
 end;
 
 procedure THilbertFilter.evaluerDeriv(numParam:integer;argIN,output:Tvector;numOcc:integer);
 var
   p1:array of single;
-  p2:array of TSingleComp;
-  status:integer;
-  spec: PIppsHilbertSpec_32f32fc ;  {la version 64 n'existe pas ! }
 begin
   if numParam=-1 then
   begin
@@ -2746,16 +2736,12 @@ begin
       si y(t)= Hilbert( x(t) )  alors   dy/dp=Hilbert(dx/dp)
     }
     setlength(p1,nbpt);
-    setlength(p2,nbpt);
 
-    ippsConvert(Pdouble(argin.tb),@P1[0],nbpt);
+    ippsConvert_64f32f(Pdouble(argin.tb),@P1[0],nbpt);
 
-    status := ippsHilbertInitAlloc(spec,nbpt, ippAlgHintNone);
-    status := ippsHilbert(@p1[0],@P2[0], spec);
-    ippsHilbertFree(spec);
+    Hilbert32f(@P1[0],nbpt);
 
-    ippsImag(PsingleComp(@p2[0]),@p1[0],nbpt);
-    ippsConvert(Psingle(@p1[0]),Pdouble(output.tb),nbpt);
+    ippsConvert_32f64f(Psingle(@p1[0]),Pdouble(output.tb),nbpt);
   end;
 end;
 
@@ -2843,6 +2829,22 @@ begin
   nblin:=1;
 end;
 
+procedure ippsConv_64f(src1: pointer; nb1: integer;src2: pointer; nb2: integer; dest: pointer);
+var
+  status: integer;
+  buf: pointer;
+  bufSize:integer;
+begin
+  status := ippsConvolveGetBufferSize(nb1, nb2, _ipp64f, ippAlgAuto, @bufSize);
+
+  if status <>0 then exit ;
+
+  Buf := ippsMalloc_8u( bufSize );
+
+  status := ippsConvolve_64f(Src1, nb1, Src2, nb2, Dest,ippAlgAuto, Buf);
+
+  ippsFree( Buf);
+end;
 
 procedure Tlinearfilter.evaluer(input1, output1: Tvector;numOcc:integer);
 begin
@@ -2852,7 +2854,7 @@ begin
   TRY
   {Le résultat du filtre linéaire est donné par une convolution}
   output1.modifyTemp((nbpt+nblin)*8);
-  ippsConv(input1.tbD,nbpt,@para[0],Nblin,output1.tbD);
+  ippsConv_64f(input1.tbD,nbpt,@para[0],Nblin,output1.tbD);
   output1.restoreTemp;
 
   FINALLY
@@ -2877,7 +2879,7 @@ begin
       dy/dp = h(t) * dx/dp (convolution de ArgIn avec la réponse impulsionnelle)
     }
     setLength(ylin1,nbpt+nblin);
-    ippsConv(argIN.tbD,nbpt,@para[0],Nblin,@ylin1[0]);
+    ippsConv_64f(argIN.tbD,nbpt,@para[0],Nblin,@ylin1[0]);
     move(ylin1[0],output.tb^,nbpt*8);
   end
   else
@@ -2965,7 +2967,7 @@ begin
     -1:  begin
            output.Vcopy(Vx);
            exposant1(output,alpha-1,0,g0*alpha,nbpt);      { g0*alpha*exposant(alpha-1)  = dy/dX }
-           ippsmul(argin.tbD,output.tbD,nbpt);             { * argin                      *dX/dp }
+           ippsmul_64f_I(argin.tbD,output.tbD,nbpt);             { * argin                      *dX/dp }
          end;
 
     0:   begin      { g0 }
@@ -2981,7 +2983,7 @@ begin
            Mdum.Vcopy(Vx);
            Thresh1(Mdum,1E-20,false,nbpt);          { seuil +epsilon }
            ln1(Mdum,nbpt);
-           ippsmul(Mdum.tbD,output.tbD,nbpt);       { dy/dalpha = g0*exposant(alpha) * ln(x)}
+           ippsmul_64f_I(Mdum.tbD,output.tbD,nbpt);       { dy/dalpha = g0*exposant(alpha) * ln(x)}
            finally
            Mdum.free;
            end;
@@ -3077,7 +3079,7 @@ begin
            for i:=Istart to Iend do
              if Yvalue[i]<0 then output[i]:=-output[i]; {*sgn(input}
 
-           ippsmul(argin.tbD,output.tbD,nbpt);                { * argin                      *dX/dp }
+           ippsmul_64f_I(argin.tbD,output.tbD,nbpt);                { * argin                      *dX/dp }
          end;
 
     0:   begin      { g0 }
@@ -3095,7 +3097,7 @@ begin
            Mdum.Vcopy(Vx);
            Thresh1(Mdum,1E-20,false,nbpt);          { seuil +epsilon }
            ln1(Mdum,nbpt);
-           ippsmul(Mdum.tbD,output.tbD,nbpt);             { dy/dalpha = *exposant(alpha) * ln(x)}
+           ippsmul_64f_I(Mdum.tbD,output.tbD,nbpt);             { dy/dalpha = *exposant(alpha) * ln(x)}
            finally
            Mdum.free;
            end;
@@ -3190,7 +3192,7 @@ begin
   begin
     for i:=1 to nbpt do
       output[i]:=fprim(Vx[i]);
-    ippsmul(argin.tbD,output.tbD,nbpt);     { * argin             *dX/dp }
+    ippsmul_64f_I(argin.tbD,output.tbD,nbpt);     { * argin             *dX/dp }
   end
   else
   begin
@@ -3334,7 +3336,7 @@ begin
   begin
     for i:=1 to nbpt do
       output[i]:=fprim(Vx[i]);
-    ippsmul(argin.tbD,output.tbD,nbpt);     { * argin             *dX/dp }
+    ippsmul_64f_I(argin.tbD,output.tbD,nbpt);     { * argin             *dX/dp }
   end
   else
   begin
@@ -3443,13 +3445,13 @@ begin
       output[i]:=w;
     end;
 
-    ippsmul(argin.tbD,output.tbD,nbpt);            { * argin             *dX/dp }
+    ippsmul_64f_I(argin.tbD,output.tbD,nbpt);            { * argin             *dX/dp }
   end
   else
   begin
     output.fill(1);
     for i:=1 to numParam do
-      ippsmul(Vx.tbD,output.tbD,nbpt);
+      ippsmul_64f_I(Vx.tbD,output.tbD,nbpt);
 
   end;
 end;
@@ -4124,23 +4126,16 @@ end;
 procedure Hilbert(src,dest:Tvector);
 var
   p1:array of single;
-  p2:array of TSingleComp;
-  status:integer;
-  spec: PIppsHilbertSpec_32f32fc ;  {la version 64 n'existe pas ! }
   nbpt:integer;
 begin
   nbpt:=src.Icount;
   setlength(p1,nbpt);
-  setlength(p2,nbpt);
 
-  ippsConvert(Pdouble(src.tb),@P1[0],nbpt);
+  ippsConvert_64f32f(Pdouble(src.tb),@P1[0],nbpt);
 
-  status := ippsHilbertInitAlloc(spec,nbpt, ippAlgHintNone);
-  status := ippsHilbert(@p1[0],@P2[0], spec);
-  ippsHilbertFree(spec);
+  hilbert32f(@P1[0],nbpt);
 
-  ippsImag(PsingleComp(@p2[0]),@p1[0],nbpt);
-  ippsConvert(Psingle(@p1[0]),Pdouble(dest.tb),nbpt);
+  ippsConvert_32f64f(Psingle(@p1[0]),Pdouble(dest.tb),nbpt);
 end;
 
 
@@ -4780,11 +4775,26 @@ begin
 
 end;
 
+
+procedure convolve(p1: pointer;n1: integer; p2: pointer; n2: integer;dest: pointer);
+var
+  buffer: pointer;
+  bufferSize:integer;
+begin
+  ippsConvolveGetBufferSize(n1,n2, _ipp64f,ippAlgAuto, @bufferSize);
+  buffer:=ippsMalloc_8u(bufferSize);
+  ippsConvolve_64f( p1,n1,p2,n2,dest,ippAlgAuto,buffer );
+  ippsFree(buffer);
+end;
+
+
 procedure Tlinearfilter2.evaluer(input1, output1: Tvector;numOcc:integer);
 var
   para1:array of double;
   DstLen:integer;
   phase:integer;
+  buffer: pointer;
+  bufferSize:integer;
 begin
   { On construit d'abord la réponse impulsionnelle interpolée:
       - avec UpSample, on intercale des zéros entre les coeffs
@@ -4800,18 +4810,22 @@ begin
 
   setLength(para1,nbCoeff*nbK);
   phase:=0;
-  ippsSampleUp(Pdouble(@para[0]),NbCoeff, Pdouble(@para1[0]),@dstLen,nbK,@phase);
+  ippsSampleUp_64f(Pdouble(@para[0]),NbCoeff, Pdouble(@para1[0]),@dstLen,nbK,@phase);
 
-  ippsConv(Pdouble(@para1[0]),NbCoeff*nbK,@Vtriangle[0],2*nbK+1, @hI[0] );
+  Convolve(Pdouble(@para1[0]),NbCoeff*nbK,@Vtriangle[0],2*nbK+1, @hI[0] );
+
   move(hI[nbK],hI[0],(nblin+nbK+1)*8);
 
   {Le résultat du filtre linéaire est donné par une convolution}
   output1.modifyTemp((nbpt+nblin)*8);
-  ippsConv(input1.tbD,nbpt,@hI[0],Nblin,output1.tbD);
+
+  Convolve(input1.tbD,nbpt,@hI[0],Nblin,output1.tbD);
+
   output1.restoreTemp;
 
   setLength(inputC,nbpt+2*nbK+1);
-  ippsConv(input1.tbD,nbpt,@Vtriangle[0],2*nbK+1, @inputC[0] );
+
+  Convolve(input1.tbD,nbpt,@Vtriangle[0],2*nbK+1, @inputC[0] );
 
   { inputC est la convolution entre l'entrée et une fonction triangle
     Utile pour le calcule de dérivée.
@@ -4825,7 +4839,7 @@ begin
   if numParam=-1 then
   begin
     setLength(ylin1,nbpt+nblin);
-    ippsConv(argIN.tbD,nbpt,@hI[0],Nblin,@ylin1[0]);
+    Convolve(argIN.tbD,nbpt,@hI[0],Nblin,@ylin1[0]);
     move(ylin1[0],output.tb^,nbpt*8);
   end
   else
@@ -4905,7 +4919,7 @@ begin
 
   {Le résultat du filtre linéaire est donné par une convolution}
   output1.modifyTemp((nbpt+nblin)*8);
-  ippsConv(input1.tbD,nbpt,@h[0],Nblin,output1.tb);
+  Convolve(input1.tbD,nbpt,@h[0],Nblin,output1.tb);
   output1.restoreTemp;
 
   {Calcul des VH pour le calcul des dérivées}
@@ -4924,14 +4938,14 @@ begin
   if numParam=-1 then
   begin
     setLength(ylin1,nbpt+nblin);
-    ippsConv(argIN.tbD,nbpt,@h[0],Nblin,@ylin1[0]);
+    Convolve(argIN.tbD,nbpt,@h[0],Nblin,@ylin1[0]);
     move(ylin1[0],output.tb^,nbpt*8);
   end
   else
   begin
     output.fill(0);
     setLength(ylin1,nbpt+nblin);
-    ippsConv(input[numOcc].tbD,nbpt,@VH[numParam,0],Nblin,@ylin1[0]);
+    Convolve(input[numOcc].tbD,nbpt,@VH[numParam,0],Nblin,@ylin1[0]);
     move(ylin1[0],output.tb^,nbpt*8);
   end;
 end;
@@ -5132,13 +5146,13 @@ begin
     Vexp[i]:=exp(-1/inputA2[i]);                     { Calcul exp(-1/tau) }
   end;
 
-  ippsMul(inputA1.tbD,VtNorm.tbD,Vxt.tbD,nbpt);       { Vtx := x * VtNorm }
+  ippsMul_64f(inputA1.tbD,VtNorm.tbD,Vxt.tbD,nbpt);       { Vtx := x * VtNorm }
   output1.Vcopy(Vxt);                               { Itération 0 dans output1 }
 
   for i:=1 to Nmax do
   begin
-    ippsmul(Vexp.tbD,Vxt.tbD,nbpt);                 { Vxt:= Vxt * Vexp }
-    ippsAdd(Vxt.tbD,@PtabDouble(output1.tb)^[i],nbpt-i);
+    ippsmul_64f_I(Vexp.tbD,Vxt.tbD,nbpt);                 { Vxt:= Vxt * Vexp }
+    ippsAdd_64f_I(Vxt.tbD,@PtabDouble(output1.tb)^[i],nbpt-i);
   end;                                              { output =output + Vxt décalé de  i }
 
 
@@ -5180,13 +5194,13 @@ begin
           Vxt:=Tvector.create32(g_double,1,nbpt);
           TRY
 
-          ippsMul(argin.tbD,Vt.tbD,Vxt.tbD,nbpt);        { Vtx := dx/dt * Vt }
+          ippsMul_64f(argin.tbD,Vt.tbD,Vxt.tbD,nbpt);        { Vtx := dx/dt * Vt }
           output.Vcopy(Vxt);                             { Itération 0 dans output1 }
 
           for i:=1 to Nmax do
           begin
-            ippsmul(Vexp.tbD,Vxt.tbD,nbpt);              { Vxt:= Vxt * Vexp }
-            ippsAdd(Vxt.tbD,@PtabDouble(output.tb)^[i],nbpt-i);{ output =output + Vxt décalé de  i }
+            ippsmul_64f_I(Vexp.tbD,Vxt.tbD,nbpt);              { Vxt:= Vxt * Vexp }
+            ippsAdd_64f_I(Vxt.tbD,@PtabDouble(output.tb)^[i],nbpt-i);{ output =output + Vxt décalé de  i }
           end;
 
           FINALLY
@@ -5216,21 +5230,21 @@ begin
 
           TRY
 
-          ippsMul(argin.tbD,Vx.tbD,Vxt.tbD,nbpt);     { Vtx := dtau/dt * x }
-          ippsMul(Vt.tbD,Vxt.tbD,nbpt);
-          ippsMul(Vt.tbD,Vxt.tbD,nbpt);                  { Vtx := dtau/dt * x  / tau²}
+          ippsMul_64f(argin.tbD,Vx.tbD,Vxt.tbD,nbpt);     { Vtx := dtau/dt * x }
+          ippsMul_64f_I(Vt.tbD,Vxt.tbD,nbpt);
+          ippsMul_64f_I(Vt.tbD,Vxt.tbD,nbpt);                  { Vtx := dtau/dt * x  / tau²}
 
           output.Vcopy(Vxt);                             { Itération 0 dans output = -Vxt }
-          ippsMulC(-1,output.tbD,nbpt);
+          ippsMulC_64f_I(-1,output.tbD,nbpt);
 
           Va.fill(-1);
 
           for i:=1 to Nmax do
           begin
-            ippsmul(Vexp.tbD,Vxt.tbD,nbpt);                    { Vxt:= Vxt * Vexp }
-            ippsadd(vt.tbD,vA.tbD,nbpt);                       { Va := Va +Vt }
-            ippsmul(Vxt.tbD,vA.tbD,Vdum.tbD,nbpt);             { Vdum := Vxt * Va }
-            ippsAdd(Vdum.tbD,@PtabDouble(output.tb)^[i],nbpt-i);{ output =output + Vdum décalé de  i }
+            ippsmul_64f_I(Vexp.tbD,Vxt.tbD,nbpt);                    { Vxt:= Vxt * Vexp }
+            ippsadd_64f_I(vt.tbD,vA.tbD,nbpt);                       { Va := Va +Vt }
+            ippsmul_64f(Vxt.tbD,vA.tbD,Vdum.tbD,nbpt);             { Vdum := Vxt * Va }
+            ippsAdd_64f_I(Vdum.tbD,@PtabDouble(output.tb)^[i],nbpt-i);{ output =output + Vdum décalé de  i }
           end;
 
           FINALLY
@@ -5992,9 +6006,9 @@ procedure TinvertFilter.evaluer(input1, output1: Tvector; numOcc: integer);
 begin
   inherited;
 
-  ippsAddC(para[0],input1.tbD,nbpt);
+  ippsAddC_64f_I(para[0],input1.tbD,nbpt);
   output1.fill(1);
-  ippsDiv(input1.tbD,output1.tbD,nbpt);
+  ippsDiv_64f_I(input1.tbD,output1.tbD,nbpt);
 
 end;
 
@@ -6012,12 +6026,12 @@ begin
     -1:   try
             Vz:=Tvector.create32(g_double,1,nbpt);
             Vz.Vcopy(Vx);
-            ippsAddC(para[0],Vz.tbD,nbpt);               {Vz=  x+C   }
-            ippsSqr(Vz.tbD,nbpt);                        {Vz= (x+C)² }
-            ippsSet(-1,Vy.tbD,nbpt);                     {Vy= -1 }
-            ippsDiv(Vz.tbD,Vy.tbD,nbpt);                 {Vy= -1/ (x+C)² }
+            ippsAddC_64f_I(para[0],Vz.tbD,nbpt);               {Vz=  x+C   }
+            ippsSqr_64f_I(Vz.tbD,nbpt);                        {Vz= (x+C)² }
+            ippsSet_64f(-1,Vy.tbD,nbpt);                     {Vy= -1 }
+            ippsDiv_64f_I(Vz.tbD,Vy.tbD,nbpt);                 {Vy= -1/ (x+C)² }
 
-            ippsMul(argIn.tbD,Vy.tbD,nbpt);              {Vy= Vy * Argin }
+            ippsMul_64f_I(argIn.tbD,Vy.tbD,nbpt);              {Vy= Vy * Argin }
           finally
             Vz.free;
           end;
@@ -6025,10 +6039,10 @@ begin
     0:    try
             Vz:=Tvector.create32(g_double,1,nbpt);
             Vz.Vcopy(Vx);
-            ippsAddC(para[0],Vz.tbD,nbpt);               {Vz=  x+C   }
-            ippsSqr(Vz.tbD,nbpt);                        {Vz= (x+C)² }
-            ippsSet(-1,Vy.tbD,nbpt);                     {Vy= -1 }
-            ippsDiv(Vz.tbD,Vy.tbD,nbpt);                 {Vy= -1/ (x+C)² }
+            ippsAddC_64f_I(para[0],Vz.tbD,nbpt);               {Vz=  x+C   }
+            ippsSqr_64f_I(Vz.tbD,nbpt);                        {Vz= (x+C)² }
+            ippsSet_64f(-1,Vy.tbD,nbpt);                     {Vy= -1 }
+            ippsDiv_64f_I(Vz.tbD,Vy.tbD,nbpt);                 {Vy= -1/ (x+C)² }
           finally
             Vz.free;
           end;

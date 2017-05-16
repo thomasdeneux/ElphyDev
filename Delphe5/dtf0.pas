@@ -8,7 +8,7 @@ INTERFACE
 
 uses sysutils,classes,math,
      util1,debug0,
-     ippdefs,ipps,ippsovr ;
+     ippdefs17,ipps17 ; 
 
 {6-03-02
 
@@ -2462,7 +2462,7 @@ begin
     if i2>=i1 then
     begin
       IPPStest;
-      ippsminmax(Psingle(getP(i1)),i2-i1+1,@y1s,@y2s);
+      ippsminmax_32f(Psingle(getP(i1)),i2-i1+1,@y1s,@y2s);
       ippsEnd;
       y1:=y1s;
       y2:=y2s;
@@ -2483,7 +2483,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsmax(Psingle(getP(i1)),i2-i1+1,@ys);
+    ippsmax_32f(Psingle(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2497,7 +2497,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsmin(Psingle(getP(i1)),i2-i1+1,@ys);
+    ippsmin_32f(Psingle(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2512,7 +2512,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsmaxIndx(Psingle(getP(i1)),i2-i1+1,@ys,@indx);
+    ippsmaxIndx_32f(Psingle(getP(i1)),i2-i1+1,@ys,@indx);
     ippsEnd;
     result:=indx+i1;
   end
@@ -2527,7 +2527,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsminIndx(Psingle(getP(i1)),i2-i1+1,@ys,@indx);
+    ippsminIndx_32f(Psingle(getP(i1)),i2-i1+1,@ys,@indx);
     ippsEnd;
     result:=indx+i1;
   end
@@ -2543,7 +2543,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsmean(Psingle(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
+    ippsmean_32f(Psingle(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
     ippsEnd;
     result:=ys;
   end
@@ -2559,7 +2559,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsStdDev(Psingle(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
+    ippsStdDev_32f(Psingle(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
     ippsEnd;
     result:=ys;
   end
@@ -2575,7 +2575,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsSum(Psingle(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
+    ippsSum_32f(Psingle(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
     ippsEnd;
     result:=ys;
   end
@@ -2591,7 +2591,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsNorm_inf(Psingle(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_inf_32f(Psingle(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2607,7 +2607,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsNorm_L1(Psingle(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L1_32f(Psingle(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2623,7 +2623,7 @@ begin
   if (StepSize=4) then
   begin
     IPPStest;
-    ippsNorm_L2(Psingle(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L2_32f(Psingle(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2687,7 +2687,7 @@ begin
     if i2>=i1 then
     begin
       IPPStest;
-      ippsminmax(Pdouble(getP(i1)),i2-i1+1,@y1s,@y2s);
+      ippsminmax_64f(Pdouble(getP(i1)),i2-i1+1,@y1s,@y2s);
       ippsEnd;
       y1:=y1s;
       y2:=y2s;
@@ -2708,7 +2708,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsmax(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsmax_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2722,7 +2722,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsmin(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsmin_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2737,7 +2737,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsmaxIndx(Pdouble(getP(i1)),i2-i1+1,@ys,@indx);
+    ippsmaxIndx_64f(Pdouble(getP(i1)),i2-i1+1,@ys,@indx);
     ippsEnd;
     result:=indx+i1;
   end
@@ -2752,7 +2752,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsminIndx(Pdouble(getP(i1)),i2-i1+1,@ys,@indx);
+    ippsminIndx_64f(Pdouble(getP(i1)),i2-i1+1,@ys,@indx);
     ippsEnd;
     result:=indx+i1;
   end
@@ -2768,7 +2768,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsmean(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsmean_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2784,7 +2784,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsStdDev(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsStdDev_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2800,7 +2800,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsSum(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsSum_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2816,7 +2816,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsNorm_inf(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_inf_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2832,7 +2832,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsNorm_L1(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L1_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2848,7 +2848,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsNorm_L2(Pdouble(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L2_64f(Pdouble(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2932,7 +2932,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsSum(PsingleComp(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
+    ippsSum_32fc(PsingleComp(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
     ippsEnd;
     result.x:=ys.x;
     result.y:=ys.y;
@@ -2947,7 +2947,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsNorm_inf(PsingleComp(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_inf_32fc32f(PsingleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2956,12 +2956,12 @@ end;
 
 function typeDataCpxS.NormL1(i1,i2:integer):float;
 var
-  ys:single;
+  ys:double;
 begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsNorm_L1(PsingleComp(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L1_32fc64f(PsingleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2970,12 +2970,12 @@ end;
 
 function typeDataCpxS.NormL2(i1,i2:integer):float;
 var
-  ys:single;
+  ys: double;
 begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsNorm_L2(PsingleComp(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L2_32fc64f(PsingleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -2989,7 +2989,7 @@ begin
   if (StepSize=8) then
   begin
     IPPStest;
-    ippsmean(PsingleComp(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
+    ippsmean_32fc(PsingleComp(getP(i1)),i2-i1+1,@ys,ippAlgHintNone);
     ippsEnd;
     result.x:=ys.x;
     result.y:=ys.y;
@@ -3075,7 +3075,7 @@ begin
   if (StepSize=16) then
   begin
     IPPStest;
-    ippsSum(PdoubleComp(getP(i1)),i2-i1+1,@ys);
+    ippsSum_64fc(PdoubleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result.x:=ys.x;
     result.y:=ys.y;
@@ -3090,7 +3090,7 @@ begin
   if (StepSize=16) then
   begin
     IPPStest;
-    ippsNorm_inf(PdoubleComp(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_inf_64fc64f(PdoubleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -3104,7 +3104,7 @@ begin
   if (StepSize=16) then
   begin
     IPPStest;
-    ippsNorm_L1(PdoubleComp(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L1_64fc64f(PdoubleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -3118,7 +3118,7 @@ begin
   if (StepSize=16) then
   begin
     IPPStest;
-    ippsNorm_L2(PdoubleComp(getP(i1)),i2-i1+1,@ys);
+    ippsNorm_L2_64fc64f(PdoubleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result:=ys;
   end
@@ -3132,7 +3132,7 @@ begin
   if (StepSize=16) then
   begin
     IPPStest;
-    ippsmean(PdoubleComp(getP(i1)),i2-i1+1,@ys);
+    ippsmean_64fc(PdoubleComp(getP(i1)),i2-i1+1,@ys);
     ippsEnd;
     result.x:=ys.x;
     result.y:=ys.y;

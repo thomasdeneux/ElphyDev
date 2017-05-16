@@ -2471,7 +2471,7 @@ begin
   //if result=0 then
   //  messageCentral('GloadLibrary '+st+ crlf+  getLastErrorString);
 
-  if result=0
+  if result=0 //then messageCentral('DLL not loaded: '+st);
     then affdebug('DLL not loaded: '+st,0)
     else affdebug('DLL loaded: '+st,0);
 end;

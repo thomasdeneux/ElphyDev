@@ -5,7 +5,7 @@ interface
 
 uses math,
      util1,Dgraphic,
-     ipps,ippsovr,ippdefs,
+     ipps17,ippdefs17, ipp17ex,
      NcDef2,
      stmDef,stmObj,stmvec1,stmMat1,stmError,debug0,
      stmFFT;
@@ -41,23 +41,6 @@ procedure proWinBlackMan(var src,dest : Tvector;alpha:float);pascal;
 procedure proWinKaiser(var src,dest : Tvector;beta:float);pascal;
 procedure proWinBartlett(var src,dest : Tvector);pascal;
 
-
-procedure ippsDFT(src,dest:PdoubleComp; nb:integer; fwd: boolean);overload;
-procedure ippsDFT(src,dest:PsingleComp; nb:integer; fwd: boolean);overload;
-procedure ippsDFTfwd(src:Psingle;dest:PsingleComp; nb:integer);overload;
-procedure ippsDFTinv(src:PsingleComp;dest:Psingle; nb:integer);overload;
-procedure ippsDFTfwd(src:Pdouble;dest:PdoubleComp; nb:integer);overload;
-procedure ippsDFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);overload;
-
-procedure ippsRealFFT(src:Pdouble;dest:PdoubleComp; nb:integer);overload;
-procedure ippsRealFFT(src:Psingle;dest:PsingleComp; nb:integer);overload;
-procedure ippsRealFFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);overload;
-procedure ippsRealFFTinv(src:PsingleComp;dest:Psingle; nb:integer);overload;
-
-procedure ippsRealDFT(src:Pdouble;dest:PdoubleComp; nb:integer);overload;
-procedure ippsRealDFT(src:Psingle;dest:PsingleComp; nb:integer);overload;
-procedure ippsRealDFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);overload;
-procedure ippsRealDFTinv(src:PsingleComp;dest:Psingle; nb:integer);overload;
 
 procedure proDFT(var src,dest : Tvector;FWD:boolean);pascal;
 procedure proCFFT(var src,dest: Tvector; FWD:boolean);pascal;
@@ -107,19 +90,19 @@ begin
       G_smallint:
         begin
           seedL:=round(seed);
-          ippsRandUniform_Direct_16s(p, Nb, round(low), round(high), @seedL);
+          RandUniform16s(p, Nb, round(low), round(high), seedL);
         end;
 
       G_single:
          begin
           seedL:=round(seed);
-          ippsRandUniform_Direct_32f(p, Nb, low, high, @seedL);
+          RandUniform32f(p, Nb, low, high, seedL);
         end;
 
       G_double:
         begin
           seedL:=round(seed);
-          ippsRandUniform_Direct_64f(p, Nb, low, high, @seedL);
+          RandUniform64f(p, Nb, low, high, seedL);
         end;
 
       else sortieErreur(E_dataTypeNotValid);
@@ -175,19 +158,19 @@ begin
       G_smallint:
         begin
           seedL:=round(seed);
-          ippsRandGauss_Direct_16s(p, nb, round(mean), round(stddev), @seedL);
+          RandGauss16s(p, nb, round(mean), round(stddev), seedL);
         end;
 
       G_single:
          begin
           seedL:=round(seed);
-          ippsRandGauss_Direct_32f(p, nb, mean, stdDev, @seedL);
+          RandGauss32f(p, nb, mean, stdDev, seedL);
         end;
 
       G_double:
         begin
           seedL:=round(seed);
-          ippsRandGauss_Direct_64f(p, nb, mean, stdDev, @seedL);
+          RandGauss64f(p, nb, mean, stdDev, seedL);
         end;
 
       else sortieErreur(E_dataTypeNotValid);
@@ -258,31 +241,31 @@ begin
       G_smallint:
         begin
           phaseS:=phase;
-          ippsTriangle_Direct(Psmallint(vec.tb),vec.Icount,round(mag),rFreq,asym, @PhaseS);
+          ippsTriangle_16s(Psmallint(vec.tb),vec.Icount,round(mag),rFreq,asym, @PhaseS);
         end;
 
       G_single:
         begin
           phaseS:=phase;
-          ippsTriangle_Direct(vec.tbS,vec.Icount,mag,rFreq,asym, @PhaseS);
+          ippsTriangle_32f(vec.tbS,vec.Icount,mag,rFreq,asym, @PhaseS);
         end;
 
       G_double:
         begin
           phaseD:=phase;
-          ippsTriangle_Direct(vec.tbD,vec.Icount,mag,rFreq,asym, @PhaseD);
+          ippsTriangle_64f(vec.tbD,vec.Icount,mag,rFreq,asym, @PhaseD);
         end;
 
       G_singleComp:
         begin
           phaseS:=phase;
-          ippsTriangle_Direct(vec.tbSC,vec.Icount,mag,rFreq,asym, @PhaseS);
+          ippsTriangle_32fc(vec.tbSC,vec.Icount,mag,rFreq,asym, @PhaseS);
         end;
 
       G_doubleComp:
         begin
           phaseD:=phase;
-          ippsTriangle_Direct(vec.tbDC,vec.Icount,mag,rFreq,asym, @PhaseD);
+          ippsTriangle_64fc(vec.tbDC,vec.Icount,mag,rFreq,asym, @PhaseD);
         end;
 
       else sortieErreur(E_dataTypeNotValid);
@@ -304,22 +287,22 @@ begin
 
     if src=dest then
      case src.tpNum of
-      G_smallint:    ippsWinHamming(Psmallint(src.tb),src.Icount);
-      G_single:      ippsWinHamming(src.tbS,src.Icount);
-      G_double:      ippsWinHamming(src.tbD,src.Icount);
-      G_singleComp:  ippsWinHamming(src.tbSC,src.Icount);
-      G_doubleComp:  ippsWinHamming(src.tbDC,src.Icount);
+      G_smallint:    ippsWinHamming_16s_I(Psmallint(src.tb),src.Icount);
+      G_single:      ippsWinHamming_32f_I(src.tbS,src.Icount);
+      G_double:      ippsWinHamming_64f_I(src.tbD,src.Icount);
+      G_singleComp:  ippsWinHamming_32fc_I(src.tbSC,src.Icount);
+      G_doubleComp:  ippsWinHamming_64fc_I(src.tbDC,src.Icount);
 
       else sortieErreur(E_dataTypeNotValid);
     end
 
     else
     case src.tpNum of
-      G_smallint: ippsWinHamming(Psmallint(src.tb),Psmallint(dest.tb),src.Icount);
-      G_single:  ippsWinHamming(src.tbS,dest.tbS,src.Icount);
-      G_double:  ippsWinHamming(src.tbD,dest.tbD,src.Icount);
-      G_singleComp:  ippsWinHamming(src.tbSC,dest.tbSC,src.Icount);
-      G_doubleComp:  ippsWinHamming(src.tbDC,dest.tbDC,src.Icount);
+      G_smallint: ippsWinHamming_16s(Psmallint(src.tb),Psmallint(dest.tb),src.Icount);
+      G_single:  ippsWinHamming_32f(src.tbS,dest.tbS,src.Icount);
+      G_double:  ippsWinHamming_64f(src.tbD,dest.tbD,src.Icount);
+      G_singleComp:  ippsWinHamming_32fc(src.tbSC,dest.tbSC,src.Icount);
+      G_doubleComp:  ippsWinHamming_64fc(src.tbDC,dest.tbDC,src.Icount);
 
       else sortieErreur(E_dataTypeNotValid);
     end;
@@ -338,22 +321,22 @@ begin
 
     if src=dest then
      case src.tpNum of
-      G_smallint:    ippsWinHann(Psmallint(src.tb),src.Icount);
-      G_single:      ippsWinHann(src.tbS,src.Icount);
-      G_double:      ippsWinHann(src.tbD,src.Icount);
-      G_singleComp:  ippsWinHann(src.tbSC,src.Icount);
-      G_doubleComp:  ippsWinHann(src.tbDC,src.Icount);
+      G_smallint:    ippsWinHann_16s_I(Psmallint(src.tb),src.Icount);
+      G_single:      ippsWinHann_32f_I(src.tbS,src.Icount);
+      G_double:      ippsWinHann_64f_I(src.tbD,src.Icount);
+      G_singleComp:  ippsWinHann_32fc_I(src.tbSC,src.Icount);
+      G_doubleComp:  ippsWinHann_64fc_I(src.tbDC,src.Icount);
 
       else sortieErreur(E_dataTypeNotValid);
     end
 
     else
     case src.tpNum of
-      G_smallint: ippsWinHann(Psmallint(src.tb),Psmallint(dest.tb),src.Icount);
-      G_single:  ippsWinHann(src.tbS,dest.tbS,src.Icount);
-      G_double:  ippsWinHann(src.tbD,dest.tbD,src.Icount);
-      G_singleComp:  ippsWinHann(src.tbSC,dest.tbSC,src.Icount);
-      G_doubleComp:  ippsWinHann(src.tbDC,dest.tbDC,src.Icount);
+      G_smallint: ippsWinHann_16s(Psmallint(src.tb),Psmallint(dest.tb),src.Icount);
+      G_single:  ippsWinHann_32f(src.tbS,dest.tbS,src.Icount);
+      G_double:  ippsWinHann_64f(src.tbD,dest.tbD,src.Icount);
+      G_singleComp:  ippsWinHann_32fc(src.tbSC,dest.tbSC,src.Icount);
+      G_doubleComp:  ippsWinHann_64fc(src.tbDC,dest.tbDC,src.Icount);
 
       else sortieErreur(E_dataTypeNotValid);
     end;
@@ -362,7 +345,8 @@ begin
   end;
 end;
 
-procedure proWinBlackMan(var src,dest : Tvector;alpha:float);
+
+procedure proWinBlackman(var src,dest : Tvector; alpha: float);
 begin
   IPPStest;
   try
@@ -372,22 +356,22 @@ begin
 
     if src=dest then
      case src.tpNum of
-      G_smallint:    ippsWinBlackMan(Psmallint(src.tb),src.Icount,alpha);
-      G_single:      ippsWinBlackMan(src.tbS,src.Icount, alpha);
-      G_double:      ippsWinBlackMan(src.tbD,src.Icount, alpha);
-      G_singleComp:  ippsWinBlackMan(src.tbSC,src.Icount, alpha);
-      G_doubleComp:  ippsWinBlackMan(src.tbDC,src.Icount, alpha);
+      G_smallint:    ippsWinBlackman_16s_I(Psmallint(src.tb),src.Icount,alpha);
+      G_single:      ippsWinBlackman_32f_I(src.tbS,src.Icount,alpha);
+      G_double:      ippsWinBlackman_64f_I(src.tbD,src.Icount,alpha);
+      G_singleComp:  ippsWinBlackman_32fc_I(src.tbSC,src.Icount,alpha);
+      G_doubleComp:  ippsWinBlackman_64fc_I(src.tbDC,src.Icount,alpha);
 
       else sortieErreur(E_dataTypeNotValid);
     end
 
     else
     case src.tpNum of
-      G_smallint: ippsWinBlackMan(Psmallint(src.tb),Psmallint(dest.tb),src.Icount, alpha);
-      G_single:  ippsWinBlackMan(src.tbS,dest.tbS,src.Icount, alpha);
-      G_double:  ippsWinBlackMan(src.tbD,dest.tbD,src.Icount, alpha);
-      G_singleComp:  ippsWinBlackMan(src.tbSC,dest.tbSC,src.Icount, alpha);
-      G_doubleComp:  ippsWinBlackMan(src.tbDC,dest.tbDC,src.Icount, alpha);
+      G_smallint: ippsWinBlackman_16s(Psmallint(src.tb),Psmallint(dest.tb),src.Icount,alpha);
+      G_single:  ippsWinBlackman_32f(src.tbS,dest.tbS,src.Icount,alpha);
+      G_double:  ippsWinBlackman_64f(src.tbD,dest.tbD,src.Icount,alpha);
+      G_singleComp:  ippsWinBlackman_32fc(src.tbSC,dest.tbSC,src.Icount,alpha);
+      G_doubleComp:  ippsWinBlackman_64fc(src.tbDC,dest.tbDC,src.Icount,alpha);
 
       else sortieErreur(E_dataTypeNotValid);
     end;
@@ -396,7 +380,8 @@ begin
   end;
 end;
 
-procedure proWinKaiser(var src,dest : Tvector;beta:float);
+
+procedure proWinKaiser(var src,dest : Tvector; beta: float);
 begin
   IPPStest;
   try
@@ -406,22 +391,22 @@ begin
 
     if src=dest then
      case src.tpNum of
-      G_smallint:    ippsWinKaiser(Psmallint(src.tb),src.Icount, beta);
-      G_single:      ippsWinKaiser(src.tbS,src.Icount, beta);
-      G_double:      ippsWinKaiser(src.tbD,src.Icount, beta);
-      G_singleComp:  ippsWinKaiser(src.tbSC,src.Icount, beta);
-      G_doubleComp:  ippsWinKaiser(src.tbDC,src.Icount, beta);
+      G_smallint:    ippsWinKaiser_16s_I(Psmallint(src.tb),src.Icount,beta);
+      G_single:      ippsWinKaiser_32f_I(src.tbS,src.Icount,beta);
+      G_double:      ippsWinKaiser_64f_I(src.tbD,src.Icount,beta);
+      G_singleComp:  ippsWinKaiser_32fc_I(src.tbSC,src.Icount,beta);
+      G_doubleComp:  ippsWinKaiser_64fc_I(src.tbDC,src.Icount,beta);
 
       else sortieErreur(E_dataTypeNotValid);
     end
 
     else
     case src.tpNum of
-      G_smallint: ippsWinKaiser(Psmallint(src.tb),Psmallint(dest.tb),src.Icount, beta);
-      G_single:  ippsWinKaiser(src.tbS,dest.tbS,src.Icount, beta);
-      G_double:  ippsWinKaiser(src.tbD,dest.tbD,src.Icount, beta);
-      G_singleComp:  ippsWinKaiser(src.tbSC,dest.tbSC,src.Icount, beta);
-      G_doubleComp:  ippsWinKaiser(src.tbDC,dest.tbDC,src.Icount, beta);
+      G_smallint: ippsWinKaiser_16s(Psmallint(src.tb),Psmallint(dest.tb),src.Icount,beta);
+      G_single:  ippsWinKaiser_32f(src.tbS,dest.tbS,src.Icount,beta);
+      G_double:  ippsWinKaiser_64f(src.tbD,dest.tbD,src.Icount,beta);
+      G_singleComp:  ippsWinKaiser_32fc(src.tbSC,dest.tbSC,src.Icount,beta);
+      G_doubleComp:  ippsWinKaiser_64fc(src.tbDC,dest.tbDC,src.Icount,beta);
 
       else sortieErreur(E_dataTypeNotValid);
     end;
@@ -429,6 +414,7 @@ begin
     IPPSend;
   end;
 end;
+
 
 procedure proWinBartlett(var src,dest : Tvector);
 begin
@@ -440,22 +426,22 @@ begin
 
     if src=dest then
      case src.tpNum of
-      G_smallint:    ippsWinBartlett(Psmallint(src.tb),src.Icount);
-      G_single:      ippsWinBartlett(src.tbS,src.Icount);
-      G_double:      ippsWinBartlett(src.tbD,src.Icount);
-      G_singleComp:  ippsWinBartlett(src.tbSC,src.Icount);
-      G_doubleComp:  ippsWinBartlett(src.tbDC,src.Icount);
+      G_smallint:    ippsWinBartlett_16s_I(Psmallint(src.tb),src.Icount);
+      G_single:      ippsWinBartlett_32f_I(src.tbS,src.Icount);
+      G_double:      ippsWinBartlett_64f_I(src.tbD,src.Icount);
+      G_singleComp:  ippsWinBartlett_32fc_I(src.tbSC,src.Icount);
+      G_doubleComp:  ippsWinBartlett_64fc_I(src.tbDC,src.Icount);
 
       else sortieErreur(E_dataTypeNotValid);
     end
 
     else
     case src.tpNum of
-      G_smallint: ippsWinBartlett(Psmallint(src.tb),Psmallint(dest.tb),src.Icount);
-      G_single:  ippsWinBartlett(src.tbS,dest.tbS,src.Icount);
-      G_double:  ippsWinBartlett(src.tbD,dest.tbD,src.Icount);
-      G_singleComp:  ippsWinBartlett(src.tbSC,dest.tbSC,src.Icount);
-      G_doubleComp:  ippsWinBartlett(src.tbDC,dest.tbDC,src.Icount);
+      G_smallint: ippsWinBartlett_16s(Psmallint(src.tb),Psmallint(dest.tb),src.Icount);
+      G_single:  ippsWinBartlett_32f(src.tbS,dest.tbS,src.Icount);
+      G_double:  ippsWinBartlett_64f(src.tbD,dest.tbD,src.Icount);
+      G_singleComp:  ippsWinBartlett_32fc(src.tbSC,dest.tbSC,src.Icount);
+      G_doubleComp:  ippsWinBartlett_64fc(src.tbDC,dest.tbDC,src.Icount);
 
       else sortieErreur(E_dataTypeNotValid);
     end;
@@ -463,8 +449,6 @@ begin
     IPPSend;
   end;
 end;
-
-
 
 
 { renvoie true si N est une puissance de 2
@@ -485,125 +469,6 @@ begin
 end;
 
 
-procedure ippsDFT(src,dest:PdoubleComp; nb:integer; fwd: boolean);
-var
-  pFFTSpec:PippsDFTSpec_C_64fc;
-  size:integer;
-  work: array of byte;
-begin
-  ippsDFTInitAlloc_C(pFFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  if fwd
-    then ippsDFTfwd_CtoC(src,dest,PFFTspec,@work[0])
-    else ippsDFTinv_CtoC(src,dest,PFFTspec,@work[0]);
-
-  ippsDFTfree_C(pFFTspec);
-end;
-
-procedure ippsDFT(src,dest:PsingleComp; nb:integer; fwd: boolean);
-var
-  pFFTSpec:PippsDFTSpec_C_32fc;
-  size:integer;
-  work: array of byte;
-begin
-  ippsDFTInitAlloc_C(pFFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  if fwd
-    then ippsDFTfwd_CtoC(src,dest,PFFTspec,@work[0])
-    else ippsDFTinv_CtoC(src,dest,PFFTspec,@work[0]);
-
-  ippsDFTfree_C(pFFTspec);
-end;
-
-procedure ippsDFTfwd(src:Psingle;dest:PsingleComp; nb:integer);
-var
-  pFFTSpec:PippsDFTSpec_C_32fc;
-  Vaux:array of TsingleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-begin
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TsingleComp)*Nb,0);
-  for i:=0 to Nb-1 do
-    Vaux[i].x:=PtabSingle(src)^[i];
-
-  ippsDFTInitAlloc_C(pFFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTfwd_CtoC(PsingleComp(@Vaux[0]),dest,PFFTspec,@work[0]);
-  ippsDFTfree_C(pFFTspec);
-end;
-
-procedure ippsDFTfwd(src:Pdouble;dest:PdoubleComp; nb:integer);
-var
-  pFFTSpec:PippsDFTSpec_C_64fc;
-  Vaux:array of TdoubleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-begin
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TsingleComp)*Nb,0);
-  for i:=0 to Nb-1 do
-    Vaux[i].x:=PtabSingle(src)^[i];
-
-  ippsDFTInitAlloc_C(pFFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTfwd_CtoC(PdoubleComp(@Vaux[0]),dest,pFFTspec,@work[0]);
-  ippsDFTfree_C(pFFTspec);
-end;
-
-procedure ippsDFTinv(src:PsingleComp;dest:Psingle; nb:integer);
-var
-  pFFTSpec:PippsDFTSpec_C_32fc;
-  Vaux:array of TsingleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-begin
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TsingleComp)*Nb,0);
-
-  ippsDFTInitAlloc_C(pFFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTfwd_CtoC(src,PsingleComp(@Vaux[0]),PFFTspec,@work[0]);
-  ippsDFTfree_C(pFFTspec);
-
-  for i:=0 to Nb-1 do
-    PtabSingle(src)^[i]:=Vaux[i].x;
-end;
-
-procedure ippsDFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);
-var
-  pFFTSpec:PippsDFTSpec_C_64fc;
-  Vaux:array of TdoubleComp;
-  i:integer;
-  size:integer;
-  work: array of byte;
-begin
-  setLength(Vaux,Nb);
-  fillChar(Vaux[0],sizeof(TdoubleComp)*Nb,0);
-
-  ippsDFTInitAlloc_C(pFFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_C(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTfwd_CtoC(src,PdoubleComp(@Vaux[0]),PFFTspec,@work[0]);
-  ippsDFTfree_C(pFFTspec);
-
-  for i:=0 to Nb-1 do
-    PtabDouble(src)^[i]:=Vaux[i].x;
-end;
 
 
 procedure proDFT(var src,dest: Tvector; FWD:boolean);
@@ -614,6 +479,7 @@ var
 begin
   VerifierVecteur(src);
   VerifierVecteurTemp(dest);
+
   if getOrder2(src.Icount,order) then  { Pour les puissances de deux, utiliser CFFT}
     begin
       proCFFT(src,dest,FWD);
@@ -628,10 +494,10 @@ begin
 
 
     if (src.tpNum=G_singleComp) and src.inf.temp      { singleComp - singleComp }
-      then ippsDFT(src.tbSC,dest.tbSC,src.Icount,fwd)
+      then DFT32fc(src.tbSC,dest.tbSC,src.Icount,fwd)
     else
     if (src.tpNum=G_doubleComp) and src.inf.temp      { doubleComp - doubleComp }
-      then ippsDFT(src.tbDC,dest.tbDC,src.Icount,fwd)
+      then DFT64fc(src.tbDC,dest.tbDC,src.Icount,fwd)
     else
     if dest.tpNum=G_singleComp then                   { réel - singleComp }
     begin
@@ -645,7 +511,7 @@ begin
       for i:=0 to high(tbTempS) do
         tbTempS[i].y:=src.Imvalue[i+i0];
 
-      ippsDFT(@tbTempS[0],dest.tbSC,src.Icount,fwd);
+      DFT32fc(@tbTempS[0],dest.tbSC,src.Icount,fwd);
     end
     else
     if dest.tpNum=G_doubleComp then                   { réel - doubleComp }
@@ -660,7 +526,7 @@ begin
       for i:=0 to high(tbTempD) do
         tbTempD[i].y:=src.Imvalue[i+i0];
 
-      ippsDFT(@tbTempD[0],dest.tbDC,src.Icount,fwd);
+      DFT64fc(@tbTempD[0],dest.tbDC,src.Icount,fwd);
     end;
 
   if FWD then
@@ -699,10 +565,10 @@ begin
 
 
     if (src.tpNum=G_singleComp) and src.inf.temp      { singleComp - singleComp }
-      then ippsFFT(src.tbSC,dest.tbSC,src.Icount,fwd)
+      then FFT32fc(src.tbSC,dest.tbSC,src.Icount,fwd)
     else
     if (src.tpNum=G_doubleComp) and src.inf.temp      { doubleComp - doubleComp }
-      then ippsFFT(src.tbDC,dest.tbDC,src.Icount,fwd)
+      then FFT64fc(src.tbDC,dest.tbDC,src.Icount,fwd)
     else
     if dest.tpNum=G_singleComp then                   { réel - singleComp }
     begin
@@ -716,7 +582,7 @@ begin
       for i:=0 to high(tbTempS) do
         tbTempS[i].y:=src.Imvalue[i+i0];
 
-      ippsFFT(@tbTempS[0],dest.tbSC,src.Icount,fwd);
+      FFT32fc(@tbTempS[0],dest.tbSC,src.Icount,fwd);
     end
     else
     if dest.tpNum=G_doubleComp then                   { réel - doubleComp }
@@ -731,7 +597,7 @@ begin
       for i:=0 to high(tbTempD) do
         tbTempD[i].y:=src.Imvalue[i+i0];
 
-      ippsFFT(@tbTempD[0],dest.tbDC,src.Icount,fwd);
+      FFT64fc(@tbTempD[0],dest.tbDC,src.Icount,fwd);
     end;
 
   if FWD then
@@ -751,79 +617,6 @@ end;
 
 {************************************************ Real FFT ******************************************}
 
-procedure ippsRealFFT(src:Pdouble;dest:PdoubleComp; nb:integer);overload;
-var
-  pFFTSpec:PIppsFFTSpec_R_64f;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getorder2(nb,order) then exit;
-
-  ippsFFTInitAlloc_R_64f(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_R_64f(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTFwd_RToCCS_64f(Src, Pdouble(dest), pFFTSpec, @work[0]);
-
-
-  ippsFFTfree_R_64f(pFFTspec);
-end;
-
-procedure ippsRealFFT(src:Psingle;dest:PsingleComp; nb:integer);overload;
-var
-  pFFTSpec:PIppsFFTSpec_R_32f;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getorder2(nb,order) then exit;
-
-  ippsFFTInitAlloc_R_32f(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_R_32f(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTFwd_RToCCS_32f(Src, Psingle(dest), pFFTSpec, @work[0]);
-
-
-  ippsFFTfree_R_32f(pFFTspec);
-end;
-
-procedure ippsRealFFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);overload;
-var
-  pFFTSpec:PIppsFFTSpec_R_64f;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getorder2(nb,order) then exit;
-  ippsFFTInitAlloc_R_64f(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_R_64f(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTinv_CCStoR_64f(Pdouble(Src), dest, pFFTSpec, @work[0]);
-
-  ippsFFTfree_R_64f(pFFTspec);
-end;
-
-procedure ippsRealFFTinv(src:PsingleComp;dest:Psingle; nb:integer);overload;
-var
-  pFFTSpec:PIppsFFTSpec_R_32f;
-  size:integer;
-  work: array of byte;
-  order:integer;
-begin
-  if not getorder2(nb,order) then exit;
-  ippsFFTInitAlloc_R_32f(pFFTSpec, order, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsFFTgetBufSize_R_32f(pFFTspec,@size);
-  setLength(work,size);
-
-  ippsFFTinv_CCStoR_32f(Psingle(Src), dest, pFFTSpec, @work[0]);
-
-  ippsFFTfree_R_32f(pFFTspec);
-end;
-
-
 
 procedure proRealFFT(var src,dest: Tvector; FWD:boolean);
 var
@@ -842,7 +635,7 @@ begin
               if not GetOrder2(src.Icount,order)
                 then sortieErreur(E_power2);
               dest.initTemp1(0,src.Icount div 2,G_singleComp);  {N div 2 +1 points }
-              ippsRealFFT(src.tbS,dest.tbSC,src.Icount);
+              RealFFT32f(src.tbS,dest.tbSC,src.Icount);
             end;
 
           G_double:
@@ -850,7 +643,7 @@ begin
               if not GetOrder2(src.Icount,order)
                 then sortieErreur(E_power2);
               dest.initTemp1(0,src.Icount div 2,G_doubleComp);
-              ippsRealFFT(src.tbD,dest.tbDC,src.Icount);
+              RealFFT64f(src.tbD,dest.tbDC,src.Icount);
             end;
 
           else sortieErreur(E_dataTypeNotValid);
@@ -864,7 +657,7 @@ begin
               if not GetOrder2((src.Icount-1)*2,order)
                 then sortieErreur(E_power2);
               dest.initTemp1(0,(src.Icount-1)*2,G_single);
-              ippsRealFFTinv(src.tbSC,dest.tbS,dest.Icount);
+              RealFFTinv32f(src.tbSC,dest.tbS,dest.Icount);
             end;
 
           G_doubleComp:
@@ -872,7 +665,7 @@ begin
               if not GetOrder2((src.Icount-1)*2,order)
                 then sortieErreur(E_power2);
               dest.initTemp1(0,(src.Icount-1)*2-1,G_double);
-              ippsRealFFTinv(src.tbDC,dest.tbD,dest.Icount);
+              RealFFTinv64f(src.tbDC,dest.tbD,dest.Icount);
             end;
 
           else sortieErreur(E_dataTypeNotValid);
@@ -897,68 +690,6 @@ end;
 
 {********************************************* Real DFT **********************************************}
 
-procedure ippsRealDFT(src:Pdouble;dest:PdoubleComp; nb:integer);overload;
-var
-  pDFTSpec:PIppsDFTSpec_R_64f;
-  size:integer;
-  work: array of byte;
-begin
-  ippsDFTInitAlloc_R_64f(pDFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_R_64f(pDFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTFwd_RToCCS_64f(Src, Pdouble(dest), pDFTSpec, @work[0]);
-
-
-  ippsDFTfree_R_64f(pDFTspec);
-end;
-
-procedure ippsRealDFT(src:Psingle;dest:PsingleComp; nb:integer);overload;
-var
-  pDFTSpec:PIppsDFTSpec_R_32f;
-  size:integer;
-  work: array of byte;
-begin
-  ippsDFTInitAlloc_R_32f(pDFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_R_32f(pDFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTFwd_RToCCS_32f(Src, Psingle(dest), pDFTSpec, @work[0]);
-
-  ippsDFTfree_R_32f(pDFTspec);
-end;
-
-procedure ippsRealDFTinv(src:PdoubleComp;dest:Pdouble; nb:integer);overload;
-var
-  pDFTSpec:PIppsDFTSpec_R_64f;
-  size:integer;
-  work: array of byte;
-begin
-  ippsDFTInitAlloc_R_64f(pDFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_R_64f(pDFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTinv_CCStoR_64f(Pdouble(Src), dest, pDFTSpec, @work[0]);
-
-  ippsDFTfree_R_64f(pDFTspec);
-end;
-
-procedure ippsRealDFTinv(src:PsingleComp;dest:Psingle; nb:integer);overload;
-var
-  pDFTSpec:PIppsDFTSpec_R_32f;
-  size:integer;
-  work: array of byte;
-begin
-  ippsDFTInitAlloc_R_32f(pDFTSpec, nb, IPP_FFT_DIV_INV_BY_N, ippAlgHintNone);
-  ippsDFTgetBufSize_R_32f(pDFTspec,@size);
-  setLength(work,size);
-
-  ippsDFTinv_CCStoR_32f(Psingle(Src), dest, pDFTSpec, @work[0]);
-
-  ippsDFTfree_R_32f(pDFTspec);
-end;
-
-
 
 procedure proRealDFT(var src,dest: Tvector; FWD:boolean);
 var
@@ -977,13 +708,13 @@ begin
           G_single:
             begin
               dest.initTemp1(0,src.Icount div 2,G_singleComp);      { N div 2 +1 points }
-              ippsRealDFT(src.tbS,dest.tbSC,(src.Icount div 2)*2);  { Si impair, on prend le nombre pair inférieur }
+              RealDFT32f(src.tbS,dest.tbSC,(src.Icount div 2)*2);  { Si impair, on prend le nombre pair inférieur }
             end;
 
           G_double:
             begin
               dest.initTemp1(0,src.Icount div 2,G_doubleComp);
-              ippsRealDFT(src.tbD,dest.tbDC,(src.Icount div 2)*2);
+              RealDFT64f(src.tbD,dest.tbDC,(src.Icount div 2)*2);
             end;
 
           else sortieErreur(E_dataTypeNotValid);
@@ -995,13 +726,13 @@ begin
           G_singleComp:
             begin
               dest.initTemp1(0,(src.Icount-1)*2-1,G_single);
-              ippsRealDFTinv(src.tbSC,dest.tbS,dest.Icount);
+              RealDFTinv32f(src.tbSC,dest.tbS,dest.Icount);
             end;
 
           G_doubleComp:
             begin
               dest.initTemp1(0,(src.Icount-1)*2-1,G_double);
-              ippsRealDFTinv(src.tbDC,dest.tbD,dest.Icount);
+              RealDFTinv64f(src.tbDC,dest.tbD,dest.Icount);
             end;
 
           else sortieErreur(E_dataTypeNotValid);
@@ -1068,13 +799,13 @@ begin
       i1:=src.invconvx(x);
       vec1.copyDataFromVec(src,i1,i1+Nfft-1,0);
       case WM of
-        w_bartlett:   ippsWinBartlett(vec1.tbS,vec1.Icount);
-        w_blackmann:  ippsWinBlackmanOpt(vec1.tbS,vec1.Icount);
-        w_hamming:    ippsWinHamming(vec1.tbS,vec1.Icount);
-        w_hann:       ippsWinHann(vec1.tbS,vec1.Icount);
+        w_bartlett:   ippsWinBartlett_32f_I(vec1.tbS,vec1.Icount);
+        w_blackmann:  ippsWinBlackmanOpt_32f_I(vec1.tbS,vec1.Icount);
+        w_hamming:    ippsWinHamming_32f_I(vec1.tbS,vec1.Icount);
+        w_hann:       ippsWinHann_32f_I(vec1.tbS,vec1.Icount);
       end;
 
-      ippsRealFft(vec1.tbS, @tb[0], order);
+      RealFft32f(vec1.tbS, @tb[0], order);
 
       for j:=0 to ny-1 do
         with PtabSingleComp(dest.tb)^[ny*i+j] do
@@ -1255,21 +986,21 @@ begin
       i1:=src1.invconvx(x);
       vec1.copyDataFromVec(src1,i1,i1+Nbpt-1,0);
       case WM of
-        1:  ippsWinBartlett(vec1.tbDC,vec1.Icount);
-        2:  ippsWinBlackmanOpt(vec1.tbDC,vec1.Icount);
-        3:  ippsWinHamming(vec1.tbDC,vec1.Icount);
-        4:  ippsWinHann(vec1.tbDC,vec1.Icount);
+        1:  ippsWinBartlett_64fc_I(vec1.tbDC,vec1.Icount);
+        2:  ippsWinBlackmanOpt_64fc_I(vec1.tbDC,vec1.Icount);
+        3:  ippsWinHamming_64fc_I(vec1.tbDC,vec1.Icount);
+        4:  ippsWinHann_64fc_I(vec1.tbDC,vec1.Icount);
       end;
-      ippsDft(vec1.tbDC, @tb1[0], nbpt,true);
+      Dft64fc(vec1.tbDC, @tb1[0], nbpt,true);
 
       vec2.copyDataFromVec(src2,i1,i1+Nbpt-1,0);
       case WM of
-        1:  ippsWinBartlett(vec2.tbDC,vec2.Icount);
-        2:  ippsWinBlackmanOpt(vec2.tbDC,vec2.Icount);
-        3:  ippsWinHamming(vec2.tbDC,vec2.Icount);
-        4:  ippsWinHann(vec2.tbDC,vec2.Icount);
+        1:  ippsWinBartlett_64fc_I(vec2.tbDC,vec2.Icount);
+        2:  ippsWinBlackmanOpt_64fc_I(vec2.tbDC,vec2.Icount);
+        3:  ippsWinHamming_64fc_I(vec2.tbDC,vec2.Icount);
+        4:  ippsWinHann_64fc_I(vec2.tbDC,vec2.Icount);
       end;
-      ippsDft(vec2.tbDC, @tb2[0], nbpt,true);
+      Dft64fc(vec2.tbDC, @tb2[0], nbpt,true);
 
       for j:=0 to nbU-1 do
         inCpx(PtabDoubleComp(dest.tb)^[j],tb1[j],tb2[j]);
@@ -1281,8 +1012,8 @@ begin
     until (i1+nbpt-1>i2);
 
     case mode of
-      1: ippsMulC(1/i,dest.tbD,nbU*2);
-      2: ippsMulC(2/i,dest.tbD,nbU*2);
+      1: ippsMulC_64f_I(1/i,dest.tbD,nbU*2);
+      2: ippsMulC_64f_I(2/i,dest.tbD,nbU*2);
     end;
 
     result:=i;
@@ -1367,12 +1098,12 @@ begin
       i1:=src.invconvx(x);
       vec.copyDataFromVec(src,i1,i1+Nbpt-1,0);
       case WM of
-        1:  ippsWinBartlett(vec.tbDC,vec.Icount);
-        2:  ippsWinBlackmanOpt(vec.tbDC,vec.Icount);
-        3:  ippsWinHamming(vec.tbDC,vec.Icount);
-        4:  ippsWinHann(vec.tbDC,vec.Icount);
+        1:  ippsWinBartlett_64fc_I(vec.tbDC,vec.Icount);
+        2:  ippsWinBlackmanOpt_64fc_I(vec.tbDC,vec.Icount);
+        3:  ippsWinHamming_64fc_I(vec.tbDC,vec.Icount);
+        4:  ippsWinHann_64fc_I(vec.tbDC,vec.Icount);
       end;
-      ippsDft(vec.tbDC, @tb[0], nbpt,true);
+      Dft64fc(vec.tbDC, @tb[0], nbpt,true);
 
       for j:=0 to nbU-1 do
         inCpx(PtabDouble(dest.tb)^[j],tb[j]);
@@ -1382,8 +1113,8 @@ begin
     until (i1+nbpt-1>i2);
 
     case mode of
-      1: ippsMulC(1/i,dest.tbD,nbU);
-      2: ippsMulC(2/i,dest.tbD,nbU);
+      1: ippsMulC_64f_I(1/i,dest.tbD,nbU);
+      2: ippsMulC_64f_I(2/i,dest.tbD,nbU);
     end;
     result:=i;
 
@@ -1445,6 +1176,7 @@ I1h est négatif ou nul
 Procedure convolveHFsingle(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
   maxTb=10000;
+{
 var
   delayD:Array of single;
 
@@ -1454,7 +1186,9 @@ var
   pState: PIppsFIRState_32f;
   tapsLen:integer;
   Istart,Iend:integer;
+}
 begin
+(*
   Istart:=src.Istart;
   Iend:=src.Iend;
 
@@ -1536,12 +1270,15 @@ begin
     ippsFirFree_32f(pState);
 
   end;
+*)
 end;
 
 
 Procedure convolveHFdouble(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
   maxTb=10000;
+
+{
 var
   delayD:Array of double;
 
@@ -1551,7 +1288,9 @@ var
   pState: PIppsFIRState_64f;
   tapsLen:integer;
   Istart,Iend:integer;
+}
 begin
+(*
   Istart:=src.Istart;
   Iend:=src.Iend;
 
@@ -1633,12 +1372,15 @@ begin
     ippsFirFree_64f(pState);
 
   end;
+*)
 end;
 
 
 Procedure convolveHFsingleComp(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
   maxTb=10000;
+
+{
 var
   delayD:Array of TsingleComp;
 
@@ -1648,7 +1390,9 @@ var
   pState: PIppsFIRState_32fc;
   tapsLen:integer;
   Istart,Iend:integer;
+}
 begin
+(*
   Istart:=src.Istart;
   Iend:=src.Iend;
 
@@ -1694,13 +1438,14 @@ begin
     end;
 
   ippsFirFree_32fc(pState);
-
+*)
 end;
 
 
 Procedure convolveHFdoubleComp(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
   maxTb=10000;
+{
 var
   delayD:Array of TdoubleComp;
 
@@ -1710,7 +1455,9 @@ var
   pState: PIppsFIRState_64fc;
   tapsLen:integer;
   Istart,Iend:integer;
+}
 begin
+(*
   Istart:=src.Istart;
   Iend:=src.Iend;
 
@@ -1756,6 +1503,7 @@ begin
     end;
 
   ippsFirFree_64fc(pState);
+*)
 end;
 
 
@@ -1826,7 +1574,7 @@ begin
       dest.initTemp1(src.Istart,src.Iend,G_single);
       dest.ModifyTemp(dest.totSize+hf.Icount*4);
       {dest.totSize n'est pas affecté par ModifyTemp }
-      ippsConv(src.tbS,src.Icount,hf.tbS,hf.Icount,dest.tbS);
+      Conv32f(src.tbS,src.Icount,hf.tbS,hf.Icount,dest.tbS);
       if hf.Istart<0
         then move(dest.tbSingle^[-hf.Istart],dest.tb^,dest.totSize);
 
@@ -1845,7 +1593,7 @@ begin
 
       dest.initTemp1(src.Istart,src.Iend,G_double);
       dest.ModifyTemp(dest.totSize+hf.Icount*8);
-      ippsConv(src.tbD,src.Icount,hf.tbD,hf.Icount,dest.tbD);
+      Conv64f(src.tbD,src.Icount,hf.tbD,hf.Icount,dest.tbD);
       if hf.Istart<0
          then move(dest.tbdouble^[-hf.Istart],dest.tb^,dest.totSize);
     finally
@@ -1886,7 +1634,7 @@ begin
 
       dest.initTemp1(src.Istart,src.Iend,G_single);
       dest.ModifyTemp(dest.totSize*3);
-      ippsConv(src.tbS,src.Icount,hf.tbS,hf.Icount,dest.tbS);
+      Conv32f(src.tbS,src.Icount,hf.tbS,hf.Icount,dest.tbS);
     finally
       src.restoreTemp;
       dest.restoreTemp;
@@ -1904,7 +1652,7 @@ begin
 
       dest.initTemp1(src.Istart,src.Iend,G_double);
       dest.ModifyTemp(dest.totSize*3);
-      ippsConv(src.tbD,src.Icount,hf.tbD,hf.Icount,dest.tbD);
+      Conv64f(src.tbD,src.Icount,hf.tbD,hf.Icount,dest.tbD);
 
     finally
       src.restoreTemp;

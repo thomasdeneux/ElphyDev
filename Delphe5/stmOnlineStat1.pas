@@ -4,7 +4,7 @@ interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
 uses util1,stmdef,stmObj,stmVec1,NcDef2,stmPg,debug0,
-     ippdefs,ipps,ippsovr ;
+     ippdefs17, ipps17 ;
 
 type
   TonlineStat= class(typeUO)
@@ -161,7 +161,7 @@ begin
   if N1>1 then
   begin
     IPPStest;
-    ippsmax(Psingle(@Xbuf[0]),N1,@y);
+    ippsmax_32f(Psingle(@Xbuf[0]),N1,@y);
     ippsEnd;
     result:=y;
   end
@@ -178,7 +178,7 @@ begin
   if N1>1 then
   begin
     IPPStest;
-    ippsmin(Psingle(@Xbuf[0]),N1,@y);
+    ippsmin_32f(Psingle(@Xbuf[0]),N1,@y);
     ippsEnd;
     result:=y;
   end

@@ -7,7 +7,7 @@ interface
 uses  sysutils,forms,math,
       util1,Gdos,
       stmvec1,
-      MathKernel0,stmKLmat,ipps;
+      MathKernel0,stmKLmat;
 
 { L'équation initiale s'écrit        matS * XX = BX
 

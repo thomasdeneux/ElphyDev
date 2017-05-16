@@ -3,8 +3,8 @@ unit stmMatBuffer1;
 interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
-uses util1,IPPdefs;
-
+uses util1,IPPdefs17;
+                               
 
 { TmatBuffer implémente une matrice rudimentaire analogue à Tmatrix .
   Elle ne doit être utilisée que dans les calculs internes.

@@ -31,7 +31,7 @@ interface
 
 uses windows,
      util1,chrono0,
-     ipps,ippsOvr,ippDefs,
+     ipps17,ippDefs17,
      mathKernel0;
 
 procedure SpeedTest1;
@@ -66,7 +66,7 @@ procedure testAddIPP(p1, p2, p3:PtabSingle; n:integer);
 var
   i:integer;
 begin
-  ippsAdd(Psingle(p1),Psingle(p2),Psingle(p3),N);
+  ippsAdd_32f(Psingle(p1),Psingle(p2),Psingle(p3),N);
 end;
 
 
@@ -122,7 +122,7 @@ procedure testAddIPP_I(p1, p2:PtabSingle; n:integer);
 var
   i:integer;
 begin
-  ippsAdd(Psingle(p1),Psingle(p2),N);
+  ippsAdd_32f_I(Psingle(p1),Psingle(p2),N);
 end;
 
 
@@ -166,7 +166,7 @@ procedure testAddCIPP(val1:single; p2, p3:PtabSingle; n:integer);
 var
   i:integer;
 begin
-  ippsAddC(Psingle(p2),val1,Psingle(p3),n);
+  ippsAddC_32f(Psingle(p2),val1,Psingle(p3),n);
 
   //ippsMove(Psingle(p2),Psingle(p3),n);
   //move(p2^,p3^,N*4);
@@ -215,7 +215,7 @@ procedure testAddCIPP_I(val1:single;  p3:PtabSingle; n:integer);
 var
   i:integer;
 begin
-  ippsAddC(val1,Psingle(p3),n);
+  ippsAddC_32f_I(val1,Psingle(p3),n);
 end;
 
 procedure SpeedTest3;

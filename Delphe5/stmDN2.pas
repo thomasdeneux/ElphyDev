@@ -14,7 +14,7 @@ uses windows,classes,math,
      Rarray1,listG,
      matrix0,chrono0,
      Gnoise1,
-     ipps, ippsovr,
+     ipps17,
      stmISPL1,stmMlist;
 
 
@@ -441,7 +441,7 @@ begin
 
       pp[z,x,y]:= vv.tb;
       ppCount[z,x,y]:=vv.Count;
-      ippsMulC(vv.count,vv.tbD,Ncount);
+      ippsMulC_64f_I(vv.count,vv.tbD,Ncount);
     end;
 
     for i:=0 to cycleCount-1 do
@@ -454,7 +454,7 @@ begin
         z:=getState(x,y,i);
         if (idx>=idxMin) and (idx<=idxMax) then
         begin
-          ippsAdd(Pdouble(@tbSource^[idx]) , pp[z,x,y], Ncount);
+          ippsAdd_64f_I(Pdouble(@tbSource^[idx]) , pp[z,x,y], Ncount);
           inc(ppCount[z,x,y]);
         end;
       end;
@@ -466,7 +466,7 @@ begin
     begin
       vv:=pstw[z+1].average(x+1,y+1);
       vv.Count:=ppCount[z,x,y];
-      if vv.Count<>0 then ippsMulC(1/vv.count,vv.tbD,Ncount);
+      if vv.Count<>0 then ippsMulC_64f_I(1/vv.count,vv.tbD,Ncount);
     end;
 
   end

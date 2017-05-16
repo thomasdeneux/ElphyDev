@@ -9,7 +9,7 @@ uses classes,sysUtils,menus,forms,
      stmDef,stmObj,stmVec1,stmMat1,stmPopup,
      stmError,stmPg,
      stmKLmat, stmMatU1, Models1,
-     IPPS,IPPSovr,IPPdefs, mathKernel0,
+     IPPS17,IPPdefs17, mathKernel0,
      stmChk0,chkPstw1,
      VlistA1;
 
@@ -543,7 +543,7 @@ var
 begin
   if length(IdatStart)=0 then  {pas de segments}
   begin
-    ippsNorm_L2(Pdouble(vec.tb),vec.Icount,@result);  {Norm_L2=sqrt(sum(y²))}
+    ippsNorm_L2_64f(Pdouble(vec.tb),vec.Icount,@result);  {Norm_L2=sqrt(sum(y²))}
     result:=sqr(result)                               {Eliminer sqrt }
   end
   else
@@ -555,7 +555,7 @@ begin
       i2:=IdatEnd[i];
       if (i1<=i2) and (i2<=eval.nbpt) then
       begin
-        ippsNorm_L2(Pdouble(@PtabDouble1(vec.tb)^[i1]),i2-i1+1,@w);
+        ippsNorm_L2_64f(Pdouble(@PtabDouble1(vec.tb)^[i1]),i2-i1+1,@w);
         result:=result+sqr(w);
       end;
     end;
@@ -583,7 +583,7 @@ begin
   result:=-1;
   try
 
-  ippssub(Pdouble(yfit.tb),Pdouble(Vdat.tb),Pdouble(diff.tb),nbpt);
+  ippssub_64f(Pdouble(yfit.tb),Pdouble(Vdat.tb),Pdouble(diff.tb),nbpt);
 
   result:=Chi2Opt(diff)/(Nbpt-nbParaNC);
   finally
@@ -705,7 +705,7 @@ begin
     OKyfit:=true;
 
     affdebug('getYfit '+chrono(time0),77);
-    ippsSub(Pdouble(yfit.tb),Pdouble(ydat.tb),Pdouble(diff.tb),nbpt);
+    ippsSub_64f(Pdouble(yfit.tb),Pdouble(ydat.tb),Pdouble(diff.tb),nbpt);
 
     chisq1:=chi2opt(diff)/Nlib;
 
@@ -718,7 +718,7 @@ begin
     beta.prod(Jmat,diff,transpose,normal);
     alpha.prod(Jmat,Jmat,transpose,normal);
     {nspdbMpy1(1/nbpt,alpha.tb,nbparaNC1*nbparaNC1);}
-    ippsmulC(1/nbpt,Pdouble(alpha.tb),nbparaNC1*nbparaNC1);
+    ippsmulC_64f_I(1/nbpt,Pdouble(alpha.tb),nbparaNC1*nbparaNC1);
 
     {affdebug('alpha:  '+Estr1(alpha[1,1],20,12)+Estr1(alpha[2,2],20,12)+Estr1(alpha[3,3],20,12),20);}
 
@@ -755,12 +755,12 @@ begin
 
       for i:=1 to nbParaNC1 do BB1[i]:=BB[i,1]*Vnorm[i];
 
-      ippsAdd(paraNC.tbD,BB1.tbD,nbparaNC1);
+      ippsAdd_64f_I(paraNC.tbD,BB1.tbD,nbparaNC1);
 
       controleVar(BB1);
       getYfit(BB1);                    { Calcul du chi carré pour BB }
 
-      ippsSub(yfit.tbD,ydat.tbD,diff.tbD,nbpt);
+      ippsSub_64f(yfit.tbD,ydat.tbD,diff.tbD,nbpt);
 
       chisqr:=chi2opt(diff)/Nlib;
 
@@ -963,12 +963,12 @@ begin
       repeat
         oldChi2:=ch;
         oldParam.Vcopy(paraNC);
-        ippsAdd(@Vdiff[1],paraNC.tbd,nbParaNC1);
+        ippsAdd_64f_I(@Vdiff[1],paraNC.tbd,nbParaNC1);
 
         controleVar(paraNC);
         getYfit(paraNC);
 
-        ippsSub(yfit.tbd,ydat.tbd,diff.tbd,nbpt);
+        ippsSub_64f(yfit.tbd,ydat.tbd,diff.tbd,nbpt);
         ch:=chi2opt(diff)/(Nbpt-nbparaNC1);
         inc(nbIt);
 
@@ -1066,7 +1066,7 @@ begin
   try
   dum.prod(Jmat,diff,transpose,normal);
   {result:=nspdNorm(dum.tb,nil,dum.Kcount,NSP_C);}
-  ippsNorm_inf(Pdouble(dum.tb),dum.Kcount,@result);
+  ippsNorm_inf_64f(Pdouble(dum.tb),dum.Kcount,@result);
   finally
   dum.Free;
   end;

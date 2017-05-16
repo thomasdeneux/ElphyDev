@@ -4,7 +4,7 @@ interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
 uses util1,Dgraphic,
-     IPPS,IPPdefs,IPPSovr,
+     IPPS17,IPPdefs17, IPP17ex,
      Ncdef2,stmPg,
      stmDef,stmObj,stmvec1,stmMat1,mathKernel0,stmKLmat,
      optiFit1;
@@ -138,11 +138,11 @@ begin
   IPPStest;
   try
   TRY
-  ippsConv(xdat1.tbD,nbpt,Pdouble(pH1),Nblin1,ylin1.tbD);
-  ippsConv(xdat2.tbD,nbpt,Pdouble(pH2),Nblin1, ylin2.tbD);
+  conv64f(xdat1.tbD,nbpt,Pdouble(pH1),Nblin1,ylin1.tbD);
+  conv64f(xdat2.tbD,nbpt,Pdouble(pH2),Nblin1, ylin2.tbD);
 
-  ippsConv(xdat1.tbD,nbpt,Pdouble(pH3),Nblin1, ylin3.tbD);
-  ippsConv(xdat2.tbD,nbpt,Pdouble(pH4),Nblin1, ylin4.tbD);
+  conv64f(xdat1.tbD,nbpt,Pdouble(pH3),Nblin1, ylin3.tbD);
+  conv64f(xdat2.tbD,nbpt,Pdouble(pH4),Nblin1, ylin4.tbD);
 
   Add(ylin3,ylin4,yinter1);
   yinter1abs.copy(yinter1);
@@ -169,7 +169,7 @@ var
 begin
   { Calcul de la colonne Lin = src1(t)*src21(t-i)  }
    for i:=1 to nb do
-    ippsMul(Pdouble(src1.cell(i,1)),Pdouble(src2.Cell(1,1)),Pdouble(Jmat.cell(i,colJmat+i-1)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(src1.cell(i,1)),Pdouble(src2.Cell(1,1)),Pdouble(Jmat.cell(i,colJmat+i-1)),nbpt-i+1 );
 end;
 
 procedure ToptiFitModel2.CalculDlin1;
@@ -183,11 +183,11 @@ begin
   begin
     ydum1.fill(0);
 
-    ippsMul(Pdouble(ydum.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(ydum1.cell(i,1)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(ydum.cell(i,1)),Pdouble(xdat1.Cell(1,1)),Pdouble(ydum1.cell(i,1)),nbpt-i+1 );
     vecToJmat(ydum1,2*nblin1+i);
 
     ydum1.fill(0);
-    ippsMul(Pdouble(ydum.cell(i,1)),Pdouble(xdat2.Cell(1,1)),Pdouble(ydum1.cell(i,1)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(ydum.cell(i,1)),Pdouble(xdat2.Cell(1,1)),Pdouble(ydum1.cell(i,1)),nbpt-i+1 );
     vecToJmat(ydum1,3*nblin1+i);
   end;
 end;
@@ -232,7 +232,7 @@ begin
 
   VecToJmat(Vg01,4*nblin1+2);
 
-  ippsSet(1, Pdouble(Jmat.cell(1,4*Nblin1+3)),nbpt);
+  ippsSet_64f(1, Pdouble(Jmat.cell(1,4*Nblin1+3)),nbpt);
 
   NonlinFilter1(yinter1abs,ydum,-1,C1,0);
   mul(Vg0,ydum);

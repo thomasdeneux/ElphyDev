@@ -1,10 +1,12 @@
+INUTILISE
+
 unit stmMatImage;
 
 interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
 uses classes,sysutils,
-     util1,Dgraphic,tbe0,stmdef,stmObj,stmDobj1,stmMat1,stmPg,Ncdef2,IPPI,IPPdefs;
+     util1,Dgraphic,tbe0,stmdef,stmObj,stmDobj1,stmMat1,stmPg,Ncdef2,IPPI17,IPPdefs17;
 
 const
   typesIMSupportes=[g_single,G_singleComp];

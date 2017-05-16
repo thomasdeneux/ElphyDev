@@ -3,7 +3,7 @@ unit Kernels;
 interface
 
 uses windows,math, classes,
-     util1, ipps,
+     util1, ippDefs17, ipps17,
      stmObj, ncDef2,stmPg,
      stmvec1,stmMat1,stmOdat2, stmOIseq1;
 
@@ -136,6 +136,21 @@ begin
   END;
 end;
 
+procedure Crosscor32(src1: pointer; nb1:integer; src2: pointer; nb2: integer; dest: pointer;nbDest: integer; lag0: integer);
+var
+  buf: pointer;
+  bufSize:integer;
+  status: integer;
+begin
+ status := ippsCrossCorrNormGetBufferSize(nb1, nb2, nbDest, lag0, _ipp32f, ippsNormNone, @bufSize);
+
+ Buf := ippsMalloc_8u( bufSize );
+
+ status := ippsCrossCorrNorm_32f(Src1, nb1, Src2, nb2, dest, nbDest, Lag0, ippsNormNone, Buf);
+
+ ippsFree( Buf );
+end;
+
 procedure BuildKernel1(stim:TvectorArray;Vm: Tvector;VA,VAnorm:TVectorArray; Ntau:integer;First:boolean);
 var
   i1,i2,j1,j2,tau1,tau2,k1,k2: integer;
@@ -191,7 +206,7 @@ begin
     //wnorm:=sqr(wnorm);
 
     p1:=@PtabSingle(stim[imin+i1,jmin+j1].tb)^[0];
-    ippsCrossCorr_32f(p1,len,pVm,len,@Tdum1[0],Ntau,0);
+    CrossCor32(p1,len,pVm,len,@Tdum1[0],Ntau,0);
     ippsDotProd_32f(p1,p1,len,@w);
 
     for tau1:=0 to Ntau-1 do

@@ -281,7 +281,7 @@ procedure proTMatList_Filter1( var matF: Tmatrix; var vecF: Tvector; var pu:type
 
 implementation
 
-uses stmVS0, ippdefs,ipps,ippsovr, mathKernel0, MKL_dfti;
+uses stmVS0, ippdefs17,ipps17, mathKernel0, MKL_dfti;
 
 constructor TmatList.create;
 begin

@@ -19,7 +19,7 @@ Unit ipps;
 INTERFACE
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
-uses ippdefs;
+uses ippdefs, classes;
 
 Const
   DLLname1='ipps-7.0.dll';
@@ -6438,12 +6438,18 @@ uses windows,math,util1,ncdef2;
 var
   hh:intG;
 
+  //ff: TfileStream;
 
 function getProc(hh:Thandle;st:AnsiString):pointer;
 begin
   result:=GetProcAddress(hh,PAnsichar(st));
-  {if result=nil then messageCentral(st+'=nil');}
-
+  //if result=nil then messageCentral(st+'=nil');
+  {
+  begin
+    st:= st+#10;
+    ff.write(st[1], length(st));
+  end;
+  }
 end;
 
 
@@ -8209,10 +8215,13 @@ begin
 
   result:=(hh<>0);
   if not result then exit;
+  messageCentral('IPPS loaded');
 
+  //ff:=TfileStream.create( 'D:\IppDebug.txt',fmCreate);
   InitIpps1;
   InitIpps2;
   InitIpps3;
+  //ff.free;
 end;
 
 

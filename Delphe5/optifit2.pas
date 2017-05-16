@@ -4,7 +4,7 @@ interface
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
 uses util1,Dgraphic,
-     IPPS,IPPdefs,IPPSovr,
+     IPPS17,IPPdefs17, ipp17ex,
      Ncdef2,stmPg,
      stmDef,stmObj,stmvec1,stmMat1,mathKernel0,stmKLmat,
      optiFit1;
@@ -65,23 +65,18 @@ implementation
 procedure hilbert(src,dest:Tmat);
 var
   status:integer;
-  spec: PIppsHilbertSpec_32f32fc ;
   p1:array of single;
-  p2:array of TSingleComp;
   i:integer;
 begin
   IPPStest;
 
   setLength(p1,src.Icount*src.Jcount);
-  setLength(p2,src.Icount*src.Jcount);
 
   for i:=1 to src.Icount do p1[i-1]:= src[i,1];
 
-  status := ippsHilbertInitAlloc_32f32fc(spec, src.Icount, ippAlgHintNone);
-  status := ippsHilbert_32f32fc(@p1[0], @p2[0], spec);
-  ippsHilbertFree_32f32fc(spec);
+  Hilbert32f(@p1[0], length(p1));
 
-  for i:=1 to src.Icount do dest[i,1]:=p2[i-1].y;
+  for i:=1 to src.Icount do dest[i,1]:=p1[i-1];
 
   IPPSend;
 end;
@@ -189,12 +184,12 @@ begin
   try
   TRY
         {Les résultats des filtres linéaires sont donnés par des convolutions }
-  ippsConv(xdat1.tbD,nbpt,Pdouble(pH1),Nblin1,ylin1.tbD);
-  ippsConv(xdat2.tbD,nbpt,Pdouble(pH2),Nblin2, ylin2.tbD);
+  conv64f(xdat1.tbD,nbpt,Pdouble(pH1),Nblin1,ylin1.tbD);
+  conv64f(xdat2.tbD,nbpt,Pdouble(pH2),Nblin2, ylin2.tbD);
 
   for i:= nbchan downto 1 do
   begin
-    ippsConv(xdatU[i].tbD,nbpt,Pdouble(pH3),Nblin3, ylin3[i].tbD);
+    conv64f(xdatU[i].tbD,nbpt,Pdouble(pH3),Nblin3, ylin3[i].tbD);
     ylin3abs[i].copy(ylin3[i]);
     absThresh(ylin3abs[i],1E-20);
   end;
@@ -221,7 +216,7 @@ var
 begin
   { Calcul de la colonne Lin = src1(t)*src21(t-i)  }
    for i:=1 to nb do
-    ippsMul(Pdouble(src1.cell(i,1)),Pdouble(src2.Cell(1,1)),Pdouble(Jmat.cell(i,colJmat+i-1)),nbpt-i+1 );
+    ippsMul_64f(Pdouble(src1.cell(i,1)),Pdouble(src2.Cell(1,1)),Pdouble(Jmat.cell(i,colJmat+i-1)),nbpt-i+1 );
 end;
 
 procedure ToptiFitModel1.CalculDlin1;
@@ -235,7 +230,7 @@ begin
     for j:=nbchan downto 1 do
     begin
       ydum.clear;
-      ippsMul(Pdouble(Vg1[j].cell(i,1)),Pdouble(xdatU[j].Cell(1,1)),Pdouble(ydum.cell(i,1)),nbpt-i+1 );
+      ippsMul_64f(Pdouble(Vg1[j].cell(i,1)),Pdouble(xdatU[j].Cell(1,1)),Pdouble(ydum.cell(i,1)),nbpt-i+1 );
       Add(ydum,ydum1);
     end;
 
@@ -281,7 +276,7 @@ begin
   mul(ydum,ydum1);
   VecToJmat(ydum1,nblin1+nblin2+nblin3+2);
 
-  ippsSet(1, Pdouble(Jmat.cell(1,Nblin1+nblin2+nblin3+3)),nbpt);
+  ippsSet_64f(1, Pdouble(Jmat.cell(1,Nblin1+nblin2+nblin3+3)),nbpt);
 
   for i:=nbchan downto 1 do
   begin

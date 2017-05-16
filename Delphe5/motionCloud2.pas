@@ -4,7 +4,7 @@ interface
 
 uses math,
      util1, stmdef, stmObj,stmPg,Ncdef2,stmMat1,
-     ippdefs,ipps,ippsovr, ippi, mathKernel0, MKL_dfti,
+     ippdefs17 ,ipps17 , ippi17, mathKernel0, MKL_dfti,
      Laguerre1;
 
 
@@ -372,6 +372,18 @@ begin
   }
 end;
 
+procedure RandGauss64(noise: PDouble; nb: integer; mu,sigma: double; Seed: longword);
+var
+  state: pointer;
+  stateSize: integer;
+begin
+  ippsRandGaussGetSize_64f( @StateSize);
+  state:= ippsMalloc_8u(stateSize);
+
+  ippsRandGaussInit_64f(State, mu, sigma,  seed);        // Avec cette version , on perd l'état du générateur
+  ippsRandGauss_64f(noise, nb, State);                   // Il faudrait donc sortir state
+  ippsFree(state);
+end;
 
 procedure TmotionCloud.ComputeNoise(fftNoise: PtabDoubleComp ;filter: PtabDouble);
 var
@@ -387,10 +399,10 @@ begin
 
   getmem( Noise, nx*ny * sizeof(Double));
 
-  res:= ippsRandGauss_Direct(PDouble(noise),Nx*Ny,mu,sigma, @Seed);
+  RandGauss64(PDouble(noise),Nx*Ny,mu,sigma, Seed);
 
   //noise = random en complexes
-  res:= ippsRealToCplx(PDouble(noise),nil, PDoubleComp(fftNoise) ,nx*ny);
+  res:= ippsRealToCplx_64f(PDouble(noise),nil, PDoubleComp(fftNoise) ,nx*ny);
 
   // Calculer la DFT de fftNoise
   dim[1]:=Nx;
@@ -515,7 +527,7 @@ begin
   DftiFreeDescriptor(hdfti);
 
   // La partie réelle donne LastFrame
-  ippsReal(PDoubleComp(Xn2),PDouble(LastFrame),Nx*Ny);
+  ippsReal_64fc(PDoubleComp(Xn2),PDouble(LastFrame),Nx*Ny);
 
 
   mat.initTemp(0,Nx-1,0,Ny-1,g_single);
@@ -596,11 +608,11 @@ var
   i:integer;
   wm,wstd, wnorm: Double;
 begin
-  ippsSqrt(PDouble(filter),Nx*Ny);
+  ippsSqrt_64f_I(PDouble(filter),Nx*Ny);
   //ippsNorm_L2(PDouble(filter),Nx*Ny,@wnorm);
   //ippsMulC(1/wnorm, PDouble(filter),Nx*Ny);
 
-  ippsStdDev(PDouble(filter),Nx*Ny,@wstd);
+  ippsStdDev_64f(PDouble(filter),Nx*Ny,@wstd);
 
   if wstd>0 then
   for i:=0 to Nx*Ny-1 do
@@ -681,7 +693,7 @@ var
   pBuffer: pointer;
   size:integer;
 begin
-
+(*                            A refaire pour ippi17
   srcSize.width:= Ny*8;
   srcSize.height:=Nx*8;
 
@@ -718,6 +730,7 @@ begin
   end;
 
   ippiEnd;
+  *)
 end;
 
 

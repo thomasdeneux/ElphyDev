@@ -6,7 +6,7 @@ interface
 uses util1, Ncdef2,
      stmDef,stmObj,stmError,stmVec1,
      mathKernel0,
-     ippdefs,ipps,ippsovr, debug0;
+     ippdefs17, ipps17, debug0;
 
 procedure proVcopy(var src,dest:Tvector);pascal;
 procedure proVcopy1(var src,dest:Tvector);pascal;
@@ -71,6 +71,8 @@ procedure proVmedianFilter(var src,dest:Tvector;N:integer);pascal;
 
 procedure proVflip(var src,dest:Tvector);pascal;
 procedure proVflip_1(var srcdest:Tvector);pascal;
+
+procedure RefuseSrcEqDest(src,dest:Tvector);
 
 implementation
 
@@ -309,10 +311,8 @@ begin
   if src1.inf.temp and ((src1.tpNum=G_singleComp) and (dest.tpNum=G_single) OR
                         (src1.tpNum=G_doubleComp) and (dest.tpNum=G_double) ) then
     case src1.tpnum of
-      G_singleComp: {nspcbReal(src1.tb,dest.tb,src1.Icount);}
-                     ippsReal(PsingleComp(src1.tb),Psingle(dest.tb),src1.Icount);
-      G_doubleComp: {nspzbReal(src1.tb,dest.tb,src1.Icount);}
-                     ippsReal(PdoubleComp(src1.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsReal_32fc(PsingleComp(src1.tb),Psingle(dest.tb),src1.Icount);
+      G_doubleComp:  ippsReal_64fc(PdoubleComp(src1.tb),Pdouble(dest.tb),src1.Icount);
     end
   else
   {cas complexes non ISPL}
@@ -354,8 +354,8 @@ begin
   if srcX.inf.temp and ((srcX.tpNum=G_singleComp) and (dest.tpNum=G_single) OR
                         (srcX.tpNum=G_doubleComp) and (dest.tpNum=G_double) ) then
     case srcX.tpnum of
-      G_singleComp: IppsImag(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount);
-      G_doubleComp: IppsImag(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount);
+      G_singleComp: IppsImag_32fc(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount);
+      G_doubleComp: IppsImag_64fc(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount);
     end
   else
   {cas complexes non IPPS}
@@ -396,11 +396,11 @@ begin
   if src.inf.temp and ((src.tpNum=G_singleComp) OR (src.tpNum=G_doubleComp)) then
     case src.tpnum of
       G_singleComp: if src=dest
-                       then IppsConj(src.tbSC, src.Icount)
-                       else IppsConj(src.tbSC, dest.tbSC,src.Icount);
+                       then IppsConj_32fc_I(src.tbSC, src.Icount)
+                       else IppsConj_32fc(src.tbSC, dest.tbSC,src.Icount);
       G_doubleComp: if src=dest
-                       then IppsConj(src.tbDC, src.Icount)
-                       else IppsConj(src.tbDC, dest.tbDC,src.Icount);
+                       then IppsConj_64fc_I(src.tbDC, src.Icount)
+                       else IppsConj_64fc(src.tbDC, dest.tbDC,src.Icount);
     end
   else
   {cas complexes non IPPS}
@@ -438,16 +438,16 @@ begin
 
   {cas ISPL}
   if srcX.inf.temp and (srcX.tpNum=G_single) and (dest.tpNum=G_single)
-    then IppsAbs(Psingle(srcX.tb),Psingle(dest.tb),src.Icount)
+    then IppsAbs_32f(Psingle(srcX.tb),Psingle(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_double) and (dest.tpNum=G_double)
-    then IppsAbs(Pdouble(srcX.tb),Pdouble(dest.tb),src.Icount)
+    then IppsAbs_64f(Pdouble(srcX.tb),Pdouble(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_singleComp) and (dest.tpNum=G_single)
-    then IppsMagnitude(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount)
+    then IppsMagnitude_32fc(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_doubleComp) and (dest.tpNum=G_double)
-    then IppsMagnitude(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount)
+    then IppsMagnitude_64fc(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount)
   else
 
   {cas complexes non ISPL}
@@ -494,10 +494,10 @@ begin
 
   {cas ISPL}
   if srcX.inf.temp and (srcX.tpNum=G_singleComp) and (dest.tpNum=G_single)
-    then ippsPhase(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount)
+    then ippsPhase_32fc(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_doubleComp) and (dest.tpNum=G_double)
-      then ippsPhase(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount)
+      then ippsPhase_64fc(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount)
   else
   {cas complexes non ISPL}
   if srcX.tpNum in [G_singleComp..G_extComp] then
@@ -535,16 +535,16 @@ begin
 
   {cas ISPL}
   if srcX.inf.temp and (srcX.tpNum=G_single) and (dest.tpNum=G_single)
-    then ippssqr(Psingle(srcX.tb),Psingle(dest.tb),src.Icount)
+    then ippssqr_32f(Psingle(srcX.tb),Psingle(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_double) and (dest.tpNum=G_double)
-    then ippssqr(Pdouble(srcX.tb),Pdouble(dest.tb),src.Icount)
+    then ippssqr_64f(Pdouble(srcX.tb),Pdouble(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_singleComp) and (dest.tpNum=G_single)
-    then ippspowerSpectr(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount)
+    then ippspowerSpectr_32fc(PsingleComp(srcX.tb),Psingle(dest.tb),src.Icount)
   else
   if srcX.inf.temp and (srcX.tpNum=G_doubleComp) and (dest.tpNum=G_double)
-    then ippsPowerSpectr(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount)
+    then ippsPowerSpectr_64fc(PdoubleComp(srcX.tb),Pdouble(dest.tb),src.Icount)
   else
   {cas complexes non ISPL}
   if srcX.tpNum in [G_singleComp..G_extComp] then
@@ -594,29 +594,29 @@ begin
   if src.inf.temp and (src.tpNum=G_single) and (dest.tpNum=G_single) then
     begin
       if src=dest
-        then ippsThreshold_LTInv(Psingle(src.tb),src.Icount,ThSingle)
-        else ippsThreshold_LTInv(Psingle(src.tb),Psingle(dest.tb),src.Icount,ThSingle);
+        then ippsThreshold_LTInv_32f_I(Psingle(src.tb),src.Icount,ThSingle)
+        else ippsThreshold_LTInv_32f(Psingle(src.tb),Psingle(dest.tb),src.Icount,ThSingle);
     end
   else
   if src.inf.temp and (src.tpNum=G_double) and (dest.tpNum=G_double) then
     begin
       if src=dest
-        then ippsThreshold_LTInv(Pdouble(src.tb),src.Icount,ThDouble)
-        else ippsThreshold_LTInv(Pdouble(src.tb),Pdouble(dest.tb),src.Icount,ThDouble);
+        then ippsThreshold_LTInv_64f_I(Pdouble(src.tb),src.Icount,ThDouble)
+        else ippsThreshold_LTInv_64f(Pdouble(src.tb),Pdouble(dest.tb),src.Icount,ThDouble);
     end
   else
   if src.inf.temp and (src.tpNum=G_singleComp) and (dest.tpNum=G_singleComp) then
     begin
       if src=dest
-        then ippsThreshold_LTInv(PsingleComp(src.tb),src.Icount,ThSIngle)
-        else ippsThreshold_LTInv(PsingleComp(src.tb),PsingleComp(dest.tb),src.Icount,ThSingle);
+        then ippsThreshold_LTInv_32fc_I(PsingleComp(src.tb),src.Icount,ThSIngle)
+        else ippsThreshold_LTInv_32fc(PsingleComp(src.tb),PsingleComp(dest.tb),src.Icount,ThSingle);
     end
   else
   if src.inf.temp and (src.tpNum=G_doubleComp) and (dest.tpNum=G_doubleComp) then
     begin
       if src=dest
-        then ippsThreshold_LTInv(PdoubleComp(src.tb),src.Icount,ThDouble)
-        else ippsThreshold_LTInv(PdoubleComp(src.tb),PdoubleComp(dest.tb),src.Icount,ThDouble);
+        then ippsThreshold_LTInv_64fc_I(PdoubleComp(src.tb),src.Icount,ThDouble)
+        else ippsThreshold_LTInv_64fc(PdoubleComp(src.tb),PdoubleComp(dest.tb),src.Icount,ThDouble);
     end
   else
   {cas complexes non ISPL}
@@ -674,29 +674,29 @@ begin
   if src.inf.temp and (src.tpNum=G_single) and (dest.tpNum=G_single) then
     begin
       if src=dest
-        then ippsSqrt(Psingle(src.tb),src.Icount)
-        else ippsSqrt(Psingle(src.tb),Psingle(dest.tb),src.Icount);
+        then ippsSqrt_32f_I(Psingle(src.tb),src.Icount)
+        else ippsSqrt_32f(Psingle(src.tb),Psingle(dest.tb),src.Icount);
     end
   else
   if src.inf.temp and (src.tpNum=G_double) and (dest.tpNum=G_double) then
     begin
       if src=dest
-        then ippsSqrt(Pdouble(src.tb),src.Icount)
-        else ippsSqrt(Pdouble(src.tb),Pdouble(dest.tb),src.Icount);
+        then ippsSqrt_64f_I(Pdouble(src.tb),src.Icount)
+        else ippsSqrt_64f(Pdouble(src.tb),Pdouble(dest.tb),src.Icount);
     end
   else
   if src.inf.temp and (src.tpNum=G_singleComp) and (dest.tpNum=G_singleComp) then
     begin
       if src=dest
-        then ippsSqrt(PsingleComp(src.tb),src.Icount)
-        else ippsSqrt(PsingleComp(src.tb),PsingleComp(dest.tb),src.Icount);
+        then ippsSqrt_32fc_I(PsingleComp(src.tb),src.Icount)
+        else ippsSqrt_32fc(PsingleComp(src.tb),PsingleComp(dest.tb),src.Icount);
     end
   else
   if src.inf.temp and (src.tpNum=G_doubleComp) and (dest.tpNum=G_doubleComp) then
     begin
       if src=dest
-        then ippsSqrt(PdoubleComp(src.tb),src.Icount)
-        else ippsSqrt(PdoubleComp(src.tb),PdoubleComp(dest.tb),src.Icount);
+        then ippsSqrt_64fc_I(PdoubleComp(src.tb),src.Icount)
+        else ippsSqrt_64fc(PdoubleComp(src.tb),PdoubleComp(dest.tb),src.Icount);
     end
   else
   {cas complexes non ISPL}
@@ -767,17 +767,17 @@ begin
   {cas ISPL}
   if src.inf.temp and (src.tpNum in [G_single,G_double,G_singleComp, G_doubleComp]) then
     case src.tpnum of
-      G_single:       ippsAddc(num.x,Psingle(src.tb),src.Icount);
-      G_double:       ippsAddc(num.x,Pdouble(src.tb),src.Icount);
+      G_single:       ippsAddc_32f_I(num.x,Psingle(src.tb),src.Icount);
+      G_double:       ippsAddc_64f_I(num.x,Pdouble(src.tb),src.Icount);
       G_singleComp: begin
                       zs.x:=num.x;
                       zs.y:=num.y;
-                      ippsAddc(zs,PsingleComp(src.tb),src.Icount);
+                      ippsAddc_32fc_I(zs,PsingleComp(src.tb),src.Icount);
                     end;
       G_doubleComp: begin
                       zd.x:=num.x;
                       zd.y:=num.y;
-                      ippsAddc(zd,PdoubleComp(src.tb),src.Icount);
+                      ippsAddc_64fc_I(zd,PdoubleComp(src.tb),src.Icount);
                     end;
     end
   else
@@ -816,17 +816,17 @@ begin
   {cas ISPL}
   if src.inf.temp and  (src.tpNum in [G_single,G_double,G_singleComp, G_doubleComp]) then
     case src.tpnum of
-      G_single:       ippsMulc(num.x,Psingle(src.tb),src.Icount);
-      G_double:       ippsMulC(num.x,Pdouble(src.tb),src.Icount);
+      G_single:       ippsMulc_32f_I(num.x,Psingle(src.tb),src.Icount);
+      G_double:       ippsMulC_64f_I(num.x,Pdouble(src.tb),src.Icount);
       G_singleComp: begin
                       zs.x:=num.x;
                       zs.y:=num.y;
-                      ippsMulc(zs,PsingleComp(src.tb),src.Icount);
+                      ippsMulc_32fc_I(zs,PsingleComp(src.tb),src.Icount);
                     end;
       G_doubleComp: begin
                       zd.x:=num.x;
                       zd.y:=num.y;
-                      ippsMulc(zd,PdoubleComp(src.tb),src.Icount);
+                      ippsMulc_64fc_I(zd,PdoubleComp(src.tb),src.Icount);
                     end;
     end
 
@@ -905,26 +905,26 @@ begin
   begin
     if (src1<>dest) and (src2<>dest) then
     case src1.tpNum of
-      G_single:      ippsadd(Psingle(src1.tb),Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsadd(Pdouble(src1.tb),Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsadd(PsingleComp(src1.tb),PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsadd(PdoubleComp(src1.tb),PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsadd_32f(Psingle(src1.tb),Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsadd_64f(Pdouble(src1.tb),Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsadd_32fc(PsingleComp(src1.tb),PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsadd_64fc(PdoubleComp(src1.tb),PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
     end
     else
     if (src1=dest) then
     case src1.tpNum of
-      G_single:      ippsadd(Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsadd(Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsadd(PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsadd(PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsadd_32f_I(Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsadd_64f_I(Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsadd_32fc_I(PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsadd_64fc_I(PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
     end
     else
     if (src2=dest) then
     case src1.tpNum of
-      G_single:      ippsadd(Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsadd(Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsadd(PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsadd(PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsadd_32f_I(Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsadd_64f_I(Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsadd_32fc_I(PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsadd_64fc_I(PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
     end
   end
   else
@@ -968,10 +968,10 @@ begin
   if src.inf.temp  and (src.tpNum = dest.tpNum)  and (src.tpNum in [G_single,G_double,G_singleComp, G_doubleComp]) then
   begin
     case src.tpNum of
-      G_single:      ippsadd(Psingle(src.tb), Psingle(@PtabSingle(dest.tb)^[Idest]), Ndest);
-      G_double:      ippsadd(Pdouble(src.tb), Pdouble(@PtabSingle(dest.tb)^[Idest]), Ndest);
-      G_singleComp:  ippsadd(PsingleComp(src.tb), PsingleComp(@PtabSingleComp(dest.tb)^[Idest]), Ndest);
-      G_doubleComp:  ippsadd(PdoubleComp(src.tb), PdoubleComp(@PtabDoubleComp(dest.tb)^[Idest]), Ndest);
+      G_single:      ippsadd_32f_I(Psingle(src.tb), Psingle(@PtabSingle(dest.tb)^[Idest]), Ndest);
+      G_double:      ippsadd_64f_I(Pdouble(src.tb), Pdouble(@PtabSingle(dest.tb)^[Idest]), Ndest);
+      G_singleComp:  ippsadd_32fc_I(PsingleComp(src.tb), PsingleComp(@PtabSingleComp(dest.tb)^[Idest]), Ndest);
+      G_doubleComp:  ippsadd_64fc_I(PdoubleComp(src.tb), PdoubleComp(@PtabDoubleComp(dest.tb)^[Idest]), Ndest);
     end;
   end
   else
@@ -1016,37 +1016,37 @@ begin
   begin
     if (src1<>dest) and (src2<>dest) then
     case src1.tpNum of
-      G_single:      ippsSub(Psingle(src2.tb),Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsSub(Pdouble(src2.tb),Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsSub(PsingleComp(src2.tb),PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsSub(PdoubleComp(src2.tb),PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsSub_32f(Psingle(src2.tb),Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsSub_64f(Pdouble(src2.tb),Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsSub_32fc(PsingleComp(src2.tb),PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsSub_64fc(PdoubleComp(src2.tb),PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
     end
     else
     if (src1=dest) then
     case src1.tpNum of
-      G_single:      ippsSub(Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsSub(Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsSub(PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsSub(PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsSub_32f_I(Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsSub_64f_I(Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsSub_32fc_I(PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsSub_64fc_I(PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
     end
     else
     if (src2=dest) then
     case src1.tpNum of
       G_single:      begin
-                       ippsSub(Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
-                       ippsMulC(-1,Psingle(dest.tb),dest.Icount);
+                       ippsSub_32f_I(Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
+                       ippsMulC_32f_I(-1,Psingle(dest.tb),dest.Icount);
                      end;
       G_double:      begin
-                       ippsSub(Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
-                       ippsMulC(-1,Pdouble(dest.tb),dest.Icount);
+                       ippsSub_64f_I(Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
+                       ippsMulC_64f_I(-1,Pdouble(dest.tb),dest.Icount);
                      end;
       G_singleComp:  begin
-                       ippsSub(PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
-                       ippsMulC(singleComp(-1,0),PsingleComp(dest.tb),dest.Icount);
+                       ippsSub_32fc_I(PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
+                       ippsMulC_32fc_I(singleComp(-1,0),PsingleComp(dest.tb),dest.Icount);
                      end;
       G_doubleComp:  begin
-                       ippsSub(PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
-                       ippsMulC(doubleComp(-1,0),PdoubleComp(dest.tb),dest.Icount);
+                       ippsSub_64fc_I(PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
+                       ippsMulC_64fc_I(doubleComp(-1,0),PdoubleComp(dest.tb),dest.Icount);
                      end;
     end
   end
@@ -1092,26 +1092,26 @@ begin
   begin
     if (src1<>dest) and (src2<>dest) then
     case src1.tpNum of
-      G_single:      ippsmul(Psingle(src1.tb),Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsmul(Pdouble(src1.tb),Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsmul(PsingleComp(src1.tb),PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsmul(PdoubleComp(src1.tb),PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsmul_32f(Psingle(src1.tb),Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsmul_64f(Pdouble(src1.tb),Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsmul_32fc(PsingleComp(src1.tb),PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsmul_64fc(PdoubleComp(src1.tb),PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
     end
     else
     if (src1=dest) then
     case src1.tpNum of
-      G_single:      ippsmul(Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsmul(Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsmul(PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsmul(PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsmul_32f_I(Psingle(src2.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsmul_64f_I(Pdouble(src2.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsmul_32fc_I(PsingleComp(src2.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsmul_64fc_I(PdoubleComp(src2.tb),PdoubleComp(dest.tb),src1.Icount);
     end
     else
     if (src2=dest) then
     case src1.tpNum of
-      G_single:      ippsmul(Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
-      G_double:      ippsmul(Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
-      G_singleComp:  ippsmul(PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
-      G_doubleComp:  ippsmul(PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
+      G_single:      ippsmul_32f_I(Psingle(src1.tb),Psingle(dest.tb),src1.Icount);
+      G_double:      ippsmul_64f_I(Pdouble(src1.tb),Pdouble(dest.tb),src1.Icount);
+      G_singleComp:  ippsmul_32fc_I(PsingleComp(src1.tb),PsingleComp(dest.tb),src1.Icount);
+      G_doubleComp:  ippsmul_64fc_I(PdoubleComp(src1.tb),PdoubleComp(dest.tb),src1.Icount);
     end
   end
 
@@ -1157,12 +1157,12 @@ begin
   begin
     case src1.tpNum of
       G_singleComp:  begin
-                       ippsConj(Src2.tbSC,Dest.tbSC,src1.Icount);
-                       ippsmul(src1.tbSC,dest.tbSC,src1.icount);
+                       ippsConj_32fc(Src2.tbSC,Dest.tbSC,src1.Icount);
+                       ippsmul_32fc_I(src1.tbSC,dest.tbSC,src1.icount);
                      end;
       G_doubleComp:  begin
-                       ippsConj(Src2.tbDC,Dest.tbDC,src1.icount);
-                       ippsmul(src1.tbDC,dest.tbDC,src1.icount);
+                       ippsConj_64fc(Src2.tbDC,Dest.tbDC,src1.icount);
+                       ippsmul_64fc_I(src1.tbDC,dest.tbDC,src1.icount);
                      end;
     end
   end
@@ -1225,11 +1225,11 @@ begin
     try
     case src1.tpNum of
       g_single:     begin
-                      ippsDotProd(Psingle(Src1.tb), Psingle(Src2.tb), src1.Icount,Psingle(@wsingle));
-                      result:=wsingle;
+                      ippsDotProd_32f64f(Psingle(Src1.tb), Psingle(Src2.tb), src1.Icount, @wdouble );
+                      result:=wdouble;
                     end;
       g_double:     begin
-                      ippsDotProd(Pdouble(Src1.tb), Pdouble(Src2.tb), src1.Icount,Pdouble(@wdouble));
+                      ippsDotProd_64f(Pdouble(Src1.tb), Pdouble(Src2.tb), src1.Icount,Pdouble(@wdouble));
                       result:=wdouble;
                     end;
      {
@@ -1282,12 +1282,12 @@ begin
     IPPStest;
     case src1.tpNum of
       g_single: begin
-                  ippsDotProd(Psingle(@Src1.tbSingle^[i1]), Psingle(@Src2.tbSingle^[i2]), i2-i1+1,Psingle(@wsingle));
-                  result:=wsingle;
+                  ippsDotProd_32f64f(Psingle(@Src1.tbSingle^[i1]), Psingle(@Src2.tbSingle^[i2]), i2-i1+1, @wdouble);
+                  result:=wdouble;
                 end;
 
       g_double: begin
-                  ippsDotProd(Pdouble(@Src1.tbDouble^[i1]), Pdouble(@Src2.tbDouble^[i2]), i2-i1+1,Pdouble(@wdouble));
+                  ippsDotProd_64f(Pdouble(@Src1.tbDouble^[i1]), Pdouble(@Src2.tbDouble^[i2]), i2-i1+1,Pdouble(@wdouble));
                   result:=wdouble;
                 end;
     end;
@@ -1318,19 +1318,19 @@ begin
     exit;
   end;
 
-  ippsMean(Psingle(@tb1[0]),nb,Psingle(@wsingle),ippAlgHintNone);
+  ippsMean_32f(Psingle(@tb1[0]),nb,Psingle(@wsingle),ippAlgHintNone);
   moy1:=wsingle;
-  ippsMean(Psingle(@tb2[0]),nb,Psingle(@wsingle),ippAlgHintNone);
+  ippsMean_32f(Psingle(@tb2[0]),nb,Psingle(@wsingle),ippAlgHintNone);
   moy2:=wsingle;
 
-  ippsDotProd(Psingle(@tb1[0]),Psingle(@tb2[0]),nb,Psingle(@wsingle));
+  ippsDotProd_32f(Psingle(@tb1[0]),Psingle(@tb2[0]),nb,Psingle(@wsingle));
 
   crossC:=wsingle/nb  - moy1*moy2;
 
-  ippsStdDev(Psingle(@tb1[0]),nb,Psingle(@wsingle),ippAlgHintNone);
+  ippsStdDev_32f(Psingle(@tb1[0]),nb,Psingle(@wsingle),ippAlgHintNone);
   auto1:=wsingle ;
 
-  ippsStdDev(Psingle(@tb2[0]),nb,Psingle(@wsingle),ippAlgHintNone);
+  ippsStdDev_32f(Psingle(@tb2[0]),nb,Psingle(@wsingle),ippAlgHintNone);
   auto2:=wsingle ;
 
   if (auto1<>0) and (auto2<>0)
@@ -1350,19 +1350,19 @@ begin
     exit;
   end;
 
-  ippsMean(Pdouble(@tb1[0]),nb,Pdouble(@wdouble));
+  ippsMean_64f(Pdouble(@tb1[0]),nb,Pdouble(@wdouble));
   moy1:=wdouble;
-  ippsMean(Pdouble(@tb2[0]),nb,Pdouble(@wdouble));
+  ippsMean_64f(Pdouble(@tb2[0]),nb,Pdouble(@wdouble));
   moy2:=wdouble;
 
-  ippsDotProd(Pdouble(@tb1[0]),Pdouble(@tb2[0]),nb,Pdouble(@wdouble));
+  ippsDotProd_64f(Pdouble(@tb1[0]),Pdouble(@tb2[0]),nb,Pdouble(@wdouble));
 
   crossC:=wdouble/nb  - moy1*moy2;
 
-  ippsStdDev(Pdouble(@tb1[0]),nb,Pdouble(@wdouble));
+  ippsStdDev_64f(Pdouble(@tb1[0]),nb,Pdouble(@wdouble));
   auto1:=wdouble;
 
-  ippsStdDev(Pdouble(@tb2[0]),nb,Pdouble(@wdouble));
+  ippsStdDev_64f(Pdouble(@tb2[0]),nb,Pdouble(@wdouble));
   auto2:=wdouble;
 
   if (auto1<>0) and (auto2<>0)
@@ -1619,7 +1619,7 @@ begin
       if i1+di>Iend then break;
       for i:=i1-di to i1+di do tbA[i-i1+di]:=data.getE(i);
 
-      ippsDotProd(Pdouble(@tbA[0]),Pdouble(@tbB[0]),2*di+1,@y);
+      ippsDotProd_64f(Pdouble(@tbA[0]),Pdouble(@tbB[0]),2*di+1,@y);
 
       dest.addToList(y);
       x:=x+newDx;
@@ -1689,17 +1689,17 @@ begin
   case src.tpNum of
     g_single: begin
                 case norm of
-                  0: ippsNorm_inf(src.tbS,src.Icount,@ws);
-                  1: ippsNorm_L1(src.tbS,src.Icount,@ws);
-                  2: ippsNorm_L2(src.tbS,src.Icount,@ws);
+                  0: ippsNorm_inf_32f(src.tbS,src.Icount,@ws);
+                  1: ippsNorm_L1_32f(src.tbS,src.Icount,@ws);
+                  2: ippsNorm_L2_32f(src.tbS,src.Icount,@ws);
                 end;
                 result:=ws;
               end;
     g_double: begin
                 case norm of
-                  0: ippsNorm_inf(src.tbD,src.Icount,@wd);
-                  1: ippsNorm_L1(src.tbD,src.Icount,@wd);
-                  2: ippsNorm_L2(src.tbD,src.Icount,@wd);
+                  0: ippsNorm_inf_64f(src.tbD,src.Icount,@wd);
+                  1: ippsNorm_L1_64f(src.tbD,src.Icount,@wd);
+                  2: ippsNorm_L2_64f(src.tbD,src.Icount,@wd);
                 end;
                 result:=wd;
               end;
@@ -1741,35 +1741,35 @@ begin
   case src1.tpNum of
     g_single: begin
                 case norm of
-                  0: ippsNormDiff_inf(src1.tbS,src2.tbS,src1.Icount,@ws);
-                  1: ippsNormDiff_L1(src1.tbS,src2.tbS,src1.Icount,@ws);
-                  2: ippsNormDiff_L2(src1.tbS,src2.tbS,src1.Icount,@ws);
+                  0: ippsNormDiff_inf_32f(src1.tbS,src2.tbS,src1.Icount,@ws);
+                  1: ippsNormDiff_L1_32f(src1.tbS,src2.tbS,src1.Icount,@ws);
+                  2: ippsNormDiff_L2_32f(src1.tbS,src2.tbS,src1.Icount,@ws);
                 end;
                 result:=ws;
               end;
     g_double: begin
                 case norm of
-                  0: ippsNormDiff_inf(src1.tbD,src2.tbD,src1.Icount,@wd);
-                  1: ippsNormDiff_L1(src1.tbD,src2.tbD,src1.Icount,@wd);
-                  2: ippsNormDiff_L2(src1.tbD,src2.tbD,src1.Icount,@wd);
+                  0: ippsNormDiff_inf_64f(src1.tbD,src2.tbD,src1.Icount,@wd);
+                  1: ippsNormDiff_L1_64f(src1.tbD,src2.tbD,src1.Icount,@wd);
+                  2: ippsNormDiff_L2_64f(src1.tbD,src2.tbD,src1.Icount,@wd);
                 end;
                 result:=wd;
               end;
     g_singleComp:
               begin
                 case norm of
-                  0: ippsNormDiff_inf(src1.tbSC,src2.tbSC,src1.Icount,@ws);
-                  1: ippsNormDiff_L1(src1.tbSC,src2.tbSC,src1.Icount,@ws);
-                  2: ippsNormDiff_L2(src1.tbSC,src2.tbSC,src1.Icount,@ws);
+                  0: ippsNormDiff_inf_32fc32f(src1.tbSC,src2.tbSC,src1.Icount,@ws);
+                  1: ippsNormDiff_L1_32fc64f(src1.tbSC,src2.tbSC,src1.Icount,@wd);
+                  2: ippsNormDiff_L2_32fc64f(src1.tbSC,src2.tbSC,src1.Icount,@wd);
                 end;
-                result:=ws;
+                if norm=0 then result:= ws else result:= wd;
               end;
     g_doubleComp:
               begin
                 case norm of
-                  0: ippsNormDiff_inf(src1.tbDC,src2.tbDC,src1.Icount,@wd);
-                  1: ippsNormDiff_L1(src1.tbDC,src2.tbDC,src1.Icount,@wd);
-                  2: ippsNormDiff_L2(src1.tbDC,src2.tbDC,src1.Icount,@wd);
+                  0: ippsNormDiff_inf_64fc64f(src1.tbDC,src2.tbDC,src1.Icount,@wd);
+                  1: ippsNormDiff_L1_64fc64f(src1.tbDC,src2.tbDC,src1.Icount,@wd);
+                  2: ippsNormDiff_L2_64fc64f(src1.tbDC,src2.tbDC,src1.Icount,@wd);
                 end;
                 result:=wd;
               end;
@@ -1811,8 +1811,8 @@ begin
   {cas IPPS}
   if src.inf.temp and ((src.tpNum=G_singleComp) OR (src.tpNum=G_doubleComp)) then
     case src.tpnum of
-      G_singleComp:  IppsCplxToReal(src.tbSC,dest1.tbS,dest2.tbS,src.Icount);
-      G_doubleComp:  IppsCplxToReal(src.tbDC,dest1.tbD,dest2.tbD,src.Icount);
+      G_singleComp:  IppsCplxToReal_32fc(src.tbSC,dest1.tbS,dest2.tbS,src.Icount);
+      G_doubleComp:  IppsCplxToReal_64fc(src.tbDC,dest1.tbD,dest2.tbD,src.Icount);
     end
   else
   {cas complexes ou réels non IPPS}
@@ -1858,10 +1858,10 @@ begin
 
   {cas IPPS}
   if src1.inf.temp and (src1.tpNum=G_single) and src2.inf.temp and (src2.tpNum=G_single)
-    then IppsRealToCplx(src1.tbS,src2.tbS,dest.tbSC,src1.Icount)
+    then IppsRealToCplx_32f(src1.tbS,src2.tbS,dest.tbSC,src1.Icount)
   else
   if src1.inf.temp and (src1.tpNum=G_double) and src2.inf.temp and (src2.tpNum=G_double)
-    then IppsRealToCplx(src1.tbD,src2.tbD,dest.tbDC,src1.Icount)
+    then IppsRealToCplx_64f(src1.tbD,src2.tbD,dest.tbDC,src1.Icount)
   else
   {cas complexes ou réels non IPPS}
   begin
@@ -1882,6 +1882,8 @@ procedure proVmedianFilter(var src,dest:Tvector;N:integer);
 var
   i:integer;
   status:integer;
+  buffer: pointer;
+  bufferSize: integer;
 begin
 
   VerifierVecteurTemp(src);
@@ -1901,22 +1903,33 @@ begin
   VcopyYscale(src,dest);
 
   {cas IPPS}
+
+  case src.tpNum of
+    G_smallint:  ippsFilterMedianGetBufferSize (N, _ipp16s, @BufferSize);
+    G_longint:  ippsFilterMedianGetBufferSize (N, _ipp32s, @BufferSize);
+    G_single:  ippsFilterMedianGetBufferSize (N, _ipp32f, @BufferSize);
+    G_double:  ippsFilterMedianGetBufferSize (N, _ipp64f, @BufferSize);
+    else bufferSize:=0;
+  end;
+  if bufferSize>0 then buffer:= ippsMalloc(BufferSize) else buffer:=nil;
+
   if (src=dest) then
     case src.tpnum of
-      G_smallint : status:= ippsFilterMedian_16s_I(Src.tb, Src.Icount, N);
-      G_longint :  status:= ippsFilterMedian_32s_I(Src.tb, Src.Icount, N);
-      G_single :   status:= ippsFilterMedian_32f_I(Src.tb, Src.Icount, N);
-      G_double :   status:= ippsFilterMedian_64f_I(Src.tb, Src.Icount, N);
+      G_smallint : status:= ippsFilterMedian_16s_I(Src.tb, Src.Icount, N, nil,nil,buffer);
+      G_longint :  status:= ippsFilterMedian_32s_I(Src.tb, Src.Icount, N, nil,nil,buffer);
+      G_single :   status:= ippsFilterMedian_32f_I(Src.tb, Src.Icount, N, nil,nil,buffer);
+      G_double :   status:= ippsFilterMedian_64f_I(Src.tb, Src.Icount, N, nil,nil,buffer);
     end
   else
     case src.tpnum of
-      G_smallint : status:= ippsFilterMedian_16s(Src.tb,dest.tb, Src.Icount, N);
-      G_longint :  status:= ippsFilterMedian_32s(Src.tb,dest.tb, Src.Icount, N);
-      G_single :   status:= ippsFilterMedian_32f(Src.tb,dest.tb, Src.Icount, N);
-      G_double :   status:= ippsFilterMedian_64f(Src.tb,dest.tb, Src.Icount, N);
+      G_smallint : status:= ippsFilterMedian_16s(Src.tb,dest.tb, Src.Icount, N, nil,nil,buffer);
+      G_longint :  status:= ippsFilterMedian_32s(Src.tb,dest.tb, Src.Icount, N, nil,nil,buffer);
+      G_single :   status:= ippsFilterMedian_32f(Src.tb,dest.tb, Src.Icount, N, nil,nil,buffer);
+      G_double :   status:= ippsFilterMedian_64f(Src.tb,dest.tb, Src.Icount, N, nil,nil,buffer);
     end
 
   FINALLY
+  if buffer<>nil then ippsFree(buffer);
   IPPSend;
 
   END;

@@ -6,7 +6,7 @@ interface
 uses classes,sysutils,
      util1,Dgraphic,tbe0,stmdef,stmObj,stmDobj1,stmMat1,stmPg,Ncdef2,stmvec1,MathKernel0,debug0,
      VlistA1,
-     ipps,ippsovr,
+     ippdefs17, ipps17,
      DtbEdit2,
      stmMatU1,
      matlab_matrix,matlab_mat,
@@ -386,11 +386,11 @@ begin
   for i:=0 to nb1-1 do
     case src.tpNum of
       G_single:  begin
-                    ippsSum(Psingle(p[i]),nb2,@ss);
+                    ippsSum_32f(Psingle(p[i]),nb2,@ss,ippAlgHintNone);
                     m[i]:=ss/nb2;
                  end;
       G_double:  begin
-                   ippsSum(Pdouble(p[i]),nb2,@dd);
+                   ippsSum_64f(Pdouble(p[i]),nb2,@dd);
                    m[i]:=dd/nb2;
                  end;
     end;
@@ -400,11 +400,11 @@ begin
   begin
     case src.tpNum of
       G_single:  begin
-                   ippsDotProd(Psingle(p[i]),Psingle(p[j]), nb2, Pdouble(@dd));
-                   Zvalue[i+1,j+1]:=dd/(nb2-1) - m[i]*m[j]*nb2/(nb2-1);
+                   ippsDotProd_32f(Psingle(p[i]),Psingle(p[j]), nb2, @ss);
+                   Zvalue[i+1,j+1]:=ss/(nb2-1) - m[i]*m[j]*nb2/(nb2-1);
                  end;
       G_double:  begin
-                   ippsDotProd(Pdouble(p[i]),Pdouble(p[j]), nb2, Pdouble(@dd));
+                   ippsDotProd_64f(Pdouble(p[i]),Pdouble(p[j]), nb2, Pdouble(@dd));
                    Zvalue[i+1,j+1]:=dd/(nb2-1) - m[i]*m[j]*nb2/(nb2-1);
                  end;
     end;
@@ -444,14 +444,14 @@ begin
   setLEngth(m,nb1);
   for i:=0 to nb1-1 do
   begin
-    ippsSum(Pdouble(@t[i,0]),nb2,@dd);
+    ippsSum_64f(Pdouble(@t[i,0]),nb2,@dd);
     m[i]:=dd/nb2;
   end;
 
   for i:=0 to nb1-1 do
   for j:=0 to i do
   begin
-    ippsDotProd(Pdouble(@t[i,0]),Pdouble(@t[j,0]),nb2,Pdouble(@dd));
+    ippsDotProd_64f(Pdouble(@t[i,0]),Pdouble(@t[j,0]),nb2,Pdouble(@dd));
     Zvalue[i+1,j+1]:=dd/(nb2-1) - m[i]*m[j]*nb2/(nb2-1);
 
     Zvalue[j+1,i+1]:=Zvalue[i+1,j+1];
@@ -893,21 +893,21 @@ begin
   begin
     case tpNum of
       G_single: begin
-                  ippsSum(Psingle(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@ss);
+                  ippsSum_32f(Psingle(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@ss,ippAlgHintNone);
                   Zvalue[1,j]:= ss/mat.Icount;
                 end;
       G_double: begin
-                  ippsSum(Pdouble(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@dd);
+                  ippsSum_64f(Pdouble(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@dd);
                   Zvalue[1,j]:= dd/mat.Icount;
                 end;
 
       G_singleComp: begin
-                      ippsSum(PsingleComp(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@sc);
+                      ippsSum_32fc(PsingleComp(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@sc,ippAlgHintNone);
                       PsingleComp(getP(1,j))^.x:=sc.x/mat.Icount;
                       PsingleComp(getP(1,j))^.y:=sc.y/mat.Icount;
                     end;
       G_doubleComp: begin
-                      ippsSum(PdoubleComp(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@dc);
+                      ippsSum_64fc(PdoubleComp(mat.getP(mat.Istart,j+mat.Jstart-1)),mat.Icount,@dc);
                       PdoubleComp(getP(1,j))^.x:=dc.x/mat.Icount;
                       PdoubleComp(getP(1,j))^.y:=dc.y/mat.Icount;
                     end;
@@ -970,19 +970,19 @@ begin
   IPPStest;
   case tpNum of
     G_single:        begin
-                       ippsNorm_L2(Psingle(tb),Icount*Jcount,@ss);
+                       ippsNorm_L2_32f(Psingle(tb),Icount*Jcount,@ss);
                        result:=ss;
                      end;
     G_double:        begin
-                       ippsNorm_L2(Pdouble(tb),Icount*Jcount,@dd);
+                       ippsNorm_L2_64f(Pdouble(tb),Icount*Jcount,@dd);
                        result:=dd;
                      end;
     G_singleComp:    begin
-                       ippsNorm_L2(PsingleComp(tb),Icount*Jcount,@ss);
-                       result:=ss;
+                       ippsNorm_L2_32fc64f(PsingleComp(tb),Icount*Jcount,@dd);
+                       result:=dd;
                      end;
     G_doubleComp:    begin
-                       ippsNorm_L2(Pdouble(tb),Icount*Jcount,@dd);
+                       ippsNorm_L2_64fc64f(PdoubleComp(tb),Icount*Jcount,@dd);
                        result:=dd;
                      end;
   end;
@@ -1003,17 +1003,17 @@ begin
 
   IPPStest;
   case tpNum of
-    G_single:      ippsMulC(1/w,Psingle(tb),Icount*Jcount);
-    G_double:      ippsMulC(1/w,Pdouble(tb),Icount*Jcount);
+    G_single:      ippsMulC_32f_I(1/w,Psingle(tb),Icount*Jcount);
+    G_double:      ippsMulC_64f_I(1/w,Pdouble(tb),Icount*Jcount);
     G_singleComp:  begin
                      sc.x:=1/w;
                      sc.y:=0;
-                     ippsMulC(sc,PsingleComp(tb),Icount*Jcount);
+                     ippsMulC_32fc_I(sc,PsingleComp(tb),Icount*Jcount);
                    end;
     G_doubleComp:  begin
                      dc.x:=1/w;
                      dc.y:=0;
-                     ippsMulC(dc,PdoubleComp(tb),Icount*Jcount);
+                     ippsMulC_64fc_I(dc,PdoubleComp(tb),Icount*Jcount);
                    end;
   end;
 
@@ -1629,14 +1629,14 @@ begin
   setLEngth(m,nb1);
   for i:=0 to nb1-1 do
   begin
-    ippsSum(Pdouble(@t[i,0]),nb2,@dd);
+    ippsSum_64f(Pdouble(@t[i,0]),nb2,@dd);
     m[i]:=dd/nb2;
   end;
 
   for i:=0 to nb1-1 do
   for j:=0 to i do
   begin
-    ippsDotProd(Pdouble(@t[i,0]),Pdouble(@t[j,0]),nb2,Pdouble(@dd));
+    ippsDotProd_64f(Pdouble(@t[i,0]),Pdouble(@t[j,0]),nb2,Pdouble(@dd));
 
     dest.Zvalue[i+1,j+1]:=dd/(nb2-1) - m[i]*m[j]*nb2/(nb2-1);
     dest.Zvalue[j+1,i+1]:=dest.Zvalue[i+1,j+1];

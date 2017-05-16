@@ -6,7 +6,7 @@ interface
 uses sysutils,math,
      util1,Dgraphic,
      stmdef,stmObj,stmvec1,stmMat1,VlistA1,stmMlist,
-     ipps, ippsOvr,
+     ippDefs17, ipps17,
      stmISPL1,stmvecU1,ncdef2;
 
 
@@ -77,12 +77,12 @@ begin
   for i:=0 to nb-1 do
     inc(Idis[src^[i]-min]);
 
-  ippsConvert(Plongint(@Idis[0]), Pdouble(@dis[0]), nbDis);
-  ippsMulC(1/nb, Pdouble(@dis[0]), nbDis );
-  ippsthreshold_LT( Pdouble(@dis[0]), nbDis, 1E-20);
-  ippsLn(@dis[0],Pdouble(@logDis[0]),nbdis);
+  ippsConvert_32s64f(Plongint(@Idis[0]), Pdouble(@dis[0]), nbDis);
+  ippsMulC_64f_I(1/nb, Pdouble(@dis[0]), nbDis );
+  ippsthreshold_LT_64f_I( Pdouble(@dis[0]), nbDis, 1E-20);
+  ippsLn_64f(@dis[0],Pdouble(@logDis[0]),nbdis);
 
-  ippsDotProd(Pdouble(@dis[0]), Pdouble(@logDis[0]), nbDis,@result);
+  ippsDotProd_64f(Pdouble(@dis[0]), Pdouble(@logDis[0]), nbDis,@result);
 end;
 
 function fonctionSimpleEntropy(var vec:Tvector):float;
@@ -272,12 +272,12 @@ begin
       proVextract(Vdum0,x1A,x2A,Vdum1);
       NewSampling(Vdum1,Vdum2,dt);
 
-      if dv<=0 then ippsMulC(trunc(dt/src.vectors[f+1].dxu), Vdum2.tbS, Vdum2.Icount );
+      if dv<=0 then ippsMulC_32f_I(trunc(dt/src.vectors[f+1].dxu), Vdum2.tbS, Vdum2.Icount );
 
       if f=0 then setLength(tb,src.count,Vdum2.Icount);
 
-      ippsAddC(-mini , Vdum2.tbS, Vdum2.Icount );
-      if dV>0 then ippsMulC(1/dV, Vdum2.tbS, Vdum2.Icount );
+      ippsAddC_32f_I(-mini , Vdum2.tbS, Vdum2.Icount );
+      if dV>0 then ippsMulC_32f_I(1/dV, Vdum2.tbS, Vdum2.Icount );
 
       if dV<0 then
       begin
@@ -289,7 +289,7 @@ begin
             else tb[f,i]:=ceil(w);
         end
       end
-      else ippsConvert(Vdum2.tbS,@tb[f,0],Vdum2.Icount);
+      else ippsConvert_32f32s_Sfs(Vdum2.tbS,@tb[f,0],Vdum2.Icount,ippRndNear,0);
     end;
 
     case mode of

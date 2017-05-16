@@ -7,7 +7,7 @@ uses windows,classes,
      util1,Gdos,Dgraphic,
      stmdef,stmobj,
      NcDef2,stmpg,
-     ippdefs,ipps,ippsovr,
+     ippdefs17,ipps17,ipp17ex,
      stmvec1,stmMat1,
      VlistA1;
 
@@ -31,6 +31,9 @@ implementation
 
 // Calcul en Double Précision
 procedure SNRanalysisD(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy,matPhase,matPhaseSigma:TMatrix;zero:float);
+begin
+end;
+(*
 var
   i,j,k:integer;
   vecs:array of array of double;
@@ -112,18 +115,18 @@ begin
   setlength(PhaseY,nbpt);
 
   setlength(vecOne,nbpt);
-  ippsSet(1,Pdouble(@vecOne[0]),nbpt);
+  ippsSet_64f(1,Pdouble(@vecOne[0]),nbpt);
 
   for i:=0 to nbfq-1 do
   begin                                                                                             { Pour chaque fréquence }
-     ippsZero(Pdouble(@vecSum1[0]),nbpt);
-     ippsZero(Pdouble(@vecSum2[0]),nbpt);
-     ippsZero(Pdouble(@vecSumSqr1[0]),nbpt);
-     ippsZero(Pdouble(@vecSumSqr2[0]),nbpt);
-     ippsZero(Pdouble(@vecSumMod[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSum1[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSum2[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSumSqr1[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSumSqr2[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSumMod[0]),nbpt);
 
-     ippsZero(Pdouble(@vecSumPhaseX[0]),nbpt);
-     ippsZero(Pdouble(@vecSumPhaseY[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSumPhaseX[0]),nbpt);
+     ippsZero_64f(Pdouble(@vecSumPhaseY[0]),nbpt);
                                                                                                     { Ranger les parties réelle et imag dans VecFil1 et VecFil2}
      with tabFil.vectors[i+1] do
      begin
@@ -143,57 +146,57 @@ begin
 
      for j:=0 to nbVec-1 do                                                                         { Balayer la liste de vecteurs }
      begin
-         ippsConv(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil1[0]),nbptFil,Pdouble(@vecTemp1[0]));     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
-         ippsConv(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil2[0]),nbptFil,Pdouble(@vecTemp2[0]));     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
+         ippsConv_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil1[0]),nbptFil,Pdouble(@vecTemp1[0]));     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
+         ippsConv_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil2[0]),nbptFil,Pdouble(@vecTemp2[0]));     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
 
          if Fphase then
          begin
-           ippsPhase(Pdouble(@vecTemp1[ind0]),Pdouble(@vecTemp2[ind0]),Pdouble(@vectemp3[0]), nbpt);                    { Phase actuelle }
-           ippsPolarToCart( Pdouble(@vecOne[0]), Pdouble(@vectemp3[0]),Pdouble(@PhaseX[0]),Pdouble(@PhaseY[0]), nbpt);  { Proj X et Y de la phase }
+           ippsPhase_64f(Pdouble(@vecTemp1[ind0]),Pdouble(@vecTemp2[ind0]),Pdouble(@vectemp3[0]), nbpt);                    { Phase actuelle }
+           ippsPolarToCart_64f( Pdouble(@vecOne[0]), Pdouble(@vectemp3[0]),Pdouble(@PhaseX[0]),Pdouble(@PhaseY[0]), nbpt);  { Proj X et Y de la phase }
 
-           ippsAdd(Pdouble(@PhaseX[0]),Pdouble(@vecSumPhaseX[0]),nbpt);                          { Somme des proj X }
-           ippsAdd(Pdouble(@PhaseY[0]),Pdouble(@vecSumPhaseY[0]),nbpt);                          { Somme des proj Y }
+           ippsAdd_64f_I(Pdouble(@PhaseX[0]),Pdouble(@vecSumPhaseX[0]),nbpt);                          { Somme des proj X }
+           ippsAdd_64f_I(Pdouble(@PhaseY[0]),Pdouble(@vecSumPhaseY[0]),nbpt);                          { Somme des proj Y }
          end;
 
-         ippsAdd(Pdouble(@vecTemp1[ind0]),Pdouble(@vecSum1[0]),nbpt);                               { Somme des Re dans VecSum1 }
-         ippsSqr(Pdouble(@vecTemp1[ind0]),nbpt);
-         ippsAdd(Pdouble(@vecTemp1[ind0]),Pdouble(@vecSumSqr1[0]),nbpt);                            { Somme des carrés des Re dans VecSumSqr1 }
+         ippsAdd_64f_I(Pdouble(@vecTemp1[ind0]),Pdouble(@vecSum1[0]),nbpt);                               { Somme des Re dans VecSum1 }
+         ippsSqr_64f_I(Pdouble(@vecTemp1[ind0]),nbpt);
+         ippsAdd_64f_I(Pdouble(@vecTemp1[ind0]),Pdouble(@vecSumSqr1[0]),nbpt);                            { Somme des carrés des Re dans VecSumSqr1 }
 
 
-         ippsAdd(Pdouble(@vecTemp2[ind0]),Pdouble(@vecSum2[0]),nbpt);                               { Somme des Im dans VecSum2 }
-         ippsSqr(Pdouble(@vecTemp2[ind0]),nbpt);
-         ippsAdd(Pdouble(@vecTemp2[ind0]),Pdouble(@vecSumSqr2[0]),nbpt);                            { Somme des carrés des Im dans VecSumSqr2 }
+         ippsAdd_64f_I(Pdouble(@vecTemp2[ind0]),Pdouble(@vecSum2[0]),nbpt);                               { Somme des Im dans VecSum2 }
+         ippsSqr_64f_I(Pdouble(@vecTemp2[ind0]),nbpt);
+         ippsAdd_64f_I(Pdouble(@vecTemp2[ind0]),Pdouble(@vecSumSqr2[0]),nbpt);                            { Somme des carrés des Im dans VecSumSqr2 }
 
-         ippsAdd(Pdouble(@vecTemp2[ind0]),Pdouble(@vecTemp1[ind0]),nbpt);                           { Somme du carré de conv1 et du carré de conv2 }
-         ippsSqrt(Pdouble(@vecTemp1[ind0]),nbpt);                                                   { prendre la racine ==> module de conv }
-         ippsAdd(Pdouble(@vecTemp1[ind0]),Pdouble(@vecSumMod[0]),nbpt);                             { somme des modules }
+         ippsAdd_64f_I(Pdouble(@vecTemp2[ind0]),Pdouble(@vecTemp1[ind0]),nbpt);                           { Somme du carré de conv1 et du carré de conv2 }
+         ippsSqrt_64f_I(Pdouble(@vecTemp1[ind0]),nbpt);                                                   { prendre la racine ==> module de conv }
+         ippsAdd_64f_I(Pdouble(@vecTemp1[ind0]),Pdouble(@vecSumMod[0]),nbpt);                             { somme des modules }
      end;
      // A ce stade, on dispose de vecSum1, vecSum2, vecSumSqr1, vecSumSqr2 et vecSumMod
      // et aussi VecSumPhaseX, vecSumPhaseY
 
      if Fphase then
      begin
-       ippsPhase(Pdouble(@vecSum1[0]),Pdouble(@vecSum2[0]),Pdouble(@vectemp3[0]), nbpt);             { Phase résultante }
+       ippsPhase_64f(Pdouble(@vecSum1[0]),Pdouble(@vecSum2[0]),Pdouble(@vectemp3[0]), nbpt);             { Phase résultante }
 
-       ippsMagnitude(Pdouble(@vecSumPhaseX[0]),Pdouble(@vecSumPhaseY[0]),Pdouble(@vectemp4[0]), nbpt);
-       ippsMulc(1/nbvec, Pdouble(@vectemp4[0]), nbpt);
+       ippsMagnitude_64f(Pdouble(@vecSumPhaseX[0]),Pdouble(@vecSumPhaseY[0]),Pdouble(@vectemp4[0]), nbpt);
+       ippsMulc_64f_I(1/nbvec, Pdouble(@vectemp4[0]), nbpt);
      end;
 
-     ippsSqr(Pdouble(@vecSum1[0]),nbpt);
-     ippsSqr(Pdouble(@vecSum2[0]),nbpt);
-     ippsAdd(Pdouble(@vecSum2[0]),Pdouble(@vecSum1[0]),nbpt);           { vecSum1 = (Sx)² + (Sy)² }
-     ippsMulC(1/nbvec,Pdouble(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/N }
+     ippsSqr_64f_I(Pdouble(@vecSum1[0]),nbpt);
+     ippsSqr_64f_I(Pdouble(@vecSum2[0]),nbpt);
+     ippsAdd_64f_I(Pdouble(@vecSum2[0]),Pdouble(@vecSum1[0]),nbpt);           { vecSum1 = (Sx)² + (Sy)² }
+     ippsMulC_64f_I(1/nbvec,Pdouble(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/N }
 
-     ippsAdd(Pdouble(@vecSumSqr2[0]),Pdouble(@vecSumSqr1[0]),nbpt);     { Sx2 + Sy2 }
-     ippssub(Pdouble(@vecSum1[0]),Pdouble(@vecSumSqr1[0]),nbpt);        { Sx2+Sy2- ((Sx)² + (Sy)²)/N   }
-     ippsAbs(Pdouble(@vecSumSqr1[0]),nbpt);                             { rendre positif à coup sûr }
-     ippsMulC(1/(nbvec-1),Pdouble(@vecSumSqr1[0]),nbpt);                { sigma² =  (((Sx)² + (Sy)²)/N  - (Sx2+Sy2)) /(N-1)   }
-     ippsSqrt(Pdouble(@vecSumSqr1[0]),nbpt);                            { sigma }
+     ippsAdd_64f_I(Pdouble(@vecSumSqr2[0]),Pdouble(@vecSumSqr1[0]),nbpt);     { Sx2 + Sy2 }
+     ippssub_64f_I(Pdouble(@vecSum1[0]),Pdouble(@vecSumSqr1[0]),nbpt);        { Sx2+Sy2- ((Sx)² + (Sy)²)/N   }
+     ippsAbs_64f_I(Pdouble(@vecSumSqr1[0]),nbpt);                             { rendre positif à coup sûr }
+     ippsMulC_64f_I(1/(nbvec-1),Pdouble(@vecSumSqr1[0]),nbpt);                { sigma² =  (((Sx)² + (Sy)²)/N  - (Sx2+Sy2)) /(N-1)   }
+     ippsSqrt_64f_I(Pdouble(@vecSumSqr1[0]),nbpt);                            { sigma }
 
 
-     ippsMulC(1/nbvec,Pdouble(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/(N*N)  }
-     ippsSqrt(Pdouble(@vecSum1[0]),nbpt);                               { vecSum1 = sqrt(((Sx)² + (Sy)²)/(N*N)) =  moy}
-     ippsMulC(1/Nbvec, Pdouble(@vecSumMod[0]),nbpt);                    { moyenne des modules }
+     ippsMulC_64f_I(1/nbvec,Pdouble(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/(N*N)  }
+     ippsSqrt_64f_I(Pdouble(@vecSum1[0]),nbpt);                               { vecSum1 = sqrt(((Sx)² + (Sy)²)/(N*N)) =  moy}
+     ippsMulC_64f_I(1/Nbvec, Pdouble(@vecSumMod[0]),nbpt);                    { moyenne des modules }
 
      for k:=0 to nbpt-1 do
      begin
@@ -218,9 +221,13 @@ begin
 
   IPPSend;
 end;
+*)
 
 //Calcul en Simple Précision
 procedure SNRanalysisS(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy,matPhase,matPhaseSigma:TMatrix;zero:float);
+begin
+end;
+(*
 var
   i,j,k:integer;
   vecs:array of array of single;
@@ -301,18 +308,18 @@ begin
   setlength(PhaseY,nbpt);
 
   setlength(vecOne,nbpt);
-  ippsSet(1,Psingle(@vecOne[0]),nbpt);
+  ippsSet_32f(1,Psingle(@vecOne[0]),nbpt);
 
   for i:=0 to nbfq-1 do
   begin                                                                                             { Pour chaque fréquence }
-     ippsZero(Psingle(@vecSum1[0]),nbpt);
-     ippsZero(Psingle(@vecSum2[0]),nbpt);
-     ippsZero(Psingle(@vecSumSqr1[0]),nbpt);
-     ippsZero(Psingle(@vecSumSqr2[0]),nbpt);
-     ippsZero(Psingle(@vecSumMod[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSum1[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSum2[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSumSqr1[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSumSqr2[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSumMod[0]),nbpt);
 
-     ippsZero(Psingle(@vecSumPhaseX[0]),nbpt);
-     ippsZero(Psingle(@vecSumPhaseY[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSumPhaseX[0]),nbpt);
+     ippsZero_32f(Psingle(@vecSumPhaseY[0]),nbpt);
                                                                                                     { Ranger les parties réelle et imag dans VecFil1 et VecFil2}
      with tabFil.vectors[i+1] do
      begin
@@ -332,57 +339,57 @@ begin
 
      for j:=0 to nbVec-1 do                                                                         { Balayer la liste de vecteurs }
      begin
-         ippsConv(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil1[0]),nbptFil,Psingle(@vecTemp1[0]));     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
-         ippsConv(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil2[0]),nbptFil,Psingle(@vecTemp2[0]));     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
+         ippsConv_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil1[0]),nbptFil,Psingle(@vecTemp1[0]));     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
+         ippsConv_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil2[0]),nbptFil,Psingle(@vecTemp2[0]));     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
 
          if Fphase then
          begin
-           ippsPhase(Psingle(@vecTemp1[ind0]),Psingle(@vecTemp2[ind0]),Psingle(@vectemp3[0]), nbpt);                    { Phase actuelle }
-           ippsPolarToCart( Psingle(@vecOne[0]), Psingle(@vectemp3[0]),Psingle(@PhaseX[0]),Psingle(@PhaseY[0]), nbpt);  { Proj X et Y de la phase }
+           ippsPhase_32f(Psingle(@vecTemp1[ind0]),Psingle(@vecTemp2[ind0]),Psingle(@vectemp3[0]), nbpt);                    { Phase actuelle }
+           ippsPolarToCart_32f( Psingle(@vecOne[0]), Psingle(@vectemp3[0]),Psingle(@PhaseX[0]),Psingle(@PhaseY[0]), nbpt);  { Proj X et Y de la phase }
 
-           ippsAdd(Psingle(@PhaseX[ind0]),Psingle(@vecSumPhaseX[0]),nbpt);                          { Somme des proj X }
-           ippsAdd(Psingle(@PhaseY[ind0]),Psingle(@vecSumPhaseY[0]),nbpt);                          { Somme des proj Y }
+           ippsAdd_32f_I(Psingle(@PhaseX[ind0]),Psingle(@vecSumPhaseX[0]),nbpt);                          { Somme des proj X }
+           ippsAdd_32f_I(Psingle(@PhaseY[ind0]),Psingle(@vecSumPhaseY[0]),nbpt);                          { Somme des proj Y }
          end;
 
-         ippsAdd(Psingle(@vecTemp1[ind0]),Psingle(@vecSum1[0]),nbpt);                               { Somme des Re dans VecSum1 }
-         ippsSqr(Psingle(@vecTemp1[ind0]),nbpt);
-         ippsAdd(Psingle(@vecTemp1[ind0]),Psingle(@vecSumSqr1[0]),nbpt);                            { Somme des carrés des Re dans VecSumSqr1 }
+         ippsAdd_32f_I(Psingle(@vecTemp1[ind0]),Psingle(@vecSum1[0]),nbpt);                               { Somme des Re dans VecSum1 }
+         ippsSqr_32f_I(Psingle(@vecTemp1[ind0]),nbpt);
+         ippsAdd_32f_I(Psingle(@vecTemp1[ind0]),Psingle(@vecSumSqr1[0]),nbpt);                            { Somme des carrés des Re dans VecSumSqr1 }
 
 
-         ippsAdd(Psingle(@vecTemp2[ind0]),Psingle(@vecSum2[0]),nbpt);                               { Somme des Im dans VecSum2 }
-         ippsSqr(Psingle(@vecTemp2[ind0]),nbpt);
-         ippsAdd(Psingle(@vecTemp2[ind0]),Psingle(@vecSumSqr2[0]),nbpt);                            { Somme des carrés des Im dans VecSumSqr2 }
+         ippsAdd_32f_I(Psingle(@vecTemp2[ind0]),Psingle(@vecSum2[0]),nbpt);                               { Somme des Im dans VecSum2 }
+         ippsSqr_32f_I(Psingle(@vecTemp2[ind0]),nbpt);
+         ippsAdd_32f_I(Psingle(@vecTemp2[ind0]),Psingle(@vecSumSqr2[0]),nbpt);                            { Somme des carrés des Im dans VecSumSqr2 }
 
-         ippsAdd(Psingle(@vecTemp2[ind0]),Psingle(@vecTemp1[ind0]),nbpt);                           { Somme du carré de conv1 et du carré de conv2 }
-         ippsSqrt(Psingle(@vecTemp1[ind0]),nbpt);                                                   { prendre la racine ==> module de conv }
-         ippsAdd(Psingle(@vecTemp1[ind0]),Psingle(@vecSumMod[0]),nbpt);                             { somme des modules }
+         ippsAdd_32f_I(Psingle(@vecTemp2[ind0]),Psingle(@vecTemp1[ind0]),nbpt);                           { Somme du carré de conv1 et du carré de conv2 }
+         ippsSqrt_32f_I(Psingle(@vecTemp1[ind0]),nbpt);                                                   { prendre la racine ==> module de conv }
+         ippsAdd_32f_I(Psingle(@vecTemp1[ind0]),Psingle(@vecSumMod[0]),nbpt);                             { somme des modules }
      end;
      // A ce stade, on dispose de vecSum1, vecSum2, vecSumSqr1, vecSumSqr2 et vecSumMod
      // et aussi VecSumPhaseX, vecSumPhaseY
 
      if Fphase then
      begin
-       ippsPhase(Psingle(@vecSum1[0]),Psingle(@vecSum2[0]),Psingle(@vectemp3[0]), nbpt);             { Phase résultante }
+       ippsPhase_32f(Psingle(@vecSum1[0]),Psingle(@vecSum2[0]),Psingle(@vectemp3[0]), nbpt);             { Phase résultante }
 
-       ippsMagnitude(Psingle(@vecSumPhaseX[0]),Psingle(@vecSumPhaseY[0]),Psingle(@vectemp4[0]), nbpt);
-       ippsMulc(1/nbvec, Psingle(@vectemp4[0]), nbpt);
+       ippsMagnitude_32f(Psingle(@vecSumPhaseX[0]),Psingle(@vecSumPhaseY[0]),Psingle(@vectemp4[0]), nbpt);
+       ippsMulc_32f_I(1/nbvec, Psingle(@vectemp4[0]), nbpt);
      end;
 
-     ippsSqr(Psingle(@vecSum1[0]),nbpt);
-     ippsSqr(Psingle(@vecSum2[0]),nbpt);
-     ippsAdd(Psingle(@vecSum2[0]),Psingle(@vecSum1[0]),nbpt);           { vecSum1 = (Sx)² + (Sy)² }
-     ippsMulC(1/nbvec,Psingle(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/N }
+     ippsSqr_32f_I(Psingle(@vecSum1[0]),nbpt);
+     ippsSqr_32f_I(Psingle(@vecSum2[0]),nbpt);
+     ippsAdd_32f_I(Psingle(@vecSum2[0]),Psingle(@vecSum1[0]),nbpt);           { vecSum1 = (Sx)² + (Sy)² }
+     ippsMulC_32f_I(1/nbvec,Psingle(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/N }
 
-     ippsAdd(Psingle(@vecSumSqr2[0]),Psingle(@vecSumSqr1[0]),nbpt);     { Sx2 + Sy2 }
-     ippssub(Psingle(@vecSum1[0]),Psingle(@vecSumSqr1[0]),nbpt);        { ((Sx)² + (Sy)²)/N  - (Sx2+Sy2) }
-     ippsabs(Psingle(@vecSumSqr1[0]),nbpt);                             { rendre le résultat positif à coup sûr }
-     ippsMulC(1/(nbvec-1),Psingle(@vecSumSqr1[0]),nbpt);                { sigma² =  (((Sx)² + (Sy)²)/N  - (Sx2+Sy2)) /(N-1)   }
-     ippsSqrt(Psingle(@vecSumSqr1[0]),nbpt);                            { sigma }
+     ippsAdd_32f_I(Psingle(@vecSumSqr2[0]),Psingle(@vecSumSqr1[0]),nbpt);     { Sx2 + Sy2 }
+     ippssub_32f_I(Psingle(@vecSum1[0]),Psingle(@vecSumSqr1[0]),nbpt);        { ((Sx)² + (Sy)²)/N  - (Sx2+Sy2) }
+     ippsabs_32f_I(Psingle(@vecSumSqr1[0]),nbpt);                             { rendre le résultat positif à coup sûr }
+     ippsMulC_32f_I(1/(nbvec-1),Psingle(@vecSumSqr1[0]),nbpt);                { sigma² =  (((Sx)² + (Sy)²)/N  - (Sx2+Sy2)) /(N-1)   }
+     ippsSqrt_32f_I(Psingle(@vecSumSqr1[0]),nbpt);                            { sigma }
 
 
-     ippsMulC(1/nbvec,Psingle(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/(N*N)  }
-     ippsSqrt(Psingle(@vecSum1[0]),nbpt);                               { vecSum1 = sqrt(((Sx)² + (Sy)²)/(N*N)) =  moy}
-     ippsMulC(1/Nbvec, Psingle(@vecSumMod[0]),nbpt);                    { moyenne des modules }
+     ippsMulC_32f_I(1/nbvec,Psingle(@vecSum1[0]),nbpt);                       { vecSum1 = ((Sx)² + (Sy)²)/(N*N)  }
+     ippsSqrt_32f_I(Psingle(@vecSum1[0]),nbpt);                               { vecSum1 = sqrt(((Sx)² + (Sy)²)/(N*N)) =  moy}
+     ippsMulC_32f_I(1/Nbvec, Psingle(@vecSumMod[0]),nbpt);                    { moyenne des modules }
 
      for k:=0 to nbpt-1 do
      begin
@@ -407,7 +414,7 @@ begin
 
   IPPSend;
 end;
-
+*)
 
 (*
 procedure SNRanalysisS(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy:TMatrix;zero:float);

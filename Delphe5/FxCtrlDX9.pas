@@ -35,7 +35,7 @@ uses
   myAvi0,BMex1,
 
   stmvec1,stmMat1,stmMList,
-  ippdefs,ipps,ippsovr,
+  ippdefs17,ipps17,
   ippMat1,stmMatU1,
 
   EvtAcq1,
@@ -2587,8 +2587,8 @@ begin
   proMresizeImage(Mtempo,mat2,1/N,-0.49999,1/N,-0.49999,1);
   with mat2 do
   begin
-    ippsthreshold(tbS,Icount*Jcount,0,ippCmpLess);
-    ippsthreshold(tbS,Icount*Jcount,255,ippCmpGreater);
+    ippsthreshold_32f_I(tbS,Icount*Jcount,0,ippCmpLess);
+    ippsthreshold_32f_I(tbS,Icount*Jcount,255,ippCmpGreater);
   end;
   finally
   Mfil.Free;

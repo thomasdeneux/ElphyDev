@@ -5,7 +5,7 @@ interface
 
 uses classes,sysUtils,
      util1,Gdos,stmobj,ElphyFormat,varconf1,NcDef2, debug0,
-     ippdefs,ipps,ippsovr,
+     ippdefs17,ipps17, 
      stmImaging,
      objFile1;
 

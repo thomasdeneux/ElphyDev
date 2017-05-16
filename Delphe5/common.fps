@@ -1427,7 +1427,7 @@ plus grand que celui du signal. Dans les calculs, on intercale des points par in
 
  @ul TLPRfilter(mode) @notul
      Module correspondant au schéma ci-dessous:
-     @(@ d:\delphe5\LPRfilter.bmp)
+     @(@ LPRfilter.bmp)
 
 
      La sortie attaque un circuit redresseur (x²) suivi d'un filtre passe-bas (LP). Le signal obtenu
@@ -1448,7 +1448,7 @@ divise le signal d'entrée.
 
  @ul THLPRfilter(mode) @notul
      Module correspondant au schéma ci-dessous:
-     @(@ d:\delphe5\HLPRfilter.bmp)
+     @(@ HLPRfilter.bmp)
 
      Les modules "x²" redressent leur entrée
      LP est filtre passe-bas du premier ordre
@@ -1729,7 +1729,7 @@ alignement du texte, type de biseau et texte).
 
  Voici un exemple:
 
-  @(@ d:\delphe5\arrows.bmp)
+  @(@ arrows.bmp)
 
  Après avoir créé l'objet ( constructeur create@ ), il suffit d'appeler AddPoint@ pour chaque flêche que l'on veut afficher.
 
@@ -1824,7 +1824,7 @@ d'abscisse et d'ordonnée entière situés à une distance du centre inférieure ou é
   Quand on crée l'objet (constructeur create@), on donne un argument qui fixe la valeur de Order.
   Dans l'exemple ci-dessous , on considère le réseau d'ordre 3
 
-  @(@ d:\delphe5\HexaMaille.bmp)
+  @(@ HexaMaille.bmp)
 
   On vérifiera que le nombre de points est  37
   A chacun des points, on va faire correspondre un nombre rangé dans la propriété Zvalue@
@@ -1833,7 +1833,7 @@ d'abscisse et d'ordonnée entière situés à une distance du centre inférieure ou é
   A l'affichage, chaque point du réseau sera représenté par un petit hexagone coloré centré sur le point.
   La couleur correspondra à Zvalue, en tenant compte de l'échelle de couleur (voir Zmin@, Zmax@, PalColor@, PalName@, etc...)
 
-  @(@ d:\delphe5\HexaPlot.bmp)
+  @(@ HexaPlot.bmp)
 
   Avec BuildContour@ , on peut construire les contours correspondant à un certain seuil 
 

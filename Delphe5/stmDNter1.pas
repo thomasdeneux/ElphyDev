@@ -15,7 +15,7 @@ uses windows,classes,math,
      matrix0,chrono0,
      Gnoise1,
      stmMlist,
-     IPPdefs,IPPS,IPPSovr,mathKernel0,
+     IPPdefs17, IPPS17 ,mathKernel0,
      Cuda1, DNkernel1;
 
 
@@ -562,7 +562,7 @@ begin
     k:= i +3*(x+Nx*y);
     move(varP[i].Vector[x+1,y+1].tb^,pstw[k*Npstw],Npstw*sizeof(single));
     Vcount[k]:= Taverage(varP[i].Vector[x+1,y+1]).count;
-    ippsMulC(Vcount[k],@pstw[k*Npstw],Npstw);
+    ippsMulC_32f_I(Vcount[k],@pstw[k*Npstw],Npstw);
   end;
   // calculer les Vcount
   k:=0;
@@ -602,7 +602,7 @@ begin
       z := Vcode[i*Ncode+code];
       p:=@Pstw[ z*Npstw ];
 
-      ippsAdd(Psingle(@Vsource[t]),p,Npstw);
+      ippsAdd_32f_I(Psingle(@Vsource[t]),p,Npstw);
     end;
   end;
 
@@ -613,7 +613,7 @@ begin
   for y:=0 to ny-1 do
   begin
     k:= i +3*(x+Nx*y);
-    ippsMulC(1/Vcount[k],@pstw[k*Npstw],Npstw);
+    ippsMulC_32f_I(1/Vcount[k],@pstw[k*Npstw],Npstw);
 
     move(pstw[k*Npstw], varP[i].Vector[x+1,y+1].tb^, Npstw*sizeof(single));
     Taverage(varP[i].Vector[x+1,y+1]).count:=Vcount[k];
@@ -678,7 +678,7 @@ begin
 
       pp[z,x,y]:= vv.tb;
       ppCount[z,x,y]:=vv.Count;
-      ippsMulC(vv.count,Psingle(vv.tb),Ncount);
+      ippsMulC_32f_I(vv.count,Psingle(vv.tb),Ncount);
     end;
 
     for i:=0 to cycleCount-1 do
@@ -706,7 +706,7 @@ begin
     begin
       vv:=pstw[z+1].average(x+1,y+1);
       vv.Count:=ppCount[z,x,y];
-      if vv.Count<>0 then ippsMulC(1/vv.count,Psingle(vv.tb),Ncount);
+      if vv.Count<>0 then ippsMulC_32f_I(1/vv.count,Psingle(vv.tb),Ncount);
     end;
 
   FINALLY
@@ -737,7 +737,7 @@ begin
 
       pp[z,x,y]:= vv.tb;
       ppCount[z,x,y]:=vv.Count;
-      ippsMulC(vv.count,Pdouble(vv.tb),Ncount);
+      ippsMulC_64f_I(vv.count,Pdouble(vv.tb),Ncount);
     end;
 
     for i:=0 to cycleCount-1 do
@@ -750,7 +750,7 @@ begin
         z:=getState(x,y,i);
         if (idx>=idxMin) and (idx<=idxMax) then
         begin
-          ippsAdd(Pdouble(@PtabDouble(tbSource)^[idx]) , Pdouble(pp[z,x,y]), Ncount);
+          ippsAdd_64f_I(Pdouble(@PtabDouble(tbSource)^[idx]) , Pdouble(pp[z,x,y]), Ncount);
           inc(ppCount[z,x,y]);
         end;
       end;
@@ -762,7 +762,7 @@ begin
     begin
       vv:=pstw[z+1].average(x+1,y+1);
       vv.Count:=ppCount[z,x,y];
-      if vv.Count<>0 then ippsMulC(1/vv.count,Pdouble(vv.tb),Ncount);
+      if vv.Count<>0 then ippsMulC_64f_I(1/vv.count,Pdouble(vv.tb),Ncount);
     end;
 
     IPPSend;

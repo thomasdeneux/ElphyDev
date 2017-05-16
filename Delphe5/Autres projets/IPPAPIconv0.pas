@@ -258,8 +258,8 @@ begin
     begin
       while stmot='[' do
       begin
-        lireUlex;                        {exemple:  freq[2]  on vire les crochets}
-        lireUlex;
+        lireUlex;                        { exemple:  freq[2]  on vire les crochets}
+        if stmot<>']' then lireUlex;     { on pourrait avoir freq[] }
         lireUlex;
       end;
       isvar[nbName-1,nbP-1]:=true;       {et on ajoute VAR . A vérifier !  }
@@ -291,7 +291,7 @@ begin
     else stDec:=stDec+':'+stRes+';';
 
 
-  GwritelnT(fD,stDec);
+  writeln(fD,stDec);
 end;
 
 function Tform1.validFunc:boolean;
@@ -494,7 +494,7 @@ begin
   if (k>1) and VF then
   begin
     stDec:=stDec;
-    GwritelnT(fD,stDec+'overload;');
+    writeln(fD,stDec+'overload;');
 
     with stImp do                               { Ecriture de l'implémentation }
     begin
@@ -518,7 +518,7 @@ begin
       add('');
     end
   end
-  else GwritelnT(fD,'{ '+stDec+' }');
+  else writeln(fD,'{ '+stDec+' }');
 
 
 end;
@@ -529,52 +529,52 @@ procedure Tform1.BuildInit;
 var
   i:integer;
 begin
-  GwritelnT(fD,'');
-  GwritelnT(fD,'function Init'+Fmaj(nomduFichier1(stDest))+':boolean;');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'IMPLEMENTATION');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'var');
-  GwritelnT(fD,'  hh:integer;');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'function getProc(hh:Thandle;st:string):pointer;');
-  GwritelnT(fD,'begin');
-  GwritelnT(fD,'  result:=GetProcAddress(hh,Pchar(st));');
-  GwritelnT(fD,'  if result=nil then messageCentral(st+''=nil'');');
-  GwritelnT(fD,'               {else messageCentral(st+'' OK'');}');
-  GwritelnT(fD,'end;');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'function Init'+Fmaj(nomduFichier1(stDest))+':boolean;');
-  GwritelnT(fD,'begin');
-  GwritelnT(fD,'  result:=true;');
-  GwritelnT(fD,'  if hh<>0 then exit;');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'  hh:=GloadLibrary(DLLname);');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'  result:=(hh<>0);');
-  GwritelnT(fD,'  if not result then exit;');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'');
+  writeln(fD,'');
+  writeln(fD,'function Init'+Fmaj(nomduFichier1(stDest))+':boolean;');
+  writeln(fD,'');
+  writeln(fD,'IMPLEMENTATION');
+  writeln(fD,'');
+  writeln(fD,'var');
+  writeln(fD,'  hh:integer;');
+  writeln(fD,'');
+  writeln(fD,'');
+  writeln(fD,'function getProc(hh:Thandle;st:string):pointer;');
+  writeln(fD,'begin');
+  writeln(fD,'  result:=GetProcAddress(hh,Pchar(st));');
+  writeln(fD,'  if result=nil then messageCentral(st+''=nil'');');
+  writeln(fD,'               {else messageCentral(st+'' OK'');}');
+  writeln(fD,'end;');
+  writeln(fD,'');
+  writeln(fD,'function Init'+Fmaj(nomduFichier1(stDest))+':boolean;');
+  writeln(fD,'begin');
+  writeln(fD,'  result:=true;');
+  writeln(fD,'  if hh<>0 then exit;');
+  writeln(fD,'');
+  writeln(fD,'  hh:=GloadLibrary(DLLname);');
+  writeln(fD,'');
+  writeln(fD,'  result:=(hh<>0);');
+  writeln(fD,'  if not result then exit;');
+  writeln(fD,'');
+  writeln(fD,'');
 
   with Flist do
   for i:=0 to count-1 do
-    GwritelnT(fD,'  '+strings[i]+':=getProc(hh,'''+strings[i]+''');');
-  GwritelnT(fD,'end;');
+    writeln(fD,'  '+strings[i]+':=getProc(hh,'''+strings[i]+''');');
+  writeln(fD,'end;');
 
 
-  GwritelnT(fD,'end.');
+  writeln(fD,'end.');
 
 end;
 
 procedure TForm1.BuildIntro;
 begin
-  GwritelnT(fD,'Unit '+nomDuFichier1(stDest)+';');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'INTERFACE');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'uses ippdefs;');
-  GwritelnT(fD,'');
+  writeln(fD,'Unit '+nomDuFichier1(stDest)+';');
+  writeln(fD,'');
+  writeln(fD,'INTERFACE');
+  writeln(fD,'');
+  writeln(fD,'uses ippdefs;');
+  writeln(fD,'');
 end;
 
 
@@ -594,23 +594,25 @@ begin
 
   if paramCount>=1
     then stSource:=paramStr(1)
-    else stSource:='c:\program files\intel\ipp40\include\ipps.h';
+    else stSource:='';
 
-  stDest:=debugPath+nomDuFichier1(stSource)+'.ele';
+  if paramCount>=2
+    then stDest:=paramStr(2)
+    else stDest:= NouvelleExtension(stSource,'.pas');
 
   AssignFile(fS,stSource);
   AssignFile(fD,stDest);
 
-  GresetT(fS);
-  GrewriteT(fD);
+  reset(fS);
+  rewrite(fD);
 
   memo1.Lines.Add('Début');
 
   BuildIntro;
 
-  while not Geof(fS) do
+  while not eof(fS) do
   begin
-    GreadlnT(fS,st);
+    readln(fS,st);
     SlashAndStars(st);
     inc(cntSource);
 
@@ -624,7 +626,7 @@ begin
         compterPar(st,nbO,nbF);
         if nbO>nbF then
         begin
-          GreadlnT(fS,st);
+          readln(fS,st);
           SlashAndStars(st);
           inc(cntSource);
         end;
@@ -633,19 +635,19 @@ begin
       if nbO<nbF then
       begin
         sortie('nbO<nbF line '+Istr(cntSource));
-        GwritelnT(fD,'=========================================> Translation error' );
+        writeln(fD,'=========================================> Translation error' );
       end
       else AnalyseIPPAPI;
 
     end
-    else GwritelnT(fD,st);
+    else writeln(fD,st);
   end;
 
   BuildInit;
   sortie('Terminé');
 
-  GcloseT(fS);
-  GcloseT(fD);
+  CloseFile(fS);
+  CloseFile(fD);
 end;
 
 procedure TForm1.AnalyseOverload;
@@ -672,16 +674,16 @@ begin
   AssignFile(fS,stSource);
   AssignFile(fD,stDest);
 
-  GresetT(fS);
-  GrewriteT(fD);
+  reset(fS);
+  rewrite(fD);
 
   memo1.Lines.Add('Début overload');
 
   BuildIntroOverload;
 
-  while not Geof(fS) do
+  while not eof(fS) do
   begin
-    GreadlnT(fS,st);
+    readln(fS,st);
     SlashAndStars(st);
     inc(cntSource);
 
@@ -695,7 +697,7 @@ begin
         compterPar(st,nbO,nbF);
         if nbO>nbF then
         begin
-          GreadlnT(fS,st);
+          readln(fS,st);
           SlashAndStars(st);
           inc(cntSource);
         end;
@@ -704,19 +706,19 @@ begin
       if nbO<nbF then
       begin
         sortie('nbO<nbF line '+Istr(cntSource));
-        GwritelnT(fD,'=========================================> Translation error' );
+        writeln(fD,'=========================================> Translation error' );
       end
       else AnalyseIPPAPIoverload;
 
     end
-    else GwritelnT(fD,st);
+    else writeln(fD,st);
   end;
 
   BuildImpOverload;;
   sortie('Terminé Overload');
 
-  GcloseT(fS);
-  GcloseT(fD);
+  closeFile(fS);
+  closeFile(fD);
 end;
 
 
@@ -776,27 +778,27 @@ procedure TForm1.BuildImpOverload;
 var
   i:integer;
 begin
-  GwritelnT(fD,'');
-  GwritelnT(fD,'IMPLEMENTATION');
-  GwritelnT(fD,'');
+  writeln(fD,'');
+  writeln(fD,'IMPLEMENTATION');
+  writeln(fD,'');
 
   with stimp do
   for i:=0 to count-1 do
-    GwritelnT(fD,strings[i]);
+    writeln(fD,strings[i]);
 
-  GwritelnT(fD,'end.');
+  writeln(fD,'end.');
 
 end;
 
 
 procedure TForm1.BuildIntroOverload;
 begin
-  GwritelnT(fD,'Unit '+nomDuFichier1(stDest)+';');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'INTERFACE');
-  GwritelnT(fD,'');
-  GwritelnT(fD,'uses ippdefs;');
-  GwritelnT(fD,'');
+  writeln(fD,'Unit '+nomDuFichier1(stDest)+';');
+  writeln(fD,'');
+  writeln(fD,'INTERFACE');
+  writeln(fD,'');
+  writeln(fD,'uses ippdefs;');
+  writeln(fD,'');
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
