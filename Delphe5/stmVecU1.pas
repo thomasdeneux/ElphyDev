@@ -45,6 +45,7 @@ procedure proVmulNum(var src:Tvector; num:TfloatComp);pascal;
 function fonctionVdotProd(var src1,src2:Tvector):float;pascal;
 function fonctionVdotProd1(var src1,src2:Tvector;x1,x2,x3:float):float;pascal;
 procedure proCrossCorNorm(var src1,src2,dest:TVector; x1,x2,x1a,x2a:float);pascal;
+procedure proCrosscorNorm1(var src1,src2,dest:TVector; x1a,x2a:float; Norm:integer);pascal;
 
 procedure proDownSample(var src,dest:Tvector;nbi:integer);pascal;
 
@@ -1456,6 +1457,68 @@ begin
   IPPSend;
   end;
 end;
+
+procedure proCrosscorNorm1(var src1,src2,dest:TVector; x1a,x2a:float; Norm:integer);
+var
+  i1,i2,i1a,i2a:integer;
+  i1deb,i1fin,i2deb,i2fin:integer;
+  i:integer;
+  nb:integer;
+  Ftype:integer;
+  Buffer:pointer;
+  BufferSize: integer;
+begin
+  verifierVecteurTemp(src1);
+  verifierVecteurTemp(src2);
+  verifierVecteurTemp(dest);
+
+  RefuseSrcEqDest(src1,dest);
+  RefuseSrcEqDest(src2,dest);
+
+  Ftype:=0;
+  if (src1.tpNum=g_single) and (src2.tpNum=g_single) then Ftype:=1;
+  if (src1.tpNum=g_double) and (src2.tpNum=g_double) then Ftype:=2;
+
+  if (src1.tpNum=g_singleComp) and (src2.tpNum=g_singleComp) then Ftype:=3;
+  if (src1.tpNum=g_doubleComp) and (src2.tpNum=g_doubleComp) then Ftype:=4;
+  {
+  if (src1.tpNum=g_single) and (src2.tpNum=g_singleComp) then Ftype:=5;
+  if (src1.tpNum=g_singleComp) and (src2.tpNum=g_single) then Ftype:=6;
+  if (src1.tpNum=g_double) and (src2.tpNum=g_doubleComp) then Ftype:=7;
+  if (src1.tpNum=g_doubleComp) and (src2.tpNum=g_double) then Ftype:=8;
+  }
+  if Ftype=0 then sortieErreur('CrossCorNorm1: bad data type');
+
+  if (src1.Istart<>src2.Istart) or (src1.Iend<>src2.Iend) or
+     (src1.dxu<>src2.dxu) or (src1.x0u<>src2.x0u)
+    then sortieErreur('CrossCorNorm: src1 and src2 must have same X parameters');
+
+
+  i1a:=round(x1a/src1.dxu);
+  i2a:=round(x2a/src1.dxu);
+  if (i2a<i1a)
+    then sortieErreur('CrossCorNorm: x1a or x2a out of range');
+
+  dest.initTemp1(i1a,i2a,src1.tpNum);
+  dest.Dxu:=src1.dxu;
+  dest.X0u:=0;
+  dest.unitX:=src1.unitX;
+
+  IPPStest;
+
+  ippsCrossCorrNormGetBufferSize(src1.Icount, src2.Icount, dest.Icount, i1a, src1.IppType, $100*Norm, @BufferSize);
+  Buffer:= ippsMalloc(BufferSize);
+
+  case Ftype of
+    1:  ippsCrossCorrNorm_32f (Src1.tb, src1.Icount, Src2.tb, src2.Icount, Dest.tb, Dest.Icount, i1a, $100*Norm,  Buffer);
+    2:  ippsCrossCorrNorm_64f (Src1.tb, src1.Icount, Src2.tb, src2.Icount, Dest.tb, Dest.Icount, i1a, $100*Norm,  Buffer);
+    3:  ippsCrossCorrNorm_32fc (Src1.tb, src1.Icount, Src2.tb, src2.Icount, Dest.tb, Dest.Icount, i1a, $100*Norm, Buffer);
+    4:  ippsCrossCorrNorm_64fc (Src1.tb, src1.Icount, Src2.tb, src2.Icount, Dest.tb, Dest.Icount, i1a, $100*Norm, Buffer);
+  end;
+
+  ippsFree(Buffer);
+end;
+
 
 
 procedure proDownSample(var src,dest:Tvector;nbi:integer);

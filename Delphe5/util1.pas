@@ -76,7 +76,7 @@ type
   typeType=(octet,entier,entierLong,reel,etendu,chaine,booleen,rien);
 
   // Rem: il manque longword et int64 mais il est impossible de les insérer après longint:
-  //       Le type est sauvé dasn dse nombreux objets
+  //       Le type est sauvé dans de nombreux objets
   //       On les ajoute à la fin (octobre 2016)
 
   typeTypeG=(G_byte,G_short,G_smallint,G_word,G_longint,

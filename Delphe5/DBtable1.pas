@@ -249,6 +249,8 @@ type
               function XMLinfo: TXMLinfo;
 
               procedure GetSelection(var x1,y1,x2,y2: integer);
+              procedure SetSelection( x1,y1,x2,y2: integer);
+
               function GetSelectionAsText(WithNames: boolean; sep, StringSep: AnsiString; Nbdeci:integer): AnsiString;
               procedure CopySelectionToClipboard(WithNames: boolean; sep, StringSep: AnsiString; Nbdeci:integer);
             end;
@@ -328,6 +330,7 @@ procedure proTDBgrid0_ColVisible(n:integer;w:boolean;var pu:typeUO);pascal;
 function fonctionTDBgrid0_ColVisible(n:integer;var pu:typeUO):boolean;pascal;
 
 procedure proTDBgrid0_GetSelection(var x1,y1,x2,y2: integer;var pu: typeUO);pascal;
+procedure proTDBgrid0_SetSelection(x1,y1,x2,y2: integer;var pu: typeUO);pascal;
 
 procedure proTDBgrid0_CopySelectionToClipboard(var pu: typeUO);pascal;
 procedure proTDBgrid0_CopySelectionToClipboard_1(WithNames: boolean; sep, StringSep: AnsiString; Nbdeci:integer; var pu: typeUO);pascal;
@@ -1037,6 +1040,20 @@ begin
   if y1<0 then y1:=0;
 end;
 
+procedure TDBtable.SetSelection(x1, y1, x2, y2: integer);
+var
+  rr: TgridRect;
+begin
+
+  rr.Left:=   EditForm.TableColToGridCol(x1);
+  rr.Right:=  EditForm.TableColToGridCol(x2);
+  rr.Top:=    EditForm.TableRowToGridRow(y1);
+  rr.Bottom:= EditForm.TableRowToGridRow(y2);
+
+  TableFrame.DrawGrid1.selection := rr;
+  TableFrame.Invalidate;
+end;
+
 procedure TDBtable.CopySelectionToClipboard(WithNames: boolean; sep, StringSep: AnsiString; Nbdeci:integer);
 begin
   clipboard.AsText:= GetSelectionAsText(WithNames, sep, StringSep, Nbdeci);
@@ -1058,7 +1075,7 @@ begin
     if i<>x2 then st:=st+Sep;
   end;
   st:=st + CRLF;
-  
+
   for j:= y1 to y2 do
   begin
     for i:= x1 to x2 do
@@ -1077,6 +1094,7 @@ begin
   end;
   result:= st;
 end;
+
 
 { TDBrecordTable }
 
@@ -1553,6 +1571,23 @@ begin
 
   inc(x1);inc(y1);inc(x2);inc(y2);
 end;
+
+procedure proTDBgrid0_SetSelection(x1,y1,x2,y2: integer;var pu: typeUO);
+begin
+  verifierObjet(pu);
+
+  with TDBtable(pu) do
+  begin
+    if x1<1 then x1:=1;
+    if x2>colCount then x2:= ColCount;
+    if y1<1 then y1:=1;
+    if y2>RowCount then y2:=RowCount;
+
+    setSelection(x1-1,y1-1,x2-1,y2-1);
+  end;
+end;
+
+
 
 procedure proTDBgrid0_CopySelectionToClipboard(var pu: typeUO);
 begin

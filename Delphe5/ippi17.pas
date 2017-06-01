@@ -13768,15 +13768,7 @@ begin
   result:=true;
   if hh<>0 then exit;
 
-  {$IFDEF IPPDEV}
-  {$IFDEF WIN64}
-  hh:=GloadLibrary('D:\ipp17\x64\ippi.dll');
-  {$ELSE}
-  hh:=GloadLibrary('D:\ipp17\ia32\ippi.dll');
-  {$ENDIF}
-  {$ELSE}
-   hh:=GloadLibrary(AppDir+'IPP\ippi.dll');
-  {$ENDIF}
+  hh:=GloadLibrary(AppDir+'IPP\ippi.dll');
 
   result:=(hh<>0);
   if not result then exit;

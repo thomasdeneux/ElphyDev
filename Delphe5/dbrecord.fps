@@ -313,6 +313,15 @@ procedure TDBgrid0.GetSelection(var x1,y1,x2,y2: integer);
 
 }
 
+procedure TDBgrid0.SetSelection(x1,y1,x2,y2: integer);
+{$H Définit le rectangle de selection
+
+ x1 et x2 sont les limites horizontales. Elles doivent être comprises entre 1 et ColCount@
+ y1 et y2 sont les limites verticales. Elles doivent être comprises entre 1 et RowCount@
+
+ 
+}
+
 procedure TDBgrid0.CopySelectionToClipboard;
 procedure TDBgrid0.CopySelectionToClipboard(WithNames: boolean; sep, StringSep: String; Nbdeci:integer);
 {$H Copie la sélection courante dans le presse-papier.

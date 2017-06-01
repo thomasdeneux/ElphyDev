@@ -1071,6 +1071,8 @@ d'un vecteur.
 
 }
 
+procedure CrosscorNorm1(var src1,src2,dest:TVector; x1a,x2a:real; Norm:integer);
+
 procedure DownSample(var src,dest:Tvector;nbi:integer);
 {$H Sous-échantillonne un vecteur.
 

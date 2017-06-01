@@ -20,7 +20,7 @@ uses windows,sysUtils,
 
      tpVector,
      objFile1,stmError,stmPg,binFile1,
-     ipps17,
+     ipps17, ippDefs17,
      matlab_matrix,
      matlab_Mat,
 
@@ -214,6 +214,7 @@ type
                  procedure setAspectRatio(w:single);override;
                  function getAspectRatio:single;override;
 
+                 function ippType: IppDataType;
               end;
 
 function TpNumToClassId(tpNum:typetypeG):mxClassId;
@@ -1254,6 +1255,26 @@ end;
 
 
 
+
+
+function TDataObj.ippType: IppDataType;
+begin
+  case tpNum of
+    G_byte:       result:= _Ipp8u;
+    G_short:      result:= _Ipp8s;
+    G_smallint:   result:= _Ipp16s;
+    G_word:       result:= _Ipp16u;
+    G_longint:    result:= _Ipp32s;
+    G_single:     result:= _Ipp32f;
+    G_double:     result:= _Ipp64f;
+    G_singleComp: result:= _Ipp32fc;
+    G_doubleComp: result:= _Ipp64fc;
+    G_longword:   result:= _Ipp32u;
+    G_int64:      result:= _Ipp64s;
+
+    else          byte(result):=  255;
+  end;
+end;
 
 
 Initialization

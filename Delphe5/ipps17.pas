@@ -5939,16 +5939,7 @@ begin
   result:=true;
   if hh<>0 then exit;
 
-  {$IFDEF IPPDEV}
-  {$IFDEF WIN64}
-  hh:=GloadLibrary('D:\ipp17\x64\ipps.dll');
-  messageCentral('D:\ipp17\x64\ipps.dll =' +Istr(hh));
-  {$ELSE}
-  hh:=GloadLibrary('D:\ipp17\ia32\ipps.dll');
-  {$ENDIF}
-  {$ELSE}
-   hh:=GloadLibrary(AppDir+'IPP\ipps.dll');
-  {$ENDIF}
+  hh:=GloadLibrary(AppDir+'IPP\ipps.dll');
 
   result:=(hh<>0);
   if not result then exit;

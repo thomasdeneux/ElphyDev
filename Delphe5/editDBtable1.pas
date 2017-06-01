@@ -113,6 +113,8 @@ type
     function GridColToTableCol(x:integer):integer;
     function GridRowToTableRow(y:integer):integer;
 
+    function TableColToGridCol(x:integer):integer;
+    function TableRowToGridRow(y:integer):integer;
   end;
 
 
@@ -278,6 +280,17 @@ function TEditDBtable.GridRowToTableRow(y:integer):integer;
 begin
   result:= y - ord(FirstRowVisible); //TableFrame1.DrawGrid1.FixedRows;
 end;
+
+function TEditDBtable.TableColToGridCol(x: integer): integer;
+begin
+  result:=x + ExtraCols;
+end;
+
+function TEditDBtable.TableRowToGridRow(y: integer): integer;
+begin
+  result:= y +ord(FirstRowVisible);
+end;
+
 
 function TEditDBtable.getBxy(x, y: integer): boolean;
 begin
@@ -491,6 +504,7 @@ begin
   n:=n-ExtraCols +1;
   SetColWidth(n,w);
 end;
+
 
 Initialization
 AffDebug('Initialization edResultSet2',0);

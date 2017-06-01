@@ -546,6 +546,12 @@ var
   w:integer;
   bb:boolean;
 begin
+  with frame.DrawGrid1.Canvas do
+  begin
+    pen.Color:= brush.Color;
+    Rectangle(rect);
+  end;  
+
   w:=rect.bottom-rect.top-5;
   case Align of
     taLeftJustify:  rect.Left:=rect.left+3;
