@@ -81,6 +81,7 @@ type
              and, at the end, put the new address in MyAd
 
            }
+           SysIndex: integer;
 
            Fstatus0:TUOstatus;
 
@@ -703,12 +704,18 @@ type
   {syslist (de type TsystemList) contient TOUS les objets UO existant
   Tous les objets UO se rangent eux-mêmes dans cette liste au moment de leur
   création et se retirent au moment de leur destruction.
+
+  15 juin 2017 :  remove se contente de mettre l'item à nil pour ne pas perturber les SysIndex
+                  pack supprime les items valant nil et recalcule les SysIndex
+                  pack doit être appelé par FillTreeView
+                  Toutes les fonctions doivent vérifier qu'un item ne vaut pas nil
   }
   TsystemList=class(Tlist)
                 FModified:boolean;   {utilisé par l'inspecteur d'objet}
-                constructor create;
-                function Add(Item: Pointer): Integer;
-                function Remove(Item: Pointer): Integer;
+                HK: boolean;
+                constructor create(IsHK: boolean);
+                function Add(Item: typeUO): Integer;
+                function Remove(Item: typeUO): Integer;
                 procedure Delete(Index: Integer);
                 procedure inspect;
                 procedure clear;
@@ -718,6 +725,7 @@ type
                 procedure FillTreeView(treeView:TtreeView;var ob:typeUO;Fsort:boolean);
                 procedure SortVisual;
                 procedure SortThisVisualObject(n:integer);
+                procedure pack;
               end;
 
 
@@ -2023,29 +2031,34 @@ begin
 end;
 {**************************** Méthodes de TsystemList ********************}
 
-constructor TsystemList.create;
+constructor TsystemList.create(IsHK: boolean);
 begin
-  inherited;
+  inherited create;
   Fmodified:=true;
+  HK:= isHK;
 end;
 
 
-function TsystemList.Add(Item: Pointer): Integer;
+function TsystemList.Add(Item: typeUO): Integer;
 begin
   result:=inherited add(item);
-
+  if not HK then item.SysIndex:=result;
   Fmodified:=true;
 end;
 
-function TsystemList.Remove(Item: Pointer): Integer;
+function TsystemList.Remove(Item: typeUO): Integer;
 begin
-  result:=inherited remove(item);
+  if HK
+    then result:=inherited remove(item)
+    else items[Item.SysIndex]:=nil;
   Fmodified:=true;
 end;
 
 procedure TsystemList.Delete(Index: Integer);
 begin
-  inherited delete(index);
+  //inherited delete(index);
+  messageCentral('Interdit');
+
   Fmodified:=true;
 end;
 
@@ -2094,7 +2107,7 @@ var
 begin
   st:=Fmaj(st);
   for i:=0 to count-1 do
-    if Fmaj(typeUO(items[i]).ident)=st then
+    if (items[i]<>nil) and (Fmaj(typeUO(items[i]).ident)=st) then
       begin
         result:=true;
         exit;
@@ -2112,7 +2125,7 @@ begin
   st:=Fmaj(st);
 
   for i:=0 to count-1 do
-    if Fmaj(typeUO(items[i]).ident)=st then
+    if (items[i]<>nil) and (Fmaj(typeUO(items[i]).ident)=st) then
       begin
         result:=items[i];
         exit;
@@ -2168,6 +2181,7 @@ var
   DumNode: TdumUO;
   stBase:string;
 begin
+  pack;
   if not assigned(DumList) then DumList:= TstringList.create
   else
   with DumList do
@@ -2183,7 +2197,7 @@ begin
     for i:=0 to self.count-1 do
       begin
         ob1:=TypeUO(self.items[i]);
-        if not (ob1.Fchild or ob1.notPublished) then
+        if(ob1<>nil) and  not (ob1.Fchild or ob1.notPublished) then
         begin
           k:= pos('[',ob1.ident);
           if k>0 then                                          // gestion des variables tableau
@@ -2252,6 +2266,22 @@ begin
   if n1<>n then move(n,n1);
 end;
 
+procedure TsystemList.pack;
+var
+  i,k: integer;
+  changed: boolean;
+begin
+  changed:= false;
+  k:=0;
+  for i:=0 to count-1 do
+    if (items[i]<>nil) then
+    begin
+      typeUO(items[i]).sysIndex:=k;
+      inc(k);
+    end
+    else changed:= true;
+  if changed then inherited pack;
+end;
 
 {************************ Méthodes de TmainObjList *********************}
 
@@ -2422,7 +2452,7 @@ procedure TmainObjList.LoadFromStream(f:Tstream;tailleInfo:integer;tout:boolean)
     until (f.position>=posmax)  or testEscape;
     f.Position:=posMax;
 
-
+    syslist.pack;
     RetablirReferences;
 
     loadingObjects:=false;
@@ -2473,10 +2503,11 @@ procedure TmainObjList.RetablirReferences;
 var
   i:integer;
 begin
-  for i:=0 to count-1 do TypeUO(items[i]).RetablirReferences(sysList);
+  for i:=0 to count-1 do
+    TypeUO(items[i]).RetablirReferences(sysList);
 
   for i:=0 to syslist.count-1 do
-    TypeUO(syslist.items[i]).myAd:=syslist.items[i];
+    if syslist.items[i]<>nil then TypeUO(syslist.items[i]).myAd:=syslist.items[i];
 end;
 
 procedure TmainObjList.ResetAll;
@@ -2521,7 +2552,7 @@ begin
   st:=Fmaj(st);
   with syslist do
     for i:=0 to count-1 do
-      if Fmaj(typeUO(items[i]).ident)=st then
+      if (items[i]<>nil) and (Fmaj(typeUO(items[i]).ident)=st) then
         begin
           getGlobalObject:=items[i];
           exit;
@@ -3281,8 +3312,8 @@ procedure initStmObj;
 begin
   if not assigned(sysList) then
   begin
-    SysList:=TsystemList.create;
-    HKpaint:=TsystemList.create;
+    SysList:=TsystemList.create(false);
+    HKpaint:=TsystemList.create(true);
     MaskList:= Tlist.Create;
 
     MainObjList:=TMainObjList.create;

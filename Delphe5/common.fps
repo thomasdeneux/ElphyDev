@@ -14549,3 +14549,23 @@ function BestOfToday(x,y:real):real;
 {$H Premier essai de Christophe
 }
 *)
+
+
+procedure SuspendCouplings;
+{$H Rend les couplages inactifs.
+
+ La procédure doit être associée à UpdateCouplings@
+
+ Cette procédure est utile dans une procédure qui initialise de nombreux objets.
+ On appellera SuspendCouplings au début de la procédure et UpdateCouplings à la fin de la procédure.
+
+}
+
+procedure UpdateCouplings;
+{$H Réactive les couplages .
+
+ Si le mécanisme de couplage a été suspendu avec SuspendCouplings@ ,
+cette procédure met à jour toutes les opérations de couplageen attente.
+
+}
+

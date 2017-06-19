@@ -307,7 +307,7 @@ type
                  procedure messageCpz;
                  procedure messageCpLine;
 
-
+                 class procedure UpdateCouplings;
               end;
 
 
@@ -411,6 +411,9 @@ function fonctionTdataPlot_ZeroAxisY(var pu:typeUO):boolean;pascal;
 
 procedure proTdataPlot_Fgrid(x:boolean;var pu:typeUO);pascal;
 function fonctionTdataPlot_Fgrid(var pu:typeUO):boolean;pascal;
+
+procedure ProSuspendCouplings;pascal;
+procedure ProUpdateCouplings;pascal;
 
 
 IMPLEMENTATION
@@ -910,7 +913,7 @@ begin
   CPlistY.setUO(cpy,w,self);
   visu.cpy:=w;
 end;
-
+                                                               
 procedure TdataPlot.setcpZ(w:smallint);
 var
   Amin,Amax:float;
@@ -1976,6 +1979,7 @@ end;
 
 
 
+
 {***************** Méthodes STM pour TdataPlot ****************************}
 
 var
@@ -2494,8 +2498,26 @@ begin
   result:=TdataPlot(pu).visu.grille;
 end;
 
+procedure ProSuspendCouplings;
+begin
+  CplistX.suspend;
+  CplistY.suspend;
+  CplistZ.suspend;
+end;
+
+procedure ProUpdateCouplings;
+begin
+  TdataPlot.UpdateCouplings
+end;
 
 
+
+class procedure TdataPlot.UpdateCouplings;
+begin
+  CplistX.UpdateCp(UOmsg_couplingX);
+  CplistY.UpdateCp(UOmsg_couplingY);
+  CplistY.UpdateCp(UOmsg_couplingZ);
+end;
 
 Initialization
 AffDebug('Initialization stmDplot',0);
@@ -2507,5 +2529,6 @@ CPlistY:=TCPlist.create;
 CPlistZ:=TCPlist.create;
 CPlistLine:=TCPlist.create;
 
+AddToTerminationlist(TdataPlot.UpdateCouplings);
 
 end.

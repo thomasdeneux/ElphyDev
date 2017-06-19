@@ -306,7 +306,8 @@ type
 var
   ShortCuts:Tpg2ShortCuts;
 
-  TerminationList:TlistG;
+
+function TerminationList:TlistG;
 
 procedure proInstallShortcut(adproc:integer;vk1,vk2:integer);pascal;
 procedure proInstallShortcut1(adproc:integer;vk1,vk2:integer);pascal;
@@ -393,8 +394,18 @@ const
              '|Acquis1';
 
 
+
+
 var
   pgList:Tlist;
+  FTerminationList:TlistG;
+
+function TerminationList:TlistG;
+begin
+  if not assigned (FTerminationList)
+    then FTerminationList:=TlistG.create(sizeof(procedureOfObject));
+  result:= FTerminationList;
+end;
 
 constructor TPG2.create;
 var
@@ -2561,6 +2572,8 @@ begin
   shortcuts.invalidate;
   SpecialDrag:=nil;         // ajouté le 2-11-2010
   if board is TRTNIinterface then TRTNIinterface(board).RestartNeuron;
+
+  syslist.pack;
 end;
 
 
@@ -3179,10 +3192,10 @@ installError(E_noDestroy,'Cannot modify this object');
 installError(E_processPhase,'Process phase error');
 installError(E_var,'Cannot destroy this object');
 
-TerminationList:=TlistG.create(sizeof(procedureOfObject));
+
 
 finalization
 pgList.free;
-TerminationList.free;
+//TerminationList.free;
 
 end.

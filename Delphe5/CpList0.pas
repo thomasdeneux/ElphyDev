@@ -7,10 +7,13 @@ uses classes,
 
 type
   TCPlist= class
-             listCp, listL: Tlist;
+             CouplingON: boolean;
+             listCp: Tlist;   // liste des coeff
+             listL: Tlist;    // liste des listes d'objets
+             listLast: Tlist; // liste des derniers objets modifiés pour chaque coeff
 
              constructor create;
-             destructor destroy;
+             destructor destroy;override;
              procedure clear;
 
              procedure add(n:integer; uo:typeUO);
@@ -20,24 +23,24 @@ type
              procedure sendMessage(n:integer;UOmsg: integer; source: typeUO);
              function FindLimits(n:integer;UOmsg: integer; var Amin, Amax: float): boolean;
 
+             procedure suspend;
+             procedure UpdateCp(UOmsg: integer) ;
            end;
+
+
 
 implementation
 
 { TCPlist }
 
-type
-  TCPrec= record
-            cp: integer;
-            UOlist: TUOlist;
-          end;
-  PCPRec= ^TCPrec;
-
 
 constructor TCPlist.create;
 begin
+  CouplingON:= true;
   listCp:= Tlist.create;
   listL:=  Tlist.create;
+  listLast:=  Tlist.create;
+
 end;
 
 destructor TCPlist.destroy;
@@ -45,6 +48,7 @@ begin
   clear;
   listCp.Free;
   listL.Free;
+  ListLast.Free;
 end;
 
 procedure TCPlist.clear;
@@ -57,6 +61,7 @@ begin
 
   listCP.Clear;
   listL.clear;
+  listLast.clear;
 end;
 
 procedure TCPlist.add(n: integer; uo: typeUO);
@@ -70,6 +75,7 @@ begin
     listCP.Add(pointer(n));
     uoList:= TUOlist.create;
     k:=listL.Add(uoList);
+    listLast.Add(nil);
   end;
 
   uoList:=listL[k];
@@ -91,6 +97,7 @@ begin
       uoList.free;
       listCP.delete(k);
       listL.Delete(k);
+      listLast.Delete(k);
     end;
   end;
 
@@ -104,11 +111,15 @@ var
 begin
   k:= listCP.indexOf(pointer(n));
   if k>=0 then
-  with TUOlist(listL[k]) do
+  if CouplingON then
   begin
-    for i:=0 to count-1 do
-      items[i].processmessage(UOmsg,source,nil);
-  end;
+    with TUOlist(listL[k]) do
+    begin
+      for i:=0 to count-1 do
+        items[i].processmessage(UOmsg,source,nil);
+    end;
+  end
+  else listLast[k]:=source;
 end;
 
 function TCPlist.FindLimits(n, UOmsg: integer; var Amin, Amax: float):boolean;
@@ -117,6 +128,8 @@ var
   uoList:TUOlist;
 begin
   result:=false;
+  if not CouplingON then exit;
+
   k:= listCP.indexOf(pointer(n));
   if k>=0 then
   with TUOlist(listL[k]) do
@@ -129,11 +142,7 @@ begin
       end;
 
   end;
-
 end;
-
-
-
 
 procedure TCPlist.setUO(oldN,NewN: integer; uo: typeUO);
 begin
@@ -141,6 +150,29 @@ begin
 
   if oldN<>0 then remove(oldN,uo);
   if NewN<>0 then add(newN,uo);
+end;
+
+procedure TCPlist.suspend;
+var
+  i: integer;
+begin
+  CouplingON:= false;
+
+  for i:=0 to listLast.Count-1 do listLast[i]:=nil;   // Utile ?
+end;
+
+procedure TCPlist.UpdateCp(UOmsg: integer);
+var
+  i: integer;
+begin
+  for i:=0 to ListCp.Count-1 do
+    if listLast[i]<>nil then
+    begin
+      sendMessage(intG(listCp[i]), UOmsg, typeUO(listLast[i]));
+      listLast[i]:=nil;
+    end;  
+
+  CouplingON:=true;
 end;
 
 end.

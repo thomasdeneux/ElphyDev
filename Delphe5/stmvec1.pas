@@ -878,7 +878,7 @@ end;
 
 constructor Tvector.create32(tNombre:typeTypeG;n1,n2:longint;const Fzero:boolean=true);
 begin
-  Falign32bytes:= false;
+  Falign32bytes:= false;  // true;
   create(tNombre,n1,n2,Fzero);
 end;
 

@@ -707,6 +707,8 @@ function TmainDac.LoadGFCobj(stF:AnsiString;base:boolean): boolean;
 var
   f:TfileStream;
 begin
+  syslist.pack;
+
   try
   result:=false;
   f:=nil;
@@ -730,6 +732,7 @@ procedure TmainDac.SaveGFC(stF:AnsiString;base:boolean);
 var
   f:TfileStream;
 begin
+  sysList.pack;
 
   allouerCfg1(200);
   initcfg(false,base);
@@ -2372,11 +2375,26 @@ end;
 
 
 procedure TMainDac.Debug1Click(Sender: TObject);
+var
+  p: array of pointer;
+  i: integer;
+  st: AnsiString;
+  list: Tlist;
+const
+  max=200000;
+  size=1000;
 begin
-  //TCyberK10interface(board).CbSdkDebug;
+  list:= Tlist.Create;
+  initChrono;
 
-  //testHDF5dll;
+  for i:=1 to max do list.Add(pointer(i));
+  st:='Alloc time='+chrono;
 
+  InitChrono;
+  for i:=1 to max do list.Remove(pointer(i));
+  messageCentral(st+crlf+'Desalloc time='+chrono);
+
+  list.Free;
 
 end;
 

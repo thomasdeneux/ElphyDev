@@ -419,7 +419,8 @@ begin
   clear;
 
   for i:=0 to syslist.count-1 do
-    typeUO(syslist.items[i]).AddToStimList(self);
+    if assigned(syslist.items[i]) then
+      typeUO(syslist.items[i]).AddToStimList(self);
 
 end;
 

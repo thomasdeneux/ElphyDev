@@ -12,12 +12,6 @@ unit debug0;
 }
 
 interface
-{$IFDEF FPC}
-   {$mode delphi}
-   {$DEFINE AcqElphy2}
-   {$DEFINE DEBUG}
-   {$A1} {$Z1}
-{$ENDIF}
 
 uses math, util1;
 
@@ -61,7 +55,7 @@ begin
   Fflag:=true;
   if not open then
   begin
-    
+
     try
     assignFile(f,stf);
     rewrite(f);
