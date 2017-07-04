@@ -7,7 +7,8 @@ uses classes,
 
 type
   TCPlist= class
-             CouplingON: boolean;
+             CouplingON: boolean; // true signifie que les objets envoient des messages aux objets couplés
+             Blocked: boolean;    // true signifie que la liste ne fonctionne pas du tout. Elle devra être reconstruite.
              listCp: Tlist;   // liste des coeff
              listL: Tlist;    // liste des listes d'objets
              listLast: Tlist; // liste des derniers objets modifiés pour chaque coeff
@@ -146,7 +147,7 @@ end;
 
 procedure TCPlist.setUO(oldN,NewN: integer; uo: typeUO);
 begin
-  if oldN=newN then exit;
+  if Blocked or (oldN=newN) then exit;
 
   if oldN<>0 then remove(oldN,uo);
   if NewN<>0 then add(newN,uo);

@@ -311,6 +311,8 @@ type
               end;
 
 
+procedure RebuildCouplings;
+procedure BlockCouplings;
 
 {***************** Déclarations STM pour TdataPlot ****************************}
 
@@ -2510,7 +2512,36 @@ begin
   TdataPlot.UpdateCouplings
 end;
 
+procedure RebuildCouplings;
+var
+  i: integer;
+begin
+  CpListX.Blocked:=false;
+  CpListY.Blocked:=false;
+  CpListZ.Blocked:=false;
 
+  CpListX.clear;
+  CpListY.clear;
+  CpListZ.clear;
+
+  for i:=0 to syslist.Count-1 do
+  if typeUO(syslist[i]) is TdataPlot then
+  with TdataPlot(syslist[i]) do
+  begin
+    if cpx<>0 then setCpx(cpx);
+    if cpy<>0 then setCpy(cpy);
+    if cpz<>0 then setCpz(cpz);
+  end;
+end;
+
+
+procedure BlockCouplings;
+begin
+  CpListX.Blocked:= true;
+  CpListY.Blocked:= true;
+  CpListZ.Blocked:= true;
+
+end;
 
 class procedure TdataPlot.UpdateCouplings;
 begin

@@ -16,7 +16,8 @@ unit symbac3;
 INTERFACE
 {$IFDEF FPC} {$mode delphi} {$DEFINE AcqElphy2} {$A1} {$Z1} {$ENDIF}
 
-uses classes,sysutils,stdCtrls,
+uses windows,
+     classes,sysutils,stdCtrls,
      util1,Dgraphic,Gdos,listG,Hlist0,
      Ncdef2,
      debug0,
@@ -355,6 +356,7 @@ procedure getSimplifiedType(var table:TtableSymbole; var p:PdefSymbole);
 
 IMPLEMENTATION
 
+uses stmDplot;
 
 function tailleVariableSimple(tp:typeNombre;long:integer):integer;
   begin
@@ -1185,11 +1187,18 @@ end;
 procedure TtableSymbole.FreeObjects;
 var
   i:integer;
+  tt: integer;
 begin
+  tt:= getTickCount;
+
+  BlockCouplings;
   if assigned(DS0) then
     with ObjList do
     for i:=0 to count-1 do
       freeThisObject(pointer(PObjectRec(items[i])^.ad^));
+  ReBuildCouplings;
+
+  //messageCentral('FreeObj = '+Estr((getTickCount-tt)/1000,3));
 end;
 
 procedure TtableSymbole.FreeObjNames;

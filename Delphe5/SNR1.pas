@@ -31,9 +31,6 @@ implementation
 
 // Calcul en Double Précision
 procedure SNRanalysisD(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy,matPhase,matPhaseSigma:TMatrix;zero:float);
-begin
-end;
-(*
 var
   i,j,k:integer;
   vecs:array of array of double;
@@ -46,6 +43,9 @@ var
   Nbvec,Nbpt,nbfq,nbptFil:integer;
   ind0:integer;
   Fphase:boolean;
+
+  Buf: pointer;
+  BufSize: integer;
 
 Const
   Epsilon=1E-30;
@@ -144,10 +144,13 @@ begin
        ind0:=-Istart;
      end;
 
+     ippsConvolveGetBufferSize(nbpt, nbptFil, _ipp64f, ippAlgAuto, @bufSize);
+     Buf := ippsMalloc_8u( bufSize );
+
      for j:=0 to nbVec-1 do                                                                         { Balayer la liste de vecteurs }
      begin
-         ippsConv_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil1[0]),nbptFil,Pdouble(@vecTemp1[0]));     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
-         ippsConv_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil2[0]),nbptFil,Pdouble(@vecTemp2[0]));     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
+         ippsConvolve_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil1[0]),nbptFil,Pdouble(@vecTemp1[0]),ippAlgAuto,Buf);     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
+         ippsConvolve_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil2[0]),nbptFil,Pdouble(@vecTemp2[0]),ippAlgAuto,Buf);     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
 
          if Fphase then
          begin
@@ -173,6 +176,8 @@ begin
      end;
      // A ce stade, on dispose de vecSum1, vecSum2, vecSumSqr1, vecSumSqr2 et vecSumMod
      // et aussi VecSumPhaseX, vecSumPhaseY
+
+     ippsFree(Buf);
 
      if Fphase then
      begin
@@ -221,13 +226,10 @@ begin
 
   IPPSend;
 end;
-*)
+
 
 //Calcul en Simple Précision
 procedure SNRanalysisS(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy,matPhase,matPhaseSigma:TMatrix;zero:float);
-begin
-end;
-(*
 var
   i,j,k:integer;
   vecs:array of array of single;
@@ -240,6 +242,10 @@ var
   Nbvec,Nbpt,nbfq,nbptFil:integer;
   ind0:integer;
   Fphase:boolean;
+
+  Buf: pointer;
+  BufSize: integer;
+
 Const
   Epsilon=1E-30;
 begin
@@ -337,10 +343,13 @@ begin
        ind0:=-Istart;
      end;
 
+     ippsConvolveGetBufferSize(nbpt, nbptFil, _ipp32f, ippAlgAuto, @bufSize);
+     Buf := ippsMalloc_8u( bufSize );
+
      for j:=0 to nbVec-1 do                                                                         { Balayer la liste de vecteurs }
      begin
-         ippsConv_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil1[0]),nbptFil,Psingle(@vecTemp1[0]));     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
-         ippsConv_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil2[0]),nbptFil,Psingle(@vecTemp2[0]));     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
+         ippsConvolve_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil1[0]),nbptFil,Psingle(@vecTemp1[0]), ippAlgAuto, Buf);     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
+         ippsConvolve_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil2[0]),nbptFil,Psingle(@vecTemp2[0]), ippAlgAuto, Buf);     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
 
          if Fphase then
          begin
@@ -366,6 +375,8 @@ begin
      end;
      // A ce stade, on dispose de vecSum1, vecSum2, vecSumSqr1, vecSumSqr2 et vecSumMod
      // et aussi VecSumPhaseX, vecSumPhaseY
+
+     ippsFree(Buf);
 
      if Fphase then
      begin
@@ -414,7 +425,7 @@ begin
 
   IPPSend;
 end;
-*)
+
 
 (*
 procedure SNRanalysisS(var Vlist,TabFil:TVlist;var SNRmat, MatModulus, MatSigma,MatModulusMoy:TMatrix;zero:float);
