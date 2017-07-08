@@ -2547,7 +2547,7 @@ class procedure TdataPlot.UpdateCouplings;
 begin
   CplistX.UpdateCp(UOmsg_couplingX);
   CplistY.UpdateCp(UOmsg_couplingY);
-  CplistY.UpdateCp(UOmsg_couplingZ);
+  CplistZ.UpdateCp(UOmsg_couplingZ);
 end;
 
 Initialization

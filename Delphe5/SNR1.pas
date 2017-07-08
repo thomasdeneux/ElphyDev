@@ -137,8 +137,9 @@ begin
          vecFil1[j-Istart]:=Yvalue[j];
          vecFil2[j-Istart]:=Imvalue[j];
        end;
-       setLength(vecTemp1,nbpt+Icount);
-       setLength(vecTemp2,nbpt+Icount);
+
+       setLength(vecTemp1,nbpt+Icount);                             // vecTemp1 et vecTemp2 contiennent  nbpt+nbptFil points
+       setLength(vecTemp2,nbpt+Icount);                             // La partie utile commence à l'indice ind0
 
        nbptFil:=Icount;
        ind0:=-Istart;
@@ -336,8 +337,8 @@ begin
          vecFil1[j-Istart]:=Yvalue[j];
          vecFil2[j-Istart]:=Imvalue[j];
        end;
-       setLength(vecTemp1,nbpt+Icount);
-       setLength(vecTemp2,nbpt+Icount);
+       setLength(vecTemp1,nbpt+Icount);                    // vecTemp1 et vecTemp2 contiennent  nbpt+nbptFil points
+       setLength(vecTemp2,nbpt+Icount);                    // La partie utile commence à l'indice ind0
 
        nbptFil:=Icount;
        ind0:=-Istart;
@@ -356,8 +357,8 @@ begin
            ippsPhase_32f(Psingle(@vecTemp1[ind0]),Psingle(@vecTemp2[ind0]),Psingle(@vectemp3[0]), nbpt);                    { Phase actuelle }
            ippsPolarToCart_32f( Psingle(@vecOne[0]), Psingle(@vectemp3[0]),Psingle(@PhaseX[0]),Psingle(@PhaseY[0]), nbpt);  { Proj X et Y de la phase }
 
-           ippsAdd_32f_I(Psingle(@PhaseX[ind0]),Psingle(@vecSumPhaseX[0]),nbpt);                          { Somme des proj X }
-           ippsAdd_32f_I(Psingle(@PhaseY[ind0]),Psingle(@vecSumPhaseY[0]),nbpt);                          { Somme des proj Y }
+           ippsAdd_32f_I(Psingle(@PhaseX[0]),Psingle(@vecSumPhaseX[0]),nbpt);                          { Somme des proj X }
+           ippsAdd_32f_I(Psingle(@PhaseY[0]),Psingle(@vecSumPhaseY[0]),nbpt);                          { Somme des proj Y }
          end;
 
          ippsAdd_32f_I(Psingle(@vecTemp1[ind0]),Psingle(@vecSum1[0]),nbpt);                               { Somme des Re dans VecSum1 }

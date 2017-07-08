@@ -1175,20 +1175,23 @@ I1h est négatif ou nul
 
 Procedure convolveHFsingle(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
-  maxTb=10000;
-{
+  maxTb=100000;
+
 var
-  delayD:Array of single;
+  delayS, delayD:Array of single;
 
   tbS,tbD:array of single;
 
   i,j,k,w,res:integer;
-  pState: PIppsFIRState_32f;
+
+  specSize, BufSize: integer;
+  spec, buf: pointer;
+
   tapsLen:integer;
   Istart,Iend:integer;
-}
+
 begin
-(*
+
   Istart:=src.Istart;
   Iend:=src.Iend;
 
@@ -1200,14 +1203,23 @@ begin
 
   tapslen:=I2H-I1H+1;
 
+  setLength(delayS,tapsLen);
+  fillchar(delayS[0],tapsLen*4,0);
   setLength(delayD,tapsLen);
   fillchar(delayD[0],tapsLen*4,0);
 
   setLength(tbS,maxtb);
   setLength(tbD,maxtb);
 
+  ippsFIRSRGetSize(tapslen, _ipp32f, @specSize, @bufSize );
 
-  ippsFIRInitAlloc_32f( pState, BH, tapsLen, @delayD[0]);
+  Spec := ippsMalloc_8u(specSize);
+  buf  := ippsMalloc_8u(bufSize);
+
+  //initialize the spec structure
+  ippsFIRSRInit_32f( BH, tapslen, ippAlgDirect, Spec );
+
+  //ippsFIRInitAlloc_32f( pState, BH, tapsLen, @delayD[0]);
 
   j:=0;
   k:=Istart+I1h;
@@ -1219,27 +1231,27 @@ begin
     j:=(j+1) mod maxtb;
     if j=0 then
       begin
-        ippsFir_32f(@tbS[0],@tbD[0],maxTb,pState);
+        ippsFirSR_32f(@tbS[0],@tbD[0],maxTb,spec,@delayS[0],@delayD[0],buf);
         for w:=0 to maxtb-1 do
           if k+w>=Istart then
             dest.data.setE(k+w,tbD[w]);
         k:=k+maxTb;
+        move(delayD[0],delayS[0],tapslen*sizeof(single));
       end;
   end;
 
   if j>0 then
     begin
-      ippsFir_32f(@tbS[0],@tbD[0],j,pState);
+      ippsFirSR_32f(@tbS[0],@tbD[0],j,spec,@delayS[0],nil,buf);
       for w:=0 to j-1 do
         if k+w>=Istart then
           dest.data.setE(k+w,tbD[w]);
     end;
 
-  ippsFirFree_32f(pState);
 
   if src.isCpx then
   begin
-    ippsFIRInitAlloc_32f( pState, BH, tapsLen, @delayD[0]);
+    fillchar(delayS[0],tapsLen*4,0);
 
     j:=0;
     k:=Istart+I1h;
@@ -1251,46 +1263,50 @@ begin
       j:=(j+1) mod maxtb;
       if j=0 then
         begin
-          ippsFir_32f(@tbS[0],@tbD[0],maxTb,pState);
+          ippsFirSR_32f(@tbS[0],@tbD[0],maxTb,spec,@delayS[0],@delayD[0],buf);
           for w:=0 to maxtb-1 do
             if k+w>=Istart then
               dest.data.setIm(k+w,tbD[w]);
           k:=k+maxTb;
+          move(delayD[0], delayS[0], tapslen*sizeof(double));
         end;
     end;
 
     if j>0 then
       begin
-        ippsFir_32f(@tbS[0],@tbD[0],j,pState);
+        ippsFirSR_32f(@tbS[0],@tbD[0],j,spec,@delayS[0],@delayD[0],buf);
         for w:=0 to j-1 do
           if k+w>=Istart then
             dest.data.setIm(k+w,tbD[w]);
       end;
 
-    ippsFirFree_32f(pState);
 
   end;
-*)
+  ippsFree(spec);
+  ippsFree(buf);
+
 end;
 
 
 Procedure convolveHFdouble(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
-  maxTb=10000;
+  maxTb=100000;
 
-{
 var
-  delayD:Array of double;
+  delayS, delayD:Array of double;
 
   tbS,tbD:array of double;
 
   i,j,k,w,res:integer;
-  pState: PIppsFIRState_64f;
+
+  specSize, BufSize: integer;
+  spec, buf: pointer;
+
   tapsLen:integer;
   Istart,Iend:integer;
-}
+
 begin
-(*
+
   Istart:=src.Istart;
   Iend:=src.Iend;
 
@@ -1302,14 +1318,23 @@ begin
 
   tapslen:=I2H-I1H+1;
 
+  setLength(delayS,tapsLen);
+  fillchar(delayS[0],tapsLen*8,0);
+
   setLength(delayD,tapsLen);
-  fillchar(delayD[0],tapsLen*4,0);
+  fillchar(delayD[0],tapsLen*8,0);
 
   setLength(tbS,maxtb);
   setLength(tbD,maxtb);
 
+  ippsFIRSRGetSize(tapslen, _ipp64f, @specSize, @bufSize );
 
-  ippsFIRInitAlloc_64f( pState, BH, tapsLen, @delayD[0]);
+  Spec := ippsMalloc_8u(specSize);
+  buf  := ippsMalloc_8u(bufSize);
+
+  //initialize the spec structure
+  ippsFIRSRInit_64f( BH, tapslen, ippAlgDirect, Spec );
+
 
   j:=0;
   k:=Istart+I1h;
@@ -1321,27 +1346,27 @@ begin
     j:=(j+1) mod maxtb;
     if j=0 then
       begin
-        ippsFir_64f(@tbS[0],@tbD[0],maxTb,pState);
+        ippsFirSR_64f(@tbS[0],@tbD[0],maxTb,spec, @delayS[0], @delayD[0], buf);
         for w:=0 to maxtb-1 do
           if k+w>=Istart then
             dest.data.setE(k+w,tbD[w]);
         k:=k+maxTb;
+        move(delayD[0] , delayS[0], tapslen*sizeof(double));
       end;
   end;
 
   if j>0 then
     begin
-      ippsFir_64f(@tbS[0],@tbD[0],j,pState);
+      ippsFirSR_64f(@tbS[0],@tbD[0],j,spec,@delayS[0],@delayD[0],buf);
       for w:=0 to j-1 do
         if k+w>=Istart then
           dest.data.setE(k+w,tbD[w]);
     end;
 
-  ippsFirFree_64f(pState);
 
   if src.isCpx then
   begin
-    ippsFIRInitAlloc_64f( pState, BH, tapsLen, @delayD[0]);
+    fillchar(delayS[0],tapsLen*8,0);
 
     j:=0;
     k:=Istart+I1h;
@@ -1353,63 +1378,78 @@ begin
       j:=(j+1) mod maxtb;
       if j=0 then
         begin
-          ippsFir_64f(@tbS[0],@tbD[0],maxTb,pState);
+          ippsFirSR_64f(@tbS[0],@tbD[0],maxTb,spec,@delayS[0],@delayD[0],buf);
           for w:=0 to maxtb-1 do
             if k+w>=Istart then
               dest.data.setIm(k+w,tbD[w]);
           k:=k+maxTb;
+          move(delayD[0] , delayS[0], tapslen*sizeof(double));
         end;
     end;
 
     if j>0 then
       begin
-        ippsFir_64f(@tbS[0],@tbD[0],j,pState);
+        ippsFirSR_64f(@tbS[0],@tbD[0],j,spec,@delayS[0],@delayD[0],buf);
         for w:=0 to j-1 do
           if k+w>=Istart then
             dest.data.setIm(k+w,tbD[w]);
       end;
 
-    ippsFirFree_64f(pState);
 
   end;
-*)
+  ippsFree(spec);
+  ippsFree(buf);
+
 end;
 
 
 Procedure convolveHFsingleComp(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
-  maxTb=10000;
+  maxTb=100000;
 
-{
 var
-  delayD:Array of TsingleComp;
+  delayS, delayD: Array of TsingleComp;
 
   tbS,tbD:array of TsingleComp;
 
   i,j,k,w,res:integer;
-  pState: PIppsFIRState_32fc;
+
+  specSize, BufSize: integer;
+  spec, buf: pointer;
+
   tapsLen:integer;
   Istart,Iend:integer;
-}
+
 begin
-(*
+
   Istart:=src.Istart;
   Iend:=src.Iend;
 
   dest.initTemp1(src.Istart,src.Iend,G_singleComp);
+
   dest.X0u:=src.X0u;
   dest.Dxu:=src.Dxu;
 
   tapslen:=I2H-I1H+1;
 
+  setLength(delayS,tapsLen);
+  fillchar(delayS[0],tapsLen*sizeof(TsingleComp),0);
+
   setLength(delayD,tapsLen);
-  fillchar(delayD[0],tapsLen*4,0);
+  fillchar(delayD[0],tapsLen*sizeof(TsingleComp),0);
 
   setLength(tbS,maxtb);
   setLength(tbD,maxtb);
 
+  ippsFIRSRGetSize(tapslen, _ipp32fc, @specSize, @bufSize );
 
-  ippsFIRInitAlloc_32fc( pState, BH, tapsLen, @delayD[0]);
+  Spec := ippsMalloc_8u(specSize);
+  buf  := ippsMalloc_8u(bufSize);
+
+  //initialize the spec structure
+  ippsFIRSRInit_32fc( BH, tapslen, ippAlgDirect, Spec );
+
+  //ippsFIRInitAlloc_32f( pState, BH, tapsLen, @delayD[0]);
 
   j:=0;
   k:=Istart+I1h;
@@ -1421,90 +1461,114 @@ begin
     j:=(j+1) mod maxtb;
     if j=0 then
       begin
-        ippsFir_32fc(@tbS[0],@tbD[0],maxTb,pState);
+        ippsFirSR_32fc(@tbS[0],@tbD[0],maxTb,spec,@delayS[0], @delayD[0],buf);
         for w:=0 to maxtb-1 do
           if k+w>=Istart then
             dest.CpxValue[k+w]:= FloatComp(tbD[w].x,tbD[w].y);
         k:=k+maxTb;
+        move(delayD[0], delayS[0], tapslen*sizeof(TsingleComp));
       end;
   end;
 
   if j>0 then
     begin
-      ippsFir_32fc(@tbS[0],@tbD[0],j,pState);
+      ippsFirSR_32fc(@tbS[0],@tbD[0],j,spec,@delayS[0], @delayD[0],buf);
       for w:=0 to j-1 do
         if k+w>=Istart then
           dest.CpxValue[k+w]:= FloatComp(tbD[w].x,tbD[w].y);
     end;
 
-  ippsFirFree_32fc(pState);
-*)
-end;
 
+
+  ippsFree(spec);
+  ippsFree(buf);
+
+end;
 
 Procedure convolveHFdoubleComp(var src,dest:Tvector;BH:Pointer;I1H,I2H:integer);
 const
-  maxTb=10000;
-{
+  maxTb=100000;
+
 var
-  delayD:Array of TdoubleComp;
+  delayS, delayD: Array of TdoubleComp;
 
   tbS,tbD:array of TdoubleComp;
 
   i,j,k,w,res:integer;
-  pState: PIppsFIRState_64fc;
+
+  specSize, BufSize: integer;
+  spec, buf: pointer;
+
   tapsLen:integer;
   Istart,Iend:integer;
-}
+
 begin
-(*
+
   Istart:=src.Istart;
   Iend:=src.Iend;
 
   dest.initTemp1(src.Istart,src.Iend,G_doubleComp);
+
   dest.X0u:=src.X0u;
   dest.Dxu:=src.Dxu;
 
   tapslen:=I2H-I1H+1;
 
+  setLength(delayS,tapsLen);
+  fillchar(delayS[0],tapsLen*sizeof(TdoubleComp),0);
   setLength(delayD,tapsLen);
-  fillchar(delayD[0],tapsLen*4,0);
+  fillchar(delayD[0],tapsLen*sizeof(TdoubleComp),0);
 
   setLength(tbS,maxtb);
   setLength(tbD,maxtb);
 
+  ippsFIRSRGetSize(tapslen, _ipp64fc, @specSize, @bufSize );
 
-  ippsFIRInitAlloc_64fc( pState, BH, tapsLen, @delayD[0]);
+  Spec := ippsMalloc_8u(specSize);
+  buf  := ippsMalloc_8u(bufSize);
+
+  //initialize the spec structure
+  ippsFIRSRInit_64fc( BH, tapslen, ippAlgDirect, Spec );
+
+  //ippsFIRInitAlloc_32f( pState, BH, tapsLen, @delayD[0]);
 
   j:=0;
   k:=Istart+I1h;
   for i:=src.Istart to src.Iend-I1h do
   begin
     if i<=Iend
-      then tbS[j]:=doubleComp(src.Yvalue[i],src.ImValue[i])
-      else tbS[j]:=doubleComp(0,0);
+      then tbS[j]:= DoubleComp(src.Yvalue[i],src.ImValue[i])
+      else tbS[j]:= DoubleComp(0,0);
+
     j:=(j+1) mod maxtb;
     if j=0 then
       begin
-        ippsFir_64fc(@tbS[0],@tbD[0],maxTb,pState);
+        ippsFirSR_64fc(@tbS[0],@tbD[0],maxTb,spec,@delayS[0], @delayD[0],buf);
         for w:=0 to maxtb-1 do
           if k+w>=Istart then
             dest.CpxValue[k+w]:= FloatComp(tbD[w].x,tbD[w].y);
         k:=k+maxTb;
+        move( delayD[0], delayS[0] , tapslen*sizeof(TdoubleComp) );
       end;
   end;
 
   if j>0 then
     begin
-      ippsFir_64fc(@tbS[0],@tbD[0],j,pState);
+      ippsFirSR_64fc(@tbS[0],@tbD[0],j,spec,@delayS[0], @delayD[0],buf);
       for w:=0 to j-1 do
         if k+w>=Istart then
           dest.CpxValue[k+w]:= FloatComp(tbD[w].x,tbD[w].y);
     end;
 
-  ippsFirFree_64fc(pState);
-*)
+
+
+  ippsFree(spec);
+  ippsFree(buf);
+
 end;
+
+
+
 
 
 procedure Convolve1(var src,hf,dest: Tvector);
@@ -1556,6 +1620,9 @@ begin
 end;
 
 procedure proConvolve(var src,hf,dest: Tvector);
+var
+  Vx,Vy,Vx1,Vy1: array of single;
+  VxD,VyD,Vx1D,Vy1D: array of double;
 begin
   IPPStest;
 
@@ -1602,7 +1669,60 @@ begin
       IPPSend;
     end;
   end
+  (*
+  else
+  if src.inf.temp and hf.inf.temp and (src.tpNum=G_single) and (hf.tpNum=G_singleComp) then
+  begin
+    try
+      dest.X0u:=src.X0u;
+      dest.Dxu:=src.Dxu;
 
+      dest.initTemp1(src.Istart,src.Iend,G_singleComp);
+
+      setLength(Vx,hf.Icount);
+      setLength(Vy,hf.Icount);
+      ippsReal_32fc(hf.tb,@Vx[0],hf.Icount);
+      ippsImag_32fc(hf.tb,@Vy[0],hf.Icount);
+
+      setLength(Vx1,src.Icount+hf.Icount);
+      setLength(Vy1,src.Icount+hf.Icount);
+
+      Conv32f(src.tbS,src.Icount,@Vx[0],hf.Icount,@Vx1[0]);
+      Conv32f(src.tbS,src.Icount,@Vy[0],hf.Icount,@Vy1[0]);
+
+      ippsRealToCplx_32f(@Vx1[-hf.Istart],@Vy1[-hf.Istart],dest.tbSC, src.Icount )
+
+    finally
+      IPPSend;
+    end
+  end
+  else
+  if src.inf.temp and hf.inf.temp and (src.tpNum=G_double) and (hf.tpNum=G_doubleComp) then
+  begin
+    try
+      dest.X0u:=src.X0u;
+      dest.Dxu:=src.Dxu;
+
+      dest.initTemp1(src.Istart,src.Iend,G_DoubleComp);
+
+      setLength(VxD,hf.Icount);
+      setLength(VyD,hf.Icount);
+      ippsReal_32fc(hf.tb,@VxD[0],hf.Icount);
+      ippsImag_32fc(hf.tb,@VyD[0],hf.Icount);
+
+      setLength(Vx1D,src.Icount+hf.Icount);
+      setLength(Vy1D,src.Icount+hf.Icount);
+
+      Conv32f(src.tbD,src.Icount,@VxD[0],hf.Icount,@Vx1D[0]);
+      Conv32f(src.tbD,src.Icount,@VyD[0],hf.Icount,@Vy1D[0]);
+
+      ippsRealToCplx_64f(@Vx1D[-hf.Istart],@Vy1D[-hf.Istart],dest.tbDC, src.Icount )
+
+    finally
+      IPPSend;
+    end
+  end
+  *)
   else convolve1(src,hf,dest);
 end;
 
