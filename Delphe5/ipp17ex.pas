@@ -43,36 +43,24 @@ implementation
 procedure Conv32f(src1: pointer; nb1: integer;src2: pointer; nb2: integer; dest: pointer);
 var
   status: integer;
-  buf: pointer;
   bufSize:integer;
 begin
   status := ippsConvolveGetBufferSize(nb1, nb2, _ipp32f, ippAlgAuto, @bufSize);
+  if status =0 then updateIppsBuffer1(bufSize) ;
 
-  if status <>0 then exit ;
-
-  Buf := ippsMalloc_8u( bufSize );
-
-  status := ippsConvolve_32f(Src1, nb1, Src2, nb2, Dest,ippAlgAuto, Buf);
-
-  ippsFree( Buf);
+  status := ippsConvolve_32f(Src1, nb1, Src2, nb2, Dest,ippAlgAuto, ippsBuffer1);
 end;
 
 
 procedure Conv64f(src1: pointer; nb1: integer;src2: pointer; nb2: integer; dest: pointer);
 var
   status: integer;
-  buf: pointer;
   bufSize:integer;
 begin
   status := ippsConvolveGetBufferSize(nb1, nb2, _ipp64f, ippAlgAuto, @bufSize);
+  if status =0 then updateIppsBuffer1(bufSize) ;
 
-  if status <>0 then exit ;
-
-  Buf := ippsMalloc_8u( bufSize );
-
-  status := ippsConvolve_64f(Src1, nb1, Src2, nb2, Dest,ippAlgAuto, Buf);
-
-  ippsFree( Buf);
+  status := ippsConvolve_64f(Src1, nb1, Src2, nb2, Dest,ippAlgAuto, ippsBuffer1);
 end;
 
 

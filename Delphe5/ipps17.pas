@@ -6,10 +6,18 @@ uses windows, math,util1,ippdefs17;
 
 
 
+var
+  ippsBuffer1: pointer;
+  ippsBufferSize1: integer;
+
 procedure IPPStest;
 procedure IPPSend;
 function InitIPPS:boolean;
 procedure freeIPPS;
+
+
+procedure UpdateIppsBuffer1(size:integer);
+procedure resetIppsBuffer1;
 
 
 (*
@@ -5947,6 +5955,9 @@ begin
   InitIpps1;
   InitIpps2;
   InitIpps3;
+
+  ippsBufferSize1:=10000000;
+  ippsBuffer1:= ippsMalloc(ippsBufferSize1);
 end;
 
 
@@ -5982,5 +5993,19 @@ begin
   //SetExceptionMask([exInvalidOp, exDenormalized, exUnderflow])
 end;
 
+procedure UpdateIppsBuffer1(size:integer);
+begin
+  if size>ippsBufferSize1 then
+  begin
+    ippsFree(ippsBuffer1);
+    ippsBufferSize1:= size;
+    ippsBuffer1:= ippsMalloc(ippsBufferSize1);
+  end;
+end;
+
+procedure resetIppsBuffer1;
+begin
+  UpdateIppsBuffer1(10000000);
+end;
 
 end.

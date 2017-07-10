@@ -44,8 +44,9 @@ var
   ind0:integer;
   Fphase:boolean;
 
-  Buf: pointer;
+  tabFilMax: integer;
   BufSize: integer;
+  status: integer;
 
 Const
   Epsilon=1E-30;
@@ -117,6 +118,17 @@ begin
   setlength(vecOne,nbpt);
   ippsSet_64f(1,Pdouble(@vecOne[0]),nbpt);
 
+
+  tabFilMax:=0;
+  with tabFil do
+  for i:=1 to count do
+    if vectors[i].Icount>tabFilMax then tabFilMax:= vectors[i].Icount;
+
+  status:= ippsConvolveGetBufferSize(nbpt, tabFilMax, _ipp64f, ippAlgAuto, @bufSize);
+  if (status=0) then updateIppsBuffer1(bufSize);
+
+
+  TRY
   for i:=0 to nbfq-1 do
   begin                                                                                             { Pour chaque fréquence }
      ippsZero_64f(Pdouble(@vecSum1[0]),nbpt);
@@ -145,13 +157,11 @@ begin
        ind0:=-Istart;
      end;
 
-     ippsConvolveGetBufferSize(nbpt, nbptFil, _ipp64f, ippAlgAuto, @bufSize);
-     Buf := ippsMalloc_8u( bufSize );
 
      for j:=0 to nbVec-1 do                                                                         { Balayer la liste de vecteurs }
      begin
-         ippsConvolve_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil1[0]),nbptFil,Pdouble(@vecTemp1[0]),ippAlgAuto,Buf);     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
-         ippsConvolve_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil2[0]),nbptFil,Pdouble(@vecTemp2[0]),ippAlgAuto,Buf);     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
+         ippsConvolve_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil1[0]),nbptFil,Pdouble(@vecTemp1[0]),ippAlgAuto,ippsBuffer1);     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
+         ippsConvolve_64f(Pdouble(@vecs[j,0]),nbpt,Pdouble(@vecFil2[0]),nbptFil,Pdouble(@vecTemp2[0]),ippAlgAuto,ippsBuffer1);     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
 
          if Fphase then
          begin
@@ -178,7 +188,6 @@ begin
      // A ce stade, on dispose de vecSum1, vecSum2, vecSumSqr1, vecSumSqr2 et vecSumMod
      // et aussi VecSumPhaseX, vecSumPhaseY
 
-     ippsFree(Buf);
 
      if Fphase then
      begin
@@ -225,7 +234,10 @@ begin
      end;
   end;
 
+  FINALLY
   IPPSend;
+  END;
+  
 end;
 
 
@@ -244,8 +256,10 @@ var
   ind0:integer;
   Fphase:boolean;
 
-  Buf: pointer;
+  status: integer;
+  tabFilMax: integer;
   BufSize: integer;
+
 
 Const
   Epsilon=1E-30;
@@ -317,6 +331,15 @@ begin
   setlength(vecOne,nbpt);
   ippsSet_32f(1,Psingle(@vecOne[0]),nbpt);
 
+  tabFilMax:=0;
+  with tabFil do
+  for i:=1 to count do
+    if vectors[i].Icount>tabFilMax then tabFilMax:= vectors[i].Icount;
+
+  status:= ippsConvolveGetBufferSize(nbpt, tabFilMax, _ipp64f, ippAlgAuto, @bufSize);
+  if (status=0) then updateIppsBuffer1(bufSize);
+
+
   for i:=0 to nbfq-1 do
   begin                                                                                             { Pour chaque fréquence }
      ippsZero_32f(Psingle(@vecSum1[0]),nbpt);
@@ -344,13 +367,12 @@ begin
        ind0:=-Istart;
      end;
 
-     ippsConvolveGetBufferSize(nbpt, nbptFil, _ipp32f, ippAlgAuto, @bufSize);
-     Buf := ippsMalloc_8u( bufSize );
+  
 
      for j:=0 to nbVec-1 do                                                                         { Balayer la liste de vecteurs }
      begin
-         ippsConvolve_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil1[0]),nbptFil,Psingle(@vecTemp1[0]), ippAlgAuto, Buf);     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
-         ippsConvolve_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil2[0]),nbptFil,Psingle(@vecTemp2[0]), ippAlgAuto, Buf);     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
+         ippsConvolve_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil1[0]),nbptFil,Psingle(@vecTemp1[0]), ippAlgAuto, ippsBuffer1);     { Convoluer vec avec Re(filtre) ==> vecTemp1 }
+         ippsConvolve_32f(Psingle(@vecs[j,0]),nbpt,Psingle(@vecFil2[0]),nbptFil,Psingle(@vecTemp2[0]), ippAlgAuto, ippsBuffer1);     { Convoluer vec avec Im(filtre) ==> vecTemp2 }
 
          if Fphase then
          begin
@@ -377,7 +399,6 @@ begin
      // A ce stade, on dispose de vecSum1, vecSum2, vecSumSqr1, vecSumSqr2 et vecSumMod
      // et aussi VecSumPhaseX, vecSumPhaseY
 
-     ippsFree(Buf);
 
      if Fphase then
      begin
