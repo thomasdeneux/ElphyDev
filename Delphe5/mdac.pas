@@ -2376,26 +2376,26 @@ end;
 
 procedure TMainDac.Debug1Click(Sender: TObject);
 var
-  p: array of pointer;
+  buf: pointer;
+  bufsize: integer;
   i: integer;
-  st: AnsiString;
-  list: Tlist;
-const
-  max=200000;
+  status,nb1,nb2: integer;
+const                                                 
+  max=200000;                                     
   size=1000;
 begin
-  list:= Tlist.Create;
-  initChrono;
-
-  for i:=1 to max do list.Add(pointer(i));
-  st:='Alloc time='+chrono;
-
-  InitChrono;
-  for i:=1 to max do list.Remove(pointer(i));
-  messageCentral(st+crlf+'Desalloc time='+chrono);
-
-  list.Free;
-
+  for i:=1 to 10000000 do
+  begin
+    nb1:=1000+i;
+    nb2:=35;
+    status := ippsConvolveGetBufferSize(nb1, nb2, _ipp32f, ippAlgAuto, @bufSize);
+    if (status<>0) or (bufSize=0) then
+    begin
+      messageCentral('status='+Istr(status) + '   bufSize='+Istr(bufSize)+'  i='+Istr(i)+' --'+Istr(ord(_ipp64f)));
+      break;
+    end;
+  end;
+  messageCentral('OK    bufSize='+Istr(bufSize));
 end;
 
 

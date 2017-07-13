@@ -2,6 +2,7 @@
 
 
 unit ipp17ex;
+{$Z+,A+}
 
 interface
 

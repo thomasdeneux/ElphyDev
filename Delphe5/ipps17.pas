@@ -1,4 +1,5 @@
 Unit ipps17;
+{$Z+,A+} 
 
 INTERFACE
 

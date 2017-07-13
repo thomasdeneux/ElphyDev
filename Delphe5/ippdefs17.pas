@@ -1,5 +1,7 @@
 unit ippdefs17;
 
+
+{$Z+,A+}
 // Gérard Sadoc 2017
 // Translation of ippdefs.h , ippbase.h , ipptypes.h
 

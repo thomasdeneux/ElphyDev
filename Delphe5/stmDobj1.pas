@@ -1272,7 +1272,7 @@ begin
     G_longword:   result:= _Ipp32u;
     G_int64:      result:= _Ipp64s;
 
-    else          byte(result):=  255;
+    else          integer(result):=  255;
   end;
 end;
 

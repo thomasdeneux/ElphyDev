@@ -1,4 +1,5 @@
 Unit ippi17;
+{$Z+,A+} 
 
 INTERFACE
 
