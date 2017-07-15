@@ -262,8 +262,12 @@ const
 
   pg1Rgb:array[1..4] of integer=(0,0,0,0);
 
-
+  {$IFDEF WIN64}
+  FcudaVersion: integer =3;
+  {$ELSE}
   FcudaVersion: integer =2;
+  {$ENDIF}
+
   FdirectXversion: integer =2;
 
   //TexFormat = D3DFMT_A32B32G32R32F; //  avril 2016 : devient l'unique format des textures

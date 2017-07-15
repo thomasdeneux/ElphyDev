@@ -90,21 +90,23 @@ begin
 
   
   {$IFDEF WIN64}
-  cbCudaVersion.setVar(FcudaVersion,g_longint,2);
-  cbCudaVersion.setString(' Cuda 6.5 | Cuda 8.0');
-  cbCudaVersion.enabled:=true;
+  FcudaVersion:=3;
+  cbCudaVersion.setVar(FcudaVersion,g_longint,3);
+  cbCudaVersion.setString(' Cuda 8.0');
+  cbCudaVersion.enabled:=false;
 
   {$ELSE}
+  FcudaVersion:=2;
   cbCudaVersion.setVar(FcudaVersion,g_longint,2);
   cbCudaVersion.setString(' Cuda 6.5 ');
-  cbCudaVersion.enabled:=true;
+  cbCudaVersion.enabled:=false;
 
   {$ENDIF}
 
   cbDirectXVersion.setVar(FdirectXVersion,g_longint,1);
   cbDirectXVersion.setString(' DirectX 9 | DirectX 9EX');
 
-  
+
 
 
   if showModal=mrOK then

@@ -173,7 +173,7 @@ procedure initCfgBaseDAC;   { Variables sauvées uniquement dans dac2.gfc }
     setvarconf1('DEBUGCODE',DebugCode,sizeof(DebugCode));
 
     {$IFDEF WIN64}
-    setVarConf1('CUDAVERSION', FcudaVersion,sizeof(FcudaVersion));
+    //setVarConf1('CUDAVERSION', FcudaVersion,sizeof(FcudaVersion));
     {$ENDIF}
     //setVarConf1('DIRECTXVER', FDirectXVersion,sizeof(FDirectXVersion));
 
