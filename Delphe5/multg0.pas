@@ -48,7 +48,7 @@ type
   TsmallRect=record
                x1,y1,x2,y2:smallint;
                nb:smallInt;
-               pu:array[1..10000] of integer; { en fait nb pointeurs }
+               pu:array[1..10000] of integer; { en fait nb pointeurs, même en 64 bits }
              end;
   PsmallRect=^TsmallRect;
 
@@ -66,7 +66,7 @@ type
              record
              case integer of
                1:(nb:smallInt;
-                  pu:array[1..10000] of integer); { en fait nb pointeurs }
+                  pu:array[1..10000] of integer); { en fait nb pointeurs , même en 64 bits}
 
                2:(color1,BKcolor1:integer;       {Etait utilisé par les labels}
                   transparent:boolean;
@@ -2832,7 +2832,7 @@ begin
           begin                                   { et }
             nb:=cadre[1,i].pu.count;        { les objets }
             for j:=0 to nb-1 do
-              pu[j+1]:=intG(cadre[1,i].pu[j]);
+              pu[j+1]:=intG(cadre[1,i].pu[j]);       
           end
          else nb:=0;
         inc(size,10+nb*4);
@@ -2966,13 +2966,13 @@ begin
         with PsmallRect2(@pw[size])^ do
         begin
           if assigned(cadre[wt,i].pu) then              { le nb d'objets}
-            begin                                    { et }
+            begin                                       { et }
               nb:=cadre[wt,i].pu.count;                 { les objets }
               for j:=0 to nb-1 do
                 pu[j+1]:=intG(cadre[wt,i].pu.items[j]); { en 64 bits, on range la partie basse de l'adresse }
             end
            else nb:=0;
-          inc(size,sizeof(nb)+nb*sizeof(integer));  { pointer }
+          inc(size,sizeof(nb)+nb*sizeof(integer));      { pointer }
         end;
       end;
   end;

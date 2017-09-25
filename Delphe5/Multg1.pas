@@ -1533,7 +1533,7 @@ begin
     for wt:=1 to 2 do
     for j:=0 to formG.count(page,wt)-1 do
       begin
-        lu:=formG.getPref(page,j,wt);
+        lu:=formG.getPref(page,j,wt);                             // liste de pointeurs tronqués en 64 bits
         if assigned(lu) then
         begin
           list1.clear;
@@ -1541,7 +1541,8 @@ begin
 
           for i:=0 to list.count-1 do
             begin
-              p:=typeUO(list.items[i]).myAd;
+              p:=typeUO(list.items[i]).myAd;                      // 25-9-17 : myAd n'est plus tronqué
+              intG(p):= intG(p) and $FFFFFFFF;                    // donc, on tronque p pour faire les comparaisons
               k:=lu.indexof(p);
               if k>=0 then
                 list1.items[k]:=list.items[i];

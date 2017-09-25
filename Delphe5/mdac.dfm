@@ -9,34 +9,34 @@ inherited MainDac: TMainDac
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 16
   inherited PaintBox1: TPaintBox
-    Width = 715
-    Height = 490
+    Width = 723
+    Height = 481
   end
   object PanelBottom: TPanel [1]
     Left = 0
-    Top = 515
-    Width = 715
-    Height = 18
+    Top = 512
+    Width = 723
+    Height = 22
     Align = alBottom
     Caption = 'PanelBottom'
     TabOrder = 0
     object PanelTime: TPanel
-      Left = 614
+      Left = 599
       Top = 1
-      Width = 100
-      Height = 16
+      Width = 123
+      Height = 20
       Align = alRight
       BevelOuter = bvLowered
       TabOrder = 0
     end
     object PanelCount: TPanel
-      Left = 514
+      Left = 476
       Top = 1
-      Width = 100
-      Height = 16
+      Width = 123
+      Height = 20
       Align = alRight
       BevelOuter = bvLowered
       TabOrder = 1
@@ -44,22 +44,22 @@ inherited MainDac: TMainDac
     object PanelStatus: TPanel
       Left = 1
       Top = 1
-      Width = 403
-      Height = 16
+      Width = 339
+      Height = 20
       Align = alClient
       BevelOuter = bvLowered
       TabOrder = 2
     end
     object Psave: TPanel
-      Left = 404
+      Left = 340
       Top = 1
-      Width = 110
-      Height = 16
+      Width = 136
+      Height = 20
       Align = alRight
       BevelOuter = bvLowered
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
@@ -67,59 +67,59 @@ inherited MainDac: TMainDac
     end
   end
   inherited Panel1Top: TPanel
-    Width = 715
+    Width = 723
     TabOrder = 1
     object Pnomdat: TPanel [0]
       Left = 1
       Top = 1
-      Width = 92
-      Height = 23
+      Width = 113
+      Height = 29
       Align = alLeft
       BevelOuter = bvLowered
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       TabOrder = 0
     end
     object Panel4: TPanel [1]
-      Left = 93
+      Left = 114
       Top = 1
-      Width = 53
-      Height = 23
+      Width = 66
+      Height = 29
       Align = alLeft
       Caption = 'Episode:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       TabOrder = 1
     end
     object PanSequence: TPanel [2]
-      Left = 146
+      Left = 180
       Top = 1
-      Width = 40
-      Height = 23
+      Width = 49
+      Height = 29
       Align = alLeft
       BevelOuter = bvLowered
       Caption = '1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       TabOrder = 2
     end
     object Bprevious: TBitBtn [3]
-      Left = 190
+      Left = 234
       Top = 2
-      Width = 33
-      Height = 20
+      Width = 40
+      Height = 25
       Hint = 'Previous episode Ctrl W'
       ParentShowHint = False
       ShowHint = True
@@ -141,10 +141,10 @@ inherited MainDac: TMainDac
       NumGlyphs = 2
     end
     object Bnext: TBitBtn [4]
-      Left = 225
+      Left = 277
       Top = 2
-      Width = 33
-      Height = 20
+      Width = 41
+      Height = 25
       Hint = 'Next episode Ctrl X'
       ParentShowHint = False
       ShowHint = True
@@ -166,23 +166,23 @@ inherited MainDac: TMainDac
       NumGlyphs = 2
     end
     inherited TabPage1: TTabControl
-      Left = 523
+      Left = 487
       TabOrder = 5
     end
     inherited Bprint: TBitBtn
-      Left = 301
+      Left = 370
       Top = 2
-      Height = 21
+      Height = 26
       TabOrder = 6
     end
     object Bexe: TBitBtn
-      Left = 266
+      Left = 327
       Top = 2
-      Width = 32
-      Height = 21
+      Width = 40
+      Height = 26
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False

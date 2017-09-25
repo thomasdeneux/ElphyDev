@@ -76,6 +76,7 @@ type
                 getV:TgetVProc;
                 setV:TsetVProc;
                 onRead: TonRead;
+                PreadSize: Pinteger;
               end;
   PvarConf=^typeVarConf;
 
@@ -99,7 +100,7 @@ type
 
               procedure SetVarConf(mot:AnsiString;var v;t:integer);overload;
               procedure SetVarConf(mot:AnsiString;var v;t:integer;OnR:Tonread);overload;
-
+              procedure SetVarConf(mot:AnsiString;var v;t:integer;var ReadSize: integer);overload;
 
               procedure SetStringConf(mot:AnsiString;var v:AnsiString);
               procedure SetPropConf(mot:AnsiString;t:integer;Vset:TsetVproc;Vget:TgetVProc);
@@ -161,6 +162,12 @@ procedure TBlocConf.SetVarConf(mot:AnsiString;var v;t:integer;OnR:TonRead);
 begin
   setvarConf(mot,v,t);
   conf[nbConf-1].onRead:=onR;
+end;
+
+procedure TBlocConf.SetVarConf(mot: AnsiString; var v; t: integer; var ReadSize: integer);
+begin
+  setvarConf(mot,v,t);
+  conf[nbConf-1].PReadSize:= @ReadSize;
 end;
 
 procedure TblocConf.SetStringConf(mot:AnsiString;var v:AnsiString);
@@ -381,6 +388,7 @@ function TblocConf.lire(f:Tstream):integer;
                 then f.read(p^.pvar^,vc.taille)
                 else f.read(p^.pvar^,p^.taille);
               if assigned(p^.onRead) then p^.onRead(self);
+              if p^.PreadSize<>nil then p^.PreadSize^:=vc.Taille;
             end;
 
           TV_string:
@@ -464,6 +472,7 @@ function TblocConf.lire1( f:Tstream;size:longint):integer;
                 then f.read(p^.pvar^,vc.taille)
                 else f.read(p^.pvar^,p^.taille);
               if assigned(p^.onRead) then p^.onRead(self);
+              if p^.PreadSize<>nil then p^.PreadSize^:=vc.Taille;
             end;
 
           TV_string:
@@ -586,5 +595,7 @@ begin
     exit;
   end;
 end;
+
+
 
 end.

@@ -52,7 +52,7 @@ type
 type
   THeaderObjectFile=
                object
-                 id:string[15];
+                 id:String[15];
                  size:smallint;      { 18 octets}
                  procedure init;
                end;
@@ -456,7 +456,9 @@ begin
     items.EndUpDate;
   end;
 
+  command.Caption:=Ident+' : '+fileName;
   Fupdate:=false;
+
 end;
 
 
@@ -503,10 +505,10 @@ end;
 
 procedure LookForObject1(f:TfileStream;var posf:int64);
 var
-  st:string;
+  st:AnsiString;
   sz:integer;
   p:integer;
-  stName:string;
+  stName:AnsiString;
 begin
   while (posf<f.Size) do
   begin
@@ -595,7 +597,7 @@ var
   ok:boolean;
   conf:TblocConf;
 
-  OldIdent0:string[30];
+  OldIdent0:String[30];
   Ident0: AnsiString;
 
   Fchild0:boolean;
@@ -614,6 +616,8 @@ var
   sizeConf:integer;
   owner1:typeUO;
   cnt:integer;
+
+  Rsize1, Rsize2: integer;
 
 procedure LookForObject;
 var
@@ -719,18 +723,32 @@ begin
           begin
             setvarConf('IDENT',Oldident0,sizeof(Oldident0));
             setStringConf('IDENT1',ident0);
-            setvarConf('MYAD',myAd0,sizeof(myAd0));
+            setvarConf('MYAD',myAd0,sizeof(myAd0),Rsize1);
             setvarConf('FCHILD',Fchild0,sizeof(Fchild0));
             setStringConf('COM',stComment0);
             setVarConf('OBJINF',inf0,sizeof(inf0));
             setvarconf('INF',oldinf,sizeof(oldinf));
-            setvarconf('OWNER',owner1,sizeof(owner1));
+            setvarconf('OWNER',owner1,sizeof(owner1),Rsize2);
           end;
           if size>1000
             then sizeConf:=1000
             else sizeConf:=size;
           ok:=(conf.lire1(fileStream,sizeConf)=0);
           conf.free;
+
+          if ok and (Rsize1=4) and (Rsize2=8) then
+            intG(owner1):= intG(owner1) and $FFFFFFFF;
+
+          (*
+            Correction du 25-09-17
+            On décide que les pointeurs myAd et Owner1 sont toujours sauvés normalement ( 32 bits ou 64 bits)
+            Si on lit des pointeurs 64 bits en 32 bits, les pointeurs sont tronqués
+            Si on lit des pointeurs 32 bits en 64 bits, les pointeurs contiennent 0 en partie haute
+            Ces pointeurs servent seulement à identifier un objet, donc on admet que la partie basse est suffisante pour faire des comparaisons.
+
+            Dans les versions précédentes, on pouvait se retrouver avec myAd tronqué et owner1 non tronqué . Les deux lignes
+            ci-dessus corrigent ce bug.
+          *)
         end;
 
         if ok then
@@ -791,7 +809,7 @@ var
   ok:boolean;
   conf:TblocConf;
 
-  OldIdent0:string[30];
+  OldIdent0:String[30];
   Ident0: AnsiString;
 
   Fchild0:boolean;
@@ -800,6 +818,8 @@ var
 
   sizeConf:integer;
   owner1:typeUO;
+
+  Rsize1, Rsize2: integer;
 begin
   posf:=posf0;
   result:=0;
@@ -828,21 +848,25 @@ begin
         ident0:='';
         OldIdent0:='';
         owner1:=nil;
+        myAd0:=nil;
 
         conf:=TblocConf.create(stmName);
         with conf do
         begin
           setvarConf('IDENT',Oldident0,sizeof(Oldident0));
           setStringConf('IDENT1',ident0);
-          setvarConf('MYAD',myAd0,sizeof(myAd0));
+          setvarConf('MYAD',myAd0,sizeof(myAd0), Rsize1);
           setvarConf('FCHILD',Fchild0,sizeof(Fchild0));
-          setvarconf('OWNER',owner1,sizeof(owner1));
+          setvarconf('OWNER',owner1,sizeof(owner1), Rsize2);
         end;
         if size>1000
           then sizeConf:=1000
           else sizeConf:=size;
         ok:=(conf.lire1(fileStream,sizeConf)=0);
         conf.free;
+
+        if ok and (Rsize1=4) and (Rsize2=8) then
+          intG(owner1):= intG(owner1) and $FFFFFFFF;
 
         if ok then
           begin
@@ -1203,7 +1227,7 @@ begin
   if assigned(command) then command.UODisplay1.processMessage(id,source,p);
 end;
 
-function ShortName(st:string):string;
+function ShortName(st:AnsiString):AnsiString;
 var
   k:integer;
 begin

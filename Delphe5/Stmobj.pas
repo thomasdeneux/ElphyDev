@@ -994,7 +994,7 @@ function readAndCreateUO(f:Tstream;status:TUOstatus;tout:boolean;Fdata:boolean):
   Tout ne concerne que VisualStim. Si Tout est vrai, VisualStim est chargé
 }
 
-function FindUOclassName(st:string;var stMot:string):integer;
+function FindUOclassName(st:AnsiString;var stMot:AnsiString):integer;
 { Cherche un mot clé dans st }
 
 procedure verifierObjet(var pu:typeUO);
@@ -1481,7 +1481,10 @@ procedure TypeUO.BuildInfo(var conf:TblocConf;lecture,tout:boolean);
           end;
 
           setStringConf('IDENT1',identNew);
-          setvarConf('MYAD',myAd, sizeof(integer) {sizeof(myAd)});  // en 64 bits, on ne prend que la partie basse de l'adresse
+          setvarConf('MYAD',myAd, sizeof(myAd));
+          // Correction du 25-09-17
+          // Auparavant, en 64 bits, on ne prenait que la partie basse de l'adresse
+          // Ce n'était pas cohérent avec Owner
         end;
       setvarConf('NOTPUB',NotPublished,sizeof(NotPublished));
 
@@ -1491,7 +1494,8 @@ procedure TypeUO.BuildInfo(var conf:TblocConf;lecture,tout:boolean);
 
       if not lecture then
         setvarConf('OWNER',UOowner,sizeof(UOowner));
-
+        // Il serait mieux de tronquer comme myad
+        // Encore mieux : ne rien tronquer à l'écriture, mais seulement à la lecture.
     end;
   end;
 
@@ -2179,7 +2183,7 @@ var
   i,k:integer;
   p0:TtreeNode;
   DumNode: TdumUO;
-  stBase:string;
+  stBase:AnsiString;
 begin
   pack;
   if not assigned(DumList) then DumList:= TstringList.create
@@ -2687,7 +2691,7 @@ begin
         end;
 end;
 
-function FindUOclassName(st:string;var stMot:string):integer;
+function FindUOclassName(st:AnsiString;var stMot:AnsiString):integer;
 var
   g:TgenreUO;
   i:integer;
@@ -3600,7 +3604,7 @@ end;
 
 function fonctionTobject_getIndex(num:integer; var pu:typeUO):integer;
 var
-  st:string;
+  st:AnsiString;
   n,k: integer;
   w,code:integer;
 Const
