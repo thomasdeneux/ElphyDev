@@ -1,5 +1,7 @@
 ; -- Elphy64.iss --
 
+#define Today GetDateTimeString("yymmdd","-",":")
+
 [Setup]
 AppName=ELPHY64
 AppVerName=Elphy64 Version 5.0.0
@@ -9,7 +11,8 @@ DefaultDirName={sd}\Elphy64
 DefaultGroupName=Elphy64
 UninstallDisplayIcon={app}\Elphy64.exe
 licenseFile="..\Documents\Elphylicense.txt"
-OutputBaseFileName=Elphy64Setup
+OutputDir=..\Setup
+OutputBaseFileName=Elphy64Setup-{#Today}
 
 ; "ArchitecturesAllowed=x64" specifies that Setup cannot run on
 ; anything but x64.

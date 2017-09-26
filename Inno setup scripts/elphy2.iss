@@ -1,5 +1,7 @@
 ; -- Elphy2.iss --
 
+#define Today GetDateTimeString("yymmdd","-",":")
+
 [Setup]
 AppName=ELPHY2
 AppVerName=Elphy Version 5.0.0
@@ -9,7 +11,8 @@ UsePreviousAppDir=no
 DefaultGroupName=Elphy2
 UninstallDisplayIcon={app}\Elphy2.exe
 ;licenseFile="..\Delphe5\Elphylicense.txt"
-OutputBaseFileName=Elphy2Setup
+OutputDir=..\Setup
+OutputBaseFileName=Elphy2Setup-{#Today}
 
 [Dirs]
 Name: "{app}\AppData"; Permissions: everyone-modify

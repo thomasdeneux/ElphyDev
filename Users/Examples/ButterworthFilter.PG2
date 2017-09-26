@@ -1,0 +1,83 @@
+(*  Test de TIIRfilter
+
+    On génère un signal dans c1
+    Le résultat du filtrage est dans c2 (lowpass) et c3(highpass)
+    Donc, il faut ranger c1, c2 et c3 dans des fenêtres de la page courante , et coupler leurs coordonnées
+    
+    On constate que, pour un passe-bas butterworth d'ordre 8, le rapport fréquence d'échantillonnage sur  
+    fréquence de coupure ne doit pas dépasser 100 environ 
+    ex: pour fsamp=10 kHz, il faut fcut>100 Hz , sinon, le vecteur résultat contient des NAN
+    
+    Si le vecteur source est de type double, les résultats ne sont pas meilleurs.
+*)
+
+var
+  IIR: TIIRfilter;
+  
+procedure LowButFilter(var src,dest: Tvector; order: integer; fcut: real);
+begin
+  IIR.create;
+  IIR.installButterWorth(false,order,true,fcut);
+  IIR.execute(src,dest);
+  dest.invalidate;
+end;
+
+procedure HighButFilter(var src,dest: Tvector; order: integer; fcut: real);
+begin
+  IIR.create;
+  IIR.installButterWorth(true,order,true,fcut);
+  IIR.execute(src,dest);
+  dest.invalidate;
+end;
+
+
+procedure BuildSignal(Amp,freq:real; noise:real);
+var
+  i:integer;
+begin
+  c1.modify(t_single,0,99999);       // 10 secondes de signal à 10 kHz
+  c1.dx:=0.1;                        // les temps sont en millisecondes
+  c1.x0:=0;
+  c1.unitX:='ms';
+  
+  c1.sinewave(Amp,1000/freq,0);      // Une sinusoide
+  for i:=c1.Istart to c1.Iend do 
+    c1[i]:=c1[i]+(random-0.5)*noise; // On ajoute du bruit
+end;
+
+
+procedure InitPage;
+begin
+  if PageIndex('Butterworth Test')=0 then
+  begin
+    AddPage('Butterworth Test');
+    with MgPage['Butterworth Test'] do
+    begin
+      NewWindow(0,0);
+      divideWindow(1,1,3);
+      addObject(1,c1);
+      addObject(1,c2);
+      addObject(2,c2);
+      addObject(3,c3);
+    end;
+    c1.Cpx:=1; c1.Cpy:=1;
+    c2.Cpx:=1; c2.Cpy:=1;
+    c3.Cpx:=1; c3.Cpy:=1;
+    c2.color := CL_Red;
+    c3.color := CL_Blue;
+    c1.AutoscaleX;
+    c1.AutoscaleY1;
+  end;
+  SelectPage('Butterworth Test'); 
+end;
+
+procedure test1;
+begin
+  BuildSignal(1000,10,500);
+  LowButFilter(c1,c2,8,100);  
+  HighButFilter(c1,c3,8,100);  
+  InitPage;
+end;
+
+program 'Test'
+Test1;
