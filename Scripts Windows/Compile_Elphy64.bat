@@ -11,5 +11,5 @@ c:
 @SET PLATFORM=
 @SET PlatformSDK=
 
-msbuild d:\elphyDev\delpheXE\elphy64.dproj /t:Rebuild /p:Config=Release;Platform=Win64
+msbuild "%~dp0..\delpheXE\elphy64.dproj" /t:Rebuild /p:Config=Release;Platform=Win64
 pause
