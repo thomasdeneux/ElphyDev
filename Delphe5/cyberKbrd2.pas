@@ -193,7 +193,9 @@ procedure TCyberK10interface.init;
 var
   i,j:integer;
   group1,length1:longword;
-  list1:array[0..255] of longword;
+  list1: array[0..1023] of longword;  //  version 3.10
+  list2: array[0..1023] of word ;     //  version 3.11
+
   st:AnsiString;
   len,pretrig,sysfreq:longword;
   Filter:array[0..150] of longword;
@@ -344,13 +346,24 @@ begin
   refGroup:=0;
   for i:=2 to 5 do
   begin
-    length1:=1000;
-    if not CheckCb( cbSdkGetSampleGroupList( 0,1, i, length1, list1[0] ), 110 ) then exit;
+    length1:=0;
+    case cbLibVersion of
+      310: begin
+             if not CheckCb( cbSdkGetSampleGroupList( 0,1, i, length1, list1[0] ), 110 ) then exit;
 
-    setLength(GroupToCh[i],length1);
-    GroupNbCh[i]:=length1;
-    for j:=0 to length1-1 do GroupToCh[i][j]:=GetAnalogCh(list1[j]);
+             setLength(GroupToCh[i],length1);
+             GroupNbCh[i]:=length1;
+             for j:=0 to length1-1 do GroupToCh[i][j]:=GetAnalogCh(list1[j]);
+           end;
+      311: begin
+             if not CheckCb( cbSdkGetSampleGroupList( 0,1, i, length1, list2[0] ), 110 ) then exit;
 
+             setLength(GroupToCh[i],length1);
+             GroupNbCh[i]:=length1;
+             for j:=0 to length1-1 do GroupToCh[i][j]:=GetAnalogCh(list2[j]);
+           end;
+
+    end;
     if (refGroup=0) and (GroupNbCh[i]>0) then
     begin
       refGroup:=i;
