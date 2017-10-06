@@ -49,7 +49,7 @@ interface
         19 SYN
       Rangée du bas 20 à 37 = Ground
 
-      En mode continu, ou seq immédiat-interne , on envoie un pulse sur Dout4,
+      En mode continu, ou seq immédiat-interne , on génère un pulse sur Dout4,
       ce pulse est envoyé sur Din15
       En mod seq-trigger numérique, le pulse est envoyé sur Din0
 
