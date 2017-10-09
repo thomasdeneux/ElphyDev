@@ -28,7 +28,14 @@ unit CyberK4;
   structures des paquets utiles.
 
 
+ Octobre 2017
+ CyberK4 gère également la version 3.11
 
+ Comme les modifications sont mineures, on détecte la version au chargement de la dll cbSdk
+ Ensuite, on tient compte de la valeur de CbLibVersion ( 310 ou 311 )
+ Cette variable est accessible dans cyberKbrd2
+
+ La seule fonction modifiée est cbSdkGetSampleGroupList
 }
 
 Interface
@@ -1107,8 +1114,9 @@ Var
     cbSdkGetFilterDesc: function(nInstance: UINT32;  proc:UINT32;  filt:UINT32; var filtdesc:cbFILTDESC): cbSdkResult;cdecl;
 
 // Get sample group list (proc = 1 for now) */
-    cbSdkGetSampleGroupList: function(nInstance: UINT32;  proc:UINT32;  group:UINT32; var length:UINT32; var list:UINT32): cbSdkResult;cdecl;
-
+    cbSdkGetSampleGroupList: function(nInstance: UINT32;  proc:UINT32;  group:UINT32; var length:UINT32;  var list): cbSdkResult;cdecl;
+                                                                                                         // ver 310 :  list: array[] of UINT32
+                                                                                                         // ver 311 :  list: array[] of UINT16
     cbSdkGetSampleGroupInfo: function(nInstance: UINT32;  proc:UINT32;  group:UINT32; label1:PansiChar; var period:UINT32; var length:UINT32): cbSdkResult;cdecl;
 
 //
@@ -1137,7 +1145,8 @@ Var
 /// Convert volts string (e.g. '5V'; '-65mV'; ...) to its raw digital value equivalent for given channel
     cbSdkAnalogToDigital: function(nInstance: UINT32;  channel:UINT16; szVoltsUnitString: PansiChar; var digital:INT32): cbSdkResult;cdecl;
 
-
+var
+  CbLibVersion: integer ;
 
 
 function InitCbSdkDLL(stPath:AnsiString):boolean;
@@ -1152,6 +1161,21 @@ implementation
 var
   hh:intG;
   DllName:AnsiString;
+  
+
+procedure CheckVersion;
+var
+  Sdkversion: cbSdkVersion;
+  res: integer;
+begin
+  res:=  cbSdkGetVersion( 0, Sdkversion);     // ok mais ne renvoie pas 0
+  //if res=0 then
+  begin
+    CbLibVersion:= sdkVersion.majorp*100+ sdkVersion.minorp;
+    messageCentral('Version = '+Istr(CbLibVersion));
+  end;
+end;
+
 
 function InitCbSdkDLL(stPath:AnsiString):boolean;
 begin
@@ -1225,6 +1249,8 @@ begin
     // Les noms décorés . On ne garde que ceux qui sont utilisés dans Elphy
   {$IFNDEF WIN64}
   cbSdkGetVersion:= getProc(hh,'?cbSdkGetVersion@@YA?AW4_cbSdkResult@@IPAU_cbSdkVersion@@@Z');
+  CheckVersion;
+
   //cbSdkReadCCF:= getProc(hh,'cbSdkReadCCF');
   //cbSdkWriteCCF:= getProc(hh,'cbSdkWriteCCF');
   cbSdkOpen:= getProc(hh,'?cbSdkOpen@@YA?AW4_cbSdkResult@@IW4_cbSdkConnectionType@@U_cbSdkConnection@@@Z');
@@ -1261,7 +1287,12 @@ begin
   cbSdkSetChannelConfig:= getProc(hh,'?cbSdkSetChannelConfig@@YA?AW4_cbSdkResult@@IGPAUcbPKT_CHANINFO@@@Z');
   cbSdkGetChannelConfig:= getProc(hh,'?cbSdkGetChannelConfig@@YA?AW4_cbSdkResult@@IGPAUcbPKT_CHANINFO@@@Z');
   cbSdkGetFilterDesc:= getProc(hh,'?cbSdkGetFilterDesc@@YA?AW4_cbSdkResult@@IIIPAUcbFILTDESC@@@Z');
-  cbSdkGetSampleGroupList:= getProc(hh,'?cbSdkGetSampleGroupList@@YA?AW4_cbSdkResult@@IIIPAI0@Z');
+
+  if CbLibVersion=310
+    then cbSdkGetSampleGroupList:= getProc(hh,'?cbSdkGetSampleGroupList@@YA?AW4_cbSdkResult@@IIIPAI0@Z')
+    else cbSdkGetSampleGroupList:= getProc(hh,'?cbSdkGetSampleGroupList@@YA?AW4_cbSdkResult@@IIIPAIPAG@Z');
+
+
   cbSdkGetSampleGroupInfo:= getProc(hh,'?cbSdkGetSampleGroupInfo@@YA?AW4_cbSdkResult@@IIIPADPAI1@Z');
   //cbSdkGetTrackObj:= getProc(hh,'cbSdkGetTrackObj');
   //cbSdkGetVideoSource:= getProc(hh,'cbSdkGetVideoSource');
@@ -1277,6 +1308,7 @@ begin
   {$ELSE}
 
   cbSdkGetVersion:= getProc(hh,'?cbSdkGetVersion@@YA?AW4_cbSdkResult@@IPEAU_cbSdkVersion@@@Z');
+  CheckVersion;
   //cbSdkReadCCF:= getProc(hh,'cbSdkReadCCF');
   //cbSdkWriteCCF:= getProc(hh,'cbSdkWriteCCF');
   cbSdkOpen:= getProc(hh,'?cbSdkOpen@@YA?AW4_cbSdkResult@@IW4_cbSdkConnectionType@@U_cbSdkConnection@@@Z');
@@ -1313,7 +1345,12 @@ begin
   cbSdkSetChannelConfig:= getProc(hh,'?cbSdkSetChannelConfig@@YA?AW4_cbSdkResult@@IGPEAUcbPKT_CHANINFO@@@Z');
   cbSdkGetChannelConfig:= getProc(hh,'?cbSdkGetChannelConfig@@YA?AW4_cbSdkResult@@IGPEAUcbPKT_CHANINFO@@@Z');
   //cbSdkGetFilterDesc:= getProc(hh,'cbSdkGetFilterDesc');
-  cbSdkGetSampleGroupList:= getProc(hh,'?cbSdkGetSampleGroupList@@YA?AW4_cbSdkResult@@IIIPEAI0@Z');
+
+  if CbLibVersion=310
+    then cbSdkGetSampleGroupList:= getProc(hh,'?cbSdkGetSampleGroupList@@YA?AW4_cbSdkResult@@IIIPEAI0@Z')
+    else cbSdkGetSampleGroupList:= getProc(hh,'?cbSdkGetSampleGroupList@@YA?AW4_cbSdkResult@@IIIPEAIPEAG@Z');
+
+
   cbSdkGetSampleGroupInfo:= getProc(hh,'?cbSdkGetSampleGroupInfo@@YA?AW4_cbSdkResult@@IIIPEADPEAI1@Z');
   //cbSdkGetTrackObj:= getProc(hh,'cbSdkGetTrackObj');
   //cbSdkGetVideoSource:= getProc(hh,'cbSdkGetVideoSource');
