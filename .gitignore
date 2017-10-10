@@ -111,6 +111,12 @@ Delphe5/stmTransform1___.pas
 Delphe5/stmTransform1__.pas
 stmTransform2.pas
 
+# IPP17 lib
+Dexe5/ipp
+Dexe5/ipp7
+DelpheXE/Win64/Bin/IPP
+DelpheXE/Win64/Bin/IPP7
+
 # To be sorted
 *.deps
 desktop.ini
@@ -118,8 +124,5 @@ github_icon.ico
 Delphe5/Autres projets/ConvIPP.dof
 Delphe5/Autres projets/ConvIPP.dsm
 Delphe5/Autres projets/ConvIPP.res
-
-# IPP17 lib
-Dexe5/ipp
-DelpheXE/Win64/Bin/IPP
+elphy.chw
 *.zip

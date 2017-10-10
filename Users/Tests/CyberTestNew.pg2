@@ -1,0 +1,152 @@
+Const
+  MgAcq='Spikes';
+  
+  TestMode=2;   { 1: continu
+                  2: Seq interne
+                  3: Seq Num 
+                } 
+
+  MaxSpk=32;
+  MaxAdc=32;
+var
+  raster:TrasterPlot;
+  { En plaçant un objet rasterPlot dans une fenêtre, on contrôle les coordonnées
+    de tous les vecteurs Evt placés dans cette fenêtre 
+  }
+
+procedure InitAcq1;
+var
+  i,j,vv:integer;
+begin
+  with Acquisition do
+  begin
+    case TestMode of
+      1: begin
+           Fcontinuous:=true;
+           TriggerMode:= TM_immediate;
+         end;
+      2: begin
+           Fcontinuous:=false;
+           TriggerMode:= TM_internal;
+           isi:=12;
+           EpDuration:=10000;
+         end;
+      3: begin
+           Fcontinuous:=false;
+           TriggerMode:= TM_DigiUp;
+           EpDuration:=10000;
+         end;
+          
+    end;  
+
+    ChannelCount:=MaxAdc;
+    ElectrodeCount:=MaxSpk;
+    
+    for i:=1 to MaxAdc do
+    with Channels[i] do
+    begin
+      ChannelType := TI_Analog;     // mode TI_analogEvent non supporté
+      PhysNum:=i;                   // 1 à 32 (ou 64) pour électrodes
+                                    // et 129,130,... pour entrées analog externes 
+      setScale(0,32767,0,10000);
+      unitY:='mV';
+      DownSamplingFactor:=3;         // 1, 3, 15 ou 30 uniquement
+                                     // la fréquence de base est toujours 30 kHz
+    end;
+        
+  end;
+end;
+
+ 
+
+procedure InitPage1;
+var
+  i,j:integer;
+  maxDisp:real;
+begin
+  if TestMode=1 
+    then MaxDisp:=5
+    else MaxDisp:=acquisition.EpDuration;
+    
+  if PageIndex(MgAcq)=0 then AddPage(MgAcq);
+  with MgPage[MgAcq] do
+  begin  
+    DestroyAllWindows;
+    color:=cl_black;
+    ScaleColor:=cl_white;
+    PageFont:=true;
+    
+    defineWindow(0,0,PageWidth-1,PageHeight div 8 *5-1);
+    defineWindow(0,PageHeight div 8 *5,PageWidth-1,PageHeight div 8 *6-1); 
+    defineWindow(0,PageHeight div 8 *6,PageWidth-1,PageHeight div 8 *7-1);   
+    defineWindow(0,PageHeight div 8 *7,PageWidth-1,PageHeight-1);
+    
+    with raster do
+    begin
+      create;
+      Xmin:=0;
+      Xmax:=MaxDisp;
+      scaleColor:=cl_white;
+      cpx:=1;
+      lineHeight:=15;
+      symbolSize:=15;
+      Ftitle:=false;
+    end;  
+    
+    AddObject(1,Raster);                    // Rangé en premier dans fenêtre 1
+    for i:=1 to MaxSpk do 
+    begin
+      AddObject(1,Vspk[i]); // puis les 32 voies spk 
+    end;
+    AddObject(2,v[1]);  
+    AddObject(3,vtag[1]);
+    AddObject(3,vtag[2]);     
+    AddObject(4,v[MaxAdc]);
+    AddObject(4,vtag[4]);
+    
+    SelectPage(MgAcq);
+  end;
+  
+  for i:=1 to maxAdc do
+  with v[i] do
+  begin
+    Xmin:=0;
+    Xmax:=MaxDisp;
+    color:=rgb(0,255,255);
+    cpx:=1;
+  end;
+  
+  for i:=1 to 16 do
+  with vtag[i] do
+  begin    
+    setWorld(0,-5+(i mod 4)*1.2,MaxDisp,+ 2+(i mod 4)*1.2);
+    case i mod 4 of
+      0:  color:= cl_red;
+      1:  color:= cl_lime;
+      2:  color:= cl_yellow;
+      3:  color:= cl_navy;
+    end;   
+    cpx:=1;
+  end;
+  
+  update;
+end;
+
+
+
+InitProcess0
+Acquisition.TestCentralSim:=false;
+
+InitAcq1;
+
+InitProcess
+InitPage1;
+
+
+
+
+program 'Init'
+InitPage1;
+InitAcq1;
+Acquisition.Fprocess:=true;
+
