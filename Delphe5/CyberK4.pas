@@ -1172,7 +1172,7 @@ begin
   //if res=0 then
   begin
     CbLibVersion:= sdkVersion.majorp*100+ sdkVersion.minorp;
-    messageCentral('Version = '+Istr(CbLibVersion));
+    //messageCentral('Version = '+Istr(CbLibVersion));
   end;
 end;
 

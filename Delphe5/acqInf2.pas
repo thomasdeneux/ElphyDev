@@ -26,7 +26,7 @@ type
        jru1,jru2: smallint;
        yru1,yru2: single;
        Qdevice:byte;
-       QvoieAcq:  byte;       { numéro de voie physique }
+       oldQvoieAcq:  byte;    { numéro de voie physique }
        Qgain:     byte;       { gain }
        EvtThreshold: single;
        QKS: word;             {down sampling factor}
@@ -36,6 +36,7 @@ type
        Dum1:smallint;
        CyberKunit:byte;       { Non utilisé }
        LogCh:smallint;
+       QvoieAcq: smallint;    { numéro de voie physique  après 10 oct 2017}
      end;
   PchannelInfo=^TchannelInfo;
 
@@ -138,8 +139,8 @@ type
     function getChYru2(n:integer):single;
     procedure setChYru2(n:integer;w:single);
 
-    function getChQvoieAcq(n:integer):byte;
-    procedure setChQvoieAcq(n:integer;w:byte);
+    function getChQvoieAcq(n:integer):integer;
+    procedure setChQvoieAcq(n:integer;w:integer);
 
     function getChQgain(n:integer):byte;
     procedure setChQgain(n:integer;w:byte);
@@ -243,7 +244,7 @@ type
     Property jru2[n:integer]: smallint read getChjru2 write setChjru2;
     Property yru1[n:integer]: single read getChyru1 write setChyru1;
     Property yru2[n:integer]: single read getChyru2 write setChyru2;
-    Property QvoieAcq[n:integer]:  byte read getChQvoieAcq write setChQvoieAcq;
+    Property QvoieAcq[n:integer]:  integer read getChQvoieAcq write setChQvoieAcq;
     Property Qgain[n:integer]: byte read getChQgain    write setChQgain   ;
     Property EvtThreshold[n:integer]: single read getChEvtThreshold write setChEvtThreshold;
     Property QKS[n:integer]: word read getChQKS write setChQKS;
@@ -583,7 +584,7 @@ begin
   result:=channels[n-1].QKS;
 end;
 
-function TacqInfo.getChQvoieAcq(n: integer): byte;
+function TacqInfo.getChQvoieAcq(n: integer): integer;
 begin
   result:=channels[n-1].QvoieAcq;
 end;
@@ -649,7 +650,7 @@ begin
   channels[n-1].QKS:=w;
 end;
 
-procedure TacqInfo.setChQvoieAcq(n: integer; w: byte);
+procedure TacqInfo.setChQvoieAcq(n: integer; w: integer);
 begin
   channels[n-1].QvoieAcq:=w;
 end;

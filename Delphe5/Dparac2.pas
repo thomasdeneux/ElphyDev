@@ -627,14 +627,14 @@ begin
         begin
           if num<>0 then QvoieAcq:=channels[0].QvoieAcq+num;
           enVoiePhys.enabled:=(num=0);
-          enVoiePhys.setvar(QvoieAcq,T_byte)
+          enVoiePhys.setvar(QvoieAcq,T_smallint)
         end
       else
         begin
           enVoiePhys.enabled:=true;
-          enVoiePhys.setvar(QvoieAcq,T_byte);
+          enVoiePhys.setvar(QvoieAcq,T_smallint);
         end;
-      enVoiePhys.setMinMax(0,255);           { modif pour cyberK }
+      enVoiePhys.setMinMax(0,32767);           { modif pour cyberK }
 
 
       labelRange.caption:=board.GainLabel;

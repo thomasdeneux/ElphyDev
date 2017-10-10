@@ -111,7 +111,7 @@ uses CyberKsimBrd1, cyberKOptions;
 
 procedure initCyberK10Boards;
 begin
-  registerBoard('CyberK3.10',pointer(TCyberK10interface));
+  registerBoard('CyberK3.10+',pointer(TCyberK10interface));
 end;
 
 { TCyberK10interface }
@@ -198,8 +198,8 @@ var
 
   st:AnsiString;
   len,pretrig,sysfreq:longword;
-  Filter:array[0..150] of longword;
-  bb: array[0..150] of boolean;
+  Filter:array[0..300] of longword;
+  bb: array[0..300] of boolean;
 
   res: cbSdkResult;
   con: cbSdkConnection;
@@ -213,7 +213,10 @@ var
 
   stDebug: AnsiString;
 
+  OffsLib: integer;
 begin
+
+ 
   Fwaiting:=false;
   ResetError;
 
@@ -232,6 +235,11 @@ begin
   begin
     setStopError('CyberK dll not initialized');
     exit;
+  end;
+
+   case cbLibVersion of
+    310:  OffsLib:= 0;
+    311:  OffsLib:= 128;
   end;
 
   InitcbSdkConnection(con);
@@ -286,10 +294,10 @@ begin
       LastVal:= chanInfo.smpgroup;
     end;
 
-  for i:= 1 to 144 do
+  for i:= 1 to 144 + OffsLib do
     if not bb[i] then
     begin
-      if not checkCB(cbSdkGetChannelConfig(0, i, chaninfo),108) then exit;
+      if not checkCB(cbSdkGetChannelConfig(0, i, chaninfo),100+i) then exit;
       g:= chanInfo.smpgroup;
       s:= chanInfo.spkopts AND 1;
 
@@ -299,7 +307,7 @@ begin
       //  then chanInfo.spkopts:= chanInfo.spkopts OR 1
       //  else chanInfo.spkopts:= chanInfo.spkopts AND $FFFFFFFE;
 
-      if (g<>chanInfo.smpgroup) {or (s<>chanInfo.spkopts AND 1)} then
+      //if (g<>chanInfo.smpgroup) {or (s<>chanInfo.spkopts AND 1)} then
       if not checkCB(cbSdkSetChannelConfig(0, i, chaninfo),109) then exit;
       LastNum:=i;
       LastVal:= 0;
@@ -346,7 +354,7 @@ begin
   refGroup:=0;
   for i:=2 to 5 do
   begin
-    length1:=0;
+    length1:=1000;
     case cbLibVersion of
       310: begin
              if not CheckCb( cbSdkGetSampleGroupList( 0,1, i, length1, list1[0] ), 110 ) then exit;
@@ -377,9 +385,9 @@ begin
   end;
 
   {Programmer les entrées digitales }
-  if not checkCB(cbSdkGetChannelConfig(0, 151, chaninfo),112) then exit;
+  if not checkCB(cbSdkGetChannelConfig(0, 151 +OffsLib, chaninfo),112) then exit;
   chanInfo.dinpOpts:= cbDINP_16BIT + cbDINP_ANYBIT;
-  if not checkCB(cbSdkSetChannelConfig(0, 151, chaninfo),113) then exit;
+  if not checkCB(cbSdkSetChannelConfig(0, 151 +OffsLib, chaninfo),113) then exit;
 
   {valider les sorties digitales}
   // rien à configurer ?
