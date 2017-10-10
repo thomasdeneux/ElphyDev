@@ -13,6 +13,8 @@ type
     GroupBox2: TGroupBox;
     Bbrowse: TButton;
     esCentralDir: TEdit;
+    Label1: TLabel;
+    enDevChCount: TeditNum;
     procedure BbrowseClick(Sender: TObject);
   private
     { Déclarations privées }
@@ -46,9 +48,11 @@ begin
   with  TcyberK10interface(p) do
   begin
     esCentralDir.text:=CentralDir;
+    enDevChCount.setVar(CbDevChCount,t_longint);
     if showModal=mrOK then
     begin
       CentralDir:= esCentralDir.text;
+      updateAllVar(self);
     end;
   end;
 end;
