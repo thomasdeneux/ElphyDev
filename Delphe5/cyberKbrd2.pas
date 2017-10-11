@@ -79,6 +79,7 @@ type
 
  public
     CentralDir: AnsiString;
+    CbDevChCount: integer;
 
     constructor create(var st1:driverString);override;
     destructor destroy;override;
@@ -111,7 +112,7 @@ uses CyberKsimBrd1, cyberKOptions;
 
 procedure initCyberK10Boards;
 begin
-  registerBoard('CyberK3.10+',pointer(TCyberK10interface));
+  registerBoard('CyberK 3.10+',pointer(TCyberK10interface));
 end;
 
 { TCyberK10interface }
@@ -119,6 +120,8 @@ end;
 constructor TCyberK10interface.create(var st1: driverString);
 begin
   inherited;
+
+  cbDevChCount:=128;
   // vérifier la présence de cbsdk.dll
 end;
 
@@ -213,7 +216,6 @@ var
 
   stDebug: AnsiString;
 
-  OffsLib: integer;
 begin
 
  
@@ -237,14 +239,24 @@ begin
     exit;
   end;
 
-   case cbLibVersion of
-    310:  OffsLib:= 0;
-    311:  OffsLib:= 128;
+  InitcbSdkConnection(con);
+  //messageCentral(Istr(sizeof(con)));
+
+  try
+    res:= cbSdkOpen(0, CBSDKCONNECTION_DEFAULT, con);
+  except
+    on E : Exception do
+    begin                                                      // la violation d'accès est peut-être sans conséquence, donc, on continue
+      MessageCentral(E.ClassName+' error raised, with message : '+E.Message);  // supprimer les deux lignes si ok
+      res:=0;
+    end;
   end;
 
-  InitcbSdkConnection(con);
-  if not checkCB(cbSdkOpen(0, CBSDKCONNECTION_DEFAULT, con),101) then exit;
-
+  if not ( (res=0) or (res=CBSDKRESULT_WARNOPEN) ) then
+  begin
+    checkCB(res, 101);
+    exit;
+  end;
 
   if not checkCB(cbSdkSetSpikeConfig(0, AcqInf.CyberWaveLen,AcqInf.PretrigWave),102) then exit;
   t0:=getTickCount;
@@ -294,10 +306,10 @@ begin
       LastVal:= chanInfo.smpgroup;
     end;
 
-  for i:= 1 to 144 + OffsLib do
+  for i:= 1 to CbDevChCount + 16  do
     if not bb[i] then
     begin
-      if not checkCB(cbSdkGetChannelConfig(0, i, chaninfo),100+i) then exit;
+      if not checkCB(cbSdkGetChannelConfig(0, i, chaninfo),1000+i) then exit;
       g:= chanInfo.smpgroup;
       s:= chanInfo.spkopts AND 1;
 
@@ -385,9 +397,9 @@ begin
   end;
 
   {Programmer les entrées digitales }
-  if not checkCB(cbSdkGetChannelConfig(0, 151 +OffsLib, chaninfo),112) then exit;
+  if not checkCB(cbSdkGetChannelConfig(0, cbDevChCount+23, chaninfo),112) then exit;
   chanInfo.dinpOpts:= cbDINP_16BIT + cbDINP_ANYBIT;
-  if not checkCB(cbSdkSetChannelConfig(0, 151 +OffsLib, chaninfo),113) then exit;
+  if not checkCB(cbSdkSetChannelConfig(0, cbDevChCount+23, chaninfo),113) then exit;
 
   {valider les sorties digitales}
   // rien à configurer ?
@@ -544,13 +556,14 @@ begin
   with conf do
   begin
     setStringconf('CentralDir',CentralDir);
+    setvarconf('DevChCount',cbDevChCount,sizeof(cbDevChCount));
   end;
 end;
 
 function TCyberK10interface.setDout(num: integer; w: boolean): integer;
 begin
   if assigned(cbSdkSetDigitalOutput)
-    then result:= cbSdkSetDigitalOutput(0, 152+num, ord(w)*$FFFF);
+    then result:= cbSdkSetDigitalOutput(0, cbDevChCount+24+num, ord(w)*$FFFF);
 end;
 
 
