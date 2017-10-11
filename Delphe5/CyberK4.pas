@@ -43,8 +43,9 @@ Interface
 
 uses Windows, messages, util1;
 
-{$A1 }
-{$MINENUMSIZE 4}
+{$A1 }                                   // Correct pour cbwhlib.h uniquement
+
+{$MINENUMSIZE 4}                         // ou $Z4 : toutes les énumérations occupent 4 octets (par défaut, Delphi choisit la plus petite taille
 const
   cbVERSION_MAJOR = 3;
   cbVERSION_MINOR = 10;
@@ -668,6 +669,8 @@ type
 
 //********************************************* cbsdk.h *************************************************
 
+{$A8}      // Alignement par défaut dans cbsdk.h
+
 type
   //Library version information.
 
@@ -873,7 +876,6 @@ type
     nRecBufSize: integer; ///< Receive buffer size (0 to ignore altogether)
     szInIP: PansiChar;    ///< Client IPv4 address
     szOutIP: PansiChar;   ///< Instrument IPv4 address
-    dum1: array[1..32] of byte;                               // Si le bug est lié à une lecture au delà de la structure....
   end;
 
   procedure InitcbSdkConnection( var w:cbSdkConnection) ;

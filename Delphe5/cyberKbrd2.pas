@@ -215,10 +215,10 @@ var
   g,s:longword;
 
   stDebug: AnsiString;
-
+  wr: float;
 begin
 
- 
+
   Fwaiting:=false;
   ResetError;
 
@@ -243,6 +243,7 @@ begin
   //messageCentral(Istr(sizeof(con)));
 
   try
+    
     res:= cbSdkOpen(0, CBSDKCONNECTION_DEFAULT, con);
   except
     on E : Exception do
