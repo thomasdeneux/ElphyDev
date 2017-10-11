@@ -240,8 +240,18 @@ begin
   end;
 
   InitcbSdkConnection(con);
-  
-  res:= cbSdkOpen(0, CBSDKCONNECTION_DEFAULT, con);
+  //messageCentral(Istr(sizeof(con)));
+
+  try
+    res:= cbSdkOpen(0, CBSDKCONNECTION_DEFAULT, con);
+  except
+    on E : Exception do
+    begin                                                      // la violation d'accès est peut-être sans conséquence, donc, on continue
+      MessageCentral(E.ClassName+' error raised, with message : '+E.Message);  // supprimer les deux lignes si ok
+      res:=0;
+    end;
+  end;
+
   if not ( (res=0) or (res=CBSDKRESULT_WARNOPEN) ) then
   begin
     checkCB(res, 101);

@@ -873,6 +873,7 @@ type
     nRecBufSize: integer; ///< Receive buffer size (0 to ignore altogether)
     szInIP: PansiChar;    ///< Client IPv4 address
     szOutIP: PansiChar;   ///< Instrument IPv4 address
+    dum1: array[1..32] of byte;                               // Si le bug est lié à une lecture au delà de la structure....
   end;
 
   procedure InitcbSdkConnection( var w:cbSdkConnection) ;
@@ -1377,11 +1378,15 @@ end;
 
 procedure InitcbSdkConnection( var w:cbSdkConnection) ;
 begin
+  fillchar(w,sizeof(w),0);  // remplissage de dum1 avec des zéros
+
   w.nInPort := cbNET_UDP_PORT_BCAST;
   w.nOutPort := cbNET_UDP_PORT_CNT;
   w.nRecBufSize := (4096 * 2048); // 8MB default needed for best performance
   w.szInIP := nil;
   w.szOutIP := nil;
+
+  
 end;
 
 var
