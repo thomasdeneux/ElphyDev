@@ -1378,17 +1378,22 @@ begin
   hh:=0;
 end;
 
+var
+  NullString: integer;        // important: la variable doit être globale
+
 procedure InitcbSdkConnection( var w:cbSdkConnection) ;
+var
+  ch: integer;
 begin
   fillchar(w,sizeof(w),0);  // remplissage de dum1 avec des zéros
 
   w.nInPort := cbNET_UDP_PORT_BCAST;
   w.nOutPort := cbNET_UDP_PORT_CNT;
   w.nRecBufSize := (4096 * 2048); // 8MB default needed for best performance
-  w.szInIP := nil;
-  w.szOutIP := nil;
 
-  
+  NullString:=0;
+  w.szInIP := @NullString;       // pointe sur une variable globale qui contient zéro
+  w.szOutIP := @NullString;
 end;
 
 var

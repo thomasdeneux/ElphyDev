@@ -240,7 +240,7 @@ begin
   end;
 
   InitcbSdkConnection(con);
-  //messageCentral(Istr(sizeof(con)));
+  //messageCentral(Istr( intG(@con.szInIP)-intG(@con)));
 
   try
     
