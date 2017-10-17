@@ -4,7 +4,7 @@
 
 [Setup]
 AppName=ELPHY2
-AppVerName=Elphy Version 5.0.0
+AppVerName=Elphy Version 5.0.1
 ;include "..\Delphe5\ElphyVersion.txt"
 DefaultDirName={pf}\Elphy2
 UsePreviousAppDir=no
