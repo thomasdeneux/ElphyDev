@@ -40,7 +40,9 @@ Const
   gv_String  = 4;
   gv_DateTime= 5;
   gv_Object  = 6;
-  gv_complex = 7;
+  gv_Complex = 7;
+  gv_Double = 8;
+  gv_DComplex = 9;
 
 
 

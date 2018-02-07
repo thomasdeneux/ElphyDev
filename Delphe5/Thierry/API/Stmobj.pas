@@ -736,7 +736,7 @@ var
 }
 
 type
-  TGVariantType = (gvNull, gvBoolean, gvInteger, gvFloat, gvString, gvDateTime,gvObject);
+  TGVariantType = (gvNull, gvBoolean, gvInteger, gvFloat, gvString, gvDateTime, gvObject);
 
   TrefUO=class;
 
