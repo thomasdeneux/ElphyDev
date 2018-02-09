@@ -967,17 +967,19 @@ function QuestionFinPg:boolean;
 var
   ad,line,CurAd,NumProg:integer;
   stF:AnsiString;
+  stF1: string;
 begin
   ad:=getCurrentExeAd;
-  line:=activeMacro.pgContext.getLine(Ad,stF,CurAd,NumProg);
-  stF:='Ad='+Istr(ad)+' Line '+Istr(line)+' in '+stF;
-
-  result:= messageDlg('Stop program? '+crlf+stF,mtConfirmation,[mbYes,mbNo],0)=mrYes ;
+  line:=activeMacro.pgContext.getLine(Ad,stF,CurAd,NumProg);       // getline demande une AnsiString
+  stF1:='Ad='+Istr(ad)+' Line '+Istr(line)+' in '+stF;             // on construit une string pour MessageBox (widechar)
+                                                                   // on utilisera Pchar() comme typecast
+  //result:= messageDlg('Stop program? '+crlf+stF,mtConfirmation,[mbYes,mbNo],0)=mrYes ;
+  // Avec messagebox, on évite que la fenêtre dlg reste derrière la fenêtre principale   (en principe)
 
   {$IFDEF WIN64}
-  result:= windows.MessageBox(0,PChar('Stop program? '+crlf+stF) ,'Elphy64',MB_ICONQUESTION or MB_YESNO or MB_taskMODAL or MB_TOPMOST)=IDYES;
+  result:= windows.MessageBox(0,Pchar('Stop program? '+crlf+stF1) ,'Elphy64',MB_ICONQUESTION or MB_YESNO or MB_taskMODAL or MB_TOPMOST)=IDYES;
   {$ELSE}
-  result:= windows.MessageBox(0,PChar('Stop program? '+crlf+stF) ,'Elphy2',MB_ICONQUESTION or MB_YESNO or MB_taskMODAL or MB_TOPMOST)=IDYES;
+  result:= windows.MessageBox(0,PChar('Stop program? '+crlf+stF1) ,'Elphy2',MB_ICONQUESTION or MB_YESNO or MB_taskMODAL or MB_TOPMOST)=IDYES;
   {$ENDIF}
 
   finExeU^:=result;

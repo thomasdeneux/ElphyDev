@@ -3,7 +3,7 @@ unit MemManager1;
 interface
 
 uses classes, math,
-     util1, ippsovr;
+     util1, ipps17;
 
 
 type
@@ -193,7 +193,7 @@ begin
     if Pnew<>nil then
     begin
       move(p^.p, pNew^.p,p^.size);
-      if Fzero then ippsZero(Pbyte(@PtabOctet(Pnew^.p)^[p^.size]),Size - p^.size);
+      if Fzero then ippsZero_8u(Pbyte(@PtabOctet(Pnew^.p)^[p^.size]),Size - p^.size);
       FreeBlock(p);
       p:=Pnew;
     end

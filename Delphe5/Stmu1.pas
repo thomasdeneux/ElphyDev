@@ -72,6 +72,7 @@ procedure resetStmU1;
 function FonctionRgb(x,y,z:Integer):longint;pascal;
 
 function fonctionWinExec(stCmd:AnsiString;cmd:integer):integer;pascal;
+function fonctionWinExec_1(st1,st2:AnsiString):integer;pascal;
 
 function fonctionAllocatedMemory:int64;pascal;
 
@@ -349,6 +350,12 @@ begin
   stCmd:=stCmd+' ';
   result:=winExec(@stCmd[1],cmd);
 end;
+
+function fonctionWinExec_1(st1,st2:AnsiString):integer;
+begin
+  result:= executeProcess(st1,st2);
+end;
+
 
 function fonctionAllocatedMemory:int64;
 begin
