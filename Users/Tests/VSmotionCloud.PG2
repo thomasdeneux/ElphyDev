@@ -1,0 +1,629 @@
+var
+  mc:TmotionCloud;
+  VSmc: TVSmotionCloud;
+  transform:TVStransform;
+
+  bm:TVSbitmap;
+  MClist, VSMClist: Tmatlist;
+  mat: Tmatrix;
+  dtAR:real;
+  Nsample:integer;
+  ThetaImage: real;
+
+  Fpink:boolean;  
+  
+  mmc: array[1..100] of TVSmotionCloud;
+  mbm: array[1..100] of TVSbitmap;
+var 
+  Nxy: integer;
+  
+var
+  ss,r0,sr0,stheta0:real;
+  Fpolar:boolean;
+  Dxy: real;
+  Duration: real;
+  dlg:Tdialog;
+
+var
+  traj:Ttrajectory;
+  vecX,vecY,vecTheta: Tvector;
+  vecStheta0: Tvector;
+  Fstheta0: boolean;
+  
+  vecLmean, vecLsig: Tvector;
+  FvarLum: boolean;
+  
+  
+  v0, vRot:real;
+  Lmean,Lsigma: real;
+  seed: integer;
+
+  alpha, beta:real;
+
+function f1(x:real):real;
+begin
+  f1:= sqr(x)*x; 
+end;
+
+
+function power1(x,y:real): real;
+begin
+   if x=0 then power1:=1 else power1:=power(x,y);
+end;  
+
+var
+  matF:Tmatrix;
+  
+procedure InitFilterF(var matF:Tmatrix;Nxy: integer; alpha: real);
+var
+  i,j:integer;
+  r:real;
+begin  
+  with matF do
+  begin
+    create(t_double,0,Nxy-1,0,Nxy-1);
+    
+    for i:=0 to nxy div 2 do
+    for j:=0 to nxy div 2 do
+    begin
+      r:= sqrt(sqr(i)+sqr(j));   
+      matF[i,j]:= power1(r,-alpha);  
+  
+      if i>0 then matF[Nxy-i,j]:= matF[i,j];
+    end;
+  
+    for i:=0 to nxy -1 do
+    for j:=1 to nxy div 2 do
+       matF[i,Nxy-j]:= matF[i,j];
+  
+    autoscaleXYZ;
+    //show;
+  end;    
+end;  
+
+
+procedure AnimateVSMC;
+var
+   i:integer;
+   Nframe,NframeTot:integer;
+   w: real;
+   Dt: real;
+   
+begin
+   Dt:= visualStim.Tframe;
+   Nframe:=round(duration/Dt);
+   NframeTot:=round(duration/visualStim.Tframe);
+
+   VSmc.create;
+   if Fpink then 
+   begin
+     initFilterF(matF,Nxy, alpha);
+     Vsmc.InitPinkNoise(beta,Nxy,Nxy,seed);
+     Vsmc.InstallFilter(matF);
+   end
+   else
+   begin
+     VSmc.init( dtAR,Nsample,Nxy,Nxy,seed);
+     VSmc.installGaborFilter(ss,r0,sr0,stheta0*pi/180);
+   end;
+     
+   VSmc.DtOn:= Dt;
+   VSmc.CycleCount:= Nframe;
+   //VSmc.PolarMode:= Fpolar;
+   
+   Vsmc.setExpansion(Dxy, Nxy/2, Dxy, Nxy/2);
+   
+   Vsmc.setLum(Lmean,Lsigma);
+   Vsmc.startTime:=0;
+   
+   bm.create;
+   
+   //w:= sqrt( sqr(StimScreen.height)+sqr(StimScreen.width));
+   w:=stimScreen.height;
+   bm.imageWidth:= w;
+   bm.imageHeight:= w;
+      
+   bm.dx:=   w;
+   bm.dy:=   w;
+   bm.theta:=0;
+   bm.theta0:=ThetaImage;
+   
+   //Transform.create(0,0,w,w);
+   //Transform.DtON:=Duration;
+   
+   VSmc.setVisualObject(bm);
+   
+   traj.create;
+   traj.DtON:= Duration;
+   vecX.create(t_single,0, NframeTot-1);
+   vecY.create(t_single,0, NframeTot-1);
+   vecTheta.create(t_single,0,NframeTot-1);
+ 
+    
+ 
+   for i:=0 to NframeTot-1 do
+   begin
+     vecX[i]:=-v0*Dt*i;
+     vecTheta[i]:= -vRot*Dt*i;   
+   end;
+
+   if (v0<>0) or (vrot<>0) then 
+   begin
+     traj.setVisualObject(bm);
+     if v0<>0 then traj.addVector('X0',vecX);
+     if vRot<>0 then traj.addVector('THETA0',vecTheta);
+   end;  
+   
+   if Fstheta0 then 
+   begin
+     vecStheta0.create(t_single,0,NframeTot-1);
+     for i:=0 to NframeTot-1 do
+       vecStheta0[i]:= 0.1*pi/180 + 60*pi/180* f1( (NframeTot-1-i)/(NframeTot-1));
+     vsmc.addTraj('STHETA0',vecSTheta0);     
+   end;
+      
+   if FvarLum then 
+   begin
+     {
+     vecLmean.create(t_single,0,NframeTot-1);
+     for i:=0 to NframeTot-1 do
+       vecLmean[i]:= Lmean+Lmean*sin(2*pi/120*i);
+     vsmc.addTraj('Lmean',vecLmean); 
+     }
+     vecLsig.create(t_single,0,NframeTot-1);
+     for i:=0 to NframeTot-1 do
+       vecLsig[i]:= Lsigma * ord(sin(2*pi/120*i)>0);
+     vsmc.addTraj('Lsigma',vecLsig);    
+   end;
+      
+   
+   for i:=1 to 5 do
+   begin
+     visualstim.animate;
+     t1[i]:= TimeGetTime;
+     if i>1 then t2[i]:= t1[i]-t1[i-1];
+   end;
+     
+ 
+end;  
+
+procedure AnimateMultiMC1(num,Nb:integer);
+var
+   i:integer;
+   Nframe:integer;
+   w: real;
+   Dt: real;
+   DeltaT: real;
+   
+begin
+   Dt:= visualStim.Tframe*4;
+   Nframe:=round(duration/Dt/Nb);
+   DeltaT:= Nframe*Dt;
+   
+   with mmc[num] do
+   begin
+     create;
+     if Fpink then 
+     begin
+       initFilterF(matF,Nxy, alpha);
+       InitPinkNoise(beta+(num-1)*0.2,Nxy,Nxy,seed);
+       InstallFilter(matF);
+     end
+     else
+     begin
+       init( dtAR,Nsample,Nxy,Nxy,seed);
+       installGaborFilter(ss,r0,sr0,stheta0*pi/180);
+     end;
+     
+     DtOn:= Dt;
+     CycleCount:= Nframe;
+     PolarMode:= Fpolar;
+   
+     setExpansion(Dxy, Nxy/2, Dxy, Nxy/2);
+     setLum(Lmean,Lsigma);
+     startTime:=(num-1)*DeltaT;
+   end;
+   with mbm[num] do 
+   begin
+     create;
+     
+     w:=stimScreen.width;
+     imageWidth:= w;
+     imageHeight:= w;
+        
+     dx:=   w;
+     dy:=   w;
+     theta:=0;
+     theta0:=ThetaImage;
+     
+     mmc[num].setVisualObject(mbm[1]);
+   end;  
+ 
+end;  
+
+procedure AnimateMultiMC;
+var
+  i:integer;
+Const
+  Nb=10;
+begin
+  for i:=1 to Nb do AnimateMultiMC1(i,Nb);
+  VisualStim.Animate;
+end;
+
+var
+  va:TvectorArray;
+
+procedure PowerSpec(var src,dest:Tvector);
+begin
+  powerSpectrum (src,dest,src.Xstart,src.Xend,(src.Xend-src.Xstart)/2,(src.Xend-src.Xstart)/20,0,true);
+end;
+  
+procedure BuildListVSMC;
+var
+  i:integer;
+  Nframe,NframeTot:integer;
+  w: real;
+  Dt:real;
+  
+begin
+  Dt:= visualStim.Tframe;
+  Nframe:=round(duration/Dt);
+  NframeTot:=round(duration/visualStim.Tframe);
+  
+  VSmc.create;
+  
+  if Fpink then 
+  begin
+    initFilterF(matF,Nxy, alpha);
+    Vsmc.InitPinkNoise(beta,Nxy,Nxy,seed);
+    Vsmc.InstallFilter(matF);
+  end
+  else
+  begin
+    VSmc.init( dtAR,Nsample,Nxy,Nxy,seed);
+    VSmc.installGaborFilter(ss,r0,sr0,stheta0*pi/180);
+  end;
+
+  VSmc.DtOn:=Dt;
+  VSmc.CycleCount:= Nframe;
+  VSmc.PolarMode:= Fpolar;
+  
+  Vsmc.setExpansion(Dxy, Nxy/2, Dxy, Nxy/2);
+  
+  Vsmc.setLum(Lmean,Lsigma);
+
+  if Fstheta0 then 
+   begin
+     vecStheta0.create(t_single,0,NframeTot-1);
+     for i:=0 to NframeTot-1 do
+       vecStheta0[i]:= 0.1*pi/180 + 60*pi/180* f1( (NframeTot-1-i)/(NframeTot-1));
+     vsmc.addTraj('STHETA0',vecSTheta0);     
+   end;
+
+
+  mat.create;
+
+  VSMClist.create;
+  
+  initchrono;
+  for i:=1 to Nframe do
+  begin
+    VSmc.getFrame(mat);
+    VSMClist.addMatrix(mat);
+  end;  
+   
+  statuslineTxt(chrono); 
+  VSMClist.autoscaleXYZ;  
+  VSMClist.show;
+                
+  
+  
+  messageBox(Rstr(VSMClist[1].mean,10,3)+'  '+ Rstr(VSMClist[1].stdDev,10,3)+crlf+
+             Rstr(VSMClist[10].mean,10,3)+'  '+Rstr(VSMClist[10].stdDev,10,3)+crlf+
+             Rstr(VSMClist[100].mean,10,3)+'  '+Rstr(VSMClist[100].stdDev,10,3));
+  {
+  va.create(1,1,1,1);
+  VSMClist.saveToVectorArray(va,t_single);
+  c6.initList(t_single);
+  c6.setScaleParams(1,0,1,0);
+  for i:=va.Imin to va.Imax do Vappend(va[i,1],va[i,1].Xstart,va[i,1].Xend,c6);
+  PowerSpec(c6,c7);
+  c6.show;
+  c7.show;
+  }
+end;
+ 
+procedure BuildListMCclassic(ss,r0,sr0,stheta0:real);
+var
+  i:integer;
+  mat:Tmatrix;
+Const
+  Nf=120;
+   
+begin
+  mc.create;
+  mc.init( dtAR,Nsample,Nxy,Nxy,0);
+  mc.installGaborFilter(ss,r0,sr0,stheta0*pi/180);
+    
+  mat.create;
+  MClist.create;
+  
+  initchrono;
+  for i:=1 to 100 do
+  begin
+    mc.getFrame(mat);
+    MClist.addMatrix(mat);
+  end;  
+  
+  statuslineTxt(chrono); 
+  MClist.autoscaleXYZ;
+  MClist.show;
+  
+  messageBox(Rstr(MClist[1].stdDev,10,3)+crlf+
+             Rstr(MClist[10].stdDev,10,3)+crlf+
+             Rstr(MClist[100].stdDev,10,3));
+  
+ end;  
+ 
+var
+  matFilterVSMC,matFilterMC: Tmatrix; 
+ 
+procedure TestFilterMC;
+begin
+  mc.create;
+  mc.init( dtAR,Nsample,Nxy,Nxy,0);
+  mc.installGaborFilter(ss,r0,sr0,stheta0*pi/180);
+    
+  matFilterMC.create;
+  mc.getFilter(matFilterMC);
+  matFilterMC.autoscaleXYZ;
+  matFilterMC.show;
+  
+end; 
+
+procedure TestFilterVSMC;
+begin   
+  VSmc.create;
+  VSmc.init( dtAR,Nsample,Nxy,Nxy,0);
+  VSmc.installGaborFilter(ss,r0,sr0,stheta0*pi/180);
+
+  matFilterVSMC.create;
+  Vsmc.getFilter(matFilterVSMC);
+  matFilterVSMC.autoscaleXYZ;
+  matFilterVSMC.show;
+  
+end;   
+   
+ 
+  
+procedure DlgEvent(n:integer);
+var
+  i:integer;
+begin  
+  Dlg.updatevar;
+  case n of
+    101: begin
+           Dlg.updateVar;
+           {for i:=1 to 5 do }AnimateVSMC;
+         end;  
+    102: begin
+           Dlg.updateVar;
+           BuildListVSMC;
+         end;
+    103: begin
+           Dlg.updateVar; 
+           BuildListMCclassic(ss,r0,sr0,stheta0);
+         end;
+    104: begin
+           Dlg.updateVar; 
+           TestFilterVSMC;           
+         end;
+    105: begin
+           Dlg.updateVar; 
+           TestFilterMC;           
+         end;
+    106: begin
+           Dlg.updateVar;
+           AnimateMultiMC;
+         end;  
+           
+  end;   
+end;  
+  
+procedure VsmcDlg;
+begin
+  if ss=0 then
+  begin
+    Nxy:=512;
+    ss := 5;
+    r0 := 20;
+    sr0 := 1;
+    stheta0 := 20;
+    Dxy:= 1;
+    Duration:=1;
+    Fpink:=true;
+    Lmean:= 60; //stimScreen.BackGroundLum;
+    Lsigma:= 12; // Lmean/3;
+    dtAR:= visualStim.Tframe;
+    Nsample:=1;
+    
+    alpha:=1;
+    beta:=1;
+  end;
+  with Dlg do
+  begin
+    create;
+    getStringList('N  ','32|64|128|256|512|1024','32|64|128|256|512|1024',Nxy);
+    getReal('dt',dtAR,10,6);
+    getInteger('Nsample',Nsample,6);
+    getReal('ss',ss,10,6);
+    getReal('r0',r0,10,6);
+    getReal('sr0',sr0,10,6);
+    getReal('stheta0(degres) ',stheta0,10,6);
+    setText('______________');
+    getBoolean('Pink Noise',Fpink);
+    getReal('Alpha (space) ',Alpha,10,3);
+    getReal('Beta (time) ', Beta,10,3);
+    setText('______________');    
+    getInteger('Seed ',seed,6);
+    getBoolean('Polar Mode',Fpolar);
+    getReal('Expansion',Dxy,10,3);
+    getReal('Duration',Duration,10,3);
+    getReal('v0', v0,10,3);
+    getReal('vRotation',vRot,10,3);
+    getReal('Theta Image',ThetaImage,10,3);
+    
+    getBoolean('Shift sTheta0',Fstheta0);
+    setText('______________');
+    getReal('Lmean', Lmean,10,9);
+    getReal('Lsigma', Lsigma,10,3);
+    getBoolean('Shift Lmean',FvarLum);
+    setText('______________');
+    getCommandA('Animate VSMC',0,101);
+    getCommandA('Build List VSMC',0,102);
+    getCommandA('Build List MC (no cuda)',0,103);
+    
+    getCommandA('Get Filter VSMC',0,104);
+    getCommandA('Get Filter MC',0,105);
+    getCommandA('Multi MC',0,106);
+    
+    onEvent:= DlgEvent;
+    setButtons(0);
+    show;
+  end;  
+end;
+
+program 'Motion Clouds'
+VsmcDlg;
+  
+var
+  matG1,matG2,matG3: Tmatrix;
+  
+procedure testGPUfft;
+var
+  i,j:integer;
+begin
+  matG1.create(t_Dcomplex,0,511,0,511);
+  matG2.create(t_Dcomplex,0,511,0,511);
+  matG3.create(t_Dcomplex,0,511,0,511);
+
+  for i:=0 to 511 do
+  for j:=0 to 511 do
+    matG1[i,j]:= random;
+  
+  Mcopy(matG1,matG2);
+  GPUfft(matG2,true);
+  
+  Mcopy(matG2,matG3);
+  GPUfft(matG3,false);
+  
+  matG1.show;
+  matG2.show;
+  matG3.show;
+  
+end;  
+  
+program testFFT
+testGPUfft;
+  
+
+
+procedure MeanStdDev(var matlist: TmatList; var mm, ss:real);
+var
+  i,n:integer;
+  s1,s2: real;
+begin
+  s1:=0;
+  s2:=0;
+  n:=0;
+  with matlist do
+  for i:=1 to count do
+  begin
+    n:= n + m[i].Icount*m[i].Jcount;
+    s1:= s1 + m[i].sum;
+    s2:= s2 + m[i].SqrSum;
+  end;
+  
+  mm:= s1/n;
+  ss:= sqrt((s2-sqr(S1)/N)/(N-1));
+  
+end;
+
+procedure saveToTex(stf:string);
+var
+  tex: TtextureFile;
+  i:integer;
+  n: integer;
+  min,max:real;
+  mat: Tmatrix;
+  mm,std,a,b:real;
+  
+begin
+  MeanStdDev(VSMCList,mm,std);
+  
+  mat.create(t_single,0,0,0,0);
+  a:=40/std;
+  b:=128-a*mm;
+
+  n:=VSMClist[1].Icount;
+  tex.createFile(stf,N,N,t_single);
+  
+  with VSMCList do
+  for i:=1 to count do
+  begin
+    Mcopy1(m[i],mat);
+    
+    MmulNum(mat, a);
+    MaddNum(mat, b);    
+    tex.writeMatrix(mat);
+  end;
+  
+  tex.close;
+end;  
+
+
+var
+  stf:string;
+
+program 'Create Tex'
+if saveFileDialog(stF,'tex') then
+  saveToTex(stf);
+   
+ 
+program 'Autre test'
+  Nxy:=512;
+  alpha:=1.4;
+  beta:=0.8;
+  
+  with bm do
+  begin
+    create;
+    setBounds(Nxy,Nxy);
+                       
+    imageWidth:= 30;
+    imageHeight:= 30;
+    dx:= 30;
+    dy:= 30;
+    tileMode:=true;
+   
+  end;
+  
+  with VSmc do
+  begin
+    create;
+    initFilterF(matF,Nxy, alpha);
+    setLum(12,3);
+    InitPinkNoise(beta,Nxy,Nxy,0);
+    InstallFilter(matF);
+         
+    DtOn:= visualStim.Tframe*3;
+    CycleCount:=  100;                           
+     
+    
+    setVisualObject(bm);    
+    
+  end;
+  visualStim.Animate;
+     
+  
