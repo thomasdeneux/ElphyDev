@@ -547,7 +547,21 @@ begin
 end;
 
 procedure TseqBlock.completeLoadInfo;
+var
+  i: integer;
 begin
+{
+  if (seq.FormatOption=1)  then                          // TEST 15 mars 2018
+  for i:=0 to high(AdcChannel2) do
+    with AdcChannel2[i] do
+    begin
+      if (Imax = seq.nbpt) or
+         (Imax = seq.nbpt div 3) or
+         (Imax = seq.nbpt div 15) or
+         (Imax = seq.nbpt div 30)
+         then Imax:= Imax-1;
+    end;
+ }
   calculAgSampleCount;
 end;
 

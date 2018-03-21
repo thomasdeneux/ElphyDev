@@ -259,7 +259,7 @@ begin
       MultiSampleQuality:= q-1;
     end;
   end;
-  
+
   PresentParam.MultiSampleType := MultiSampleType;
   PresentParam.MultiSampleQuality := MultiSampleQuality;
 

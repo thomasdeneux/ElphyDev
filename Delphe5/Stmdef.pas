@@ -208,9 +208,9 @@ const
 
   ScreenDistance:float=57;
 
-  SSwidth:integer=1024;
-  SSheight:integer=768;
-  SSrefreshRate:Dword=150;
+  SSwidth:integer=1920;
+  SSheight:integer=1080;
+  SSrefreshRate:Dword=60;
   SSbitCount:integer=8;
 
   depth0:smallInt=8;
