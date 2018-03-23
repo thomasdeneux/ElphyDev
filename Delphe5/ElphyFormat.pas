@@ -1049,12 +1049,12 @@ begin
   f.readBuffer(rec.mySize,sizeof(rec.mySize));    // lire mySize
   sz:=rec.MySize -2;                              // taille restante
 
-  if sz >sizeof(rec)-2
+  if sz >=sizeof(rec)-2
     then f.readBuffer(rec.Sfirst,sizeof(rec)-2);  // le rec original  sz:= sz-sizeof(rec)+2;
 
 
   fillchar(scaling,sizeof(scaling),0);
-  if sz > sizeof(scaling) then f.Read(scaling,sizeof(scaling)); // scaling optionnel
+  if sz >= sizeof(rec)-2 + sizeof(scaling) then f.Read(scaling,sizeof(scaling)); // scaling optionnel
 
   f.Position:=pos0+rec.MySize;                    // dans tous les cas, on saute rec.mySize octets
 
@@ -1135,12 +1135,12 @@ begin
   f.readBuffer(rec.mySize,sizeof(rec.mySize));    // lire mySize
   sz:=rec.MySize -2;                              // taille restante
 
-  if sz >sizeof(rec)-2
+  if sz >=sizeof(rec)-2
     then f.readBuffer(rec.Sfirst,sizeof(rec)-2);  // le rec original  sz:= sz-sizeof(rec)+2;
 
 
   fillchar(scaling,sizeof(scaling),0);
-  if sz > sizeof(scaling) then f.Read(scaling,sizeof(scaling)); // scaling optionnel
+  if sz >= sizeof(rec)-2+sizeof(scaling) then f.Read(scaling,sizeof(scaling)); // scaling optionnel
 
   f.Position:=pos0+rec.MySize;                    // dans tous les cas, on saute rec.mySize octets
 
