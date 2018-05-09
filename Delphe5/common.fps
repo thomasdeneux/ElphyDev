@@ -7629,6 +7629,23 @@ function AllocatedMemory: int64;
 
 
 function WinExec(stCmd:String;cmd:integer):integer;
+function WinExec(st1,st2:String):integer;
+{$H Appelle une commande externe.
+
+ La première variante appelle la fonction Windows Winexec.
+ La seconde variante appelle la fonction Windows CreateProcess
+
+ Dans le premier cas, la fonction retourne immédiatement sans attendre la fin de l'exécution du programme externe.
+ Dans le second cas, la fonction attend la fin de l'exécution.
+
+ stCmd doit contenir la ligne de commande complète (nom du programme avec chemin d'accès + paramètres)
+
+ st1 doit contenir le nom du programme complet (nom avec chemein d'accès)
+ st2 doit contenir la ligne de commande complète.
+
+ Voir la documentation Windows pour plus de précisions.
+
+}
 
 function GetStringOption(st:String;n:integer):String;
 {$H Renvoie la nième option de la chaîne st.

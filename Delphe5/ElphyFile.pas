@@ -111,6 +111,8 @@ type
                 procedure setChannel0(num: integer; Dy,y0: double; unitY: string);
                 procedure setChannel1(num: integer; Dy,y0: double; unitY: string; KS: integer);  // 6-12-16
 
+                function SamplePerChan(ch: integer): integer; // ch commence à 0 . Info lue dans AdcChannels
+
                 function getFileInfo(var x;nb,dep:integer):boolean;override;
                 function setFileInfo(var x;nb,dep:integer):boolean;override;
                 function readFileInfo(var x;nb:integer):boolean;override;
@@ -489,7 +491,7 @@ end;
 
 procedure TElphyFile.setChannel1(num: integer; Dy,y0: double; unitY: string; KS: integer);
 begin
-  Bseq.initChannel1(num ,0, Bseq.Ktype[num] , 0,Bseq.seq.nbpt div KS, Bseq.seq.Dxu * KS , Bseq.seq.x0u, Bseq.seq.uX, Dy,y0, unitY);
+  Bseq.initChannel1(num ,0, Bseq.Ktype[num] , 0,Bseq.seq.nbpt div KS -1, Bseq.seq.Dxu * KS , Bseq.seq.x0u, Bseq.seq.uX, Dy,y0, unitY);
 end;
 
 
@@ -661,6 +663,11 @@ end;
 procedure TElphyFile.setDBfileInfo(var db: TDBrecord);
 begin
   DBfileInfo.assign(db);
+end;
+
+function TElphyFile.SamplePerChan(ch: integer): integer;
+begin
+  result:= Fseq.SamplePerChan(ch);
 end;
 
 end.

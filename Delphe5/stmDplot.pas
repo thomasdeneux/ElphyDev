@@ -2528,9 +2528,9 @@ begin
   if typeUO(syslist[i]) is TdataPlot then
   with TdataPlot(syslist[i]) do
   begin
-    if cpx<>0 then setCpx(cpx);
-    if cpy<>0 then setCpy(cpy);
-    if cpz<>0 then setCpz(cpz);
+    if cpx<>0 then CPlistX.setUORebuild(cpx,typeUO(syslist[i]));
+    if cpy<>0 then CPlistY.setUORebuild(cpy,typeUO(syslist[i]));
+    if cpz<>0 then CPlistz.setUORebuild(cpz,typeUO(syslist[i]));
   end;
 end;
 

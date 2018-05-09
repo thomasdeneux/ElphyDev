@@ -152,7 +152,7 @@ type
 
                     function BufTagFull:boolean;
 
-                    procedure SaveAllData(f: Tstream);
+                    procedure SaveAllData(f: Tstream; Const nb: integer=-1);
                   end;
 
  { TPCLrecord est la structure d'un photon dans un fichier PCL
@@ -777,9 +777,11 @@ begin
 end;
 
 
-procedure TMultiMainBuf.SaveAllData(f: Tstream);
+procedure TMultiMainBuf.SaveAllData(f: Tstream; Const nb: integer=-1);
 begin
-  f.write(buf^,index*TailleTypeG[BufType]);
+  if nb=-1
+    then f.write(buf^,index*TailleTypeG[BufType])
+    else f.write(buf^,nb*TailleTypeG[BufType]);             // 18 mars 2018 Le nombre de points est imposé extérieurement
 end;
 
 { TPCLbuf }

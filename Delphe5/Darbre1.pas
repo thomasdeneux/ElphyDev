@@ -2,7 +2,7 @@ unit Darbre1;
 
 INTERFACE
 
-uses classes, util1,debug0, ippvm ;
+uses classes, util1,debug0;
 
 const
   chiffre:set of Ansichar=['0'..'9'];
@@ -272,7 +272,7 @@ function Fcoth(x:float):float;
 
 function Ferf(x:float):float;
 begin
-  result:=erf(x);
+  //result:=erf(x);
 end;
 
 

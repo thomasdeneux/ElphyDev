@@ -20,7 +20,8 @@ type
              procedure add(n:integer; uo:typeUO);
              procedure remove(n:integer; uo:typeUO);
              procedure setUO(oldN,NewN:integer; uo:typeUO);
-
+             procedure SetUOrebuild(NewN: integer; uo: typeUO);
+             
              procedure sendMessage(n:integer;UOmsg: integer; source: typeUO);
              function FindLimits(n:integer;UOmsg: integer; var Amin, Amax: float): boolean;
 
@@ -152,6 +153,13 @@ begin
   if oldN<>0 then remove(oldN,uo);
   if NewN<>0 then add(newN,uo);
 end;
+
+
+procedure TCPlist.SetUOrebuild(NewN: integer; uo: typeUO);
+begin
+  if NewN<>0 then add(newN,uo);
+end;
+
 
 procedure TCPlist.suspend;
 var

@@ -1,3 +1,6 @@
+
+NE PLUS UTILISER ==> ipps17
+
 { Version Delphi de IPPS.H
   Gérard Sadoc 5 avril 2005
 
@@ -6,6 +9,8 @@
   Modifier les typedef struct
 
 }
+
+
 
 {$Z+,A+}  (*si un type énuméré est déclaré en mode $Z4 (= $Z+),
            il est stocké sous la forme d'un double mot non signé.

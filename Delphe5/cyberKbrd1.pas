@@ -75,6 +75,10 @@ var
 var
   NItest: TNIinterface;
 
+
+Const
+  Kgroup: array[2..5] of integer= ( 30, 15, 3, 1); 
+
 type
   TCyberKinterface = class(TacqInterface)
   protected
@@ -91,6 +95,7 @@ type
     GroupNbCh: array[2..5] of integer;           // groupe 5 ajouté le 19-03-2015
     GroupToCh: array[2..5] of array of integer;  // id
 
+    GroupTime: array[2..5] of integer;
 
     nbElec: integer;
     nbvAcq:integer;
@@ -467,7 +472,7 @@ begin
       refGroup:=i;
       case i of
         2: cntDispInc:= 30;
-        3: cntDispInc:= 10;
+        3: cntDispInc:= 15;
         4: cntDispInc:= 3;
         5: cntDispInc:= 1;
       end;
@@ -803,7 +808,7 @@ end;
 procedure TCyberKinterface.ProcessPacketNumplus(p:PcbPKT_GENERIC);
 var
   pS:PtabEntier;
-  i,k,group:integer;
+  i,j,k,n, group:integer;
   ch:integer;
   time1,NewTimeSeq, ElphyTime:integer;
   ok:boolean;
@@ -823,6 +828,8 @@ begin
       if ok then
       begin
         TimeSeq:=p^.time;
+        for group:=2 to 5 do GroupTime[group]:= 0;
+
         MultiCyberTagBuf.SetInitDins(p^.data[0]);
 
         inc(NbSeq);
@@ -841,6 +848,7 @@ begin
       ok:=true;                             // On considère que le premier échantillon ana est le top synchro
 
       TimeSeq:=p^.time;
+      for group:=2 to 5 do GroupTime[group]:= 0;
       MultiCyberTagBuf.SetInitDins(3);
 
       inc(NbSeq);
@@ -878,7 +886,17 @@ begin
         group:=type1;
         pS:=@p^.data;
 
-        for i:=0 to GroupNbCh[group]-1 do storeSample(GroupToCh[group,i],pS^[i], ElphyTime);
+        // Gestion des échantillons manquants.
+        n:= (time1-GroupTime[group]) div Kgroup[group]; // Normalement, la différence est Kgroup[group]
+
+        if n=0 then n:= 1;              // On prend toujours le premier point
+        GroupTime[group]:= Time1;
+
+        for j:= 1 to n do
+         for i:=0 to GroupNbCh[group]-1 do storeSample(GroupToCh[group,i],pS^[i], ElphyTime);
+
+        // Gestion sans contrôle
+        //for i:=0 to GroupNbCh[group]-1 do storeSample(GroupToCh[group,i],pS^[i], ElphyTime);
 
         cntDisp:=Elphytime-60;
         if cntDisp<0 then cntDisp:=-1;

@@ -3224,42 +3224,22 @@ begin
   facq.ecrirePreSeq;
 
   if FmultiMainBuf then
-  {
-  with AcqInf do
   begin
-    j:=0;
-    setLength(bufS,maxBufS);
-    for i:=0 to Qnb-1 do
-    for k:=0 to nbVoieAcq-1 do
-    begin
-      if (QKSU[k+1]<>0) and (i  mod QKSU[k+1]=0)  then
-      begin
-        with MultimainBuf[k] do
-          bufS[j]:=GetSmall(i div QKSU[k+1]);
-        inc(j);
-      end;
-      if j=maxBufS-1 then
-      begin
-        facq.f.Write(bufS[0],j*2);
-        j:=0;
-      end;
-    end;
-    facq.f.Write(bufS[0],j*2);
-    setLength(bufS,0);
-  end
-  }
   // 06-12-16  On sauve les données sans  re-multiplexer ==> un gain de temps énorme
   //   la même méthode est difficilement applicable pour les épisodes sans stim visuelle
   //   car on sauve les données à mesure.
 
-  with AcqInf do
-  begin
-    for k:=0 to nbVoieAcq-1 do
-      MultimainBuf[k].SaveAllData(fAcq.f);
-  end
+  // 8 mars 2018 Avec le param supplémentaire de SaveAllData, le nb de points sauvés correspondra
+  // toujours aux infos contenues dans le header
 
+    with AcqInf do
+    begin
+      for k:=0 to nbVoieAcq-1 do
+        MultimainBuf[k].SaveAllData(fAcq.f, fAcq.SamplePerChan(k));
+    end
+  end
   else
-  begin
+  begin // Buffer multiplexé.
     for k:=0 to AcqInf.nbVoieAcq-1 do
       if (length(VfakeData)>k) and  assigned(VFakeData[k]) then
         for i:=0 to Qnb-1 do mainBuf^[i*AcqInf.nbvoieAcq+k]:= VfakeData[k].Jvalue[i];
@@ -3646,7 +3626,7 @@ begin
   FlagActivate:=true;
   //DXscreen.Show;
   //DXscreen.hide;
-  exit;
+  exit;                   // Avec Directx 9ex , il n'est plus nécesaire de réinitialiser le device
 
   if VisualStimOpen and assigned(DXscreen) then
   begin
@@ -3655,19 +3635,21 @@ begin
 
     initialiseDXscreen;
   end;
+
 end;
 
 procedure TFXcontrol.DeActivateDX(sender:Tobject);
 begin
 
   FlagActivate:= false;
-  exit;
+  exit;                  // La suite devient inutile avec Directx 9ex 
 
   if assigned(DXscreen) then
   begin
     DXscreen.Finalize;
     //DXscreen.IDX9:=nil; //Test
   end;
+  
 end;
 
 function TFXcontrol.selectedObject:typeUO;

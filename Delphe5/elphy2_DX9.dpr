@@ -42,7 +42,6 @@ uses
   SimRTneuronBrd in 'SimRTneuronBrd.pas',
   CpList0 in 'CpList0.pas',
   OIseqProp1 in 'OIseqProp1.pas' {OIseqProp},
-  ippvm in 'ippvm.pas',
   Darbre1 in 'Darbre1.pas',
   SpkBlock1 in 'SpkBlock1.pas',
   Kernels in 'Kernels.pas',
@@ -76,7 +75,8 @@ uses
   hdf5dll in 'hdf5dll.pas',
   hdf5_lite in 'hdf5_lite.pas',
   IIR1 in 'IIR1.pas',
-  ipp17ex in 'ipp17ex.pas';
+  ipp17ex in 'ipp17ex.pas',
+  ippvm17 in 'ippvm17.pas';
 
 {$R *.RES}
 
