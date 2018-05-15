@@ -26,22 +26,23 @@ const
   DM_HISTO1=11;
   DM_HISTO2=12;
   DM_HISTO3=13;
-  DM_EVT1=14;
-  DM_EVT2=15;
-  DM_Line_square=16;
-  DM_Line_TRIANGLE=17;
-  DM_Line_DIAMOND=18;
-  DM_Line_CIRCLE=19;
-  DM_Line_PLUS=20;
-  DM_Line_MULT=21;
-  DM_Line_STAR=22;
-  DM_Line_FillB=23;
-  DM_PolyGon=24;
-  DM_STEM=25;
+  DM_HISTO4=14;
+  DM_STEM=15;
+  DM_EVT1=16;
+  DM_EVT2=17;
+  DM_Line_SQUARE=18;
+  DM_Line_TRIANGLE=19;
+  DM_Line_DIAMOND=20;
+  DM_Line_CIRCLE=21;
+  DM_Line_PLUS=22;
+  DM_Line_MULT=23;
+  DM_Line_STAR=24;
+  DM_Line_FillB=25;
+  DM_PolyGon=26;
 
 
 const
-  nbStyleTrace=25;
+  nbStyleTrace=26;
   LongNomStyleTrace=17;
 
   tbStyleTrace:array[1..nbStyleTrace] of string[LongNomStyleTrace]=(
@@ -58,6 +59,8 @@ const
                                          'HISTO1',
                                          'HISTO2',
                                          'HISTO3',
+                                         'HISTO4',
+                                         'STEM',
                                          'EVT1',
                                          'EVT2',
                                          'LINES+SQUARES',
@@ -68,8 +71,7 @@ const
                                          'LINES+MULT',
                                          'LINES+STARS',
                                          'LINES/FILL',
-                                         'POLYGONS',
-                                         'STEM'
+                                         'POLYGONS'
                                          );
 
   {TPenStyle =(psSolid, psDash, psDot, psDashDot, psDashDotDot,
@@ -168,6 +170,11 @@ type
                procedure AfficherDernierPoint(i,inext:integer);override;
              end;
 
+  typeHisto4A=class(typePointA)
+               procedure afficher(i,j:integer);override;
+               procedure AfficherDernierPoint(i,inext:integer);override;
+             end;
+
   typeStemA = class(typePointA)
                procedure afficher(i,j:integer);override;
              end;
@@ -234,9 +241,9 @@ type
 type
   typeStyleTrace=(nulA,pointA,traitA,carreA,triangleA,DiamantA,
                   cercleA,plusA,multA,etoileA,
-                  HistoA,Histo1A,Histo2A,Histo3A,dot1A,dot2A,
+                  HistoA,Histo1A,Histo2A,Histo3A,Histo4A,StemA,dot1A,dot2A,
                   traitCarreA,traitTriA,traitDiamA,traitCercleA,traitPlusA,
-                  traitMultA,traitEtoileA,traitRempliA,PolyGonA,StemA);
+                  traitMultA,traitEtoileA,traitRempliA,PolyGonA);
 
   typeFonctionEE=function(x:float):float of object;
   typeFonctionII=function(i:integer):integer of object;
@@ -776,11 +783,11 @@ procedure typeHistoA.afficher(i,j:integer);
     with canvasGlb do
     begin
       last:=penPos;
+      if i = last.x then exit;
       barHalfWidth := (i-last.x) div 2;
       if last.y<Jbase
         then rectangle(last.x-barHalfWidth,last.y,i+1-barHalfWidth,Jbase+1)
         else rectangle(last.x-barHalfWidth,Jbase,i+1-barHalfWidth,last.y+1);
-
       moveto(i,j);
     end;
   end;
@@ -803,6 +810,7 @@ procedure typeHisto1A.afficher(i,j:integer);
     with canvasGlb do
     begin
       last:=penPos;
+      if i = last.x then exit; // wait to have 2 points to draw the first rectangle
       barHalfWidth := (i-last.x) div 2;
       sty:=brush.style;
       brush.style:=bsclear;
@@ -835,6 +843,7 @@ procedure typeHisto2A.afficher(i,j:integer);
     with canvasGlb do
     begin
       last := penPos;
+      if i = last.x then exit; // wait to have 2 points to draw the first rectangle
       barHalfWidth := (i-last.x) div 2;
       moveto(last.x-barHalfWidth,penPos.y);
       lineto(i-barHalfWidth,penPos.y);
@@ -861,6 +870,7 @@ procedure typeHisto3A.afficher(i,j:integer);
     begin
 
       last:=penPos;
+      if i = last.x then exit; // wait to have 2 points to draw the first rectangle
       barHalfWidth := (i-last.x) div 2;
 
       if last.y<=Jbase
@@ -884,6 +894,53 @@ procedure typeHisto3A.AfficherDernierPoint(i,inext:integer);
   begin
     with canvasGlb do afficher(inext,penPos.y);
   end;
+
+
+{*********************** Méthodes de typeHisto4A *************************}
+
+procedure typeHisto4A.afficher(i,j:integer);
+  var
+    last:Tpoint;
+    penColor:Tcolor;
+    sty:TbrushStyle;
+    barHalfWidth:integer;
+
+  begin
+    with canvasGlb do
+    begin
+      last:=penPos;
+      //if i = last.x then exit; // wait to have 2 points to draw the first rectangle
+      barHalfWidth := (i-last.x) div 2;
+
+      // Fill
+      penColor:=pen.color;
+      pen.color:=color2;
+      if last.y<Jbase
+        then rectangle(last.x-barHalfWidth,last.y,i+1-barHalfWidth,Jbase+1)
+        else rectangle(last.x-barHalfWidth,Jbase,i+1-barHalfWidth,last.y+1);
+      pen.color:=penColor;
+
+      {// Borders
+      sty:=brush.style;
+      brush.style:=bsclear;
+      if last.y<Jbase
+        then rectangle(last.x-barHalfWidth,last.y,i+1-barHalfWidth,Jbase+1)
+        else rectangle(last.x-barHalfWidth,Jbase,i+1-barHalfWidth,last.y+1);
+      brush.style:=sty;    }
+      
+      moveto(i,j);
+      brush.style:=sty;
+    end;
+  end;
+
+
+procedure typeHisto4A.AfficherDernierPoint(i,inext:integer);
+  var
+    last:Tpoint;
+  begin
+    with canvasGlb do afficher(inext,penPos.y);
+  end;
+
 
 
 {*********************** Méthodes de typeDot1A *************************}
@@ -1225,6 +1282,7 @@ procedure Ttrace0.setStyle(Style:integer;T:word);
       Histo1A:  point:=typeHisto1A.create(t);
       Histo2A:  point:=typeHisto2A.create(t);
       Histo3A:  point:=typeHisto3A.create(t);
+      Histo4A:  point:=typeHisto4A.create(t);
 
       StemA:  point:=typeStemA.create(t);
 

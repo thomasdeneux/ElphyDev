@@ -1,0 +1,146 @@
+
+const
+  stName = 'Histogram Test';
+
+var
+  time, x, e: Tvector;
+  xcopy, xe: Tvector;
+  xpoints, ypoints: Tvector;
+  pageNum: integer;
+  Graph: TGraph;
+  ErrorBars: TXYPlot;
+
+procedure CreateVectors;
+var
+  i: integer;
+begin
+  time.create(t_double,1,10);
+  for i := time.istart to time.iend do time[i] := i;
+  x.create(t_double,1,10);
+  x.sinewave(1,25,0.3);
+  e.create(t_double,1,10);
+  e.sinewave(0.3,25,0.3);
+  xe.create(t_double,x.istart,x.iend);
+  for i := x.istart to x.iend do xe[i] := x[i] + e[i];
+  xpoints.create(t_double,1,20);
+  xpoints.sinewave(1,4.44587,0);
+  ypoints.create(t_double,1,20);
+  ypoints.sinewave(1,7.75671,0);
+end;
+
+procedure CreatePage;
+begin
+  if PageIndex(stName)=0 then AddPage(stName);
+  DeleteAllPages(stName);
+  pageNum:=PageIndex(stName);
+  DestroyAllWindows(pageNum);
+  NewWindow(PageNum,1,1);
+  DivideWindow(PageNum,1,2,2);
+end;
+
+procedure Histo(GraphNum: integer);
+begin
+  x.mode := DM_HISTO0;
+  x.color := CL_RED;
+  x.cpx := 1;
+  x.cpy := 1;
+  x.setWorld(xe.istart - 1, 0, xe.iend + 1, xe.maxi0*1.1);
+  AddObject(PageNum,GraphNum,x);
+  xcopy.create;
+  xcopy.copyObject(x, True);
+  xcopy.mode := DM_HISTO1;
+  xcopy.color := CL_BLACK;
+  xcopy.cpx := 1;
+  xcopy.cpy := 1;
+  AddObject(PageNum,GraphNum,xcopy);
+end;
+
+procedure HistoWithStem;
+var
+  i: integer;
+begin
+  // Display error as stem
+  xe.mode := DM_STEM;
+  xe.cpx := 1;
+  xe.cpy := 1;
+  //xe.X0 := 0.5; // shift rightwards to the center of the bar
+  AddObject(PageNum,1,xe);   
+  
+  // Display histogram
+  Histo(1);
+end;
+
+procedure HistoWithGraph;
+begin
+  with Graph do
+  begin
+    create(time, x, time.istart, time.iend);
+    // mode := DM_HISTO1; // ne marche pas !!
+    setWorld(xe.istart - 1, 0, xe.iend + 1, xe.maxi0*1.1);
+    setErrorData(e);
+  end;
+  AddObject(PageNum,2,Graph);
+end;
+  
+procedure HistoWithXYPlot;
+var
+  i: integer;
+begin
+  // Display histogram
+  Histo(3);
+  // Display error bars
+  with ErrorBars do
+  begin
+    create;
+    Cpx := 1;
+    Cpy := 1;
+    for i := x.istart to x.iend do
+    begin
+      addPolyLine;
+      PolyLines[i].addPoint(time[i], x[i]-e[i]);  
+      PolyLines[i].addPoint(time[i], x[i]+e[i]);
+    end;
+  end;
+  AddObject(PageNum,3,ErrorBars);
+end;
+
+procedure PointsCloud;
+begin
+  with Graph do
+  begin
+    create(xpoints, ypoints, xpoints.istart, xpoints.iend);
+    autoscaleX;
+    autoscaleY;
+    mode := DM_CIRCLE;
+    symbolSize := 10;
+  end;
+  AddObject(PageNum,4,Graph);
+end;
+
+program 'Init'
+  CreateVectors;
+  CreatePage;
+
+program 'Histogram using Stem'
+  HistoWithStem;
+  
+program 'Histogram using TGraph'
+  HistoWithGraph;
+
+program 'Histogram using TXYPlot'
+  HistoWithXYPlot;
+  
+program 'Points'
+  PointsCloud;
+
+program 'Test: Histo4 not working properly'
+  CreateVectors;
+  CreatePage;
+  x.mode := DM_HISTO4;
+  x.color2 := CL_RED;
+  x.cpx := 1;
+  x.cpy := 1;
+  setWorld(x.istart-1, 0, x.iend+1, xe.maxi0*1.1);
+  AddObject(PageNum,4,x);
+
+

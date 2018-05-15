@@ -17,7 +17,7 @@ var                           { Global variables Declaration }
   stM:string[20];             { Char string with limited length  (Here 20 characters) 
                                 use this kind of declaration only when needed}
 
-Program 'Test' 
+Program 'Message Box' 
 MessageBox(st1);              { messageBox is a standard procedure. 
                                 If the cursor is on a keyword , CTRL-F1 open Help for this keyword
                                 You can also right click on the keyword and select Program Help 
@@ -146,4 +146,5 @@ end;
 
 program 'Calcul3'
 calcul3( 12, 67, y );
+
 
