@@ -1075,6 +1075,7 @@ begin
         with cbStyle do
         begin
           setStringArray(tbStyleTrace,longNomStyleTrace,nbStyleTrace);
+          setValues(TraceStyleValues);
           setVar(polylines[EditLine].rec.ModeT,T_byte,1);
           onChange:=onChangeCB;
         end;
@@ -1105,6 +1106,7 @@ begin
         with cbStyle do
         begin
           setStringArray(tbStyleTrace,longNomStyleTrace,nbStyleTrace);
+          setValues(TraceStyleValues);
           setVar(ModeTbid,T_byte,1);
         end;
 

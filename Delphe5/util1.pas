@@ -395,6 +395,8 @@ function getVolumeSerialNumber(drive:AnsiChar):AnsiString;
 function AllocatedMem:int64;
 
 function tabToString(var t;n:integer):AnsiString;
+function tabWideCharToString(var t;n:integer):AnsiString;
+
 function ppcm(x1,x2:integer):integer;
 
 type
@@ -1731,7 +1733,20 @@ begin
       else exit;
 end;
 
-function ppcm(x1,x2:integer):integer; 
+function tabWideCharToString(var t;n:integer):AnsiString;
+var
+  i:integer;
+  c:array[1..1000] of WideChar absolute t;
+begin
+  result:='';
+  for i:=1 to n do
+    if c[i]<>#0
+      then result:=result+c[i]
+      else exit;
+end;
+
+
+function ppcm(x1,x2:integer):integer;
 var
   i:integer;
 begin

@@ -2406,6 +2406,14 @@ property TdataPlot.LineStyle: integer;
  Voir les (types de traits)@
 }
 
+property TdataPlot.BarWidth: single;
+{$H Définit la largeur des barres pour les histogrammes centrés.
+
+ Quand le mode@ est DM_Histo0C, DM_Histo1C, DM_Histo2C, DM_Histo3C ou DM_Histo4C ,
+cette propriété définit la largeur des barres en pourcentage de la largeur maximale possible.
+ C'est un  nombre compris entre 0 et 100.
+ Si BarWidth n'est pas compris entre ces limites, les barres consécutives sont collées entre elles.
+}
 
 property TdataPlot.keepAspectRatio:boolean;
 {$H Propriété indiquant si l'on doit respecter les proportions à l'affichage.

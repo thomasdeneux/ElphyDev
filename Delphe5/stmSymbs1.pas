@@ -473,6 +473,7 @@ begin
     with cbStyle do
     begin
       setStringArray(tbStyleTrace,longNomStyleTrace,nbStyleTrace);
+      setValues(TraceStyleValues);
       setVar(style0,T_longint,1);
     end;
 

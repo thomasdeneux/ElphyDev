@@ -57,6 +57,8 @@ type
     cbLineStyle: TcomboBoxV;
     LbinFactor: TLabel;
     enBinFactor: TeditNum;
+    Label13: TLabel;
+    enBarWidth: TeditNum;
     procedure BOKClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -224,6 +226,7 @@ begin
     with comboBoxV1 do
     begin
       setStringArray(tbStyleTrace,longNomStyleTrace,nbStyleTrace);
+      setValues(TraceStyleValues);
       setVar(ModeT,T_byte,1);
     end;
 
@@ -258,6 +261,7 @@ begin
       setVar(StyleTrait,T_byte,1);
     end;
 
+    enBarWidth.setVar(BarWidth,t_single );
     //enSmoothFactor.setVar(SmoothFactor,g_longint);
   end;
 

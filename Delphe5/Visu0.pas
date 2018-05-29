@@ -158,7 +158,8 @@ type
         object
           Xmin,Xmax,Ymin,Ymax,Zmin,Zmax:double;
           gamma:single;
-          _aspect:single;
+          //_aspect:single;
+          BarWidth: single;
           ux,uy:string[10];
           color:longint;
           twoCol:boolean;
@@ -363,7 +364,8 @@ begin
   largeurTrait:=1;
   styleTrait:=1;
 
-  _aspect:=0;
+  //_aspect:=0;
+  BarWidth:=0;
 
   echX:=true;
   echY:=true;
@@ -571,6 +573,7 @@ begin
      end
    else setStyle(modeT,tailleT);
    setTrait(largeurTrait,styleTrait);
+   setBarWidth(self.BarWidth);
 
    onDisplayPoint:=onDP;
 
@@ -778,6 +781,7 @@ begin
       end
     else setStyle(modeT,tailleT);
     setTrait(largeurTrait,styleTrait);
+    setBarWidth(self.BarWidth);
     afficher;
   end;
 
@@ -875,6 +879,7 @@ begin
       end
     else setStyle(modeT,tailleT);
     setTrait(largeurTrait,styleTrait);
+    setBarWidth(self.BarWidth);
     afficher;
   end;
 
@@ -2383,7 +2388,7 @@ begin
   Zmin:=oldVisu.Zmin;
   Zmax:=oldVisu.Zmax;
   gamma:=oldVisu.gamma;
-  _aspect:=oldVisu.aspect;
+  //_aspect:=oldVisu.aspect;
   ux:=oldVisu.ux;
   uy:=oldVisu.uy;
   color:=oldVisu.color;
