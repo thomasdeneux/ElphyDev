@@ -551,7 +551,7 @@ end;
 
 function TCyberKinterface.ADCcount(dev: integer): integer;
 begin
-  result:=136;  { les numéros vont de 1 à 32 et de 129 à 144  }
+  result:=144;  { les numéros vont de 1 à 128 et de 129 à 144  }
 end;
 
 function TCyberKinterface.bitInCount(dev: integer): integer;
