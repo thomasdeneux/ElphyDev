@@ -1,0 +1,37 @@
+
+
+var Mat: TMatrix;
+var OI: TOIseq;
+
+procedure GetFileAndVarName(var filename, varname: string);
+begin
+  filename := '*.mat';
+  ChooseFile(filename, 'Select Matlab file');
+  InitDialogBox;
+  DBgetString('Variable name:', varname, 20);
+  ShowDialogBox;
+end;
+
+
+var filename, varname: string;
+
+program 'Load TMatrix'
+
+GetFileAndVarName(filename, varname);
+Mat.create;
+Mat.LoadFromMatFile(filename,varname);
+Mat.AutoscaleX;
+Mat.AutoscaleY;
+Mat.AutoscaleZ;
+Mat.show;
+
+
+program 'Load TOIseq'
+
+GetFileAndVarName(filename, varname);
+OI.create(1, 1, 1, False);
+OI.LoadFromMatFile(filename, varname);
+OI.show;
+OI.AutoscaleX;
+OI.AutoscaleY;
+OI.AutoscaleZ;
