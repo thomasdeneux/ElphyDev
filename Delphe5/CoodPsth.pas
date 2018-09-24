@@ -216,6 +216,7 @@ function TCooD.Choose(var title:AnsiString;var visu:TVisuInfo;
       with comboBoxV1 do
       begin
         setStringArray(tbStyleTrace,longNomStyleTrace,nbStyleTrace);
+        setValues(TraceStyleValues);
         setVar(ModeT,T_byte,1);
       end;
 

@@ -57,6 +57,7 @@ type
                  procedure setmodeT(w:byte);virtual;
                  procedure settailleT(w:byte);virtual;
                  procedure setlargeurTrait(w:byte);virtual;
+                 procedure setBarWidth(w:single);virtual;
                  procedure setstyleTrait(w:byte);virtual;
                  procedure setmodeLogX(w:boolean);virtual;
                  procedure setmodeLogY(w:boolean);virtual;
@@ -144,6 +145,7 @@ type
                  property modeT:byte read visu.modeT  write setmodeT;
                  property tailleT:byte read visu.tailleT  write settailleT;
                  property largeurTrait:byte read visu.largeurTrait  write setlargeurTrait;
+                 property BarWidth: single read visu.BarWidth write setBarWidth;
                  property styleTrait:byte read visu.styleTrait  write setstyleTrait;
                  property modeLogX:boolean read visu.modeLogX  write setmodeLogX;
                  property modeLogY:boolean read visu.modeLogY  write setmodeLogY;
@@ -392,6 +394,10 @@ function fonctionTdataPlot_LineStyle(var pu:typeUO):integer;pascal;
 
 procedure proTdataPlot_lineWidth(x:smallint;var pu:typeUO);pascal;
 function fonctionTdataPlot_lineWidth(var pu:typeUO):smallint;pascal;
+
+procedure proTdataPlot_BarWidth(x:single;var pu:typeUO);pascal;
+function fonctionTdataPlot_BarWidth(var pu:typeUO):single;pascal;
+
 
 procedure proTdataPlot_keepAspectRatio(b:boolean;var pu:typeUO);pascal;
 function fonctionTdataPlot_keepAspectRatio(var pu:typeUO):boolean;pascal;
@@ -863,6 +869,11 @@ procedure TdataPlot.setlargeurTrait(w:byte);
 begin
   visu.largeurTrait:=w;
 end;
+
+procedure TdataPlot.setBarWidth(w: single);
+begin
+  visu.BarWidth:=w;
+end;           
 
 procedure TdataPlot.setstyleTrait(w:byte);
 begin
@@ -1749,7 +1760,7 @@ begin
     if flags[VF_Zmin] then swapmem(visu1^.Zmin,visu.Zmin,sizeof(visu.Zmin));
     if flags[VF_Zmax] then swapmem(visu1^.Zmax,visu.Zmax,sizeof(visu.Zmax));
     if flags[VF_gamma] then swapmem(visu1^.gamma,visu.gamma,sizeof(visu.gamma));
-    if flags[VF__aspect] then swapmem(visu1^._aspect,visu._aspect,sizeof(visu._aspect));
+    //if flags[VF__aspect] then swapmem(visu1^._aspect,visu._aspect,sizeof(visu._aspect));
     if flags[VF_ux] then swapmem(visu1^.ux,visu.ux,sizeof(visu.ux));
     if flags[VF_uy] then swapmem(visu1^.uy,visu.uy,sizeof(visu.uy));
     if flags[VF_color] then swapmem(visu1^.color,visu.color,sizeof(visu.color));
@@ -2391,7 +2402,7 @@ function fonctionTdataPlot_color2(var pu:typeUO):longint;
 procedure proTdataPlot_Mode(x:integer;var pu:typeUO);
   begin
     verifierObjet(pu);
-    controleParametre(x,1,nbStyleTrace);
+    //controleParametre(x,1,nbStyleTrace);
     TdataPlot(pu).modeT:=x;
   end;
 
@@ -2426,6 +2437,20 @@ begin
   verifierObjet(pu);
   result:=TdataPlot(pu).largeurTrait;
 end;
+
+procedure proTdataPlot_BarWidth(x:single;var pu:typeUO);
+begin
+  verifierObjet(pu);
+  with TdataPlot(pu) do BarWidth:=x;
+end;
+
+
+function fonctionTdataPlot_BarWidth(var pu:typeUO):single;
+begin
+  verifierObjet(pu);
+  result:=TdataPlot(pu).BarWidth;
+end;
+
 
 procedure proTdataPlot_LineStyle(w:integer ;var pu:typeUO);
 begin

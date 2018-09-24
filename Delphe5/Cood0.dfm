@@ -3,116 +3,123 @@ object CooD: TCooD
   Top = 159
   BorderStyle = bsDialog
   Caption = 'Coordinates'
-  ClientHeight = 399
-  ClientWidth = 304
+  ClientHeight = 537
+  ClientWidth = 374
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
-  Font.Height = -11
+  Font.Height = -14
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
   Position = poMainFormCenter
   OnActivate = FormActivate
   OnCreate = FormCreate
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 16
   object Label1: TLabel
-    Left = 16
-    Top = 13
-    Width = 23
-    Height = 13
+    Left = 20
+    Top = 16
+    Width = 29
+    Height = 16
     Caption = 'Title:'
   end
   object Label2: TLabel
-    Left = 15
-    Top = 41
-    Width = 26
-    Height = 13
+    Left = 18
+    Top = 50
+    Width = 32
+    Height = 16
     Caption = 'Xmin:'
   end
   object Label3: TLabel
-    Left = 15
-    Top = 65
-    Width = 26
-    Height = 13
+    Left = 18
+    Top = 80
+    Width = 33
+    Height = 16
     Caption = 'Xmax'
   end
   object Label4: TLabel
-    Left = 15
-    Top = 90
-    Width = 23
-    Height = 13
+    Left = 18
+    Top = 111
+    Width = 30
+    Height = 16
     Caption = 'Ymin'
   end
   object Label5: TLabel
-    Left = 15
-    Top = 114
-    Width = 26
-    Height = 13
+    Left = 18
+    Top = 140
+    Width = 34
+    Height = 16
     Caption = 'Ymax'
   end
   object Label6: TLabel
-    Left = 15
-    Top = 148
-    Width = 26
-    Height = 13
+    Left = 18
+    Top = 182
+    Width = 33
+    Height = 16
     Caption = 'Style:'
   end
   object Label7: TLabel
-    Left = 15
-    Top = 176
-    Width = 58
-    Height = 13
+    Left = 18
+    Top = 217
+    Width = 76
+    Height = 16
     Caption = 'Symbol size:'
   end
   object Label8: TLabel
-    Left = 15
-    Top = 201
-    Width = 51
-    Height = 13
+    Left = 18
+    Top = 247
+    Width = 61
+    Height = 16
     Caption = 'Line width:'
   end
   object Label10: TLabel
-    Left = 15
-    Top = 295
-    Width = 53
-    Height = 13
+    Left = 18
+    Top = 398
+    Width = 65
+    Height = 16
     Caption = 'X coupling:'
   end
   object Label11: TLabel
-    Left = 171
-    Top = 295
-    Width = 56
-    Height = 13
+    Left = 210
+    Top = 398
+    Width = 69
+    Height = 16
     Caption = 'Y coupling :'
   end
   object Label9: TLabel
-    Left = 171
-    Top = 272
-    Width = 33
-    Height = 13
+    Left = 210
+    Top = 370
+    Width = 44
+    Height = 16
     Caption = 'Cmode'
   end
   object Label12: TLabel
-    Left = 15
-    Top = 226
-    Width = 46
-    Height = 13
+    Left = 18
+    Top = 278
+    Width = 58
+    Height = 16
     Caption = 'Line Style'
   end
   object LbinFactor: TLabel
-    Left = 15
-    Top = 320
-    Width = 45
-    Height = 13
+    Left = 18
+    Top = 429
+    Width = 55
+    Height = 16
     Caption = 'Bin factor'
   end
+  object Label13: TLabel
+    Left = 18
+    Top = 306
+    Width = 58
+    Height = 16
+    Caption = 'Bar Width'
+  end
   object editNum1: TeditNum
-    Left = 60
-    Top = 39
-    Width = 93
-    Height = 21
+    Left = 74
+    Top = 48
+    Width = 114
+    Height = 24
     TabOrder = 0
     Text = 'editNum1'
     Tnum = G_byte
@@ -122,10 +129,10 @@ object CooD: TCooD
     Dxu = 1.000000000000000000
   end
   object editNum2: TeditNum
-    Left = 60
-    Top = 63
-    Width = 93
-    Height = 21
+    Left = 74
+    Top = 78
+    Width = 114
+    Height = 24
     TabOrder = 1
     Text = 'editNum1'
     Tnum = G_byte
@@ -135,10 +142,10 @@ object CooD: TCooD
     Dxu = 1.000000000000000000
   end
   object editNum3: TeditNum
-    Left = 60
-    Top = 87
-    Width = 93
-    Height = 21
+    Left = 74
+    Top = 107
+    Width = 114
+    Height = 24
     TabOrder = 2
     Text = 'editNum1'
     Tnum = G_byte
@@ -148,10 +155,10 @@ object CooD: TCooD
     Dxu = 1.000000000000000000
   end
   object editNum4: TeditNum
-    Left = 60
-    Top = 111
-    Width = 93
-    Height = 21
+    Left = 74
+    Top = 137
+    Width = 114
+    Height = 24
     TabOrder = 3
     Text = 'editNum1'
     Tnum = G_byte
@@ -161,52 +168,52 @@ object CooD: TCooD
     Dxu = 1.000000000000000000
   end
   object Button1: TButton
-    Left = 208
-    Top = 38
-    Width = 77
-    Height = 21
+    Left = 256
+    Top = 47
+    Width = 95
+    Height = 26
     Caption = 'AutoScale X'
     TabOrder = 4
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 208
-    Top = 87
-    Width = 77
-    Height = 21
+    Left = 256
+    Top = 107
+    Width = 95
+    Height = 26
     Caption = 'AutoScale Y'
     TabOrder = 5
     OnClick = Button2Click
   end
   object comboBoxV2: TcomboBoxV
-    Left = 132
-    Top = 172
-    Width = 61
-    Height = 21
+    Left = 162
+    Top = 212
+    Width = 76
+    Height = 24
     Style = csDropDownList
-    ItemHeight = 13
+    ItemHeight = 16
     TabOrder = 6
     Tnum = G_byte
     UpdateVarOnExit = False
     UpdateVarOnChange = False
   end
   object comboBoxV3: TcomboBoxV
-    Left = 132
-    Top = 197
-    Width = 61
-    Height = 21
+    Left = 162
+    Top = 242
+    Width = 76
+    Height = 24
     Style = csDropDownList
-    ItemHeight = 13
+    ItemHeight = 16
     TabOrder = 7
     Tnum = G_byte
     UpdateVarOnExit = False
     UpdateVarOnChange = False
   end
   object CheckBoxV1: TCheckBoxV
-    Left = 13
-    Top = 249
-    Width = 140
-    Height = 17
+    Left = 16
+    Top = 341
+    Width = 172
+    Height = 21
     Alignment = taLeftJustify
     Caption = 'Logarithmic X scale :'
     Color = clBtnFace
@@ -215,49 +222,49 @@ object CooD: TCooD
     UpdateVarOnToggle = False
   end
   object CheckBoxV2: TCheckBoxV
-    Left = 13
-    Top = 269
-    Width = 140
-    Height = 17
+    Left = 16
+    Top = 366
+    Width = 172
+    Height = 21
     Alignment = taLeftJustify
     Caption = 'Logarithmic Y scale:'
     TabOrder = 9
     UpdateVarOnToggle = False
   end
   object CheckBoxV3: TCheckBoxV
-    Left = 216
-    Top = 251
-    Width = 71
-    Height = 17
+    Left = 266
+    Top = 344
+    Width = 87
+    Height = 21
     Alignment = taLeftJustify
     Caption = 'Grid:'
     TabOrder = 10
     UpdateVarOnToggle = False
   end
   object Button4: TButton
-    Left = 204
-    Top = 144
-    Width = 43
-    Height = 21
+    Left = 251
+    Top = 177
+    Width = 53
+    Height = 26
     Caption = 'Color'
     TabOrder = 11
     OnClick = Button4Click
   end
   object Pcolor1: TPanel
-    Left = 259
-    Top = 144
-    Width = 29
-    Height = 21
+    Left = 319
+    Top = 177
+    Width = 35
+    Height = 26
     BorderWidth = 1
     BorderStyle = bsSingle
     Color = clWhite
     TabOrder = 12
   end
   object BOK: TButton
-    Left = 76
-    Top = 355
-    Width = 69
-    Height = 25
+    Left = 94
+    Top = 472
+    Width = 84
+    Height = 31
     Caption = 'OK'
     Default = True
     ModalResult = 1
@@ -265,29 +272,29 @@ object CooD: TCooD
     OnClick = BOKClick
   end
   object Bcancel: TButton
-    Left = 156
-    Top = 355
-    Width = 69
-    Height = 25
+    Left = 192
+    Top = 472
+    Width = 85
+    Height = 31
     Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 14
   end
   object editString1: TeditString
-    Left = 60
-    Top = 11
-    Width = 225
-    Height = 21
+    Left = 74
+    Top = 14
+    Width = 277
+    Height = 24
     TabOrder = 15
     Text = 'editString1'
     len = 0
     UpdateVarOnExit = False
   end
   object enCpx: TeditNum
-    Left = 108
-    Top = 292
-    Width = 46
-    Height = 21
+    Left = 133
+    Top = 394
+    Width = 57
+    Height = 24
     TabOrder = 16
     Tnum = G_byte
     Max = 255.000000000000000000
@@ -296,10 +303,10 @@ object CooD: TCooD
     Dxu = 1.000000000000000000
   end
   object enCpY: TeditNum
-    Left = 243
-    Top = 292
-    Width = 46
-    Height = 21
+    Left = 299
+    Top = 394
+    Width = 57
+    Height = 24
     TabOrder = 17
     Tnum = G_byte
     Max = 255.000000000000000000
@@ -308,40 +315,40 @@ object CooD: TCooD
     Dxu = 1.000000000000000000
   end
   object Boptions: TButton
-    Left = 204
-    Top = 197
-    Width = 84
-    Height = 21
+    Left = 251
+    Top = 242
+    Width = 103
+    Height = 26
     Caption = 'Options'
     TabOrder = 18
     OnClick = BoptionsClick
   end
   object Button3: TButton
-    Left = 204
-    Top = 172
-    Width = 43
-    Height = 21
+    Left = 251
+    Top = 212
+    Width = 53
+    Height = 26
     Caption = ' color 2'
     TabOrder = 19
     OnClick = Button3Click
   end
   object Pcolor2: TPanel
-    Left = 259
-    Top = 172
-    Width = 29
-    Height = 21
+    Left = 319
+    Top = 212
+    Width = 35
+    Height = 26
     BorderWidth = 1
     BorderStyle = bsSingle
     Color = clWhite
     TabOrder = 20
   end
   object cbCmode: TcomboBoxV
-    Left = 206
-    Top = 268
-    Width = 84
-    Height = 21
+    Left = 254
+    Top = 365
+    Width = 103
+    Height = 24
     Style = csDropDownList
-    ItemHeight = 13
+    ItemHeight = 16
     TabOrder = 21
     OnChange = cbCmodeChange
     Tnum = G_byte
@@ -349,34 +356,34 @@ object CooD: TCooD
     UpdateVarOnChange = False
   end
   object comboBoxV1: TcomboBoxV
-    Left = 60
-    Top = 144
-    Width = 132
-    Height = 21
+    Left = 74
+    Top = 177
+    Width = 162
+    Height = 24
     Style = csDropDownList
-    ItemHeight = 13
+    ItemHeight = 16
     TabOrder = 22
     Tnum = G_byte
     UpdateVarOnExit = False
     UpdateVarOnChange = False
   end
   object cbLineStyle: TcomboBoxV
-    Left = 88
-    Top = 222
-    Width = 105
-    Height = 21
+    Left = 108
+    Top = 273
+    Width = 130
+    Height = 24
     Style = csDropDownList
-    ItemHeight = 13
+    ItemHeight = 16
     TabOrder = 23
     Tnum = G_byte
     UpdateVarOnExit = False
     UpdateVarOnChange = False
   end
   object enBinFactor: TeditNum
-    Left = 80
-    Top = 317
-    Width = 74
-    Height = 21
+    Left = 98
+    Top = 425
+    Width = 92
+    Height = 24
     TabOrder = 24
     Tnum = G_byte
     Max = 255.000000000000000000
@@ -384,8 +391,21 @@ object CooD: TCooD
     Decimal = 0
     Dxu = 1.000000000000000000
   end
+  object enBarWidth: TeditNum
+    Left = 123
+    Top = 304
+    Width = 114
+    Height = 24
+    TabOrder = 25
+    Text = 'editNum1'
+    Tnum = G_byte
+    Max = 100.000000000000000000
+    UpdateVarOnExit = False
+    Decimal = 0
+    Dxu = 1.000000000000000000
+  end
   object ColorDialog1: TColorDialog
     Left = 16
-    Top = 380
+    Top = 415
   end
 end
