@@ -8,8 +8,6 @@ copy Elphy2_DX9.exe Elphy2.exe
 
 "C:\Program Files\7-Zip\7z" a ..\Setup\Elphy2.zip cuda\cuda65.dll
 "C:\Program Files\7-Zip\7z" a ..\Setup\Elphy2.zip cuda\cudaMC65.dll
-"C:\Program Files\7-Zip\7z" a ..\Setup\Elphy2.zip cuda\cuda80.dll
-"C:\Program Files\7-Zip\7z" a ..\Setup\Elphy2.zip cuda\cudaMC80.dll
 
 "C:\Program Files\7-Zip\7z" a ..\Setup\Elphy2.zip Elphy.txt
 
