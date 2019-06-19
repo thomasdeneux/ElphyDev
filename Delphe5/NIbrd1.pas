@@ -1908,11 +1908,13 @@ end;
 procedure TNIboard.SetHasDigInputs;
 var
   i:integer;
+  b:boolean;
 begin
-  HasDigInputs:=false;
+  b:=false;
   if FuseTagStart then
   for i:=0 to 7 do
-    if DigInputs[i] then HasDigInputs:=true;
+    if DigInputs[i] then b:=true;
+  HasDigInputs:=b;
 end;
 
 procedure TNIboard.DoNothing;
