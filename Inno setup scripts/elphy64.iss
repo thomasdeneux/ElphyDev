@@ -4,7 +4,7 @@
 
 [Setup]
 AppName=ELPHY64
-AppVerName=Elphy64 Version 5.0.1
+AppVerName=Elphy64 Version 5.0.2
 ;include "d:\delphe5\ElphyVersion.txt"
 UsePreviousAppDir=No
 DefaultDirName={sd}\Elphy64

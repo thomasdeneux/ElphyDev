@@ -1,0 +1,2909 @@
+
+var
+  bar:array[0..1000] of Tbar;
+  stim:array[1..1000] of Ttranslation;
+  
+  grat:array[1..1000] of TLgrating;
+  tr:array[1..1000] of TphaseTranslation;
+
+var
+  Transform: TVSpolarToCart;
+                                                  
+
+procedure DisableStims;
+begin
+  VisualStim.DisableStims;
+  if assigned(transform) then transform.active:=true;
+end;
+ 
+procedure clearAll; 
+var 
+  i:integer;                         
+begin 
+  for i:=1 to 1000 do 
+  begin                              
+    bar[i].free; 
+    stim[i].free;                                     
+    grat[i].free; 
+    tr[i].free;                            
+  end;                                     
+end; 
+
+procedure initBarres; 
+var  
+  i:integer;                                         
+begin 
+  for i:=1 to 400 do 
+  begin 
+    with bar[i] do 
+    begin 
+      create;                                        
+      dx:=0.1+random*5; 
+      dy:=0.2; 
+      lum:=random*100;
+      //rgbColor:=rgb(randomI(256),randomI(256),randomI(256)); 
+    end; 
+ 
+    with stim[i] do 
+    begin 
+      create; 
+      dtON:=0.1+random; 
+      cycleCount:=10; 
+      orthogonal:=true; 
+      backandforth:=true; 
+      x0:=(random-0.5)*20; 
+      y0:=(random-0.5)*15; 
+      v0:=1+random*10; 
+      theta0:=180*(random-0.5); 
+      startTime:=random*2;
+      setVisualObject(bar[i]); 
+    end; 
+  end; 
+end; 
+ 
+program 'Barres' 
+initchrono;
+DisableStims; 
+initBarres; 
+VisualStim.animate; 
+statuslineTxt(chrono); 
+ 
+ 
+procedure initB(num,x1,y1,cote:integer;delta:real); 
+var 
+  i:integer; 
+begin 
+ 
+  for i:=0 to 3 do 
+  begin 
+    with bar[(num-1)*4+i+1] do 
+    begin 
+      create(''); 
+      dx:=1.5; 
+      dy:=0.2; 
+      x:=x1; 
+      y:=y1; 
+    end; 
+ 
+    with stim[(num-1)*4+i+1] do 
+    begin 
+      create(''); 
+ 
+      cycleCount:=1; 
+      orthogonal:=true; 
+ 
+      v0:=10; 
+      dtON:=cote/v0; 
+      dtOff:=dtON*3; 
+      startTime:=i*dtON+delta; 
+ 
+      case i of 
+      0:begin 
+         x0:=x1; 
+         y0:=y1; 
+         theta0:=0; 
+        end; 
+      1:begin 
+         x0:=x1+cote; 
+         y0:=y1; 
+         theta0:=-90; 
+        end; 
+      2:begin 
+         x0:=x1+cote; 
+         y0:=y1-cote; 
+         theta0:=180; 
+        end; 
+      3:begin 
+         x0:=x1; 
+         y0:=y1-cote; 
+         theta0:=90; 
+        end; 
+      end; 
+ 
+      setVisualObject(bar[(num-1)*4+i+1]); 
+ 
+    end; 
+  end; 
+end; 
+ 
+procedure initBarres2; 
+var 
+  i:integer; 
+begin 
+  for i:=1 to 25 do initB(i,-10,10,15,0.2*(i-1)); 
+end; 
+ 
+program 'Barres 1' 
+disableStims; 
+initBarres2; 
+VisualStim.animate; 
+ 
+ 
+ 
+ 
+procedure initGrat1; 
+var 
+  i:integer; 
+begin 
+  for i:=1 to 10 do 
+  begin 
+    with grat[i] do 
+    begin 
+      create(''); 
+      dx:=10+random*10; 
+      dy:=10+random*5; 
+      x:=(random-0.5)*20; 
+      y:=(random-0.5)*15; 
+      theta:=randomI(360); 
+      period:=0.5+random*5; 
+      BlendAlpha:=0.5;
+      //SquareWave:=true;
+    end; 
+ 
+    with tr[i] do 
+    begin 
+      create(''); 
+      dtON:=3+random*4; 
+      speed:=50+random*500; 
+      startTime:=random*5; 
+      setVisualObject(grat[i]); 
+    end; 
+  end; 
+end; 
+ 
+ 
+program 'Gratings 1' 
+disableStims; 
+initGrat1; 
+VisualStim.animate; 
+ 
+procedure initGrat2; 
+var 
+  i,j:integer;
+  dx1,dy1:real; 
+  Nx,Ny:integer;
+begin 
+  Nx:=24;
+  Ny:=12;
+
+  dx1:= (StimScreen.Width-6) / Nx;  
+  dy1:= StimScreen.Height / Ny; 
+  
+  for i:=0 to Nx-1 do 
+  for j:=0 to Ny-1 do 
+  begin 
+    with grat[1+i*Ny+j] do 
+    begin 
+      create(''); 
+      x:=-(StimScreen.Width-6)/2 + dx1/2 + i*dx1; 
+      y:= -StimScreen.Height/2 + dy1/2 + j*dy1; 
+      dx:= dx1*0.9;  
+      dy:= dy1*0.9; 
+      period:=0.5+0.5*i; 
+      elliptic:= true; 
+    end; 
+ 
+    with tr[1+i*Ny+j] do 
+    begin 
+      create(''); 
+      dtON:=10; 
+      speed:=200+j*200; 
+      setVisualObject(grat[1+i*Ny+j]); 
+      setsyncpulse(5); 
+      starttime:=0; {random*2;} 
+    end; 
+  end; 
+end; 
+ 
+program 'Gratings 2' 
+disableStims; 
+initGrat2; 
+//if not visualStim.openDataFile then halt; 
+initChrono; 
+VisualStim.animate; 
+messageBox(chrono);
+ 
+ 
+procedure initGrat3; 
+var 
+  i:integer; 
+begin 
+  with grat[1] do 
+  begin 
+    create(''); 
+    dx:=StimScreen.Width; 
+    dy:=StimScreen.Height;
+    orientation:=-30;   
+    period:=5; 
+    BlendAlpha:=0.5;
+    OnScreen:=false;
+    //squareWave:=true;
+  end; 
+  
+  with grat[2] do 
+  begin 
+    create(''); 
+    dx:=StimScreen.Width; 
+    dy:=StimScreen.Height; 
+    orientation:=60; 
+    period:=8;
+    Zdistance:=-1;
+    squareWave:=true; 
+    //BlendAlpha:=0.5;
+  end; 
+  
+  for i:=1 to 2 do
+  with tr[i] do 
+  begin 
+    create(''); 
+    dtON:=5; 
+    dtOff:=0;
+    CycleCount:=1;
+    speed:=200+(i-1)*100; 
+    setVisualObject(grat[i]); 
+  end; 
+  visualStim.extraTime:=2;
+   
+end; 
+ 
+ 
+program 'Gratings 3' 
+disableStims; 
+initGrat3; 
+VisualStim.animate; 
+
+
+var
+  SimpleOri:real;
+  SimplePeriod:real;
+   
+procedure initSimpleGrat; 
+var 
+  i,j:integer; 
+begin 
+  with grat[1] do 
+  begin 
+    create; 
+    x:=0; 
+    y:=0; 
+    dx:=stimScreen.width; 
+    dy:=stimScreen.Height; 
+    orientation:= SimpleOri; 
+    contrast:=0.95; 
+    period:=SimplePeriod;
+    //onScreen:=true;
+  end; 
+ 
+  with tr[1] do 
+  begin 
+    create; 
+    dtON:=1; 
+    speed:=360*3; 
+    setVisualObject(grat[1]);
+    
+    //for i:= 1 to 100 do setsyncpulse(3/120*i);    
+  end; 
+  
+end; 
+
+
+ 
+program 'Simple Grating '
+if simplePeriod=0 then simplePeriod:=5; 
+disableStims;
+
+initDialogBox;
+DBgetReal('Orientation ',SimpleOri,10,3);
+DBgetReal('Period',SimplePeriod,10,3);
+
+if showDialogBox=mr_ok then initSimpleGrat; 
+//grat[1].elliptic:=true;
+
+//Transform.active:=true;
+ 
+VisualStim.animate; 
+ 
+program 'Grating Cuda Test'
+initSimpleGrat;
+
+
+grat[1].onScreen:=true;
+grat[1].CudaTest(1000); 
+ 
+ 
+var 
+  revcor:Trevcor; 
+  brev:Tbar; 
+ 
+procedure InitRev; 
+var 
+  i:integer; 
+begin 
+ 
+ with brev do 
+    begin 
+      create(''); 
+    end; 
+ 
+ with revcor do 
+ begin 
+   create(''); 
+   dtON:=0.05; 
+   dtOff:=0; 
+   divXcount:=10; 
+   divYcount:=10; 
+   adjustObjectSize:=true; 
+   setRF(1); 
+   setVisualObject(brev); 
+ 
+   setCyclicSyncPulse(0); 
+ 
+   startTime:=0;
+   visualstim.extraTime:=0.1;
+ 
+   lum1:=30; 
+   lum2:=0; 
+  end; 
+end; 
+ 
+var
+  db:Tdbrecord;
+  cnt:integer;
+   
+   
+program 'Revcor' 
+disableStims; 
+initRev;
+
+db.create;
+db.Name:='Test DB';
+
+cnt:=0;
+
+if visualStim.opendataFile then
+  visualstim.animate;
+{
+if visualStim.opendataFile then
+begin
+  acquisition.writeDBfileInfo(db);
+   
+  repeat
+     inc(cnt);
+     db.Name:=' Episode: le test';
+     db.Episode:= cnt;
+     acquisition.writeDBepInfo(db);
+  
+     VisualStim.animate;
+  until visualstim.stopstim; 
+end;
+}
+var 
+  dn:TMNoise; 
+  bdense:Tbar; 
+ 
+procedure InitDN; 
+var 
+  i:integer; 
+begin 
+ 
+ with bdense do 
+ begin 
+   create(''); 
+ end; 
+ 
+ with dn do 
+ begin 
+   create(''); 
+   dtON:=0.017; 
+   dtOff:=0; 
+   divXcount:=100; 
+   divYcount:=100; 
+ 
+   { 
+   divXcount2:=10; 
+   divYcount2:=10; 
+   } 
+   cycleCount:=round(2/(dtOn+dtOff)); 
+   adjustObjectSize:=true; 
+   setRF(1);
+   setCyclicSyncPulse(0); 
+//   setVisualObject(bdense); 
+ 
+   lum1:=100; 
+   lum2:=0; 
+  end; 
+end; 
+ 
+var 
+  dn2:TdenseNoise; 
+  bdense2:Tbar; 
+ 
+procedure InitDN2; 
+var 
+  i:integer; 
+begin 
+ 
+ with bdense2 do 
+ begin 
+   create(''); 
+ end; 
+
+ with dn2 do 
+ begin 
+   create(''); 
+   startTime:=0.5;
+   dtON:=0.01; 
+   dtOff:=0; 
+   divXcount:=5; 
+   divYcount:=5; 
+ 
+   cycleCount:=250; 
+   adjustObjectSize:=true; 
+   setRF(1); 
+   setVisualObject(bdense2); 
+ 
+   lum1:=30; 
+   lum2:=0; 
+  end;
+  
+end; 
+ 
+ 
+program 'Dense noise' 
+disableStims;
+if not visualStim.openDataFile then halt; 
+initDN; 
+//initDN2; 
+VisualStim.animate; 
+ 
+ 
+var 
+  stm:TVSmovie; 
+ 
+ 
+procedure InitVSmovie; 
+var 
+  i,n:integer; 
+begin 
+  for i:=0 to 100 do 
+  begin 
+    with bar[i] do 
+    begin 
+      create(''); 
+      dx:=0.5+i*0.1; 
+      dy:=0.5+i*0.1; 
+      theta:=i; 
+      lum:=25; 
+    end; 
+  end; 
+ 
+  with stm do 
+  begin 
+    create(''); 
+ 
+    cycleCount:=10; 
+ 
+    for i:=0 to 100 do 
+      addVisualObject(bar[i]); 
+ 
+    for i:=0 to 99 do 
+    begin 
+      n:=round(50+50*sin(2*pi/100*i)); 
+      addFrame(10*cos(2*pi/100*i),10*sin(2*pi/100*i),n); 
+    end; 
+  end; 
+end; 
+ 
+program 'VSmovie' 
+disableStims; 
+initVSmovie; 
+VisualStim.animate; 
+ 
+ 
+var 
+ stmGab:TGaborNoise; 
+ gab:TLgabor; 
+ 
+procedure initStimGab; 
+begin 
+  gab.create(''); 
+ 
+  with stmGab do 
+  begin 
+    create(''); 
+    { 
+    preSim:=false; 
+    extensionX:=extX; 
+    extensionY:=extY; 
+    attenuationX:=lx; 
+    attenuationY:=ly; 
+    contraste:=contrast; 
+    periode:=period; 
+    pasLum:=pasContrast; 
+    pasPer:=pasPeriode; 
+ 
+    phase:=phas; 
+    pasPhase:=pasPhas; 
+    pasOrient:=pasOrientation; 
+    nbLum:=nbContraste; 
+    nbPer:=nbPeriode; 
+    nbPhase:=nbPhas; 
+    nbOrient:=nbOrientation; 
+    } 
+    CycleCount:=100;{A changer?} 
+    setRF(1); 
+    dtON:=0.100; 
+    dtOff:=0; 
+ 
+    setvisualobject(gab); 
+ 
+    divXcount:=5; 
+    divYcount:=5; 
+    expansion:=100; 
+ 
+    preSim:=false; 
+    overlap:=false; 
+     
+    attenuationX:=0.3; 
+    attenuationY:=0.3; 
+    contrast:=1; 
+    period:=1;
+    
+    PhaseInc:=90;
+    PhaseCount:=4;
+    
+    { 
+    pasLum:=pasContrast; 
+    pasPer:=pasPeriode; 
+    phase:=phas; 
+    pasPhase:=pasPhas; 
+    pasOrient:=pasOrientation; 
+    nbLum:=nbContraste; 
+    nbPer:=nbPeriode; 
+    nbPhase:=nbPhas; 
+    nbOrient:=nbOrientation; 
+    } 
+ 
+    {setCyclicSyncPulse(0);} 
+  end; 
+ 
+ 
+end; 
+ 
+program 'Gabor Noise' 
+disableStims; 
+initStimGab; 
+VisualStim.animate; 
+{stmGab.free;} 
+ 
+ 
+var 
+  stmGabor:TVSmovie; 
+  gabor:array[0..99] of TLgabor; 
+ 
+ 
+procedure InitVSmovieGab; 
+var 
+  i,n:integer; 
+begin 
+  for i:=0 to 99 do 
+  begin 
+    with gabor[i] do 
+    begin 
+      create(''); 
+      dx:=15; 
+      dy:=15; 
+      theta:=60; 
+      Lx:=3; 
+      Ly:=3; 
+      contrast:=1; 
+ 
+      phase:=360*i/100; 
+ 
+    end; 
+  end; 
+ 
+  with stmGabor do 
+  begin 
+    create(''); 
+ 
+    cycleCount:=10; 
+ 
+    for i:=0 to 99 do 
+      addVisualObject(gabor[i]); 
+ 
+    for i:=0 to 99 do 
+    begin 
+      addFrame(0,0,i); 
+    end; 
+  end; 
+end; 
+ 
+program 'Movie Gabors  ' 
+disableStims; 
+initVSmovieGab; 
+VisualStim.animate; 
+ 
+ 
+ 
+program Mix 
+disableStims; 
+initGrat2; 
+initBarres; 
+VisualStim.animate; 
+ 
+ 
+ 
+ 
+ 
+var 
+  stmTraj:Ttrajectory; 
+  bm:TVSbitmap; 
+ 
+ 
+procedure AddApoint(x,y:real);
+begin
+  stmTraj.AddPoint(x-2,y+3);
+end; 
+ 
+procedure InitTrajectory; 
+const 
+  xm=1024; 
+  ym=768; 
+  xa=100; 
+  ya=80; 
+  X00=-10; 
+  Y00=50; 
+   
+begin 
+  with stmTraj do 
+  begin 
+    AddAPoint(-0.038,0.019); 
+    AddAPoint(-0.075,0.023); 
+    AddAPoint(-0.134,0.03); 
+    AddAPoint(-0.19,0.036); 
+    AddAPoint(-0.289,0.038); 
+    AddAPoint(-0.398,0.023); 
+    AddAPoint(-0.525,0.03); 
+    AddAPoint(-0.649,0.03); 
+    AddAPoint(-0.743,0.041); 
+    AddAPoint(-0.84,0.083); 
+    AddAPoint(-0.928,0.149); 
+    AddAPoint(-0.982,0.213); 
+    AddAPoint(-1.013,0.289); 
+    AddAPoint(-1.035,0.374); 
+    AddAPoint(-1.031,0.427); 
+    AddAPoint(-1.01,0.41); 
+    AddAPoint(-1.003,0.392); 
+    AddAPoint(-1.006,0.378); 
+    AddAPoint(-1.019,0.345); 
+    AddAPoint(-1.054,0.329); 
+    AddAPoint(-1.083,0.285); 
+    AddAPoint(-1.133,0.2); 
+    AddAPoint(-1.161,0.135); 
+    AddAPoint(-1.209,0.045); 
+    AddAPoint(-1.283,-0.053); 
+    AddAPoint(-1.36,-0.128); 
+    AddAPoint(-1.482,-0.195); 
+    AddAPoint(-1.594,-0.213); 
+    AddAPoint(-1.711,-0.209); 
+    AddAPoint(-1.828,-0.168); 
+    AddAPoint(-1.92,-0.079); 
+    AddAPoint(-1.99,0.012); 
+    AddAPoint(-2.021,0.091); 
+    AddAPoint(-2.053,0.178); 
+    AddAPoint(-2.095,0.264); 
+    AddAPoint(-2.11,0.289); 
+    AddAPoint(-2.078,0.267); 
+    AddAPoint(-2.036,0.252); 
+    AddAPoint(-1.975,0.231); 
+    AddAPoint(-1.897,0.21); 
+    AddAPoint(-1.817,0.189); 
+    AddAPoint(-1.712,0.134); 
+    AddAPoint(-1.614,0.064); 
+    AddAPoint(-1.527,-0.049); 
+    AddAPoint(-1.45,-0.208); 
+    AddAPoint(-1.425,-0.399); 
+    AddAPoint(-1.431,-0.576); 
+    AddAPoint(-1.481,-0.769); 
+    AddAPoint(-1.541,-0.944); 
+    AddAPoint(-1.589,-1.052); 
+    AddAPoint(-1.599,-1.135); 
+    AddAPoint(-1.57,-1.196); 
+    AddAPoint(-1.497,-1.203); 
+    AddAPoint(-1.36,-1.176); 
+    AddAPoint(-1.255,-1.13); 
+    AddAPoint(-1.22,-1.153); 
+    AddAPoint(-1.19,-1.185); 
+    AddAPoint(-1.192,-1.176); 
+    AddAPoint(-1.21,-1.148); 
+    AddAPoint(-1.246,-1.113); 
+    AddAPoint(-1.287,-1.065); 
+    AddAPoint(-1.351,-1.012); 
+    AddAPoint(-1.41,-0.944); 
+    AddAPoint(-1.481,-0.858); 
+    AddAPoint(-1.558,-0.774); 
+    AddAPoint(-1.639,-0.656); 
+    AddAPoint(-1.687,-0.551); 
+    AddAPoint(-1.713,-0.459); 
+    AddAPoint(-1.731,-0.359); 
+    AddAPoint(-1.704,-0.256); 
+    AddAPoint(-1.67,-0.19); 
+    AddAPoint(-1.633,-0.124); 
+    AddAPoint(-1.585,-0.072); 
+    AddAPoint(-1.555,-0.05); 
+    AddAPoint(-1.509,-0.028); 
+    AddAPoint(-1.479,-0.019); 
+    AddAPoint(-1.456,-0.019); 
+    AddAPoint(-1.423,-0.028); 
+    AddAPoint(-1.362,-0.02); 
+    AddAPoint(-1.323,-0.017); 
+    AddAPoint(-1.24,-0.025); 
+    AddAPoint(-1.154,-0.063); 
+    AddAPoint(-1.079,-0.119); 
+    AddAPoint(-1.022,-0.192); 
+    AddAPoint(-0.985,-0.305); 
+    AddAPoint(-0.992,-0.391); 
+    AddAPoint(-1.007,-0.486); 
+    AddAPoint(-1.046,-0.547); 
+    AddAPoint(-1.06,-0.569); 
+    AddAPoint(-1.078,-0.487); 
+    AddAPoint(-1.084,-0.414); 
+    AddAPoint(-1.075,-0.381); 
+    AddAPoint(-1.08,-0.329); 
+    AddAPoint(-1.116,-0.249); 
+    AddAPoint(-1.121,-0.19); 
+    AddAPoint(-1.093,-0.131); 
+    AddAPoint(-1.007,-0.1); 
+    AddAPoint(-0.969,-0.257); 
+    AddAPoint(-1.01,-0.59); 
+    AddAPoint(-1.079,-1.09); 
+    AddAPoint(-1.166,-1.681); 
+    AddAPoint(-1.306,-2.55); 
+    AddAPoint(-1.487,-3.543); 
+    AddAPoint(-1.658,-4.397); 
+    AddAPoint(-1.842,-5.283); 
+    AddAPoint(-1.974,-5.982); 
+    AddAPoint(-2.034,-6.423); 
+    AddAPoint(-2.045,-6.78); 
+    AddAPoint(-2.019,-6.966); 
+    AddAPoint(-1.996,-7.006); 
+    AddAPoint(-1.973,-7.005); 
+    AddAPoint(-1.96,-7.025); 
+    AddAPoint(-1.961,-7.068); 
+    AddAPoint(-1.921,-7.105); 
+    AddAPoint(-1.899,-7.134); 
+    AddAPoint(-1.891,-7.167); 
+    AddAPoint(-1.878,-7.18); 
+    AddAPoint(-1.867,-7.179); 
+    AddAPoint(-1.87,-7.145); 
+    AddAPoint(-1.958,-7.104); 
+    AddAPoint(-2.042,-7.057); 
+    AddAPoint(-2.048,-7.03); 
+    AddAPoint(-2.027,-7.022); 
+    AddAPoint(-1.979,-6.983); 
+    AddAPoint(-1.942,-6.944); 
+    AddAPoint(-1.875,-6.884); 
+    AddAPoint(-1.796,-6.838); 
+    AddAPoint(-1.719,-6.76); 
+    AddAPoint(-1.639,-6.692); 
+    AddAPoint(-1.542,-6.624); 
+    AddAPoint(-1.468,-6.557); 
+    AddAPoint(-1.395,-6.509); 
+    AddAPoint(-1.322,-6.487); 
+    AddAPoint(-1.265,-6.45); 
+    AddAPoint(-1.235,-6.454); 
+    AddAPoint(-1.196,-6.449); 
+    AddAPoint(-1.169,-6.435); 
+    AddAPoint(-1.132,-6.4); 
+    AddAPoint(-1.107,-6.38); 
+    AddAPoint(-1.106,-6.355); 
+    AddAPoint(-1.097,-6.358); 
+    AddAPoint(-1.135,-6.328); 
+    AddAPoint(-1.153,-6.302); 
+    AddAPoint(-1.141,-6.267); 
+    AddAPoint(-1.103,-6.226); 
+    AddAPoint(-1.048,-6.182); 
+    AddAPoint(-0.887,-5.804); 
+    AddAPoint(-0.686,-5.216); 
+    AddAPoint(-0.467,-4.522); 
+    AddAPoint(-0.132,-3.444); 
+    AddAPoint(0.318,-2.057); 
+    AddAPoint(0.817,-0.649); 
+    AddAPoint(1.542,1.154); 
+    AddAPoint(2.402,2.975); 
+    AddAPoint(3.2,4.418); 
+    AddAPoint(4.127,5.854); 
+    AddAPoint(4.96,6.977); 
+    AddAPoint(5.541,7.71); 
+    AddAPoint(6.023,8.356); 
+    AddAPoint(6.277,8.844); 
+    AddAPoint(6.331,9.048); 
+    AddAPoint(6.343,9.042); 
+    AddAPoint(6.332,8.976); 
+    AddAPoint(6.343,8.914); 
+    AddAPoint(6.36,8.848); 
+    AddAPoint(6.376,8.747); 
+    AddAPoint(6.379,8.649); 
+    AddAPoint(6.408,8.506); 
+    AddAPoint(6.41,8.362); 
+    AddAPoint(6.391,8.226); 
+    AddAPoint(6.357,8.065); 
+    AddAPoint(6.279,7.922); 
+    AddAPoint(6.2,7.82); 
+    AddAPoint(6.104,7.719); 
+    AddAPoint(5.985,7.655); 
+    AddAPoint(5.893,7.601); 
+    AddAPoint(5.794,7.569); 
+    AddAPoint(5.705,7.547); 
+    AddAPoint(5.649,7.522); 
+    AddAPoint(5.619,7.542); 
+    AddAPoint(5.595,7.657); 
+    AddAPoint(5.587,7.731); 
+    AddAPoint(5.6,7.746); 
+    AddAPoint(5.65,7.769); 
+    AddAPoint(5.691,7.784); 
+    AddAPoint(5.733,7.828); 
+    AddAPoint(5.811,7.882); 
+    AddAPoint(5.901,7.928); 
+    AddAPoint(6.017,7.939); 
+    AddAPoint(6.17,7.897); 
+    AddAPoint(6.291,7.784); 
+    AddAPoint(6.401,7.58); 
+    AddAPoint(6.434,7.327); 
+    AddAPoint(6.388,7.124); 
+    AddAPoint(6.304,6.944); 
+    AddAPoint(6.249,6.821); 
+    AddAPoint(6.241,6.764); 
+    AddAPoint(6.327,6.72); 
+    AddAPoint(6.551,6.546); 
+    AddAPoint(6.788,6.31); 
+    AddAPoint(7.186,5.913); 
+    AddAPoint(7.73,5.368); 
+    AddAPoint(8.3,4.799); 
+    AddAPoint(9.023,4.075); 
+    AddAPoint(9.719,3.379);          
+    AddAPoint(10.229,2.869); 
+    AddAPoint(10.689,2.409); 
+    AddAPoint(11.009,2.089); 
+    AddAPoint(11.193,1.907); 
+    AddAPoint(11.287,1.819); 
+    AddAPoint(11.292,1.778); 
+    AddAPoint(11.31,1.756); 
+    AddAPoint(11.336,1.715); 
+    AddAPoint(11.356,1.656); 
+    AddAPoint(11.35,1.612); 
+    AddAPoint(11.33,1.534); 
+    AddAPoint(11.323,1.461); 
+    AddAPoint(11.326,1.446); 
+    AddAPoint(11.369,1.418); 
+    AddAPoint(11.4,1.41); 
+    AddAPoint(11.402,1.447); 
+    AddAPoint(11.408,1.534); 
+    AddAPoint(11.418,1.595); 
+    AddAPoint(11.434,1.609); 
+    AddAPoint(11.458,1.613); 
+    AddAPoint(11.487,1.633); 
+    AddAPoint(11.528,1.662); 
+    AddAPoint(11.589,1.696); 
+    AddAPoint(11.65,1.726); 
+    AddAPoint(11.701,1.731); 
+    AddAPoint(11.783,1.716); 
+    AddAPoint(11.809,1.667); 
+    AddAPoint(11.85,1.611); 
+    AddAPoint(11.863,1.555); 
+    AddAPoint(11.871,1.612); 
+    AddAPoint(11.858,1.688); 
+    AddAPoint(11.848,1.742); 
+    AddAPoint(11.846,1.749); 
+    AddAPoint(11.821,1.768); 
+    AddAPoint(11.803,1.808); 
+    AddAPoint(11.785,1.84); 
+    AddAPoint(11.797,1.878); 
+    AddAPoint(11.797,1.923); 
+    AddAPoint(11.799,1.967); 
+    AddAPoint(11.796,1.995); 
+    AddAPoint(11.758,2.015); 
+    AddAPoint(11.742,1.973); 
+    AddAPoint(11.755,1.847); 
+    AddAPoint(11.766,1.639); 
+    AddAPoint(11.784,1.327); 
+    AddAPoint(11.803,0.973); 
+    AddAPoint(11.826,0.494); 
+    AddAPoint(11.844,0.015); 
+    AddAPoint(11.851,-0.339); 
+    AddAPoint(11.848,-0.652); 
+    AddAPoint(11.837,-0.86); 
+    AddAPoint(11.827,-0.975); 
+    AddAPoint(11.839,-1.015); 
+    AddAPoint(11.842,-1.023); 
+    AddAPoint(11.872,-1.033); 
+    AddAPoint(11.9,-1.053); 
+    AddAPoint(11.947,-1.076); 
+    AddAPoint(11.995,-1.107); 
+    AddAPoint(12.016,-1.159); 
+    AddAPoint(12.014,-1.201); 
+    AddAPoint(11.994,-1.247); 
+    AddAPoint(11.969,-1.277); 
+    AddAPoint(11.955,-1.275); 
+    AddAPoint(11.961,-1.256); 
+    AddAPoint(11.964,-1.239); 
+    AddAPoint(11.968,-1.206); 
+    AddAPoint(11.94,-1.176); 
+    AddAPoint(11.9,-1.111); 
+    AddAPoint(11.858,-1.064); 
+    AddAPoint(11.806,-1.014); 
+    AddAPoint(11.744,-0.914); 
+    AddAPoint(11.702,-0.796); 
+    AddAPoint(11.654,-0.686); 
+    AddAPoint(11.624,-0.539); 
+    AddAPoint(11.61,-0.378); 
+    AddAPoint(11.619,-0.231); 
+    AddAPoint(11.653,-0.05); 
+    AddAPoint(11.701,0.092); 
+    AddAPoint(11.75,0.193); 
+    AddAPoint(11.782,0.311); 
+    AddAPoint(11.796,0.394); 
+    AddAPoint(11.783,0.441); 
+    AddAPoint(11.741,0.479); 
+    AddAPoint(11.664,0.524); 
+    AddAPoint(11.614,0.481); 
+    AddAPoint(11.652,0.419); 
+    AddAPoint(11.685,0.356); 
+    AddAPoint(11.666,0.325); 
+    AddAPoint(11.63,0.304); 
+    AddAPoint(11.618,0.266); 
+    AddAPoint(11.593,0.215); 
+    AddAPoint(11.551,0.146); 
+    AddAPoint(11.475,0.059); 
+    AddAPoint(11.393,-0.007); 
+    AddAPoint(11.287,-0.102); 
+    AddAPoint(11.165,-0.149); 
+    AddAPoint(11.03,-0.18); 
+    AddAPoint(10.869,-0.187); 
+    AddAPoint(10.725,-0.163); 
+    AddAPoint(10.616,-0.122); 
+    AddAPoint(10.504,-0.048); 
+    AddAPoint(10.42,-0.001); 
+    AddAPoint(10.386,0.008); 
+    AddAPoint(10.336,-0.01); 
+    AddAPoint(10.367,-0.056); 
+    AddAPoint(10.342,-0.111); 
+    AddAPoint(10.309,-0.163); 
+    AddAPoint(10.299,-0.198); 
+    AddAPoint(10.32,-0.222); 
+    AddAPoint(10.294,-0.259); 
+    AddAPoint(10.298,-0.313); 
+    AddAPoint(10.303,-0.38); 
+    AddAPoint(10.281,-0.474); 
+    AddAPoint(10.265,-0.565); 
+    AddAPoint(10.237,-0.62); 
+    AddAPoint(10.171,-0.672); 
+    AddAPoint(10.103,-0.734); 
+    AddAPoint(10.029,-0.74); 
+    AddAPoint(9.977,-0.754); 
+    AddAPoint(9.874,-0.791); 
+    AddAPoint(9.763,-0.872); 
+    AddAPoint(9.579,-1.019); 
+    AddAPoint(9.301,-1.223); 
+    AddAPoint(8.982,-1.424); 
+    AddAPoint(8.546,-1.651); 
+    AddAPoint(8.116,-1.84); 
+    AddAPoint(7.815,-1.977); 
+    AddAPoint(7.581,-2.133); 
+    AddAPoint(7.469,-2.3); 
+    AddAPoint(7.423,-2.428); 
+    AddAPoint(7.401,-2.465); 
+    AddAPoint(7.36,-2.471); 
+    AddAPoint(7.305,-2.502); 
+    AddAPoint(7.238,-2.517); 
+    AddAPoint(7.16,-2.55); 
+    AddAPoint(7.057,-2.583); 
+    AddAPoint(6.921,-2.62); 
+    AddAPoint(6.796,-2.647); 
+    AddAPoint(6.681,-2.691); 
+    AddAPoint(6.543,-2.735); 
+    AddAPoint(6.414,-2.767); 
+    AddAPoint(6.315,-2.777); 
+    AddAPoint(6.217,-2.785); 
+    AddAPoint(6.132,-2.793); 
+    AddAPoint(6.07,-2.789); 
+    AddAPoint(6.031,-2.81); 
+    AddAPoint(6.003,-2.779); 
+    AddAPoint(5.99,-2.819); 
+    AddAPoint(5.913,-2.924); 
+    AddAPoint(5.832,-3.002); 
+    AddAPoint(5.788,-3.004); 
+    AddAPoint(5.739,-2.972); 
+    AddAPoint(5.694,-2.973); 
+    AddAPoint(5.649,-2.933); 
+    AddAPoint(5.58,-2.915); 
+    AddAPoint(5.478,-2.873); 
+    AddAPoint(5.377,-2.825); 
+    AddAPoint(5.259,-2.774); 
+    AddAPoint(5.138,-2.7); 
+    AddAPoint(5.033,-2.638); 
+    AddAPoint(4.933,-2.539); 
+    AddAPoint(4.853,-2.44); 
+    AddAPoint(4.786,-2.386); 
+    AddAPoint(4.725,-2.32); 
+    AddAPoint(4.691,-2.287); 
+    AddAPoint(4.658,-2.255); 
+    AddAPoint(4.628,-2.226); 
+    AddAPoint(4.617,-2.222); 
+    AddAPoint(4.637,-2.155); 
+    AddAPoint(4.658,-2.08); 
+    AddAPoint(4.657,-2.065); 
+    AddAPoint(4.677,-2.075); 
+    AddAPoint(4.696,-2.115); 
+    AddAPoint(4.748,-2.16); 
+    AddAPoint(4.784,-2.201); 
+    AddAPoint(4.804,-2.272); 
+    AddAPoint(4.829,-2.372); 
+    AddAPoint(4.809,-2.446); 
+    AddAPoint(4.787,-2.538); 
+    AddAPoint(4.728,-2.573); 
+    AddAPoint(4.683,-2.645); 
+    AddAPoint(4.688,-2.635); 
+    AddAPoint(4.753,-2.499); 
+    AddAPoint(4.779,-2.27); 
+    AddAPoint(4.814,-1.873); 
+    AddAPoint(4.861,-1.313); 
+    AddAPoint(4.91,-0.714); 
+    AddAPoint(4.976,0.053); 
+    AddAPoint(5.05,0.786); 
+    AddAPoint(5.115,1.314); 
+    AddAPoint(5.193,1.776); 
+    AddAPoint(5.27,2.084); 
+    AddAPoint(5.329,2.251); 
+    AddAPoint(5.334,2.302); 
+    AddAPoint(5.314,2.327); 
+    AddAPoint(5.307,2.312); 
+    AddAPoint(5.265,2.351); 
+    AddAPoint(5.234,2.387); 
+    AddAPoint(5.184,2.407); 
+    AddAPoint(5.167,2.424); 
+    AddAPoint(5.134,2.454); 
+    AddAPoint(5.117,2.48); 
+    AddAPoint(5.124,2.491); 
+    AddAPoint(5.157,2.522); 
+    AddAPoint(5.21,2.521); 
+    AddAPoint(5.251,2.517); 
+    AddAPoint(5.292,2.52); 
+    AddAPoint(5.325,2.511); 
+    AddAPoint(5.394,2.504); 
+    AddAPoint(5.469,2.498); 
+    AddAPoint(5.539,2.496); 
+    AddAPoint(5.655,2.503); 
+    AddAPoint(5.776,2.513); 
+    AddAPoint(5.899,2.523); 
+    AddAPoint(6.045,2.534); 
+    AddAPoint(6.186,2.54); 
+    AddAPoint(6.319,2.53); 
+    AddAPoint(6.445,2.494); 
+    AddAPoint(6.55,2.413); 
+    AddAPoint(6.619,2.338); 
+    AddAPoint(6.686,2.224); 
+    AddAPoint(6.709,2.086); 
+    AddAPoint(6.716,1.955); 
+    AddAPoint(6.705,1.864); 
+    AddAPoint(6.683,1.855); 
+    AddAPoint(6.675,1.845); 
+    AddAPoint(6.682,1.843); 
+    AddAPoint(6.707,1.865); 
+    AddAPoint(6.746,1.881); 
+    AddAPoint(6.785,1.895); 
+    AddAPoint(6.843,1.944); 
+    AddAPoint(6.904,1.999); 
+    AddAPoint(6.993,2.053); 
+    AddAPoint(7.107,2.101); 
+    AddAPoint(7.217,2.13); 
+    AddAPoint(7.354,2.147); 
+    AddAPoint(7.489,2.11); 
+    AddAPoint(7.593,2.057); 
+    AddAPoint(7.692,1.976); 
+    AddAPoint(7.758,1.888); 
+    AddAPoint(7.8,1.809); 
+    AddAPoint(7.832,1.737); 
+    AddAPoint(7.819,1.727); 
+    AddAPoint(7.832,1.765); 
+    AddAPoint(7.85,1.808); 
+    AddAPoint(7.849,1.794); 
+    AddAPoint(7.833,1.761); 
+    AddAPoint(7.84,1.711); 
+    AddAPoint(7.818,1.652); 
+    AddAPoint(7.806,1.589); 
+    AddAPoint(7.786,1.491); 
+    AddAPoint(7.733,1.378); 
+    AddAPoint(7.67,1.269); 
+    AddAPoint(7.564,1.162); 
+    AddAPoint(7.406,1.066); 
+    AddAPoint(7.256,1.009); 
+    AddAPoint(7.078,0.981); 
+    AddAPoint(6.92,0.984); 
+    AddAPoint(6.812,0.987); 
+    AddAPoint(6.719,0.984); 
+    AddAPoint(6.674,0.946); 
+    AddAPoint(6.654,0.866); 
+    AddAPoint(6.701,0.765); 
+    AddAPoint(6.755,0.661); 
+    AddAPoint(6.792,0.668); 
+    AddAPoint(6.828,0.68); 
+    AddAPoint(6.822,0.678); 
+    AddAPoint(6.801,0.649); 
+    AddAPoint(6.775,0.606); 
+    AddAPoint(6.762,0.526); 
+    AddAPoint(6.721,0.486); 
+    AddApoint(6.676,0.396); 
+    AddAPoint(6.617,0.289); 
+    AddAPoint(6.571,0.184); 
+    AddAPoint(6.516,0.056); 
+    AddAPoint(6.443,-0.052); 
+    AddAPoint(6.391,-0.132); 
+    AddAPoint(6.336,-0.231); 
+    AddAPoint(6.29,-0.302); 
+    AddAPoint(6.265,-0.348); 
+    AddAPoint(6.222,-0.391); 
+    AddAPoint(6.202,-0.408); 
+    AddAPoint(6.199,-0.405); 
+    AddAPoint(6.173,-0.314); 
+    AddAPoint(6.136,-0.204); 
+    AddAPoint(6.123,-0.184); 
+    AddAPoint(6.125,-0.221); 
+    AddAPoint(6.16,-0.257); 
+    AddAPoint(6.162,-0.312); 
+    AddAPoint(6.211,-0.39); 
+    AddAPoint(6.257,-0.461); 
+    AddAPoint(6.287,-0.568); 
+    AddAPoint(6.301,-0.701); 
+    AddAPoint(6.254,-0.845); 
+    AddAPoint(6.18,-0.981); 
+    AddAPoint(6.043,-1.113); 
+    AddAPoint(5.862,-1.203); 
+    AddAPoint(5.695,-1.243); 
+    AddAPoint(5.556,-1.257); 
+    AddAPoint(5.436,-1.274); 
+    AddAPoint(5.361,-1.284); 
+    AddAPoint(5.342,-1.315); 
+    AddAPoint(5.358,-1.319); 
+    AddAPoint(5.357,-1.28); 
+    AddAPoint(5.356,-1.236); 
+    AddAPoint(5.36,-1.236); 
+    AddAPoint(5.359,-1.276); 
+    AddAPoint(5.366,-1.311); 
+    AddAPoint(5.371,-1.392); 
+    AddAPoint(5.376,-1.457); 
+    AddAPoint(5.372,-1.547); 
+    AddAPoint(5.344,-1.682); 
+    AddAPoint(5.275,-1.772); 
+    AddAPoint(5.162,-1.87); 
+    AddAPoint(4.99,-1.936); 
+    AddAPoint(4.84,-1.937); 
+    AddAPoint(4.686,-1.897); 
+    AddAPoint(4.549,-1.881); 
+    AddAPoint(4.479,-1.873); 
+    AddAPoint(4.459,-1.867); 
+    AddAPoint(4.579,-2.042); 
+    AddAPoint(4.76,-2.305); 
+    AddAPoint(5.068,-2.738); 
+    AddAPoint(5.51,-3.355); 
+    AddAPoint(5.988,-4.05); 
+    AddAPoint(6.611,-5.04); 
+    AddAPoint(7.212,-6.147); 
+    AddAPoint(7.639,-7.094); 
+    AddAPoint(7.994,-8.082); 
+    AddAPoint(8.215,-8.866); 
+    AddAPoint(8.347,-9.356); 
+    AddAPoint(8.492,-9.726); 
+    AddAPoint(8.622,-9.869); 
+    AddAPoint(8.66,-9.864); 
+    AddAPoint(8.696,-9.848); 
+    AddAPoint(8.755,-9.822); 
+    AddAPoint(8.809,-9.779); 
+    AddAPoint(8.891,-9.746); 
+    AddAPoint(9.017,-9.682); 
+    AddAPoint(9.097,-9.633); 
+    AddAPoint(9.232,-9.574); 
+    AddAPoint(9.354,-9.501); 
+    AddAPoint(9.434,-9.482); 
+    AddAPoint(9.529,-9.461); 
+    AddAPoint(9.609,-9.438); 
+    AddAPoint(9.657,-9.419); 
+    AddAPoint(9.692,-9.407); 
+    AddAPoint(9.738,-9.408); 
+    AddAPoint(9.784,-9.414); 
+    AddAPoint(9.776,-9.443); 
+    AddAPoint(9.763,-9.465); 
+    AddAPoint(9.743,-9.444); 
+    AddAPoint(9.758,-9.411); 
+    AddAPoint(9.743,-9.339); 
+    AddAPoint(9.745,-9.292); 
+    AddAPoint(9.74,-9.192); 
+    AddAPoint(9.732,-9.107); 
+    AddAPoint(9.721,-9.015); 
+    AddAPoint(9.699,-8.878); 
+    AddAPoint(9.702,-8.725); 
+    AddAPoint(9.688,-8.597); 
+    AddAPoint(9.685,-8.433); 
+    AddAPoint(9.648,-8.245); 
+    AddAPoint(9.644,-8.084); 
+    AddAPoint(9.643,-7.93); 
+    AddAPoint(9.629,-7.758); 
+    AddAPoint(9.606,-7.619); 
+    AddAPoint(9.608,-7.461); 
+    AddAPoint(9.604,-7.357); 
+    AddAPoint(9.597,-7.271); 
+    AddAPoint(9.606,-7.17); 
+    AddAPoint(9.6,-7.094); 
+    AddAPoint(9.604,-7.029); 
+    AddAPoint(9.618,-6.973); 
+    AddAPoint(9.604,-6.941); 
+    AddAPoint(9.62,-6.917); 
+    AddAPoint(9.546,-6.928); 
+    AddAPoint(9.462,-6.939); 
+    AddAPoint(9.452,-6.946); 
+    AddAPoint(9.473,-6.948); 
+    AddAPoint(9.498,-6.926); 
+    AddAPoint(9.558,-6.916); 
+    AddAPoint(9.617,-6.91); 
+    AddAPoint(9.662,-6.906); 
+    AddAPoint(9.653,-6.89); 
+    AddAPoint(9.449,-6.8); 
+    AddAPoint(9.116,-6.621); 
+    AddAPoint(8.702,-6.401); 
+    AddAPoint(8.047,-6.055); 
+    AddAPoint(7.227,-5.621); 
+    AddAPoint(6.453,-5.21); 
+    AddAPoint(5.574,-4.738); 
+    AddAPoint(4.826,-4.325); 
+    AddAPoint(4.331,-4.04); 
+    AddAPoint(3.924,-3.788); 
+    AddAPoint(3.666,-3.613); 
+    AddAPoint(3.564,-3.55); 
+    AddAPoint(3.539,-3.579); 
+    AddAPoint(3.557,-3.639); 
+    AddAPoint(3.541,-3.684); 
+    AddAPoint(3.558,-3.762); 
+    AddAPoint(3.539,-3.866); 
+    AddAPoint(3.502,-3.966); 
+    AddAPoint(3.46,-4.074); 
+    AddAPoint(3.358,-4.182); 
+    AddAPoint(3.235,-4.251); 
+    AddAPoint(3.083,-4.284); 
+    AddAPoint(2.934,-4.292); 
+    AddAPoint(2.818,-4.266); 
+    AddAPoint(2.748,-4.266); 
+    AddAPoint(2.717,-4.271); 
+    AddAPoint(2.735,-4.301); 
+    AddAPoint(2.794,-4.295); 
+    AddAPoint(2.856,-4.277); 
+    AddAPoint(2.896,-4.281); 
+    AddAPoint(2.92,-4.294); 
+    AddAPoint(2.959,-4.324); 
+    AddAPoint(3.01,-4.354); 
+    AddAPoint(3.052,-4.399); 
+    AddAPoint(3.118,-4.452); 
+    AddAPoint(3.217,-4.508); 
+    AddAPoint(3.329,-4.574); 
+    AddAPoint(3.452,-4.663); 
+    AddAPoint(3.557,-4.744); 
+    AddAPoint(3.676,-4.839); 
+    AddAPoint(3.78,-4.963); 
+    AddAPoint(3.851,-5.046); 
+    AddAPoint(3.945,-5.167); 
+    AddAPoint(3.983,-5.265); 
+    AddAPoint(4.029,-5.34); 
+    AddAPoint(4.052,-5.414); 
+    AddAPoint(4.054,-5.5); 
+    AddAPoint(4.069,-5.53); 
+    AddAPoint(4.052,-5.538); 
+    AddAPoint(3.962,-5.381); 
+    AddAPoint(3.833,-5.155); 
+    AddAPoint(3.611,-4.77); 
+    AddAPoint(3.305,-4.244); 
+    AddAPoint(2.99,-3.702); 
+    AddAPoint(2.605,-3.032); 
+    AddAPoint(2.257,-2.416); 
+    AddAPoint(2.021,-1.984); 
+    AddAPoint(1.828,-1.609); 
+    AddAPoint(1.712,-1.356); 
+    AddAPoint(1.655,-1.214); 
+    AddAPoint(1.652,-1.159); 
+    AddAPoint(1.645,-1.107); 
+    AddAPoint(1.646,-1.055); 
+    AddAPoint(1.632,-0.972); 
+    AddAPoint(1.61,-0.889); 
+    AddAPoint(1.598,-0.8); 
+    AddAPoint(1.572,-0.665); 
+    AddAPoint(1.546,-0.521); 
+    AddAPoint(1.539,-0.375); 
+    AddAPoint(1.528,-0.237); 
+    AddAPoint(1.537,-0.079); 
+    AddAPoint(1.588,0.047); 
+    AddAPoint(1.604,0.185); 
+    AddAPoint(1.667,0.308); 
+    AddAPoint(1.721,0.391); 
+    AddAPoint(1.79,0.471); 
+    AddAPoint(1.841,0.506); 
+    AddAPoint(1.881,0.559); 
+    AddAPoint(1.915,0.604); 
+    AddAPoint(1.908,0.63); 
+    AddAPoint(1.937,0.679); 
+    AddAPoint(1.967,0.729); 
+    AddAPoint(2.002,0.729); 
+    AddAPoint(2.022,0.707); 
+    AddAPoint(2.074,0.683); 
+    AddAPoint(2.147,0.659); 
+    AddAPoint(2.215,0.646); 
+    AddAPoint(2.32,0.618); 
+    AddAPoint(2.45,0.565); 
+    AddAPoint(2.545,0.525); 
+    AddAPoint(2.665,0.446); 
+    AddAPoint(2.799,0.364); 
+    AddAPoint(2.892,0.3); 
+    AddAPoint(2.984,0.209); 
+    AddAPoint(3.061,0.104); 
+    AddAPoint(3.092,0.006); 
+    AddAPoint(3.117,-0.075); 
+    AddAPoint(3.141,-0.164); 
+    AddAPoint(3.13,-0.203); 
+    AddAPoint(3.152,-0.255); 
+    AddAPoint(3.183,-0.242); 
+    AddAPoint(3.195,-0.211); 
+    AddAPoint(3.209,-0.192); 
+    AddAPoint(3.206,-0.196); 
+    AddAPoint(3.222,-0.213); 
+    AddAPoint(3.229,-0.231); 
+    AddAPoint(3.241,-0.256); 
+    AddAPoint(3.227,-0.287); 
+    AddAPoint(3.204,-0.339); 
+    AddAPoint(3.177,-0.351); 
+    AddAPoint(3.15,-0.364); 
+    AddAPoint(3.136,-0.376); 
+    AddAPoint(3.056,-0.357); 
+    AddAPoint(2.93,-0.277); 
+    AddAPoint(2.706,-0.133); 
+    AddAPoint(2.391,0.071); 
+    AddAPoint(2.061,0.289); 
+    AddAPoint(1.656,0.563); 
+    AddAPoint(1.293,0.82); 
+    AddAPoint(1.051,1.002); 
+    AddAPoint(0.855,1.159); 
+    AddAPoint(0.733,1.259); 
+    AddAPoint(0.698,1.283); 
+    AddAPoint(0.72,1.312); 
+    AddAPoint(0.762,1.305); 
+    AddAPoint(0.823,1.317); 
+    AddAPoint(0.892,1.336); 
+    AddAPoint(0.97,1.345); 
+    AddAPoint(1.054,1.337); 
+    AddAPoint(1.144,1.316); 
+    AddAPoint(1.205,1.244); 
+    AddAPoint(1.242,1.158); 
+    AddAPoint(1.231,1.062); 
+    AddAPoint(1.215,0.954); 
+    AddAPoint(1.21,0.908); 
+    AddAPoint(1.218,0.924); 
+    AddAPoint(1.229,0.946); 
+    AddAPoint(1.224,0.921); 
+    AddAPoint(1.248,0.887); 
+    AddAPoint(1.25,0.851); 
+    AddAPoint(1.268,0.792); 
+    AddAPoint(1.273,0.736); 
+    AddAPoint(1.282,0.626); 
+    AddAPoint(1.315,0.542); 
+    AddAPoint(1.315,0.399); 
+    AddAPoint(1.281,0.224); 
+    AddAPoint(1.233,0.112); 
+    AddAPoint(1.159,-0.064); 
+    AddAPoint(1.079,-0.202); 
+    AddAPoint(0.995,-0.311); 
+    AddAPoint(0.924,-0.418); 
+    AddAPoint(0.874,-0.524); 
+    AddAPoint(0.86,-0.61); 
+    AddAPoint(0.896,-0.682); 
+    AddAPoint(0.954,-0.755); 
+    AddAPoint(1.031,-0.814); 
+    AddAPoint(1.143,-0.865); 
+    AddAPoint(1.179,-0.873); 
+    AddAPoint(1.16,-0.877); 
+    AddAPoint(1.149,-0.874); 
+    AddAPoint(1.116,-0.854); 
+    AddAPoint(1.089,-0.82); 
+    AddAPoint(1.042,-0.787); 
+    AddAPoint(0.98,-0.747); 
+    AddAPoint(0.911,-0.71); 
+    AddAPoint(0.84,-0.66); 
+    AddAPoint(0.723,-0.582); 
+    AddAPoint(0.632,-0.511); 
+    AddAPoint(0.53,-0.413); 
+    AddAPoint(0.392,-0.278); 
+    AddAPoint(0.309,-0.156); 
+    AddAPoint(0.247,-0.007); 
+    AddAPoint(0.183,0.171); 
+    AddAPoint(0.171,0.313); 
+    AddAPoint(0.15,0.482); 
+    AddAPoint(0.136,0.612); 
+    AddAPoint(0.14,0.714); 
+    AddAPoint(0.157,0.818); 
+    AddAPoint(0.185,0.9); 
+    AddAPoint(0.173,0.951); 
+    AddAPoint(0.139,0.987); 
+    AddAPoint(0.091,1.004); 
+    AddAPoint(0.021,1.019); 
+    AddAPoint(-0.067,1.044); 
+    AddAPoint(-0.114,1.066); 
+    AddAPoint(-0.15,1.047); 
+    AddAPoint(-0.201,1.058); 
+    AddAPoint(-0.28,1.058); 
+    AddAPoint(-0.333,1.07); 
+    AddAPoint(-0.431,1.071); 
+    AddAPoint(-0.535,1.082); 
+    AddAPoint(-0.657,1.077); 
+    AddAPoint(-0.815,1.073); 
+    AddAPoint(-0.965,1.088); 
+    AddAPoint(-1.103,1.103); 
+    AddAPoint(-1.266,1.141); 
+    AddAPoint(-1.411,1.141); 
+    AddAPoint(-1.525,1.193); 
+    AddAPoint(-1.669,1.258); 
+    AddAPoint(-1.759,1.303); 
+    AddAPoint(-1.828,1.362); 
+    AddAPoint(-1.89,1.425); 
+    AddAPoint(-1.931,1.492); 
+    AddAPoint(-1.957,1.553); 
+    AddAPoint(-1.956,1.638); 
+    AddAPoint(-1.926,1.788); 
+    AddAPoint(-1.866,1.949); 
+    AddAPoint(-1.76,2.227); 
+    AddAPoint(-1.603,2.6); 
+    AddAPoint(-1.424,2.969); 
+    AddAPoint(-1.185,3.393); 
+    AddAPoint(-0.957,3.749); 
+    AddAPoint(-0.806,3.981); 
+    AddAPoint(-0.706,4.178); 
+    AddAPoint(-0.681,4.316); 
+    AddAPoint(-0.694,4.381); 
+    AddAPoint(-0.721,4.426); 
+    AddAPoint(-0.745,4.473); 
+    AddAPoint(-0.754,4.526); 
+    AddAPoint(-0.799,4.6); 
+    AddAPoint(-0.861,4.691); 
+    AddAPoint(-0.898,4.792); 
+    AddAPoint(-0.934,4.927); 
+    AddAPoint(-0.977,5.059); 
+    AddAPoint(-1.002,5.203); 
+    AddAPoint(-1.025,5.327); 
+    AddAPoint(-1.05,5.423); 
+    AddAPoint(-1.068,5.493); 
+    AddAPoint(-1.084,5.58); 
+    AddAPoint(-1.133,5.615); 
+    AddAPoint(-1.187,5.665); 
+    AddAPoint(-1.246,5.657); 
+    AddAPoint(-1.263,5.62); 
+    AddAPoint(-1.281,5.581); 
+    AddAPoint(-1.298,5.539); 
+    AddAPoint(-1.271,5.509); 
+    AddAPoint(-1.254,5.49); 
+    AddAPoint(-1.212,5.469); 
+    AddAPoint(-1.144,5.447); 
+    AddAPoint(-1.077,5.417); 
+    AddAPoint(-0.993,5.352); 
+    AddAPoint(-0.915,5.257); 
+    AddAPoint(-0.851,5.13); 
+    AddAPoint(-0.835,4.96); 
+    AddAPoint(-0.885,4.769); 
+    AddAPoint(-0.964,4.612); 
+    AddAPoint(-1.069,4.48); 
+    AddAPoint(-1.163,4.372); 
+    AddAPoint(-1.195,4.288); 
+    AddAPoint(-1.188,4.227); 
+    AddAPoint(-1.084,4.203); 
+    AddAPoint(-0.953,4.212); 
+    AddAPoint(-0.87,4.241); 
+    AddAPoint(-0.822,4.239); 
+    AddAPoint(-0.8,4.242); 
+    AddAPoint(-0.839,4.247); 
+    AddAPoint(-0.884,4.256); 
+    AddAPoint(-0.928,4.242); 
+    AddAPoint(-1.016,4.247); 
+    AddAPoint(-1.096,4.241); 
+    AddAPoint(-1.178,4.235); 
+    AddAPoint(-1.299,4.202); 
+    AddAPoint(-1.422,4.204); 
+    AddAPoint(-1.557,4.203); 
+    AddAPoint(-1.71,4.193); 
+    AddAPoint(-1.878,4.205); 
+    AddAPoint(-2.041,4.206); 
+    AddAPoint(-2.219,4.219); 
+    AddAPoint(-2.397,4.258); 
+    AddAPoint(-2.535,4.3); 
+    AddAPoint(-2.691,4.355); 
+    AddAPoint(-2.821,4.436); 
+    AddAPoint(-2.918,4.489); 
+    AddAPoint(-3.029,4.567); 
+    AddAPoint(-3.116,4.653); 
+    AddAPoint(-3.165,4.716); 
+    AddAPoint(-3.225,4.761); 
+    AddAPoint(-3.251,4.841); 
+    AddAPoint(-3.284,4.875); 
+    AddAPoint(-3.288,4.889); 
+    AddAPoint(-3.26,4.884); 
+    AddAPoint(-3.236,4.879); 
+    AddAPoint(-3.201,4.869); 
+    AddAPoint(-3.173,4.872); 
+    AddAPoint(-3.137,4.878); 
+    AddAPoint(-3.058,4.89); 
+    AddAPoint(-2.98,4.868); 
+    AddAPoint(-2.9,4.851); 
+    AddAPoint(-2.782,4.812); 
+    AddAPoint(-2.664,4.765); 
+    AddAPoint(-2.562,4.712); 
+    AddAPoint(-2.471,4.617); 
+    AddAPoint(-2.383,4.545); 
+    AddAPoint(-2.326,4.509); 
+    AddAPoint(-2.249,4.511); 
+    AddAPoint(-2.188,4.549); 
+    AddAPoint(-2.13,4.595); 
+    AddAPoint(-2.039,4.703); 
+    AddAPoint(-1.935,4.826); 
+    AddAPoint(-1.821,4.985); 
+    AddAPoint(-1.63,5.252); 
+    AddAPoint(-1.373,5.6); 
+    AddAPoint(-1.109,5.924); 
+    AddAPoint(-0.785,6.271); 
+    AddAPoint(-0.485,6.531); 
+    AddAPoint(-0.274,6.675); 
+    AddAPoint(-0.092,6.773); 
+    AddAPoint(0.016,6.803); 
+    AddAPoint(0.049,6.794); 
+    AddAPoint(0.071,6.761); 
+    AddAPoint(0.111,6.71); 
+    AddAPoint(0.132,6.663); 
+    AddAPoint(0.174,6.571); 
+    AddAPoint(0.234,6.477); 
+    AddAPoint(0.291,6.376); 
+    AddAPoint(0.379,6.257); 
+    AddAPoint(0.443,6.119); 
+    AddAPoint(0.506,5.992); 
+    AddAPoint(0.577,5.851); 
+    AddAPoint(0.641,5.712); 
+    AddAPoint(0.684,5.61); 
+    AddAPoint(0.75,5.488); 
+    AddAPoint(0.783,5.377); 
+    AddAPoint(0.828,5.315); 
+    AddAPoint(0.872,5.274); 
+    AddAPoint(0.915,5.217); 
+    AddAPoint(0.947,5.188); 
+    AddAPoint(0.981,5.169); 
+    AddAPoint(0.999,5.16); 
+    AddAPoint(1.012,5.151); 
+    AddAPoint(1.015,5.156); 
+    AddAPoint(1.016,5.175); 
+    AddAPoint(0.99,5.229); 
+    AddAPoint(0.977,5.277); 
+    AddAPoint(0.954,5.346); 
+    AddAPoint(0.928,5.42); 
+    AddAPoint(0.889,5.505); 
+    AddAPoint(0.858,5.651); 
+    AddAPoint(0.818,5.772); 
+    AddAPoint(0.76,5.908); 
+    AddAPoint(0.724,6.055); 
+    AddAPoint(0.682,6.168); 
+    AddAPoint(0.628,6.283); 
+    AddAPoint(0.595,6.389); 
+    AddAPoint(0.562,6.466); 
+    AddAPoint(0.538,6.548); 
+    AddAPoint(0.518,6.584); 
+    AddAPoint(0.519,6.624); 
+    AddAPoint(0.504,6.649); 
+    AddAPoint(0.529,6.669); 
+    AddAPoint(0.521,6.662); 
+    AddAPoint(0.52,6.653); 
+    AddAPoint(0.517,6.654); 
+    AddAPoint(0.511,6.657); 
+    AddAPoint(0.525,6.653); 
+    AddAPoint(0.533,6.655); 
+    AddAPoint(0.532,6.66); 
+    AddAPoint(0.535,6.654); 
+    AddAPoint(0.538,6.648); 
+    AddAPoint(0.538,6.658); 
+    AddAPoint(0.279,6.589); 
+    AddAPoint(-0.203,6.418); 
+    AddAPoint(-0.782,6.207); 
+    AddAPoint(-1.7,5.873); 
+    AddAPoint(-2.899,5.436); 
+    AddAPoint(-4.121,4.992); 
+    AddAPoint(-5.678,4.425); 
+    AddAPoint(-7.222,3.863); 
+    AddAPoint(-8.418,3.428); 
+    AddAPoint(-9.578,3.006); 
+    AddAPoint(-10.457,2.686); 
+    AddAPoint(-11.007,2.485); 
+    AddAPoint(-11.455,2.323); 
+    AddAPoint(-11.649,2.265); 
+    AddAPoint(-11.663,2.289); 
+    AddAPoint(-11.656,2.319); 
+    AddAPoint(-11.696,2.362); 
+    AddAPoint(-11.714,2.415); 
+    AddAPoint(-11.729,2.488); 
+    AddAPoint(-11.753,2.557); 
+    AddAPoint(-11.754,2.634); 
+    AddAPoint(-11.773,2.684); 
+    AddAPoint(-11.765,2.73); 
+    AddAPoint(-11.78,2.747); 
+    AddAPoint(-11.76,2.769); 
+    AddAPoint(-11.748,2.862); 
+    AddAPoint(-11.73,2.962); 
+    AddAPoint(-11.726,3.012); 
+    AddAPoint(-11.679,3.025); 
+    AddAPoint(-11.649,3.042); 
+    AddAPoint(-11.587,3.06); 
+    AddAPoint(-11.525,3.118); 
+    AddAPoint(-11.454,3.14); 
+    AddAPoint(-11.352,3.191); 
+    AddAPoint(-11.23,3.237); 
+    AddAPoint(-11.124,3.262); 
+    AddAPoint(-10.992,3.282); 
+    AddAPoint(-10.868,3.241); 
+    AddAPoint(-10.763,3.181); 
+    AddAPoint(-10.675,3.062); 
+    AddAPoint(-10.604,2.923); 
+    AddAPoint(-10.579,2.806); 
+    AddAPoint(-10.587,2.672); 
+    AddAPoint(-10.574,2.64); 
+    AddAPoint(-10.532,2.669); 
+    AddAPoint(-10.484,2.698); 
+    AddAPoint(-10.447,2.717); 
+    AddAPoint(-10.437,2.713); 
+    AddAPoint(-10.403,2.704); 
+    AddAPoint(-10.35,2.731); 
+    AddAPoint(-10.281,2.765); 
+    AddAPoint(-10.205,2.757); 
+    addApoint(-10.122,2.754); 
+    AddAPoint(-10.052,2.734); 
+    AddAPoint(-9.972,2.669); 
+    AddAPoint(-9.931,2.635); 
+    AddAPoint(-9.898,2.622); 
+    AddAPoint(-9.864,2.592); 
+    AddAPoint(-9.879,2.581); 
+    AddAPoint(-9.842,2.524); 
+    AddAPoint(-9.801,2.454); 
+    AddAPoint(-9.821,2.408); 
+    AddAPoint(-9.906,2.361); 
+    AddAPoint(-10.104,2.426); 
+    AddAPoint(-10.273,2.494); 
+    AddAPoint(-10.213,2.331); 
+    AddAPoint(-9.708,2.42); 
+    AddAPoint(-9.011,2.716); 
+    AddAPoint(-8.216,3.068); 
+    AddAPoint(-7.014,3.612); 
+    AddAPoint(-5.492,4.307); 
+    AddAPoint(-3.945,5.007); 
+    AddAPoint(-1.924,5.9); 
+    AddAPoint(0.208,6.796); 
+    AddAPoint(2.004,7.498); 
+    AddAPoint(3.935,8.174); 
+    AddAPoint(5.599,8.66); 
+    AddAPoint(6.781,8.923); 
+    AddAPoint(7.88,9.077); 
+    AddAPoint(8.714,9.109); 
+    AddAPoint(9.242,9.076); 
+    AddAPoint(9.469,9.033); 
+    AddAPoint(9.435,9.038); 
+    AddAPoint(9.428,9.006); 
+    AddAPoint(9.384,8.971); 
+    AddAPoint(9.32,8.955); 
+    AddAPoint(9.241,8.942); 
+    AddAPoint(9.176,8.953); 
+    AddAPoint(9.134,8.959); 
+    AddAPoint(9.074,8.941); 
+    AddAPoint(9.076,8.888); 
+    AddAPoint(9.065,8.834); 
+    AddAPoint(9.091,8.81); 
+    AddAPoint(9.149,8.853); 
+    AddAPoint(9.185,8.893); 
+    AddAPoint(9.166,8.907); 
+    AddAPoint(9.13,8.913); 
+    AddAPoint(9.096,8.951); 
+    AddAPoint(9.045,8.975); 
+    AddAPoint(8.979,8.998); 
+    AddAPoint(8.871,9.054); 
+    AddAPoint(8.766,9.073); 
+    AddAPoint(8.67,9.142); 
+    AddAPoint(8.547,9.215); 
+    AddAPoint(8.484,9.276); 
+    AddAPoint(8.422,9.371); 
+    AddAPoint(8.389,9.449); 
+    AddAPoint(8.364,9.52); 
+    AddAPoint(8.354,9.606); 
+    AddAPoint(8.361,9.666); 
+    AddAPoint(8.345,9.674); 
+    AddAPoint(8.232,9.636); 
+    AddAPoint(8.113,9.597); 
+    AddAPoint(8.078,9.586); 
+    AddAPoint(8.074,9.6); 
+    AddAPoint(8.056,9.635); 
+    AddAPoint(8.018,9.656); 
+    AddAPoint(7.989,9.713); 
+    AddAPoint(7.963,9.767); 
+    AddAPoint(7.944,9.789); 
+    AddAPoint(7.904,9.823); 
+    AddAPoint(7.902,9.843); 
+    AddAPoint(7.892,9.854); 
+    AddAPoint(7.885,9.823); 
+    AddAPoint(7.889,9.786); 
+    AddAPoint(7.891,9.751); 
+    AddAPoint(7.898,9.735); 
+    AddAPoint(7.906,9.743); 
+    AddAPoint(7.915,9.743); 
+    AddAPoint(7.956,9.747); 
+    AddAPoint(7.995,9.778); 
+    AddAPoint(8.017,9.765); 
+    AddAPoint(8.05,9.725); 
+    AddAPoint(8.136,9.581); 
+    AddAPoint(8.285,9.316); 
+    AddAPoint(8.533,8.878); 
+    AddAPoint(8.896,8.251); 
+    AddAPoint(9.307,7.548); 
+    AddAPoint(9.885,6.559); 
+    AddAPoint(10.512,5.474); 
+    AddAPoint(11.025,4.565); 
+    AddAPoint(11.53,3.629); 
+    AddAPoint(11.897,2.885); 
+    AddAPoint(12.103,2.403); 
+    AddAPoint(12.238,1.997); 
+    AddAPoint(12.287,1.78); 
+    AddAPoint(12.261,1.783); 
+    AddAPoint(12.226,1.787); 
+    AddAPoint(12.171,1.825); 
+    AddAPoint(12.113,1.87); 
+    AddAPoint(12.048,1.942); 
+    AddAPoint(11.975,2.018); 
+    AddAPoint(11.94,2.109); 
+    AddAPoint(11.888,2.242); 
+    AddAPoint(11.838,2.372); 
+    AddAPoint(11.829,2.501); 
+    AddAPoint(11.803,2.578); 
+    AddAPoint(11.761,2.651); 
+    AddAPoint(11.706,2.655); 
+    AddAPoint(11.631,2.664); 
+    AddAPoint(11.527,2.626); 
+    AddAPoint(11.511,2.586); 
+    AddAPoint(11.551,2.53); 
+    AddAPoint(11.584,2.485); 
+    AddAPoint(11.591,2.458); 
+    AddAPoint(11.605,2.433); 
+    AddAPoint(11.622,2.386); 
+    AddAPoint(11.648,2.322); 
+    AddAPoint(11.696,2.267); 
+    AddAPoint(11.751,2.151); 
+    AddAPoint(11.805,2.082); 
+    AddAPoint(11.861,1.963); 
+    AddAPoint(11.907,1.87); 
+    AddAPoint(11.979,1.789); 
+    AddAPoint(12.011,1.684); 
+    AddAPoint(12.021,1.637); 
+    AddAPoint(12.023,1.576); 
+    AddAPoint(12.041,1.531); 
+    AddAPoint(12.018,1.506); 
+    AddAPoint(12.007,1.53); 
+    AddAPoint(11.984,1.61); 
+    AddAPoint(11.97,1.668); 
+    AddAPoint(11.963,1.685); 
+    AddAPoint(11.969,1.7); 
+    AddAPoint(11.945,1.732); 
+    AddAPoint(11.922,1.775); 
+    AddAPoint(11.929,1.821); 
+    AddAPoint(11.92,1.897); 
+    AddAPoint(11.981,1.96); 
+    AddAPoint(12.055,1.99); 
+    AddAPoint(12.099,1.982); 
+    AddAPoint(12.167,1.988); 
+    AddAPoint(12.151,1.996); 
+    AddAPoint(12.13,2.027); 
+    AddAPoint(12.124,2.054); 
+    AddAPoint(12.136,2.051); 
+    AddAPoint(12.159,2.037); 
+    AddAPoint(12.193,2.008); 
+    AddAPoint(12.238,1.952); 
+    AddAPoint(12.306,1.906); 
+    AddAPoint(12.358,1.818); 
+    AddAPoint(12.438,1.746); 
+    AddAPoint(12.516,1.647); 
+    AddAPoint(12.588,1.538); 
+    AddAPoint(12.651,1.386); 
+    AddAPoint(12.698,1.263); 
+    AddAPoint(12.716,1.14); 
+    AddAPoint(12.73,1.011); 
+    AddAPoint(12.769,0.916); 
+    AddAPoint(12.777,0.83); 
+    AddAPoint(12.805,0.788); 
+    AddAPoint(12.864,0.773); 
+    AddAPoint(12.915,0.752); 
+    AddAPoint(12.948,0.566); 
+    AddAPoint(12.966,0.288); 
+    AddAPoint(12.992,-0.062); 
+    AddAPoint(13.034,-0.623); 
+    AddAPoint(13.077,-1.33); 
+    AddAPoint(13.102,-1.992); 
+    AddAPoint(13.105,-2.73); 
+    AddAPoint(13.076,-3.34); 
+    AddAPoint(13.035,-3.732); 
+    AddAPoint(12.985,-4.046); 
+    AddAPoint(12.954,-4.225); 
+    AddAPoint(12.959,-4.261); 
+    AddAPoint(12.952,-4.256); 
+    AddAPoint(12.948,-4.23); 
+    AddAPoint(12.931,-4.206); 
+    AddAPoint(12.912,-4.191); 
+    AddAPoint(12.919,-4.141); 
+    AddAPoint(12.91,-4.126); 
+    AddAPoint(12.917,-4.102); 
+    AddAPoint(12.92,-4.104); 
+    AddAPoint(12.932,-4.064); 
+    AddAPoint(12.964,-4.056); 
+    AddAPoint(12.989,-4.058); 
+    AddAPoint(13.009,-4.073); 
+    AddAPoint(13.047,-4.066); 
+    AddAPoint(13.109,-4.055); 
+    AddAPoint(13.149,-4.051); 
+    AddAPoint(13.242,-4.068); 
+    AddAPoint(13.329,-4.105); 
+    AddAPoint(13.418,-4.167); 
+    AddAPoint(13.491,-4.279); 
+    AddAPoint(13.505,-4.428); 
+    AddAPoint(13.522,-4.552); 
+    AddAPoint(13.475,-4.672); 
+    AddAPoint(13.451,-4.766); 
+    AddAPoint(13.454,-4.799); 
+    AddAPoint(13.511,-4.809); 
+    AddAPoint(13.586,-4.831); 
+    AddAPoint(13.661,-4.861); 
+    AddAPoint(13.7,-4.899); 
+    AddAPoint(13.683,-4.945); 
+    AddAPoint(13.665,-4.977); 
+    AddAPoint(13.656,-5.043); 
+    AddAPoint(13.639,-5.114); 
+    AddAPoint(13.62,-5.196); 
+    AddAPoint(13.581,-5.308); 
+    AddAPoint(13.531,-5.43); 
+    AddAPoint(13.472,-5.523); 
+    AddAPoint(13.367,-5.644); 
+    AddAPoint(13.263,-5.777); 
+    AddAPoint(13.131,-5.857); 
+    AddAPoint(12.98,-5.952); 
+    AddAPoint(12.82,-6); 
+    AddAPoint(12.707,-6.032); 
+    AddAPoint(12.613,-6.065); 
+    AddAPoint(12.536,-6.109); 
+    AddAPoint(12.498,-6.157); 
+    AddAPoint(12.481,-6.231); 
+    AddAPoint(12.504,-6.317); 
+    AddAPoint(12.555,-6.374); 
+    AddAPoint(12.583,-6.381); 
+    AddAPoint(12.599,-6.399); 
+    AddAPoint(12.258,-6.51); 
+    AddAPoint(11.654,-6.879); 
+    AddAPoint(11.651,-6.826); 
+    AddAPoint(11.659,-6.618); 
+    AddAPoint(11.671,-6.274); 
+    AddAPoint(11.686,-5.83); 
+    AddAPoint(11.701,-5.41); 
+    AddAPoint(11.717,-4.946); 
+    AddAPoint(11.73,-4.57); 
+    AddAPoint(11.739,-4.337); 
+    AddAPoint(11.745,-4.155); 
+    AddAPoint(11.755,-4.066); 
+    AddAPoint(11.783,-4.082); 
+    AddAPoint(11.81,-4.114); 
+    AddAPoint(11.852,-4.123); 
+    AddAPoint(11.912,-4.179); 
+    AddAPoint(11.979,-4.245); 
+    AddAPoint(12.014,-4.331); 
+    AddAPoint(12.05,-4.423); 
+    AddAPoint(12.08,-4.526); 
+    AddAPoint(12.05,-4.63); 
+    AddAPoint(12.032,-4.72); 
+    AddAPoint(12.007,-4.805); 
+    AddAPoint(11.977,-4.854); 
+    AddAPoint(11.993,-4.874); 
+    AddAPoint(12.007,-4.931); 
+    AddAPoint(12.015,-4.982); 
+    AddAPoint(12.017,-5.013); 
+    AddAPoint(12.007,-5.007); 
+    AddAPoint(11.971,-4.976); 
+    AddAPoint(11.916,-4.973); 
+    AddAPoint(11.867,-4.95); 
+    AddAPoint(11.785,-4.915); 
+    AddAPoint(11.703,-4.877); 
+    AddAPoint(11.602,-4.815); 
+    AddAPoint(11.489,-4.763); 
+    AddAPoint(11.399,-4.716); 
+    AddAPoint(11.309,-4.673); 
+    AddAPoint(11.226,-4.634); 
+    AddAPoint(11.18,-4.595); 
+    AddAPoint(11.137,-4.544); 
+    AddAPoint(11.098,-4.506); 
+    AddAPoint(11.086,-4.494); 
+    AddAPoint(11.087,-4.519); 
+    AddAPoint(11.096,-4.531); 
+    AddAPoint(11.106,-4.531); 
+    AddAPoint(11.11,-4.497); 
+    AddAPoint(11.115,-4.462); 
+    AddAPoint(11.103,-4.407); 
+    AddAPoint(11.107,-4.355); 
+    AddAPoint(11.13,-4.236); 
+    AddAPoint(11.129,-4.159); 
+    AddAPoint(11.143,-4.042); 
+    AddAPoint(11.148,-3.907); 
+    AddAPoint(11.167,-3.782); 
+    AddAPoint(11.179,-3.636); 
+    AddAPoint(11.209,-3.519); 
+    AddAPoint(11.23,-3.417); 
+    AddAPoint(11.243,-3.346); 
+    AddAPoint(11.253,-3.261); 
+    AddAPoint(11.25,-3.21); 
+    AddAPoint(11.237,-3.16); 
+    AddAPoint(11.234,-3.13); 
+    AddAPoint(11.214,-3.098); 
+    AddAPoint(11.124,-3.039); 
+    AddAPoint(11.07,-2.998); 
+    AddAPoint(11.05,-2.988); 
+    AddAPoint(10.996,-2.991); 
+    AddAPoint(10.93,-3.006); 
+    AddAPoint(10.878,-3.007); 
+    AddAPoint(10.783,-3.011); 
+    AddAPoint(10.681,-3.001); 
+    AddAPoint(10.583,-2.984); 
+    AddAPoint(10.434,-2.943); 
+    AddAPoint(10.302,-2.873); 
+    AddAPoint(10.211,-2.786); 
+    AddAPoint(10.093,-2.677); 
+    AddAPoint(10.021,-2.55); 
+    AddAPoint(9.962,-2.46); 
+    AddAPoint(9.904,-2.407); 
+    AddAPoint(9.84,-2.392); 
+    AddAPoint(9.785,-2.404); 
+    AddAPoint(9.745,-2.464); 
+    AddAPoint(9.69,-2.543); 
+    AddAPoint(9.652,-2.58); 
+    AddAPoint(9.616,-2.606); 
+    AddAPoint(9.616,-2.613); 
+    AddAPoint(9.612,-2.618); 
+    AddAPoint(9.604,-2.626); 
+    AddAPoint(9.593,-2.628); 
+    AddAPoint(9.602,-2.629); 
+    AddAPoint(9.592,-2.63); 
+    AddAPoint(9.6,-2.603); 
+    AddAPoint(9.596,-2.583); 
+    AddAPoint(9.672,-2.366); 
+    AddAPoint(9.803,-1.964); 
+    AddAPoint(9.964,-1.469); 
+    AddAPoint(10.22,-0.681); 
+    AddAPoint(10.548,0.33); 
+    AddAPoint(10.871,1.323); 
+    AddAPoint(11.258,2.515); 
+    AddAPoint(11.612,3.604); 
+    AddAPoint(11.864,4.379); 
+    AddAPoint(12.087,5.068); 
+    AddAPoint(12.243,5.546); 
+    AddAPoint(12.331,5.821); 
+    AddAPoint(12.357,5.954); 
+    AddAPoint(12.33,5.984); 
+    AddAPoint(12.299,6.018); 
+    AddAPoint(12.258,6.07); 
+    AddAPoint(12.218,6.142); 
+    AddAPoint(12.167,6.222); 
+    AddAPoint(12.1,6.337); 
+    AddAPoint(12.046,6.461); 
+    AddAPoint(12.016,6.563); 
+    AddAPoint(12,6.711); 
+    AddAPoint(11.977,6.842); 
+    AddAPoint(11.97,6.942); 
+    AddAPoint(11.934,7.004); 
+    AddAPoint(11.88,7.083); 
+    AddAPoint(11.839,7.094); 
+    AddAPoint(11.755,7.094); 
+    AddAPoint(11.692,7.075); 
+    AddAPoint(11.666,7.072); 
+    AddAPoint(11.639,7.09); 
+    AddAPoint(11.619,7.114); 
+    AddAPoint(11.599,7.131); 
+    AddAPoint(11.568,7.154); 
+    AddAPoint(11.511,7.202); 
+    AddAPoint(11.471,7.273); 
+    AddAPoint(11.419,7.341); 
+    AddAPoint(11.356,7.426); 
+    AddAPoint(11.278,7.511); 
+    AddAPoint(11.189,7.616); 
+    AddAPoint(11.087,7.733); 
+    AddAPoint(11.022,7.82); 
+    AddAPoint(10.965,7.96); 
+    AddAPoint(10.885,8.094); 
+    AddAPoint(10.837,8.162); 
+    AddAPoint(10.809,8.226); 
+    AddAPoint(10.797,8.304); 
+    AddAPoint(10.747,8.345); 
+    AddAPoint(10.722,8.359); 
+    AddAPoint(10.638,8.284); 
+    AddAPoint(10.456,8.062); 
+    AddAPoint(10.16,7.656); 
+    AddAPoint(9.741,7.064); 
+    AddAPoint(9.266,6.402); 
+    AddAPoint(8.579,5.486); 
+    AddAPoint(7.783,4.517); 
+    AddAPoint(7.069,3.749); 
+    AddAPoint(6.277,3.022); 
+    AddAPoint(5.594,2.515); 
+    AddAPoint(5.125,2.235); 
+    AddAPoint(4.723,2.032); 
+    AddAPoint(4.515,1.914); 
+    AddAPoint(4.507,1.901); 
+    AddAPoint(4.549,1.896); 
+    AddAPoint(4.599,1.886); 
+    AddAPoint(4.65,1.856); 
+    AddAPoint(4.714,1.778); 
+    AddAPoint(4.75,1.679); 
+    AddAPoint(4.766,1.598); 
+    AddAPoint(4.776,1.503); 
+    AddAPoint(4.794,1.437); 
+    AddAPoint(4.837,1.417); 
+    AddAPoint(4.938,1.468); 
+    AddAPoint(5.031,1.53); 
+    AddAPoint(5.033,1.514); 
+    AddAPoint(4.978,1.472); 
+    AddAPoint(4.938,1.458); 
+    AddAPoint(4.901,1.465); 
+    AddAPoint(4.856,1.465); 
+    AddAPoint(4.794,1.478); 
+    AddAPoint(4.744,1.475); 
+    AddAPoint(4.653,1.461); 
+    AddAPoint(4.534,1.46); 
+    AddAPoint(4.428,1.48); 
+    AddAPoint(4.293,1.513); 
+    AddAPoint(4.123,1.589); 
+    AddAPoint(4.02,1.686); 
+    AddAPoint(3.912,1.845); 
+    AddAPoint(3.848,2.059); 
+    AddAPoint(3.824,2.238); 
+    AddAPoint(3.821,2.45); 
+    AddAPoint(3.878,2.629); 
+    AddAPoint(3.915,2.751); 
+    AddAPoint(3.952,2.853); 
+    AddAPoint(3.943,2.91); 
+    AddAPoint(3.929,2.947); 
+    AddAPoint(3.918,2.961); 
+    AddAPoint(3.912,3.057); 
+    AddAPoint(3.911,3.13); 
+    AddAPoint(3.93,3.162); 
+    AddAPoint(3.951,3.184); 
+    AddAPoint(3.995,3.22); 
+    AddAPoint(4.034,3.256); 
+    AddAPoint(4.097,3.31); 
+    AddAPoint(4.156,3.346); 
+    AddAPoint(4.233,3.408); 
+    AddAPoint(4.34,3.478); 
+    AddAPoint(4.424,3.519); 
+    AddAPoint(4.515,3.543); 
+    AddAPoint(4.595,3.535); 
+    AddAPoint(4.66,3.505); 
+    AddAPoint(4.72,3.475); 
+    AddAPoint(4.759,3.412); 
+    AddAPoint(4.764,3.406); 
+    AddAPoint(4.755,3.451); 
+    AddAPoint(4.738,3.479); 
+    AddAPoint(4.71,3.482); 
+    AddAPoint(4.686,3.471); 
+    AddAPoint(4.64,3.481); 
+    AddAPoint(4.578,3.446); 
+    AddAPoint(4.517,3.4); 
+    AddAPoint(4.432,3.357); 
+    AddAPoint(4.353,3.323); 
+    AddAPoint(4.224,3.32); 
+    AddAPoint(4.139,3.335); 
+    AddAPoint(4.064,3.388); 
+    AddAPoint(4.007,3.492); 
+    AddAPoint(3.979,3.617); 
+    AddAPoint(3.956,3.75); 
+    AddAPoint(3.64,3.971); 
+    AddAPoint(3.086,4.152); 
+    AddAPoint(2.422,4.348); 
+    AddAPoint(1.385,4.651); 
+    AddAPoint(0.052,5.065); 
+    AddAPoint(-1.291,5.528); 
+    AddAPoint(-2.983,6.201); 
+    AddAPoint(-4.645,6.992); 
+    AddAPoint(-5.921,7.711); 
+    AddAPoint(-7.147,8.519); 
+    AddAPoint(-8.075,9.209); 
+    AddAPoint(-8.668,9.658); 
+    AddAPoint(-9.19,9.985); 
+    AddAPoint(-9.54,10.098); 
+    AddAPoint(-9.607,10.08); 
+    AddAPoint(-9.614,10.047); 
+    AddAPoint(-9.627,9.992); 
+    AddAPoint(-9.635,9.931); 
+    AddAPoint(-9.653,9.846); 
+    AddAPoint(-9.673,9.739); 
+    AddAPoint(-9.699,9.652); 
+    AddAPoint(-9.723,9.551); 
+    AddAPoint(-9.735,9.453); 
+    AddAPoint(-9.754,9.37); 
+    AddAPoint(-9.802,9.306); 
+    AddAPoint(-9.812,9.272); 
+    AddAPoint(-9.832,9.266); 
+    AddAPoint(-9.815,9.225); 
+    AddAPoint(-9.869,9.132); 
+    AddAPoint(-9.94,9.046); 
+    AddAPoint(-9.972,9.012); 
+    AddAPoint(-10.003,9.046); 
+    AddAPoint(-10.015,9.066); 
+    AddAPoint(-10.042,9.114); 
+    AddAPoint(-10.106,9.187); 
+    AddAPoint(-10.155,9.244); 
+    AddAPoint(-10.221,9.354); 
+    AddAPoint(-10.267,9.454); 
+    AddAPoint(-10.266,9.556); 
+    AddAPoint(-10.243,9.688); 
+    AddAPoint(-10.181,9.799); 
+    AddAPoint(-10.109,9.881); 
+    AddAPoint(-10.014,9.966); 
+    AddAPoint(-9.929,9.988); 
+    AddAPoint(-9.882,10.003); 
+    AddAPoint(-9.855,10.019); 
+    AddAPoint(-9.833,10.028); 
+    AddAPoint(-9.827,10.028); 
+    AddAPoint(-9.859,10.005); 
+    AddAPoint(-9.87,9.971); 
+    AddAPoint(-9.896,9.937); 
+    AddAPoint(-9.933,9.869); 
+     
+  end; 
+end; 
+ 
+ 
+var
+  stf:string;
+procedure InitMvtEye; 
+var 
+  i,j:integer; 
+begin 
+  DisableStims;
+  if stf='' then stf:='*.bmp';
+
+  with bm do 
+  begin 
+    create('');    
+    tracked:=true;
+    //bm.fileName:='d:\dac2\piero65gamma.bmp';
+    if chooseFile(stf) then bm.fileName:=stf;
+   // bm.ImageWidth:=stimScreen.width*1.5; 
+   // bm.ImageHeight:=stimScreen.height*1.5;
+ 
+    bm.dx:=stimScreen.width*0.5; 
+    bm.dy:=stimScreen.height*0.5; 
+ 
+  end; 
+ 
+  with stmTraj do 
+  begin 
+    create(''); 
+    setBMObject(bm); 
+    DtON:=10; 
+    dtOff:=0; 
+    cycleCount:=1; 
+    setCyclicSyncPulse(0); 
+    initTrajectory; 
+    startTime:=0.500; 
+  end; 
+       
+end; 
+
+
+  
+ 
+program 'Mvt eyes Image nat' 
+initMvtEye; 
+visualStim.animate; 
+ 
+var 
+  gratTraj:TLgrating; 
+ 
+procedure InitMvtGrat; 
+begin 
+  DisableStims;
+  
+  with GRATtraj do 
+  begin 
+    create(''); 
+    dx:=40*3; 
+    dy:=30*3; 
+    theta:=0; 
+    orientation:=-30; 
+    contrast:=0.8; 
+    period:=3; 
+    phase:=0; 
+  end; 
+ 
+ 
+  with stmTraj do 
+  begin 
+    create(''); 
+    setvisualObject(gratTraj);        
+    DtON:=10; 
+    dtOff:=0; 
+    cycleCount:=1; 
+    resetSyncPulse; 
+    setCyclicSyncPulse(0); 
+    initTrajectory;        
+  end; 
+   
+end;   
+ 
+ 
+program 'Mvt eyes Grating' 
+initMvtGrat; 
+VisualStim.animate; 
+ 
+program 'Clear' 
+clearAll; 
+ 
+ 
+ 
+program Demo 
+ 
+cnt:=0; 
+Repeat 
+  DisableStims; 
+  case cnt mod 10 of 
+    0: initBarres; 
+    {1: initBarres2;} 
+    1: initGrat1; 
+    2: initGrat2; 
+    3: initRev; 
+    4: initDN; 
+    5: initVSmovie; 
+    6: initStimGab; 
+    7: initVSmovieGab; 
+    8: initMvtEye; 
+    9: initMvtGrat; 
+  end; 
+  VisualStim.animate; 
+  if cnt=6 then stmGab.free; 
+  inc(cnt); 
+ 
+ 
+until VisualStim.StopStim; 
+ 
+
+
+var
+  barMask1:Tbar;
+  Diskmask1: Tdisk;
+  
+procedure setMasks;
+begin
+  with barMask1 do
+  begin
+    create;
+    x:=0;
+    y:=0;
+    dx:= 25;
+    dy:=6;
+   
+    Fmask:=true;
+    onScreen:=true;
+  end;
+
+  with DiskMask1 do
+  begin
+    create;
+    x:=0;
+    y:=0;
+    dx:=10;
+    dy:=10;
+    Fmask:=true;
+    onScreen:=true;
+  end;
+end;
+
+program 'Set Masks'
+setMasks;
+
+program 'Reset Masks'
+BarMask1.free;
+DiskMask1.free;
+
+
+
+procedure BuildCalib;
+var
+  i:integer;
+const
+  a=2;
+begin
+  c1.modify(t_single,0,255);
+  c1[0]:=0;
+  for i:=1 to 255 do
+    c1[i]:=25*exp(a*Ln(i/255));
+    
+  c1.invalidate;  
+  
+end;  
+
+program 'Build calib'
+BuildCalib;
+
+
+var 
+  Nrev:TNrev; 
+  brev1:Tbar; 
+ 
+procedure InitNRev; 
+var 
+  i:integer; 
+begin 
+ 
+ brev1.create(''); 
+ 
+ with Nrev do 
+ begin 
+   create; 
+   dtON:=0.1; 
+   dtOff:=0; 
+   divXcount:=10; 
+   divYcount:=10; 
+   ObjCount:=2;
+   adjustObjectSize:=true; 
+   setRF(1); 
+   setVisualObject(brev1); 
+ 
+   setCyclicSyncPulse(0); 
+ 
+   lum1:=30; 
+   lum2:=2;
+   updateSequence; 
+   {installStimSeq(0,10,10,100,0,2);}
+  end; 
+end; 
+ 
+ 
+program 'NRev' 
+disableStims; 
+initNRev; 
+VisualStim.animate; 
+
+
+var
+  mat: Tmatrix;
+  
+procedure initMat;
+var
+  i,j: integer;
+begin
+  with mat do
+  begin
+    create(t_single,0,19,0,19);
+    for i:=0 to 19 do
+    for j:=0 to 19 do
+      Zvalue[i,j]:=random*100;
+    setPosition(0,0,10,10,30);
+  end;  
+end;  
+
+program 'Init Mat'
+InitMat;
+
+    
+procedure initGaborDX9;
+begin
+  with gabor[1] do 
+  begin 
+    create(''); 
+    dx:=30; 
+    dy:=30; 
+    theta:=60; 
+    period:=6;
+    Lx:=5; 
+    Ly:=5; 
+    contrast:=1;  
+    //SquareWave:=true;
+  end;
+  
+  with tr[1] do 
+  begin 
+    create(''); 
+    dtON:=10; 
+    speed:=360; 
+ 
+    setVisualObject(gabor[1]); 
+  end;
+  
+end;    
+
+program 'Gabor Phase Translation' 
+disableStims; 
+initGaborDX9; 
+VisualStim.animate; 
+
+    
+procedure initGratingRotation;
+var
+  vecTheta,vecPhase: Tvector;
+  i: integer;
+begin
+  with grat[1] do 
+  begin 
+    create(''); 
+    dx:=StimScreen.width; 
+    dy:=StimScreen.height;  
+    period:=3;
+    contrast:=1;  
+  end;
+ 
+  vecTheta.initList(t_single);
+  vecPhase.initList(t_single);
+ 
+  for i:= 0 to 120*10-1 do
+  begin
+    vecTheta.addToList(i/6000*360);
+    vecPhase.addToList(i/120*360);
+  end;
+  
+  
+  with stmTraj do 
+  begin 
+    create; 
+    dtON:=10;  
+    setVisualObject(grat[1]);
+    AddVector('PHASE',vecPhase);
+    AddVector('ORIENTATION',vecTheta);      
+  end;                                   
+end;    
+
+program 'Grating Rotation' 
+disableStims; 
+initGratingRotation; 
+VisualStim.animate; 
+
+procedure initFlickeringGrating;
+var
+  vecContrast: Tvector;
+  i: integer;
+begin
+  with grat[1] do 
+  begin 
+    create(''); 
+    dx:=20; 
+    dy:=20;  
+    period:=3;
+    contrast:=1;  
+  end;
+ 
+  vecContrast.initList(t_single);
+ 
+  for i:= 0 to 120*10-1 do
+    vecContrast.addToList((1+sin(2*pi*i/360))/2 );
+  
+  
+  with stmTraj do 
+  begin 
+    create; 
+    dtON:=10;  
+    setVisualObject(grat[1]);
+    AddVector('CONTRAST',vecContrast);
+     
+  end;
+  
+end;    
+
+program 'Flickering Grating' 
+disableStims; 
+initFlickeringGrating; 
+VisualStim.animate; 
+
+
+Const
+  maxSpot1=100;
+  maxSpot2=300;
+  
+var
+  spot1: array[1..MaxSpot1] of Tbar;
+  spot2: array[1..MaxSpot2] of Tbar;
+
+  SpotTraj1: array[1..maxSpot1] of Ttrajectory; 
+  SpotTraj2: array[1..maxSpot2] of Ttrajectory;
+  xyPlot: TxyPlot;
+    
+    
+procedure initSpots; 
+var  
+  i:integer; 
+begin 
+  with xyPlot do
+  begin
+    create;
+    addPolyline;
+    with last do
+    for i:=0 to 100 do 
+      addpoint(10*cos(2*pi/100*i),10*sin(2*pi/100*i));
+  end;
+
+  for i:=1 to maxSpot1 do 
+  begin 
+    with spot1[i] do 
+    begin 
+      create; 
+      dx:=0.1; 
+      dy:=0.1; 
+      lum:=100; 
+    end; 
+ 
+    with SpotTraj1[i] do 
+    begin 
+      create;
+      setVisualObject(spot1[i]); 
+      ParticleFlow(1000,1000,10,30,10,xyplot);    
+    end; 
+  end; 
+ 
+  
+  for i:=1 to maxSpot2 do 
+  begin 
+    with spot2[i] do 
+    begin 
+      create; 
+      dx:=0.1; 
+      dy:=0.1; 
+      lum:=100; 
+    end;     
+ 
+    with SpotTraj2[i] do
+    begin
+      create;
+      setVisualObject(spot2[i]); 
+      BrownianMvt((random-0.5)*2000,(random-0.5)*2000,10,5,10,xyplot); 
+    end; 
+  end; 
+          
+end; 
+ 
+program 'Spots' 
+DisableStims; 
+initSpots; 
+VisualStim.animate; 
+
+
+program 'BarBar'
+
+with bar[1] do 
+begin 
+  create; 
+  x:=-3;
+  dx:=10; 
+  dy:= 5; 
+  lum:=20;
+  BlendAlpha:=0.5;
+  Zdistance:=0;
+  Onscreen:=true;
+  Oncontrol:=true;
+end; 
+
+with bar[2] do 
+begin 
+  create;
+  x:=3; 
+  dx:=10; 
+  dy:= 5; 
+  lum:=0;
+  //BlendAlpha:=0.5;
+  Zdistance:=-1;
+  Onscreen:=true;
+  Oncontrol:=true;
+end; 
+
+var
+  plotC: TXYplot;
+  barC: Tbar;
+  StimC: TonOff;  
+
+procedure initBarContour;
+var
+  i,j,k,Nb:integer;
+  xc,yc:real;
+const
+  DD=0.6;
+begin    
+
+  Nb:=12;
+  with plotC do
+  begin
+    create;
+    
+    for i:=1 to 3 do
+    for j:=1 to 3 do
+    begin
+      AddPolyline;
+      with polylines[count] do
+      begin
+        xc:=-6+3*i;
+        yc:=-6+3*j;
+        for k:=0 to Nb do
+          addPoint(xc+DD*(1+k mod 2) *cos(2*pi/Nb*k),yc+DD*(1+k mod 2)*sin(2*pi/Nb*k));
+      end;    
+    end;
+  end;
+ 
+  with barC do 
+  begin 
+    create; 
+    dx:=30; 
+    dy:=30; 
+    //rgbColor:=cl_red;
+    lum:=0;
+    
+    //FMask:=true;
+    setContour(plotC); 
+    UseContour:=true;
+    
+    Oncontrol:=true;
+    Onscreen:=true;    
+  end;
+   
+  with bar[1] do 
+  begin 
+    create; 
+    x:=-3;
+    dx:=10; 
+    dy:= 5; 
+    lum:=50;
+    Zdistance:=10;
+    Onscreen:=true;
+    Oncontrol:=true;
+  end; 
+ 
+   
+end;
+
+Program 'Bar with contour'
+initBarContour;
+
+
+program 'OnOff'
+  DisableStims;
+  
+  if not visualStim.openDataFile then halt;
+  
+  with barC do 
+  begin 
+    create; 
+    dx:=stimScreen.width; 
+    dy:=stimScreen.height;
+    lum:=0;   
+  end;
+  
+  with StimC do
+  begin
+    create;
+    dtON:=1;
+    dtOff:=0.5;
+    cycleCount:=10;
+    setCyclicSyncPulse(0);
+    setVisualObject(barC);
+  end;
+  visualstim.animate;
+  
+  
+  
+  
+program 'Transform/ON'
+Transform.create;
+transform.dtON:=5;  
+program 'Transform/OFF'
+Transform.free;
+
+  
+
+procedure initTestVSBM;
+var
+  i,j,k,Nb:integer;
+  xc,yc:real;
+const
+  DD=0.6;
+
+begin    
+  {
+  Nb:=1000;
+  with plotC do
+  begin
+    create;
+    AddPolyline;
+    for i:=0 to Nb-1 do      
+      with polylines[count] do addPoint( 10*cos(2*pi/Nb*i), 10*sin(2*pi/Nb*i));
+  end;
+  }
+  Nb:=12;
+  with plotC do
+  begin
+    create;
+    
+    for i:=1 to 3 do
+    for j:=1 to 3 do
+    begin
+      AddPolyline;
+      with polylines[count] do
+      begin
+        xc:=-6+3*i;
+        yc:=-6+3*j;
+        for k:=0 to Nb do
+          addPoint(xc+DD*(1+k mod 2) *cos(2*pi/Nb*k),yc+DD*(1+k mod 2)*sin(2*pi/Nb*k));
+      end;    
+    end;
+  end;
+  
+  {
+  with grat[1] do 
+  begin 
+    create; 
+    x:=0; 
+    y:=0; 
+    dx:=stimScreen.width; 
+    dy:=stimScreen.Height; 
+    orientation:= 30; 
+    contrast:=0.95; 
+    period:=3;
+    
+    UseContour:=true;
+    setContour(plotC);
+    
+    onScreen:=true;
+  end; 
+  }
+  
+  with gabor[1] do 
+  begin 
+    create; 
+    dx:=12; 
+    dy:=12; 
+    theta:=60; 
+    Lx:=3; 
+    Ly:=3; 
+    contrast:=1; 
+    
+    //elliptic:=true;  
+    UseContour:=true;
+    setContour(plotC);
+    
+    onScreen:=true;  
+  end;
+  
+ 
+  with bm do 
+  begin
+    create;     
+    
+    filename:='d:\dac2\pg elphy\image naturelle 65%.bmp';      
+    //if chooseFile(stf) then fileName:= stf else exit;
+    
+    imageWidth:=20*Width/Height;
+    imageHeight:=20;
+    theta0:=0;
+    
+    dx:=20*Width/Height;
+    dy:=20;
+    
+    theta:=0;
+    UseContour:= true;
+    setContour(plotC);
+    
+    Zdistance:= -10;
+    OnScreen:=true;
+    stimScreen.refresh;
+     
+  end;
+   
+end;
+
+program 'Test VSBM'
+initTestVSBM;
+
+var
+  matPM: Tmatrix;
+  bmPM: TVSbitmap;
+  
+  VfuncPM:Tvector; // contient la valeur de alpha en fonction de la distance au centre
+                   // 1 au milieu , 0 à la périphérie
+  dxPM, dyPM, dx0PM: real; 
+  
+procedure InitFuncPM(d,b:real);
+var
+  i:integer;
+begin
+  with VfuncPM do
+  begin
+    create(t_single,0,1000);
+    Yvalue[0]:=1;
+    for i:=1 to Iend do
+      Yvalue[i]:=1/(1+exp(b*ln(i/d)));
+  end; 
+end;
+
+procedure initMaskPM;
+var
+  i,j:integer;
+  d,zz:real;
+const
+  N=128;
+begin
+  bmPM.create;
+    
+  matPM.create(t_single,0,N-1,0,N-1);
+  matPM.fill(stimScreen.backGroundLum);                     // 50: valeur arbitraire
+  bmPM.loadFromMatrix(matPM,true);    // indispensable pour dimensionner le bm
+    
+  initFuncPM(N/4,10);                 // pour d=125, on aura alpha= 0.5
+  with matPM do
+  begin
+    for i:= Istart to Iend do
+    for j:= Jstart to Jend do
+    begin         
+      d:=sqrt( sqr(i-N div 2)+sqr(j-N div 2));
+      matPM[i,j]:= 1-VfuncPM.Rvalue[d];
+    end;  
+  end;
+    
+  with bmPM do
+  begin
+    loadAlphaFromMatrix(matPM,true);
+    dx:=dxPM;
+    dy:=dxPM;
+    imageWidth:=dx0PM;                   
+    imageHeight:=dx0PM;                 // on peut dimensionner le bm comme on veut
+    Zdistance:=10; 
+    TileMode:=false;
+    setBorderLum(stimScreen.BackGroundLum,1);
+  end; 
+
+
+  //bmPM.Fmask:=true;
+  bmPM.Onscreen:=true;
+
+end;  
+
+program 'Progressive Mask/ON'
+if DxPM=0 then
+begin
+  DxPM:=stimScreen.width;
+  DyPM:=stimScreen.height;
+  Dx0PM:=10;
+
+end;
+initDialogBox;
+DBgetReal('Rectangle Dx', dxPM,10,3);
+DBgetReal('Rectangle Dy', dyPM,10,3);
+DBgetReal('IMage',dx0PM,10,3);
+if showDialogBox=mr_ok then initMaskPM;
+
+program 'Progressive Mask/OFF'
+bmPM.free;
