@@ -7655,6 +7655,14 @@ function WinExec(st1,st2:String):integer;
 
 }
 
+
+function CallProcess(stCmd:string;var memo:Tmemo):integer;
+{$H Appelle une commande externe.
+
+  Le texte de sortie est rangé dans memo.
+}
+
+
 function GetStringOption(st:String;n:integer):String;
 {$H Renvoie la nième option de la chaîne st.
 
