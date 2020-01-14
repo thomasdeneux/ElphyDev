@@ -748,7 +748,7 @@ begin
   alpha1:= modifiedAlpha(alpha);
   for i:=1 to Nc do
   begin
-    omega:= Nf0*power(Nf,i-1);
+    omega:= Nf0*power(Nf,i-1);               // 2  4  8  16 ...
     f0:= 1/omega;
     if omega=2 then ll:=1 else ll:=1/tan(pi/omega);
 

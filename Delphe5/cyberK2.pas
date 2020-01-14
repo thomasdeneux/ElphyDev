@@ -12,7 +12,7 @@ unit cyberK2;
  5 aout 2011
   Dans la version cbhwlib 3.7 , rien n'a changé dans la partie utilisée par Elphy.
   Donc CyberK2 ne change pas.
-  Cependant, la DLL doit être recompilée avec la nouvelle version de cbwhlib.h               8
+  Cependant, la DLL doit être recompilée avec la nouvelle version de cbwhlib.h
 }
 
 Interface

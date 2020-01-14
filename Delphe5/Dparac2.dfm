@@ -40,7 +40,7 @@ object paramAcq: TparamAcq
     Top = 0
     Width = 572
     Height = 385
-    ActivePage = TabSChannels
+    ActivePage = TabSgeneral
     Align = alTop
     TabOrder = 2
     object TabSgeneral: TTabSheet
@@ -48,7 +48,7 @@ object paramAcq: TparamAcq
       object GroupBox4: TGroupBox
         Left = 0
         Top = 0
-        Width = 562
+        Width = 564
         Height = 306
         Align = alTop
         TabOrder = 0
@@ -105,9 +105,9 @@ object paramAcq: TparamAcq
           Left = 74
           Top = 18
           Width = 120
-          Height = 21
+          Height = 24
           Style = csDropDownList
-          ItemHeight = 0
+          ItemHeight = 16
           TabOrder = 0
           OnChange = cbModeAcqChange
           Tnum = G_byte
@@ -118,7 +118,7 @@ object paramAcq: TparamAcq
           Left = 171
           Top = 84
           Width = 133
-          Height = 21
+          Height = 24
           TabOrder = 1
           OnEnter = BcheckClick
           OnExit = BcheckClick
@@ -132,7 +132,7 @@ object paramAcq: TparamAcq
           Left = 171
           Top = 140
           Width = 133
-          Height = 21
+          Height = 24
           TabOrder = 2
           OnEnter = BcheckClick
           OnExit = BcheckClick
@@ -146,7 +146,7 @@ object paramAcq: TparamAcq
           Left = 171
           Top = 112
           Width = 133
-          Height = 21
+          Height = 24
           TabOrder = 3
           OnEnter = BcheckClick
           OnExit = BcheckClick
@@ -160,7 +160,7 @@ object paramAcq: TparamAcq
           Left = 171
           Top = 169
           Width = 133
-          Height = 21
+          Height = 24
           TabOrder = 4
           OnEnter = BcheckClick
           OnExit = BcheckClick
@@ -185,7 +185,7 @@ object paramAcq: TparamAcq
           Left = 171
           Top = 55
           Width = 133
-          Height = 21
+          Height = 24
           TabOrder = 6
           OnEnter = BcheckClick
           OnExit = BcheckClick
@@ -199,7 +199,7 @@ object paramAcq: TparamAcq
           Left = 171
           Top = 197
           Width = 133
-          Height = 21
+          Height = 24
           TabOrder = 7
           OnEnter = BcheckClick
           OnExit = BcheckClick
@@ -530,7 +530,7 @@ object paramAcq: TparamAcq
             Left = 85
             Top = 1
             Width = 117
-            Height = 21
+            Height = 24
             TabOrder = 0
             Text = '000'
             Tnum = G_byte
@@ -543,7 +543,7 @@ object paramAcq: TparamAcq
             Left = 85
             Top = 31
             Width = 117
-            Height = 21
+            Height = 24
             TabOrder = 1
             Text = '000'
             Tnum = G_byte
@@ -624,7 +624,7 @@ object paramAcq: TparamAcq
             Left = 49
             Top = 63
             Width = 72
-            Height = 21
+            Height = 24
             TabOrder = 0
             Text = '1'
             Tnum = G_byte
@@ -637,7 +637,7 @@ object paramAcq: TparamAcq
             Left = 244
             Top = 63
             Width = 107
-            Height = 21
+            Height = 24
             TabOrder = 1
             Text = '1123456789'
             Tnum = G_byte
@@ -650,7 +650,7 @@ object paramAcq: TparamAcq
             Left = 49
             Top = 92
             Width = 72
-            Height = 21
+            Height = 24
             TabOrder = 2
             Text = '2'
             Tnum = G_byte
@@ -663,7 +663,7 @@ object paramAcq: TparamAcq
             Left = 244
             Top = 92
             Width = 107
-            Height = 21
+            Height = 24
             TabOrder = 3
             Text = '1123456789'
             Tnum = G_byte
@@ -676,7 +676,7 @@ object paramAcq: TparamAcq
             Left = 58
             Top = 27
             Width = 108
-            Height = 21
+            Height = 24
             TabOrder = 4
             Text = 'mV'
             len = 0
@@ -687,7 +687,7 @@ object paramAcq: TparamAcq
           Left = 203
           Top = 206
           Width = 65
-          Height = 21
+          Height = 24
           TabOrder = 1
           Tnum = G_byte
           Max = 255.000000000000000000
@@ -711,7 +711,7 @@ object paramAcq: TparamAcq
           Left = 203
           Top = 260
           Width = 65
-          Height = 21
+          Height = 24
           TabOrder = 3
           Tnum = G_byte
           Max = 255.000000000000000000
@@ -736,7 +736,7 @@ object paramAcq: TparamAcq
           Left = 203
           Top = 178
           Width = 65
-          Height = 21
+          Height = 24
           TabOrder = 5
           Tnum = G_byte
           Max = 255.000000000000000000
@@ -1426,8 +1426,8 @@ object paramAcq: TparamAcq
         Left = 197
         Top = 20
         Width = 178
-        Height = 21
-        ItemHeight = 0
+        Height = 24
+        ItemHeight = 16
         TabOrder = 1
         OnChange = cbAcqPhotonChange
         Tnum = G_byte
@@ -1459,7 +1459,7 @@ object paramAcq: TparamAcq
           Left = 192
           Top = 30
           Width = 257
-          Height = 21
+          Height = 24
           TabOrder = 0
           Text = 'esIPaddress'
           len = 0
@@ -1469,7 +1469,7 @@ object paramAcq: TparamAcq
           Left = 192
           Top = 60
           Width = 149
-          Height = 21
+          Height = 24
           TabOrder = 1
           Text = 'enPort'
           Tnum = G_byte
@@ -1524,7 +1524,7 @@ object paramAcq: TparamAcq
           Left = 50
           Top = 28
           Width = 64
-          Height = 21
+          Height = 24
           TabOrder = 0
           Text = '512'
           Tnum = G_byte
@@ -1537,7 +1537,7 @@ object paramAcq: TparamAcq
           Left = 244
           Top = 28
           Width = 64
-          Height = 21
+          Height = 24
           TabOrder = 1
           Text = '512'
           Tnum = G_byte

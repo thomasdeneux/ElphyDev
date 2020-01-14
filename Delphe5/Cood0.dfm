@@ -399,7 +399,7 @@ object CooD: TCooD
     TabOrder = 25
     Text = 'editNum1'
     Tnum = G_byte
-    Max = 100.000000000000000000
+    Max = 255.000000000000000000
     UpdateVarOnExit = False
     Decimal = 0
     Dxu = 1.000000000000000000

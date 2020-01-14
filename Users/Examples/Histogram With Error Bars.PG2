@@ -40,7 +40,7 @@ end;
 
 procedure Histo(GraphNum: integer);
 begin
-  x.mode := DM_HISTO0;
+  x.mode := DM_HISTO0C;
   x.color := CL_RED;
   x.cpx := 1;
   x.cpy := 1;
@@ -48,7 +48,7 @@ begin
   AddObject(PageNum,GraphNum,x);
   xcopy.create;
   xcopy.copyObject(x, True);
-  xcopy.mode := DM_HISTO1;
+  xcopy.mode := DM_HISTO1C;
   xcopy.color := CL_BLACK;
   xcopy.cpx := 1;
   xcopy.cpy := 1;
