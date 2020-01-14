@@ -2208,18 +2208,18 @@ var
 
   Ksamp: array[1..200] of integer;
 
-  i,j,k,n:integer;
+  i,j,k,n, ep:integer;
   nb: integer;
   sz: smallint;
 
-  Bep: TseqBlock;
+  Bep: array of TseqBlock;
   chCount: integer;
 
   fdest:TfileStream;
   Voff1: TarrayOfInt64;
   Vsize1,mask: TarrayOfInteger;
   DSfactor: TarrayOfInteger;
-  indices: TarrayOfinteger;
+  indices: array of TarrayOfinteger; // modif janvier 2020
 
   min,max: integer;
   ok: boolean;
@@ -2236,6 +2236,9 @@ begin
     if f.stClasses[k]='B_Ep' then
     begin
       RdataStart[RdataCount+1]:= true;
+
+      setlength(Bep,length(Bep)+1);
+      Bep[High(Bep)]:= TseqBlock.create;
     end;
 
     if f.stClasses[k]='RDATA' then
@@ -2246,6 +2249,9 @@ begin
     end;
   end;
 
+  for ep:=0 to high(Bep) do
+    f.SearchClassAndload(ep+1,Bep[ep]);
+
   // 2: correction: we need offsets and sizes of analog data blocks
   for k:=1 to RdataCount do
   begin
@@ -2255,49 +2261,51 @@ begin
     Sizes[k]:= Sizes[k]- 10 -sz;
   end;
 
-  Bep:=TseqBlock.create;
-  f.SearchClassAndLoad(1, Bep );
-  Bep.BuildMask(10000);
-  ChCount:= Bep.AnalogChCount;
+
+  Bep[0].BuildMask(10000);
+  ChCount:= Bep[0].AnalogChCount;
   for i:=1 to chCount do
-    Ksamp[i]:= Bep.Ksampling[i-1];
+    Ksamp[i]:= Bep[0].Ksampling[i-1];
 
   setLength(DSfactor, ChCount+1);
   fillchar(DSfactor[0],length(DSfactor)*4,0);
 
 
-  if Bep.seq.FormatOption=1 then
+  if Bep[0].seq.FormatOption=1 then
   begin
     for k:= 0 to high(Vchan) do
       DSfactor[Vchan[k]]:= 1;
 
-    setLength(indices,Bep.AnalogChCount+1);    // pour format2: index en bytes dans le bloc
-    n:=0;
-    for i:=1 to chCount do
-    begin
-      Indices[i-1]:= Bep.getOffset2(i-1);
-      if DSfactor[i]>0 then
-        DSfactor[i]:= DW div Ksamp[i];
-    end;
-    Indices[length(indices)-1]:=Sizes[1];
+    setLength(indices,length(Bep),Bep[0].AnalogChCount+1);    // pour format2: index en bytes dans le bloc
 
+    for ep:=0 to high(Bep) do
+    begin
+      n:=0;
+      for i:=1 to chCount do
+      begin
+        Indices[ep,i-1]:= Bep[ep].getOffset2(i-1);
+        if DSfactor[i]>0 then
+          DSfactor[i]:= DW div Ksamp[i];
+      end;
+      Indices[ep,length(indices[0])-1]:=Sizes[ep+1];
+    end;
   end
   else
   begin
-    setlength(mask,Bep.AgSampleCount);
+    setlength(mask,Bep[0].AgSampleCount);
     fillchar(mask[0],length(mask)*sizeof(integer),0);
 
 
     for k:= 0 to high(Vchan) do          // on copie le masque mais on ne garde
     for i:=0 to length(mask)-1 do        // que les canaux qui font partie de Vchan
-      if Bep.chanMask[i]+1 = Vchan[k] then
+      if Bep[0].chanMask[i]+1 = Vchan[k] then
       begin
         mask[i]:= Vchan[k];
         DSfactor[Vchan[k]]:= DW div Ksamp[Vchan[k]];   // Vrai facteur de sous-ech, 0 si inutilisé
       end;
   end;
 
-  if Bep.seq.TagMode=tmItc then { ??? }
+  if Bep[0].seq.TagMode=tmItc then { ??? }
   begin
     // sauver la voie sup en plus
   end;
@@ -2306,11 +2314,13 @@ begin
 
   fdest:= TfileStream.Create(StDest, fmCreate );
   setLength(VstartPos,0);
+  ep:=-1;
 
   for i:= 1 to RdataCount do
   begin
     if RdataStart[i] then
     begin
+      inc(ep);
       j:= i;
       while (j<RdataCount) and not RdataStart[j+1] do inc(j);
       nB:= j-i+1;
@@ -2322,12 +2332,12 @@ begin
         Vsize1[j]:= Sizes[i+j];
       end;
 
-      case Bep.seq.FormatOption of
+      case Bep[0].seq.FormatOption of
         0: if DW<=1
             then copyEpWithoutDownSampling1(f.fileStream,fdest,VSize1,mask,Voff1,VStartPos,g_smallint,mux)
             else copyEpWithDownSampling1(f.fileStream,fdest,VSize1,mask,DSfactor,Voff1,VStartPos,g_smallint,mux);
         1: begin
-              copyEpWithDownSampling2(f.fileStream,fdest,VSize1,DSfactor,indices,Voff1,VStartPos,mux);
+              copyEpWithDownSampling2(f.fileStream,fdest,VSize1,DSfactor,indices[ep],Voff1,VStartPos,mux);
            end;
       end;
     end;
@@ -2335,7 +2345,7 @@ begin
   end;
 
   finally
-  Bep.free;
+  for ep:=0 to high(Bep) do Bep[ep].free;
   fDest.free;
   f.free ;
   end;
