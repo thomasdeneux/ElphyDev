@@ -1904,17 +1904,27 @@ begin
   inc(DefaultStep);
   result:=StopError(DefaultStep);
 end;
-
+{
 procedure TNIboard.SetHasDigInputs;
 var
   i:integer;
-  b:boolean;
 begin
-  b:=false;
+  HasDigInputs:=false;
   if FuseTagStart then
   for i:=0 to 7 do
-    if DigInputs[i] then b:=true;
-  HasDigInputs:=b;
+    if DigInputs[i] then HasDigInputs:=true;
+end;
+}
+procedure TNIboard.SetHasDigInputs;
+var
+  i:integer;
+  w: boolean;
+begin
+  w:=false;
+  if FuseTagStart then
+  for i:=0 to 7 do
+    if DigInputs[i] then w:=true;
+  HasDigInputs:= w;
 end;
 
 procedure TNIboard.DoNothing;
