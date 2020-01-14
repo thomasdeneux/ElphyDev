@@ -34,6 +34,9 @@
     <CudaCompile Include="..\..\cuda80\cuda80\kernel.cu" />
     <CudaCompile Include="..\..\cuda80\cuda80\KernelGeometry.cu" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="INFO.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1A0255F7-1B71-497E-8181-96586EC59E27}</ProjectGuid>
     <RootNamespace>cuda65</RootNamespace>

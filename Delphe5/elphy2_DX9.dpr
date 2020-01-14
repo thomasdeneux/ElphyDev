@@ -76,7 +76,8 @@ uses
   hdf5_lite in 'hdf5_lite.pas',
   IIR1 in 'IIR1.pas',
   ipp17ex in 'ipp17ex.pas',
-  ippvm17 in 'ippvm17.pas';
+  ippvm17 in 'ippvm17.pas',
+  WinProcess1 in 'WinProcess1.pas';
 
 {$R *.RES}
 
