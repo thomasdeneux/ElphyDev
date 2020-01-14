@@ -1671,21 +1671,23 @@ var
   startUp:TstartUpInfo;
   flags:Dword;
   code:Dword;
+  TheEnd: boolean;
 begin
   flags:=0;
   fillchar(startUp,sizeof(startUp),0);
   startUp.cb:=sizeof(startUp);
 
-  result:=-1;
+  result:=-1111;
   if not createProcess(Pchar(st1),Pchar(st2),nil,nil,false,Flags,nil,nil,startUp,processInfo)
     then exit;
 
+  repeat
   WaitForSingleObjectEx(processInfo.hprocess,1000000,false);
 
-  if GetExitCodeProcess(processInfo.hprocess,code)
-    then result:=code
-    else result:=0;
+  TheEnd:= GetExitCodeProcess(processInfo.hprocess,code);
+  result:=code;
 
+  until TheEnd or testEscape;
 end;
 
 function getVolumeSerialNumber(drive:AnsiChar):AnsiString;
