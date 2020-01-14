@@ -41,7 +41,7 @@ void FillGrating1(void *surface, int width, int height, size_t pitch)
 {
     cudaError_t error = cudaSuccess;
 
-    dim3 Db = dim3(16, 16);                   // block dimensions are fixed to be 256 threads
+    dim3 Db = dim3(MaxThreadsX, MaxThreadsY);                   // block dimensions are fixed to be 256 threads
     dim3 Dg = dim3((width+Db.x-1)/Db.x, (height+Db.y-1)/Db.y);
 
     Kernel_FillGrating<<<Dg,Db>>>((unsigned char *)surface, width, height, pitch );
@@ -121,7 +121,7 @@ void CartToPolK1(void *surface1,void *surface2, int width, int height, size_t pi
 {
     cudaError_t error = cudaSuccess;
 
-    dim3 Db = dim3(32, 32);                  
+    dim3 Db = dim3(MaxThreadsX, MaxThreadsY);                  
     dim3 Dg = dim3((width+Db.x-1)/Db.x, (height+Db.y-1)/Db.y);
 
     Kernel_CartToPol1<<<Dg,Db>>>((unsigned char *)surface1,(unsigned char *)surface2, width, height, pitch, BK );
@@ -132,7 +132,7 @@ void CartToPolK1(void *surface1,void *surface2, int width, int height, size_t pi
 }
 
 __global__ void Kernel_WaveTransformK1(unsigned char *surface1, unsigned char *surface2, int width, int height, size_t pitch,
-                                       float Amp, float a, float b, float Rt, int x0, int y0, int yref, int Mask )
+                                       float Amp, float a, float b, float Rt, int x0, int y0, int yref, int UseSrc,  int Mask )
 {
     int x = blockIdx.x*blockDim.x + threadIdx.x;
     int y = blockIdx.y*blockDim.y + threadIdx.y;
@@ -142,7 +142,7 @@ __global__ void Kernel_WaveTransformK1(unsigned char *surface1, unsigned char *s
         
     if (x >= width || y >= height) return;
 
-    pixel1 = (unsigned char *)(surface1 + y*pitch) + 4*x;
+    if (surface1) pixel1 = (unsigned char *)(surface1 + y*pitch) + 4*x;
     pixel2 = (unsigned char *)(surface2 + y*pitch) + 4*x;
     
     float R =  sqrtf( powf(x-x0,2) + powf(y-y0,2) ) ;
@@ -152,10 +152,10 @@ __global__ void Kernel_WaveTransformK1(unsigned char *surface1, unsigned char *s
 
     for (int i=0;i<3;i++)
     {
-      int w;
-      if (yref>=0) w = yref + ZR;
-      else
-      w = pixel1[i] +ZR;
+      int w ;
+      w = ZR + yref ;
+      
+	  if (surface1) w = w +pixel1[i];
 
       if (w<0) w=0;
       else
@@ -163,17 +163,17 @@ __global__ void Kernel_WaveTransformK1(unsigned char *surface1, unsigned char *s
 
       if (Mask & (1<<i))  pixel2[i] = w;  
     }
-    if (yref<0)  pixel2[3] = pixel1[3]; // on copie alpha de la source
+    if (surface1)  pixel2[3] = pixel1[3]; else pixel2[3] =255; // on copie alpha de la source
 }
 
 void WaveTransformK1( void *surface1,void *surface2, int width, int height, size_t pitch, 
-                      float Amp, float a, float b, float Rt, int x0, int y0, int yref, int RgbMask )
+                      float Amp, float a, float b, float Rt, int x0, int y0, int yref, int UseSrc, int RgbMask )
 {
-    dim3 Db = dim3(32, 32);                  
+    dim3 Db = dim3(MaxThreadsX, MaxThreadsY);                  
     dim3 Dg = dim3((width+Db.x-1)/Db.x, (height+Db.y-1)/Db.y);
 
     Kernel_WaveTransformK1<<<Dg,Db>>>((unsigned char *)surface1,(unsigned char *)surface2, width, height, pitch, 
-                                       Amp,a,b,Rt,x0,y0,yref, RgbMask );
+                                       Amp,a,b,Rt,x0,y0,yref, UseSrc, RgbMask );
 
 }
 
@@ -216,7 +216,7 @@ __global__ void Kernel_WaveTransformK2(unsigned char *surface1, unsigned char *s
 void WaveTransformK2( void *surface1,void *surface2, int width, int height, size_t pitch, 
                       float Amp, float a, float b,  int x0, int y0, int yref, int RgbMask )
 {
-    dim3 Db = dim3(32, 32);                  
+    dim3 Db = dim3(MaxThreadsX, MaxThreadsY);                  
     dim3 Dg = dim3((width+Db.x-1)/Db.x, (height+Db.y-1)/Db.y);
 
     Kernel_WaveTransformK2<<<Dg,Db>>>((unsigned char *)surface1,(unsigned char *)surface2, width, height, pitch, 
@@ -275,7 +275,7 @@ __global__ void Kernel_CartToPol2( unsigned char *surface2, int width, int heigh
     res= cudaBindTextureToArray( tex, cuArray, channelDesc);
     if  ( res!=0 && error==0) error=2;
     
-    dim3 Db = dim3(16, 16);                   // block dimensions are fixed to be 256 threads
+    dim3 Db = dim3(MaxThreadsX, MaxThreadsY);                   // block dimensions are fixed to be 256 threads
     dim3 Dg = dim3((width+Db.x-1)/Db.x, (height+Db.y-1)/Db.y);
 
     Kernel_CartToPol2<<<Dg,Db>>>( (unsigned char *)surface2, width, height, pitch );
@@ -337,7 +337,7 @@ int InterpK2(cudaArray *cuArray ,void *surface2, int width, int height, size_t p
     res= cudaBindTextureToArray( tex, cuArray, channelDesc);
     if  ( res!=0 && error==0) error=2;
     
-    dim3 Db = dim3(16, 16);                   // block dimensions are fixed to be 256 threads
+    dim3 Db = dim3(MaxThreadsX, MaxThreadsY);                   // block dimensions are fixed to be 256 threads
     dim3 Dg = dim3((width+Db.x-1)/Db.x, (height+Db.y-1)/Db.y);
 
     Kernel_Interp<<<Dg,Db>>>((unsigned char*) surface2,width, height,pitch, matX, matY);

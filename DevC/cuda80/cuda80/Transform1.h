@@ -48,7 +48,7 @@ public:
 
   int Done();
   int TransformCartToPol1( int BK);
-  int WaveTransform1( float Amp, float a, float b, float Rt, int x0, int y0, int yref, int RgbMask, int btheta);
+  int WaveTransform1( float Amp, float a, float b, float Rt, int x0, int y0, int yref, int UseSrc, int RgbMask, int btheta);
 
   int BltSurface(  float x0, float y0,float theta, float ax, float ay,
                    int AlphaMode, int LumMode,  int *Alpha1, int *Lum1,

@@ -25,7 +25,7 @@ extern "C" {
   TRANSFORM1_API int TransformCartToPol1(Ttransform* ptf, int BK);
 
   TRANSFORM1_API int WaveTransform1(Ttransform* ptf, float Amp, float a, float b, float tau, int x0, int y0, 
-                               int yref, int RgbMask, int btheta);
+                               int yref, int UseSrc, int RgbMask, int btheta);
 
   TRANSFORM1_API void InitSrcRect( Ttransform* ptf, int x, int y, int w, int h);
   TRANSFORM1_API void InitDestRect( Ttransform* ptf, int x, int y, int w, int h);
@@ -135,55 +135,61 @@ int TransformCartToPol1(Ttransform* ptf, int BK)
 }
 
 void WaveTransformK1( void *surface1,void *surface2, int width, int height, size_t pitch, 
-                      float Amp, float a, float b, float Rt, int x0, int y0, int yref, int RgbMask );
+                      float Amp, float a, float b, float Rt, int x0, int y0, int yref, int UseSrc, int RgbMask );
 void WaveTransformK2( void *surface1,void *surface2, int width, int height, size_t pitch, 
                       float Amp, float a, float b, int x0, int y0, int yref, int RgbMask );
 
-int Ttransform :: WaveTransform1( float Amp, float a, float b, float Rt, int x0, int y0, int yref, int RgbMask, int btheta)
+int Ttransform :: WaveTransform1( float Amp, float a, float b, float Rt, int x0, int y0, int yref, int UseSrc, int RgbMask, int btheta)
 {               
         cudaArray *cuArraySrc = NULL;
         cudaArray *cuArrayDest= NULL;
 
         int res = cudaGraphicsSubResourceGetMappedArray(&cuArrayDest, DestResource, 0, 0);
         if (res!=0) return res;
-        if (SrcResource != NULL) res = cudaGraphicsSubResourceGetMappedArray(&cuArraySrc, SrcResource, 0, 0);
-        else cuArraySrc = cuArrayDest;
-        
-        res = cudaMemcpy2DFromArray(
-            LinearMem1, PitchMem1,
-            cuArraySrc, woffset1*4*sizeof(char), hoffset1,                      
-            width1*4*sizeof(char), height1, 
-            cudaMemcpyDeviceToDevice); 
-        if (res!=0) return res;
-       
-        res = cudaMemcpy2DFromArray(
+		res = cudaMemcpy2DFromArray(
             LinearMem2, PitchMem2,
-            cuArraySrc, woffset1*4*sizeof(char), hoffset1,                      
-            width1*4*sizeof(char), height1, 
+            cuArrayDest, woffset2*4*sizeof(char), hoffset2,                      
+            width2*4*sizeof(char), height2, 
             cudaMemcpyDeviceToDevice); 
         if (res!=0) return res;
        
+        if (SrcResource != NULL) {
+			res = cudaGraphicsSubResourceGetMappedArray(&cuArraySrc, SrcResource, 0, 0);
+        
+			res = cudaMemcpy2DFromArray(
+				LinearMem1, PitchMem1,
+				cuArraySrc, woffset1*4*sizeof(char), hoffset1,                      
+				width1*4*sizeof(char), height1, 
+				cudaMemcpyDeviceToDevice); 
+			if (res!=0) return res;
+		} 
+		else {
+			LinearMem1 = NULL;
+			PitchMem1 = PitchMem2;
+		}
+
+        
 
         if (btheta) WaveTransformK2( LinearMem1, LinearMem2, width1, height1, PitchMem1, 
                          Amp,a,b,x0-woffset1,y0-hoffset1, yref, RgbMask );     
         else
-        WaveTransformK1( LinearMem1, LinearMem2, width1, height1, PitchMem1, 
-                         Amp,a,b,Rt,x0-woffset1,y0-hoffset1, yref, RgbMask );     
+        WaveTransformK1( LinearMem1, LinearMem2, width2, height2, PitchMem2, 
+                         Amp,a,b,Rt,x0-woffset2,y0-hoffset2, yref, UseSrc, RgbMask );     
         
         res = cudaMemcpy2DToArray(
             cuArrayDest, // dst array
-            woffset1*4*sizeof(char), hoffset1,                      
+            woffset2*4*sizeof(char), hoffset2,                      
             LinearMem2, PitchMem2,       // src
-            width1*4*sizeof(char), height1, // extent
+            width2*4*sizeof(char), height2, // extent
             cudaMemcpyDeviceToDevice); // kind
 
         return res;
 }
 
   int WaveTransform1(Ttransform* ptf, float Amp, float a, float b, float tau, int x0, int y0, 
-                               int yref, int RgbMask, int btheta)
+                               int yref, int UseSrc, int RgbMask, int btheta)
   {
-    return  ptf->WaveTransform1( Amp, a, b, tau, x0, y0, yref, RgbMask, btheta);
+    return  ptf->WaveTransform1( Amp, a, b, tau, x0, y0, yref, UseSrc, RgbMask, btheta);
   }
 
 
