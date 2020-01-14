@@ -50,6 +50,8 @@ type
                    FsingleTransform: boolean;  // positionné par execute uniquement
                                                // remis à false immédiatement
 
+                   StimScreenAsSource: boolean;
+
                    constructor create;override;
                    destructor destroy;override;
                    class function stmClassName: AnsiString;override;
@@ -179,6 +181,7 @@ var
 
 
 procedure proTVStransform_setSource(var puOb,pu:typeUO);pascal;
+procedure proTVStransform_setStimScreenAsSource(var pu:typeUO);pascal;
 
 procedure proTVStransform_setDestination(var puOb,pu:typeUO);pascal;
 procedure proTVStransform_setDestination_1(var puOb:typeUO; DisableDisplay:boolean; var pu:typeUO);pascal;
@@ -277,50 +280,8 @@ begin
   initObvis;
 
   updateTraj1(0);
-  if obSource<>nil then
-  begin
 
-    wSrc:=    obSource.Width;
-    hSrc:=    obSource.Height;
-    dxSrc:=   obSource.dxBM;
-    dySrc:=   obSource.dyBM;
-
-
-    woffset1:=  round(wSrc/2+ (x1-dx1/2)* wSrc/DxSrc );
-    hoffset1:=  round(hSrc/2+ (y1-dy1/2)* hSrc/DySrc );
-
-    width1 :=   degToPix(dx1);
-    height1 :=  degToPix(dy1);
-
-    if woffset1<0 then woffset1:=0;
-    if hoffset1<0 then hoffset1:=0;
-    if woffset1 + width1>= wSrc then width1:=  wSrc- woffset1;
-    if hoffset1 + height1>=hSrc then height1:= hSrc- hoffset1;
-
-
-  end
-  else
-  begin
-    wSrc:=    SSWidth;
-    hSrc:=    SSHeight;
-    dxSrc:=   ScreenWidth;
-    dySrc:=   ScreenHeight;
-
-    woffset1:= degToX(x1-dx1/2);
-    hoffset1:= degToY(y1+dy1/2);
-
-    width1 :=   degToPix(dx1);
-    height1 :=  degToPix(dy1);
-
-    if woffset1<0 then woffset1:=0;
-    if hoffset1<0 then hoffset1:=0;
-    if woffset1 + width1>=SSWidth then width1:= SSwidth - woffset1;
-    if hoffset1 + height1>=SSheight then height1:= SSheight - hoffset1;
-
-
-  end;
-
-
+  // Destination
   if obvis<>nil then
   begin
     wDest:=    TVSbitmap(obvis).Width;
@@ -331,8 +292,8 @@ begin
     woffset2:=  round(wDest/2+ (x2-dx2/2)* wDest/DxDest );
     hoffset2:=  round(hDest/2+ (y2-dy2/2)* hDest/DyDest );
 
-    width2 :=   degToPix(dx2);
-    height2 :=  degToPix(dy2);
+    width2 :=   wdest; //degToPix(dx2);
+    height2 :=  hdest; //degToPix(dy2);
 
     if woffset2<0 then woffset2:=0;
     if hoffset2<0 then hoffset2:=0;
@@ -358,6 +319,45 @@ begin
     if hoffset2 + height2>=SSheight then height2:= SSheight - hoffset2;
   end;
 
+
+  if obSource<>nil then
+  begin
+    wSrc:=    obSource.Width;
+    hSrc:=    obSource.Height;
+    dxSrc:=   obSource.dxBM;
+    dySrc:=   obSource.dyBM;
+
+    woffset1:=  round(wSrc/2+ (x1-dx1/2)* wSrc/DxSrc );
+    hoffset1:=  round(hSrc/2+ (y1-dy1/2)* hSrc/DySrc );
+
+    width1 :=   wsrc; //degToPix(dx1);
+    height1 :=  hsrc; //degToPix(dy1);
+
+    if woffset1<0 then woffset1:=0;
+    if hoffset1<0 then hoffset1:=0;
+    if woffset1 + width1>= wSrc then width1:=  wSrc- woffset1;
+    if hoffset1 + height1>=hSrc then height1:= hSrc- hoffset1;
+
+  end
+  else
+  //if StimScreenAsSource then  //
+  begin
+    wSrc:=    wDest;
+    hSrc:=    hDest;
+    dxSrc:=   dxDest;
+    dySrc:=   dyDest;
+
+    woffset1:= wOffset2;
+    hoffset1:= hOffset2;
+
+    width1 :=   width2;
+    height1 :=  height2;
+  end;
+
+
+
+
+
   xcSrc:= wSrc/2 -wOffset1;
   ycSrc:= hSrc/2 - hOffset1;
   xcDest:= wDest/2 -wOffset2;
@@ -371,13 +371,13 @@ begin
     DestResource:= DXscreen.RenderResource;
   end
   else
-  if obvis<>nil then 
+  if obvis<>nil then
   begin
     TVSbitmap(obvis).registerCuda;
     DestResource:= TVSbitmap(obvis).BMCudaResource;
   end;
 
-  if (obSource=nil) and UseRenderSurface then
+  if StimScreenAsSource and UseRenderSurface then
   begin
     DXscreen.registerCuda;
     SrcResource:= DXscreen.RenderResource;
@@ -387,7 +387,8 @@ begin
   begin
     obSource.registerCuda;
     SrcResource:= obSource.BMCudaResource;
-  end;
+  end
+  else SrcResource:=nil;
 
   tf:= InitTransform(SrcResource, DestResource);
   cuda1.initSrcRect(tf,woffset1,hoffset1,width1,height1);
@@ -402,14 +403,14 @@ end;
 procedure TVStransform.doneMvt;
 begin
   cuda1.SetStream0(tf,0);
-  
+
   DoneTransform(tf);
   mvtON:=false;
 
 
 //  if (obvis<>nil) then TVSbitmap(obvis).unregisterCuda else DXscreen.UnregisterCuda;
 //  if (obSource<>nil) then obSource.unregisterCuda else DXscreen.UnregisterCuda;
-  
+
 end;
 
 
@@ -577,7 +578,7 @@ end;
 
 function TVStransform.UseRenderSurface: boolean;
 begin
-  result:= (obvis=nil) or (obsource=nil);
+  result:= (obvis=nil) or StimScreenAsSource;
 end;
 
 
@@ -631,13 +632,13 @@ end;
 procedure TVSwave.setObvis(uo: typeUO);
 begin
   inherited;
-  obsource:=TVSbitmap(obvis);
+  //obsource:=TVSbitmap(obvis);
 end;
 
 procedure TVSwave.setSource(uo: typeUO);
 begin
   inherited;
-  obvis:= obSource;
+  //obvis:= obSource;
 end;
 
 procedure TVSwave.Init(xa,ya,dxa,dya, x01,y01,Amp1,f01,v01,tau1:float);
@@ -665,7 +666,7 @@ begin
     else a:= 2*pi*f0/v0;
   b:= 2*pi*f0*timeS*Xframe;
 
-  res:= WaveTransform1(tf,AmpI,a,b, tauI, x0I,y0I,yrefI,RgbMask,Wavemode=1);
+  res:= WaveTransform1(tf,AmpI,a,b, tauI, x0I,y0I,yrefI,true, RgbMask,Wavemode=1);
   if res<>0 then WarningList.add('DoTransform1= '+Istr(res) );
   //statuslineTxt(Istr(timeS)+'   '+Estr(b,3));
 end;
@@ -676,9 +677,9 @@ begin
 
   AmpI:= Amp/syspal.GammaGain;
 
-  if assigned(obSource)
-    then yrefI:=-1
-    else yrefI:= syspal.LumIndex(yref);
+  if yRef>=0
+    then yrefI:= syspal.LumIndex(yref)
+    else yrefI:= -syspal.LumIndex(yref);
 
   if obvis=nil then
   begin
@@ -701,7 +702,6 @@ begin
   result:= inherited AddTraj(st,vec);
 
 end;
-
 
 
 
@@ -954,6 +954,13 @@ begin
   verifierObjet(puOb);
   TVStransform(pu).setSource(puOb);
 end;
+
+procedure proTVStransform_setStimScreenAsSource(var pu:typeUO);pascal;
+begin
+  verifierObjet(pu);
+  TVStransform(pu).StimScreenAsSource:=true;
+end;
+
 
 procedure proTVStransform_setDestination(var puOb,pu:typeUO);
 begin

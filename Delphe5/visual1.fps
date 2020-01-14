@@ -3619,6 +3619,10 @@ procedure TVStransform.setSource(var ob: TVSbitmap);
  Certaines transformations ignorent cet objet source
 }
 
+procedure TVStransform.setStimScreenAsSource;
+{$H Définit l'écran de stimulation comme source.
+}
+
 procedure TVStransform.setDestination(var ob: TVSbitmap);
 procedure TVStransform.setDestination(var ob: TVSbitmap; DisableDisplay: boolean);
 {$H  Permet de fixer l'objet Destination de la transformation.

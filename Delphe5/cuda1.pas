@@ -39,7 +39,7 @@ var
   DoneTransform: function( tf:TransformClass):integer; cdecl;
 
   TransformCartToPol1: function( tf:TransformClass; BK:integer): integer; cdecl;
-  WaveTransform1: function(tf: TransformClass; Amp, a, b, tau:single; x0,y0, yref, RgbMask: integer;btheta:longBool): integer;cdecl;
+  WaveTransform1: function(tf: TransformClass; Amp, a, b, tau:single; x0,y0, yref:integer; UseSrc: longBool; RgbMask: integer;btheta:longBool): integer;cdecl;
 
   DNpstw: function(Vsource:Psingle; Npoint:integer; Vt:Plongint; Ncode:integer; Vcode: Plongint; Ncycle:integer; Pstw:Psingle ; Npstw:integer):integer;cdecl;
   GetDeviceCount: function(var n:integer):integer;cdecl;
