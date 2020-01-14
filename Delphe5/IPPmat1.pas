@@ -262,34 +262,38 @@ begin
 
   if Fcomp then Alg:= ippiROIfull else Alg:= ippiROIvalid;
 
+  res:=ippiConvGetBufferSize( src1.sizeIPP, src2.sizeIPP,_ipp32f , 1, 0,@bufferSize);
+  if res<>0 then sortieErreur('Mconv error '+Istr(res));
+  buffer:= ippsMalloc( bufferSize);
+  TRY
   if Fcomp then
   begin
     Mbuf:=TmatBuffer.create(g_single,0,src1.Icount+src2.Icount-2,0,src1.Jcount+src2.Jcount-2) ;
 
     try
-    ippiConvGetBufferSize( src1.sizeIPP, src2.sizeIPP,_ipp32f , 1, 0,@bufferSize);
-    buffer:= ippsMalloc( bufferSize);
-    res:=ippiConv_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
+      res:=ippiConv_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
                                src2.tb,src2.stepIPP,src2.sizeIPP,
                                Mbuf.tb,Mbuf.stepIPP,
                                Alg , buffer);
 
-    di:=src2.Icount div 2;
-    dj:=src2.Jcount div 2;
+      di:=src2.Icount div 2;
+      dj:=src2.Jcount div 2;
 
-    ippicopy_32f_C1R(Mbuf.getP(di,dj),Mbuf.stepIPP,dest.tb,dest.stepIPP,dest.sizeIPP);
+      ippicopy_32f_C1R(Mbuf.getP(di,dj),Mbuf.stepIPP,dest.tb,dest.stepIPP,dest.sizeIPP);
 
     finally
-    Mbuf.Free;
-    ippsFree(buffer);
+      Mbuf.Free;
     end;
   end
   else res:=ippiConv_32f_C1R( src1.tb,src1.stepIPP,src1.sizeIPP,
                                    src2.tb,src2.stepIPP,src2.sizeIPP,
                                    dest.cell(dest.Istart+src2.Icount div 2,dest.Jstart+src2.Jcount div 2),dest.stepIPP,
                                    Alg, buffer);
+  FINALLY
 
+  ippsFree(buffer);
   IPPIend;
+  END;
 end;
 
 procedure proMconv(var src1,src2,dest:Tmatrix);

@@ -93,7 +93,7 @@ var
 //
 //  Notes:      there is no need to release the returned structure
 *)
-  ippiGetLibVersion: function:PIppLibraryVersion;
+  ippiGetLibVersion: function:PIppLibraryVersion;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -114,45 +114,45 @@ var
 //  Notes:      free the allocated memory using the function ippiFree only
 *)
 
-  ippiMalloc_8u_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;
-  ippiMalloc_16u_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;
-  ippiMalloc_16s_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;
-  ippiMalloc_32s_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;
-  ippiMalloc_32f_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;
-  ippiMalloc_32sc_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;
-  ippiMalloc_32fc_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;
+  ippiMalloc_8u_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;stdcall;
+  ippiMalloc_16u_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;stdcall;
+  ippiMalloc_16s_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;stdcall;
+  ippiMalloc_32s_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;stdcall;
+  ippiMalloc_32f_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;stdcall;
+  ippiMalloc_32sc_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;stdcall;
+  ippiMalloc_32fc_C1: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;stdcall;
 
-  ippiMalloc_8u_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;
-  ippiMalloc_16u_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;
-  ippiMalloc_16s_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;
-  ippiMalloc_32s_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;
-  ippiMalloc_32f_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;
-  ippiMalloc_32sc_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;
-  ippiMalloc_32fc_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;
+  ippiMalloc_8u_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;stdcall;
+  ippiMalloc_16u_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;stdcall;
+  ippiMalloc_16s_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;stdcall;
+  ippiMalloc_32s_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;stdcall;
+  ippiMalloc_32f_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;stdcall;
+  ippiMalloc_32sc_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;stdcall;
+  ippiMalloc_32fc_C2: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;stdcall;
 
-  ippiMalloc_8u_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;
-  ippiMalloc_16u_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;
-  ippiMalloc_16s_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;
-  ippiMalloc_32s_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;
-  ippiMalloc_32f_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;
-  ippiMalloc_32sc_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;
-  ippiMalloc_32fc_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;
+  ippiMalloc_8u_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;stdcall;
+  ippiMalloc_16u_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;stdcall;
+  ippiMalloc_16s_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;stdcall;
+  ippiMalloc_32s_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;stdcall;
+  ippiMalloc_32f_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;stdcall;
+  ippiMalloc_32sc_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;stdcall;
+  ippiMalloc_32fc_C3: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;stdcall;
 
-  ippiMalloc_8u_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;
-  ippiMalloc_16u_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;
-  ippiMalloc_16s_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;
-  ippiMalloc_32s_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;
-  ippiMalloc_32f_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;
-  ippiMalloc_32sc_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;
-  ippiMalloc_32fc_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;
+  ippiMalloc_8u_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;stdcall;
+  ippiMalloc_16u_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;stdcall;
+  ippiMalloc_16s_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;stdcall;
+  ippiMalloc_32s_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;stdcall;
+  ippiMalloc_32f_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;stdcall;
+  ippiMalloc_32sc_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;stdcall;
+  ippiMalloc_32fc_C4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;stdcall;
 
-  ippiMalloc_8u_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;
-  ippiMalloc_16u_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;
-  ippiMalloc_16s_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;
-  ippiMalloc_32s_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;
-  ippiMalloc_32f_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;
-  ippiMalloc_32sc_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;
-  ippiMalloc_32fc_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;
+  ippiMalloc_8u_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp8u;stdcall;
+  ippiMalloc_16u_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16u;stdcall;
+  ippiMalloc_16s_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp16s;stdcall;
+  ippiMalloc_32s_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32s;stdcall;
+  ippiMalloc_32f_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32f;stdcall;
+  ippiMalloc_32sc_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32sc;stdcall;
+  ippiMalloc_32fc_AC4: function(widthPixels:longint;heightPixels:longint;pStepBytes:Plongint):PIpp32fc;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -163,7 +163,7 @@ var
 //
 //  Notes:      use this function to free memory allocated by ippiMalloc
 *)
-  ippiFree: procedure(ptr:pointer);
+  ippiFree: procedure(ptr:pointer);stdcall;
 
 
 (* ///////////////////////////////////////////////////////////////////////////////////////
@@ -197,42 +197,42 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiAdd_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiAdd_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAddC_8u_C1IRSfs,  ippiAddC_8u_C3IRSfs,  ippiAddC_8u_C4IRSfs,   ippiAddC_8u_AC4IRSfs,
@@ -261,42 +261,42 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiAddC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_8u_C4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_8u_AC4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_C4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_AC4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_C4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_AC4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_C4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_AC4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_C4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_AC4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_C4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_AC4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_C4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_AC4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_C4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_AC4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_C4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_AC4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiAddC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_8u_C4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_8u_AC4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_C4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_AC4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_C4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_AC4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_C4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_AC4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_C4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_AC4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_C4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_AC4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_C4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_AC4IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_C4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_AC4IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_C4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_AC4IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAddC_8u_C1RSfs,  ippiAddC_8u_C3RSfs,  ippiAddC_8u_C4RSfs   ippiAddC_8u_AC4RSfs,
@@ -327,42 +327,42 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiAddC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAddC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSubC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMulC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiAddC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAddC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSubC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMulC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAdd_8u_C1IRSfs,  ippiAdd_8u_C3IRSfs,  ippiAdd_8u_C4IRSfs,  ippiAdd_8u_AC4IRSfs,
@@ -392,43 +392,43 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiAdd_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiAdd_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiAdd_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiAdd_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSub_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiMul_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiAdd_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiAdd_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSub_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiMul_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAddC_32f_C1R, ippiAddC_32f_C3R, ippiAddC_32f_C4R,  ippiAddC_32f_AC4R,
@@ -452,18 +452,18 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiAddC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAddC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAddC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAddC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAddC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAddC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAddC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAddC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ///////////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAddC_32f_C1IR, ippiAddC_32f_C3IR, ippiAddC_32f_C4IR, ippiAddC_32f_AC4IR,
@@ -485,18 +485,18 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiAddC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAddC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAddC_32f_C4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAddC_32f_AC4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_C4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSubC_32f_AC4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_C4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulC_32f_AC4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAddC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAddC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAddC_32f_C4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAddC_32f_AC4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_C4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSubC_32f_AC4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_C4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulC_32f_AC4IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAdd_32f_C1IR, ippiAdd_32f_C3IR, ippiAdd_32f_C4IR, ippiAdd_32f_AC4IR,
@@ -519,18 +519,18 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiAdd_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAdd_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAdd_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAdd_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAdd_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAdd_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAdd_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAdd_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name: ippiAdd_32f_C1R, ippiAdd_32f_C3R, ippiAdd_32f_C4R, ippiAdd_32f_AC4R,
@@ -554,18 +554,18 @@ var
 //    roiSize                Size of the ROI
 *)
 
-  ippiAdd_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAdd_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAdd_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAdd_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSub_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMul_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAdd_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAdd_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAdd_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAdd_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSub_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMul_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDiv_32f_C1R, ippiDiv_32f_C3R ippiDiv_32f_C4R ippiDiv_32f_AC4R
@@ -594,10 +594,10 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiDiv_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDiv_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDiv_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDiv_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiDiv_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDiv_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDiv_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDiv_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDiv_16s_C1RSfs, ippiDiv_8u_C1RSfs, ippiDiv_16u_C1RSfs,
@@ -631,18 +631,18 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiDiv_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
+  ippiDiv_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDivC_32f_C1R, ippiDivC_32f_C3R
@@ -665,10 +665,10 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiDivC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDivC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDivC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var val:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDivC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var val:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiDivC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDivC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDivC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var val:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDivC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var val:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDivC_16s_C1RSfs, ippiDivC_8u_C1RSfs, ippiDivC_16u_C1RSfs,
@@ -694,18 +694,18 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiDivC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiDivC_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDiv_32f_C1IR, ippiDiv_32f_C3IR ippiDiv_32f_C4IR ippiDiv_32f_AC4IR
@@ -733,10 +733,10 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiDiv_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDiv_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDiv_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDiv_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiDiv_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDiv_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDiv_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDiv_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDiv_16s_C1IRSfs, ippiDiv_8u_C1IRSfs, ippiDiv_16u_C1IRSfs,
@@ -768,18 +768,18 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiDiv_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDiv_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDiv_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
+  ippiDiv_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDivC_32f_C1IR, ippiDivC_32f_C3IR,
@@ -802,10 +802,10 @@ var
 //    roiSize                  Size of the ROI
 *)
 
-  ippiDivC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDivC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDivC_32f_C4IR: function(var val:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDivC_32f_AC4IR: function(var val:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiDivC_32f_C1IR: function(value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDivC_32f_C3IR: function(var value:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDivC_32f_C4IR: function(var val:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDivC_32f_AC4IR: function(var val:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDivC_16s_C1IRSfs, ippiDivC_8u_C1IRSfs, ippiDivC_16u_C1IRSfs,
@@ -831,18 +831,18 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiDivC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16s_C4IRSfs: function(var val:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDivC_16s_AC4IRSfs: function(var val:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDivC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_8u_C4IRSfs: function(var val:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDivC_8u_AC4IRSfs: function(var val:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDivC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiDivC_16u_C4IRSfs: function(var val:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
-  ippiDivC_16u_AC4IRSfs: function(var val:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;
+  ippiDivC_16s_C1IRSfs: function(value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16s_C3IRSfs: function(var value:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16s_C4IRSfs: function(var val:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16s_AC4IRSfs: function(var val:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_C1IRSfs: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_C3IRSfs: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_C4IRSfs: function(var val:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_8u_AC4IRSfs: function(var val:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_C1IRSfs: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_C3IRSfs: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_C4IRSfs: function(var val:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDivC_16u_AC4IRSfs: function(var val:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScaleFactor:longint):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////
@@ -881,22 +881,22 @@ var
 //   srcDstStep step through the source/destination image (for in-place function)
 //   roiSize    size of the ROI
 *)
-  ippiAbs_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAbs_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAbs_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAbs_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////
@@ -953,38 +953,38 @@ var
 //   scaleFactor scale factor
 *)
 
-  ippiSqr_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_8u_AC4IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_8u_C4IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_AC4IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16u_C4IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_AC4IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_16s_C4IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqr_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqr_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiSqr_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_8u_C4RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_C4RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_C4RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_8u_AC4IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_8u_C4IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_AC4IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16u_C4IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_AC4IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_16s_C4IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqr_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqr_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////
@@ -1033,32 +1033,32 @@ var
 //   roiSize    size of the ROI
 //   scaleFactor scale factor
 *)
-  ippiSqrt_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqrt_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqrt_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqrt_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_8u_AC4IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16u_AC4IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_16s_AC4IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiSqrt_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqrt_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSqrt_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiSqrt_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_8u_AC4RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16u_AC4RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16s_AC4RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqrt_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqrt_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqrt_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_8u_AC4IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16u_AC4IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_16s_AC4IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiSqrt_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqrt_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSqrt_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiSqrt_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiSqrt_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 
@@ -1090,27 +1090,27 @@ var
 //    ippStsNoErr         otherwise
 *)
 
-  ippiLn_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLn_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLn_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLn_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiLn_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLn_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLn_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLn_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiLn_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiLn_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiLn_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiLn_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiLn_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiLn_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiLn_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiLn_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiLn_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;
-  ippiLn_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;
+  ippiLn_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;stdcall;
+  ippiLn_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;stdcall;
 
 
-  ippiLn_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiLn_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiLn_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiLn_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiLn_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiLn_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiLn_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiLn_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiLn_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;
-  ippiLn_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;
+  ippiLn_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;stdcall;
+  ippiLn_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;ScalFact:longint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -1139,27 +1139,27 @@ var
 *)
 
 
-  ippiExp_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiExp_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiExp_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiExp_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiExp_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiExp_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiExp_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiExp_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiExp_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiExp_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiExp_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiExp_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiExp_16s_C1IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiExp_16s_C3IRSfs: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiExp_16s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiExp_16s_C3RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiExp_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;
-  ippiExp_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;
+  ippiExp_16u_C1IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;stdcall;
+  ippiExp_16u_C3IRSfs: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;stdcall;
 
 
-  ippiExp_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiExp_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiExp_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
-  ippiExp_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;
+  ippiExp_8u_C1IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiExp_8u_C3IRSfs: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiExp_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
+  ippiExp_8u_C3RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiExp_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;
-  ippiExp_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;
+  ippiExp_16u_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;stdcall;
+  ippiExp_16u_C3RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;sFact:longint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////////////////////
 //                      Multiplication with Scaling
@@ -1191,39 +1191,39 @@ var
 //   ippStsNoErr        otherwise
 *)
 
-  ippiMulScale_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMulScale_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMulScale_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulScale_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulCScale_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMulScale_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulScale_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulCScale_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //              Dot product of two images
@@ -1246,33 +1246,33 @@ var
 //    hint        Option to select the algorithmic implementation of the function
 //  Notes:
 *)
-  ippiDotProd_8u64f_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;
-  ippiDotProd_16u64f_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;
-  ippiDotProd_16s64f_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;
-  ippiDotProd_32u64f_C1R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;
-  ippiDotProd_32s64f_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;
-  ippiDotProd_32f64f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiDotProd_8u64f_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;stdcall;
+  ippiDotProd_16u64f_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;stdcall;
+  ippiDotProd_16s64f_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;stdcall;
+  ippiDotProd_32u64f_C1R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;stdcall;
+  ippiDotProd_32s64f_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f):IppStatus;stdcall;
+  ippiDotProd_32f64f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pDp:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiDotProd_8u64f_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_16u64f_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_16s64f_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32u64f_C3R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32s64f_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32f64f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiDotProd_8u64f_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_16u64f_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_16s64f_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32u64f_C3R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32s64f_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32f64f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiDotProd_8u64f_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_16u64f_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_16s64f_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32u64f_C4R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32s64f_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32f64f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiDotProd_8u64f_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_16u64f_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_16s64f_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32u64f_C4R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32s64f_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32f64f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiDotProd_8u64f_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_16u64f_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_16s64f_AC4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32u64f_AC4R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32s64f_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;
-  ippiDotProd_32f64f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiDotProd_8u64f_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_16u64f_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_16s64f_AC4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32u64f_AC4R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32s64f_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f):IppStatus;stdcall;
+  ippiDotProd_32f64f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pDp:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //              Dot product of taps vector and columns,
@@ -1299,8 +1299,8 @@ var
 //    ippStsNullPtrErr      one of the pointers is NULL
 //    ippStsSizeErr         width is less than or equal to zero
 *)
-  ippiDotProdCol_32f_L2: function(var ppSrcRow:PIpp32f;pTaps:PIpp32f;tapsLen:longint;pDst:PIpp32f;width:longint):IppStatus;
-  ippiDotProdCol_64f_L2: function(var ppSrcRow:PIpp64f;pTaps:PIpp64f;tapsLen:longint;pDst:PIpp64f;width:longint):IppStatus;
+  ippiDotProdCol_32f_L2: function(var ppSrcRow:PIpp32f;pTaps:PIpp32f;tapsLen:longint;pDst:PIpp32f;width:longint):IppStatus;stdcall;
+  ippiDotProdCol_64f_L2: function(var ppSrcRow:PIpp64f;pTaps:PIpp64f;tapsLen:longint;pDst:PIpp64f;width:longint):IppStatus;stdcall;
 
 
 
@@ -1335,25 +1335,25 @@ var
 //  Notes:              Both in-place and not-in-place operations are supported
 //                      ippiMulPackConj functions are only for float data
 *)
-  ippiMulPack_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPack_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPack_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPack_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMulPack_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPack_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPack_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPack_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMulPack_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPack_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPack_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPack_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMulPack_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPack_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPack_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPack_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMulPackConj_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPackConj_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPackConj_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPackConj_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMulPackConj_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPackConj_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPackConj_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPackConj_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMulPackConj_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPackConj_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPackConj_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMulPackConj_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMulPackConj_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPackConj_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPackConj_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMulPackConj_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 
@@ -1376,7 +1376,7 @@ var
 //    dstStep     Step through the destination image
 //  Notes:
 *)
-  ippiPackToCplxExtend_32f32fc_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;pDst:PIpp32fc;dstStep:longint):IppStatus;
+  ippiPackToCplxExtend_32f32fc_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;pDst:PIpp32fc;dstStep:longint):IppStatus;stdcall;
 
 
 
@@ -1399,8 +1399,8 @@ var
 //    dstStep     Step through the destination image
 //  Notes:
 *)
-  ippiCplxExtendToPack_32fc32f_C1R: function(pSrc:PIpp32fc;srcStep:longint;srcSize:IppiSize;pDst:PIpp32f;dstStep:longint):IppStatus;
-  ippiCplxExtendToPack_32fc32f_C3R: function(pSrc:PIpp32fc;srcStep:longint;srcSize:IppiSize;pDst:PIpp32f;dstStep:longint):IppStatus;
+  ippiCplxExtendToPack_32fc32f_C1R: function(pSrc:PIpp32fc;srcStep:longint;srcSize:IppiSize;pDst:PIpp32f;dstStep:longint):IppStatus;stdcall;
+  ippiCplxExtendToPack_32fc32f_C3R: function(pSrc:PIpp32fc;srcStep:longint;srcSize:IppiSize;pDst:PIpp32f;dstStep:longint):IppStatus;stdcall;
 
 
 
@@ -1421,8 +1421,8 @@ var
 //    ippStsSizeErr    - Error when dstRoiSize has a field with value less than 1.
 //    ippStsStepErr    - Error when srcStep or dstStep has a zero or negative value.
 *)
-  ippiPhasePack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiPhasePack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiPhasePack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiPhasePack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -1438,7 +1438,7 @@ var
 //    ippStsSizeErr        - Error when dstRoiSize has a field with value less than 1.
 //    ippStsNumChannelsErr - Error when the numChannels value differs from 1 or 3.
 *)
-  ippiPhasePackGetBufferSize_32f: function(numChannels:longint;dstRoiSize:IppiSize;pSize:Plongint):IppStatus;
+  ippiPhasePackGetBufferSize_32f: function(numChannels:longint;dstRoiSize:IppiSize;pSize:Plongint):IppStatus;stdcall;
 
 
 
@@ -1459,8 +1459,8 @@ var
 //    ippStsSizeErr    - Error when dstRoiSize has a field with value less than 1.
 //    ippStsStepErr    - Error when srcStep or dstStep has a zero or negative value.
 *)
-  ippiMagnitudePack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiMagnitudePack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiMagnitudePack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiMagnitudePack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -1476,7 +1476,7 @@ var
 //    ippStsSizeErr        - Error when dstRoiSize has a field with value less than 1.
 //    ippStsNumChannelsErr - Error when the numChannels value differs from 1 or 3.
 *)
-  ippiMagnitudePackGetBufferSize_32f: function(numChannels:longint;dstRoiSize:IppiSize;pSize:Plongint):IppStatus;
+  ippiMagnitudePackGetBufferSize_32f: function(numChannels:longint;dstRoiSize:IppiSize;pSize:Plongint):IppStatus;stdcall;
 
 
 
@@ -1504,8 +1504,8 @@ var
 //    ippStsStepErr       srcStep or dstStep is less than or equal to zero
 //    ippStsNoErr         Otherwise
 *)
-  ippiMagnitude_32fc32f_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMagnitude_32fc32f_C3R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMagnitude_32fc32f_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMagnitude_32fc32f_C3R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -1530,8 +1530,8 @@ var
 //    ippStsStepErr       srcStep or dstStep is less than or equal to zero
 //    ippStsNoErr         Otherwise
 *)
-  ippiPhase_32fc32f_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiPhase_32fc32f_C3R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiPhase_32fc32f_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiPhase_32fc32f_C3R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -1620,18 +1620,18 @@ var
 //     ippStsSizeErr          The roiSize has a field with negative or zero value
 *)
 
-  ippiAlphaPremul_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremul_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremul_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremul_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremul_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremul_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremul_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremul_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
-  ippiAlphaPremul_8u_AP4R: function(var pSrc:PIpp8u;srcStep:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremul_16u_AP4R: function(var pSrc:PIpp16u;srcStep:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremul_8u_AP4R: function(var pSrc:PIpp8u;srcStep:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremul_16u_AP4R: function(var pSrc:PIpp16u;srcStep:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremul_8u_AP4IR: function(var pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremul_16u_AP4IR: function(var pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremul_8u_AP4IR: function(var pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremul_16u_AP4IR: function(var pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaPremulC_8u_AC4R,  ippiAlphaPremulC_16u_AC4R
@@ -1665,17 +1665,17 @@ var
 //  Notes:          Value becomes 0 <= alpha <= VAL_MAX
 *)
 
-  ippiAlphaPremulC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremulC_8u_AC4IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_AC4IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_AC4IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_AC4IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremulC_8u_AP4R: function(var pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_AP4R: function(var pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_AP4R: function(var pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_AP4R: function(var pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremulC_8u_AP4IR: function(alpha:Ipp8u;var pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_AP4IR: function(alpha:Ipp16u;var pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_AP4IR: function(alpha:Ipp8u;var pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_AP4IR: function(alpha:Ipp16u;var pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaPremulC_8u_C4R,  ippiAlphaPremulC_16u_C4R
@@ -1701,11 +1701,11 @@ var
 //  Notes:          Value becomes 0 <= alpha <= VAL_MAX
 *)
 
-  ippiAlphaPremulC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremulC_8u_C4IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_C4IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_C4IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_C4IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaPremulC_8u_C3R,  ippiAlphaPremulC_16u_C3R
@@ -1730,11 +1730,11 @@ var
 //  Notes:          Value becomes 0 <= alpha <= VAL_MAX
 *)
 
-  ippiAlphaPremulC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremulC_8u_C3IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_C3IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_C3IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_C3IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaPremulC_8u_C1R,  ippiAlphaPremulC_16u_C1R
@@ -1760,11 +1760,11 @@ var
 *)
 
 
-  ippiAlphaPremulC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;alpha:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;alpha:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiAlphaPremulC_8u_C1IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAlphaPremulC_16u_C1IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAlphaPremulC_8u_C1IR: function(alpha:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAlphaPremulC_16u_C1IR: function(alpha:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaComp_8u_AC4R, ippiAlphaComp_16u_AC4R
@@ -1794,21 +1794,21 @@ var
 //     Note:                  Result is wrong, if Alpha < 0 for signed types
 *)
 
-  ippiAlphaComp_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaComp_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaComp_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 
-  ippiAlphaComp_16s_AC4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_16s_AC4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32u_AC4R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32u_AC4R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_8u_AP4R: function(var pSrc1:PIpp8u;src1Step:longint;var pSrc2:PIpp8u;src2Step:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_8u_AP4R: function(var pSrc1:PIpp8u;src1Step:longint;var pSrc2:PIpp8u;src2Step:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_16u_AP4R: function(var pSrc1:PIpp16u;src1Step:longint;var pSrc2:PIpp16u;src2Step:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_16u_AP4R: function(var pSrc1:PIpp16u;src1Step:longint;var pSrc2:PIpp16u;src2Step:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaComp_8u_AC1R, ippiAlphaComp_16u_AC1R
@@ -1833,16 +1833,16 @@ var
 //     Note:                  Result is wrong, if Alpha < 0 for signed types
 *)
 
-  ippiAlphaComp_8u_AC1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaComp_16u_AC1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_8u_AC1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaComp_16u_AC1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_16s_AC1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_16s_AC1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32s_AC1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32s_AC1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32u_AC1R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32u_AC1R: function(pSrc1:PIpp32u;src1Step:longint;pSrc2:PIpp32u;src2Step:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32f_AC1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32f_AC1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_AC4R, ippiAlphaCompC_16u_AC4R
 //                  ippiAlphaCompC_8u_AP4R, ippiAlphaCompC_16u_AP4R
@@ -1874,11 +1874,11 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_8u_AP4R: function(var pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;var pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_AP4R: function(var pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;var pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_AP4R: function(var pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;var pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_AP4R: function(var pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;var pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_C4R, ippiAlphaCompC_16u_C4R
@@ -1906,8 +1906,8 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_C3R, ippiAlphaCompC_16u_C3R
@@ -1933,8 +1933,8 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_C1R, ippiAlphaCompC_16u_C1R
@@ -1962,17 +1962,17 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;alpha1:Ipp16u;pSrc2:PIpp16u;src2Step:longint;alpha2:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;alpha1:Ipp16s;pSrc2:PIpp16s;src2Step:longint;alpha2:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;alpha1:Ipp16s;pSrc2:PIpp16s;src2Step:longint;alpha2:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 
-  ippiAlphaCompC_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;alpha1:Ipp32s;pSrc2:PIpp32s;src2Step:longint;alpha2:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;alpha1:Ipp32s;pSrc2:PIpp32s;src2Step:longint;alpha2:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_32u_C1R: function(pSrc1:PIpp32u;src1Step:longint;alpha1:Ipp32u;pSrc2:PIpp32u;src2Step:longint;alpha2:Ipp32u;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_32u_C1R: function(pSrc1:PIpp32u;src1Step:longint;alpha1:Ipp32u;pSrc2:PIpp32u;src2Step:longint;alpha2:Ipp32u;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;alpha1:Ipp32f;pSrc2:PIpp32f;src2Step:longint;alpha2:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;alpha1:Ipp32f;pSrc2:PIpp32f;src2Step:longint;alpha2:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaComp_8u_AC4IR, ippiAlphaComp_16u_AC4IR
@@ -1999,21 +1999,21 @@ var
 //     Note:                  Result is wrong, if Alpha < 0 for signed types
 *)
 
-  ippiAlphaComp_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_16s_AC4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_16s_AC4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32u_AC4IR: function(pSrc:PIpp32u;srcStep:longint;pSrcDst:PIpp32u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32u_AC4IR: function(pSrc:PIpp32u;srcStep:longint;pSrcDst:PIpp32u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_8u_AP4IR: function(var pSrc:PIpp8u;srcStep:longint;var pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_8u_AP4IR: function(var pSrc:PIpp8u;srcStep:longint;var pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaComp_16u_AP4IR: function(var pSrc:PIpp16u;srcStep:longint;var pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaComp_16u_AP4IR: function(var pSrc:PIpp16u;srcStep:longint;var pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2044,11 +2044,11 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_8u_AP4IR: function(var pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;var pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_AP4IR: function(var pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;var pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_AP4IR: function(var pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;var pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_AP4IR: function(var pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;var pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_C4IR, ippiAlphaCompC_16u_C4IR
@@ -2074,8 +2074,8 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_C3IR, ippiAlphaCompC_16u_C3IR
@@ -2099,8 +2099,8 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiAlphaCompC_8u_C1IR, ippiAlphaCompC_16u_C1IR
@@ -2126,17 +2126,17 @@ var
 //                                0 <= alphaB <= VAL_MAX
 *)
 
-  ippiAlphaCompC_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
-  ippiAlphaCompC_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;alpha1:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;alpha2:Ipp8u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
+  ippiAlphaCompC_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;alpha1:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;alpha2:Ipp16u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_16s_C1IR: function(pSrc:PIpp16s;srcStep:longint;alpha1:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;alpha2:Ipp16s;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_16s_C1IR: function(pSrc:PIpp16s;srcStep:longint;alpha1:Ipp16s;pSrcDst:PIpp16s;srcDstStep:longint;alpha2:Ipp16s;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 
-  ippiAlphaCompC_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;alpha1:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;alpha2:Ipp32s;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;alpha1:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;alpha2:Ipp32s;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_32u_C1IR: function(pSrc:PIpp32u;srcStep:longint;alpha1:Ipp32u;pSrcDst:PIpp32u;srcDstStep:longint;alpha2:Ipp32u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_32u_C1IR: function(pSrc:PIpp32u;srcStep:longint;alpha1:Ipp32u;pSrcDst:PIpp32u;srcDstStep:longint;alpha2:Ipp32u;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
-  ippiAlphaCompC_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;alpha1:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;alpha2:Ipp32f;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;
+  ippiAlphaCompC_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;alpha1:Ipp32f;pSrcDst:PIpp32f;srcDstStep:longint;alpha2:Ipp32f;roiSize:IppiSize;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2169,8 +2169,8 @@ var
 //     ippStsFFTFlagErr       Incorrect normalization flag value
 *)
 
-  ippiFFTInit_C_32fc: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pFFTSpec:PIppiFFTSpec_C_32fc;pMemInit:PIpp8u):IppStatus;
-  ippiFFTInit_R_32f: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pFFTSpec:PIppiFFTSpec_R_32f;pMemInit:PIpp8u):IppStatus;
+  ippiFFTInit_C_32fc: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pFFTSpec:PIppiFFTSpec_C_32fc;pMemInit:PIpp8u):IppStatus;stdcall;
+  ippiFFTInit_R_32f: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pFFTSpec:PIppiFFTSpec_R_32f;pMemInit:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2196,8 +2196,8 @@ var
 //     ippStsFFTFlagErr       Incorrect normalization flag value
 *)
 
-  ippiFFTGetSize_C_32fc: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;
-  ippiFFTGetSize_R_32f: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;
+  ippiFFTGetSize_C_32fc: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;stdcall;
+  ippiFFTGetSize_R_32f: function(orderX:longint;orderY:longint;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                  FFT Transforms
@@ -2223,31 +2223,31 @@ var
 //     ippStsMemAllocErr      Memory allocation error
 *)
 
-  ippiFFTFwd_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
+  ippiFFTFwd_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFFTFwd_RToPack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTFwd_RToPack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTFwd_RToPack_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTFwd_RToPack_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiFFTFwd_RToPack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTFwd_RToPack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTFwd_RToPack_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTFwd_RToPack_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFFTInv_PackToR_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_PackToR_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_PackToR_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_PackToR_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiFFTInv_PackToR_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_PackToR_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_PackToR_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_PackToR_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFFTFwd_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
+  ippiFFTFwd_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFFTFwd_RToPack_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTFwd_RToPack_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTFwd_RToPack_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTFwd_RToPack_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiFFTFwd_RToPack_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTFwd_RToPack_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTFwd_RToPack_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTFwd_RToPack_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFFTInv_PackToR_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_PackToR_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_PackToR_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiFFTInv_PackToR_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiFFTInv_PackToR_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_PackToR_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_PackToR_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFFTInv_PackToR_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pFFTSpec:PIppiFFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                  Definitions for DFT Functions
@@ -2274,8 +2274,8 @@ var
 //     ippStsFFTFlagErr       Incorrect normalization flag value
 *)
 
-  ippiDFTInit_C_32fc: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pDFTSpec:PIppiDFTSpec_C_32fc;pMemInit:PIpp8u):IppStatus;
-  ippiDFTInit_R_32f: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pDFTSpec:PIppiDFTSpec_R_32f;pMemInit:PIpp8u):IppStatus;
+  ippiDFTInit_C_32fc: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pDFTSpec:PIppiDFTSpec_C_32fc;pMemInit:PIpp8u):IppStatus;stdcall;
+  ippiDFTInit_R_32f: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pDFTSpec:PIppiDFTSpec_R_32f;pMemInit:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDFTGetSize
@@ -2297,8 +2297,8 @@ var
 //     ippStsFFTFlagErr       Incorrect normalization flag value
 *)
 
-  ippiDFTGetSize_C_32fc: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;
-  ippiDFTGetSize_R_32f: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;
+  ippiDFTGetSize_C_32fc: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;stdcall;
+  ippiDFTGetSize_R_32f: function(roiSize:IppiSize;flag:longint;hint:IppHintAlgorithm;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2325,31 +2325,31 @@ var
 //     ippStsMemAllocErr      Memory allocation error
 *)
 
-  ippiDFTFwd_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
+  ippiDFTFwd_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_CToC_32fc_C1R: function(pSrc:PIpp32fc;srcStep:longint;pDst:PIpp32fc;dstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiDFTFwd_RToPack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTFwd_RToPack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTFwd_RToPack_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTFwd_RToPack_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiDFTFwd_RToPack_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTFwd_RToPack_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTFwd_RToPack_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTFwd_RToPack_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiDFTInv_PackToR_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_PackToR_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_PackToR_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_PackToR_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiDFTInv_PackToR_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_PackToR_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_PackToR_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_PackToR_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiDFTFwd_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;
+  ippiDFTFwd_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_CToC_32fc_C1IR: function(pSrcDst:PIpp32fc;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_C_32fc;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiDFTFwd_RToPack_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTFwd_RToPack_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTFwd_RToPack_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTFwd_RToPack_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiDFTFwd_RToPack_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTFwd_RToPack_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTFwd_RToPack_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTFwd_RToPack_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiDFTInv_PackToR_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_PackToR_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_PackToR_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDFTInv_PackToR_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;
+  ippiDFTInv_PackToR_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_PackToR_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_PackToR_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDFTInv_PackToR_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;pDFTSpec:PIppiDFTSpec_R_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                  Definitions for DCT Functions
@@ -2371,8 +2371,8 @@ var
 //     ippStsSizeErr          roiSize has a field with zero or negative value
 *)
 
-  ippiDCTFwdInit_32f: function(pDCTSpec:PIppiDCTFwdSpec_32f;roiSize:IppiSize;pMemInit:PIpp8u):IppStatus;
-  ippiDCTInvInit_32f: function(pDCTSpec:PIppiDCTInvSpec_32f;roiSize:IppiSize;pMemInit:PIpp8u):IppStatus;
+  ippiDCTFwdInit_32f: function(pDCTSpec:PIppiDCTFwdSpec_32f;roiSize:IppiSize;pMemInit:PIpp8u):IppStatus;stdcall;
+  ippiDCTInvInit_32f: function(pDCTSpec:PIppiDCTInvSpec_32f;roiSize:IppiSize;pMemInit:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                  DCT Buffer Size
@@ -2392,8 +2392,8 @@ var
 //     ippStsSizeErr          roiSize has a field with zero or negative value
 *)
 
-  ippiDCTFwdGetSize_32f: function(roiSize:IppiSize;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;
-  ippiDCTInvGetSize_32f: function(roiSize:IppiSize;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;
+  ippiDCTFwdGetSize_32f: function(roiSize:IppiSize;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;stdcall;
+  ippiDCTInvGetSize_32f: function(roiSize:IppiSize;pSizeSpec:Plongint;pSizeInit:Plongint;pSizeBuf:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                  DCT Transforms
@@ -2417,15 +2417,15 @@ var
 //     ippStsMemAllocErr      Memory allocation error
 *)
 
-  ippiDCTFwd_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDCTFwd_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDCTFwd_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDCTFwd_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiDCTFwd_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDCTFwd_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDCTFwd_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDCTFwd_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTFwdSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiDCTInv_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDCTInv_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDCTInv_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiDCTInv_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiDCTInv_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDCTInv_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDCTInv_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiDCTInv_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;pDCTSpec:PIppiDCTInvSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                  8x8 DCT Transforms
@@ -2452,14 +2452,14 @@ var
 //     of data from the range [-256,255]
 *)
 
-  ippiDCT8x8Fwd_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
-  ippiDCT8x8Inv_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
+  ippiDCT8x8Fwd_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8Inv_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
 
-  ippiDCT8x8Fwd_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
-  ippiDCT8x8Inv_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
+  ippiDCT8x8Fwd_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8Inv_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
 
-  ippiDCT8x8Fwd_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s):IppStatus;
-  ippiDCT8x8Inv_16s_C1R: function(pSrc:PIpp16s;pDst:PIpp16s;dstStep:longint):IppStatus;
+  ippiDCT8x8Fwd_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8Inv_16s_C1R: function(pSrc:PIpp16s;pDst:PIpp16s;dstStep:longint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2479,11 +2479,11 @@ var
 //     of data from the range [-256,255]
 *)
 
-  ippiDCT8x8Inv_2x2_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
-  ippiDCT8x8Inv_4x4_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
+  ippiDCT8x8Inv_2x2_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8Inv_4x4_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
 
-  ippiDCT8x8Inv_2x2_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
-  ippiDCT8x8Inv_4x4_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
+  ippiDCT8x8Inv_2x2_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8Inv_4x4_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2503,11 +2503,11 @@ var
 //     of data from the range [-256,255]
 *)
 
-  ippiDCT8x8To2x2Inv_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
-  ippiDCT8x8To4x4Inv_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
+  ippiDCT8x8To2x2Inv_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8To4x4Inv_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
 
-  ippiDCT8x8To2x2Inv_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
-  ippiDCT8x8To4x4Inv_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
+  ippiDCT8x8To2x2Inv_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8To4x4Inv_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2525,8 +2525,8 @@ var
 //     of data from the range [-512,511]
 *)
 
-  ippiDCT8x8Inv_A10_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
-  ippiDCT8x8Inv_A10_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;
+  ippiDCT8x8Inv_A10_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
+  ippiDCT8x8Inv_A10_16s_C1I: function(pSrcDst:PIpp16s):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2545,9 +2545,9 @@ var
 //     ippStsStepErr      srcStep or dstStep value is zero or negative
 *)
 
-  ippiDCT8x8Fwd_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s):IppStatus;
+  ippiDCT8x8Fwd_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s):IppStatus;stdcall;
 
-  ippiDCT8x8Inv_16s8u_C1R: function(pSrc:PIpp16s;pDst:PIpp8u;dstStep:longint):IppStatus;
+  ippiDCT8x8Inv_16s8u_C1R: function(pSrc:PIpp16s;pDst:PIpp8u;dstStep:longint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2565,7 +2565,7 @@ var
 //     ippStsStepErr       srcStep value is zero or negative
 *)
 
-  ippiDCT8x8FwdLS_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;addVal:Ipp16s):IppStatus;
+  ippiDCT8x8FwdLS_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;addVal:Ipp16s):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2585,7 +2585,7 @@ var
 //     ippStsStepErr         dstStep value is zero or negative
 *)
 
-  ippiDCT8x8InvLSClip_16s8u_C1R: function(pSrc:PIpp16s;pDst:PIpp8u;dstStep:longint;addVal:Ipp16s;clipDown:Ipp8u;clipUp:Ipp8u):IppStatus;
+  ippiDCT8x8InvLSClip_16s8u_C1R: function(pSrc:PIpp16s;pDst:PIpp8u;dstStep:longint;addVal:Ipp16s;clipDown:Ipp8u;clipUp:Ipp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:      ippiDCT8x8Fwd_32f_C1, ippiDCT8x8Fwd_32f_C1I
@@ -2601,11 +2601,11 @@ var
 //     ippStsNullPtrErr       One of the specified pointers is NULL
 *)
 
-  ippiDCT8x8Fwd_32f_C1: function(pSrc:PIpp32f;pDst:PIpp32f):IppStatus;
-  ippiDCT8x8Inv_32f_C1: function(pSrc:PIpp32f;pDst:PIpp32f):IppStatus;
+  ippiDCT8x8Fwd_32f_C1: function(pSrc:PIpp32f;pDst:PIpp32f):IppStatus;stdcall;
+  ippiDCT8x8Inv_32f_C1: function(pSrc:PIpp32f;pDst:PIpp32f):IppStatus;stdcall;
 
-  ippiDCT8x8Fwd_32f_C1I: function(pSrcDst:PIpp32f):IppStatus;
-  ippiDCT8x8Inv_32f_C1I: function(pSrcDst:PIpp32f):IppStatus;
+  ippiDCT8x8Fwd_32f_C1I: function(pSrcDst:PIpp32f):IppStatus;stdcall;
+  ippiDCT8x8Inv_32f_C1I: function(pSrcDst:PIpp32f):IppStatus;stdcall;
 
 
 
@@ -2635,7 +2635,7 @@ var
 //    ippStsSizeErr         - Error when lenLow or lenHigh is less than 2.
 //    ippStsAnchorErr       - Error when anchorLow or anchorHigh is less than zero.
 *)
-  ippiWTFwdGetSize_32f: function(numChannels:longint;lenLow:longint;anchorLow:longint;lenHigh:longint;anchorHigh:longint;pSpecSize:Plongint;pBufSize:Plongint):IppStatus;
+  ippiWTFwdGetSize_32f: function(numChannels:longint;lenLow:longint;anchorLow:longint;lenHigh:longint;anchorHigh:longint;pSpecSize:Plongint;pBufSize:Plongint):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////
 // Name:       ippiWTFwdInit_
@@ -2658,8 +2658,8 @@ var
 //    ippStsSizeErr         - Error when lenLow or lenHigh is less than 2.
 //    ippStsAnchorErr       - Error when anchorLow or anchorHigh is less than zero.
 *)
-  ippiWTFwdInit_32f_C1R: function(pSpec:PIppiWTFwdSpec_32f_C1R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;
-  ippiWTFwdInit_32f_C3R: function(pSpec:PIppiWTFwdSpec_32f_C3R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;
+  ippiWTFwdInit_32f_C1R: function(pSpec:PIppiWTFwdSpec_32f_C1R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;stdcall;
+  ippiWTFwdInit_32f_C3R: function(pSpec:PIppiWTFwdSpec_32f_C3R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;stdcall;
 
 
 
@@ -2712,9 +2712,9 @@ var
 //
 //
 *)
-  ippiWTFwd_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pApproxDst:PIpp32f;approxStep:longint;pDetailXDst:PIpp32f;detailXStep:longint;pDetailYDst:PIpp32f;detailYStep:longint;pDetailXYDst:PIpp32f;detailXYStep:longint;dstRoiSize:IppiSize;pSpec:PIppiWTFwdSpec_32f_C1R;pBuffer:PIpp8u):IppStatus;
+  ippiWTFwd_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pApproxDst:PIpp32f;approxStep:longint;pDetailXDst:PIpp32f;detailXStep:longint;pDetailYDst:PIpp32f;detailYStep:longint;pDetailXYDst:PIpp32f;detailXYStep:longint;dstRoiSize:IppiSize;pSpec:PIppiWTFwdSpec_32f_C1R;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWTFwd_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pApproxDst:PIpp32f;approxStep:longint;pDetailXDst:PIpp32f;detailXStep:longint;pDetailYDst:PIpp32f;detailYStep:longint;pDetailXYDst:PIpp32f;detailXYStep:longint;dstRoiSize:IppiSize;pSpec:PIppiWTFwdSpec_32f_C3R;pBuffer:PIpp8u):IppStatus;
+  ippiWTFwd_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pApproxDst:PIpp32f;approxStep:longint;pDetailXDst:PIpp32f;detailXStep:longint;pDetailYDst:PIpp32f;detailYStep:longint;pDetailXYDst:PIpp32f;detailXYStep:longint;dstRoiSize:IppiSize;pSpec:PIppiWTFwdSpec_32f_C3R;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* //////////////////////////////////////////////////////////////////////
@@ -2738,7 +2738,7 @@ var
 //    ippStsSizeErr         - Error when lenLow or lenHigh is less than 2.
 //    ippStsAnchorErr       - Error when anchorLow or anchorHigh is less than zero.
 *)
-  ippiWTInvGetSize_32f: function(numChannels:longint;lenLow:longint;anchorLow:longint;lenHigh:longint;anchorHigh:longint;pSpecSize:Plongint;pBufSize:Plongint):IppStatus;
+  ippiWTInvGetSize_32f: function(numChannels:longint;lenLow:longint;anchorLow:longint;lenHigh:longint;anchorHigh:longint;pSpecSize:Plongint;pBufSize:Plongint):IppStatus;stdcall;
 
 
 (* //////////////////////////////////////////////////////////////////////
@@ -2762,8 +2762,8 @@ var
 //    ippStsSizeErr         - Error when lenLow or lenHigh is less than 2.
 //    ippStsAnchorErr       - Error when anchorLow or anchorHigh is less than zero.
 *)
-  ippiWTInvInit_32f_C1R: function(pSpec:PIppiWTInvSpec_32f_C1R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;
-  ippiWTInvInit_32f_C3R: function(pSpec:PIppiWTInvSpec_32f_C3R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;
+  ippiWTInvInit_32f_C1R: function(pSpec:PIppiWTInvSpec_32f_C1R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;stdcall;
+  ippiWTInvInit_32f_C3R: function(pSpec:PIppiWTInvSpec_32f_C3R;pTapsLow:PIpp32f;lenLow:longint;anchorLow:longint;pTapsHigh:PIpp32f;lenHigh:longint;anchorHigh:longint):IppStatus;stdcall;
 
 
 
@@ -2809,8 +2809,8 @@ var
 //
 //
 *)
-  ippiWTInv_32f_C1R: function(pApproxSrc:PIpp32f;approxStep:longint;pDetailXSrc:PIpp32f;detailXStep:longint;pDetailYSrc:PIpp32f;detailYStep:longint;pDetailXYSrc:PIpp32f;detailXYStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;pSpec:PIppiWTInvSpec_32f_C1R;pBuffer:PIpp8u):IppStatus;
-  ippiWTInv_32f_C3R: function(pApproxSrc:PIpp32f;approxStep:longint;pDetailXSrc:PIpp32f;detailXStep:longint;pDetailYSrc:PIpp32f;detailYStep:longint;pDetailXYSrc:PIpp32f;detailXYStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;pSpec:PIppiWTInvSpec_32f_C3R;pBuffer:PIpp8u):IppStatus;
+  ippiWTInv_32f_C1R: function(pApproxSrc:PIpp32f;approxStep:longint;pDetailXSrc:PIpp32f;detailXStep:longint;pDetailYSrc:PIpp32f;detailYStep:longint;pDetailXYSrc:PIpp32f;detailXYStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;pSpec:PIppiWTInvSpec_32f_C1R;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWTInv_32f_C3R: function(pApproxSrc:PIpp32f;approxStep:longint;pDetailXSrc:PIpp32f;detailXStep:longint;pDetailYSrc:PIpp32f;detailYStep:longint;pDetailXYSrc:PIpp32f;detailXYStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;pSpec:PIppiWTInvSpec_32f_C3R;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 
@@ -2844,8 +2844,8 @@ var
 //                              (fraction != ippPolyphase_3_4)
 *)
 
-  ippiDecimateFilterRow_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;fraction:IppiFraction):IppStatus;
-  ippiDecimateFilterColumn_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;fraction:IppiFraction):IppStatus;
+  ippiDecimateFilterRow_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;fraction:IppiFraction):IppStatus;stdcall;
+  ippiDecimateFilterColumn_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;fraction:IppiFraction):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2886,51 +2886,51 @@ var
 //
 *)
 
-  ippiMirror_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
+  ippiMirror_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
 
-  ippiMirror_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
+  ippiMirror_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
 
-  ippiMirror_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
+  ippiMirror_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
 
-  ippiMirror_32s_C1IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32s_C3IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32s_AC4IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32s_C4IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
+  ippiMirror_32s_C1IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32s_C3IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32s_AC4IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32s_C4IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
 
-  ippiMirror_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
+  ippiMirror_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
 
-  ippiMirror_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
-  ippiMirror_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;
+  ippiMirror_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
+  ippiMirror_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;flip:IppiAxis):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -2968,26 +2968,26 @@ var
 //    ippStsInterpolateErr  interpolation has an illegal value
 *)
 
-  ippiRemap_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_8u_AC4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16u_AC4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16s_C1R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16s_C3R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16s_C4R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_16s_AC4R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_32f_AC4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_64f_C1R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_64f_C3R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_64f_C4R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
-  ippiRemap_64f_AC4R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;
+  ippiRemap_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_8u_AC4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16u_AC4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16s_C1R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16s_C3R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16s_C4R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_16s_AC4R: function(pSrc:PIpp16s;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_32f_AC4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp32f;xMapStep:longint;pyMap:PIpp32f;yMapStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_64f_C1R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_64f_C3R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_64f_C4R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
+  ippiRemap_64f_AC4R: function(pSrc:PIpp64f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pxMap:PIpp64f;xMapStep:longint;pyMap:PIpp64f;yMapStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -3010,7 +3010,7 @@ var
 //    ippStsNullPtrErr  pointer to buffer size is NULL
 *)
 
-  ippiResizeFilterGetSize_8u_C1R: function(srcRoiSize:IppiSize;dstRoiSize:IppiSize;filter:IppiResizeFilterType;pSize:PIpp32u):IppStatus;
+  ippiResizeFilterGetSize_8u_C1R: function(srcRoiSize:IppiSize;dstRoiSize:IppiSize;filter:IppiResizeFilterType;pSize:PIpp32u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeFilterInit_8u_C1R
@@ -3027,7 +3027,7 @@ var
 //    ippStsNotSupportedModeErr filter type is not supported
 *)
 
-  ippiResizeFilterInit_8u_C1R: function(pState:PIppiResizeFilterState;srcRoiSize:IppiSize;dstRoiSize:IppiSize;filter:IppiResizeFilterType):IppStatus;
+  ippiResizeFilterInit_8u_C1R: function(pState:PIppiResizeFilterState;srcRoiSize:IppiSize;dstRoiSize:IppiSize;filter:IppiResizeFilterType):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeFilter_8u_C1R
@@ -3048,7 +3048,7 @@ var
 //    ippStsContextMatchErr invalid context structure
 *)
 
-  ippiResizeFilter_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;pState:PIppiResizeFilterState):IppStatus;
+  ippiResizeFilter_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;pState:PIppiResizeFilterState):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -3077,7 +3077,7 @@ var
 //    ippStsInterpolationErr  interpolation has an illegal value
 *)
 
-  ippiResizeYCbCr422GetBufSize: function(srcROI:IppiRect;dstRoiSize:IppiSize;interpolation:longint;pSize:Plongint):IppStatus;
+  ippiResizeYCbCr422GetBufSize: function(srcROI:IppiRect;dstRoiSize:IppiSize;interpolation:longint;pSize:Plongint):IppStatus;stdcall;
 
 (*
 //  Name:               ippiResizeYCbCr422_8u_C2R
@@ -3109,7 +3109,7 @@ var
 //    YUY2 pixel format (Y0U0Y1V0,Y2U1Y3V1,.. or Y0Cb0Y1Cr0,Y2Cb1Y3Cr1,..)
 *)
 
-  ippiResizeYCbCr422_8u_C2R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ippiResizeYCbCr422_8u_C2R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -3130,7 +3130,7 @@ var
 //    ippStsNoErr       OK
 *)
 
-  ippiGetAffineBound: function(srcROI:IppiRect;var bound:double;var coeffs:double):IppStatus;
+  ippiGetAffineBound: function(srcROI:IppiRect;var bound:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiGetAffineQuad
@@ -3146,7 +3146,7 @@ var
 //    ippStsNoErr       OK
 *)
 
-  ippiGetAffineQuad: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;
+  ippiGetAffineQuad: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiGetAffineTransform
@@ -3166,7 +3166,7 @@ var
 //         the function returns the warning message and continues operation with the computed values
 *)
 
-  ippiGetAffineTransform: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;
+  ippiGetAffineTransform: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiGetAffineSrcRoi
@@ -3194,7 +3194,7 @@ var
 //    ippStsWrongIntersectQuad  Indicates a warning that no operation is performed, if the transformed
 //                              source image has no intersection with the destination ROI.
 *)
-  ippiGetAffineSrcRoi: function(srcSize:IppiSize;var coeffs:double;direction:IppiWarpDirection;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoi:PIppiRect):IppStatus;
+  ippiGetAffineSrcRoi: function(srcSize:IppiSize;var coeffs:double;direction:IppiWarpDirection;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoi:PIppiRect):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiGetRotateShift
@@ -3208,7 +3208,7 @@ var
 //    ippStsNoErr       OK
 //    ippStsNullPtrErr  One of the pointers to the output data is NULL
 *)
-  ippiGetRotateShift: function(xCenter:double;yCenter:double;angle:double;xShift:Pdouble;yShift:Pdouble):IppStatus;
+  ippiGetRotateShift: function(xCenter:double;yCenter:double;angle:double;xShift:Pdouble;yShift:Pdouble):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -3228,7 +3228,7 @@ var
 //    ippStsOutOfRangeErr  Indicates an error if the angle is NaN or Infinity
 *)
 
-  ippiGetRotateTransform: function(angle:double;xShift:double;yShift:double;var coeffs:double):IppStatus;
+  ippiGetRotateTransform: function(angle:double;xShift:double;yShift:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiGetPerspectiveBound
@@ -3250,7 +3250,7 @@ var
 //  Notes:
 *)
 
-  ippiGetPerspectiveBound: function(srcROI:IppiRect;var bound:double;var coeffs:double):IppStatus;
+  ippiGetPerspectiveBound: function(srcROI:IppiRect;var bound:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiGetPerspectiveQuad
@@ -3272,7 +3272,7 @@ var
 //  Notes:
 *)
 
-  ippiGetPerspectiveQuad: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;
+  ippiGetPerspectiveQuad: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiGetPerspectiveTransform
@@ -3295,7 +3295,7 @@ var
 //  Notes:
 *)
 
-  ippiGetPerspectiveTransform: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;
+  ippiGetPerspectiveTransform: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiGetBilinearBound
@@ -3313,7 +3313,7 @@ var
 //  Notes:
 *)
 
-  ippiGetBilinearBound: function(srcROI:IppiRect;var bound:double;var coeffs:double):IppStatus;
+  ippiGetBilinearBound: function(srcROI:IppiRect;var bound:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiGetBilinearQuad
@@ -3331,7 +3331,7 @@ var
 //  Notes:
 *)
 
-  ippiGetBilinearQuad: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;
+  ippiGetBilinearQuad: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiGetBilinearTransform
@@ -3350,7 +3350,7 @@ var
 //  Notes:
 *)
 
-  ippiGetBilinearTransform: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;
+  ippiGetBilinearTransform: function(srcROI:IppiRect;var quad:double;var coeffs:double):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -3387,7 +3387,7 @@ var
 //                                              above methods
 //    pBufSize          Pointer to the size (in bytes) of the external buffer
 *)
-  ippiWarpBilinearGetBufferSize: function(srcSize:IppiSize;srcROI:IppiRect;dstROI:IppiRect;direction:IppiWarpDirection;var coeffs:double;interpolation:longint;pBufSize:Plongint):IppStatus;
+  ippiWarpBilinearGetBufferSize: function(srcSize:IppiSize;srcROI:IppiRect;dstROI:IppiRect;direction:IppiWarpDirection;var coeffs:double;interpolation:longint;pBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiWarpBilinear
@@ -3421,15 +3421,15 @@ var
 //  Notes:
 *)
 
-  ippiWarpBilinear_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinear_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ippiWarpBilinear_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinear_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiWarpBilinearBack
@@ -3461,15 +3461,15 @@ var
 //  Notes:
 *)
 
-  ippiWarpBilinearBack_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearBack_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ippiWarpBilinearBack_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearBack_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiWarpBilinearQuadGetBufferSize
@@ -3496,7 +3496,7 @@ var
 //    pBufSize    Pointer to the size (in bytes) of the external buffer
 *)
 
-  ippiWarpBilinearQuadGetBufferSize: function(srcSize:IppiSize;srcROI:IppiRect;var srcQuad:double;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBufSize:Plongint):IppStatus;
+  ippiWarpBilinearQuadGetBufferSize: function(srcSize:IppiSize;srcROI:IppiRect;var srcQuad:double;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiWarpBilinearQuad
@@ -3532,15 +3532,15 @@ var
 //  Notes:
 *)
 
-  ippiWarpBilinearQuad_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ippiWarpBilinearQuad_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ippiWarpBilinearQuad_8u_C1R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_8u_C3R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_8u_C4R: function(pSrc:PIpp8u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp8u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_32f_C1R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_32f_C3R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_32f_C4R: function(pSrc:PIpp32f;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp32f;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_16u_C1R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_16u_C3R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpBilinearQuad_16u_C4R: function(pSrc:PIpp16u;srcSize:IppiSize;srcStep:longint;srcROI:IppiRect;var srcQuad:double;pDst:PIpp16u;dstStep:longint;dstROI:IppiRect;var dstQuad:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -3570,7 +3570,7 @@ var
 //    ippStsSizeWrn         Indicates a warning if the destination image size is more than
 //                          the destination image origin size
 *)
-  ippiWarpGetBufferSize: function(pSpec:PIppiWarpSpec;dstRoiSize:IppiSize;pBufSize:Plongint):IppStatus;
+  ippiWarpGetBufferSize: function(pSpec:PIppiWarpSpec;dstRoiSize:IppiSize;pBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiWarpQuadGetSize
@@ -3612,7 +3612,7 @@ var
 //                                   with the source or destination image correspondingly
 //
 *)
-  ippiWarpQuadGetSize: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;interpolation:IppiInterpolationType;borderType:IppiBorderType;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
+  ippiWarpQuadGetSize: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;interpolation:IppiInterpolationType;borderType:IppiBorderType;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiWarpQuadNearestInit
@@ -3668,11 +3668,11 @@ var
 //
 //    2. Supported border types are ippBorderTransp and ippBorderInMem
 *)
-  ippiWarpQuadNearestInit: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;
+  ippiWarpQuadNearestInit: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;stdcall;
 
-  ippiWarpQuadLinearInit: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;
+  ippiWarpQuadLinearInit: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;stdcall;
 
-  ippiWarpQuadCubicInit: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;numChannels:longint;valueB:Ipp64f;valueC:Ipp64f;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec;pInitBuf:PIpp8u):IppStatus;
+  ippiWarpQuadCubicInit: function(srcSize:IppiSize;var srcQuad:double;dstSize:IppiSize;var dstQuad:double;transform:IppiWarpTransformType;dataType:IppDataType;numChannels:longint;valueB:Ipp64f;valueC:Ipp64f;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec;pInitBuf:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                     Warp Affine Transform functions
@@ -3712,7 +3712,7 @@ var
 //    ippStsBorderErr           Indicates an error if border type has an illegal value
 //
 *)
-  ippiWarpAffineGetSize: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;interpolation:IppiInterpolationType;direction:IppiWarpDirection;borderType:IppiBorderType;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
+  ippiWarpAffineGetSize: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;interpolation:IppiInterpolationType;direction:IppiWarpDirection;borderType:IppiBorderType;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiWarpAffineNearestInit
@@ -3768,9 +3768,9 @@ var
 //
 //    2. Supported border types are ippBorderRepl, ippBorderConst, ippBorderTransp and ippBorderInMem
 *)
-  ippiWarpAffineNearestInit: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;
-  ippiWarpAffineLinearInit: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;
-  ippiWarpAffineCubicInit: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;valueB:Ipp64f;valueC:Ipp64f;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec;pInitBuf:PIpp8u):IppStatus;
+  ippiWarpAffineNearestInit: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;stdcall;
+  ippiWarpAffineLinearInit: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;stdcall;
+  ippiWarpAffineCubicInit: function(srcSize:IppiSize;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;valueB:Ipp64f;valueC:Ipp64f;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec;pInitBuf:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiWarpAffineNearest
@@ -3811,53 +3811,53 @@ var
 //  Notes:
 //    1. Supported border types are ippBorderRepl, ippBorderConst, ippBorderTransp and ippBorderRepl
 *)
-  ippiWarpAffineNearest_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_64f_C3R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineNearest_64f_C4R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
+  ippiWarpAffineNearest_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_64f_C3R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineNearest_64f_C4R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWarpAffineLinear_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_64f_C3R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineLinear_64f_C4R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
+  ippiWarpAffineLinear_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_64f_C3R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineLinear_64f_C4R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWarpAffineCubic_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_64f_C3R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpAffineCubic_64f_C4R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
+  ippiWarpAffineCubic_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_64f_C3R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpAffineCubic_64f_C4R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                     Warp Perspective Transform functions
@@ -3912,7 +3912,7 @@ var
 //    ippStsBorderErr           Indicates an error if border type has an illegal value
 //
 *)
-  ippiWarpPerspectiveGetSize: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;interpolation:IppiInterpolationType;direction:IppiWarpDirection;borderType:IppiBorderType;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
+  ippiWarpPerspectiveGetSize: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;interpolation:IppiInterpolationType;direction:IppiWarpDirection;borderType:IppiBorderType;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiWarpPerspectiveNearestInit
@@ -3969,9 +3969,9 @@ var
 //
 //    2. Supported border types are ippBorderRepl, ippBorderConst, ippBorderTransp and ippBorderRepl
 *)
-  ippiWarpPerspectiveNearestInit: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;
-  ippiWarpPerspectiveLinearInit: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;
-  ippiWarpPerspectiveCubicInit: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;valueB:Ipp64f;valueC:Ipp64f;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec;pInitBuf:PIpp8u):IppStatus;
+  ippiWarpPerspectiveNearestInit: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;stdcall;
+  ippiWarpPerspectiveLinearInit: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec):IppStatus;stdcall;
+  ippiWarpPerspectiveCubicInit: function(srcSize:IppiSize;srcRoi:IppiRect;dstSize:IppiSize;dataType:IppDataType;var coeffs:double;direction:IppiWarpDirection;numChannels:longint;valueB:Ipp64f;valueC:Ipp64f;borderType:IppiBorderType;pBorderValue:PIpp64f;smoothEdge:longint;pSpec:PIppiWarpSpec;pInitBuf:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiWarpPerspectiveNearest
@@ -4013,44 +4013,44 @@ var
 //  Notes:
 //    1. Supported border types are ippBorderRepl, ippBorderConst, ippBorderTransp and ippBorderRepl
 *)
-  ippiWarpPerspectiveNearest_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveNearest_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
+  ippiWarpPerspectiveNearest_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveNearest_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWarpPerspectiveLinear_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveLinear_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
+  ippiWarpPerspectiveLinear_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveLinear_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWarpPerspectiveCubic_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
-  ippiWarpPerspectiveCubic_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;
+  ippiWarpPerspectiveCubic_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWarpPerspectiveCubic_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;pSpec:PIppiWarpSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                   Statistic functions
@@ -4071,7 +4071,7 @@ var
 //    pSize               Pointer to the value of the buffer size
 //                        of the structure ippiMomentState_64s.
 *)
-  ippiMomentGetStateSize_64f: function(hint:IppHintAlgorithm;pSize:Plongint):IppStatus;
+  ippiMomentGetStateSize_64f: function(hint:IppHintAlgorithm;pSize:Plongint):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////////////
@@ -4087,7 +4087,7 @@ var
 //    pState        Pointer to the MomentState structure
 //    hint          Option to specify the computation algorithm
 *)
-  ippiMomentInit_64f: function(pState:PIppiMomentState_64f;hint:IppHintAlgorithm):IppStatus;
+  ippiMomentInit_64f: function(pState:PIppiMomentState_64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4112,17 +4112,17 @@ var
 //    These functions compute moments of order 0 to 3 only
 //
 *)
-  ippiMoments64f_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
-  ippiMoments64f_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
-  ippiMoments64f_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
+  ippiMoments64f_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
+  ippiMoments64f_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
+  ippiMoments64f_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
 
-  ippiMoments64f_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
-  ippiMoments64f_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
-  ippiMoments64f_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
+  ippiMoments64f_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
+  ippiMoments64f_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
+  ippiMoments64f_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
 
-  ippiMoments64f_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
-  ippiMoments64f_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
-  ippiMoments64f_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;
+  ippiMoments64f_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
+  ippiMoments64f_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
+  ippiMoments64f_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pCtx:PIppiMomentState_64f):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4151,8 +4151,8 @@ var
 //    ippiGetSpatialMoment uses Absolute Coordinates (left-top image has 0,0).
 //
 *)
-  ippiGetSpatialMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;roiOffset:IppiPoint;pValue:PIpp64f):IppStatus;
-  ippiGetCentralMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;pValue:PIpp64f):IppStatus;
+  ippiGetSpatialMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;roiOffset:IppiPoint;pValue:PIpp64f):IppStatus;stdcall;
+  ippiGetCentralMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;pValue:PIpp64f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:      ippiGetNormalizedSpatialMoment()
@@ -4178,8 +4178,8 @@ var
 //    scaleFactor Factor to scale the moment value (for integer data)
 //
 *)
-  ippiGetNormalizedSpatialMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;roiOffset:IppiPoint;pValue:PIpp64f):IppStatus;
-  ippiGetNormalizedCentralMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;pValue:PIpp64f):IppStatus;
+  ippiGetNormalizedSpatialMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;roiOffset:IppiPoint;pValue:PIpp64f):IppStatus;stdcall;
+  ippiGetNormalizedCentralMoment_64f: function(pState:PIppiMomentState_64f;mOrd:longint;nOrd:longint;nChannel:longint;pValue:PIpp64f):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4203,7 +4203,7 @@ var
 //  Notes:
 //    We consider Hu moments up to the 7-th order only
 *)
-  ippiGetHuMoments_64f: function(pState:PIppiMomentState_64f;nChannel:longint;pHm:IppiHuMoment_64f):IppStatus;
+  ippiGetHuMoments_64f: function(pState:PIppiMomentState_64f;nChannel:longint;pHm:IppiHuMoment_64f):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4223,29 +4223,29 @@ var
 //  Notes:
 *)
 
-  ippiNorm_Inf_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_Inf_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_Inf_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_Inf_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_Inf_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_Inf_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_Inf_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNorm_L1
@@ -4265,29 +4265,29 @@ var
 //  Notes:
 *)
 
-  ippiNorm_L1_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_L1_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L1_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L1_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_L1_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L1_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L1_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_L1_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L1_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L1_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L1_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNorm_L1_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNorm_L1_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNorm_L1_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNorm_L1_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNorm_L1_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNorm_L2
@@ -4308,29 +4308,29 @@ var
 //    simple mul is better than table for P6 family
 *)
 
-  ippiNorm_L2_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_L2_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L2_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L2_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_L2_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L2_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L2_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNorm_L2_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L2_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNorm_L2_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNorm_L2_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNorm_L2_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNorm_L2_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNorm_L2_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNorm_L2_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNorm_L2_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNormDiff_Inf
@@ -4349,29 +4349,29 @@ var
 //  Notes:
 *)
 
-  ippiNormDiff_Inf_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_Inf_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_Inf_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_Inf_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_Inf_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_Inf_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_Inf_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNormDiff_L1
@@ -4391,29 +4391,29 @@ var
 //  Notes:
 *)
 
-  ippiNormDiff_L1_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_L1_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L1_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L1_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_L1_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L1_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L1_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_L1_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L1_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L1_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L1_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormDiff_L1_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormDiff_L1_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormDiff_L1_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormDiff_L1_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormDiff_L1_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNormDiff_L2
@@ -4434,29 +4434,29 @@ var
 //  Notes:
 *)
 
-  ippiNormDiff_L2_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_L2_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L2_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L2_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_L2_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L2_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L2_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormDiff_L2_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L2_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormDiff_L2_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormDiff_L2_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormDiff_L2_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormDiff_L2_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormDiff_L2_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormDiff_L2_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormDiff_L2_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNormRel_Inf
@@ -4477,29 +4477,29 @@ var
 //  Notes:
 *)
 
-  ippiNormRel_Inf_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_Inf_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_Inf_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_Inf_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_Inf_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_Inf_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_Inf_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNormRel_L1
@@ -4521,29 +4521,29 @@ var
 //  Notes:
 *)
 
-  ippiNormRel_L1_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_L1_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L1_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L1_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_L1_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L1_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L1_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_L1_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L1_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L1_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L1_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormRel_L1_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormRel_L1_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormRel_L1_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormRel_L1_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormRel_L1_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiNormRel_L2
@@ -4565,29 +4565,29 @@ var
 //  Notes:
 *)
 
-  ippiNormRel_L2_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_L2_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L2_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L2_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_L2_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L2_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L2_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;
+  ippiNormRel_L2_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L2_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;
+  ippiNormRel_L2_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var value:Ipp64f):IppStatus;stdcall;
 
-  ippiNormRel_L2_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormRel_L2_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;pValue:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormRel_L2_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormRel_L2_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiNormRel_L2_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiNormRel_L2_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var value:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4608,29 +4608,29 @@ var
 //  Notes:
 *)
 
-  ippiSum_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f):IppStatus;
+  ippiSum_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f):IppStatus;stdcall;
 
-  ippiSum_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;
+  ippiSum_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;stdcall;
 
-  ippiSum_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;
+  ippiSum_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;stdcall;
 
-  ippiSum_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f):IppStatus;
+  ippiSum_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f):IppStatus;stdcall;
 
-  ippiSum_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;
+  ippiSum_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;stdcall;
 
-  ippiSum_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;
+  ippiSum_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;stdcall;
 
-  ippiSum_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f):IppStatus;
+  ippiSum_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f):IppStatus;stdcall;
 
-  ippiSum_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;
+  ippiSum_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;stdcall;
 
-  ippiSum_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;
+  ippiSum_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f):IppStatus;stdcall;
 
-  ippiSum_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiSum_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pSum:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiSum_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiSum_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiSum_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiSum_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var sum:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiMean
@@ -4650,29 +4650,29 @@ var
 //  Notes:
 *)
 
-  ippiMean_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f):IppStatus;
+  ippiMean_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f):IppStatus;stdcall;
 
-  ippiMean_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;
+  ippiMean_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;stdcall;
 
-  ippiMean_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;
+  ippiMean_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;stdcall;
 
-  ippiMean_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f):IppStatus;
+  ippiMean_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f):IppStatus;stdcall;
 
-  ippiMean_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;
+  ippiMean_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;stdcall;
 
-  ippiMean_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;
+  ippiMean_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;stdcall;
 
-  ippiMean_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f):IppStatus;
+  ippiMean_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f):IppStatus;stdcall;
 
-  ippiMean_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;
+  ippiMean_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;stdcall;
 
-  ippiMean_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;
+  ippiMean_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f):IppStatus;stdcall;
 
-  ippiMean_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiMean_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMean:PIpp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiMean_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiMean_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiMean_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f;hint:IppHintAlgorithm):IppStatus;
+  ippiMean_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var mean:Ipp64f;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4700,17 +4700,17 @@ var
 //    ippStsSizeErr     - Error when the roiSize has a zero or negative value.
 //    ippStsStepErr     - Error when the src1Step or src2Step is less than or equal to zero.
 *)
-  ippiQualityIndex_8u32f_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiQualityIndex_8u32f_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiQualityIndex_8u32f_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiQualityIndex_8u32f_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiQualityIndex_8u32f_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiQualityIndex_8u32f_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiQualityIndex_16u32f_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiQualityIndex_16u32f_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiQualityIndex_16u32f_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiQualityIndex_16u32f_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiQualityIndex_16u32f_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiQualityIndex_16u32f_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiQualityIndex_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiQualityIndex_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiQualityIndex_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiQualityIndex_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiQualityIndex_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiQualityIndex_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;roiSize:IppiSize;var pQualityIndex:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4728,7 +4728,7 @@ var
 //    ippStsDataTypeErr - Error when the srcType has an illegal value.
 //    ippStsChannelErr  - Error when the ippChan has an illegal value.
 *)
-  ippiQualityIndexGetBufferSize: function(srcType:IppDataType;ippChan:IppChannels;roiSize:IppiSize;pBufferSize:Plongint):IppStatus;
+  ippiQualityIndexGetBufferSize: function(srcType:IppDataType;ippChan:IppChannels;roiSize:IppiSize;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 
@@ -4751,7 +4751,7 @@ var
 //    ippStsNumChannelsErr    - Error when the numChannels value differs from 1, 3, or 4.
 //    ippStsDataTypeErr       - Error when the dataType value differs from the ipp8u, ipp16u, ipp16s or ipp32f.
 *)
-  ippiHistogramGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;var nLevels:longint;numChannels:longint;uniform:longint;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;
+  ippiHistogramGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;var nLevels:longint;numChannels:longint;uniform:longint;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Names:     ippiHistogramInit, ippiHistogramUniformInit
@@ -4773,8 +4773,8 @@ var
 //    ippStsDataTypeErr       - Error when the dataType value differs from the ipp8u, ipp16u, ipp16s or ipp32f.
 //    ippStsSizeWrn           - Warning ( in case of uniform histogram of integer data type) when rated level step is less than 1.
 *)
-  ippiHistogramInit: function(dataType:IppDataType;var pLevels:PIpp32f;var nLevels:longint;numChannels:longint;pSpec:PIppiHistogramSpec):IppStatus;
-  ippiHistogramUniformInit: function(dataType:IppDataType;var lowerLevel:Ipp32f;var upperLevel:Ipp32f;var nLevels:longint;numChannels:longint;pSpec:PIppiHistogramSpec):IppStatus;
+  ippiHistogramInit: function(dataType:IppDataType;var pLevels:PIpp32f;var nLevels:longint;numChannels:longint;pSpec:PIppiHistogramSpec):IppStatus;stdcall;
+  ippiHistogramUniformInit: function(dataType:IppDataType;var lowerLevel:Ipp32f;var upperLevel:Ipp32f;var nLevels:longint;numChannels:longint;pSpec:PIppiHistogramSpec):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:      ippiHistogramGetLevels
@@ -4787,7 +4787,7 @@ var
 //    ippStsNullPtrErr        - Error when any of the specified pointers is NULL.
 //    ippStsBadArgErr         - Error when pSpec object doesn`t initialized.
 *)
-  ippiHistogramGetLevels: function(pSpec:PIppiHistogramSpec;var pLevels:PIpp32f):IppStatus;
+  ippiHistogramGetLevels: function(pSpec:PIppiHistogramSpec;var pLevels:PIpp32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:         ippiHistogram
@@ -4806,18 +4806,18 @@ var
 //    ippStsStepErr           - Error when the srcStep is less than roiSize.width*sizeof(*pSrc)*nChannels.
 //    ippStsBadArgErr         - Error when pSpec object doesn`t initialized.
 *)
-  ippiHistogram_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
-  ippiHistogram_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;
+  ippiHistogram_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHistogram_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var pHist:PIpp32u;pSpec:PIppiHistogramSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4842,45 +4842,45 @@ var
 //    ippStsStepErr    - Error when srcStep, dstStep  or srcDstStep has a zero or negative value.
 //    ippStsBadArgErr  - Error when pSpec initialized incorect.
 *)
-  ippiLUT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
-  ippiLUT_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4901,7 +4901,7 @@ var
 //    ippStsChannelErr       - Error when the ippChan has an illegal value.
 //    ippStsInterpolationErr - Error when the interpolationType has an illegal value.
 *)
-  ippiLUT_GetSize: function(interp:IppiInterpolationType;dataType:IppDataType;ippChan:IppChannels;roiSize:IppiSize;var nLevels:longint;pSpecSize:Plongint):IppStatus;
+  ippiLUT_GetSize: function(interp:IppiInterpolationType;dataType:IppDataType;ippChan:IppChannels;roiSize:IppiSize;var nLevels:longint;pSpecSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name:          ippiLUT_Init
@@ -4922,10 +4922,10 @@ var
 //    ippStsLUTNofLevelsErr  - Error when the number of levels is less 2.
 //    ippStsInterpolationErr - Error when the interpolationType has an illegal value.
 *)
-  ippiLUT_Init_8u: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32s;var pLevels:PIpp32s;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_Init_16u: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32s;var pLevels:PIpp32s;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_Init_16s: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32s;var pLevels:PIpp32s;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;
-  ippiLUT_Init_32f: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32f;var pLevels:PIpp32f;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;
+  ippiLUT_Init_8u: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32s;var pLevels:PIpp32s;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_Init_16u: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32s;var pLevels:PIpp32s;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_Init_16s: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32s;var pLevels:PIpp32s;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
+  ippiLUT_Init_32f: function(interp:IppiInterpolationType;ippChan:IppChannels;roiSize:IppiSize;var pValues:PIpp32f;var pLevels:PIpp32f;var nLevels:longint;pSpec:PIppiLUT_Spec):IppStatus;stdcall;
 
 
 
@@ -4950,19 +4950,19 @@ var
 //    ippStsOutOfRangeErr nBitSize is out of range
 //  Notes:
 *)
-  ippiLUTPalette_16u32u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;pTable:PIpp32u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_16u24u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_8u32u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;pTable:PIpp32u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_8u24u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pTable:PIpp16u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp16u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp16u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp8u;nBitSize:longint):IppStatus;
-  ippiLUTPalette_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp16u;nBitSize:longint):IppStatus;
+  ippiLUTPalette_16u32u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;pTable:PIpp32u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_16u24u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_8u32u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32u;dstStep:longint;roiSize:IppiSize;pTable:PIpp32u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_8u24u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pTable:PIpp16u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp16u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp16u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp8u;nBitSize:longint):IppStatus;stdcall;
+  ippiLUTPalette_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var pTable:PIpp16u;nBitSize:longint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -4986,12 +4986,12 @@ var
 //      upperBound       Upper limit of the range
 *)
 
-  ippiCountInRange_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;counts:Plongint;lowerBound:Ipp8u;upperBound:Ipp8u):IppStatus;
-  ippiCountInRange_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp8u;var upperBound:Ipp8u):IppStatus;
-  ippiCountInRange_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp8u;var upperBound:Ipp8u):IppStatus;
-  ippiCountInRange_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;counts:Plongint;lowerBound:Ipp32f;upperBound:Ipp32f):IppStatus;
-  ippiCountInRange_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp32f;var upperBound:Ipp32f):IppStatus;
-  ippiCountInRange_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp32f;var upperBound:Ipp32f):IppStatus;
+  ippiCountInRange_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;counts:Plongint;lowerBound:Ipp8u;upperBound:Ipp8u):IppStatus;stdcall;
+  ippiCountInRange_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp8u;var upperBound:Ipp8u):IppStatus;stdcall;
+  ippiCountInRange_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp8u;var upperBound:Ipp8u):IppStatus;stdcall;
+  ippiCountInRange_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;counts:Plongint;lowerBound:Ipp32f;upperBound:Ipp32f):IppStatus;stdcall;
+  ippiCountInRange_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp32f;var upperBound:Ipp32f):IppStatus;stdcall;
+  ippiCountInRange_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var counts:longint;var lowerBound:Ipp32f;var upperBound:Ipp32f):IppStatus;stdcall;
 
 
 (* ///////////////////////////////////////////////////////////////////////////
@@ -5016,8 +5016,8 @@ var
 //   nChannels     Number of channels
 //   bufferSize  reference to size buffer
 *)
-  ippiFilterMedianGetBufferSize_32f: function(dstRoiSize:IppiSize;maskSize:IppiSize;nChannels:Ipp32u;bufferSize:PIpp32u):IppStatus;
-  ippiFilterMedianGetBufferSize_64f: function(dstRoiSize:IppiSize;maskSize:IppiSize;nChannels:Ipp32u;bufferSize:PIpp32u):IppStatus;
+  ippiFilterMedianGetBufferSize_32f: function(dstRoiSize:IppiSize;maskSize:IppiSize;nChannels:Ipp32u;bufferSize:PIpp32u):IppStatus;stdcall;
+  ippiFilterMedianGetBufferSize_64f: function(dstRoiSize:IppiSize;maskSize:IppiSize;nChannels:Ipp32u;bufferSize:PIpp32u):IppStatus;stdcall;
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiFilterMedian_32f_C3R
 //              ippiFilterMedian_32f_C4R
@@ -5043,9 +5043,9 @@ var
 //               the position of input pixel
 *)
 
-  ippiFilterMedian_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedian_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedian_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMedian_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedian_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedian_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;stdcall;
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiFilterMedianCross_8u_C1R
 //              ippiFilterMedianCross_8u_C3R
@@ -5072,15 +5072,15 @@ var
 //   dstRoiSize  Size of the destination ROI
 //   mask        Type of the filter mask
 *)
-  ippiFilterMedianCross_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianCross_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
+  ippiFilterMedianCross_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianCross_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiFilterMedianColor_8u_C3R
@@ -5105,12 +5105,12 @@ var
 //   dstRoiSize  Size of the destination ROI
 //   mask        Type of the filter mask
 *)
-  ippiFilterMedianColor_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianColor_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianColor_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianColor_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianColor_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
-  ippiFilterMedianColor_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;
+  ippiFilterMedianColor_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianColor_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianColor_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianColor_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianColor_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
+  ippiFilterMedianColor_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiFilterMedianWeightedCenter3x3_8u_C1R
@@ -5133,7 +5133,7 @@ var
 //   dstRoiSize  Size of the destination ROI
 //   weight      Weight of central pixel
 *)
-  ippiFilterMedianWeightedCenter3x3_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;weight:longint):IppStatus;
+  ippiFilterMedianWeightedCenter3x3_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;weight:longint):IppStatus;stdcall;
 
 
 
@@ -5157,7 +5157,7 @@ var
 //   ippStsDataTypeErr  Indicates an error when dataType has an illegal value.
 //   ippStsNumChannelsErr Indicates an error when numChannels has an illegal value.
 *)
-  ippiFilterMedianBorderGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
+  ippiFilterMedianBorderGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -5191,22 +5191,22 @@ var
 //   ippStsBorderErr    Indicates an error when borderType has illegal value.
 *)
 
-  ippiFilterMedianBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMedianBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterMedianBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMedianBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterMedianBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMedianBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterMedianBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMedianBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMedianBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMedianBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -5230,8 +5230,8 @@ var
 //   ippStsDataTypeErr  Indicates an error when dataType has an illegal value.
 //   ippStsNumChannelsErr Indicates an error when numChannels has an illegal value.
 *)
-  ippiFilterMaxBorderGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterMinBorderGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
+  ippiFilterMaxBorderGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterMinBorderGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////
@@ -5290,39 +5290,39 @@ var
 //   ippStsStepErr      Indicates an error when srcStep or dstStep is negative, or equal to zero.
 //   ippStsBorderErr    Indicates an error when borderType has illegal value.
 *)
-  ippiFilterMaxBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMaxBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMaxBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMaxBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterMinBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterMinBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterMinBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterMinBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* ///////////////////////////////////////////////////////////////////////////
 //             Linear Filters
@@ -5346,7 +5346,7 @@ var
 //    ippStsDataTypeErr Indicates an error when dataType has an illegal value.
 //    ippStsNumChannelsError Indicates an error when numChannels has an illegal value.
 *)
-  ippiFilterBoxBorderGetBufferSize: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
+  ippiFilterBoxBorderGetBufferSize: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* ///////////////////////////////////////////////////////////////////////////
 //  Name: ippiFilterBoxBorder_32f_<desc>R / ippiFilterBoxBorder_16u_<desc>R / ippiFilterBoxBorder_8u_<desc>R / ippiFilterBoxBorder_16s_<desc>R
@@ -5374,37 +5374,37 @@ var
 //   ippStsBorderErr   Indicates an error when border has an illegal value.
 *)
 
-  ippiFilterBoxBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp16s;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp16s;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp8u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;borderValue:PIpp8u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterBoxBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBoxBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* ///////////////////////////////////////////////////////////////////////////
 // Name:   ippiFilterBox_64f_C1R
@@ -5431,7 +5431,7 @@ var
 *)
 
 
-  ippiFilterBox_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint):IppStatus;
+  ippiFilterBox_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint):IppStatus;stdcall;
 (* ///////////////////////////////////////////////////////////////////////////
 // Name:   ippiSumWindowRow_8u32f_<desc>R,  ippiSumWindowColumn_8u32f_<desc>R
 //         ippiSumWindowRow_16u32f_<desc>R, ippiSumWindowColumn_16u32f_<desc>R
@@ -5455,25 +5455,25 @@ var
 //   ippStsMemAllocErr  memory allocation error (ippiSumWindowColumn only)
 *)
 
-  ippiSumWindowRow_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_16u32f_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowRow_16s32f_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
+  ippiSumWindowRow_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_16u32f_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowRow_16s32f_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
 
-  ippiSumWindowColumn_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_16u32f_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
-  ippiSumWindowColumn_16s32f_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;
+  ippiSumWindowColumn_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_16u32f_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
+  ippiSumWindowColumn_16s32f_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:longint;anchor:longint):IppStatus;stdcall;
 
 
 (* ///////////////////////////////////////////////////////////////////////////
@@ -5660,20 +5660,20 @@ var
 //   ippStsDataTypeErr  Indicates an error when srcDataType or dstDataType has an illegal value.
 //   ippStsNumChannelsErr Indicates an error when numChannels has an illegal value.
 *)
-  ippiFilterSobelHorizBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterSobelVertBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterScharrHorizMaskBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterScharrVertMaskBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterPrewittHorizBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterPrewittVertBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterRobertsDownBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterRobertsUpBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterSobelHorizSecondBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterSobelVertSecondBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterSobelNegVertBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterLaplaceBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterHipassBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterSharpenBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
+  ippiFilterSobelHorizBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterSobelVertBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterScharrHorizMaskBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterScharrVertMaskBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterPrewittHorizBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterPrewittVertBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterRobertsDownBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterRobertsUpBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterSobelHorizSecondBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterSobelVertSecondBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterSobelNegVertBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterLaplaceBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterHipassBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterSharpenBorderGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -5770,77 +5770,77 @@ var
 //                      for floating-point images, or by 2 for short-integer images.
 //   ippStsBorderErr    Indicates an error when borderType has illegal value.
 *)
-  ippiFilterSobelVertBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelHorizBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterScharrVertMaskBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterScharrHorizMaskBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterPrewittVertBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterPrewittHorizBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterRobertsDownBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterRobertsUpBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelVertSecondBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelHorizSecondBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelNegVertBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
+  ippiFilterSobelVertBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelHorizBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterScharrVertMaskBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterScharrHorizMaskBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterPrewittVertBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterPrewittHorizBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterRobertsDownBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterRobertsUpBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelVertSecondBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelHorizSecondBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelNegVertBorder_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterSobelVertBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelHorizBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterScharrVertMaskBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterScharrHorizMaskBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterPrewittVertBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterPrewittHorizBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterRobertsDownBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterRobertsUpBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelVertSecondBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelHorizSecondBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelNegVertBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterSobelVertBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelHorizBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterScharrVertMaskBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterScharrHorizMaskBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterPrewittVertBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterPrewittHorizBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterRobertsDownBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterRobertsUpBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelVertSecondBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelHorizSecondBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelNegVertBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterSobelVertBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobelHorizBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterScharrVertMaskBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterScharrHorizMaskBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterPrewittVertBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterPrewittHorizBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterRobertsDownBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterRobertsUpBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
+  ippiFilterSobelVertBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobelHorizBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterScharrVertMaskBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterScharrHorizMaskBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterPrewittVertBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterPrewittHorizBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterRobertsDownBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterRobertsUpBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterLaplaceBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterLaplaceBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterLaplaceBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterLaplaceBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterHipassBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterHipassBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterHipassBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterHipassBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiFilterSharpenBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSharpenBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterSharpenBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSharpenBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;mask:IppiMaskSize;borderType:IppiBorderType;var pBorderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -5866,7 +5866,7 @@ var
 //   ippStsDataTypeErr  Indicates an error when srcDataType or dstDataType has an illegal value.
 //   ippStsNumChannelsErr Indicates an error when numChannels has an illegal value.
 *)
-  ippiFilterSobelGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;normType:IppNormType;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
+  ippiFilterSobelGetBufferSize: function(dstRoiSize:IppiSize;mask:IppiMaskSize;normType:IppNormType;srcDataType:IppDataType;dstDataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -5901,10 +5901,10 @@ var
 //                      for floating-point images, or by 2 for short-integer images.
 //   ippStsBorderErr    Indicates an error when borderType has illegal value.
 *)
-  ippiFilterSobel_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobel_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobel_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiFilterSobel_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterSobel_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobel_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobel_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterSobel_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 
@@ -5956,19 +5956,19 @@ var
 //                                                         or greater than 1.0;
 *)
 
-  ippiFilterWienerGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;channels:longint;pBufferSize:Plongint):IppStatus;
-  ippiFilterWiener_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
-  ippiFilterWiener_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiFilterWienerGetBufferSize: function(dstRoiSize:IppiSize;maskSize:IppiSize;channels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterWiener_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterWiener_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;maskSize:IppiSize;anchor:IppiPoint;var noise:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -5996,7 +5996,7 @@ var
 //                            The result of the bitwise AND operation between algType and ippiROIMask differs from the ippiROIFull or ippiROIValid values.
 //   ippStsNullPtrErr     - Error when the pBufferSize is NULL.
 *)
-  ippiConvGetBufferSize: function(src1Size:IppiSize;src2Size:IppiSize;dataType:IppDataType;numChannels:longint;algType:IppEnum;pBufferSize:Plongint):IppStatus;
+  ippiConvGetBufferSize: function(src1Size:IppiSize;src2Size:IppiSize;dataType:IppDataType;numChannels:longint;algType:IppEnum;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //   Names: ippiConv_32f_C1R, ippiConv_32f_C3R, ippiConv_32f_C4R
@@ -6029,15 +6029,15 @@ var
 //                         The result of the bitwise AND operation between algType and ippAlgMask differs from the ippAlgAuto, ippAlgDirect, or ippAlgFFT values.
 //                         The result of the bitwise AND operation between algType and ippiROIMask differs from the ippiROIFull or ippiROIValid values.
 *)
-  ippiConv_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp32f;src2Step:longint;src2Size:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp32f;src2Step:longint;src2Size:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp32f;src2Step:longint;src2Size:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp16s;src2Step:longint;src2Size:IppiSize;pDst:PIpp16s;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp16s;src2Step:longint;src2Size:IppiSize;pDst:PIpp16s;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp16s;src2Step:longint;src2Size:IppiSize;pDst:PIpp16s;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp8u;src2Step:longint;src2Size:IppiSize;pDst:PIpp8u;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp8u;src2Step:longint;src2Size:IppiSize;pDst:PIpp8u;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiConv_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp8u;src2Step:longint;src2Size:IppiSize;pDst:PIpp8u;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
+  ippiConv_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp32f;src2Step:longint;src2Size:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp32f;src2Step:longint;src2Size:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp32f;src2Step:longint;src2Size:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp16s;src2Step:longint;src2Size:IppiSize;pDst:PIpp16s;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp16s;src2Step:longint;src2Size:IppiSize;pDst:PIpp16s;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp16s;src2Step:longint;src2Size:IppiSize;pDst:PIpp16s;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp8u;src2Step:longint;src2Size:IppiSize;pDst:PIpp8u;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp8u;src2Step:longint;src2Size:IppiSize;pDst:PIpp8u;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiConv_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;src1Size:IppiSize;pSrc2:PIpp8u;src2Step:longint;src2Size:IppiSize;pDst:PIpp8u;dstStep:longint;divisor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 
@@ -6068,7 +6068,7 @@ var
 //                            The result of the bitwise AND operation between the algType and ippiNormMask differs from the ippiNormNone, ippiNorm, or ippiNormCoefficient values.
 //    ippStsNullPtrErr  - Error when the pBufferSize is NULL.
 *)
-  ippiCrossCorrNormGetBufferSize: function(srcRoiSize:IppiSize;tplRoiSize:IppiSize;algType:IppEnum;pBufferSize:Plongint):IppStatus;
+  ippiCrossCorrNormGetBufferSize: function(srcRoiSize:IppiSize;tplRoiSize:IppiSize;algType:IppEnum;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////
@@ -6113,10 +6113,10 @@ var
 //                         The result of the bitwise AND operation between the algType and ippiROIMask differs from the ippiROIFull, ippiROISame, or ippiROIValid values.
 //                         The result of the bitwise AND operation between the algType and ippiNormMask differs from the ippiNormNone, ippiNorm, or ippiNormCoefficient values.
 *)
-  ippiCrossCorrNorm_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp32f;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiCrossCorrNorm_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiCrossCorrNorm_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiCrossCorrNorm_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;scaleFactor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
+  ippiCrossCorrNorm_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp32f;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiCrossCorrNorm_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiCrossCorrNorm_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiCrossCorrNorm_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;scaleFactor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Names:  ippiSqrDistanceNormGetBufferSize
@@ -6141,7 +6141,7 @@ var
 //                           The result of the bitwise AND operation between the algType and ippiNormMask differs from the ippiNormNone or ippiNorm values.
 //    ippStsNullPtrErr - Error when the pBufferSize is NULL.
 *)
-  ippiSqrDistanceNormGetBufferSize: function(srcRoiSize:IppiSize;tplRoiSize:IppiSize;algType:IppEnum;pBufferSize:Plongint):IppStatus;
+  ippiSqrDistanceNormGetBufferSize: function(srcRoiSize:IppiSize;tplRoiSize:IppiSize;algType:IppEnum;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names: ippiSqrDistanceNorm_32f_C1R
@@ -6184,10 +6184,10 @@ var
 //                         The result of the bitwise AND operation between the algType and ippiROIMask differs from the ippiROIFull, ippiROISame, or ippiROIValid values.
 //                         The result of the bitwise AND operation between the algType and ippiNormMask differs from the ippiNormNone or ippiNorm values.
 *)
-  ippiSqrDistanceNorm_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp32f;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiSqrDistanceNorm_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiSqrDistanceNorm_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
-  ippiSqrDistanceNorm_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;scaleFactor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;
+  ippiSqrDistanceNorm_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp32f;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiSqrDistanceNorm_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiSqrDistanceNorm_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiSqrDistanceNorm_8u_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;scaleFactor:longint;algType:IppEnum;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -6241,30 +6241,30 @@ var
 //                ippCmpLess     - less than,
 //                ippCmpGreater  - greater than
 *)
-  ippiThreshold_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
+  ippiThreshold_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiThreshold_GT_8u_C1R
@@ -6309,30 +6309,30 @@ var
 //   roiSize    Size of the ROI
 //   threshold  Threshold level value (array of values for multi-channel data)
 *)
-  ippiThreshold_GT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;
-  ippiThreshold_GT_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;
-  ippiThreshold_GT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;
-  ippiThreshold_GT_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_GT_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_GT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_GT_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_GT_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_GT_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_GT_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;
-  ippiThreshold_GT_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;
-  ippiThreshold_GT_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;
-  ippiThreshold_GT_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_GT_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_GT_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_GT_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_GT_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_GT_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_GT_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;
-  ippiThreshold_GT_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
-  ippiThreshold_GT_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
-  ippiThreshold_GT_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;
-  ippiThreshold_GT_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
-  ippiThreshold_GT_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
+  ippiThreshold_GT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GT_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GT_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GT_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GT_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GT_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GT_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GT_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GT_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GT_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GT_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GT_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GT_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GT_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GT_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GT_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GT_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GT_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GT_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GT_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GT_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GT_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiThreshold_LT_8u_C1R
@@ -6380,30 +6380,30 @@ var
 //                ippCmpLess     - less than
 //                ippCmpGreater  - greater than
 *)
-  ippiThreshold_LT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;
-  ippiThreshold_LT_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;
-  ippiThreshold_LT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;
-  ippiThreshold_LT_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_LT_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_LT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_LT_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_LT_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_LT_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_LT_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;
-  ippiThreshold_LT_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;
-  ippiThreshold_LT_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;
-  ippiThreshold_LT_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_LT_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_LT_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_LT_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;
-  ippiThreshold_LT_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;
-  ippiThreshold_LT_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;
-  ippiThreshold_LT_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;
-  ippiThreshold_LT_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
-  ippiThreshold_LT_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
-  ippiThreshold_LT_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;
-  ippiThreshold_LT_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
-  ippiThreshold_LT_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;
+  ippiThreshold_LT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LT_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LT_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LT_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LT_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LT_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LT_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LT_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LT_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LT_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LT_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LT_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LT_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LT_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LT_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LT_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LT_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LT_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LT_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LT_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LT_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LT_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiThreshold_Val_8u_C1R
@@ -6451,30 +6451,30 @@ var
 //   value      The output value (array or values for multi-channel data)
 //   ippCmpOp      comparison mode, ippCmpLess or ippCmpGreater
 *)
-  ippiThreshold_Val_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
-  ippiThreshold_Val_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;
+  ippiThreshold_Val_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiThreshold_Val_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiThreshold_GTVal_8u_C1R
@@ -6529,38 +6529,38 @@ var
 //   threshold  Threshold level value (array of values for multi-channel data)
 //   value      The output value (array or values for multi-channel data)
 *)
-  ippiThreshold_GTVal_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_GTVal_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_GTVal_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_GTVal_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_GTVal_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
+  ippiThreshold_GTVal_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_GTVal_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_GTVal_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiThreshold_LTVal_8u_C1R
@@ -6615,38 +6615,38 @@ var
 //   threshold  Threshold level value (array of values for multi-channel data)
 //   value      The output value (array or values for multi-channel data)
 *)
-  ippiThreshold_LTVal_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;
-  ippiThreshold_LTVal_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;
-  ippiThreshold_LTVal_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;
-  ippiThreshold_LTVal_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
-  ippiThreshold_LTVal_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;
+  ippiThreshold_LTVal_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp8u;value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16s;value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp32f;value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp8u;var value:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16s;var value:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTVal_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp32f;var value:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;threshold:Ipp16u;value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTVal_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var threshold:Ipp16u;var value:Ipp16u):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Names:      ippiThreshold_LTValGTVal_8u_C1R
@@ -6684,31 +6684,31 @@ var
 //   thresholdGT Upper threshold value (array of values for multi-channel data)
 //   valueGT     Upper output value (array or values for multi-channel data)
 *)
-  ippiThreshold_LTValGTVal_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp8u;valueLT:Ipp8u;thresholdGT:Ipp8u;valueGT:Ipp8u):IppStatus;
-  ippiThreshold_LTValGTVal_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16s;valueLT:Ipp16s;thresholdGT:Ipp16s;valueGT:Ipp16s):IppStatus;
-  ippiThreshold_LTValGTVal_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp32f;valueLT:Ipp32f;thresholdGT:Ipp32f;valueGT:Ipp32f):IppStatus;
-  ippiThreshold_LTValGTVal_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;
-  ippiThreshold_LTValGTVal_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;
-  ippiThreshold_LTValGTVal_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;
-  ippiThreshold_LTValGTVal_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;
-  ippiThreshold_LTValGTVal_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;
-  ippiThreshold_LTValGTVal_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;
-  ippiThreshold_LTValGTVal_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp8u;valueLT:Ipp8u;thresholdGT:Ipp8u;valueGT:Ipp8u):IppStatus;
-  ippiThreshold_LTValGTVal_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16s;valueLT:Ipp16s;thresholdGT:Ipp16s;valueGT:Ipp16s):IppStatus;
-  ippiThreshold_LTValGTVal_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp32f;valueLT:Ipp32f;thresholdGT:Ipp32f;valueGT:Ipp32f):IppStatus;
-  ippiThreshold_LTValGTVal_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;
-  ippiThreshold_LTValGTVal_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;
-  ippiThreshold_LTValGTVal_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;
-  ippiThreshold_LTValGTVal_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;
-  ippiThreshold_LTValGTVal_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;
-  ippiThreshold_LTValGTVal_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;
+  ippiThreshold_LTValGTVal_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp8u;valueLT:Ipp8u;thresholdGT:Ipp8u;valueGT:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16s;valueLT:Ipp16s;thresholdGT:Ipp16s;valueGT:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp32f;valueLT:Ipp32f;thresholdGT:Ipp32f;valueGT:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp8u;valueLT:Ipp8u;thresholdGT:Ipp8u;valueGT:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16s;valueLT:Ipp16s;thresholdGT:Ipp16s;valueGT:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp32f;valueLT:Ipp32f;thresholdGT:Ipp32f;valueGT:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp8u;var valueLT:Ipp8u;var thresholdGT:Ipp8u;var valueGT:Ipp8u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16s;var valueLT:Ipp16s;var thresholdGT:Ipp16s;var valueGT:Ipp16s):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp32f;var valueLT:Ipp32f;var thresholdGT:Ipp32f;var valueGT:Ipp32f):IppStatus;stdcall;
 
-  ippiThreshold_LTValGTVal_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16u;valueLT:Ipp16u;thresholdGT:Ipp16u;valueGT:Ipp16u):IppStatus;
-  ippiThreshold_LTValGTVal_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;
-  ippiThreshold_LTValGTVal_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;
-  ippiThreshold_LTValGTVal_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16u;valueLT:Ipp16u;thresholdGT:Ipp16u;valueGT:Ipp16u):IppStatus;
-  ippiThreshold_LTValGTVal_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;
-  ippiThreshold_LTValGTVal_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;
+  ippiThreshold_LTValGTVal_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16u;valueLT:Ipp16u;thresholdGT:Ipp16u;valueGT:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;thresholdLT:Ipp16u;valueLT:Ipp16u;thresholdGT:Ipp16u;valueGT:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;stdcall;
+  ippiThreshold_LTValGTVal_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;var thresholdLT:Ipp16u;var valueLT:Ipp16u;var thresholdGT:Ipp16u;var valueGT:Ipp16u):IppStatus;stdcall;
 
 (*F/////////////////////////////////////////////////////////////////////////////////
 //  Name: ippiComputeThreshold_Otsu_8u_C1R
@@ -6727,7 +6727,7 @@ var
 //
 //F*)
 
-  ippiComputeThreshold_Otsu_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pThreshold:PIpp8u):IppStatus;
+  ippiComputeThreshold_Otsu_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pThreshold:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                     Adaptive threshold functions
@@ -6751,8 +6751,8 @@ var
 //    ippStsDataTypeErr         Indicates an error when dataType has an illegal value.
 //    ippStsNumChannelsErr      Indicates an error when numChannels has an illegal value.
 *)
-  ippiThresholdAdaptiveBoxGetBufferSize: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
-  ippiThresholdAdaptiveGaussGetBufferSize: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;
+  ippiThresholdAdaptiveBoxGetBufferSize: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiThresholdAdaptiveGaussGetBufferSize: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiFilterThresholdGaussAdaptiveInit
@@ -6777,7 +6777,7 @@ var
 //    ippStsDataTypeErr         Indicates an error when dataType has an illegal value.
 //    ippStsNumChannelsErr      Indicates an error when numChannels has an illegal value.
 *)
-  ippiThresholdAdaptiveGaussInit: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;sigma:Ipp32f;pSpec:PIppiThresholdAdaptiveSpec):IppStatus;
+  ippiThresholdAdaptiveGaussInit: function(roiSize:IppiSize;maskSize:IppiSize;dataType:IppDataType;numChannels:longint;sigma:Ipp32f;pSpec:PIppiThresholdAdaptiveSpec):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiThresholdAdaptiveBox_8u_C1R
@@ -6826,10 +6826,10 @@ var
 //     A is scale factor for
 //     SUM(Gi) = 1 (i = 0,...,maskSize.width-1).
 *)
-  ippiThresholdAdaptiveBox_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiThresholdAdaptiveGauss_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pSpec:PIppiThresholdAdaptiveSpec;pBuffer:PIpp8u):IppStatus;
-  ippiThresholdAdaptiveBox_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;maskSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiThresholdAdaptiveGauss_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pSpec:PIppiThresholdAdaptiveSpec;pBuffer:PIpp8u):IppStatus;
+  ippiThresholdAdaptiveBox_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;maskSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiThresholdAdaptiveGauss_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pSpec:PIppiThresholdAdaptiveSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiThresholdAdaptiveBox_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;maskSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiThresholdAdaptiveGauss_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;delta:Ipp32f;valGT:Ipp8u;valLE:Ipp8u;borderType:IppiBorderType;borderValue:Ipp8u;pSpec:PIppiThresholdAdaptiveSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 
@@ -6857,7 +6857,7 @@ var
 //                      (IPP_TEMPORAL_COPY,IPP_NONTEMPORAL_STORE etc.)
 *)
 
-  ippiCopyManaged_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flags:longint):IppStatus;
+  ippiCopyManaged_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;flags:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiCopy
@@ -6880,108 +6880,108 @@ var
 //    maskStep          Step in bytes through the mask image buffer
 *)
 
-  ippiCopy_8u_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C1C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C4C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C1C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C3CR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C4CR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_AC4C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C3AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C1MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_8u_C3MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_8u_C4MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_8u_AC4MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16s_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C1C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C4C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C1C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C3CR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C4CR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_AC4C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C3AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C1MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16s_C3MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16s_C4MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16s_AC4MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C1C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C4C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C1C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C3CR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C4CR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_AC4C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C3AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C1MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32f_C3MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32f_C4MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32f_AC4MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_8u_C3P3R: function(pSrc:PIpp8u;srcStep:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_P3C3R: function(var pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_C4P4R: function(pSrc:PIpp8u;srcStep:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_8u_P4C4R: function(var pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C3P3R: function(pSrc:PIpp16s;srcStep:longint;var pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_P3C3R: function(var pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_C4P4R: function(pSrc:PIpp16s;srcStep:longint;var pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16s_P4C4R: function(var pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C3P3R: function(pSrc:PIpp32f;srcStep:longint;var pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_P3C3R: function(var pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_C4P4R: function(pSrc:PIpp32f;srcStep:longint;var pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32f_P4C4R: function(var pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C3C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C1C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C4C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C1C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C3CR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C4CR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_AC4C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C3AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C1MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32s_C3MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32s_C4MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32s_AC4MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_32s_C3P3R: function(pSrc:PIpp32s;srcStep:longint;var pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_P3C3R: function(var pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_C4P4R: function(pSrc:PIpp32s;srcStep:longint;var pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_32s_P4C4R: function(var pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiCopy_8u_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C1C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C4C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C1C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C3CR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C4CR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_AC4C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C3AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C1MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_8u_C3MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_8u_C4MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_8u_AC4MR: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16s_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C1C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C4C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C1C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C3CR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C4CR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_AC4C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C3AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C1MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16s_C3MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16s_C4MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16s_AC4MR: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C1C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C4C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C1C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C3CR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C4CR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_AC4C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C3AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C1MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32f_C3MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32f_C4MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32f_AC4MR: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_8u_C3P3R: function(pSrc:PIpp8u;srcStep:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_P3C3R: function(var pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_C4P4R: function(pSrc:PIpp8u;srcStep:longint;var pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_8u_P4C4R: function(var pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C3P3R: function(pSrc:PIpp16s;srcStep:longint;var pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_P3C3R: function(var pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_C4P4R: function(pSrc:PIpp16s;srcStep:longint;var pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16s_P4C4R: function(var pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C3P3R: function(pSrc:PIpp32f;srcStep:longint;var pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_P3C3R: function(var pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_C4P4R: function(pSrc:PIpp32f;srcStep:longint;var pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32f_P4C4R: function(var pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C3C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C1C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C4C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C1C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C3CR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C4CR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_AC4C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C3AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C1MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32s_C3MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32s_C4MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32s_AC4MR: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_32s_C3P3R: function(pSrc:PIpp32s;srcStep:longint;var pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_P3C3R: function(var pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_C4P4R: function(pSrc:PIpp32s;srcStep:longint;var pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_32s_P4C4R: function(var pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiCopy_16u_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C1C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C4C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C1C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C3CR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C4CR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_AC4C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C3AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C1MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16u_C3MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16u_C4MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiCopy_16u_AC4MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
+  ippiCopy_16u_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C1C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C4C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C1C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C3CR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C4CR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_AC4C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C3AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C1MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16u_C3MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16u_C4MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiCopy_16u_AC4MR: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
 
-  ippiCopy_16u_C3P3R: function(pSrc:PIpp16u;srcStep:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_P3C3R: function(var pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_C4P4R: function(pSrc:PIpp16u;srcStep:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiCopy_16u_P4C4R: function(var pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiCopy_16u_C3P3R: function(pSrc:PIpp16u;srcStep:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_P3C3R: function(var pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_C4P4R: function(pSrc:PIpp16u;srcStep:longint;var pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiCopy_16u_P4C4R: function(var pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiCopyReplicateBorder
@@ -7009,53 +7009,53 @@ var
 //    leftBorderWidth     Width of the left border in pixels
 *)
 
-  ippiCopyReplicateBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
+  ippiCopyReplicateBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_8u_C1IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_8u_C3IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_8u_AC4IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_8u_C4IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyReplicateBorder_8u_C1IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_8u_C3IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_8u_AC4IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_8u_C4IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_16s_C1IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_C3IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_AC4IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16s_C4IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyReplicateBorder_16s_C1IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_C3IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_AC4IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16s_C4IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_32s_C1IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_C3IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_AC4IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32s_C4IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyReplicateBorder_32s_C1IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_C3IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_AC4IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32s_C4IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_16u_C1IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16u_C3IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16u_AC4IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16u_C4IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyReplicateBorder_16u_C1IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16u_C3IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16u_AC4IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16u_C4IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
+  ippiCopyReplicateBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
+  ippiCopyReplicateBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
 
-  ippiCopyReplicateBorder_32f_C1IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32f_C3IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32f_AC4IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyReplicateBorder_32f_C4IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyReplicateBorder_32f_C1IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32f_C3IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32f_AC4IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyReplicateBorder_32f_C4IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiCopyConstBorder
@@ -7084,28 +7084,28 @@ var
 //    value              Constant value to assign to the border pixels
 *)
 
-  ippiCopyConstBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp8u):IppStatus;
-  ippiCopyConstBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp8u):IppStatus;
-  ippiCopyConstBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp8u):IppStatus;
-  ippiCopyConstBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp8u):IppStatus;
-  ippiCopyConstBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp16s):IppStatus;
-  ippiCopyConstBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16s):IppStatus;
-  ippiCopyConstBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16s):IppStatus;
-  ippiCopyConstBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16s):IppStatus;
-  ippiCopyConstBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp32s):IppStatus;
-  ippiCopyConstBorder_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32s):IppStatus;
-  ippiCopyConstBorder_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32s):IppStatus;
-  ippiCopyConstBorder_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32s):IppStatus;
+  ippiCopyConstBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp8u):IppStatus;stdcall;
+  ippiCopyConstBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp8u):IppStatus;stdcall;
+  ippiCopyConstBorder_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp8u):IppStatus;stdcall;
+  ippiCopyConstBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp8u):IppStatus;stdcall;
+  ippiCopyConstBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp16s):IppStatus;stdcall;
+  ippiCopyConstBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16s):IppStatus;stdcall;
+  ippiCopyConstBorder_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16s):IppStatus;stdcall;
+  ippiCopyConstBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16s):IppStatus;stdcall;
+  ippiCopyConstBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp32s):IppStatus;stdcall;
+  ippiCopyConstBorder_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32s):IppStatus;stdcall;
+  ippiCopyConstBorder_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32s):IppStatus;stdcall;
+  ippiCopyConstBorder_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32s):IppStatus;stdcall;
 
-  ippiCopyConstBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp16u):IppStatus;
-  ippiCopyConstBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16u):IppStatus;
-  ippiCopyConstBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16u):IppStatus;
-  ippiCopyConstBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16u):IppStatus;
+  ippiCopyConstBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp16u):IppStatus;stdcall;
+  ippiCopyConstBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16u):IppStatus;stdcall;
+  ippiCopyConstBorder_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16u):IppStatus;stdcall;
+  ippiCopyConstBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp16u):IppStatus;stdcall;
 
-  ippiCopyConstBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp32f):IppStatus;
-  ippiCopyConstBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32f):IppStatus;
-  ippiCopyConstBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32f):IppStatus;
-  ippiCopyConstBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32f):IppStatus;
+  ippiCopyConstBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;value:Ipp32f):IppStatus;stdcall;
+  ippiCopyConstBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32f):IppStatus;stdcall;
+  ippiCopyConstBorder_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32f):IppStatus;stdcall;
+  ippiCopyConstBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint;var value:Ipp32f):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiCopyMirrorBorder
@@ -7133,43 +7133,43 @@ var
 //    leftBorderWidth     Width of the left border in pixels
 *)
 
-  ippiCopyMirrorBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
+  ippiCopyMirrorBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_8u_C1IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_8u_C3IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_8u_C4IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyMirrorBorder_8u_C1IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_8u_C3IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_8u_C4IR: function(pSrc:PIpp8u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_16s_C1IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16s_C3IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16s_C4IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyMirrorBorder_16s_C1IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16s_C3IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16s_C4IR: function(pSrc:PIpp16s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_32s_C1IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32s_C3IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32s_C4IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyMirrorBorder_32s_C1IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32s_C3IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32s_C4IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_16u_C1IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16u_C3IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16u_C4IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyMirrorBorder_16u_C1IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16u_C3IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16u_C4IR: function(pSrc:PIpp16u;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
+  ippiCopyMirrorBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
+  ippiCopyMirrorBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
 
-  ippiCopyMirrorBorder_32f_C1IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32f_C3IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
-  ippiCopyMirrorBorder_32f_C4IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyMirrorBorder_32f_C1IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32f_C3IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
+  ippiCopyMirrorBorder_32f_C4IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiCopyWrapBorder
@@ -7196,11 +7196,11 @@ var
 //    leftBorderWidth     Width of the left border in pixels
 *)
 
-  ippiCopyWrapBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyWrapBorder_32s_C1IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyWrapBorder_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyWrapBorder_32s_C1IR: function(pSrc:PIpp32s;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
-  ippiCopyWrapBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;
-  ippiCopyWrapBorder_32f_C1IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;
+  ippiCopyWrapBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;topBorderHeight:longint;leftBorderWidth:longint):IppStatus;stdcall;
+  ippiCopyWrapBorder_32f_C1IR: function(pSrc:PIpp32f;srcDstStep:longint;srcRoiSize:IppiSize;dstRoiSize:IppiSize;topBorderHeight:longint;leftborderwidth:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiDup
@@ -7222,9 +7222,9 @@ var
 //    roiSize           Size of the ROI
 *)
 
-  ippiDup_8u_C1C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiDup_8u_C1C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiDup_8u_C1C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiDup_8u_C1C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiSet
@@ -7245,60 +7245,60 @@ var
 //    maskStep   Step in bytes through the mask image buffer
 *)
 
-  ippiSet_8u_C1R: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_8u_C3CR: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_8u_C4CR: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_8u_C3R: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_8u_C4R: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_8u_AC4R: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_8u_C1MR: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_8u_C3MR: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
+  ippiSet_8u_C1R: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_8u_C3CR: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_8u_C4CR: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_8u_C3R: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_8u_C4R: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_8u_AC4R: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_8u_C1MR: function(value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_8u_C3MR: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
 
-  ippiSet_8u_C4MR: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_8u_AC4MR: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16s_C1R: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16s_C3CR: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16s_C4CR: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16s_C3R: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16s_C4R: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16s_AC4R: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16s_C1MR: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16s_C3MR: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16s_C4MR: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16s_AC4MR: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32f_C1R: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiSet_8u_C4MR: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_8u_AC4MR: function(var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16s_C1R: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16s_C3CR: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16s_C4CR: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16s_C3R: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16s_C4R: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16s_AC4R: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16s_C1MR: function(value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16s_C3MR: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16s_C4MR: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16s_AC4MR: function(var value:Ipp16s;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32f_C1R: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiSet_32f_C3CR: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32f_C4CR: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32f_C3R: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32f_C4R: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32f_AC4R: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32f_C1MR: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32f_C3MR: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32f_C4MR: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32f_AC4MR: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32s_C1R: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiSet_32f_C3CR: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32f_C4CR: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32f_C3R: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32f_C4R: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32f_AC4R: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32f_C1MR: function(value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32f_C3MR: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32f_C4MR: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32f_AC4MR: function(var value:Ipp32f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32s_C1R: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiSet_32s_C3CR: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32s_C4CR: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32s_C3R: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32s_C4R: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32s_AC4R: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_32s_C1MR: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32s_C3MR: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32s_C4MR: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_32s_AC4MR: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
+  ippiSet_32s_C3CR: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32s_C4CR: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32s_C3R: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32s_C4R: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32s_AC4R: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_32s_C1MR: function(value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32s_C3MR: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32s_C4MR: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_32s_AC4MR: function(var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
 
-  ippiSet_16u_C1R: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16u_C3CR: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16u_C4CR: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16u_C3R: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16u_C4R: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16u_AC4R: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiSet_16u_C1MR: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16u_C3MR: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16u_C4MR: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
-  ippiSet_16u_AC4MR: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;
+  ippiSet_16u_C1R: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16u_C3CR: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16u_C4CR: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16u_C3R: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16u_C4R: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16u_AC4R: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiSet_16u_C1MR: function(value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16u_C3MR: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16u_C4MR: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
+  ippiSet_16u_AC4MR: function(var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pMask:PIpp8u;maskStep:longint):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////////////////
 //  Name:  ippiAddRandUniform_8u_C1IR,  ippiAddRandUniform_8u_C3IR,
@@ -7329,23 +7329,23 @@ var
 //                          generator
 *)
 
-  ippiAddRandUniform_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;
+  ippiAddRandUniform_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;low:Ipp8u;high:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;low:Ipp16s;high:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;low:Ipp32f;high:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
 
-  ippiAddRandUniform_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;
-  ippiAddRandUniform_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;
+  ippiAddRandUniform_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandUniform_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;low:Ipp16u;high:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiAddRandGauss_8u_C1IR,  ippiAddRandGauss_8u_C3IR,
@@ -7377,23 +7377,23 @@ var
 *)
 
 
-  ippiAddRandGauss_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;
+  ippiAddRandGauss_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp8u;stdev:Ipp8u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16s_AC4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16s;stdev:Ipp16s;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_32f_AC4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;mean:Ipp32f;stdev:Ipp32f;pSeed:PlongWord):IppStatus;stdcall;
 
-  ippiAddRandGauss_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;
-  ippiAddRandGauss_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;
+  ippiAddRandGauss_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
+  ippiAddRandGauss_16u_AC4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;mean:Ipp16u;stdev:Ipp16u;pSeed:PlongWord):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiImageJaehne
@@ -7414,25 +7414,25 @@ var
 //                      x2 = (x-roi.width+1)/2.0 ,   y2 = (y-roi.height+1)/2.0 .
 //                      A is the constant value depends on the image type being created.
 *)
-  ippiImageJaehne_8u_C1R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_8u_C3R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_8u_C4R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_8u_AC4R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiImageJaehne_8u_C1R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_8u_C3R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_8u_C4R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_8u_AC4R: function(pDst:PIpp8u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiImageJaehne_16u_C1R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_16u_C3R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_16u_C4R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_16u_AC4R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiImageJaehne_16u_C1R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_16u_C3R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_16u_C4R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_16u_AC4R: function(pDst:PIpp16u;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiImageJaehne_16s_C1R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_16s_C3R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_16s_C4R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_16s_AC4R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiImageJaehne_16s_C1R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_16s_C3R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_16s_C4R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_16s_AC4R: function(pDst:PIpp16s;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiImageJaehne_32f_C1R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_32f_C3R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_32f_C4R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiImageJaehne_32f_AC4R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiImageJaehne_32f_C1R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_32f_C3R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_32f_C4R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiImageJaehne_32f_AC4R: function(pDst:PIpp32f;DstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 
@@ -7459,25 +7459,25 @@ var
 //         Dst(x,y) = offset + slope * y   (if ramp for Y-direction)
 //         Dst(x,y) = offset + slope * x*y (if ramp for X,Y-direction)
 *)
-  ippiImageRamp_8u_C1R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_8u_C3R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_8u_C4R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_8u_AC4R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
+  ippiImageRamp_8u_C1R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_8u_C3R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_8u_C4R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_8u_AC4R: function(pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
 
-  ippiImageRamp_16u_C1R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_16u_C3R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_16u_C4R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_16u_AC4R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
+  ippiImageRamp_16u_C1R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_16u_C3R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_16u_C4R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_16u_AC4R: function(pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
 
-  ippiImageRamp_16s_C1R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_16s_C3R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_16s_C4R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_16s_AC4R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
+  ippiImageRamp_16s_C1R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_16s_C3R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_16s_C4R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_16s_AC4R: function(pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
 
-  ippiImageRamp_32f_C1R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_32f_C3R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_32f_C4R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
-  ippiImageRamp_32f_AC4R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;
+  ippiImageRamp_32f_C1R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_32f_C3R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_32f_C4R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
+  ippiImageRamp_32f_AC4R: function(pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;offset:single;slope:single;axis:IppiAxis):IppStatus;stdcall;
 
 
 
@@ -7500,148 +7500,148 @@ var
 //    roiSize               Size of the ROI
 //    roundMode             Rounding mode, ippRndZero or ippRndNear
 *)
-  ippiConvert_8u8s_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_8u8s_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiConvert_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u16u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u16u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u16u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u16u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u16u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u16u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u16s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u16s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u16s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u16s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u16s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u16s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_8u32s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u32s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u32s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u32s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_8u32s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u32s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u32s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u32s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u32f_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-
-
-  ippiConvert_8s8u_C1Rs: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roi:IppiSize):IppStatus;
-  ippiConvert_8s16s_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize):IppStatus;
-  ippiConvert_8s16u_C1Rs: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize):IppStatus;
-  ippiConvert_8s32u_C1Rs: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;
-
-  ippiConvert_8s32s_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8s32s_C3R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8s32s_AC4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8s32s_C4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-
-  ippiConvert_8s32f_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8s32f_C3R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8s32f_AC4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_8s32f_C4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u32f_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
-  ippiConvert_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u8u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u8u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u8u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_8s8u_C1Rs: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s16s_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s16u_C1Rs: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32u_C1Rs: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_16u8s_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_16u16s_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_16u32u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;
+  ippiConvert_8s32s_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32s_C3R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32s_AC4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32s_C4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_16u32s_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u32s_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u32s_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u32s_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-
-  ippiConvert_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u32f_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16u32f_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_8s32f_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32f_C3R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32f_AC4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_8s32f_C4R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
-  ippiConvert_16s8s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u8u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u8u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u8u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_16s8u_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s8u_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s8u_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s8u_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_16u8s_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_16u16s_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_16u32u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_16s16u_C1Rs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize):IppStatus;
-  ippiConvert_16s32u_C1Rs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;
+  ippiConvert_16u32s_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u32s_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u32s_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u32s_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_16s32s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s32s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s32s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s32s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-
-  ippiConvert_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s32f_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_16s32f_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-
-
-  ippiConvert_32u8u_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32u8s_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32u16u_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32u16s_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32u32s_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32u32f_C1R: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize):IppStatus;
+  ippiConvert_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u32f_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16u32f_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
-  ippiConvert_32s8u_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_32s8u_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_32s8u_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_32s8u_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_16s8s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiConvert_32s8s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_32s8s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_32s8s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiConvert_32s8s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_16s8u_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s8u_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s8u_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s8u_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_32s16u_C1RSfs: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32s16s_C1RSfs: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32s32u_C1Rs: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;
-  ippiConvert_32s32f_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize):IppStatus;
+  ippiConvert_16s16u_C1Rs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32u_C1Rs: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
+
+  ippiConvert_16s32s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+
+  ippiConvert_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32f_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_16s32f_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
-  ippiConvert_32f8u_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_32u8u_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32u8s_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32u16u_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32u16s_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32u32s_C1RSfs: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32u32f_C1R: function(pSrc:PIpp32u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f8u_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f8u_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f8u_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
 
-  ippiConvert_32f8s_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_32s8u_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s8u_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s8u_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s8u_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_32f8s_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f8s_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f8s_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f8s_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
+  ippiConvert_32s8s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s8s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s8s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s8s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_32f16u_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_32s16u_C1RSfs: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32s16s_C1RSfs: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32s32u_C1Rs: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
+  ippiConvert_32s32f_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize):IppStatus;stdcall;
 
-  ippiConvert_32f16u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f16u_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f16u_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f16u_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
 
-  ippiConvert_32f16s_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_32f8u_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiConvert_32f16s_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f16s_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f16s_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
-  ippiConvert_32f16s_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;
+  ippiConvert_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f8u_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f8u_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f8u_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
 
-  ippiConvert_32f32u_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_32f32u_C1IRSfs: function(pSrcDst:PIpp32u;srcDstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_32f8s_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
 
-  ippiConvert_32f32s_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32s;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;
+  ippiConvert_32f8s_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f8s_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f8s_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f8s_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
 
-  ippiConvert_64f8u_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_64f8s_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_64f16u_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_64f16s_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiConvert_8s64f_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiConvert_32f16u_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+
+  ippiConvert_32f16u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f16u_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f16u_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f16u_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+
+  ippiConvert_32f16s_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+
+  ippiConvert_32f16s_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f16s_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f16s_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+  ippiConvert_32f16s_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode):IppStatus;stdcall;
+
+  ippiConvert_32f32u_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32u;dstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_32f32u_C1IRSfs: function(pSrcDst:PIpp32u;srcDstStep:longint;roi:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+
+  ippiConvert_32f32s_C1RSfs: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32s;dstStep:longint;roi:IppiSize;round:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+
+  ippiConvert_64f8u_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_64f8s_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_64f16u_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_64f16s_C1RSfs: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;roundMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiConvert_8s64f_C1R: function(pSrc:PIpp8s;srcStep:longint;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* ////////////////////////////////////////////////////////////////////////////
@@ -7664,69 +7664,69 @@ var
 //    ippStsStepErr    - Error when srcStep or dstStep has a zero or negative value.
 //    ippStsSizeErr    - Error when roiSize has a zero or negative value.
 *)
-  ippiScaleC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8u8s_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8u32s_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8u64f_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8u8s_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8u32s_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8u64f_C1R: function(pSrc:PIpp8u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_8s8u_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s16u_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s16s_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s32s_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s32f_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s64f_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_8s8u_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s16u_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s16s_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s32s_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s32f_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s64f_C1R: function(pSrc:PIpp8s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u8s_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u16s_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u32s_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u64f_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u8s_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u16s_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u32s_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u64f_C1R: function(pSrc:PIpp16u;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_16s8u_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s8s_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s16u_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s32s_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s64f_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_16s8u_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s8s_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s16u_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s32s_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s64f_C1R: function(pSrc:PIpp16s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_32s8u_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s8s_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s16u_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s16s_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s32f_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s64f_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_32s8u_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s8s_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s16u_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s16s_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s32f_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s64f_C1R: function(pSrc:PIpp32s;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f8s_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f16u_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f16s_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f32s_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f64f_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f8s_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f16u_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f16s_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f32s_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f64f_C1R: function(pSrc:PIpp32f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_64f8u_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f8s_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f16u_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f16s_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f32s_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f32f_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_64f8u_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f8s_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp8s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f16u_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f16s_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f32s_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f32f_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;mVal:Ipp64f;aVal:Ipp64f;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScaleC_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_8s_C1IR: function(pSrcDst:PIpp8s;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32s_C1IR: function(pSrcDst:PIpp32s;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScaleC_64f_C1IR: function(pSrcDst:PIpp64f;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScaleC_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_8s_C1IR: function(pSrcDst:PIpp8s;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32s_C1IR: function(pSrcDst:PIpp32s;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScaleC_64f_C1IR: function(pSrcDst:PIpp64f;srcDstStep:longint;mVal:Ipp64f;aVal:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 // Name:       ippiBinToGray_1u{8u|16u|16s|32f}_C1R,
@@ -7752,15 +7752,15 @@ var
 //                         srcBitOffset or dstBitOffset is less than zero.
 //    ippStsStepErr    - Error when srcStep or dstStep has a zero or negative value.
 *)
-  ippiBinToGray_1u8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;loVal:Ipp8u;hiVal:Ipp8u):IppStatus;
-  ippiBinToGray_1u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;loVal:Ipp16u;hiVal:Ipp16u):IppStatus;
-  ippiBinToGray_1u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;loVal:Ipp16s;hiVal:Ipp16s):IppStatus;
-  ippiBinToGray_1u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;loVal:Ipp32f;hiVal:Ipp32f):IppStatus;
+  ippiBinToGray_1u8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;loVal:Ipp8u;hiVal:Ipp8u):IppStatus;stdcall;
+  ippiBinToGray_1u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;loVal:Ipp16u;hiVal:Ipp16u):IppStatus;stdcall;
+  ippiBinToGray_1u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;loVal:Ipp16s;hiVal:Ipp16s):IppStatus;stdcall;
+  ippiBinToGray_1u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;srcBitOffset:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;loVal:Ipp32f;hiVal:Ipp32f):IppStatus;stdcall;
 
-  ippiGrayToBin_8u1u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;
-  ippiGrayToBin_16u1u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;
-  ippiGrayToBin_16s1u_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;
-  ippiGrayToBin_32f1u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;
+  ippiGrayToBin_8u1u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp8u):IppStatus;stdcall;
+  ippiGrayToBin_16u1u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp16u):IppStatus;stdcall;
+  ippiGrayToBin_16s1u_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp16s):IppStatus;stdcall;
+  ippiGrayToBin_32f1u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstBitOffset:longint;roiSize:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -7782,8 +7782,8 @@ var
 //                          dstStep <= 0
 //   ippStsNoErr         No errors
 *)
-  ippiPolarToCart_32fc_C1R: function(pSrcMagn:PIpp32f;pSrcPhase:PIpp32f;srcStep:longint;roiSize:IppiSize;pDst:PIpp32fc;dstStep:longint):IppStatus;
-  ippiPolarToCart_32fc_C3R: function(pSrcMagn:PIpp32f;pSrcPhase:PIpp32f;srcStep:longint;roiSize:IppiSize;pDst:PIpp32fc;dstStep:longint):IppStatus;
+  ippiPolarToCart_32fc_C1R: function(pSrcMagn:PIpp32f;pSrcPhase:PIpp32f;srcStep:longint;roiSize:IppiSize;pDst:PIpp32fc;dstStep:longint):IppStatus;stdcall;
+  ippiPolarToCart_32fc_C3R: function(pSrcMagn:PIpp32f;pSrcPhase:PIpp32f;srcStep:longint;roiSize:IppiSize;pDst:PIpp32fc;dstStep:longint):IppStatus;stdcall;
 
 
 
@@ -7816,25 +7816,25 @@ var
 //    roiSize        Size of the ROI
 //    dstOrder       The order of channels in the destination image
 *)
-  ippiSwapChannels_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
+  ippiSwapChannels_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
 
-  ippiSwapChannels_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
+  ippiSwapChannels_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
 
-  ippiSwapChannels_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
+  ippiSwapChannels_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiSwapChannels C3C4R,C4C3R
@@ -7870,16 +7870,16 @@ var
 //    dstOrder       The order of channels in the destination image
 //    val            Constant value for C3C4R
 *)
-  ippiSwapChannels_8u_C3C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp8u):IppStatus;
-  ippiSwapChannels_8u_C4C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16s_C3C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp16s):IppStatus;
-  ippiSwapChannels_16s_C4C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_16u_C3C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp16u):IppStatus;
-  ippiSwapChannels_16u_C4C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32s_C3C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp32s):IppStatus;
-  ippiSwapChannels_32s_C4C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
-  ippiSwapChannels_32f_C3C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp32f):IppStatus;
-  ippiSwapChannels_32f_C4C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;
+  ippiSwapChannels_8u_C3C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp8u):IppStatus;stdcall;
+  ippiSwapChannels_8u_C4C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16s_C3C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp16s):IppStatus;stdcall;
+  ippiSwapChannels_16s_C4C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_16u_C3C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp16u):IppStatus;stdcall;
+  ippiSwapChannels_16u_C4C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32s_C3C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp32s):IppStatus;stdcall;
+  ippiSwapChannels_32s_C4C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
+  ippiSwapChannels_32f_C3C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint;val:Ipp32f):IppStatus;stdcall;
+  ippiSwapChannels_32f_C4C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;var dstOrder:longint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////////
@@ -7911,45 +7911,45 @@ var
 //                                 or ippAlgHintNone
 //                                  - accuracy e-3, but quickly.
 *)
-  ippiScale_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u16u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u16u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u16u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiScale_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u16u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u16u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u16u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiScale_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u16s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u16s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u16s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiScale_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u16s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u16s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u16s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiScale_8u32s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u32s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u32s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiScale_8u32s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiScale_8u32s_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u32s_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u32s_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiScale_8u32s_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiScale_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
-  ippiScale_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
-  ippiScale_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
-  ippiScale_8u32f_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
+  ippiScale_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
+  ippiScale_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
+  ippiScale_8u32f_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
+  ippiScale_8u32f_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
 
-  ippiScale_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_16u8u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_16u8u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_16u8u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScale_16u8u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_16u8u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_16u8u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_16u8u_AC4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScale_16s8u_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_16s8u_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_16s8u_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_16s8u_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScale_16s8u_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_16s8u_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_16s8u_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_16s8u_AC4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScale_32s8u_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_32s8u_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_32s8u_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
-  ippiScale_32s8u_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;
+  ippiScale_32s8u_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_32s8u_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_32s8u_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
+  ippiScale_32s8u_AC4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm):IppStatus;stdcall;
 
-  ippiScale_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
-  ippiScale_32f8u_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
-  ippiScale_32f8u_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
-  ippiScale_32f8u_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;
+  ippiScale_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
+  ippiScale_32f8u_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
+  ippiScale_32f8u_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
+  ippiScale_32f8u_AC4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;vMin:Ipp32f;vMax:Ipp32f):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -7967,25 +7967,25 @@ var
 //    min         Array containing results (C3, AC4, C4)
 *)
 
-  ippiMin_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMin:PIpp8u):IppStatus;
-  ippiMin_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u):IppStatus;
-  ippiMin_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u):IppStatus;
-  ippiMin_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u):IppStatus;
+  ippiMin_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMin:PIpp8u):IppStatus;stdcall;
+  ippiMin_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u):IppStatus;stdcall;
+  ippiMin_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u):IppStatus;stdcall;
+  ippiMin_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u):IppStatus;stdcall;
 
-  ippiMin_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMin:PIpp16s):IppStatus;
-  ippiMin_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s):IppStatus;
-  ippiMin_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s):IppStatus;
-  ippiMin_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s):IppStatus;
+  ippiMin_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMin:PIpp16s):IppStatus;stdcall;
+  ippiMin_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s):IppStatus;stdcall;
+  ippiMin_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s):IppStatus;stdcall;
+  ippiMin_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s):IppStatus;stdcall;
 
-  ippiMin_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMin:PIpp16u):IppStatus;
-  ippiMin_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u):IppStatus;
-  ippiMin_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u):IppStatus;
-  ippiMin_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u):IppStatus;
+  ippiMin_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMin:PIpp16u):IppStatus;stdcall;
+  ippiMin_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u):IppStatus;stdcall;
+  ippiMin_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u):IppStatus;stdcall;
+  ippiMin_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u):IppStatus;stdcall;
 
-  ippiMin_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMin:PIpp32f):IppStatus;
-  ippiMin_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f):IppStatus;
-  ippiMin_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f):IppStatus;
-  ippiMin_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f):IppStatus;
+  ippiMin_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMin:PIpp32f):IppStatus;stdcall;
+  ippiMin_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f):IppStatus;stdcall;
+  ippiMin_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f):IppStatus;stdcall;
+  ippiMin_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiMinIndx
@@ -8007,25 +8007,25 @@ var
 //    indexY      Array containing the y coordinates of the pixel with min value (C3, AC4, C4)
 *)
 
-  ippiMinIndx_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMin:PIpp8u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMinIndx_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMinIndx_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMin:PIpp8u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMinIndx_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
-  ippiMinIndx_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMin:PIpp16s;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMinIndx_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMinIndx_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMin:PIpp16s;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMinIndx_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
-  ippiMinIndx_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMin:PIpp16u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMinIndx_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMinIndx_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMin:PIpp16u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMinIndx_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
-  ippiMinIndx_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMin:PIpp32f;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMinIndx_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMinIndx_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMinIndx_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMin:PIpp32f;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMinIndx_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMinIndx_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiMax
@@ -8042,25 +8042,25 @@ var
 //    max         Array containing the results (C3, AC4, C4)
 *)
 
-  ippiMax_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMax:PIpp8u):IppStatus;
-  ippiMax_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u):IppStatus;
-  ippiMax_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u):IppStatus;
-  ippiMax_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u):IppStatus;
+  ippiMax_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMax:PIpp8u):IppStatus;stdcall;
+  ippiMax_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u):IppStatus;stdcall;
+  ippiMax_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u):IppStatus;stdcall;
+  ippiMax_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u):IppStatus;stdcall;
 
-  ippiMax_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMax:PIpp16s):IppStatus;
-  ippiMax_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s):IppStatus;
-  ippiMax_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s):IppStatus;
-  ippiMax_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s):IppStatus;
+  ippiMax_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMax:PIpp16s):IppStatus;stdcall;
+  ippiMax_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s):IppStatus;stdcall;
+  ippiMax_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s):IppStatus;stdcall;
+  ippiMax_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s):IppStatus;stdcall;
 
-  ippiMax_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMax:PIpp16u):IppStatus;
-  ippiMax_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u):IppStatus;
-  ippiMax_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u):IppStatus;
-  ippiMax_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u):IppStatus;
+  ippiMax_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMax:PIpp16u):IppStatus;stdcall;
+  ippiMax_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u):IppStatus;stdcall;
+  ippiMax_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u):IppStatus;stdcall;
+  ippiMax_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u):IppStatus;stdcall;
 
-  ippiMax_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMax:PIpp32f):IppStatus;
-  ippiMax_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f):IppStatus;
-  ippiMax_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f):IppStatus;
-  ippiMax_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f):IppStatus;
+  ippiMax_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMax:PIpp32f):IppStatus;stdcall;
+  ippiMax_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f):IppStatus;stdcall;
+  ippiMax_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f):IppStatus;stdcall;
+  ippiMax_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiMaxIndx
@@ -8082,25 +8082,25 @@ var
 //    indexY      Array containing the y coordinates of the pixel with max value (C3, AC4, C4)
 *)
 
-  ippiMaxIndx_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMax:PIpp8u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMaxIndx_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMaxIndx_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMax:PIpp8u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMaxIndx_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var max:Ipp8u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
-  ippiMaxIndx_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMax:PIpp16s;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMaxIndx_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMaxIndx_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMax:PIpp16s;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMaxIndx_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var max:Ipp16s;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
-  ippiMaxIndx_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMax:PIpp16u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMaxIndx_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMaxIndx_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMax:PIpp16u;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMaxIndx_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var max:Ipp16u;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
-  ippiMaxIndx_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMax:PIpp32f;pIndexX:Plongint;pIndexY:Plongint):IppStatus;
-  ippiMaxIndx_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;
-  ippiMaxIndx_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;
+  ippiMaxIndx_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMax:PIpp32f;pIndexX:Plongint;pIndexY:Plongint):IppStatus;stdcall;
+  ippiMaxIndx_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;stdcall;
+  ippiMaxIndx_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var max:Ipp32f;var indexX:longint;var indexY:longint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:           ippiMinMax
@@ -8117,25 +8117,25 @@ var
 //    min, max    Arrays containing the results (C3, AC4, C4)
 *)
 
-  ippiMinMax_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMin:PIpp8u;pMax:PIpp8u):IppStatus;
-  ippiMinMax_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var max:Ipp8u):IppStatus;
-  ippiMinMax_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var max:Ipp8u):IppStatus;
-  ippiMinMax_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var max:Ipp8u):IppStatus;
+  ippiMinMax_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pMin:PIpp8u;pMax:PIpp8u):IppStatus;stdcall;
+  ippiMinMax_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var max:Ipp8u):IppStatus;stdcall;
+  ippiMinMax_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var max:Ipp8u):IppStatus;stdcall;
+  ippiMinMax_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;var min:Ipp8u;var max:Ipp8u):IppStatus;stdcall;
 
-  ippiMinMax_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMin:PIpp16s;pMax:PIpp16s):IppStatus;
-  ippiMinMax_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var max:Ipp16s):IppStatus;
-  ippiMinMax_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var max:Ipp16s):IppStatus;
-  ippiMinMax_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var max:Ipp16s):IppStatus;
+  ippiMinMax_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pMin:PIpp16s;pMax:PIpp16s):IppStatus;stdcall;
+  ippiMinMax_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var max:Ipp16s):IppStatus;stdcall;
+  ippiMinMax_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var max:Ipp16s):IppStatus;stdcall;
+  ippiMinMax_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;var min:Ipp16s;var max:Ipp16s):IppStatus;stdcall;
 
-  ippiMinMax_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMin:PIpp16u;pMax:PIpp16u):IppStatus;
-  ippiMinMax_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var max:Ipp16u):IppStatus;
-  ippiMinMax_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var max:Ipp16u):IppStatus;
-  ippiMinMax_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var max:Ipp16u):IppStatus;
+  ippiMinMax_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pMin:PIpp16u;pMax:PIpp16u):IppStatus;stdcall;
+  ippiMinMax_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var max:Ipp16u):IppStatus;stdcall;
+  ippiMinMax_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var max:Ipp16u):IppStatus;stdcall;
+  ippiMinMax_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;var min:Ipp16u;var max:Ipp16u):IppStatus;stdcall;
 
-  ippiMinMax_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMin:PIpp32f;pMax:PIpp32f):IppStatus;
-  ippiMinMax_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var max:Ipp32f):IppStatus;
-  ippiMinMax_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var max:Ipp32f):IppStatus;
-  ippiMinMax_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var max:Ipp32f):IppStatus;
+  ippiMinMax_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pMin:PIpp32f;pMax:PIpp32f):IppStatus;stdcall;
+  ippiMinMax_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var max:Ipp32f):IppStatus;stdcall;
+  ippiMinMax_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var max:Ipp32f):IppStatus;stdcall;
+  ippiMinMax_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;var min:Ipp32f;var max:Ipp32f):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiBlockMinMax_32f_C1R, ippiBlockMinMax_16s_C1R,
@@ -8162,10 +8162,10 @@ var
 //                         dstMinStep, or dstMaxStep is less than dstSize.width*sizeof(*pDst).
 //    ippStsSizeErr    - Error when srcSize or blockSize has a zero or negative value.
 *)
-  ippiBlockMinMax_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp32f;dstMinStep:longint;pDstMax:PIpp32f;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp32f;pDstGlobalMax:PIpp32f):IppStatus;
-  ippiBlockMinMax_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp16s;dstMinStep:longint;pDstMax:PIpp16s;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp16s;pDstGlobalMax:PIpp16s):IppStatus;
-  ippiBlockMinMax_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp16u;dstMinStep:longint;pDstMax:PIpp16u;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp16u;pDstGlobalMax:PIpp16u):IppStatus;
-  ippiBlockMinMax_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp8u;dstMinStep:longint;pDstMax:PIpp8u;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp8u;pDstGlobalMax:PIpp8u):IppStatus;
+  ippiBlockMinMax_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp32f;dstMinStep:longint;pDstMax:PIpp32f;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp32f;pDstGlobalMax:PIpp32f):IppStatus;stdcall;
+  ippiBlockMinMax_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp16s;dstMinStep:longint;pDstMax:PIpp16s;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp16s;pDstGlobalMax:PIpp16s):IppStatus;stdcall;
+  ippiBlockMinMax_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp16u;dstMinStep:longint;pDstMax:PIpp16u;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp16u;pDstGlobalMax:PIpp16u):IppStatus;stdcall;
+  ippiBlockMinMax_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;srcSize:IppiSize;pDstMin:PIpp8u;dstMinStep:longint;pDstMax:PIpp8u;dstMaxStep:longint;blockSize:IppiSize;pDstGlobalMin:PIpp8u;pDstGlobalMax:PIpp8u):IppStatus;stdcall;
 
 
 
@@ -8183,47 +8183,47 @@ var
 //   ippStsNoErr        otherwise
 *)
 
-  ippiMaxEvery_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16s_C1IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16s_C1IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMaxEvery_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16s_C1IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16s_C1IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_32f_C1IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMaxEvery_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16s_C3IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16s_C3IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMaxEvery_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16s_C3IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16s_C3IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_32f_C3IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMaxEvery_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16s_C4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16s_C4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMaxEvery_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16s_C4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16s_C4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_32f_C4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiMaxEvery_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16s_AC4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16s_AC4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMinEvery_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiMaxEvery_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiMaxEvery_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16s_AC4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16s_AC4IR: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_32f_AC4IR: function(pSrc:PIpp32f;srcStep:longint;pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMinEvery_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiMaxEvery_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////////////////////
 //                      Logical Operations and Shift Functions
@@ -8259,219 +8259,219 @@ var
 //   ippStsNoErr        No errors
 *)
 
-  ippiAnd_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_C3IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_C4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAnd_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_C1IR: function(value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_C3IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_C4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiAndC_32s_AC4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiAnd_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_C3IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_C4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAnd_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_C1IR: function(value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_C3IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_C4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiAndC_32s_AC4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiOr_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_C3IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_C4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOr_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_C1IR: function(value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_C3IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_C4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiOrC_32s_AC4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiOr_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_C3IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_C4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOr_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_C1IR: function(value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_C3IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_C4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiOrC_32s_AC4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiXor_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_C3IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_C4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXor_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_C1IR: function(value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_C3IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_C4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiXorC_32s_AC4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiXor_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_C1IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_C3IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_C4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_8u_AC4IR: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_C1IR: function(value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_C3IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_C4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_8u_AC4IR: function(var value:Ipp8u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_C1IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_C3IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_C4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_16u_AC4IR: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_C1IR: function(value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_C3IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_C4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_16u_AC4IR: function(var value:Ipp16u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_C1R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_C3R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_C4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_AC4R: function(pSrc1:PIpp32s;src1Step:longint;pSrc2:PIpp32s;src2Step:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_C1IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_C3IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_C4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXor_32s_AC4IR: function(pSrc:PIpp32s;srcStep:longint;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32s;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_C1IR: function(value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_C3IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_C4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiXorC_32s_AC4IR: function(var value:Ipp32s;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiNot_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiNot_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiNot_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiNot_8u_AC4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiLShiftC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_C1IR: function(value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_8u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_C1IR: function(value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_16u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_C1IR: function(value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_C3IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_C4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiLShiftC_32s_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiLShiftC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_C1IR: function(value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_8u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_C1IR: function(value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_16u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_C1IR: function(value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_C3IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_C4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiLShiftC_32s_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiRShiftC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_C1IR: function(value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_8u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_C1IR: function(value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_C1IR: function(value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_C3IR: function(var value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_C4IR: function(var value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_16s_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_C1IR: function(value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_C3IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_C4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiRShiftC_32s_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiRShiftC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp32u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_C1IR: function(value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_8u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp32u;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_C1IR: function(value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_C3IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_C4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16u_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp32u;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_C1IR: function(value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_C3IR: function(var value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_C4IR: function(var value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_16s_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_AC4R: function(pSrc:PIpp32s;srcStep:longint;var value:Ipp32u;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_C1IR: function(value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_C3IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_C4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiRShiftC_32s_AC4IR: function(var value:Ipp32u;pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8510,55 +8510,55 @@ var
 //  Notes:
 *)
 
-  ippiCompare_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompare_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompareC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompareC_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_8u_AC4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompare_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_16s_AC4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompare_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_16s_AC4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompareC_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompareC_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_16s_AC4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp16s;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompare_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompare_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_16u_AC4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompareC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompareC_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_16u_AC4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp16u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompare_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompare_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompare_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompare_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompareC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
-  ippiCompareC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;
+  ippiCompareC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
+  ippiCompareC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;ippCmpOp:IppCmpOp):IppStatus;stdcall;
 
-  ippiCompareEqualEps_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
-  ippiCompareEqualEps_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
-  ippiCompareEqualEps_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
-  ippiCompareEqualEps_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
+  ippiCompareEqualEps_32f_C1R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
+  ippiCompareEqualEps_32f_C3R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
+  ippiCompareEqualEps_32f_AC4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
+  ippiCompareEqualEps_32f_C4R: function(pSrc1:PIpp32f;src1Step:longint;pSrc2:PIpp32f;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
 
-  ippiCompareEqualEpsC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
-  ippiCompareEqualEpsC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
-  ippiCompareEqualEpsC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
-  ippiCompareEqualEpsC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;
+  ippiCompareEqualEpsC_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
+  ippiCompareEqualEpsC_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
+  ippiCompareEqualEpsC_32f_AC4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
+  ippiCompareEqualEpsC_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp32f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;eps:Ipp32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////////////////////////
 //                 Morphological Operations
@@ -8591,8 +8591,8 @@ var
 //    dstStep       Step (bytes) through the destination image
 //    roiSize       Size of the ROI
 *)
-  ippiErode3x3_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiDilate3x3_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiErode3x3_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiDilate3x3_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 
@@ -8615,8 +8615,8 @@ var
 //
 *)
 
-  ippiZigzagInv8x8_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
-  ippiZigzagFwd8x8_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;
+  ippiZigzagInv8x8_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
+  ippiZigzagFwd8x8_16s_C1: function(pSrc:PIpp16s;pDst:PIpp16s):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -8644,21 +8644,21 @@ var
 //    ippStsSizeErr    - Error when roiSize has a field with value less than 3.
 //    ippStsStepErr    - Error when srcStep, dstStep, or srcDstStep has a zero or negative value.
 *)
-  ippiWinBartlett_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlett_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlett_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinBartlett_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlett_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlett_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWinBartlett_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlett_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlett_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinBartlett_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlett_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlett_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWinBartlettSep_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlettSep_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlettSep_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinBartlettSep_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlettSep_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlettSep_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWinBartlettSep_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlettSep_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinBartlettSep_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinBartlettSep_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlettSep_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinBartlettSep_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -8677,8 +8677,8 @@ var
 //    ippStsSizeErr     - Error when roiSize has a field with value less than 3.
 //    ippStsDataTypeErr - Error when the dataType value differs from the ipp32f, ipp16u, or ipp8u.
 *)
-  ippiWinBartlettGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;
-  ippiWinBartlettSepGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;
+  ippiWinBartlettGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;stdcall;
+  ippiWinBartlettSepGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;stdcall;
 
 
 
@@ -8700,21 +8700,21 @@ var
 //    ippStsSizeErr    - Error when roiSize has a field with value less than 3.
 //    ippStsStepErr    - Error when srcStep, dstStep, or srcDstStep has a zero or negative value.
 *)
-  ippiWinHamming_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHamming_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHamming_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinHamming_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHamming_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHamming_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWinHamming_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHamming_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHamming_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinHamming_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHamming_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHamming_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWinHammingSep_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHammingSep_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHammingSep_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinHammingSep_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHammingSep_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHammingSep_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiWinHammingSep_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHammingSep_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
-  ippiWinHammingSep_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;
+  ippiWinHammingSep_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHammingSep_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiWinHammingSep_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -8733,8 +8733,8 @@ var
 //    ippStsSizeErr     - Error when roiSize has a field with value less than 3.
 //    ippStsDataTypeErr - Error when the dataType value differs from the ipp32f, ipp16u, or ipp8u.
 *)
-  ippiWinHammingGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;
-  ippiWinHammingSepGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;
+  ippiWinHammingGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;stdcall;
+  ippiWinHammingSepGetBufferSize: function(dataType:IppDataType;roiSize:IppiSize;pSize:Plongint):IppStatus;stdcall;
 
 
 
@@ -8761,40 +8761,40 @@ var
 //
 //  Notes: Parameters roiSize.width and roiSize.height are defined for the source image.
 *)
-  ippiTranspose_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiTranspose_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiTranspose_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiTranspose_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiTranspose_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiTranspose_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiTranspose_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32s_C1IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32s_C3IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32s_C4IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiTranspose_32s_C1R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32s_C3R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32s_C4R: function(pSrc:PIpp32s;srcStep:longint;pDst:PIpp32s;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32s_C1IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32s_C3IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32s_C4IR: function(pSrcDst:PIpp32s;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
-  ippiTranspose_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
-  ippiTranspose_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;
+  ippiTranspose_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
+  ippiTranspose_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;roiSize:IppiSize):IppStatus;stdcall;
 
 
 (* //////////////////////////////////////////////////////////////////////
@@ -8816,7 +8816,7 @@ var
 //                               kernelSize less or equal to zero;
 //                               kernelSize great than 2^FFTorder.
 *)
-  ippiDeconvFFTGetSize_32f: function(nChannels:longint;kernelSize:longint;FFTorder:longint;pSize:Plongint):IppStatus;
+  ippiDeconvFFTGetSize_32f: function(nChannels:longint;kernelSize:longint;FFTorder:longint;pSize:Plongint):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////
 // Name:        ippiDeconvFFTInit_32f_C1R, ippiDeconvFFTInit_32f_C3R
@@ -8838,8 +8838,8 @@ var
 //                          kernelSize great than 2^FFTorder.
 //    ippStsBadArgErr  - Error when threshold less or equal to zero.
 *)
-  ippiDeconvFFTInit_32f_C1R: function(pDeconvFFTState:PIppiDeconvFFTState_32f_C1R;pKernel:PIpp32f;kernelSize:longint;FFTorder:longint;threshold:Ipp32f):IppStatus;
-  ippiDeconvFFTInit_32f_C3R: function(pDeconvFFTState:PIppiDeconvFFTState_32f_C3R;pKernel:PIpp32f;kernelSize:longint;FFTorder:longint;threshold:Ipp32f):IppStatus;
+  ippiDeconvFFTInit_32f_C1R: function(pDeconvFFTState:PIppiDeconvFFTState_32f_C1R;pKernel:PIpp32f;kernelSize:longint;FFTorder:longint;threshold:Ipp32f):IppStatus;stdcall;
+  ippiDeconvFFTInit_32f_C3R: function(pDeconvFFTState:PIppiDeconvFFTState_32f_C3R;pKernel:PIpp32f;kernelSize:longint;FFTorder:longint;threshold:Ipp32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:        ippiDeconvFFT_32f_C*R
@@ -8863,8 +8863,8 @@ var
 //    ippStsStepErr        - Error when srcstep or dststep less than roi.width multiplied by type size.
 //    ippStsNotEvenStepErr - Error when one of step values for floating-point images cannot be divided by 4.
 *)
-  ippiDeconvFFT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;pDeconvFFTState:PIppiDeconvFFTState_32f_C1R):IppStatus;
-  ippiDeconvFFT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;pDeconvFFTState:PIppiDeconvFFTState_32f_C3R):IppStatus;
+  ippiDeconvFFT_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;pDeconvFFTState:PIppiDeconvFFTState_32f_C1R):IppStatus;stdcall;
+  ippiDeconvFFT_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;pDeconvFFTState:PIppiDeconvFFTState_32f_C3R):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////
 // Name:        ippiDeconvLRGetSize_32f
@@ -8886,7 +8886,7 @@ var
 //                               kernelSize great than maxroi.width or maxroi.height;
 //                               maxroi.height or maxroi.width less or equal to zero.
 *)
-  ippiDeconvLRGetSize_32f: function(numChannels:longint;kernelSize:longint;maxroi:IppiSize;pSize:Plongint):IppStatus;
+  ippiDeconvLRGetSize_32f: function(numChannels:longint;kernelSize:longint;maxroi:IppiSize;pSize:Plongint):IppStatus;stdcall;
 
 (* //////////////////////////////////////////////////////////////////////
 // Name:        ippiDeconvLRInit_32f_C1R, ippiDeconvLRInit_32f_C3R
@@ -8909,8 +8909,8 @@ var
 //                         maxroi.height or maxroi.width less or equal to zero.
 //    ippStsBadArgErr  - Error when threshold less or equal to zero.
 *)
-  ippiDeconvLRInit_32f_C1R: function(pDeconvLR:PIppiDeconvLR_32f_C1R;pKernel:PIpp32f;kernelSize:longint;maxroi:IppiSize;threshold:Ipp32f):IppStatus;
-  ippiDeconvLRInit_32f_C3R: function(pDeconvLR:PIppiDeconvLR_32f_C3R;pKernel:PIpp32f;kernelSize:longint;maxroi:IppiSize;threshold:Ipp32f):IppStatus;
+  ippiDeconvLRInit_32f_C1R: function(pDeconvLR:PIppiDeconvLR_32f_C1R;pKernel:PIpp32f;kernelSize:longint;maxroi:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
+  ippiDeconvLRInit_32f_C3R: function(pDeconvLR:PIppiDeconvLR_32f_C3R;pKernel:PIpp32f;kernelSize:longint;maxroi:IppiSize;threshold:Ipp32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:        ippiDeconvLR_32f_C1R, ippiDeconvLR_32f_C3R
@@ -8937,8 +8937,8 @@ var
 //    ippStsNotEvenStepErr - Error when one of step values for floating-point images cannot be divided by 4.
 //    ippStsBadArgErr      - Error when number of iterations less or equal to zero.
 *)
-  ippiDeconvLR_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;numiter:longint;pDeconvLR:PIppiDeconvLR_32f_C1R):IppStatus;
-  ippiDeconvLR_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;numiter:longint;pDeconvLR:PIppiDeconvLR_32f_C3R):IppStatus;
+  ippiDeconvLR_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;numiter:longint;pDeconvLR:PIppiDeconvLR_32f_C1R):IppStatus;stdcall;
+  ippiDeconvLR_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;roi:IppiSize;numiter:longint;pDeconvLR:PIppiDeconvLR_32f_C3R):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //
@@ -8971,24 +8971,24 @@ var
 //    alphaType              The type of composition to perform (for ippiAlphaCompColorKey)
 //
 *)
-  ippiCompColorKey_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;colorKey:Ipp8u):IppStatus;
+  ippiCompColorKey_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;colorKey:Ipp8u):IppStatus;stdcall;
 
-  ippiCompColorKey_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp8u):IppStatus;
+  ippiCompColorKey_8u_C3R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp8u):IppStatus;stdcall;
 
-  ippiCompColorKey_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp8u):IppStatus;
+  ippiCompColorKey_8u_C4R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp8u):IppStatus;stdcall;
 
-  ippiCompColorKey_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;colorKey:Ipp16u):IppStatus;
+  ippiCompColorKey_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;colorKey:Ipp16u):IppStatus;stdcall;
 
-  ippiCompColorKey_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp16u):IppStatus;
+  ippiCompColorKey_16u_C3R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp16u):IppStatus;stdcall;
 
-  ippiCompColorKey_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp16u):IppStatus;
+  ippiCompColorKey_16u_C4R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp16u):IppStatus;stdcall;
 
-  ippiCompColorKey_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;colorKey:Ipp16s):IppStatus;
+  ippiCompColorKey_16s_C1R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;colorKey:Ipp16s):IppStatus;stdcall;
 
-  ippiCompColorKey_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp16s):IppStatus;
+  ippiCompColorKey_16s_C3R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp16s):IppStatus;stdcall;
 
-  ippiCompColorKey_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var colorkey:Ipp16s):IppStatus;
-  ippiAlphaCompColorKey_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp8u;alphaType:IppiAlphaType):IppStatus;
+  ippiCompColorKey_16s_C4R: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;var colorkey:Ipp16s):IppStatus;stdcall;
+  ippiAlphaCompColorKey_8u_AC4R: function(pSrc1:PIpp8u;src1Step:longint;alpha1:Ipp8u;pSrc2:PIpp8u;src2Step:longint;alpha2:Ipp8u;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;var colorKey:Ipp8u;alphaType:IppiAlphaType):IppStatus;stdcall;
 
 
 (* ///////////////////////////////////////////////////////////////////////////
@@ -9018,7 +9018,7 @@ var
 //   ippStsSizeErr      Indicates an error condition if size has a field with zero or negative value.
 //
 *)
-  ippiMedian_8u_P3C1R: function(var pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;size:IppiSize):IppStatus;
+  ippiMedian_8u_P3C1R: function(var pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;size:IppiSize):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9043,7 +9043,7 @@ var
 //                      height of roi is less 8 or odd
 *)
 
-  ippiDeinterlaceFilterCAVT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;threshold:Ipp16u;roiSize:IppiSize):IppStatus;
+  ippiDeinterlaceFilterCAVT_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;threshold:Ipp16u;roiSize:IppiSize):IppStatus;stdcall;
 
 
 
@@ -9078,7 +9078,7 @@ var
 //    ippStsDataTypeErr         Indicates an error when dataType has an illegal value.
 //    ippStsNumChannelsErr      Indicates an error when numChannels has an illegal value.
 *)
-  ippiFilterBilateralBorderGetBufferSize: function(filter:IppiFilterBilateralType;dstRoiSize:IppiSize;radius:longint;dataType:IppDataType;numChannels:longint;distMethodType:IppiDistanceMethodType;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;
+  ippiFilterBilateralBorderGetBufferSize: function(filter:IppiFilterBilateralType;dstRoiSize:IppiSize;radius:longint;dataType:IppDataType;numChannels:longint;distMethodType:IppiDistanceMethodType;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9107,7 +9107,7 @@ var
 //    ippStsNumChannelsErr      Indicates an error when numChannels has an illegal value.
 //    ippStsBadArgErr           valSquareSigma or posSquareSigma is less or equal 0
 *)
-  ippiFilterBilateralBorderInit: function(filter:IppiFilterBilateralType;dstRoiSize:IppiSize;radius:longint;dataType:IppDataType;numChannels:longint;distMethod:IppiDistanceMethodType;valSquareSigma:Ipp32f;posSquareSigma:Ipp32f;pSpec:PIppiFilterBilateralSpec):IppStatus;
+  ippiFilterBilateralBorderInit: function(filter:IppiFilterBilateralType;dstRoiSize:IppiSize;radius:longint;dataType:IppDataType;numChannels:longint;distMethod:IppiDistanceMethodType;valSquareSigma:Ipp32f;posSquareSigma:Ipp32f;pSpec:PIppiFilterBilateralSpec):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9136,10 +9136,10 @@ var
 //                          for floating-point images.
 //    ippStsBorderErr       Indicates an error when borderType has illegal value.
 *)
-  ippiFilterBilateralBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBilateralBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBilateralBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBilateralBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBilateralBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBilateralBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBilateralBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBilateralBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;borderType:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiFilterBilateralSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 
@@ -9156,7 +9156,7 @@ var
 //   ippStsSizeErr      Some size of kernelSize or roiWidth less or equal zero
 //  Remark:             Function may return zero size of buffer.
 *)
-  ippiFilterGetBufSize_64f_C1R: function(kernelSize:IppiSize;roiWidth:longint;pSize:Plongint):IppStatus;
+  ippiFilterGetBufSize_64f_C1R: function(kernelSize:IppiSize;roiWidth:longint;pSize:Plongint):IppStatus;stdcall;
 
 (* ////////////////////////////////////////////////////////////////////////////
 //  Name:       ippiFilter_64f_C1R
@@ -9181,7 +9181,7 @@ var
 //                      dstStep is less than  roiWidth * sizeof(Ipp64f)
 *)
 
-  ippiFilter_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;pKernel:PIpp64f;kernelSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;
+  ippiFilter_64f_C1R: function(pSrc:PIpp64f;srcStep:longint;pDst:PIpp64f;dstStep:longint;dstRoiSize:IppiSize;pKernel:PIpp64f;kernelSize:IppiSize;anchor:IppiPoint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (*
@@ -9218,18 +9218,18 @@ var
 //    scaleFactor              Scale factor
 *)
 
-  ippiDiv_Round_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
+  ippiDiv_Round_16s_C1RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16s_C3RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16s_C4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16s_AC4RSfs: function(pSrc1:PIpp16s;src1Step:longint;pSrc2:PIpp16s;src2Step:longint;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_C1RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_C3RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_C4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_AC4RSfs: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_C1RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_C3RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_C4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_AC4RSfs: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
 (*
 //  Purpose:    Divides pixel values of an image by pixel values of
 //              another image with three rounding modes (ippRndZero,ippRndNear,ippRndFinancial)
@@ -9259,18 +9259,18 @@ var
 //                    if it is less than zero (for 16s), then the result is IPP_MIN_16S
 //   ippStsRoundModeNotSupportedErr Unsupported round mode
 *)
-  ippiDiv_Round_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
-  ippiDiv_Round_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;
+  ippiDiv_Round_16s_C1IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16s_C3IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16s_C4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16s_AC4IRSfs: function(pSrc:PIpp16s;srcStep:longint;pSrcDst:PIpp16s;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_C1IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_C3IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_C4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_8u_AC4IRSfs: function(pSrc:PIpp8u;srcStep:longint;pSrcDst:PIpp8u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_C1IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_C3IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;scaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_C4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
+  ippiDiv_Round_16u_AC4IRSfs: function(pSrc:PIpp16u;srcStep:longint;pSrcDst:PIpp16u;srcDstStep:longint;roiSize:IppiSize;rndMode:IppRoundMode;ScaleFactor:longint):IppStatus;stdcall;
 
 
 
@@ -9312,11 +9312,11 @@ var
 //    3. The implemented interpolation algorithms have the following filter sizes: Nearest Neighbor 1x1,
 //       Linear 2x2, Cubic 4x4, 2-lobed Lanczos 4x4.
 *)
-  ippiResizeGetSize_8u: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
-  ippiResizeGetSize_16u: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
-  ippiResizeGetSize_16s: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:PIpp32s):IppStatus;
-  ippiResizeGetSize_32f: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
-  ippiResizeGetSize_64f: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;
+  ippiResizeGetSize_8u: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetSize_16u: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetSize_16s: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:PIpp32s):IppStatus;stdcall;
+  ippiResizeGetSize_32f: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetSize_64f: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:Plongint;pInitBufSize:Plongint):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9342,11 +9342,11 @@ var
 //    ippStsSizeWrn          Indicates a warning if the destination image size is more than
 //                           the destination image origin size
 *)
-  ippiResizeGetBufferSize_8u: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;
-  ippiResizeGetBufferSize_16u: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;
-  ippiResizeGetBufferSize_16s: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;
-  ippiResizeGetBufferSize_32f: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;
-  ippiResizeGetBufferSize_64f: function(pSpec:PIppiResizeSpec_64f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;
+  ippiResizeGetBufferSize_8u: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetBufferSize_16u: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetBufferSize_16s: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetBufferSize_32f: function(pSpec:PIppiResizeSpec_32f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;stdcall;
+  ippiResizeGetBufferSize_64f: function(pSpec:PIppiResizeSpec_64f;dstSize:IppiSize;numChannels:Ipp32u;pBufSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeGetBorderSize
@@ -9361,11 +9361,11 @@ var
 //    ippStsNullPtrErr      Indicates an error if one of the specified pointers is NULL
 //    ippStsContextMatchErr Indicates an error if pointer to an invalid pSpec structure is passed
 *)
-  ippiResizeGetBorderSize_8u: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;
-  ippiResizeGetBorderSize_16u: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;
-  ippiResizeGetBorderSize_16s: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;
-  ippiResizeGetBorderSize_32f: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;
-  ippiResizeGetBorderSize_64f: function(pSpec:PIppiResizeSpec_64f;borderSize:PIppiBorderSize):IppStatus;
+  ippiResizeGetBorderSize_8u: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;stdcall;
+  ippiResizeGetBorderSize_16u: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;stdcall;
+  ippiResizeGetBorderSize_16s: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;stdcall;
+  ippiResizeGetBorderSize_32f: function(pSpec:PIppiResizeSpec_32f;borderSize:PIppiBorderSize):IppStatus;stdcall;
+  ippiResizeGetBorderSize_64f: function(pSpec:PIppiResizeSpec_64f;borderSize:PIppiBorderSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeGetSrcOffset
@@ -9384,11 +9384,11 @@ var
 //    ippStsOutOfRangeErr   Indicates an error if the destination image offset point is outside the
 //                          destination image origin
 *)
-  ippiResizeGetSrcOffset_8u: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
-  ippiResizeGetSrcOffset_16u: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
-  ippiResizeGetSrcOffset_16s: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
-  ippiResizeGetSrcOffset_32f: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
-  ippiResizeGetSrcOffset_64f: function(pSpec:PIppiResizeSpec_64f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
+  ippiResizeGetSrcOffset_8u: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
+  ippiResizeGetSrcOffset_16u: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
+  ippiResizeGetSrcOffset_16s: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
+  ippiResizeGetSrcOffset_32f: function(pSpec:PIppiResizeSpec_32f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
+  ippiResizeGetSrcOffset_64f: function(pSpec:PIppiResizeSpec_64f;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeGetSrcRoi
@@ -9414,15 +9414,15 @@ var
 //                          the destination image origin
 *)
 
-  ippiResizeGetSrcRoi_8u: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeGetSrcRoi_8u: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
-  ippiResizeGetSrcRoi_16u: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeGetSrcRoi_16u: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
-  ippiResizeGetSrcRoi_16s: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeGetSrcRoi_16s: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
-  ippiResizeGetSrcRoi_32f: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeGetSrcRoi_32f: function(pSpec:PIppiResizeSpec_32f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
-  ippiResizeGetSrcRoi_64f: function(pSpec:PIppiResizeSpec_64f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeGetSrcRoi_64f: function(pSpec:PIppiResizeSpec_64f;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeNearestInit
@@ -9469,27 +9469,27 @@ var
 //    3. The implemented interpolation algorithms have the following filter sizes: Nearest Neighbor 1x1,
 //       Linear 2x2, Cubic 4x4, 2-lobed Lanczos 4x4, 3-lobed Lanczos 6x6.
 *)
-  ippiResizeNearestInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeNearestInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeNearestInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeNearestInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeLinearInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeLinearInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeLinearInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeLinearInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeLinearInit_64f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_64f):IppStatus;
-  ippiResizeCubicInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeCubicInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeCubicInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeCubicInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeLanczosInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeLanczosInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeLanczosInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeLanczosInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeSuperInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeSuperInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeSuperInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
-  ippiResizeSuperInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;
+  ippiResizeNearestInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeNearestInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeNearestInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeNearestInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeLinearInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeLinearInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeLinearInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeLinearInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeLinearInit_64f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_64f):IppStatus;stdcall;
+  ippiResizeCubicInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubicInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubicInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubicInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczosInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczosInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczosInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczosInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuperInit_8u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeSuperInit_16u: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeSuperInit_16s: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
+  ippiResizeSuperInit_32f: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeNearest
@@ -9532,69 +9532,69 @@ var
 //       (except Nearest Neighbor and Super Sampling methods).
 //    2. Hahn filter does not supported now.
 *)
-  ippiResizeNearest_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeNearest_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_64f_C1R: function(pSrc:PIpp64f;srcStep:Ipp32s;pDst:PIpp64f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp64f;pSpec:PIppiResizeSpec_64f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_64f_C3R: function(pSrc:PIpp64f;srcStep:Ipp32s;pDst:PIpp64f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp64f;pSpec:PIppiResizeSpec_64f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLinear_64f_C4R: function(pSrc:PIpp64f;srcStep:Ipp32s;pDst:PIpp64f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp64f;pSpec:PIppiResizeSpec_64f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeCubic_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeLanczos_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeSuper_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiResizeNearest_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeNearest_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_64f_C1R: function(pSrc:PIpp64f;srcStep:Ipp32s;pDst:PIpp64f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp64f;pSpec:PIppiResizeSpec_64f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_64f_C3R: function(pSrc:PIpp64f;srcStep:Ipp32s;pDst:PIpp64f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp64f;pSpec:PIppiResizeSpec_64f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLinear_64f_C4R: function(pSrc:PIpp64f;srcStep:Ipp32s;pDst:PIpp64f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp64f;pSpec:PIppiResizeSpec_64f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeCubic_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeLanczos_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeSuper_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9639,11 +9639,11 @@ var
 //       Linear 2x2, Cubic 4x4, 2-lobed Lanczos 4x4, 3-lobed Lanczos 6x6.
 *)
 
-  ippiResizeAntialiasingLinearInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
+  ippiResizeAntialiasingLinearInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
 
-  ippiResizeAntialiasingCubicInit: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
+  ippiResizeAntialiasingCubicInit: function(srcSize:IppiSize;dstSize:IppiSize;valueB:Ipp32f;valueC:Ipp32f;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
 
-  ippiResizeAntialiasingLanczosInit: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;
+  ippiResizeAntialiasingLanczosInit: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeSpec_32f;pInitBuf:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9682,21 +9682,21 @@ var
 //    1. Supported border types are ippBorderInMemory and ippBorderReplicate
 //    2. Hahn filter does not supported now.
 *)
-  ippiResizeAntialiasing_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiResizeAntialiasing_8u_C1R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_8u_C3R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_8u_C4R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiResizeAntialiasing_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiResizeAntialiasing_16u_C1R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_16u_C3R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_16u_C4R: function(pSrc:PIpp16u;srcStep:Ipp32s;pDst:PIpp16u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16u;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiResizeAntialiasing_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiResizeAntialiasing_16s_C1R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_16s_C3R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_16s_C4R: function(pSrc:PIpp16s;srcStep:Ipp32s;pDst:PIpp16s;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp16s;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiResizeAntialiasing_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
-  ippiResizeAntialiasing_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;
+  ippiResizeAntialiasing_32f_C1R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_32f_C3R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeAntialiasing_32f_C4R: function(pSrc:PIpp32f;srcStep:Ipp32s;pDst:PIpp32f;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp32f;pSpec:PIppiResizeSpec_32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //                      Resize Transform Functions. YUY2 pixel format
@@ -9733,7 +9733,7 @@ var
 //    3. The implemented interpolation algorithms have the following filter sizes: Nearest Neighbor 2x1,
 //       Linear 4x2.
 *)
-  ippiResizeYUV422GetSize: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:PIpp32s;pInitBufSize:PIpp32s):IppStatus;
+  ippiResizeYUV422GetSize: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:PIpp32s;pInitBufSize:PIpp32s):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV422GetBufSize
@@ -9759,7 +9759,7 @@ var
 //                          - if the calculated buffer size exceeds maximum 32 bit signed integer positive
 //                          value (the processed image size is too large)
 *)
-  ippiResizeYUV422GetBufSize: function(pSpec:PIppiResizeYUV422Spec;dstSize:IppiSize;pBufSize:PIpp32s):IppStatus;
+  ippiResizeYUV422GetBufSize: function(pSpec:PIppiResizeYUV422Spec;dstSize:IppiSize;pBufSize:PIpp32s):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV422GetBorderSize
@@ -9774,7 +9774,7 @@ var
 //    ippStsNullPtrErr      Indicates an error if one of the specified pointers is NULL
 //    ippStsContextMatchErr Indicates an error if pointer to an invalid pSpec structure is passed
 *)
-  ippiResizeYUV422GetBorderSize: function(pSpec:PIppiResizeYUV422Spec;borderSize:PIppiBorderSize):IppStatus;
+  ippiResizeYUV422GetBorderSize: function(pSpec:PIppiResizeYUV422Spec;borderSize:PIppiBorderSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV422GetSrcOffset
@@ -9791,7 +9791,7 @@ var
 //    ippStsMisalignedOffsetErr Indicates an error if the x field of the dstOffset parameter is odd.
 //    ippStsContextMatchErr     Indicates an error if pointer to the spec structure is invalid.
 *)
-  ippiResizeYUV422GetSrcOffset: function(pSpec:PIppiResizeYUV422Spec;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
+  ippiResizeYUV422GetSrcOffset: function(pSpec:PIppiResizeYUV422Spec;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV422GetSrcRoi
@@ -9818,7 +9818,7 @@ var
 //                               - if width of the image is odd,
 //                               - if the destination image size is more than the destination image origin size.
 *)
-  ippiResizeYUV422GetSrcRoi: function(pSpec:PIppiResizeYUV422Spec;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeYUV422GetSrcRoi: function(pSpec:PIppiResizeYUV422Spec;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV422NearestInit
@@ -9845,8 +9845,8 @@ var
 //    1.The implemented interpolation algorithms have the following filter sizes: Nearest Neighbor 2x1,
 //      Linear 4x2.
 *)
-  ippiResizeYUV422NearestInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeYUV422Spec):IppStatus;
-  ippiResizeYUV422LinearInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeYUV422Spec):IppStatus;
+  ippiResizeYUV422NearestInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeYUV422Spec):IppStatus;stdcall;
+  ippiResizeYUV422LinearInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeYUV422Spec):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV422Nearest_8u_C2R
@@ -9885,8 +9885,8 @@ var
 //    1. YUY2 pixel format (Y0U0Y1V0,Y2U1Y3V1,.. or Y0Cb0Y1Cr0,Y2Cb1Y3Cr1,..).
 //    2. Supported border types are ippBorderInMemory and ippBorderReplicate for Linear method.
 *)
-  ippiResizeYUV422Nearest_8u_C2R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeYUV422Spec;pBuffer:PIpp8u):IppStatus;
-  ippiResizeYUV422Linear_8u_C2R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeYUV422Spec;pBuffer:PIpp8u):IppStatus;
+  ippiResizeYUV422Nearest_8u_C2R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeYUV422Spec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeYUV422Linear_8u_C2R: function(pSrc:PIpp8u;srcStep:Ipp32s;pDst:PIpp8u;dstStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;pBorderValue:PIpp8u;pSpec:PIppiResizeYUV422Spec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -9929,7 +9929,7 @@ var
 //    2. Antialiasing feature does not supported now. The antialiasing value should be equal zero.
 //    3. The implemented interpolation algorithms have the following filter sizes: 2-lobed Lanczos 4x4
 *)
-  ippiResizeYUV420GetSize: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:PIpp32s;pInitBufSize:PIpp32s):IppStatus;
+  ippiResizeYUV420GetSize: function(srcSize:IppiSize;dstSize:IppiSize;interpolation:IppiInterpolationType;antialiasing:Ipp32u;pSpecSize:PIpp32s;pInitBufSize:PIpp32s):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV420GetBufferSize
@@ -9955,7 +9955,7 @@ var
 //                          - if the calculated buffer size exceeds maximum 32 bit signed integer
 //                            positive value (the processed image size is too large)
 *)
-  ippiResizeYUV420GetBufferSize: function(pSpec:PIppiResizeYUV420Spec;dstSize:IppiSize;pBufSize:PIpp32s):IppStatus;
+  ippiResizeYUV420GetBufferSize: function(pSpec:PIppiResizeYUV420Spec;dstSize:IppiSize;pBufSize:PIpp32s):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV420GetBorderSize
@@ -9970,7 +9970,7 @@ var
 //    ippStsNullPtrErr      Indicates an error if one of the specified pointers is NULL
 //    ippStsContextMatchErr Indicates an error if pointer to an invalid pSpec structure is passed
 *)
-  ippiResizeYUV420GetBorderSize: function(pSpec:PIppiResizeYUV420Spec;borderSize:PIppiBorderSize):IppStatus;
+  ippiResizeYUV420GetBorderSize: function(pSpec:PIppiResizeYUV420Spec;borderSize:PIppiBorderSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV420GetSrcOffset
@@ -9989,7 +9989,7 @@ var
 //                               point is outside the destination image origin
 //    ippStsMisalignedOffsetErr  Indicates an error if one of the fields of the dstOffset parameter is odd.
 *)
-  ippiResizeYUV420GetSrcOffset: function(pSpec:PIppiResizeYUV420Spec;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;
+  ippiResizeYUV420GetSrcOffset: function(pSpec:PIppiResizeYUV420Spec;dstOffset:IppiPoint;srcOffset:PIppiPoint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV420GetSrcRoi
@@ -10015,7 +10015,7 @@ var
 //                               - if width of the image is odd,
 //                               - if the destination image size is more than the destination image origin size.
 *)
-  ippiResizeYUV420GetSrcRoi: function(pSpec:PIppiResizeYUV420Spec;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;
+  ippiResizeYUV420GetSrcRoi: function(pSpec:PIppiResizeYUV420Spec;dstRoiOffset:IppiPoint;dstRoiSize:IppiSize;srcRoiOffset:PIppiPoint;srcRoiSize:PIppiSize):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV420LanczosInit
@@ -10047,8 +10047,8 @@ var
 //    The implemented interpolation algorithms have the following filter sizes:
 //      2-lobed Lanczos 8x8, 3-lobed Lanczos 12x12.
 *)
-  ippiResizeYUV420LanczosInit: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeYUV420Spec;pInitBuf:PIpp8u):IppStatus;
-  ippiResizeYUV420SuperInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeYUV420Spec):IppStatus;
+  ippiResizeYUV420LanczosInit: function(srcSize:IppiSize;dstSize:IppiSize;numLobes:Ipp32u;pSpec:PIppiResizeYUV420Spec;pInitBuf:PIpp8u):IppStatus;stdcall;
+  ippiResizeYUV420SuperInit: function(srcSize:IppiSize;dstSize:IppiSize;pSpec:PIppiResizeYUV420Spec):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ippiResizeYUV420Lanczos_8u_P2R
@@ -10092,8 +10092,8 @@ var
 //      followed immediately by an array (pSrcUV) of unsigned char containing interleaved U and V samples.
 //    2. Supported border types are ippBorderInMemory and ippBorderReplicate for Lanczos methods.
 *)
-  ippiResizeYUV420Lanczos_8u_P2R: function(pSrcY:PIpp8u;srcYStep:Ipp32s;pSrcUV:PIpp8u;srcUVStep:Ipp32s;pDstY:PIpp8u;dstYStep:Ipp32s;pDstUV:PIpp8u;dstUVStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;borderValue:PIpp8u;pSpec:PIppiResizeYUV420Spec;pBuffer:PIpp8u):IppStatus;
-  ippiResizeYUV420Super_8u_P2R: function(pSrcY:PIpp8u;srcYStep:Ipp32s;pSrcUV:PIpp8u;srcUVStep:Ipp32s;pDstY:PIpp8u;dstYStep:Ipp32s;pDstUV:PIpp8u;dstUVStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeYUV420Spec;pBuffer:PIpp8u):IppStatus;
+  ippiResizeYUV420Lanczos_8u_P2R: function(pSrcY:PIpp8u;srcYStep:Ipp32s;pSrcUV:PIpp8u;srcUVStep:Ipp32s;pDstY:PIpp8u;dstYStep:Ipp32s;pDstUV:PIpp8u;dstUVStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;border:IppiBorderType;borderValue:PIpp8u;pSpec:PIppiResizeYUV420Spec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiResizeYUV420Super_8u_P2R: function(pSrcY:PIpp8u;srcYStep:Ipp32s;pSrcUV:PIpp8u;srcUVStep:Ipp32s;pDstY:PIpp8u;dstYStep:Ipp32s;pDstUV:PIpp8u;dstUVStep:Ipp32s;dstOffset:IppiPoint;dstSize:IppiSize;pSpec:PIppiResizeYUV420Spec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (*****************************************************************************************************
 //  Name:       ippiFilterBorderGetSize, ippiFilterBorderInit, ippiFilterBorder
@@ -10125,21 +10125,21 @@ var
 //      pBuffer     Pointer to the work buffer. It can be equal to NULL if optimization algorithm doesn't demand a work buffer
 *)
 
-  ippiFilterBorderGetSize: function(kernelSize:IppiSize;dstRoiSize:IppiSize;dataType:IppDataType;kernelType:IppDataType;numChannels:longint;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;
-  ippiFilterBorderInit_16s: function(pKernel:PIpp16s;kernelSize:IppiSize;divisor:longint;dataType:IppDataType;numChannels:longint;roundMode:IppRoundMode;pSpec:PIppiFilterBorderSpec):IppStatus;
-  ippiFilterBorderInit_32f: function(pKernel:PIpp32f;kernelSize:IppiSize;dataType:IppDataType;numChannels:longint;roundMode:IppRoundMode;pSpec:PIppiFilterBorderSpec):IppStatus;
-  ippiFilterBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
-  ippiFilterBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;
+  ippiFilterBorderGetSize: function(kernelSize:IppiSize;dstRoiSize:IppiSize;dataType:IppDataType;kernelType:IppDataType;numChannels:longint;pSpecSize:Plongint;pBufferSize:Plongint):IppStatus;stdcall;
+  ippiFilterBorderInit_16s: function(pKernel:PIpp16s;kernelSize:IppiSize;divisor:longint;dataType:IppDataType;numChannels:longint;roundMode:IppRoundMode;pSpec:PIppiFilterBorderSpec):IppStatus;stdcall;
+  ippiFilterBorderInit_32f: function(pKernel:PIpp32f;kernelSize:IppiSize;dataType:IppDataType;numChannels:longint;roundMode:IppRoundMode;pSpec:PIppiFilterBorderSpec):IppStatus;stdcall;
+  ippiFilterBorder_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp8u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16u;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;pDst:PIpp16s;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp16s;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiFilterBorder_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp32f;dstStep:longint;dstRoiSize:IppiSize;border:IppiBorderType;var borderValue:Ipp32f;pSpec:PIppiFilterBorderSpec;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (*
 //  Name:       ippiFilterBorderSetMode
@@ -10161,7 +10161,7 @@ var
 //    ippStsAccurateModeNotSupported the accurate mode not supported for some data types. The result of rounding can be inexact.
 *)
 
-  ippiFilterBorderSetMode: function(hint:IppHintAlgorithm;offset:longint;pSpec:PIppiFilterBorderSpec):IppStatus;
+  ippiFilterBorderSetMode: function(hint:IppHintAlgorithm;offset:longint;pSpec:PIppiFilterBorderSpec):IppStatus;stdcall;
 
 (*****************************************************************************************************
 //  Name:       ippiLBPImageMode
@@ -10186,12 +10186,12 @@ var
 //    ippStsSizeErr    Indicates an error if dstRoiSize has a field with zero or negative value.
 //    ippStsBadArgErr  Indicates an error when border has an illegal value.
 *)
-  ippiLBPImageMode3x3_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;
-  ippiLBPImageMode5x5_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;
-  ippiLBPImageMode5x5_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;
-  ippiLBPImageMode3x3_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp32f):IppStatus;
-  ippiLBPImageMode5x5_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp32f):IppStatus;
-  ippiLBPImageMode5x5_32f16u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp32f):IppStatus;
+  ippiLBPImageMode3x3_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;stdcall;
+  ippiLBPImageMode5x5_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;stdcall;
+  ippiLBPImageMode5x5_8u16u_C1R: function(pSrc:PIpp8u;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;stdcall;
+  ippiLBPImageMode3x3_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp32f):IppStatus;stdcall;
+  ippiLBPImageMode5x5_32f8u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp32f):IppStatus;stdcall;
+  ippiLBPImageMode5x5_32f16u_C1R: function(pSrc:PIpp32f;srcStep:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;mode:longint;borderType:IppiBorderType;borderValue:PIpp32f):IppStatus;stdcall;
 
 
 
@@ -10217,8 +10217,8 @@ var
 //    ippStsSizeErr    Indicates an error if dstRoiSize has a field with zero or negative value.
 //    ippStsBadArgErr  Indicates an error when border has an illegal value.
 *)
-  ippiLBPImageHorizCorr_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;horShift:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;
-  ippiLBPImageHorizCorr_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;horShift:longint;borderType:IppiBorderType;borderValue:PIpp16u):IppStatus;
+  ippiLBPImageHorizCorr_8u_C1R: function(pSrc1:PIpp8u;src1Step:longint;pSrc2:PIpp8u;src2Step:longint;pDst:PIpp8u;dstStep:longint;dstRoiSize:IppiSize;horShift:longint;borderType:IppiBorderType;borderValue:PIpp8u):IppStatus;stdcall;
+  ippiLBPImageHorizCorr_16u_C1R: function(pSrc1:PIpp16u;src1Step:longint;pSrc2:PIpp16u;src2Step:longint;pDst:PIpp16u;dstStep:longint;dstRoiSize:IppiSize;horShift:longint;borderType:IppiBorderType;borderValue:PIpp16u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -10245,7 +10245,7 @@ var
 //                              dataType has an illegal value
 //
 *F*)
-  ippiSADGetBufferSize: function(srcRoiSize:IppiSize;tplRoiSize:IppiSize;dataType:IppDataType;numChannels:longint;shape:IppiROIShape;pBufferSize:Plongint):IppStatus;
+  ippiSADGetBufferSize: function(srcRoiSize:IppiSize;tplRoiSize:IppiSize;dataType:IppDataType;numChannels:longint;shape:IppiROIShape;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name: ippiSAD_...
@@ -10275,10 +10275,10 @@ var
 //                               shape!=ippiROIValid
 //    ippStsBadArgErr            illegal scaleFactor value, i.e. !(0<=scalefactor<log(W*H)
 *F*)
-  ippiSAD_8u32s_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;shape:IppiROIShape;scaleFactor:longint;pBuffer:PIpp8u):IppStatus;
-  ippiSAD_16u32s_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;shape:IppiROIShape;scaleFactor:longint;pBuffer:PIpp8u):IppStatus;
-  ippiSAD_16s32s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16s;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;shape:IppiROIShape;scaleFactor:longint;pBuffer:PIpp8u):IppStatus;
-  ippiSAD_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp32f;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;shape:IppiROIShape;pBuffer:PIpp8u):IppStatus;
+  ippiSAD_8u32s_C1RSfs: function(pSrc:PIpp8u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp8u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;shape:IppiROIShape;scaleFactor:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiSAD_16u32s_C1RSfs: function(pSrc:PIpp16u;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16u;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;shape:IppiROIShape;scaleFactor:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiSAD_16s32s_C1RSfs: function(pSrc:PIpp16s;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp16s;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32s;dstStep:longint;shape:IppiROIShape;scaleFactor:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiSAD_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;srcRoiSize:IppiSize;pTpl:PIpp32f;tplStep:longint;tplRoiSize:IppiSize;pDst:PIpp32f;dstStep:longint;shape:IppiROIShape;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -10301,7 +10301,7 @@ var
 //    ippStsSizeErr      Indicates an error when roiSize is negative, or equal to zero.
 //    ippStsMaskSizeErr  Indicates an error condition if mask has a wrong value
 *)
-  ippiGradientVectorGetBufferSize: function(roiSize:IppiSize;mask:IppiMaskSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;
+  ippiGradientVectorGetBufferSize: function(roiSize:IppiSize;mask:IppiMaskSize;dataType:IppDataType;numChannels:longint;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name: ippiGradientVectorSobel_8u16s_C1R
@@ -10365,35 +10365,35 @@ var
 //    ippStsBadArgErr      illegal normType specfier value
 //    ippStsBorderErr      illegal borderType specfier value
 *F*)
-  ippiGradientVectorSobel_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorSobel_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorSobel_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorSobel_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiGradientVectorSobel_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorSobel_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorSobel_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorSobel_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiGradientVectorScharr_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorScharr_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorScharr_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorScharr_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiGradientVectorScharr_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorScharr_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorScharr_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorScharr_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiGradientVectorPrewitt_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorPrewitt_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorPrewitt_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorPrewitt_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiGradientVectorPrewitt_8u16s_C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorPrewitt_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorPrewitt_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorPrewitt_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiGradientVectorSobel_8u16s_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorSobel_16u32f_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorSobel_16s32f_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorSobel_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiGradientVectorSobel_8u16s_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorSobel_16u32f_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorSobel_16s32f_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorSobel_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiGradientVectorScharr_8u16s_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorScharr_16u32f_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorScharr_16s32f_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorScharr_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiGradientVectorScharr_8u16s_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorScharr_16u32f_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorScharr_16s32f_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorScharr_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiGradientVectorPrewitt_8u16s_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorPrewitt_16u32f_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorPrewitt_16s32f_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiGradientVectorPrewitt_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiGradientVectorPrewitt_8u16s_C3C1R: function(pSrc:PIpp8u;srcStep:longint;pGx:PIpp16s;gxStep:longint;pGy:PIpp16s;gyStep:longint;pMag:PIpp16s;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorPrewitt_16u32f_C3C1R: function(pSrc:PIpp16u;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorPrewitt_16s32f_C3C1R: function(pSrc:PIpp16s;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiGradientVectorPrewitt_32f_C3C1R: function(pSrc:PIpp32f;srcStep:longint;pGx:PIpp32f;gxStep:longint;pGy:PIpp32f;gyStep:longint;pMag:PIpp32f;magStep:longint;pAngle:PIpp32f;angleStep:longint;dstRoiSize:IppiSize;maskSize:IppiMaskSize;normType:IppNormType;borderType:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (* /////////////////////////////////////////////////////////////////////////////
@@ -10420,7 +10420,7 @@ var
 //                         - 2>nbins or nbins>IPP_HOG_MAX_BINS
 //                         - sigma or l2thresh is not positive value
 *F*)
-  ippiHOGGetSize: function(pConfig:PIppiHOGConfig;pHOGSpecSize:Plongint):IppStatus;
+  ippiHOGGetSize: function(pConfig:PIppiHOGConfig;pHOGSpecSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name:                ippiHOGInit
@@ -10447,7 +10447,7 @@ var
 //                         - 2>nbins or nbins>IPP_HOG_MAX_BINS
 //                         - sigma or l2thresh is not positive value
 *F*)
-  ippiHOGInit: function(pConfig:PIppiHOGConfig;pHOGSpec:PIppiHOGSpec):IppStatus;
+  ippiHOGInit: function(pConfig:PIppiHOGConfig;pHOGSpec:PIppiHOGSpec):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name:                ippiHOGGetBufferSize
@@ -10465,7 +10465,7 @@ var
 //    ippStsContextMatchErr Indicates an error when undefined pHOGSpec
 //    ippStsSizeErr        Indicates an error if roiSize has any field is less then pConfig->winSize
 *F*)
-  ippiHOGGetBufferSize: function(pHOGSpec:PIppiHOGSpec;roiSize:IppiSize;pBufferSize:Plongint):IppStatus;
+  ippiHOGGetBufferSize: function(pHOGSpec:PIppiHOGSpec;roiSize:IppiSize;pBufferSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name:                ippiHOGGetDescriptorSize
@@ -10482,7 +10482,7 @@ var
 //    ippStsNullPtrErr     Indicates an error when pHOGSpec or pDescriptorSize is NULL
 //    ippStsContextMatchErr Indicates an error when undefined pHOGSpec
 *F*)
-  ippiHOGGetDescriptorSize: function(pHOGSpec:PIppiHOGSpec;pWinDescriptorSize:Plongint):IppStatus;
+  ippiHOGGetDescriptorSize: function(pHOGSpec:PIppiHOGSpec;pWinDescriptorSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 // Name:                ippiHOG
@@ -10512,15 +10512,15 @@ var
 //                         ippBorderInMem, ippBorderRepl or ippBorderConst
 //                         (or derivative from)
 *F*)
-  ippiHOG_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiHOG_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiHOG_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiHOG_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiHOG_8u32f_C1R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHOG_16u32f_C1R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHOG_16s32f_C1R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHOG_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGSpec:PIppiHOGSpec;borderID:IppiBorderType;borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiHOG_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;
-  ippiHOG_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;
-  ippiHOG_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;
-  ippiHOG_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;
+  ippiHOG_8u32f_C3R: function(pSrc:PIpp8u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp8u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHOG_16u32f_C3R: function(pSrc:PIpp16u;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp16u;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHOG_16s32f_C3R: function(pSrc:PIpp16s;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp16s;pBuffer:PIpp8u):IppStatus;stdcall;
+  ippiHOG_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;roiSize:IppiSize;pLocation:PIppiPoint;nLocations:longint;pDst:PIpp32f;pHOGCtx:PIppiHOGSpec;borderID:IppiBorderType;var borderValue:Ipp32f;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //           3D Geometric Transform Functions
@@ -10555,7 +10555,7 @@ var
 //                            (interpolation != IPPI_INTER_CUBIC2P_B05C03)
 *)
 
-  ipprResizeGetBufSize: function(srcVOI:IpprCuboid;dstVOI:IpprCuboid;nChannel:longint;interpolation:longint;pSize:Plongint):IppStatus;
+  ipprResizeGetBufSize: function(srcVOI:IpprCuboid;dstVOI:IpprCuboid;nChannel:longint;interpolation:longint;pSize:Plongint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //  Name:               ipprGetResizeCuboid
@@ -10578,7 +10578,7 @@ var
 //    ippStsNullPtrErr        pDstCuboid == NULL
 *)
 
-  ipprGetResizeCuboid: function(srcVOI:IpprCuboid;pDstCuboid:PIpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint):IppStatus;
+  ipprGetResizeCuboid: function(srcVOI:IpprCuboid;pDstCuboid:PIpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint):IppStatus;stdcall;
 
 (*
 //  Name:               ipprResize_<mode>
@@ -10630,17 +10630,17 @@ var
 //    <mode> are 8u_C1V or 16u_C1V or 32f_C1V or 8u_C1PV or 16u_C1PV or 32f_C1PV
 *)
 
-  ipprResize_8u_C1V: function(pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp8u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprResize_8u_C1V: function(pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp8u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprResize_16u_C1V: function(pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp16u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprResize_16u_C1V: function(pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp16u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprResize_32f_C1V: function(pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp32f;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprResize_32f_C1V: function(pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp32f;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprResize_8u_C1PV: function(var pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp8u;dstStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprResize_8u_C1PV: function(var pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp8u;dstStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprResize_16u_C1PV: function(var pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp16u;dstStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprResize_16u_C1PV: function(var pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp16u;dstStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprResize_32f_C1PV: function(var pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp32f;dstStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprResize_32f_C1PV: function(var pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp32f;dstStep:longint;dstVOI:IpprCuboid;xFactor:double;yFactor:double;zFactor:double;xShift:double;yShift:double;zShift:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 
 (*
@@ -10674,7 +10674,7 @@ var
 //                            (interpolation != IPPI_INTER_CUBIC2P_B05C03)
 *)
 
-  ipprWarpAffineGetBufSize: function(srcVolume:IpprVolume;srcVOI:IpprCuboid;dstVOI:IpprCuboid;var coeffs:double;nChannel:longint;interpolation:longint;pSize:Plongint):IppStatus;
+  ipprWarpAffineGetBufSize: function(srcVolume:IpprVolume;srcVOI:IpprCuboid;dstVOI:IpprCuboid;var coeffs:double;nChannel:longint;interpolation:longint;pSize:Plongint):IppStatus;stdcall;
 
 (*
 //  Names:              ipprWarpAffine_<mode>
@@ -10711,11 +10711,11 @@ var
 //    <mode> are 8u_C1PV or 16u_C1PV or 32f_C1PV
 *)
 
-  ipprWarpAffine_8u_C1PV: function(var pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp8u;dstStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprWarpAffine_8u_C1PV: function(var pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp8u;dstStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprWarpAffine_16u_C1PV: function(var pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp16u;dstStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprWarpAffine_16u_C1PV: function(var pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp16u;dstStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprWarpAffine_32f_C1PV: function(var pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp32f;dstStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprWarpAffine_32f_C1PV: function(var pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pDst:PIpp32f;dstStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 (*
 //  Names:              ipprWarpAffine_<mode>
 //  Purpose:            Performs AFFINE transform of the source volume by matrix a[3][4]
@@ -10753,10 +10753,10 @@ var
 //    <mode> are 8u_C1V or 16u_C1V or 32f_C1V
 *)
 
-  ipprWarpAffine_8u_C1V: function(pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp8u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
-  ipprWarpAffine_16u_C1V: function(pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp16u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprWarpAffine_8u_C1V: function(pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp8u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
+  ipprWarpAffine_16u_C1V: function(pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp16u;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ipprWarpAffine_32f_C1V: function(pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp32f;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;
+  ipprWarpAffine_32f_C1V: function(pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pDst:PIpp32f;dstStep:longint;dstPlaneStep:longint;dstVOI:IpprCuboid;var coeffs:double;interpolation:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
 (*
 //  Names:              ipprRemap_<mode>
@@ -10793,11 +10793,11 @@ var
 //    <mode> are 8u_C1PV or 16u_C1PV or 32f_C1PV
 *)
 
-  ipprRemap_8u_C1PV: function(var pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pxMap:PIpp32f;var pyMap:PIpp32f;var pzMap:PIpp32f;mapStep:longint;var pDst:PIpp8u;dstStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;
+  ipprRemap_8u_C1PV: function(var pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pxMap:PIpp32f;var pyMap:PIpp32f;var pzMap:PIpp32f;mapStep:longint;var pDst:PIpp8u;dstStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;stdcall;
 
-  ipprRemap_16u_C1PV: function(var pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pxMap:PIpp32f;var pyMap:PIpp32f;var pzMap:PIpp32f;mapStep:longint;var pDst:PIpp16u;dstStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;
+  ipprRemap_16u_C1PV: function(var pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pxMap:PIpp32f;var pyMap:PIpp32f;var pzMap:PIpp32f;mapStep:longint;var pDst:PIpp16u;dstStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;stdcall;
 
-  ipprRemap_32f_C1PV: function(var pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pxMap:PIpp32f;var pyMap:PIpp32f;var pzMap:PIpp32f;mapStep:longint;var pDst:PIpp32f;dstStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;
+  ipprRemap_32f_C1PV: function(var pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcVOI:IpprCuboid;var pxMap:PIpp32f;var pyMap:PIpp32f;var pzMap:PIpp32f;mapStep:longint;var pDst:PIpp32f;dstStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;stdcall;
 (*
 //  Names:              ipprRemap_<mode>
 //  Purpose:            Performs REMAP TRANSFORM of the source volume by remapping
@@ -10835,9 +10835,9 @@ var
 //    <mode> are 8u_C1V or 16u_C1V or 32f_C1V
 *)
 
-  ipprRemap_8u_C1V: function(pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pxMap:PIpp32f;pyMap:PIpp32f;pzMap:PIpp32f;mapStep:longint;mapPlaneStep:longint;pDst:PIpp8u;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;
-  ipprRemap_16u_C1V: function(pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pxMap:PIpp32f;pyMap:PIpp32f;pzMap:PIpp32f;mapStep:longint;mapPlaneStep:longint;pDst:PIpp16u;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;
-  ipprRemap_32f_C1V: function(pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pxMap:PIpp32f;pyMap:PIpp32f;pzMap:PIpp32f;mapStep:longint;mapPlaneStep:longint;pDst:PIpp32f;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;
+  ipprRemap_8u_C1V: function(pSrc:PIpp8u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pxMap:PIpp32f;pyMap:PIpp32f;pzMap:PIpp32f;mapStep:longint;mapPlaneStep:longint;pDst:PIpp8u;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;stdcall;
+  ipprRemap_16u_C1V: function(pSrc:PIpp16u;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pxMap:PIpp32f;pyMap:PIpp32f;pzMap:PIpp32f;mapStep:longint;mapPlaneStep:longint;pDst:PIpp16u;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;stdcall;
+  ipprRemap_32f_C1V: function(pSrc:PIpp32f;srcVolume:IpprVolume;srcStep:longint;srcPlaneStep:longint;srcVOI:IpprCuboid;pxMap:PIpp32f;pyMap:PIpp32f;pzMap:PIpp32f;mapStep:longint;mapPlaneStep:longint;pDst:PIpp32f;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;interpolation:longint):IppStatus;stdcall;
 
 (* /////////////////////////////////////////////////////////////////////////////
 //           3D General Linear Filters
@@ -10858,7 +10858,7 @@ var
 //    ippStsNumChannelsErr  number of channels is not one
 *)
 
-  ipprFilterGetBufSize: function(dstVolume:IpprVolume;kernelVolume:IpprVolume;nChannel:longint;pSize:Plongint):IppStatus;
+  ipprFilterGetBufSize: function(dstVolume:IpprVolume;kernelVolume:IpprVolume;nChannel:longint;pSize:Plongint):IppStatus;stdcall;
 
 (*
 //  Name:               ipprFilter_16s_C1PV
@@ -10882,7 +10882,7 @@ var
 //    ippStsDivisorErr  divisor value is zero, function execution is interrupted
 *)
 
-  ipprFilter_16s_C1PV: function(var pSrc:PIpp16s;srcStep:longint;var pDst:PIpp16s;dstStep:longint;dstVolume:IpprVolume;pKernel:PIpp32s;kernelVolume:IpprVolume;anchor:IpprPoint;divisor:longint;pBuffer:PIpp8u):IppStatus;
+  ipprFilter_16s_C1PV: function(var pSrc:PIpp16s;srcStep:longint;var pDst:PIpp16s;dstStep:longint;dstVolume:IpprVolume;pKernel:PIpp32s;kernelVolume:IpprVolume;anchor:IpprPoint;divisor:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 (*
 //  Name:               ipprFilter_16s_C1V
 //  Purpose:            Filters a volume using a general integer cuboidal kernel
@@ -10906,33 +10906,33 @@ var
 //    ippStsSizeErr     width or height or depth of volumes is less or equal zero
 //    ippStsDivisorErr  divisor value is zero, function execution is interrupted
 *)
-  ipprFilter_16s_C1V: function(pSrc:PIpp16s;srcStep:longint;srcPlaneStep:longint;pDst:PIpp16s;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;pKernel:PIpp32s;kernelVolume:IpprVolume;anchor:IpprPoint;divisor:longint;pBuffer:PIpp8u):IppStatus;
+  ipprFilter_16s_C1V: function(pSrc:PIpp16s;srcStep:longint;srcPlaneStep:longint;pDst:PIpp16s;dstStep:longint;dstPlaneStep:longint;dstVolume:IpprVolume;pKernel:PIpp32s;kernelVolume:IpprVolume;anchor:IpprPoint;divisor:longint;pBuffer:PIpp8u):IppStatus;stdcall;
 
-  ippiMulC64f_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
+  ippiMulC64f_8u_C1R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_8u_C3R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_8u_C4R: function(pSrc:PIpp8u;srcStep:longint;var value:Ipp64f;pDst:PIpp8u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16u_C1R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16u_C3R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16u_C4R: function(pSrc:PIpp16u;srcStep:longint;var value:Ipp64f;pDst:PIpp16u;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16s_C1R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16s_C3R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16s_C4R: function(pSrc:PIpp16s;srcStep:longint;var value:Ipp64f;pDst:PIpp16s;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_32f_C1R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_32f_C3R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_32f_C4R: function(pSrc:PIpp32f;srcStep:longint;var value:Ipp64f;pDst:PIpp32f;dstStep:longint;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
 
-  ippiMulC64f_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
-  ippiMulC64f_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;
+  ippiMulC64f_8u_C1IR: function(pSrcDst:PIpp8u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_8u_C3IR: function(pSrcDst:PIpp8u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_8u_C4IR: function(pSrcDst:PIpp8u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16u_C1IR: function(pSrcDst:PIpp16u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16u_C3IR: function(pSrcDst:PIpp16u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16u_C4IR: function(pSrcDst:PIpp16u;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16s_C1IR: function(pSrcDst:PIpp16s;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16s_C3IR: function(pSrcDst:PIpp16s;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_16s_C4IR: function(pSrcDst:PIpp16s;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_32f_C1IR: function(pSrcDst:PIpp32f;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_32f_C3IR: function(pSrcDst:PIpp32f;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
+  ippiMulC64f_32f_C4IR: function(pSrcDst:PIpp32f;srcDstStep:longint;var value:Ipp64f;roiSize:IppiSize;hint:IppHintAlgorithm;rndMode:IppRoundMode):IppStatus;stdcall;
 
 (*   #ifdef __cplusplus
 }
