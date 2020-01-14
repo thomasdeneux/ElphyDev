@@ -1,0 +1,13 @@
+Les sources sont dans le dossier Cuda80
+
+Le projet cuda65 concerne seulement la version 32 bits
+Il n'était pas possible d'utiliser cuda 8.0 qui n'existe qu'en 64 bits
+
+Donc il y a deux projets:
+  Cuda80 pour la version Elphy 64 bits
+  Cuda65 pour la version Elphy 32 bits
+
+Les deux projets utilisent les mêmes fichiers source mais des bibliothèques Cuda différentes.
+
+La destination est ElphyDev\Dexe5\Cuda pour la version 32 bits
+La destination est ElphyDev\DelpheXE\Win64\Bin\cuda pour la version 64 bits
