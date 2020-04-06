@@ -726,8 +726,8 @@ begin
       with Tvector(obref) do
       begin
         case Style of
-          csX: if xminC>=XmaxC then
-               begin
+          csX: //if xminC>=XmaxC then
+              begin
                 xminC:=Xstart;
                 xmaxC:=Xend;
               end;

@@ -573,7 +573,7 @@ procedure TcursorList.installDisplay(ref:Tvector);
 var
   i:integer;
 begin
-  if ref=FVdisplay then exit;
+ // if ref=FVdisplay then exit;
 
   derefObjet(typeUO(FVdisplay));
   if assigned(FVdisplay) then FVdisplay.Fondisplay:=nil;

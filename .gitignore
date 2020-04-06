@@ -128,3 +128,23 @@ elphy.chw
 *.zip
 Setup/
 Scripts Windows/NOTE - Je n'ai pas encore tout à fait confiance dans Compile_Elphy64
+Delphe5/DX11G/headers/DXGI.dcu
+Delphe5/DX11G/headers/D3DX10.dcu
+Delphe5/DX11G/headers/D3D10_1.dcu
+Delphe5/DX11G/headers/D3D10.dcu
+Delphe5/Autres projets/DX11test1.dfm
+Delphe5/Autres projets/DX11test.res
+Delphe5/Autres projets/DX11test.dpr
+Delphe5/Autres projets/DX11test.dof
+Delphe5/PngImage/pnglang.dcu
+Delphe5/PngImage/pngImage.dcu
+Delphe5/DX11G/headers/D3DCommon.dcu
+Delphe5/Autres projets/PreHelpHTML1.res
+Delphe5/Autres projets/DX11test.dsm
+Delphe5/elphy2_DX9_DESKTOP-8QJJT7N_mai-28-092957-2018_Conflict.dsm
+Delphe5/PngImage/pngzlib.dcu
+Delphe5/Autres projets/DX11test1.pas
+Delphe5/Autres projets/DX11test1.dcu
+Delphe5/DX11G/headers/D3D11.dcu
+Scripts Windows/CompileG_Elphy64_debug.bat
+Scripts Windows/CompileG_Elphy64.bat
